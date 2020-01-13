@@ -1,4 +1,4 @@
-#CS461_Milestone01
+# CS461_Milestone01
 
 team name\motto\logo
 letterhead + business cards
