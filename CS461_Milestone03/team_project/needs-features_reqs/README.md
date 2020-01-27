@@ -1,3 +1,3 @@
 # CS461_Milestone03
 ## Team Project
-### Needs-Features-Requirements
+### Initial Needs & Features + Functional/Non-Functional Requirements
