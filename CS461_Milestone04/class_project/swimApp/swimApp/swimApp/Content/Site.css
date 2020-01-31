@@ -42,8 +42,19 @@ h1 {
 }
 
 h2 {
-    font-size: 36px;
+    font-size: 27px;
     font-weight: bold;
+}
+
+.splash_main_cats {
+    background-color: hsla(0, 100%, 90%, 0.4);
+    text-align: center;
+    border: 1px solid darkslateblue;
+    border-radius: 11px;
+}
+
+.front_main_cats {
+    /*color: #cccccc;*/
 }
 
 footer {
@@ -71,6 +82,7 @@ a {
 }
 
 .desc {
+    margin-top: 72px;
     font-size: 18px;
     background-color: hsla(0, 100%, 90%, 0.4);
     border: 1px solid darkslateblue;
