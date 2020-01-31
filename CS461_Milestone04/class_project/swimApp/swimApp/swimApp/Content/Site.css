@@ -51,6 +51,8 @@ h2 {
     text-align: center;
     border: 1px solid darkslateblue;
     border-radius: 11px;
+    width: 90%;
+    margin: auto;
 }
 
 .front_main_cats {
