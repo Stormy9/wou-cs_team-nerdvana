@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Elite Aquatics -- Welcome!";
 }
 
     <div >  <!-- i did set background here on this container thing but that didn't work..... -->
@@ -52,7 +52,7 @@
             </div>
 
             <div class="col-md-10">
-                <p class="desc">
+                <div class="desc">
                     Elite Acquatics System will put high school and collegiate swim coaches
                     on a level playing field with coaches of elite teams, by providing means
                     to do in-depth tracking and analytics of their individual athletes and
@@ -60,7 +60,12 @@
                     <br />
                     <br />
                     Help your athletes reach their fullest potential with Elite Aquatics.
-                </p>
+                    <br />
+                    <br />
+                    <h4 id="front_page_reg_login">
+                        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" }) or @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })!
+                    </h4>
+                </div>
             </div>
 
             <div class="col-md-1">

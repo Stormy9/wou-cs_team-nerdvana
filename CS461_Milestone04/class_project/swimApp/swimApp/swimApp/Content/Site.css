@@ -34,15 +34,59 @@ h2 {
     font-weight: bold;
 }
 
+footer {
+    position: fixed;
+    bottom: 9px;
+}
+
+a {
+    color: #2e2759;
+}
+    a:visited {
+        color: #2e2759;
+    }
+    a:hover {
+        color: #40367c;
+    }
+    a:active {
+        color:#40367c;
+    }
+
+.control-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #cccccc;
+}
+
 .desc {
     font-size: 18px;
-    background-color:hsla(0, 100%, 90%, 0.4);
+    background-color: hsla(0, 100%, 90%, 0.4);
     border: 1px solid darkslateblue;
     border-radius: 11px;
     padding: 18px;
 }
 
-footer {
-    position: fixed;
-    bottom: 9px;
+#front_page_reg_login {
+    text-align: center;
+    color: darkslateblue;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.box_holder {
+    padding-left: 0px;
+}
+
+.info_box {
+    background-color: hsla(0, 100%, 90%, 0.4);
+    border: 1px solid darkslateblue;
+    border-radius: 11px;
+    padding: 18px;
+    width: 72%;
+}
+
+.text-danger {
+    font-weight: bold;
+    color: crimson;
+    font-size: 18px;
 }
