@@ -24,6 +24,18 @@ textarea {
 }
 
 /***************************************************************************************/
+.navbar-brand {
+    font-size: 27px;
+}
+
+#registerLink {
+    font-size: 18px;
+}
+
+#loginLink {
+    font-size: 18px;
+}
+
 h1 {
     font-size: 72px;
     font-weight: bold;
