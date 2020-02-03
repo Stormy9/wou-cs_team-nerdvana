@@ -6,14 +6,15 @@
 
 
 
-<h2>Athletes</h2>
+<h2 class="control-label">Athletes</h2>
 
+@if (User.IsInRole("Coach"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-    <table class="table athleteDesc">
+    <table class="table info_box">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
@@ -39,12 +40,50 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Gender)
                 </td>
+
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.AID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.AID }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.AID })
                 </td>
+
             </tr>
         }
 
     </table>
+}
+else
+{
+    <table class="table info_box">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+}
+
