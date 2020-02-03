@@ -92,6 +92,15 @@ a {
     padding: 18px;
 }
 
+.athleteDesc {
+    margin-top: 72px;
+    font-size: 18px;
+    background-color: hsla(0, 100%, 90%, 0.4);
+    border: 1px solid darkslateblue;
+    border-radius: 11px;
+    padding: 2px;
+}
+
 #front_page_reg_login {
     text-align: center;
     color: darkslateblue;
@@ -109,6 +118,14 @@ a {
     border-radius: 11px;
     padding: 18px;
     width: 72%;
+}
+
+.athlete_table {
+    background-color: hsla(0, 100%, 90%, 0.4);
+    border: 1px solid darkslateblue;
+    border-radius: 11px;
+    padding: 18px;
+    width: 73%;
 }
 
 .text-danger {

@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -174,12 +176,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AthletesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Athlete.cs" />
+    <Compile Include="DAL\AthleteContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -187,7 +192,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\down.sql" />
+    <Content Include="App_Data\seed.sql" />
     <Content Include="App_Data\up.sql" />
+    <Content Include="App_Data\userUp.sql" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -243,6 +250,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Athletes\Create.cshtml" />
+    <Content Include="Views\Athletes\Delete.cshtml" />
+    <Content Include="Views\Athletes\Details.cshtml" />
+    <Content Include="Views\Athletes\Edit.cshtml" />
+    <Content Include="Views\Athletes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
