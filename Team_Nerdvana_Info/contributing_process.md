@@ -3,28 +3,28 @@
 ### How to contribute with us.....
 
 ### First things first:
-0. Read our rules!
-  0. stuff
+* Read our rules!
+  * stuff
 
 <br>
 
-1. Fork
-  0. stuff
-
-<br>
- 
-2. Clone to a local repo
-  0. stuff
-
-<br>
-
-3. Set upstream
-  0. stuff
+* Fork
+  * stuff
 
 <br>
  
-4. Carefully peruse all project documentation, found in our `Milestone01-05` folders
-  0. stuff
+* Clone to a local repo
+  * stuff
+
+<br>
+
+* Set upstream
+  * stuff
+
+<br>
+ 
+* Carefully peruse all project documentation, found in our `Milestone01-05` folders
+  * stuff
 
 
 <hr>
@@ -81,6 +81,7 @@
   * leave `master` the heck alone!
 * take care of your own merge conflicts
   * we're not your mom (or dad, as the case may be)
+
 <br>
 
 #### Pull Requests are like this:
