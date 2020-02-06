@@ -10,18 +10,22 @@ As a sometimes very busy pet owner myself, I know that there are times I could u
 <br><br>
 
 #### Vision Statement:
-For pet owners and pet care providers who need a means to connect with each other, Petopia! is a website/application that will create an online community so that these two groups can create profiles, find each other, schedule/arrange for services, and interact; thereby enhancing the day-to-day lives of pets and the people who love them.  The site/app will store profile information (some public-facing, some private) for pet owners, their pets, and pet care providers.  It will also track services arranged and completed (or not), allow for ratings of both pet owners and pet care providers, and facilitate the payment process.  This app will not only allow pet owners to more easily care for their pets, but facilitate an enjoyable and legitimate “side hustle” for pet lovers to earn a little extra money.  Unlike the current app, which does not exist, our app will be a boon to pet lovers everywhere; and can grow as our community grows.to get 
+For pet owners and pet care providers who need a means to connect with each other, **Petopia!** is a website/application that will create an online community so that these two groups can create profiles, find each other, schedule/arrange for services, and interact; thereby enhancing the day-to-day lives of pets and the people who love them.  The site/app will store profile information (some public-facing, some private) for pet owners, their pets, and pet care providers.  It will also track services arranged and completed (or not), allow for ratings of both pet owners and pet care providers, and facilitate the payment process.  This app will not only allow pet owners to more easily care for their pets, but facilitate an enjoyable and legitimate “side hustle” for pet lovers to earn a little extra money.  Unlike the current app, which does not exist, our app will be a boon to pet lovers everywhere; and can grow as our community grows.to get 
 
-<br><br><br>
+<br><br>
 <hr>
 
 ### How to contribute
 Check out our `contributing_guidelines.md` file here.
+<br>
+You'll find out about forking, cloning, pulling, our rules, our current contributors, and possibly more!   [=
 
 <br><br>
 
 ### You need this stuff to contribute
 Check out our `you_need_this_stuff.md` file here.
+<br>
+Make sure you have the right stuff!  We all need to be using the same things and versions to avoid compatibility headaches.
 
 <br><br>
 
