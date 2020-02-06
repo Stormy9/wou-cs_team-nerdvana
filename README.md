@@ -1,10 +1,10 @@
 # wou-cs_team-nerdvana
 ### Tricia Holman, Corrin Moser, Joseph Tavares
-##### Western Oregon University &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Computer Science Department &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Senior Project 2019/20   |   
+##### Western Oregon University &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Computer Science Department &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Senior Project 2019/20 &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Team Nerdvana &nbsp;&nbsp;&nbsp; |
 <hr>
 This is the repo for our capstone project before we graduate with a Bachelor's Degree in Computer Science!
 <br><br>
-Our primary Senior Project is **Petopia!** z-- a web site/app for pet owners to find a reliable pet care provider, and to give pet lovers the opportunity to make some extra money doing something they enjoy.  
+Our primary Senior Project is **Petopia!** -- a web site/app for pet owners to find a reliable pet care provider, and to give pet lovers the opportunity to make some extra money doing something they enjoy.  
 <br><br>
 As a sometimes very busy pet owner myself, I know that there are times I could use services from someone coming to give my pets their medicine, to sitting with them.  Pet care providers can specify which things they are experienced and comfortable in doing, and for which types of pets.
 <br><br>
@@ -17,20 +17,21 @@ As a sometimes very busy pet owner myself, I know that there are times I could u
 
 ### How to contribute
 Check out our `contributing_guidelines.md` file [here](../tlh_m05_team_github_stuff/Team_Nerdvana_Info/contributing_process.md).
-<br>
+<br><br>
 You'll find out about forking, cloning, pulling, our rules, our current contributors, and possibly more!   [=
 
 <br><br>
 
 ### You need this stuff to contribute
 Check out our `you_need_this_stuff.md` file [here](../tlh_m05_team_github_stuff/Team_Nerdvana_Info/you_need_this_stuff.md).
-<br>
+<br><br>
 Make sure you have the right stuff!  We all need to be using the same things and versions to avoid compatibility headaches.
 
 <br><br>
+<hr>
 
 ### Our software development process
-Throughout our senior year, for our two-term capstone project, we are learning and using the Agile methodology + Scrum -- to be specific, Disciplined Agile Delivery.  For keeping control over our two-week sprints, we use Pivotol Tracker.
+Throughout our senior year, for our two-term capstone project, we are learning and using the Agile methodology + Scrum -- to be specific, Disciplined Agile Delivery.  For keeping control over our two-week sprints, we use Pivotol Tracker.  If you would like to work with us, you'll need to participate in this process with us!
 
 <br><br><br>
 <hr>
