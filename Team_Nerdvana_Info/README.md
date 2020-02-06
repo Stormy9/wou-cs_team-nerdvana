@@ -1,3 +1,3 @@
 # Team Nerdvana Info
-### How to help with Petopia!
-##### The Rules + Tools etc.
+### How to help us with Petopia!
+### The Rules + Tools etc.
