@@ -36,6 +36,15 @@ Throughout our senior year, for our two-term capstone project, we are learning a
 
 <br>
 <hr>
+
+<p align="center">Tagline => <i>Cleverminds</i></p>
+<p align="center">Motto =>  Start <b>Earlier!</b></p>
+
+<p align="center"><a href="https://www.youtube.com/watch?v=_fdYjlAviT8">Team Song (Nirvana, of course)</a></p>
+<p align="center"><a href="https://genius.com/Nirvana-territorial-pissings-lyrics">and the lyrics</a></p>
+
+<br>
+<hr>
 <img src="https://stormy9.github.io/nerdvana/TeamNerdvana_Logo.png" alt="nerdvana logo" width="90" height="90" align="right">
 <br><br><br><br><br>
 <img src="https://stormy9.github.io/nerdvana/WOUWolves.png" alt="wou wolf" width="125" height="90" align="right">
