@@ -3,10 +3,35 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#########################################################################################
+# app secrets for Petopia:  
+# (there's no where to put it outside my repo the way it is locally)
+Petopia/appSettingSecrets.config
 
-# db connection stuff for CS460_Hwk09
-Web_deploy.config
+# will we need this for Petopia? if we do here it is   [=
+Petopia/Petopia/Petopia/web_deploy.config
 
+
+# for some stupid-ass reason, I have a Petopia-folder-within-the-Petopia folder.....
+# something that happened while getting that zip file and now it won't let me delete
+# it locally, saying i need admin access -- but i AM the f'ing admin, so..... ?????
+# til i can get rid of it, it's in the .gitignore so it doesn't fuck up anyone else   [=
+Petopia_NO/
+
+# and just because for some reason things are really stupid for me locally:
+Petopia/Petopia/stormy_open_this_one.md
+
+
+# db connection stuff for CS460_Hwk09 (left as example)
+#Web_deploy.config
+
+
+# not sure how this got in there??  (when i did a 'git status')
+# all i did was open them to see what was in them (nothing), i changed nothing!
+# then 'git status' showed them as 'untracked files'..... ?????
+CS461_Milestone03/class_project/swimApp/swimApp/swimApp/Web_deploy.config
+CS461_Milestone04/class_project/swimApp/swimApp/swimApp/Web_deploy.config
+#########################################################################################
 
 # User-specific files
 *.rsuser
