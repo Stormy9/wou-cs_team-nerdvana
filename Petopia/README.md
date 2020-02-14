@@ -4,7 +4,7 @@
 
 <hr>
 
-Finally -- our team project as it comes to life.....
+Finally!  Our team project as it comes to life.....
 
 
 <br><br><br>
