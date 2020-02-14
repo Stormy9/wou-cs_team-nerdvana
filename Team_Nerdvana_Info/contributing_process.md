@@ -23,7 +23,7 @@
 
 <br>
  
-* Carefully peruse all project documentation, found in our `Milestone01-05` folders
+* Carefully peruse all early project documentation, found in our `Milestone01-05` folders
   * stuff
 
 
@@ -31,6 +31,13 @@
 
 ### The Rules:
 ### Code:
+#### General
+* for the love of god use 4-space indents, *not two!*
+* please double-space between functions.  
+    * (at least one of us appreciates vertical white space for readability)   [=
+
+<br> 
+
 #### C#
 * use traditional C# naming conventions
 * make/use a new controller for different entities
