@@ -26,7 +26,6 @@ textarea {
 /*=====================================================================================*/
 /* our custom classes */
 
-
 .my_foot {
-    margin-top: 108px;
+    background-color: lightgray;
 }
