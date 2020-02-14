@@ -2,13 +2,32 @@
     ViewBag.Title = "Petopia!";
 }
 
-<div class="jumbotron">
-    <h1>Petopia!!!!!</h1>
-    <p class="lead">did this finally work?</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!-------------------------------------------------------------------------------------->
+<div class="homepage-hero-module">
+    <div class="video-container">
 
-<div class="row">
+        <div class="filter"></div>
+
+            <video autoplay loop muted playsinline src="https://stormy9.github.io/nerdvana/Dog-Lovers.mp4" class="fillWidth" id="splash_video"></video>
+
+            <div class="splash_overlay">
+                <h1>Petopia:  in-home pet-care services</h1>
+                <h3>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;love your pet even when you can't be home!
+                </h3>
+                <!-- figure out pause button? -->
+            </div>
+
+                <div class="poster hidden">
+                    <img src="https://stormy9.github.io/nerdvana/Dog-Lovers.jpg" alt="">
+                </div>
+
+            </div>
+</div>
+<!-------------------------------------------------------------------------------------->
+
+<div class="row splash_content">
+
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>
@@ -18,14 +37,24 @@
         </p>
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
+
+
     <div class="col-md-4">
         <h2>Get more libraries</h2>
         <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
     </div>
+
+
     <div class="col-md-4">
         <h2>Web Hosting</h2>
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
+
 </div>
+
+<!-------------------------------------------------------------------------------------->
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/_our_main.js"></script>
+}
