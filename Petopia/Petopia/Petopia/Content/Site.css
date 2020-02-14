@@ -6,8 +6,8 @@ body {
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    /*padding-left: 15px;
+    padding-right: 15px;*/
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -26,6 +26,89 @@ textarea {
 /*=====================================================================================*/
 /* our custom classes */
 
-.my_foot {
+/* trying out the video 'hero' image thing -- courtesy coverr */
+.homepage-hero-module {
+    border-right: none;
+    border-left: none;
+    position: relative;
+}
+
+.no-video .video-container video,
+.touch .video-container video {
+    display: none;
+}
+
+.no-video .video-container .poster,
+.touch .video-container .poster {
+    display: block !important;
+}
+
+.video-container {
+    position: relative;
+    bottom: 0%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+    .video-container .poster img {
+        width: 100%;
+        bottom: 0;
+        position: absolute;
+    }
+
+    .video-container .filter {
+        z-index: 100;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.4);
+        width: 100%;
+    }
+
+    .video-container video {
+        position: absolute;
+        z-index: 0;
+        bottom: 0;
+    }
+
+        .video-container video.fillWidth {
+            width: 100%;
+        }
+/*-------------------------------------------------------------------*/
+.splash_overlay {
+    position: fixed;
+    top: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+    padding-top: 45px;
+    padding-left: 18px;
+}
+/*=====================================================================================*/
+
+.navbar-brand {
+    font-size: 18px;
+}
+
+body {
+    background-color: #ffffb3;
+}
+
+.splash_content {
+    margin-left: 18px;
+    margin-right: 18px;
+}
+
+.our_foot {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
     background-color: lightgray;
+    padding-top: 9px;
+    padding-left: 18px;
+    font-size: 11px;
+    color: #333333;
 }
