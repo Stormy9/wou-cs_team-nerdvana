@@ -206,6 +206,58 @@ textarea {
     text-align: center;
 }
 /*=====================================================================================*/
+.register_hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
+                      rgba(0, 0, 0, 0.63)), 
+                      url("https://stormy9.github.io/nerdvana/guineaPig_register.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+    color: #f2f2f2;
+    height: 630px;
+}
+
+.register_title {
+    position: absolute;
+    display: inline-block;
+    bottom: 45px;
+    text-align: left;
+}
+
+.password_rules {
+    width: 35%;
+    border: 1px solid black;
+    border-radius: 11px;
+    font-size: 18px;
+    padding: 18px;
+    margin-top: 36px;
+    margin-left: 45px;
+}
+/*=====================================================================================*/
+.login_hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
+                      rgba(0, 0, 0, 0.63)), 
+                      url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+    color: #f2f2f2;
+    height: 630px;
+}
+
+.login_title {
+    position: absolute;
+    display: inline-block;
+    bottom: 45px;
+    text-align: left;
+}
+
+
+/*=====================================================================================*/
 .navbar-brand {
     font-size: 18px;
 }
