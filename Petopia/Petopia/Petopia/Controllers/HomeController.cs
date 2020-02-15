@@ -12,17 +12,23 @@ namespace Petopia.Controllers
         {
             return View();
         }
+        //-------------------------------------------------------------------------------
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Title = "What does Petopia do?"; 
+            ViewBag.Message_PO = "find out how Petopia can make your and your pet's life better";
+            ViewBag.Message_PCP = "or have a side hustle doing something you love";
 
             return View();
         }
+        //-------------------------------------------------------------------------------
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Title = "Contact Petopia";
+            ViewBag.Message_PS = "Have a question about services, or need to report a service issue?";
+            ViewBag.Message_PT = "Need to report or get help with a technical issue on our site?";
 
             return View();
         }
