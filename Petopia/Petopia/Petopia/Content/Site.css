@@ -162,9 +162,50 @@ textarea {
     padding-top: 18px;
     padding-left: 18px;
 }
-
 /*=====================================================================================*/
+.contact_hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
+                      rgba(0, 0, 0, 0.63)), 
+                      url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+    color: #f2f2f2;
+    height: 630px;
+}
 
+.contact_title {
+    position: absolute;
+    display: inline-block;
+    bottom: 45px;
+    text-align: left;
+}
+
+.contact_content {
+    color: black;
+    font-size: 18px;
+    padding-top: 18px;
+    padding-left: 18px;
+}
+
+.contact_bottom_stuff {
+    margin-top: 45px;
+    margin-bottom: 45px;
+    padding-left: 18px;
+}
+
+.email_button {
+    width: 180px;
+    background-color: #333333;
+    border: 1px solid black;
+    border-radius: 9px;
+    padding: 9px;
+    font-size: 18px;
+    text-align: center;
+}
+/*=====================================================================================*/
 .navbar-brand {
     font-size: 18px;
 }
@@ -188,6 +229,11 @@ body {
     padding-left: 18px;
     font-size: 11px;
     color: #333333;
+}
+
+hr {
+    color: black;
+    /* didn't think this would work   [=   */
 }
 /*=====================================================================================*/
 /* unvisited link */
