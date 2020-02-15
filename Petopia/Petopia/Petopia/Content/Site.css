@@ -127,6 +127,10 @@ textarea {
     /*border: 1px solid green;*/
 }
 
+.splash_content {
+    margin-left: 18px;
+    margin-right: 18px;
+}
 /*=====================================================================================*/
 .about_hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
@@ -159,8 +163,18 @@ textarea {
 .about_content {
     color: black;
     font-size: 18px;
-    padding-top: 18px;
-    padding-left: 18px;
+    padding: 27px;
+    padding-bottom: 45px;
+}
+
+.any_questions {
+    width: 180px;
+    background-color: #333333;
+    border: 1px solid black;
+    border-radius: 9px;
+    padding: 9px;
+    font-size: 18px;
+    text-align: center;
 }
 /*=====================================================================================*/
 .contact_hero {
@@ -255,8 +269,6 @@ textarea {
     bottom: 45px;
     text-align: left;
 }
-
-
 /*=====================================================================================*/
 .navbar-brand {
     font-size: 18px;
@@ -265,10 +277,20 @@ textarea {
 body {
     background-color: #ffffb3;
 }
+h3 {
+    font-weight: bold;
+}
 
-.splash_content {
-    margin-left: 18px;
-    margin-right: 18px;
+h4 {
+    font-weight: bold;
+}
+
+p {
+    padding-bottom: 5px;
+}
+
+li {
+    padding-bottom: 5px;
 }
 
 .our_foot {
@@ -284,8 +306,10 @@ body {
 }
 
 hr {
+    height: 1px;
     color: black;
-    /* didn't think this would work   [=   */
+    background-color: black;
+    border: none;
 }
 /*=====================================================================================*/
 /* unvisited link */
