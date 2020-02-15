@@ -2,8 +2,10 @@
 @{
     ViewBag.Title = "Register with Petopia!";
 }
-
-    <div class="container-fluid register_hero">
+    <!-- changed element to 'body' to ensure (?) it covers entire vertical page on large 
+         screens! pretty sure that's best to ensure it covers entire viewport..... 
+         or would changing height to 100% in a div do it, too?  idk for sure..... -->
+    <body class="container-fluid register_hero">
 
         <h2>@ViewBag.Title</h2>
 
@@ -59,7 +61,7 @@
             </div>
             <!--======================================================================-->
         }
-    </div><!-- end register_hero div -->
+    </body><!-- end register_hero div -->
 
 <!--==================================================================================-->
 @section Scripts {

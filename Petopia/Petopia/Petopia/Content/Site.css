@@ -230,7 +230,7 @@ textarea {
     background-position: center;
     position: relative;
     color: #f2f2f2;
-    height: 630px;
+    height: 100%;
 }
 
 .register_title {
@@ -260,7 +260,7 @@ textarea {
     background-position: center top;
     position: relative;
     color: #f2f2f2;
-    height: 630px;
+    height:100%;
 }
 
 .login_title {
