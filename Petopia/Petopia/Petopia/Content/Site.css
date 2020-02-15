@@ -239,11 +239,11 @@ textarea {
 .login_hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
                       rgba(0, 0, 0, 0.63)), 
-                      url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
+                      url("https://stormy9.github.io/nerdvana/parakeet_login.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center;
+    background-position: center top;
     position: relative;
     color: #f2f2f2;
     height: 630px;
