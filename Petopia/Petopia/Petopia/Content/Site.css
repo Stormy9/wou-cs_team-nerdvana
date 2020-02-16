@@ -385,3 +385,36 @@ a:active {
     /* and ditto for this ^^^ here */
 }
 /*=====================================================================================*/
+/* media Query for really old/skinny phones like iPhone 5/SE.....                      */
+@media only screen and (max-width: 400px) {
+    .splash_intro {
+        position: absolute;
+        display: inline-block;
+        bottom: 90px;
+        text-align: left;
+        font-size: 18px;
+        /* was trying to get placement right on a regular screen   */
+        /* but forgot about phones etc. aka responsiveness   [=   */
+        /*margin-left: -250px; */
+        padding-left: 108px;
+        /* those ^^^ two lines */
+        /* for testing */
+        /*border: 1px solid green;*/
+    }
+    /* okay this ^^^ seems good now on emulators in chrome 'inspect' */
+
+    .about_title {
+        position: absolute;
+        display: inline-block;
+        bottom: 315px;
+        text-align: left;
+        /* okay so it must be centering to the actual photo? */
+        /*margin-left: -300px;*/
+        /* left edge of text gets cut off when narrow */
+        padding-left: 153px;
+        /* for testing */
+        /*border: 1px solid red;*/
+    }
+    /* and ditto for this ^^^ here */
+}
+/*=====================================================================================*/
