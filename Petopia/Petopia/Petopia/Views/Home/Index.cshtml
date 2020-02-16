@@ -1,67 +1,64 @@
 ﻿@{
     ViewBag.Title = "Petopia!";
 }
-
 <!-------------------------------------------------------------------------------------->
 <div class="homepage-hero-module">
     <div class="video-container">
 
         <div class="filter"></div>
 
-            <video autoplay loop muted playsinline 
-                   src="https://stormy9.github.io/nerdvana/Dog-Lovers.mp4" 
-                   class="fillWidth" id="splash_video"></video>
+        <video autoplay loop muted playsinline
+               src="https://stormy9.github.io/nerdvana/Dog-Lovers.mp4"
+               class="fillWidth" id="splash_video"></video>
 
-            <!--------------------------------------------------------------------------->
-            <div class="splash_overlay">
-                <h1>Petopia:  in-home pet-care services</h1>
-                <h3 class="splash_subtitle">
-                    love your pet even when you can't be home!
-                </h3>
-                <!-- figure out pause button? -->
-
-                <!---------------------------------------------------------------------->
-                <!---------------------------------------------------------------------->
-                <!-- don't forget: do search like this, when we make it functional -->
-                @*@using (Html.BeginForm("StockItem", "Home", FormMethod.Post))
+        <!--------------------------------------------------------------------------->
+        <div class="splash_overlay">
+            <h1>Petopia:  in-home pet-care services</h1>
+            <h3 class="splash_subtitle">
+                love your pet even when you can't be home!
+            </h3>
+            <!-- figure out pause button? -->
+            <!---------------------------------------------------------------------->
+            <!---------------------------------------------------------------------->
+            <!-- don't forget: do search like this, when we make it functional -->
+            @*@using (Html.BeginForm("StockItem", "Home", FormMethod.Post))
                 {
                     @Html.TextBox("search")
                     <input type="submit" value="search!" class="btn-danger" id="our_search_button" />
                 }*@
 
-                <!-- fill in action later, where it goes when you click! -->
-                <form class="splash_search" action="">
-                    <div class="form-group splash_form">
-                        <!-- TODO: figure out why this won't widen w/CSS -->
-                        <input type="text" class="form-control splash_search_input" 
-                               placeholder="find a pet care provivder near you!">
-                    </div>
-                    <button type="submit" class="btn btn-default">Fetch!</button>
-                </form>
-                <!---------------------------------------------------------------------->
-                <!---------------------------------------------------------------------->
-
-                <div class="container-fluid splash_intro_box">
-                    <div class="container-fluid splash_intro">
-                        @Html.ActionLink("Find out how Petopia can benefit you", "About", "Home")
-                        --
-                        <br />
-                        as a pet owner -- or become a pet care provider with us!
-                    </div>
+            <!-- fill in action later, where it goes when you click! -->
+            <form class="splash_search" action="">
+                <div class="form-group splash_form">
+                    <!-- TODO: figure out why this won't widen w/CSS -->
+                    <input type="text" class="form-control splash_search_input"
+                           placeholder="find pet care near you!">
                 </div>
+                <button type="submit" class="btn btn-default our_buttons">Fetch!</button>
+            </form>
+            <!---------------------------------------------------------------------->
+            <!---------------------------------------------------------------------->
 
-            </div>
-            <!--------------------------------------------------------------------------->
-                <div class="poster hidden">
-                    <img src="https://stormy9.github.io/nerdvana/my_Dog-Lovers_01.png" 
-                         alt="">
+            <div class="container-fluid splash_intro_box">
+                <div class="container-fluid splash_intro">
+                    @Html.ActionLink("Find out how Petopia can benefit you:", "About", "Home")
+                    
+                    <br />
+                    as a pet owner -- or become a pet care provider with us!
                 </div>
-
             </div>
+
+        </div>
+        <!--------------------------------------------------------------------------->
+        <div class="poster hidden">
+            <img src="https://stormy9.github.io/nerdvana/my_Dog-Lovers_01.png"
+                 alt="">
+        </div>
+
+    </div>
 </div>
-<!-------------------------------------------------------------------------------------->
-
 <!-------------------------------------------------------------------------------------->
 @section scripts {
     <script type="text/javascript" src="~/Scripts/_our_main.js"></script>
 }
+<!-------------------------------------------------------------------------------------->
