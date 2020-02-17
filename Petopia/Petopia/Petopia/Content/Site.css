@@ -1,4 +1,4 @@
-﻿/* came with this stuff */
+﻿/* came with this stuff in this first part..... */
 body {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -24,7 +24,7 @@ textarea {
     max-width: 280px;
 }
 /*=====================================================================================*/
-/* our custom classes */
+/*                                our custom classes                                  */
 
 /* trying out the video 'hero' video+image thing -- courtesy coverr */
 .homepage-hero-module {
@@ -142,7 +142,7 @@ textarea {
     height: 900px;
     /* this is to center 'about_title' */
     text-align: center;
-    /* width: auto; is default..... */
+    /* width: auto;   <= is default..... */
     /* was gonna try setting it to that, to see if it changes anything, */
     /* for centering the title crap better..... but it's default!      */
 }
@@ -318,7 +318,7 @@ hr {
     border: 1px solid #333333;
 }
 
-/*=====================================================================================*/
+/*==================================== LINKS! =========================================*/
 /* unvisited link */
 a:link {
     color: #e6e6e6;
@@ -347,74 +347,188 @@ a:active {
     text-decoration: none;
 }
 /*=====================================================================================*/
+
+/*=====================================================================================*/
 /* responsive shit for the couple of spots that need that                              */
 /* the 'natural' positioning of the stuff low on the hero image on the front & about   */
 /* pages was weird on normal-size screens -- fixing that made it look outright stupid  */
 /* on phone-sized screens... and the fix took away the normal BootStrap responsive     */
 /* crap.....  so here we go -- hopefully the best of both worlds here.....      [=     */
 /*=====================================================================================*/
+
 @media only screen and (max-width: 500px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 17px;
+    }
+
+    h4 {
+        font-size: 15px;
+    }
+
     .splash_intro {
         position: absolute;
         display: inline-block;
         bottom: 180px;
         text-align: left;
-        font-size: 18px;
         /* was trying to get placement right on a regular screen   */
         /* but forgot about phones etc. aka responsiveness   [=   */
         /*margin-left: -250px; */
         padding-left: 90px;
-        /* those ^^^ two lines */
-        /* for testing */
-        /*border: 1px solid green;*/
+        font-size: 16px;
     }
     /* okay this ^^^ seems good now on emulators in chrome 'inspect' */
+
+    /****************************** ABOUT max-width: 500px *****************************/
+    .about_hero {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
+                          rgba(0, 0, 0, 0.63)), 
+                        url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        position: relative;
+        color: #f2f2f2;
+        height: 675px;
+        /* this is to center 'about_title' */
+        text-align: center;
+    }
 
     .about_title {
         position: absolute;
         display: inline-block;
-        bottom: 315px;
+        bottom: 45px;
         text-align: left;
         /* okay so it must be centering to the actual photo? */
         /*margin-left: -300px;*/
         /* left edge of text gets cut off when narrow */
-        padding-left: 126px;
-        /* for testing */
-        /*border: 1px solid red;*/
+        padding-left: 135px;
     }
     /* and ditto for this ^^^ here */
+
+    /**************************** CONTACT max-width: 500px *****************************/
+    .contact_hero {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
+                          rgba(0, 0, 0, 0.63)), 
+                          url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        position: relative;
+        color: #f2f2f2;
+        height: 675px;
+    }
+
+    .contact_title {
+        position: absolute;
+        display: inline-block;
+        bottom: 45px;
+        text-align: left;
+    }
+    /*********************** REGISTER max-width: 500px *********************************/
+    .password_rules {
+        width: 90%;
+        border: 1px solid black;
+        border-radius: 11px;
+        font-size: 17px;
+        padding: 18px;
+        margin-top: 36px;
+        margin-left: 18px;
+    }
 }
+/*=====================================================================================*/
+/***************************************************************************************/
 /*=====================================================================================*/
 /* media Query for really old/skinny phones like iPhone 5/SE.....                      */
 @media only screen and (max-width: 400px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 17px;
+    }
+
+    h4 {
+        font-size: 15px;
+    }
+
+    /*************************** SPLASH max-width: 400px *******************************/
     .splash_intro {
         position: absolute;
         display: inline-block;
         bottom: 90px;
         text-align: left;
-        font-size: 18px;
         /* was trying to get placement right on a regular screen   */
         /* but forgot about phones etc. aka responsiveness   [=   */
         /*margin-left: -250px; */
         padding-left: 108px;
-        /* those ^^^ two lines */
-        /* for testing */
-        /*border: 1px solid green;*/
+        font-size: 15px;
     }
     /* okay this ^^^ seems good now on emulators in chrome 'inspect' */
+
+    /***************************** ABOUT max-width: 400px ******************************/
+    .about_hero {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
+                          rgba(0, 0, 0, 0.63)), 
+                        url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        position: relative;
+        color: #f2f2f2;
+        height: 600px;
+        /* this is to center 'about_title' */
+        text-align: center;
+    }
 
     .about_title {
         position: absolute;
         display: inline-block;
-        bottom: 315px;
+        bottom: 45px;
         text-align: left;
         /* okay so it must be centering to the actual photo? */
         /*margin-left: -300px;*/
         /* left edge of text gets cut off when narrow */
         padding-left: 153px;
-        /* for testing */
-        /*border: 1px solid red;*/
     }
     /* and ditto for this ^^^ here */
+
+    /***************************** CONTACT max-width: 400px ****************************/
+    .contact_hero {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
+                          rgba(0, 0, 0, 0.63)), 
+                          url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        position: relative;
+        color: #f2f2f2;
+        height: 600px;
+    }
+
+    .contact_title {
+        position: absolute;
+        display: inline-block;
+        bottom: 45px;
+        text-align: left;
+    }
+    /************************** REGISTER max-width: 400px ******************************/
+    .password_rules {
+        width: 90%;
+        border: 1px solid black;
+        border-radius: 11px;
+        font-size: 16px;
+        padding: 18px;
+        margin-top: 18px;
+        margin-left: 18px;
+    }
 }
 /*=====================================================================================*/

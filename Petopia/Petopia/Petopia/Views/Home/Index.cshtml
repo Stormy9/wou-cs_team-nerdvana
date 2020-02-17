@@ -11,15 +11,16 @@
                src="https://stormy9.github.io/nerdvana/Dog-Lovers.mp4"
                class="fillWidth" id="splash_video"></video>
 
-        <!--------------------------------------------------------------------------->
+        <!------------------------------------------------------------------------------>
         <div class="splash_overlay">
             <h1>Petopia:  in-home pet-care services</h1>
             <h3 class="splash_subtitle">
                 love your pet even when you can't be home!
             </h3>
             <!-- figure out pause button? -->
-            <!---------------------------------------------------------------------->
-            <!---------------------------------------------------------------------->
+
+            <!-------------------------------------------------------------------------->
+            <!--------------------------- search box! ---------------------------------->
             <!-- don't forget: do search like this, when we make it functional -->
             @*@using (Html.BeginForm("StockItem", "Home", FormMethod.Post))
                 {
@@ -36,27 +37,63 @@
                 </div>
                 <button type="submit" class="btn btn-default our_buttons">Fetch!</button>
             </form>
-            <!---------------------------------------------------------------------->
+            <!---------------------- ^^^ search box ^^^----------------------------->
             <!---------------------------------------------------------------------->
 
             <div class="container-fluid splash_intro_box">
                 <div class="container-fluid splash_intro">
                     @Html.ActionLink("Find out how Petopia can benefit you:", "About", "Home")
-                    
+
                     <br />
                     as a pet owner -- or become a pet care provider with us!
                 </div>
             </div>
 
-        </div>
-        <!--------------------------------------------------------------------------->
+        </div><!-- end splash_overlay div \ search & splash_intro_box inside it -->
+        <!------------------------------------------------------------------------------>
+
+
+        <!------------------------------------------------------------------------------>
+        <!-------------------- hidden \ for when video can't operate ------------------->
         <div class="poster hidden">
             <img src="https://stormy9.github.io/nerdvana/my_Dog-Lovers_01.png"
                  alt="">
-        </div>
 
-    </div>
-</div>
+            <!-- gotta copy this to here, so it shows up on mobile -- or otherwise -->
+            <!-- when the video is not operable -->
+            <div class="splash_overlay">
+                <h1>Petopia:  in-home pet-care services</h1>
+                <h3 class="splash_subtitle">
+                    love your pet even when you can't be home!
+                </h3>
+
+                <!-- fill in action later, where it goes when you click! -->
+                <form class="splash_search" action="">
+                    <div class="form-group splash_form">
+                        <!-- TODO: figure out why this won't widen w/CSS -->
+                        <input type="text" class="form-control splash_search_input"
+                               placeholder="find pet care near you!">
+                    </div>
+                    <button type="submit" class="btn btn-default our_buttons">Fetch!
+                    </button>
+                </form><!-- end search form/box div -->
+
+                <div class="container-fluid splash_intro_box">
+                    <div class="container-fluid splash_intro">
+                        @Html.ActionLink("Find out how Petopia can benefit you:", 
+                                                                    "About", "Home")
+                        <br />
+                        as a pet owner -- or become a pet care provider with us!
+                    </div>
+                </div><!-- end intro \ intro_box divs -->
+
+            </div><!-- end splash_overlay div -->
+
+        </div><!-- END poster hidden div -->
+        <!------------------------------------------------------------------------------>
+        <!------------------------------------------------------------------------------>
+    </div><!-- video-container div -->
+</div><!-- end homepage-hero-module div -->
 <!-------------------------------------------------------------------------------------->
 @section scripts {
     <script type="text/javascript" src="~/Scripts/_our_main.js"></script>
