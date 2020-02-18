@@ -532,3 +532,5 @@ a:active {
     }
 }
 /*=====================================================================================*/
+/* should we consider a max/min height? <= don't think we need to worry               */
+/* should we consider media Query for tablets?  <= maybe..... might be okay though   */
