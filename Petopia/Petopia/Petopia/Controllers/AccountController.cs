@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Petopia.Models;
+using reCAPTCHA.MVC;
 
 namespace Petopia.Controllers
 {
@@ -146,6 +147,7 @@ namespace Petopia.Controllers
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
+        [CaptchaValidator]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
