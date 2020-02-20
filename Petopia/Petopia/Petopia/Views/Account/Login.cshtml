@@ -22,7 +22,7 @@
                             new { @class = "form-horizontal", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <h4>Use a local account to log in.</h4>
+                    <h4>Welcome, please sign in to use all the features on Petopia!</h4>
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -64,10 +64,14 @@
                     <p>
                         @Html.ActionLink("Register as a new user", "Register")
                     </p>
+
+                    <p>
+                        @Html.ActionLink("Forgot Password?", "ForgotPassword")
+                    </p>
                     @* Enable this once you have account confirmation enabled for password reset functionality
-                        <p>
-                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                        </p>*@
+            <p>
+                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+            </p>*@
                 }
             </section>
         </div><!-- end column w/login form div -->
