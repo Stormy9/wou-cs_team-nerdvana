@@ -46,10 +46,15 @@
                 </div>
             </div>
 
-            <div>
+            <div class="form-group our_recaptcha">
+                <div class="col-md-2"></div>
+
+                <div class="col-md-10">
                     @Html.ValidationMessage("ReCaptcha")
                     @Html.Recaptcha()
+                </div>
             </div>
+
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
