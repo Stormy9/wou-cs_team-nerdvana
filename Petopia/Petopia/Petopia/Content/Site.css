@@ -187,7 +187,7 @@ textarea {
     background-position: center;
     position: relative;
     color: #f2f2f2;
-    height: 720px;
+    height: 900px;
 }
 
 .contact_title {
@@ -279,6 +279,35 @@ textarea {
     text-align: left;
 }
 /*=====================================================================================*/
+.forgotPass_hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
+                      rgba(0, 0, 0, 0.63)), 
+                 url("https://stormy9.github.io/nerdvana/curious-dog_lost-password.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    position: relative;
+    color: #f2f2f2;
+    height: 100%;
+}
+.forgotPass_title {
+    margin-bottom: 18px;
+}
+/*=====================================================================================*/
+.chooseRole_hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
+                      rgba(0, 0, 0, 0.63)), 
+                      url("https://stormy9.github.io/nerdvana/happy_doggie_choose.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    position: relative;
+    color: #f2f2f2;
+    height: 100%;
+}
+/*=====================================================================================*/
 .navbar-brand {
     font-size: 18px;
 }
@@ -286,10 +315,13 @@ textarea {
 body {
     background-color: #ffffb3;
 }
+
+h2 {
+    font-weight: bold;
+}
 h3 {
     font-weight: bold;
 }
-
 h4 {
     font-weight: bold;
 }
@@ -326,7 +358,6 @@ hr {
     color: whitesmoke;
     border: 1px solid #333333;
 }
-
 /*==================================== LINKS! =========================================*/
 /* unvisited link */
 a:link {
@@ -476,7 +507,7 @@ a:active {
 /*    b/c of it's height -- width is okay.....                                    */
 
 @media only screen and (max-height: 630px) {            /* so 630px and shorter */
-    /****************************** ABOUT max-height: 630px ****************************/
+    /****************************** SPLASH max-height: 630px ****************************/
     .splash_intro {
         bottom: 125px;
     }
@@ -487,7 +518,40 @@ a:active {
     .about_title {
         bottom: 180px;
     }
-    /* contact page image is already 720px high */
+    /****************************** CONTACT max-height: 630px **************************/
+    .contact_hero {
+        height: 720px;
+    }
+    .contact_title {
+        bottom: 180px;
+    }
+    /* register & login pages just have full-height images anyway! */
+}
+/*=====================================================================================*/
+
+
+
+/*=====================================================================================*/
+/* how about for the *really* big screens a lot of people have on their desks now?    */
+/*                                                                                  */
+@media only screen and (min-height: 1100px) { /* so 1100px and taller */
+    /****************************** SPLASH min-height: 1100px **************************/
+    .splash_intro {
+        bottom: 125px;
+    }
+    /****************************** ABOUT min-height: 1100px ***************************/
+    .about_hero {
+        height: 1100px;
+    }
+
+    .about_title {
+        bottom: 180px;
+    }
+    /****************************** CONTACT min-height: 1100px *************************/
+    .contact_hero {
+        height: 1100px;
+    }
+
     .contact_title {
         bottom: 180px;
     }
