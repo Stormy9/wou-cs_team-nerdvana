@@ -21,8 +21,13 @@ namespace Petopia.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            //: base("DefaultConnection", throwIfV1Schema: false)
+        : base("Petopia_Context_Azure", throwIfV1Schema: false)
+        //: base("Petopia_Context_Local", throwIfV1Schema: false)
         {
+
+
+            Database.SetInitializer<ApplicationDbContext>(null);
         }
 
         public static ApplicationDbContext Create()
