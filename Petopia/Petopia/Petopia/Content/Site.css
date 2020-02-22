@@ -255,7 +255,9 @@ textarea {
 }
 /*=====================================================================================*/
 .login_hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.63)), url("https://stormy9.github.io/nerdvana/parakeet_login.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
+                      rgba(0, 0, 0, 0.63)), 
+                      url("https://stormy9.github.io/nerdvana/parakeet_login.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -359,6 +361,7 @@ a:active {
 /*=====================================================================================*/
 
 @media only screen and (max-width: 500px) {
+    /* so 500px wide and moreThan 400px wide */
     h1 {
         font-size: 18px;
     }
@@ -448,6 +451,7 @@ a:active {
 /*=====================================================================================*/
 /* media Query for really old/skinny phones like iPhone 5/SE.....                      */
 @media only screen and (max-width: 400px) {
+    /* so 400px wide and narrower */
     h1 {
         font-size: 18px;
     }
@@ -536,3 +540,37 @@ a:active {
 /*=====================================================================================*/
 /* should we consider a max/min height? <= don't think we need to worry               */
 /* should we consider media Query for tablets?  <= maybe..... might be okay though   */
+/*                                                                                  */
+/* because..... i am dissatisfied with a couple things on Mr. Chromebook.....      */
+/*    b/c of it's height -- width is okay.....                                    */
+
+@media only screen and (max-height: 630px) {            /* so 630px and shorter */
+    /* front/splash page is okay on Mr. Chromebook                             */
+    /****************************** ABOUT max-width: 500px *****************************/
+    .about_hero {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
+                            rgba(0, 0, 0, 0.63)), 
+                        url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        position: relative;
+        color: #f2f2f2;
+        height: 720px;
+        /* this is to center 'about_title' */
+        text-align: center;
+    }
+    /* contact page is fine as-is too -- register/login are just full-height anyway */
+    .about_title {
+        position: absolute;
+        display: inline-block;
+        bottom: 45px;
+        text-align: left;
+        /* okay so it must be centering to the actual photo? */
+        /*margin-left: -300px;*/
+        /* left edge of text gets cut off when narrow */
+        padding-left: 135px;
+    }
+}
+/*=====================================================================================*/
