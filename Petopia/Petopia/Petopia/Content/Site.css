@@ -204,6 +204,11 @@ textarea {
     padding-left: 18px;
 }
 
+.email_text {
+    color: blue;
+    font-weight: bold;
+}
+
 .contact_bottom_stuff {
     margin-top: 45px;
     margin-bottom: 45px;
@@ -351,9 +356,11 @@ a:active {
     text-decoration: none;
 }
 /*=====================================================================================*/
-/***************************************************************************************/
+
+
+
 /*=====================================================================================*/
-/* responsive shit for the couple of spots that need that                              */
+/* responsive stuff for the couple of spots that need that                             */
 /* the 'natural' positioning of the stuff low on the hero image on the front & about   */
 /* pages was weird on normal-size screens -- fixing that made it look outright stupid  */
 /* on phone-sized screens... and the fix took away the normal BootStrap responsive     */
@@ -365,89 +372,49 @@ a:active {
     h1 {
         font-size: 18px;
     }
-
     h3 {
         font-size: 17px;
     }
-
     h4 {
         font-size: 15px;
     }
-
+    /****************************** SPLASH max-width: 500px ****************************/
     .splash_intro {
-        position: absolute;
-        display: inline-block;
-        bottom: 180px;
-        text-align: left;
-        /* was trying to get placement right on a regular screen   */
-        /* but forgot about phones etc. aka responsiveness   [=   */
-        /*margin-left: -250px; */
         padding-left: 90px;
         font-size: 16px;
     }
-    /* okay this ^^^ seems good now on emulators in chrome 'inspect' */
-
     /****************************** ABOUT max-width: 500px *****************************/
     .about_hero {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
-                          rgba(0, 0, 0, 0.63)), 
-                        url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        position: relative;
-        color: #f2f2f2;
         height: 675px;
-        /* this is to center 'about_title' */
-        text-align: center;
     }
-
     .about_title {
-        position: absolute;
-        display: inline-block;
         bottom: 45px;
-        text-align: left;
-        /* okay so it must be centering to the actual photo? */
-        /*margin-left: -300px;*/
-        /* left edge of text gets cut off when narrow */
         padding-left: 135px;
     }
-    /* and ditto for this ^^^ here */
-
+    .about_content {
+        font-size: 13px;
+    }
     /**************************** CONTACT max-width: 500px *****************************/
     .contact_hero {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
-                          rgba(0, 0, 0, 0.63)), 
-                          url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        position: relative;
-        color: #f2f2f2;
         height: 675px;
     }
-
     .contact_title {
-        position: absolute;
-        display: inline-block;
-        bottom: 45px;
-        text-align: left;
+        bottom: 90px;
+    }
+    .contact_content {
+        font-size: 13px;
     }
     /*********************** REGISTER max-width: 500px *********************************/
     .password_rules {
         width: 90%;
-        border: 1px solid black;
-        border-radius: 11px;
-        font-size: 17px;
-        padding: 18px;
-        margin-top: 36px;
+        font-size: 14px;
         margin-left: 18px;
     }
 }
 /*=====================================================================================*/
-/***************************************************************************************/
+
+
+
 /*=====================================================================================*/
 /* media Query for really old/skinny phones like iPhone 5/SE.....                      */
 @media only screen and (max-width: 400px) {
@@ -455,88 +422,52 @@ a:active {
     h1 {
         font-size: 18px;
     }
-
     h3 {
         font-size: 17px;
     }
-
     h4 {
         font-size: 15px;
     }
-
     /*************************** SPLASH max-width: 400px *******************************/
     .splash_intro {
-        position: absolute;
-        display: inline-block;
         bottom: 90px;
         text-align: left;
-        /* was trying to get placement right on a regular screen   */
-        /* but forgot about phones etc. aka responsiveness   [=   */
-        /*margin-left: -250px; */
         padding-left: 108px;
         font-size: 15px;
     }
-    /* okay this ^^^ seems good now on emulators in chrome 'inspect' */
-
     /***************************** ABOUT max-width: 400px ******************************/
     .about_hero {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
-                          rgba(0, 0, 0, 0.63)), 
-                        url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        position: relative;
-        color: #f2f2f2;
         height: 600px;
-        /* this is to center 'about_title' */
-        text-align: center;
     }
-
     .about_title {
-        position: absolute;
-        display: inline-block;
-        bottom: 45px;
-        text-align: left;
-        /* okay so it must be centering to the actual photo? */
-        /*margin-left: -300px;*/
-        /* left edge of text gets cut off when narrow */
+        bottom: 90px;
         padding-left: 153px;
     }
-    /* and ditto for this ^^^ here */
-
+    .about_content {
+        font-size: 13px;
+    }
     /***************************** CONTACT max-width: 400px ****************************/
     .contact_hero {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
-                          rgba(0, 0, 0, 0.63)), 
-                          url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        position: relative;
-        color: #f2f2f2;
         height: 600px;
     }
-
     .contact_title {
-        position: absolute;
-        display: inline-block;
         bottom: 45px;
-        text-align: left;
+    }
+    .contact_content {
+        font-size: 13px;
     }
     /************************** REGISTER max-width: 400px ******************************/
     .password_rules {
         width: 90%;
-        border: 1px solid black;
-        border-radius: 11px;
-        font-size: 16px;
-        padding: 18px;
+        font-size: 13px;
         margin-top: 18px;
         margin-left: 18px;
     }
 }
+/*=====================================================================================*/
+
+
+
 /*=====================================================================================*/
 /* should we consider a max/min height? <= don't think we need to worry               */
 /* should we consider media Query for tablets?  <= maybe..... might be okay though   */
@@ -545,32 +476,21 @@ a:active {
 /*    b/c of it's height -- width is okay.....                                    */
 
 @media only screen and (max-height: 630px) {            /* so 630px and shorter */
-    /* front/splash page is okay on Mr. Chromebook                             */
-    /****************************** ABOUT max-width: 500px *****************************/
+    /****************************** ABOUT max-height: 630px ****************************/
+    .splash_intro {
+        bottom: 125px;
+    }
+    /****************************** ABOUT max-height: 630px ****************************/
     .about_hero {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
-                            rgba(0, 0, 0, 0.63)), 
-                        url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        position: relative;
-        color: #f2f2f2;
         height: 720px;
-        /* this is to center 'about_title' */
-        text-align: center;
     }
-    /* contact page is fine as-is too -- register/login are just full-height anyway */
     .about_title {
-        position: absolute;
-        display: inline-block;
-        bottom: 45px;
-        text-align: left;
-        /* okay so it must be centering to the actual photo? */
-        /*margin-left: -300px;*/
-        /* left edge of text gets cut off when narrow */
-        padding-left: 135px;
+        bottom: 180px;
     }
+    /* contact page image is already 720px high */
+    .contact_title {
+        bottom: 180px;
+    }
+    /* register & login pages just have full-height images anyway! */
 }
 /*=====================================================================================*/
