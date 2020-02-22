@@ -10,6 +10,7 @@
         <h2>@ViewBag.Title</h2>
 
         <!--==========================================================================-->
+        @using reCAPTCHA.MVC
         @using (Html.BeginForm("Register", "Account", FormMethod.Post,
                                 new { @class = "form-horizontal", role = "form" }))
         {
@@ -27,21 +28,30 @@
 
 
             <div class="form-group">
-                @Html.LabelFor(m => m.Password, 
+                @Html.LabelFor(m => m.Password,
                                     new { @class = "col-md-2 control-label" })
                 <div class="col-md-10">
-                    @Html.PasswordFor(m => m.Password, 
+                    @Html.PasswordFor(m => m.Password,
                                                 new { @class = "form-control" })
                 </div>
             </div>
 
 
             <div class="form-group">
-                @Html.LabelFor(m => m.ConfirmPassword, 
+                @Html.LabelFor(m => m.ConfirmPassword,
                                     new { @class = "col-md-2 control-label" })
                 <div class="col-md-10">
-                    @Html.PasswordFor(m => m.ConfirmPassword, 
+                    @Html.PasswordFor(m => m.ConfirmPassword,
                                     new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group our_recaptcha">
+                <div class="col-md-2"></div>
+
+                <div class="col-md-10">
+                    @Html.ValidationMessage("ReCaptcha")
+                    @Html.Recaptcha()
                 </div>
             </div>
 
