@@ -15,17 +15,18 @@
         </p>
     </div>
     <div>
-        <div class="col-md-4"> <!--These are going to redirect to home for now until we make the forms-->
-            @Html.ActionLink("I want to be a pet owner!", "PetOwnerForm", "Account")
-        </div>
         <div class="col-md-4">
-            @Html.ActionLink("I want to be a pet care provider!", "PetProviderForm", "Account")
-        </div>
-        <div class="col-md-4">
-            @Html.ActionLink("I want to be both!", "PetBothForm", "Account")
+            <!--These are going to redirect to home for now until we make the forms-->
+            @Html.ActionLink("I want to be a pet owner!", "Index", "Home")
             <br />
             <br />
             @Html.ActionLink("I want to pick later...", "Index", "Home")
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("I want to be a pet care provider!", "Index", "Home")
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("I want to be both!", "Index", "Home")
         </div>
     </div>
 </body><!-- end chooseRole_hero div -->
