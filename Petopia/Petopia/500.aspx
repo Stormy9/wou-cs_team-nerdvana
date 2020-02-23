@@ -1,8 +1,10 @@
+<% Response.StatusCode = 500 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>404 Page Not Found</title>
+    <title>500 Server Error</title>
     
     
     <style>
@@ -47,8 +49,8 @@
                  <br>
                  better go back where you came from.....
              </h2>
-             <h3><i>(404 Page Not Found)</i></h3>
-             <h3><i>(this is 404.html page)</i></h3>
+             <h3><i>(500 - server error)</i></h3>
+             <h3><i>(this is 500.aspx page)</i></h3>
          </div>
     </div>
     

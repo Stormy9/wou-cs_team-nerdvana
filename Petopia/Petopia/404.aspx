@@ -1,9 +1,11 @@
+<% Response.StatusCode = 404 %>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <title>404 Page Not Found</title>
-    
+     
     
     <style>
         body {
@@ -48,7 +50,7 @@
                  better go back where you came from.....
              </h2>
              <h3><i>(404 Page Not Found)</i></h3>
-             <h3><i>(this is 404.html page)</i></h3>
+             <h3><i>(this is 404.aspx page)</i></h3>
          </div>
     </div>
     
