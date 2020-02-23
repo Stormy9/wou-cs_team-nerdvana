@@ -348,7 +348,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Account\ChooseRole.cshtml" />
-    <Content Include="Web_deploy.config" />
+    <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
