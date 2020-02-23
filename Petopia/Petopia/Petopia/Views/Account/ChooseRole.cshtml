@@ -6,27 +6,47 @@
 <body class="container-fluid chooseRole_hero">
     <h2>@ViewBag.Title</h2>
 
-    <div class="col-md-12">
-        <p>
-            Thanks for registering with us! To make the most out of this site,
-            you need to determine if you will be using this site as a pet owner,
-            or a pet care provider. If you plan on being both, that's fine too.
-            You'll be able to change this at any time, so no pressure!
-        </p>
-    </div>
-    <div>
-        <div class="col-md-4">
-            <!--These are going to redirect to home for now until we make the forms-->
-            @Html.ActionLink("I want to be a pet owner!", "Index", "Home")
-            <br />
-            <br />
-            @Html.ActionLink("I want to pick later...", "Index", "Home")
+    <div class="row">
+        <div class="col-md-1"><!--spaceholder--></div>
+
+        <div class="col-md-10">
+            <p>
+                Thanks for registering with us! To make the most out of this site,
+                you need to determine if you will be using this site as a pet owner,
+                or a pet care provider. If you plan on being both, that's fine too.
+                You'll be able to change this at any time, so no pressure!
+            </p>
         </div>
-        <div class="col-md-4">
-            @Html.ActionLink("I want to be a pet care provider!", "Index", "Home")
+
+        <div class="col-md-1"><!--spaceholder--></div>
+    </div><!-- end 1st row -->
+
+
+    <div class="row">
+        <!--These are going to redirect to home for now until we make the forms-->
+        <div class="col-md-3">
+            <div class="pick_buttons">
+                @Html.ActionLink("I want to be a pet owner!", "Index", "Home")
+            </div>
         </div>
-        <div class="col-md-4">
-            @Html.ActionLink("I want to be both!", "Index", "Home")
+
+        <div class="col-md-3">
+            <div class="pick_buttons">
+                @Html.ActionLink("I want to be a pet care provider!", "Index", "Home")
+            </div>
         </div>
-    </div>
+
+        <div class="col-md-3">
+            <div class="pick_buttons">
+                @Html.ActionLink("I want to be both!", "Index", "Home")
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="pick_buttons">
+                @Html.ActionLink("I want to pick later...", "Index", "Home")
+            </div>
+        </div>
+    </div><!-- end 2nd row -->
+
 </body><!-- end chooseRole_hero div -->
