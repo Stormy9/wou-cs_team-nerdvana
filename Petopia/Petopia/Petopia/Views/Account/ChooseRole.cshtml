@@ -6,4 +6,26 @@
 <body class="container-fluid chooseRole_hero">
     <h2>@ViewBag.Title</h2>
 
+    <div class="col-md-12">
+        <p>
+            Thanks for registering with us! To make the most out of this site,
+            you need to determine if you will be using this site as a pet owner,
+            or a pet care provider. If you plan on being both, that's fine too.
+            You'll be able to change this at any time, so no pressure!
+        </p>
+    </div>
+    <div>
+        <div class="col-md-4">
+            @Html.ActionLink("I want to be a pet owner!", "PetOwnerForm", "Account")
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("I want to be a pet care provider!", "PetProviderForm", "Account")
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("I want to be both!", "PetBothForm", "Account")
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("I want to pick later...", "Index", "Home")
+    </div>
 </body><!-- end chooseRole_hero div -->
