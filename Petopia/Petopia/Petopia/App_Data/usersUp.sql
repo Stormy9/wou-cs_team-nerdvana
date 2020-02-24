@@ -1,10 +1,14 @@
-﻿CREATE TABLE [dbo].[PetopiaUsers] (
+﻿/*
+CREATE TABLE [dbo].[PetopiaUsers] (
 	
 	[UserID] NVARCHAR(120) NOT NULL, 
 	[UserName] NVARCHAR(120) NOT NULL,
 	[Password] NVARCHAR(50) NOT NULL,
 	[FirstName] NVARCHAR(50) NOT NULL,
 	[LastName] NVARCHAR(50) NOT NULL,
+	[ASPNetIdentityID] NVARCHAR (128),
+	[IsOwner] BIT NOT NULL,
+	[IsProvider] BIT NOT NULL,
 	[MainPhone] NVARCHAR(50) NOT NULL,
 	[AltPhone] NVARCHAR(50),
 	[ResAddress01] NVARCHAR(50) NOT NULL,
@@ -12,6 +16,26 @@
 	[ResCity] NVARCHAR(50) NOT NULL,
 	[ResState] NVARCHAR(50) NOT NULL,
 	[ResZipcode] NVARCHAR(24) NOT NULL,
-	[ProfilePhoto] VARBINARY(MAX)
+	[ProfilePhoto] VARBINARY(MAX),
+	CONSTRAINT[PK_dbo.PetopiaUsers] PRIMARY KEY CLUSTERED([UserID] ASC)
+
+);
+*/
+
+CREATE TABLE [dbo].[Owner] (
+	[OwnerID] NVARCHAR(120) NOT NULL,
+	[Username] NVARCHAR(120),
+	[FirstName] NVARCHAR(120) NOT NULL,
+	[LastName] NVARCHAR(120) NOT NULL,
+	CONSTRAINT[PK_dbo.Owner] PRIMARY KEY CLUSTERED([OwnerID] ASC)
+
+);
+
+CREATE TABLE [dbo].[Provider](
+	[ProviderID] NVARCHAR(120) NOT NULL,
+	[Username] NVARCHAR(120),
+	[FirstName] NVARCHAR(120) NOT NULL,
+	[LastName] NVARCHAR(120) NOT NULL,
+	CONSTRAINT[PK_dbo.Provider] PRIMARY KEY CLUSTERED([ProviderID] ASC)
 
 );
