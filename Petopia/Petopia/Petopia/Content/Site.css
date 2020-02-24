@@ -367,6 +367,10 @@ hr {
     color: whitesmoke;
     border: 1px solid #333333;
 }
+
+.text-danger {
+
+}
 /*==================================== LINKS! =========================================*/
 /* unvisited link */
 a:link {
