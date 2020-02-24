@@ -182,6 +182,21 @@ namespace Petopia.Controllers
             return View();
         }
 
+        public ActionResult OwnerInfoForm()
+        {
+            return View();
+        }
+
+        public ActionResult ProviderInfoForm()
+        {
+            return View();
+        }
+
+        public ActionResult BothInfoForm()
+        {
+            return View();
+        }
+
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
