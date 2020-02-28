@@ -538,7 +538,7 @@ a:active {
 
 
 
-/*=====================================================================================*/
+/*================================ HEIGHT =============================================*/
 /* should we consider a max/min height? <= don't think we need to worry               */
 /* should we consider media Query for tablets?  <= maybe..... might be okay though   */
 /*                                                                                  */
@@ -546,7 +546,7 @@ a:active {
 /*    b/c of it's height -- width is okay.....                                    */
 
 @media only screen and (max-height: 630px) {            /* so 630px and shorter */
-    /****************************** SPLASH max-height: 630px ****************************/
+    /****************************** SPLASH max-height: 630px ***************************/
     .splash_intro {
         bottom: 125px;
     }
@@ -564,7 +564,6 @@ a:active {
     .contact_title {
         bottom: 180px;
     }
-    /* register & login pages just have full-height images anyway! */
 }
 /*=====================================================================================*/
 
@@ -579,7 +578,6 @@ a:active {
     .about_hero {
         height: 810px;
     }
-
     .about_title {
         bottom: 234px;
     }
@@ -587,13 +585,51 @@ a:active {
     .contact_hero {
         height: 810px;
     }
-
     .contact_title {
         bottom: 234px;
     }
 }
 /*=====================================================================================*/
 
+
+
+/*============================= FOR SIDEWAYS PHONES ===================================*/
+@media only screen and (max-height: 425px) { /* so 425px and shorter */
+    h1 {
+        font-size: 18px;
+    }
+    h3 {
+        font-size: 17px;
+    }
+    h4 {
+        font-size: 15px;
+    }
+    /****************************** SPLASH max-height: 425px ***************************/
+    .splash_intro {
+        bottom: 125px;
+    }
+    /****************************** ABOUT max-height: 425px ****************************/
+    .about_hero {
+        height: 450px;
+    }
+    .about_title {
+        bottom: 160px;
+    }
+    .about_content {
+        font-size: 13px;
+    }
+    /****************************** CONTACT max-height: 425px **************************/
+    .contact_hero {
+        height: 450px;
+    }
+    .contact_title {
+        bottom: 160px;
+    }
+    .contact_content {
+        font-size: 13px;
+    }
+}
+/*=====================================================================================*/
 
 
 /*=====================================================================================*/
@@ -608,7 +644,6 @@ a:active {
     .about_hero {
         height: 1100px;
     }
-
     .about_title {
         bottom: 180px;
     }
@@ -616,7 +651,6 @@ a:active {
     .contact_hero {
         height: 1100px;
     }
-
     .contact_title {
         bottom: 180px;
     }
