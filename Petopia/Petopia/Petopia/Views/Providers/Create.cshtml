@@ -12,7 +12,7 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
+        <div class="form">
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -26,11 +26,10 @@
             </div>*@
 
             <!-------------------------------------------------------------------------->
-            <div class="profile_info_form_part">
+            <div class="row profile_info_form_part">
 
                 <!-- Owner PROFILE Information -->
                 <!-- explanation panel - explain info requested -->
-                <div class="col-md-2"></div><!-- spacer column -->
 
                 <div class="col-md-10 panel-group">
                     <div class="panel our_panel_01">
@@ -52,12 +51,15 @@
 
                     </div><!-- end 'panel'\'our_panel_01' divs -->
                 </div><!-- end 'panel-group' div -->
+
+
+
                 <!---------------------------------------------------------------------->
                 <!-- actual form labels + fields for OWNER PROFILE INFO -->
                 <div class="form-group">
-                    @Html.LabelFor(model => model.FirstName,
-                               htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="col-sm-5">
+                        @Html.LabelFor(model => model.FirstName)
+
                         @Html.EditorFor(model => model.FirstName,
                                 new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.FirstName, "",
@@ -66,23 +68,25 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.LastName, 
-                               htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.LastName, 
+                    <div class="col-sm-5">
+                        @Html.LabelFor(model => model.LastName)
+
+                        @Html.EditorFor(model => model.LastName,
                                 new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.LastName, "", 
+                        @Html.ValidationMessageFor(model => model.LastName, "",
                                                           new { @class = "text-danger" })
                     </div>
                 </div>
                 <!-- end form labels\fields for OWNER PROFILE INFO -->
-            </div><!-- end 'owner_profile_info_form_part' -->
+            </div><!-- end row + 'profile_info_form_part' -->
+
+
+
             <!-------------------------------------------------------------------------->
-            <div class="account_info_form_part">
+            <div class="row account_info_form_part">
 
                 <!-- Owner ACCOUNT Information -->
                 <!-- explanation panel - explain info requested/reason -->
-                <div class="col-md-2"></div><!-- spacer column -->
 
                 <div class="col-md-10 panel-group">
                     <div class="panel our_panel_01">
@@ -108,12 +112,18 @@
 
                     </div><!-- end 'panel'\'our_panel_01' divs -->
                 </div><!-- end 'panel-group' div -->
-            </div><!-- end 'owner_account_info_form_part' -->
+            </div><!-- end row + 'owner_account_info_form_part' -->
+
+
+
             <!-------------------------------------------------------------------------->
             <!-- submit button -->
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <input type="submit" value="Create" 
+                               class="btn btn-default our_buttons" />
+                    </div>
                 </div>
             </div>
             <!-------------------------------------------------------------------------->
@@ -122,11 +132,12 @@
     <!-- end 'using (Html.BeginForm())' -->
 
 
-    <div class="row">
-        <div class="col-sm-10"></div>
+    <div class="row" style="margin-bottom: 36px;">
+        <div class="col-sm-9"></div>
         <div class="col-sm-2 back_to_choose">
             @Html.ActionLink("Back to Choose Role", "ChooseRole", "Account")
         </div>
+        <div class="col-sm-1"></div>
     </div>
 
 

@@ -322,6 +322,10 @@ textarea {
 }
 .account_info_form_part {
     margin-top: 9px;
+    margin-bottom: 45px;
+}
+.form-control {
+    margin-bottom: 15px;
 }
 .back_to_choose {
     border: 1px solid black;
@@ -380,7 +384,7 @@ hr {
 .our_buttons {
     background-color: #333333;
     color: whitesmoke;
-    border: 1px solid #333333;
+    border: 1px solid black;
 }
 
 .text-danger {
@@ -389,7 +393,7 @@ hr {
 
 .our_panel_01 {
     background-color: #1a1a1a;
-    width: 72%;
+    /*width: 72%;*/
     color: whitesmoke;
 }
 .our_panel_heading {
