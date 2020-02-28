@@ -456,15 +456,11 @@ a:active {
         padding-left: 90px;
         font-size: 16px;
     }
-    /****************************** ABOUT max-width: 500px *****************************/
+    /************************* ABOUT + CONTACT max-width: 500px ************************/
     .about_title {
         padding-left: 135px;
     }
-    .about_content {
-        font-size: 13px;
-    }
-    /**************************** CONTACT max-width: 500px *****************************/
-    .contact_content {
+    .about_content, .contact_content {
         font-size: 13px;
     }
     /*********************** REGISTER max-width: 500px *********************************/
@@ -497,15 +493,11 @@ a:active {
         padding-left: 108px;
         font-size: 15px;
     }
-    /***************************** ABOUT max-width: 400px ******************************/
+    /************************ ABOUT + CONTACT max-width: 400px *************************/
     .about_title {
         padding-left: 153px;
     }
-    .about_content {
-        font-size: 13px;
-    }
-    /***************************** CONTACT max-width: 400px ****************************/
-    .contact_content {
+    .about_content, .contact_content {
         font-size: 13px;
     }
     /************************** REGISTER max-width: 400px ******************************/
@@ -528,23 +520,12 @@ a:active {
 /*    b/c of it's height -- width is okay.....                                    */
 
 @media only screen and (max-height: 630px) {            /* so 630px and shorter */
-    /****************************** SPLASH max-height: 630px ***************************/
-
-    /****************************** ABOUT max-height: 630px ****************************/
-
-    /****************************** CONTACT max-height: 630px **************************/
 
 }
 /*=====================================================================================*/
 
 
-
 @media only screen and (max-height: 720px) { /* so 720px and shorter */
-    /****************************** SPLASH max-height: 720px ****************************/
-
-    /****************************** ABOUT max-height: 720px ****************************/
-
-    /****************************** CONTACT max-height: 720px **************************/
 
 }
 /*=====================================================================================*/
@@ -562,14 +543,8 @@ a:active {
     h4 {
         font-size: 15px;
     }
-    /****************************** SPLASH max-height: 425px ***************************/
-
-    /****************************** ABOUT max-height: 425px ****************************/
-    .about_content {
-        font-size: 13px;
-    }
-    /****************************** CONTACT max-height: 425px **************************/
-    .contact_content {
+    /********************** ABOUT + CONTACT max-height: 425px **************************/
+    .about_content, .contact_content {
         font-size: 13px;
     }
 }
@@ -580,11 +555,6 @@ a:active {
 /* how about for the *really* big screens a lot of people have on their desks now?    */
 /*                                                                                  */
 @media only screen and (min-height: 1100px) { /* so 1100px and taller */
-    /****************************** SPLASH min-height: 1100px **************************/
-    
-    /****************************** ABOUT min-height: 1100px ***************************/
-
-    /****************************** CONTACT min-height: 1100px *************************/
-
+    /* might we want larger font? */
 }
 /*=====================================================================================*/
