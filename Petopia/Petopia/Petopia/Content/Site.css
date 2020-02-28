@@ -1,4 +1,4 @@
-﻿/* came with this stuff in this first part..... */
+﻿/*==================== came with this stuff in this first part=========================*/
 body {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -25,7 +25,9 @@ textarea {
 }
 /*=====================================================================================*/
 /*                                our custom classes                                  */
+/*===================================================================================*/
 
+/*============================= front/splash/home VIDEO ===============================*/
 /* trying out the video 'hero' video+image thing -- courtesy coverr */
 .homepage-hero-module {
     border-right: none;
@@ -76,7 +78,7 @@ textarea {
         .video-container video.fillWidth {
             width: 100%;
         }
-/*-------------------------------------------------------------------*/
+/*============================ splash/front/home OVERLAY ==============================*/
 .splash_overlay {
     position: fixed;
     top: 0;
@@ -118,7 +120,8 @@ textarea {
 .splash_intro {
     position: absolute;
     display: inline-block;
-    bottom: 180px;
+    /*bottom: 180px;*/
+    bottom: 18%;
     text-align: left;
     font-size: 18px;
     /* was trying to get placement right on a regular screen   */
@@ -128,7 +131,7 @@ textarea {
     /* for testing */
     /*border: 1px solid green;*/
 }
-/*=====================================================================================*/
+/*=================================== ABOUT PAGE ======================================*/
 .about_hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
                       rgba(0, 0, 0, 0.63)), 
@@ -139,7 +142,7 @@ textarea {
     background-position: center;
     position: relative;
     color: #f2f2f2;
-    height: 900px;
+    height: 120vh;  /* this is SO much better! */
     /* this is to center 'about_title' */
     text-align: center;
 }
@@ -147,7 +150,7 @@ textarea {
 .about_title {
     position: absolute;
     display: inline-block;
-    bottom: 315px;
+    bottom: 30%;    /* this is SO much better! */
     text-align: left;
     /* okay so it must be centering to the actual photo? */
     margin-left: -300px;
@@ -171,7 +174,7 @@ textarea {
     font-size: 18px;
     text-align: center;
 }
-/*=====================================================================================*/
+/*=============================== CONTACT PAGE ========================================*/
 .contact_hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
                       rgba(0, 0, 0, 0.63)), 
@@ -182,13 +185,13 @@ textarea {
     background-position: center;
     position: relative;
     color: #f2f2f2;
-    height: 900px;
+    height: 120vh;
 }
 
 .contact_title {
     position: absolute;
     display: inline-block;
-    bottom: 135px;
+    bottom: 30%;
     text-align: left;
 }
 
@@ -219,7 +222,7 @@ textarea {
     font-size: 18px;
     text-align: center;
 }
-/*=====================================================================================*/
+/*=============================== REGISTER PAGE =======================================*/
 .register_hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
                       rgba(0, 0, 0, 0.63)), 
@@ -253,7 +256,7 @@ textarea {
 .our_recaptcha {
     margin-bottom: 9px;
 }
-/*=====================================================================================*/
+/*================================= LOGIN PAGE ========================================*/
 .login_hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
                       rgba(0, 0, 0, 0.63)), 
@@ -273,7 +276,7 @@ textarea {
     bottom: 45px;
     text-align: left;
 }
-/*=====================================================================================*/
+/*============================ FORGOT PASSWORD PAGE ===================================*/
 .forgotPass_hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
                       rgba(0, 0, 0, 0.63)), 
@@ -289,7 +292,7 @@ textarea {
 .forgotPass_title {
     margin-bottom: 18px;
 }
-/*=====================================================================================*/
+/*============================== CHOOSE ROLE PAGE =====================================*/
 .chooseRole_hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
                       rgba(0, 0, 0, 0.63)), 
@@ -311,7 +314,7 @@ textarea {
     background-color: #333333;
     color: whitesmoke;
 }
-/*=====================================================================================*/
+/*========================== USER ACCOUNT/PROFILE FORM PAGES ==========================*/
 .profile_info_form_part {
     margin-bottom: 63px;
 }
@@ -330,7 +333,7 @@ textarea {
     background-color: #333333;
     color: whitesmoke;
 }
-/*=====================================================================================*/
+/*================================== GENERAL FEATURES =================================*/
 .navbar-brand {
     font-size: 18px;
 }
@@ -397,7 +400,7 @@ hr {
 }
 /our_panel_title {
 }
-/*==================================== LINKS! =========================================*/
+/*===================================== LINKS! ========================================*/
 /* unvisited link */
 a:link {
     color: #e6e6e6;
@@ -427,7 +430,7 @@ a:active {
 }
 /*=====================================================================================*/
 
-
+/*                                 MEDIA QUERIES!                                      */
 
 /*=====================================================================================*/
 /* responsive stuff for the couple of spots that need that                             */
@@ -454,23 +457,13 @@ a:active {
         font-size: 16px;
     }
     /****************************** ABOUT max-width: 500px *****************************/
-    .about_hero {
-        height: 675px;
-    }
     .about_title {
-        bottom: 45px;
         padding-left: 135px;
     }
     .about_content {
         font-size: 13px;
     }
     /**************************** CONTACT max-width: 500px *****************************/
-    .contact_hero {
-        height: 675px;
-    }
-    .contact_title {
-        bottom: 90px;
-    }
     .contact_content {
         font-size: 13px;
     }
@@ -500,29 +493,18 @@ a:active {
     }
     /*************************** SPLASH max-width: 400px *******************************/
     .splash_intro {
-        bottom: 90px;
         text-align: left;
         padding-left: 108px;
         font-size: 15px;
     }
     /***************************** ABOUT max-width: 400px ******************************/
-    .about_hero {
-        height: 600px;
-    }
     .about_title {
-        bottom: 90px;
         padding-left: 153px;
     }
     .about_content {
         font-size: 13px;
     }
     /***************************** CONTACT max-width: 400px ****************************/
-    .contact_hero {
-        height: 600px;
-    }
-    .contact_title {
-        bottom: 45px;
-    }
     .contact_content {
         font-size: 13px;
     }
@@ -547,23 +529,11 @@ a:active {
 
 @media only screen and (max-height: 630px) {            /* so 630px and shorter */
     /****************************** SPLASH max-height: 630px ***************************/
-    .splash_intro {
-        bottom: 125px;
-    }
+
     /****************************** ABOUT max-height: 630px ****************************/
-    .about_hero {
-        height: 720px;
-    }
-    .about_title {
-        bottom: 180px;
-    }
+
     /****************************** CONTACT max-height: 630px **************************/
-    .contact_hero {
-        height: 720px;
-    }
-    .contact_title {
-        bottom: 180px;
-    }
+
 }
 /*=====================================================================================*/
 
@@ -571,23 +541,11 @@ a:active {
 
 @media only screen and (max-height: 720px) { /* so 720px and shorter */
     /****************************** SPLASH max-height: 720px ****************************/
-    .splash_intro {
-        bottom: 125px;
-    }
+
     /****************************** ABOUT max-height: 720px ****************************/
-    .about_hero {
-        height: 810px;
-    }
-    .about_title {
-        bottom: 234px;
-    }
+
     /****************************** CONTACT max-height: 720px **************************/
-    .contact_hero {
-        height: 810px;
-    }
-    .contact_title {
-        bottom: 234px;
-    }
+
 }
 /*=====================================================================================*/
 
@@ -605,26 +563,12 @@ a:active {
         font-size: 15px;
     }
     /****************************** SPLASH max-height: 425px ***************************/
-    .splash_intro {
-        bottom: 63px;
-    }
+
     /****************************** ABOUT max-height: 425px ****************************/
-    .about_hero {
-        height: 450px;
-    }
-    .about_title {
-        bottom: 160px;
-    }
     .about_content {
         font-size: 13px;
     }
     /****************************** CONTACT max-height: 425px **************************/
-    .contact_hero {
-        height: 450px;
-    }
-    .contact_title {
-        bottom: 160px;
-    }
     .contact_content {
         font-size: 13px;
     }
@@ -637,23 +581,10 @@ a:active {
 /*                                                                                  */
 @media only screen and (min-height: 1100px) { /* so 1100px and taller */
     /****************************** SPLASH min-height: 1100px **************************/
-    .splash_intro {
-        bottom: 125px;
-    }
+    
     /****************************** ABOUT min-height: 1100px ***************************/
-    .about_hero {
-        height: 1100px;
-    }
-    .about_title {
-        bottom: 180px;
-    }
+
     /****************************** CONTACT min-height: 1100px *************************/
-    .contact_hero {
-        height: 1100px;
-    }
-    .contact_title {
-        bottom: 180px;
-    }
-    /* register & login pages just have full-height images anyway! */
+
 }
 /*=====================================================================================*/
