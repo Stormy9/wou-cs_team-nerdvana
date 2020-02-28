@@ -317,6 +317,21 @@ textarea {
     color: whitesmoke;
 }
 /*=====================================================================================*/
+.profile_info_form_part {
+    margin-bottom: 63px;
+}
+.account_info_form_part {
+    margin-top: 9px;
+}
+.back_to_choose {
+    border: 1px solid black;
+    border-radius: 9px;
+    padding: 9px;
+    text-align: center;
+    background-color: #333333;
+    color: whitesmoke;
+}
+/*=====================================================================================*/
 .navbar-brand {
     font-size: 18px;
 }
@@ -370,6 +385,18 @@ hr {
 
 .text-danger {
 
+}
+
+.our_panel_01 {
+    background-color: #1a1a1a;
+    width: 72%;
+    color: whitesmoke;
+}
+.our_panel_heading {
+    /* setting color here leaves outline of color above */
+    background-color: #333333;
+}
+/our_panel_title {
 }
 /*==================================== LINKS! =========================================*/
 /* unvisited link */

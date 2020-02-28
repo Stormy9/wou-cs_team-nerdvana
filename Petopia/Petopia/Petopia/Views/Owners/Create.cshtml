@@ -1,11 +1,11 @@
 ﻿@model Petopia.Models.Owner
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Set up your Pet Owner profile & account!";
 }
 
 <body class="container-fluid chooseRole_hero">
-<h2>Create</h2>
+<h2>@ViewBag.Title</h2>
 
 
 @using (Html.BeginForm()) 
@@ -13,55 +13,124 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Enter in Owner information:</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.OwnerID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OwnerID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OwnerID, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
+        <!-- i don't think we want them changing username..... isn't that what we decided? -->
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        <!------------------------------------------------------------------------------>
+        <div class="profile_info_form_part">
+
+            <!-- Owner PROFILE Information -->
+            <!-- explanation panel - explain info requested -->
+            <div class="col-md-2"></div><!-- spacer column -->
+
+            <div class="col-md-10 panel-group">
+                <div class="panel our_panel_01">
+
+                    <a data-toggle="collapse" href="#collapse_01">
+                        <div class="panel-heading our_panel_heading">
+                            <div class="panel-title our_panel_title">
+                                <span class="glyphicon glyphicon-resize-vertical"
+                                      style="padding-right: 18px;">
+                                </span>
+                                About your profile information...
+                            </div><!-- end 'our_panel_title' div -->
+                        </div><!-- end 'our_panel_heading' div -->
+                    </a>
+
+                    <div id="collapse_01" class="panel-collapse collapse">
+                        <div class="panel-body">blah blah blah blah blah!</div>
+                    </div>
+
+                </div><!-- end 'panel'\'our_panel_01' divs -->
+            </div><!-- end 'panel-group' div -->
+            <!------------------------------------------------------------------------------>
+            <!-- actual form labels + fields for OWNER PROFILE INFO -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName,
+                               htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FirstName,
+                                new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "",
+                                                            new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+            <!-- end form labels\fields for OWNER PROFILE INFO -->
+        </div><!-- end 'owner_profile_info_form_part' -->
 
+
+
+        <!------------------------------------------------------------------------------>
+        <div class="account_info_form_part">
+
+            <!-- Owner ACCOUNT Information -->
+            <!-- explanation panel - explain info requested/reason -->
+            <div class="col-md-2"></div><!-- spacer column -->
+
+            <div class="col-md-10 panel-group">
+                <div class="panel our_panel_01">
+
+                    <a data-toggle="collapse" href="#collapse_02">
+                        <div class="panel-heading our_panel_heading">
+                            <div class="panel-title our_panel_title">
+
+                                <span class="glyphicon glyphicon-resize-vertical"
+                                      style="padding-right: 18px;">
+                                </span>
+                                About your account information...
+
+                            </div><!-- end 'our_panel_title' div -->
+                        </div><!-- end 'our_panel_heading' div -->
+                    </a>
+
+                    <div id="collapse_02" class="panel-collapse collapse">
+                        <div class="panel-body">thing one, thing two, ... thing n!</div>
+                    </div>
+
+                </div><!-- end 'panel'\'our_panel_01' divs -->
+            </div><!-- end 'panel-group' div -->
+        </div><!-- end 'owner_account_info_form_part' -->
+
+
+
+        <!------------------------------------------------------------------------------>
+        <!-- submit button -->
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
-    </div>
-}
+        <!------------------------------------------------------------------------------>
+    </div><!-- end 'form-horizontal' div -->
+} 
+<!-- end 'using (Html.BeginForm())' -->
 
-<div>
-    @Html.ActionLink("Back to List", "ChooseRole", "Account")
+
+<div class="col-sm-2 back_to_choose">
+    @Html.ActionLink("Back to Choose Role", "ChooseRole", "Account")
 </div>
 
+
+<!-------------------------------------------------------------------------------------->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
+<!-------------------------------------------------------------------------------------->
 </body>
