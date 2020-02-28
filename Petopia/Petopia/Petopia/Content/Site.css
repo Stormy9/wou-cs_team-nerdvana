@@ -142,9 +142,6 @@ textarea {
     height: 900px;
     /* this is to center 'about_title' */
     text-align: center;
-    /* width: auto;   <= is default..... */
-    /* was gonna try setting it to that, to see if it changes anything, */
-    /* for centering the title crap better..... but it's default!      */
 }
 
 .about_title {
@@ -156,8 +153,6 @@ textarea {
     margin-left: -300px;
     /* left edge of text gets cut off when narrow */
     padding-left: 45px;
-    /* for testing */
-    /*border: 1px solid red;*/
 }
 
 .about_content {
@@ -570,6 +565,32 @@ a:active {
         bottom: 180px;
     }
     /* register & login pages just have full-height images anyway! */
+}
+/*=====================================================================================*/
+
+
+
+@media only screen and (max-height: 720px) { /* so 720px and shorter */
+    /****************************** SPLASH max-height: 720px ****************************/
+    .splash_intro {
+        bottom: 125px;
+    }
+    /****************************** ABOUT max-height: 720px ****************************/
+    .about_hero {
+        height: 810px;
+    }
+
+    .about_title {
+        bottom: 234px;
+    }
+    /****************************** CONTACT max-height: 720px **************************/
+    .contact_hero {
+        height: 810px;
+    }
+
+    .contact_title {
+        bottom: 234px;
+    }
 }
 /*=====================================================================================*/
 
