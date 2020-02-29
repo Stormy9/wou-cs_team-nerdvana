@@ -388,17 +388,21 @@ hr {
 .text-danger {
 
 }
-
+/*==================================== PANELS/COLLAPSE ================================*/
+.panel-group {
+}
 .our_panel_01 {
     background-color: #1a1a1a;
-    /*width: 72%;*/
     color: whitesmoke;
 }
 .our_panel_heading {
     /* setting color here leaves outline of color above */
     background-color: #333333;
 }
-/our_panel_title {
+.our_panel_title {
+}
+.our_panel_p {
+    margin-bottom: 0px;
 }
 /*===================================== LINKS! ========================================*/
 /* unvisited link */
@@ -513,24 +517,6 @@ a:active {
 
 
 /*================================ HEIGHT =============================================*/
-/* should we consider a max/min height? <= don't think we need to worry               */
-/* should we consider media Query for tablets?  <= maybe..... might be okay though   */
-/*                                                                                  */
-/* because..... i am dissatisfied with a couple things on Mr. Chromebook.....      */
-/*    b/c of it's height -- width is okay.....                                    */
-
-@media only screen and (max-height: 630px) {            /* so 630px and shorter */
-
-}
-/*=====================================================================================*/
-
-
-@media only screen and (max-height: 720px) { /* so 720px and shorter */
-
-}
-/*=====================================================================================*/
-
-
 
 /*============================= FOR SIDEWAYS PHONES ===================================*/
 @media only screen and (max-height: 425px) { /* so 425px and shorter */
