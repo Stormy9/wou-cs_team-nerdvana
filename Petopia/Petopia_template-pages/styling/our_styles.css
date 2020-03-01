@@ -1,13 +1,19 @@
-/*========================== CONTAINER ==============================*/
-
+/*========================== CONTAINERS =============================*/
+.main {
+    height: 100vh;
+}
+.outer_container {
+    height: 100vh;
+    padding: 5px;
+}
 /*============================= ROWS ================================*/
 .our_row_one {
     margin-top: 5px;
     padding: 5px;
-    border: 2px solid red;
-    color: red;
+    border: 2px solid black;
+    color: whitesmoke;
     font-weight: bold;
-    background-color: pink;
+    background-color: darkslategray;
 }
 .our_row_two {
     padding: 5px;
@@ -65,12 +71,19 @@
     width: 180px;
     height: 180px;
 }
+/*===================== PROFILE PIC CAPTION ==========================*/
+.profile_pic_caption_box {
+
+}
+.profile_pic_caption {
+
+}
 /*========================= PET BADGES ===============================*/
 .pet_badge_box {
     border: 2px solid purple;
     background-color: lightpink;
     width: 180px;
-    height: 36px;
+    height: 42px;
     padding: 3px;
 }
 .pet_badge {
@@ -103,13 +116,19 @@
     font-weight: bold;
     padding: 5px;
 }
+/*===================== GENERAL LOCATION ============================*/
+.general_location_box {
 
+}
+.general_location {
+    
+}
 /*======================== USER RATING ==============================*/
 .user_rating_box {
     border: 1px solid blue;
     background-color: lightsteelblue;
-    width: 180px;
-    height: 27px;
+    width: 225px;
+    height: 33px;
     padding: 3px;
 }
 .user_rating_star {
@@ -126,5 +145,48 @@
 }
 
 /*============= SEARCH \ NEAR YOU \ PREVIEW CARDS ===================*/
+.auto_search_results_box_box {
+    border: 1px solid darkolivegreen;
+    background-color: olive;
+    padding: 9px;
+    height: 100%;
+}
+.auto_search_results_box {
+    border: 1px solid black;
+    background-color: darkkhaki;
+    height: 100%; /* this means 'of parent element', right? */
+                    /* so what the fuck is *that*?? */
+}
+.search_result_card {
 
+}
 /*=================== PET PROFILE PREVIEW BOX =======================*/
+.pet_profile_preview_box {
+    border: 2px solid darkblue;
+    background-color: lightblue;
+    padding: 9px;
+}
+.pet_profile_preview {
+    border: 2px solid darkred;
+    background-color: pink;
+    height: 72px;
+}
+/*============================ LINKS! ===============================*/
+/* unvisited link */
+a.link {
+
+}
+/* visited link */
+a.visited {
+
+}
+/* hovered-over link */
+a.hover {
+
+}
+/* selected link */
+a.active {
+
+}
+/* remember they gotta be in that order */
+/*===================================================================*/

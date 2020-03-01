@@ -32,12 +32,12 @@
     <!---------------------------------------------------------------------------------->
     <!---------------------------- CONTENT SECTION ------------------------------------->
     <body class="main">
-        
+        <div class="outer_container">
         <div class="container-fluid">
             
             <div class="row our_row_one"><!-- FIRST\TOP ROW -->
 
-                stuff can go here -- full width row
+                stuff can go here -- full width row -- for now this represents navbar!
 
             </div><!-- END FIRST\TOP ROW -->
             <!-------------------------------------------------------------------------->
@@ -45,7 +45,7 @@
             <div class="row our_row_two"><!-- SECOND\MIDDLE ROW -->
                 
                 <!-- 1st column -->
-                <div class="col-2 our_col_one"> 
+                <div class="col-lg-2 our_col_one"> 
                     
                     <!-- owner || provider || both -->
                     <div class="owner_provider_box">
@@ -58,6 +58,13 @@
                         <div class="profile_pic_box">
                             <img src="https://stormy9.github.io/nerdvana/TeamNerdvana_Logo.png" 
                                 class="profile_img" />
+                        </div>
+                    </div>
+
+                    <!-- profile pic caption -->
+                    <div class="profile_pic_caption_box">
+                        <div class="profile_pic_caption">
+                            caption for that ^
                         </div>
                     </div>
 
@@ -86,15 +93,23 @@
 
                 <!---------------------------------------------------------------------->
                 <!-- 2nd column -->
-                <div class="col-6 our_col_two"> 
+                <div class="col-lg-7 our_col_two"> 
                     
                     <!-- user name -->
                     <div class="user_name_box">
                         <h3>UserName GoesHere</h3>
                     </div>
 
+                    <!-- user's general location -->
+                    <div class="general_location_box">
+                        <div class="general_location">
+                            my general location
+                        </div>
+                    </div>
+
                     <!-- user rating -->
                     <div class="user_rating_box">
+                        user rating
                         <img src="https://stormy9.github.io/nerdvana/TeamNerdvana_Logo.png"
                                     class="user_rating_star">
                         <img src="https://stormy9.github.io/nerdvana/TeamNerdvana_Logo.png"
@@ -107,7 +122,7 @@
 
                     <!-- user bio & etc. fun stuff -->
                     <div class="user_bio_box">
-                        <h4>About Me:</h3>
+                        <h4>Stuff About Me:</h3>
                         blah blah blah blah blah blah blah blah blah blah blah blah blah 
                         blah blah blah blah blah blah blah blah blah blah blah blah blah 
                         blah blah blah blah blah blah blah blah blah blah blah blah blah 
@@ -119,16 +134,31 @@
                         blah blah blah blah blah blah blah blah blah blah blah blah blah 
                     </div>
                     
-                </div><!-- end 2nd\Middle Column -->
+                </div><!-- END 2nd\Middle Column -->
 
                 <!---------------------------------------------------------------------->
                 <!-- 3rd column -->
-                <div class="col-4 span-2 our_col_three">
+                <div class="col-lg-3 span-2 our_col_three">
                     
                     <!-- stuff goes here -->
-                    3rd column stuff -- this one is 4-wide
+                    3rd column stuff -- this one is 3-wide <br>
+                    try to get this to span two rows in height!
+
+                    <!-- auto search result header -->
+                    <div class="auto_search_result_header">
+                        <h5> Pet Care Providers Near Me:</h5>
+                    </div>
+                    
+                    <!-- search results -> who's near you? -->
+                    <div class="auto_search_results_box_box">
+                        <div class="auto_search_results_box">
+                            <div class="search_result_card">
+
+                            </div>
+                        </div>
+                    </div>
                 
-                </div><!-- end 3rd\Right-side Column -->
+                </div><!-- END 3rd\Right-side Column -->
                 <!---------------------------------------------------------------------->
                 
             </div><!-- END SECOND\MIDDLE ROW -->
@@ -136,17 +166,30 @@
 
             <div class="row our_row_three"><!-- THIRD\BOTTOM ROW -->
 
-                <div class="col-sm-8 col-sm-offset-4 our_col_four">
-                    stuff goes here -- bottom row -- 8-column-wide span
-                </div>
+                <div class="col-lg-9 our_col_four">
+                    stuff goes here ... bottom row ... 9-column-wide span inside this row <br>
+                    try to get 3rd column in middle row to span two rows in height! 
 
-                
+                    <!-- pet profile preview box header -->
+                    <div class="pet_profile_header">
+                        <h3> My Pets! </h3>
+                    </div>
+
+                    <!-- pet profile preview box -->
+                    <div class="pet_profile_preview_box">
+                        <div class="pet_profile_preview">
+                            <!-- the panels with the profile stuff go in here -->
+                            <!-- need to think on/figure that out still   =]  -->
+                        </div>
+                    </div>
+                </div><!-- END 4th Column -> one inside bottom row -->
+                <!---------------------------------------------------------------------->
                 
             </div><!-- END THIRD\BOTTOM ROW -->
             <!-------------------------------------------------------------------------->
             
-        </div><!-- END CONTAINER-FLUID \ MAIN CONTAINER INSIDE BODY -->
-
+        </div><!-- END CONTAINER-FLUID -->
+        </div><!-- END OUTER CONTAINER \ MAIN CONTAINER INSIDE BODY -->
     <!---------------------------------------------------------------------------------->
     <!------------------------------- FOOTER SECTION ----------------------------------->
         
