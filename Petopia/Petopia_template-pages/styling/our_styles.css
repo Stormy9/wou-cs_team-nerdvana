@@ -1,0 +1,130 @@
+/*========================== CONTAINER ==============================*/
+
+/*============================= ROWS ================================*/
+.our_row_one {
+    margin-top: 5px;
+    padding: 5px;
+    border: 2px solid red;
+    color: red;
+    font-weight: bold;
+    background-color: pink;
+}
+.our_row_two {
+    padding: 5px;
+    border: 2px solid orange;
+    background-color: rgb(255, 198, 77);
+}
+.our_row_three {
+    padding: 5px;
+    border: 1px solid green;
+    color: green;
+    background-color: lightgreen;
+}
+/*============================== COLUMNS ============================*/
+.our_col_one {
+    padding: 5px;
+    border: 2px solid blue;
+    background-color: lightblue;
+}
+.our_col_two {
+    padding: 5px;
+    border: 1px solid black;
+    background-color: gray;
+}
+.our_col_three {
+    padding: 5px;
+    border: 2px solid blue;
+    background-color: lightblue;
+}
+.our_col_four {
+    padding: 5px;
+    border: 2px solid green;
+    background-color: lightgreen;
+}
+/*====================== PET OWNER || PROVIDER ======================*/
+.owner_provider_box {
+    text-align: center;
+    font-weight: bold;
+    color: purple;
+}
+/*========================== PROFILE PIC ============================*/
+.profile_pic_box_box {
+    /* this is to center the box that holds the actual picture */
+    text-align: center;
+    border: 2px solid blue;
+}
+.profile_pic_box {
+    /* this finishes up the centering started above */
+    margin: auto;
+    width: 180px;
+    height: 180px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.profile_img {
+    width: 180px;
+    height: 180px;
+}
+/*========================= PET BADGES ===============================*/
+.pet_badge_box {
+    border: 2px solid purple;
+    background-color: lightpink;
+    width: 180px;
+    height: 36px;
+    padding: 3px;
+}
+.pet_badge {
+    float: left;
+    width: 36px;
+    height: 36px;
+}
+/*======================== OUR BUTTONS ==============================*/
+.button_box {
+    border: 2px solid blue;
+    background-color: lightseagreen;
+    width: 180px;
+    height: 45px;
+    padding: 3px;
+}
+.our_buttons {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: darkgray;
+    color: whitesmoke;
+    font-weight: bold;
+    float: left;
+    margin-left: 3px;
+}
+/*========================= USER NAME ===============================*/
+.user_name_box {
+    border: 1px solid red;
+    background-color: pink;
+    font-weight: bold;
+    padding: 5px;
+}
+
+/*======================== USER RATING ==============================*/
+.user_rating_box {
+    border: 1px solid blue;
+    background-color: lightsteelblue;
+    width: 180px;
+    height: 27px;
+    padding: 3px;
+}
+.user_rating_star {
+    width: 27px;
+    height: 27px;
+    float: left;
+    margin-left: 1px;
+}
+/*======================= USER BIO ETC ==============================*/
+.user_bio_box {
+    border: 2px solid black;
+    background-color: lightgray;
+    padding: 15px;
+}
+
+/*============= SEARCH \ NEAR YOU \ PREVIEW CARDS ===================*/
+
+/*=================== PET PROFILE PREVIEW BOX =======================*/

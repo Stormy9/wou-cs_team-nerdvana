@@ -334,32 +334,26 @@ textarea {
     color: whitesmoke;
 }
 /*================================== GENERAL FEATURES =================================*/
-.navbar-brand {
-    font-size: 18px;
-}
-
 body {
     background-color: #ffffb3;
-}
-
-h2 {
-    font-weight: bold;
-}
-h3 {
-    font-weight: bold;
-}
-h4 {
-    font-weight: bold;
 }
 
 p {
     padding-bottom: 5px;
 }
 
-li {
-    padding-bottom: 5px;
-}
+.text-danger {
 
+}
+/*========================================= LISTS =====================================*/
+li {
+    padding-bottom: 9px;
+}
+/*======================================== NAVBAR =====================================*/
+.navbar-brand {
+    font-size: 18px;
+}
+/*================================== FOOTER\BOTTOM STUFF ==============================*/
 .our_foot {
     position: fixed;
     width: 100%;
@@ -371,6 +365,10 @@ li {
     font-size: 11px;
     color: #333333;
 }
+/*================================== HEADINGS & DIVIDERS ==============================*/
+h1, h2, h3, h4 {
+    font-weight: bold;
+}
 
 hr {
     height: 1px;
@@ -378,18 +376,15 @@ hr {
     background-color: black;
     border: none;
 }
-
+/*==================================== PSEUDO-BUTTONS =================================*/
 .our_buttons {
     background-color: #333333;
     color: whitesmoke;
     border: 1px solid black;
 }
-
-.text-danger {
-
-}
 /*==================================== PANELS/COLLAPSE ================================*/
 .panel-group {
+
 }
 .our_panel_01 {
     background-color: #1a1a1a;
@@ -411,21 +406,18 @@ a:link {
     font-weight: bold;
     text-decoration: none;
 }
-
 /* visited link */
 a:visited {
     color: #e6e6e6;
     font-weight: bold;
     text-decoration: none;
 }
-
 /* mouse over link */
 a:hover {
     color: #bfbfbf;
     font-weight: bold;
     text-decoration: none;
 }
-
 /* selected link */
 a:active {
     color: #bfbfbf;
@@ -444,6 +436,7 @@ a:active {
 /* crap.....  so here we go -- hopefully the best of both worlds here.....      [=     */
 /*=====================================================================================*/
 
+/*================================= 'TYPICAL' PHONES ==================================*/
 @media only screen and (max-width: 500px) {
     /* so 500px wide and moreThan 400px wide */
     h1 {
@@ -478,7 +471,7 @@ a:active {
 
 
 
-/*=====================================================================================*/
+/*============================== OLD &/OR SKINNY PHONES ===============================*/
 /* media Query for really old/skinny phones like iPhone 5/SE.....                      */
 @media only screen and (max-width: 400px) {
     /* so 400px wide and narrower */
@@ -516,7 +509,7 @@ a:active {
 
 
 
-/*================================ HEIGHT =============================================*/
+/*================================== HEIGHT ===========================================*/
 
 /*============================= FOR SIDEWAYS PHONES ===================================*/
 @media only screen and (max-height: 425px) { /* so 425px and shorter */
