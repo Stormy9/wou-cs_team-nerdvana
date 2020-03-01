@@ -121,7 +121,7 @@
 
 }
 .general_location {
-    
+
 }
 /*======================== USER RATING ==============================*/
 .user_rating_box {
@@ -189,4 +189,21 @@ a.active {
 
 }
 /* remember they gotta be in that order */
+/*===================================================================*/
+/*======================== MEDIA QUERIES ============================*/
+@media only screen and (max-width: 500px) {
+    /* so 500 & smaller/narrower */
+
+    /* moves user roles & profile pic to left on phones */
+    .owner_provider_box {
+        text-align: left;
+    }
+    .profile_pic_box_box {
+        text-align: left;
+    }
+    .profile_pic_box {
+        margin: 0;
+        text-align: left;
+    }
+}
 /*===================================================================*/
