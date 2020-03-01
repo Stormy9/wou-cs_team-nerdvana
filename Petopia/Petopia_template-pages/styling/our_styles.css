@@ -1,9 +1,5 @@
 /*========================== CONTAINERS =============================*/
-.main {
-    height: 100vh;
-}
 .outer_container {
-    height: 100vh;
     padding: 5px;
 }
 /*============================= ROWS ================================*/
@@ -73,10 +69,10 @@
 }
 /*===================== PROFILE PIC CAPTION ==========================*/
 .profile_pic_caption_box {
-
+    margin: 2px;
 }
 .profile_pic_caption {
-
+    padding: 3px;
 }
 /*========================= PET BADGES ===============================*/
 .pet_badge_box {
@@ -85,6 +81,7 @@
     width: 180px;
     height: 42px;
     padding: 3px;
+    margin-bottom: 5px;
 }
 .pet_badge {
     float: left;
@@ -118,10 +115,11 @@
 }
 /*===================== GENERAL LOCATION ============================*/
 .general_location_box {
-
+    margin: 2px;
+    padding: 3px;
 }
 .general_location {
-
+    font-weight: bold;
 }
 /*======================== USER RATING ==============================*/
 .user_rating_box {
@@ -141,6 +139,7 @@
 .user_bio_box {
     border: 2px solid black;
     background-color: lightgray;
+    margin-top: 5px;
     padding: 15px;
 }
 
@@ -154,22 +153,60 @@
 .auto_search_results_box {
     border: 1px solid black;
     background-color: darkkhaki;
-    height: 100%; /* this means 'of parent element', right? */
-                    /* so what the fuck is *that*?? */
+    /* this will add scrollbars only if\when necessary */
+    overflow: auto;
+    /* Note: overflow property only works for block elements w/specified height */
+    height: 630px; 
 }
 .search_result_card {
-
+    border: 1px solid blueviolet;
+    background-color: violet;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.search_result_card:hover {
+    box-shadow: 0 9px 15px 0 rgba(0,0,0,0.3);
+}
+.search_result_card_img {
+    min-width: 70%;
+    height: auto;
+    border: 1px solid black;
+    border-radius: 5px 5px 0 0;
+}
+.search_result_card_info {
+    padding: 3px 15px;
+}
+.search_result_card_info p {
+    margin-bottom: 1px;
 }
 /*=================== PET PROFILE PREVIEW BOX =======================*/
 .pet_profile_preview_box {
     border: 2px solid darkblue;
     background-color: lightblue;
     padding: 9px;
+    overflow: auto;
 }
 .pet_profile_preview {
     border: 2px solid darkred;
     background-color: pink;
-    height: 72px;
+    height: 139px;
+}
+.pet_profile_preview_img {
+    width: 135px;
+    height: 135px;
+    float: left;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+.pet_preview_name {
+    font-weight: bold;
+}
+.pet_preview_breed {
+    font-weight: bold;
 }
 /*============================ LINKS! ===============================*/
 /* unvisited link */
