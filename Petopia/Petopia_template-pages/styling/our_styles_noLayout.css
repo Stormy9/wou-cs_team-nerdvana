@@ -159,7 +159,7 @@
     transition: 0.3s;
     width: 99%;
     border-radius: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 .search_result_card:hover {
     box-shadow: 0 9px 15px 0 rgba(0,0,0,0.3);
@@ -187,8 +187,13 @@
 .pet_profile_preview {
     border: 1px solid #4d3319;
     border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
     height: 145px;
-    margin-bottom: 5px;
+    margin-bottom: 18px;
+}
+.pet_profile_preview:hover {
+    box-shadow: 0 9px 15px 0 rgba(0,0,0,0.3);
 }
 .pet_profile_preview_img {
     width: 135px;
