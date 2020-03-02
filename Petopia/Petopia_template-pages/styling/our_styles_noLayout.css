@@ -155,14 +155,14 @@
 }
 .search_result_card {
     background-color: #604020;
-    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.6);
     transition: 0.3s;
     width: 99%;
     border-radius: 5px;
     margin-bottom: 18px;
 }
 .search_result_card:hover {
-    box-shadow: 0 9px 15px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
 }
 .search_result_card_img {
     min-width: 70%;

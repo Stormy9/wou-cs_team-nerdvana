@@ -165,6 +165,17 @@ textarea {
     padding-bottom: 45px;
 }
 
+.about_panel {
+    background-color: #392613;
+    color: whitesmoke;
+}
+.about_panel_header {
+    background-color: #604020;
+}
+.about_panel_body {
+    /* i also like #996633 */
+}
+
 .any_questions {
     width: 180px;
     background-color: #333333;
@@ -345,11 +356,11 @@ p {
 .text-danger {
 
 }
-/*========================================= LISTS =====================================*/
+/*====================================== LISTS ========================================*/
 li {
     padding-bottom: 9px;
 }
-/*======================================== NAVBAR =====================================*/
+/*====================================== NAVBAR =======================================*/
 .navbar-brand {
     font-size: 18px;
 }
