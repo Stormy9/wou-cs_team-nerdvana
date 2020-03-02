@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- required meta tags -->
+        <meta charset="utf-8">
+
+        <!-- responsive meta tag -->
+        <meta name="viewport" 
+                content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <!-- to ensure proper rendering and touch zooming for all devices,
+                w/bootstrap, add this meta tag to your <head> -->
+        
+        <!------------------------------------------------------------------------------>
+        <!-- Bootstrap CSS library -- this has to go up-top -->
+        <!-- we're fetching it rather than hosting it locally -->
+        <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous">
+        
+        <!-- *our* CSS file -- has to go *after* Bootstrap library -->
+        <link type="text/css" rel="stylesheet" href="styling/our_styles_noLayout.css" />
+        
+        <!------------------------------------------------------------------------------>
+        <title> Pet Owner Profile Template </title>
+
+    </head>
+    <!----------------------------- NAVIGATION SECTION --------------------------------->
+
+
+    <!---------------------------- CONTENT SECTION ------------------------------------->
+    <body class="main">
+        <div class="outer_container">
+        <div class="container-fluid">
+            
+            <div class="row our_row_one"><!-- FIRST\TOP ROW -->
+
+                stuff can go here -- full width row -- for now this represents navbar!
+
+            </div><!-- END FIRST\TOP ROW -->
+            <!-------------------------------------------------------------------------->
+            
+            <div class="row our_row_two"><!-- SECOND\MIDDLE ROW -->
+                
+                <!-- 1st column -->
+                <div class="col-sm-4 col-md-3 col-lg-3 col-xl-2 our_col_one"> 
+                    
+                    <!-- owner || provider || both -->
+                    <div class="owner_provider_box">
+                        Pet Owner
+                    </div>
+
+                    <!-- profile picture -->
+                    <div class="profile_pic_box_box">
+                        <div class="profile_pic_box">
+                            <img src="https://stormy9.github.io/nerdvana/cute_smiley.png" 
+                                class="profile_img" />
+                        </div>
+                    </div>
+
+                    <!-- profile pic caption -->
+                    <div class="profile_pic_caption_box">
+                        <div class="profile_pic_caption">
+                            caption for that ^
+                        </div>
+                    </div>
+
+                    <!-- pet badges -->
+                    <div class="pet_badge_box">
+                        <img src="https://stormy9.github.io/nerdvana/badge_dog.PNG"
+                                    class="pet_badge">
+                        <img src="https://stormy9.github.io/nerdvana/badge_cat.PNG"
+                                    class="pet_badge">
+                        <img src="https://stormy9.github.io/nerdvana/badge_bunny.PNG"
+                                    class="pet_badge">
+                    </div>
+
+                    <!-- private msg + friend buttons -->
+                    <div class="button_box">
+                        <a href="#" class="our_a">
+                            <div class="our_buttons">
+                                PM me!
+                            </div>
+                        </a>
+                        <a href="our_a">
+                            <div class="our_buttons">
+                                add friend
+                            </div>
+                        </a>
+                    </div>
+                    
+                </div><!-- end 1st\Left-side Column -->
+
+                <!---------------------------------------------------------------------->
+                <!-- 2nd column -->
+                <div class="col-sm-5 col-md-6 col-lg-6 col-xl-7 our_col_two"> 
+                    
+                    <!-- user name -->
+                    <div class="user_name_box">
+                        <h3>UserName GoesHere</h3>
+                    </div>
+
+                    <!-- user's general location -->
+                    <div class="general_location_box">
+                        <div class="general_location">
+                            my general location
+                        </div>
+                    </div>
+
+                    <!-- user rating -->
+                    <div class="user_rating_box">
+                        <img src="https://stormy9.github.io/nerdvana/rating_star_example.PNG"
+                                    class="user_rating_star_bar">
+                    </div>
+
+                    <!-- user bio & etc. fun stuff -->
+                    <div class="user_bio_box">
+                        <h4>Stuff About Me:</h3>
+                        blah blah blah blah blah blah blah blah blah blah blah blah blah 
+                        blah blah blah blah blah blah blah blah blah blah blah blah blah 
+                        blah blah blah blah blah blah blah blah blah blah blah blah blah 
+                        blah blah blah blah blah blah blah blah blah blah blah blah blah 
+                        blah blah blah blah blah blah blah blah blah blah blah blah blah 
+                        blah blah blah blah blah blah blah blah blah blah blah blah blah 
+                        blah blah blah blah blah blah blah blah blah blah blah blah blah 
+                        blah blah blah blah blah blah blah blah blah blah blah blah blah 
+                        blah blah blah blah blah blah blah blah blah blah blah blah blah 
+                    </div>
+                    
+                </div><!-- END 2nd\Middle Column -->
+
+                <!---------------------------------------------------------------------->
+                <!-- 3rd column -->
+                <div class="col-sm-3 col-md-3 span-2 our_col_three">
+                    
+                    <!-- stuff goes here -->
+                    <!-- 3rd column stuff -- this one is 3-wide <br>
+                    try to get this to span two rows in height! -->
+
+                    <!-- auto search result header -->
+                    <div class="auto_search_result_header">
+                        <h5> Pet Care Providers Near Me:</h5>
+                    </div>
+                    
+                    <!-- search results -> who's near you? -->
+                    <div class="auto_search_results_box_box">
+
+                        <div class="auto_search_results_box">
+                            <!---------------------------------------------------------->
+                            <div class="search_result_card">
+
+                                <a href="#" class="our_a"><!-- to carer's profile -->
+                                    <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg" 
+                                            alt="profile picture" 
+                                            class="search_result_card_img">
+                                </a>
+                                <div class="search_result_card_info">
+                                    <a href="#" class="our_a"><!-- to carer's profile -->
+                                        <h6><b> Steve PetCarer </b></h6> 
+                                    </a>
+                                    <p> Northeast Salem, Oregon </p>
+                                    <div> badges here </div>
+                                    <div> ratings here </div>
+                                </div>
+                            </div>
+                            <!---------------------------------------------------------->
+                            <div class="search_result_card">
+
+                                <a href="#" class="our_a"><!-- to carer's profile -->
+                                    <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg" 
+                                            alt="profile picture" 
+                                            class="search_result_card_img">
+                                </a>
+                                <div class="search_result_card_info">
+                                    <a href="#" class="our_a"><!-- to carer's profile -->
+                                        <h6><b> Steve PetCarer </b></h6> 
+                                    </a>
+                                    <p> Northeast Salem, Oregon </p>
+                                    <div> badges here </div>
+                                    <div> ratings here </div>
+                                </div>
+                            </div>
+                            <!---------------------------------------------------------->
+                            <div class="search_result_card">
+
+                                <a href="#" class="our_a"><!-- to carer's profile -->
+                                    <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg" 
+                                            alt="profile picture" 
+                                            class="search_result_card_img">
+                                </a>
+                                <div class="search_result_card_info">
+                                    <a href="#" class="our_a"><!-- to carer's profile -->
+                                        <h6><b> Steve PetCarer </b></h6> 
+                                    </a>
+                                    <p> Northeast Salem, Oregon </p>
+                                    <div> badges here </div>
+                                    <div> ratings here </div>
+                                </div>
+                            </div>
+                            <!---------------------------------------------------------->
+                            <div class="search_result_card">
+
+                                <a href="#" class="our_a"><!-- to carer's profile -->
+                                    <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg" 
+                                            alt="profile picture" 
+                                            class="search_result_card_img">
+                                </a>
+                                <div class="search_result_card_info">
+                                    <a href="#" class="our_a"><!-- to carer's profile -->
+                                        <h6><b> Steve PetCarer </b></h6> 
+                                    </a>
+                                    <p> Northeast Salem, Oregon </p>
+                                    <div> badges here </div>
+                                    <div> ratings here </div>
+                                </div>
+                            </div>
+                            <!---------------------------------------------------------->
+                            <div class="search_result_card">
+
+                                <a href="#" class="our_a"><!-- to carer's profile -->
+                                    <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg" 
+                                            alt="profile picture" 
+                                            class="search_result_card_img">
+                                </a>
+                                <div class="search_result_card_info">
+                                    <a href="#" class="our_a"><!-- to carer's profile -->
+                                        <h6><b> Steve PetCarer </b></h6> 
+                                    </a>
+                                    <p> Northeast Salem, Oregon </p>
+                                    <div> badges here </div>
+                                    <div> ratings here </div>
+                                </div>
+                            </div>
+                            <!---------------------------------------------------------->
+                            <div class="search_result_card">
+
+                                <a href="#" class="our_a"><!-- to carer's profile -->
+                                    <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg" 
+                                            alt="profile picture" 
+                                            class="search_result_card_img">
+                                </a>
+                                <div class="search_result_card_info">
+                                    <a href="#" class="our_a"><!-- to carer's profile -->
+                                        <h6><b> Steve PetCarer </b></h6> 
+                                    </a>
+                                    <p> Northeast Salem, Oregon </p>
+                                    <div> badges here </div>
+                                    <div> ratings here </div>
+                                </div>
+                            </div>
+                            <!---------------------------------------------------------->
+                            <div class="search_result_card">
+
+                                <a href="#" class="our_a"><!-- to carer's profile -->
+                                    <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg" 
+                                            alt="profile picture" 
+                                            class="search_result_card_img">
+                                </a>
+                                <div class="search_result_card_info">
+                                    <a href="#" class="our_a"><!-- to carer's profile -->
+                                        <h6><b> Steve PetCarer </b></h6> 
+                                    </a>
+                                    <p> Northeast Salem, Oregon </p>
+                                    <div> badges here </div>
+                                    <div> ratings here </div>
+                                </div>
+                            </div>
+                            <!---------------------------------------------------------->
+                        </div>
+                    </div>
+                
+                </div><!-- END 3rd\Right-side Column -->
+                <!---------------------------------------------------------------------->
+                
+            </div><!-- END SECOND\MIDDLE ROW -->
+            <!-------------------------------------------------------------------------->
+
+            <div class="row our_row_three"><!-- THIRD\BOTTOM ROW -->
+
+                <div class="col-md-9 our_col_four">
+                    <!-- stuff goes here ... bottom row ... 
+                        9-column-wide span inside this row <br>
+                    try to get 3rd column in middle row to span two rows in height!  -->
+
+                    <!-- pet profile preview box header -->
+                    <div class="pet_profile_header">
+                        <h3> My Pets! </h3>
+                    </div>
+
+                    <!-- pet profile preview box --><!-- holds all preview panels -->
+                    <div class="pet_profile_preview_box">
+                        <!-------------------------------------------------------------->
+                        <div class="pet_profile_preview"><!-- individual panel -->
+
+                            <a href="#"><!-- link to pet's profile -->
+                                <img class="pet_profile_preview_img" alt="pet profile pic"
+                                    src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg">
+                                <div class="pet_preview_name"> Possum </div>
+                                <div class="pet_preview_breed"> Sheltie </div>
+                            </a>
+                            <a href="#"><!-- link to care record(s) -->
+                                <div class="pet_preview_care_record"> 
+                                    link to this pet's care record 
+                                </div>
+                            </a>
+
+                        </div>
+                        <!--------------------------------------------------------------->
+                        <div class="pet_profile_preview"><!-- individual panel -->
+
+                            <a href="#" class="our_a"><!-- link to pet's profile -->
+                                <img class="pet_profile_preview_img" alt="pet profile pic"
+                                    src="https://stormy9.github.io/images_doggies/Sawyer_profile_Pic.png">
+                                <div class="pet_preview_name"> Sawyer </div>
+                                <div class="pet_preview_breed"> Sheltie </div>
+                            </a>
+                            <a href="#"><!-- link to care record(s) -->
+                                <div class="pet_preview_care_record"> 
+                                    link to this pet's care record 
+                                </div>
+                            </a>
+                        </div>
+                        <!--------------------------------------------------------------->
+                        <div class="pet_profile_preview"><!-- individual panel -->
+
+                            <a href="#" class="our_a"><!-- link to pet's profile -->
+                                <img class="pet_profile_preview_img" alt="pet profile pic"
+                                    src="https://stormy9.github.io/images_doggies/Zoey_profile_Pic.jpg">
+                                <div class="pet_preview_name"> Zoey </div>
+                                <div class="pet_preview_breed"> Sheltie </div>
+                            </a>
+                            <a href="#"><!-- link to care record(s) -->
+                                <div class="pet_preview_care_record"> 
+                                    link to this pet's care record 
+                                </div>
+                            </a>
+                        </div>
+                        <!--------------------------------------------------------------->
+                        <div class="pet_profile_preview"><!-- individual panel -->
+
+                            <a href="#" class="our_a"><!-- link to pet's profile -->
+                                <img class="pet_profile_preview_img" alt="pet profile pic"
+                                    src="https://stormy9.github.io/images_doggies/Lacey_profile_Pic.jpg">
+                                <div class="pet_preview_name"> Lacey </div>
+                                <div class="pet_preview_breed"> Sheltie </div>
+                            </a>
+                            <a href="#"><!-- link to care record(s) -->
+                                <div class="pet_preview_care_record"> 
+                                    link to this pet's care record 
+                                </div>
+                            </a>
+                        </div>
+                        <!--------------------------------------------------------------->
+                        <div class="pet_profile_preview"><!-- individual panel -->
+
+                            <a href="#" class="our_a"><!-- link to pet's profile -->
+                                <img class="pet_profile_preview_img" alt="pet profile pic"
+                                    src="https://stormy9.github.io/images_doggies/Jack_profile_Pic.jpg">
+                                <div class="pet_preview_name"> Jack </div>
+                                <div class="pet_preview_breed"> Sheltie </div>
+                            </a>
+                            <a href="#"><!-- link to care record(s) -->
+                                <div class="pet_preview_care_record"> 
+                                    link to this pet's care record 
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div><!-- END 4th Column -> one inside bottom row -->
+                <!---------------------------------------------------------------------->
+                
+            </div><!-- END THIRD\BOTTOM ROW -->
+            <!-------------------------------------------------------------------------->
+            
+        </div><!-- END CONTAINER-FLUID -->
+        </div><!-- END OUTER CONTAINER \ MAIN CONTAINER INSIDE BODY -->
+    <!---------------------------------------------------------------------------------->
+    <!------------------------------- FOOTER SECTION ----------------------------------->
+        
+    <!---------------------------------------------------------------------------------->
+    <!-------------------------- JS \ BS SCRIPT INCLUDES ------------------------------->
+    <!-- js scripts -->
+    <!-- bootstrap(jQ,pop,BS/JS-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+        crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+        crossorigin="anonymous">
+    </script>
+
+    <!-- my javascript -->
+    <script src="scripting/myscript.js"></script>
+    <!---------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------->
+    </body>
+</html>
