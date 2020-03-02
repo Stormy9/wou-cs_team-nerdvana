@@ -211,19 +211,19 @@
 }
 /*============================ LINKS! ===============================*/
 /* unvisited link */
-a.link, .our_a.link {
-    color: #392613;
+a:link, .our_a:link {
+    color: #130d06;
 }
 /* visited link */
-a.visited, .our_a.visited {
-    color: #392613;
+a:visited, .our_a:visited {
+    color: #130d06;
 }
 /* hovered-over link */
-a.hover, .our_a.hover {
+a:hover, .our_a:hover {
     color: #990000;
 }
 /* selected link */
-a.active, .our_a.hover {
+a:active, .our_a:hover {
     color: #990000;
 }
 /* remember they ^^^ gotta be in that order */
