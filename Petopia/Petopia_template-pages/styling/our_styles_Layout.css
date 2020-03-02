@@ -24,22 +24,22 @@
 }
 /*============================== COLUMNS ============================*/
 .our_col_one {
-    padding: 5px;
+    padding: 9px;
     border: 2px solid blue;
     background-color: lightblue;
 }
 .our_col_two {
-    padding: 5px;
+    padding: 9px;
     border: 1px solid black;
     background-color: gray;
 }
 .our_col_three {
-    padding: 5px;
+    padding: 9px;
     border: 2px solid blue;
     background-color: lightblue;
 }
 .our_col_four {
-    padding: 5px;
+    padding: 9px;
     border: 2px solid green;
     background-color: lightgreen;
 }
@@ -82,7 +82,7 @@
     border: 2px solid purple;
     background-color: lightpink;
     width: 96%;
-    height: 42px;
+    height: 45px;
     padding: 3px;
     margin-bottom: 9px;
 }
@@ -132,7 +132,7 @@
     border: 1px solid blue;
     background-color: lightsteelblue;
     width: 96%;
-    height: 50px;
+    height: 36px;
     padding: 3px;
     margin-bottom: 18px;
 }
@@ -146,7 +146,7 @@
 /* star bar */
 .user_rating_star_bar {
     width: auto;
-    height: auto;
+    height: 27px;
     float: left;
     margin-left: 1px;
 }
