@@ -1,0 +1,138 @@
+﻿@model Petopia.Models.Pet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Species)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Species)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Breed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Breed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Altered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Altered)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HealthConcerns)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HealthConcerns)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BehaviorConcerns)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BehaviorConcerns)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetAccess)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetAccess)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmergencyContactName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmergencyContactName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmergencyContactPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmergencyContactPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NeedsDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NeedsDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccessInstructions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccessInstructions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetOwnerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetOwnerID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PetID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

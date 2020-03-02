@@ -1,0 +1,42 @@
+﻿@model Petopia.Models.CareProvider
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CareProvider</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AverageRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AverageRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExperienceDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExperienceDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CareProviderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

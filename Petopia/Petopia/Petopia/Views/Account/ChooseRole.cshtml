@@ -26,19 +26,19 @@
         <!--These are going to redirect to home for now until we make the forms-->
         <div class="col-sm-3">
             <div class="pick_buttons">
-                @Html.ActionLink("I am a pet owner!", "CreateOwner", "Owners")
+                @Html.ActionLink("I am a pet owner!", "Create", "PetOwners")
             </div>
         </div>
 
         <div class="col-sm-3">
             <div class="pick_buttons">
-                @Html.ActionLink("I want to be a pet care provider!", "CreateProvider", "Providers")
+                @Html.ActionLink("I want to be a pet care provider!", "Create", "CareProviders")
             </div>
         </div>
 
         <div class="col-sm-3">
             <div class="pick_buttons">      <!-- TODO: This form will be changed-->
-                @Html.ActionLink("I want to be both!", "CreateOwner", "Owners") 
+                @Html.ActionLink("I want to be both!", "Create", "PetOwners") 
             </div>
         </div>
 
