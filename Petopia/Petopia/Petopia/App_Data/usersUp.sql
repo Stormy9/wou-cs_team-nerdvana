@@ -1,12 +1,12 @@
-﻿/*
+﻿
 CREATE TABLE [dbo].[PetopiaUsers] (
 	
-	[UserID] NVARCHAR(120) NOT NULL, 
+	[UserID] INT IDENTITY (1,1) NOT NULL, 
 	[UserName] NVARCHAR(120) NOT NULL,
 	[Password] NVARCHAR(50) NOT NULL,
 	[FirstName] NVARCHAR(50) NOT NULL,
 	[LastName] NVARCHAR(50) NOT NULL,
-	[ASPNetIdentityID] NVARCHAR (128),
+	[ASPNetIdentityID] NVARCHAR (128) NOT NULL,
 	[IsOwner] BIT NOT NULL,
 	[IsProvider] BIT NOT NULL,
 	[MainPhone] NVARCHAR(50) NOT NULL,
@@ -20,8 +20,60 @@ CREATE TABLE [dbo].[PetopiaUsers] (
 	CONSTRAINT[PK_dbo.PetopiaUsers] PRIMARY KEY CLUSTERED([UserID] ASC)
 
 );
-*/
 
+CREATE TABLE [dbo].[PetOwner] (
+	[PetOwnerID] INT IDENTITY (1,1) NOT NULL,
+	[AverageRating] NVARCHAR(120),
+	[NeedsDetails] NVARCHAR(MAX) NOT NULL,
+	[AccessInstructions] NVARCHAR(MAX) NOT NULL,
+	[UserID] INT,
+	CONSTRAINT[PK_dbo.PetOwner] PRIMARY KEY CLUSTERED([PetOwnerID] ASC),
+	CONSTRAINT[FK_dbo.PetopiaUsersOwner] FOREIGN KEY([UserID]) REFERENCES [dbo].[PetopiaUsers]([UserID])
+);
+
+CREATE TABLE [dbo].[Pet] (
+	[PetID] INT IDENTITY (1,1) NOT NULL,
+	[PetName] NVARCHAR(24) NOT NULL, 
+	[Species] NVARCHAR(24) NOT NULL,
+	[Breed] NVARCHAR(24) NOT NULL,
+	[Gender] NVARCHAR(8) NOT NULL,
+	[Altered] NVARCHAR(8) NOT NULL,
+	[Birthdate] DATE NOT NULL,
+	[Weight] DATE NOT NULL,
+	[HealthConcerns] NVARCHAR(MAX) NOT NULL,
+	[BehaviorConcerns] NVARCHAR(MAX) NOT NULL,
+	[PetAccess] NVARCHAR(MAX) NOT NULL,
+	[EmergencyContactName] NVARCHAR(45) NOT NULL,
+	[EmergencyContactPhone] NVARCHAR(12) NOT NULL,
+	[NeedsDetails] NVARCHAR(MAX) NOT NULL,
+	[AccessInstructions] NVARCHAR(MAX) NOT NULL,
+	[PetOwnerID] INT,
+	CONSTRAINT[PK_dbo.Pet] PRIMARY KEY CLUSTERED([PetID] ASC),
+	CONSTRAINT[FK_dbo.PetOwner] FOREIGN KEY([PetOwnerID]) REFERENCES [dbo].[PetOwner]([PetOwnerID])
+);
+
+CREATE TABLE [dbo].[CareProvider] (
+	[CareProviderID] INT IDENTITY (1,1) NOT NULL,
+	[AverageRating] NVARCHAR(120),
+	[ExperienceDetails] NVARCHAR(MAX) NOT NULL,
+	[UserID] INT,
+	CONSTRAINT[PK_dbo.CareProvider] PRIMARY KEY CLUSTERED([CareProviderID] ASC),
+	CONSTRAINT[FK_dbo.PetopiaUsersProvider] FOREIGN KEY([UserID]) REFERENCES [dbo].[PetopiaUsers]
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 CREATE TABLE [dbo].[Owner] (
 	[OwnerID] NVARCHAR(120) NOT NULL,
 	[Username] NVARCHAR(120),
@@ -39,3 +91,4 @@ CREATE TABLE [dbo].[Provider](
 	CONSTRAINT[PK_dbo.Provider] PRIMARY KEY CLUSTERED([ProviderID] ASC)
 
 );
+*/

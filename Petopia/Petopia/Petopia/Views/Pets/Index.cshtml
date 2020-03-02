@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Petopia.Models.Pet>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Species)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Breed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Altered)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Birthdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HealthConcerns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BehaviorConcerns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetAccess)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmergencyContactName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmergencyContactPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NeedsDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccessInstructions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetOwnerID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Species)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Breed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Altered)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Birthdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HealthConcerns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BehaviorConcerns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetAccess)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmergencyContactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmergencyContactPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NeedsDetails)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccessInstructions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetOwnerID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PetID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PetID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PetID })
+        </td>
+    </tr>
+}
+
+</table>
