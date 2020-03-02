@@ -45,43 +45,46 @@
 }
 /*====================== PET OWNER || PROVIDER ======================*/
 .owner_provider_box {
-    text-align: center;
+    /* text-align: center; */
     font-weight: bold;
     color: purple;
 }
 /*========================== PROFILE PIC ============================*/
 .profile_pic_box_box {
-    /* this is to center the box that holds the actual picture */
-    text-align: center;
     border: 2px solid blue;
 }
 .profile_pic_box {
-    /* this finishes up the centering started above */
-    margin: auto;
-    width: 180px;
-    height: 180px;
+    width: 96%;
+    height: auto;
     border: 1px solid black;
     border-radius: 5px;
 }
 .profile_img {
-    width: 180px;
-    height: 180px;
+    width: 99%;
+    height: auto;
 }
 /*===================== PROFILE PIC CAPTION ==========================*/
 .profile_pic_caption_box {
-    margin: 2px;
+    width: 96%;
+    margin-top: 0;
+    margin-right: 2px;
+    margin-bottom: 9px;
+    margin-left: 2px;
 }
 .profile_pic_caption {
-    padding: 3px;
+    padding-top: 0;
+    padding-right: 3px;
+    padding-bottom: 9px;
+    padding-left: 3px;
 }
 /*========================= PET BADGES ===============================*/
 .pet_badge_box {
     border: 2px solid purple;
     background-color: lightpink;
-    width: 180px;
+    width: 96%;
     height: 42px;
     padding: 3px;
-    margin-bottom: 5px;
+    margin-bottom: 9px;
 }
 .pet_badge {
     float: left;
@@ -92,8 +95,8 @@
 .button_box {
     border: 2px solid blue;
     background-color: lightseagreen;
-    width: 180px;
-    height: 45px;
+    width: 96%;
+    height: 90px;
     padding: 3px;
 }
 .our_buttons {
@@ -105,16 +108,19 @@
     font-weight: bold;
     float: left;
     margin-left: 3px;
+    margin-top: 3px;
 }
 /*========================= USER NAME ===============================*/
 .user_name_box {
     border: 1px solid red;
     background-color: pink;
+    width: 96%;
     font-weight: bold;
     padding: 5px;
 }
 /*===================== GENERAL LOCATION ============================*/
 .general_location_box {
+    width: 96%;
     margin: 2px;
     padding: 3px;
 }
@@ -125,13 +131,22 @@
 .user_rating_box {
     border: 1px solid blue;
     background-color: lightsteelblue;
-    width: 225px;
-    height: 33px;
+    width: 96%;
+    height: 50px;
     padding: 3px;
+    margin-bottom: 18px;
 }
+/* individual stars */
 .user_rating_star {
     width: 27px;
     height: 27px;
+    float: left;
+    margin-left: 1px;
+}
+/* star bar */
+.user_rating_star_bar {
+    width: auto;
+    height: auto;
     float: left;
     margin-left: 1px;
 }
@@ -139,10 +154,10 @@
 .user_bio_box {
     border: 2px solid black;
     background-color: lightgray;
+    width: 99%;
     margin-top: 5px;
     padding: 15px;
 }
-
 /*============= SEARCH \ NEAR YOU \ PREVIEW CARDS ===================*/
 .auto_search_results_box_box {
     border: 1px solid darkolivegreen;
@@ -163,7 +178,7 @@
     background-color: violet;
     box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
     transition: 0.3s;
-    width: 100%;
+    width: 99%;
     border-radius: 5px;
     margin-bottom: 5px;
 }
@@ -172,9 +187,12 @@
 }
 .search_result_card_img {
     min-width: 70%;
+    max-width: 96%;
     height: auto;
+    margin-top: 3px;
     border: 1px solid black;
-    border-radius: 5px 5px 0 0;
+    border-radius: 5px;
+    margin-left: 5px;
 }
 .search_result_card_info {
     padding: 3px 15px;
@@ -192,7 +210,7 @@
 .pet_profile_preview {
     border: 2px solid darkred;
     background-color: pink;
-    height: 139px;
+    height: 145px;
 }
 .pet_profile_preview_img {
     width: 135px;
@@ -200,7 +218,10 @@
     float: left;
     border: 1px solid black;
     border-radius: 5px;
+    margin-top: 3px;
     margin-right: 5px;
+    margin-bottom: 3px;
+    margin-left: 3px;
 }
 .pet_preview_name {
     font-weight: bold;
@@ -225,22 +246,11 @@ a.hover {
 a.active {
 
 }
-/* remember they gotta be in that order */
+/* remember they ^^^ gotta be in that order */
 /*===================================================================*/
 /*======================== MEDIA QUERIES ============================*/
 @media only screen and (max-width: 500px) {
     /* so 500 & smaller/narrower */
 
-    /* moves user roles & profile pic to left on phones */
-    .owner_provider_box {
-        text-align: left;
-    }
-    .profile_pic_box_box {
-        text-align: left;
-    }
-    .profile_pic_box {
-        margin: 0;
-        text-align: left;
-    }
 }
 /*===================================================================*/
