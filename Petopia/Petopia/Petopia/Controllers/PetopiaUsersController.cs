@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Petopia.Models;
 
 namespace Petopia.Controllers
@@ -50,9 +51,13 @@ namespace Petopia.Controllers
         {
             if (ModelState.IsValid)
             {
+                string id = User.Identity.GetUserId();
+                petopiaUser.ASPNetIdentityID = id;
                 db.PetopiaUsers.Add(petopiaUser);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ChooseRole", "Account");
+
+                
             }
 
             return View(petopiaUser);
