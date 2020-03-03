@@ -233,6 +233,43 @@
 .pet_preview_care_record {
     font-weight: bold;
 }
+/*====================== TABLE for PET CARE =========================*/
+.pet_care_table {
+    width: 100%;
+    border: 1px solid #392613;
+    border-radius: 5px;
+    border-collapse: collapse;
+}
+th,td {
+    border: 1px solid #392613;
+}
+th {
+    background-color: #392613;
+    color: #f2e6d9;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 9px;
+}
+td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 9px;
+}
+tr:nth-child(even) {
+    background-color: #734d26;
+}
+tr:hover {
+    background-color: rgba(153, 0, 0, .45);
+}
+.table_col_one {
+    width: 12.5%;
+}
+.table_col_two {
+    width: 18%;
+}
+.table_col_three {
+    /*width: 50%;*/
+}
 /*============================ LINKS! ===============================*/
 /* unvisited link */
 a:link, .our_a:link {
