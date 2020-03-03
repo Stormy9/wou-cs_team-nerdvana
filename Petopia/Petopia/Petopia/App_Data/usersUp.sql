@@ -2,11 +2,11 @@
 CREATE TABLE [dbo].[PetopiaUsers] (
 	
 	[UserID] INT IDENTITY (1,1) NOT NULL, 
-	[UserName] NVARCHAR(120) NOT NULL,
-	[Password] NVARCHAR(50) NOT NULL,
+	[UserName] NVARCHAR(120),
+	[Password] NVARCHAR(50),
 	[FirstName] NVARCHAR(50) NOT NULL,
 	[LastName] NVARCHAR(50) NOT NULL,
-	[ASPNetIdentityID] NVARCHAR (128) NOT NULL,
+	[ASPNetIdentityID] NVARCHAR (128),
 	[IsOwner] BIT NOT NULL,
 	[IsProvider] BIT NOT NULL,
 	[MainPhone] NVARCHAR(50) NOT NULL,

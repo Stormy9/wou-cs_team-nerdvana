@@ -29,12 +29,11 @@ namespace Petopia
                 roleManager.Create(role2);
             }
 
-
         }
 
         public void Configuration(IAppBuilder app)
         {
-           //CreateRoles();
+            CreateRoles();
             ConfigureAuth(app);
         }
     }
