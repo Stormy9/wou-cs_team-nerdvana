@@ -1,0 +1,260 @@
+﻿/*========================== CONTAINERS =============================*/
+.outer_container {
+    padding: 5px;
+}
+/*============================= ROWS ================================*/
+.our_row_one {
+    margin-top: 5px;
+    padding: 5px;
+    background-color: #1a1a1a;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.our_row_two {
+    padding: 5px;
+    background-color: #996633;
+    color: whitesmoke;
+}
+
+.our_row_three {
+    padding: 5px;
+    background-color: #996633;
+    color: whitesmoke;
+}
+/*============================== COLUMNS ============================*/
+.our_col_one, .our_col_two, .our_col_three, .our_col_four {
+    padding: 9px;
+    background-color: #996633;
+    color: whitesmoke;
+}
+/*====================== PET OWNER || PROVIDER ======================*/
+.owner_provider_box {
+    font-weight: bold;
+}
+/*========================== PROFILE PIC ============================*/
+.profile_pic_box_box {
+}
+
+.profile_pic_box {
+    width: 96%;
+    height: auto;
+    /* border: 1px solid black;
+    border-radius: 5px; */
+}
+
+.profile_img {
+    width: 99%;
+    height: auto;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+}
+/*===================== PROFILE PIC CAPTION ==========================*/
+.profile_pic_caption_box {
+    width: 96%;
+    margin-top: 0;
+    margin-right: 2px;
+    margin-bottom: 9px;
+    margin-left: 2px;
+}
+
+.profile_pic_caption {
+    padding-top: 0;
+    padding-right: 3px;
+    padding-bottom: 9px;
+    padding-left: 3px;
+}
+/*========================= PET BADGES ===============================*/
+.pet_badge_box {
+    width: 96%;
+    height: 45px;
+    padding: 3px;
+    margin-bottom: 9px;
+}
+
+.pet_badge {
+    float: left;
+    width: 36px;
+    height: 36px;
+}
+/*======================== OUR BUTTONS ==============================*/
+.button_box {
+    width: 96%;
+    height: 90px;
+    padding: 3px;
+}
+
+.our_buttons {
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    background-color: #392613;
+    color: whitesmoke;
+    font-weight: bold;
+    float: left;
+    margin-left: 3px;
+    margin-top: 3px;
+}
+/*========================= USER NAME ===============================*/
+.user_name_box {
+    width: 96%;
+    font-weight: bold;
+    padding: 5px;
+    padding-left: 15px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+/*===================== GENERAL LOCATION ============================*/
+.general_location_box {
+    width: 96%;
+    margin: 2px;
+    margin-top: 0px;
+    margin-bottom: 9px;
+    padding: 3px;
+    padding-top: 0px;
+    padding-left: 15px;
+}
+
+.general_location {
+    font-weight: bold;
+}
+/*======================== USER RATING ==============================*/
+.user_rating_box {
+    width: 96%;
+    height: 36px;
+    padding: 3px;
+    padding-left: 15px;
+    margin-bottom: 18px;
+}
+/* individual stars */
+.user_rating_star {
+    width: 27px;
+    height: 27px;
+    float: left;
+    margin-left: 1px;
+}
+/* star bar */
+.user_rating_star_bar {
+    width: auto;
+    height: 27px;
+    float: left;
+    margin-left: 1px;
+}
+/*======================= USER BIO ETC ==============================*/
+.user_bio_box {
+    width: 99%;
+    margin-top: 5px;
+    padding: 15px;
+}
+/*============= SEARCH \ NEAR YOU \ PREVIEW CARDS ===================*/
+.auto_search_results_box_box {
+    padding: 9px;
+    height: 100%;
+}
+
+.auto_search_results_box {
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    padding: 3px;
+    /* this will add scrollbars only if\when necessary */
+    overflow: auto;
+    /* Note: overflow property only works for block elements w/specified height */
+    height: 630px;
+}
+
+.search_result_card {
+    background-color: #604020;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.6);
+    transition: 0.3s;
+    width: 99%;
+    border-radius: 5px;
+    margin-bottom: 18px;
+}
+
+    .search_result_card:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+
+.search_result_card_img {
+    min-width: 70%;
+    max-width: 93%;
+    height: auto;
+    margin-top: 3px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.search_result_card_info {
+    padding: 3px 15px;
+}
+
+    .search_result_card_info p {
+        margin-bottom: 1px;
+    }
+/*=================== PET PROFILE PREVIEW BOX =======================*/
+.pet_profile_preview_box {
+    padding: 9px;
+    overflow: auto;
+}
+
+.pet_profile_preview {
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    height: 145px;
+    margin-bottom: 18px;
+}
+
+    .pet_profile_preview:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.3);
+    }
+
+.pet_profile_preview_img {
+    width: 135px;
+    height: 135px;
+    float: left;
+    border-radius: 5px;
+    margin-top: 3px;
+    margin-right: 15px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+}
+
+.pet_preview_name {
+    font-weight: bold;
+}
+
+.pet_preview_breed {
+    font-weight: bold;
+}
+
+.pet_preview_care_record {
+    font-weight: bold;
+}
+/*============================ LINKS! ===============================*/
+/* unvisited link */
+a:link, .our_a:link {
+    color: #130d06;
+}
+/* visited link */
+a:visited, .our_a:visited {
+    color: #130d06;
+}
+/* hovered-over link */
+a:hover, .our_a:hover {
+    color: #990000;
+}
+/* selected link */
+a:active, .our_a:hover {
+    color: #990000;
+}
+/* remember they ^^^ gotta be in that order */
+/*===================================================================*/
+/*======================== MEDIA QUERIES ============================*/
+@media only screen and (max-width: 500px) {
+    /* so 500 & smaller/narrower */
+
+}
+/*===================================================================*/

@@ -18,7 +18,7 @@
     <body>
 
         <!------------------------------------------------------------------------------>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse navbar-fixed-top our_navbar">
 
             <div class="container-fluid"><!-- this puts navbar content on left edge! -->
 
@@ -39,8 +39,10 @@
 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("What We Do", "About", "Home")</li>
-                        <li>@Html.ActionLink("Have Questions or Concerns?", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("What We Do", "About", "Home", 
+                                                new { @class = "our_nav_links" })</li>
+                        <li>@Html.ActionLink("Have Questions or Concerns?", "Contact", "Home", 
+                                                    new { @class = "our_nav_links" })</li>
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>

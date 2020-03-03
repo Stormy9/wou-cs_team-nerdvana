@@ -83,7 +83,7 @@ textarea {
     position: fixed;
     top: 0;
     height: 100%;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(57, 38, 19, .45);
     color: #f1f1f1;
     width: 100%;
     padding: 20px;
@@ -133,16 +133,16 @@ textarea {
 }
 /*=================================== ABOUT PAGE ======================================*/
 .about_hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
-                      rgba(0, 0, 0, 0.63)), 
-                      url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
+                        rgba(57, 38, 19, 0.63)), 
+                        url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     position: relative;
-    color: #f2f2f2;
-    height: 120vh;  /* this is SO much better! */
+    color: #f2e6d9;
+    height: 120vh; /* this is SO much better! */
     /* this is to center 'about_title' */
     text-align: center;
 }
@@ -159,43 +159,33 @@ textarea {
 }
 
 .about_content {
-    color: black;
+    color: #261a0d;
     font-size: 18px;
     padding: 27px;
     padding-bottom: 45px;
 }
 
-.about_panel {
-    background-color: #392613;
-    color: whitesmoke;
-}
-.about_panel_header {
-    background-color: #604020;
-}
-.about_panel_body {
-    /* i also like #996633 */
-}
-
 .any_questions {
     width: 180px;
-    background-color: #333333;
-    border: 1px solid black;
+    background-color: #604020;
+    border: 1px solid #4d3319;
     border-radius: 9px;
     padding: 9px;
+    color: #f2e6d9;
     font-size: 18px;
     text-align: center;
 }
 /*=============================== CONTACT PAGE ========================================*/
 .contact_hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
-                      rgba(0, 0, 0, 0.63)), 
-                      url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
+                    rgba(57, 38, 19, 0.63)), 
+                    url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     position: relative;
-    color: #f2f2f2;
+    color: #f2e6d9;
     height: 120vh;
 }
 
@@ -207,14 +197,14 @@ textarea {
 }
 
 .contact_content {
-    color: black;
+    color: #261a0d;
     font-size: 18px;
     padding-top: 18px;
     padding-left: 18px;
 }
 
 .email_text {
-    color: blue;
+    color: #990000;
     font-weight: bold;
 }
 
@@ -226,18 +216,19 @@ textarea {
 
 .email_button {
     width: 180px;
-    background-color: #333333;
-    border: 1px solid black;
+    background-color: #392613;
+    border: 1px solid #4d3319;
     border-radius: 9px;
     padding: 9px;
+    color: #f2e6d9;
     font-size: 18px;
     text-align: center;
 }
 /*=============================== REGISTER PAGE =======================================*/
 .register_hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
-                      rgba(0, 0, 0, 0.63)), 
-                      url("https://stormy9.github.io/nerdvana/guineaPig_register.jpg");
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
+                        rgba(57, 38, 19, 0.63)), 
+                        url("https://stormy9.github.io/nerdvana/guineaPig_register.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -269,9 +260,9 @@ textarea {
 }
 /*================================= LOGIN PAGE ========================================*/
 .login_hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
-                      rgba(0, 0, 0, 0.63)), 
-                      url("https://stormy9.github.io/nerdvana/parakeet_login.jpg");
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
+                        rgba(57, 38, 19, 0.63)), 
+                        url("https://stormy9.github.io/nerdvana/parakeet_login.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -289,9 +280,9 @@ textarea {
 }
 /*============================ FORGOT PASSWORD PAGE ===================================*/
 .forgotPass_hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
-                      rgba(0, 0, 0, 0.63)), 
-                 url("https://stormy9.github.io/nerdvana/curious-dog_lost-password.jpg");
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
+                        rgba(57, 38, 19, 0.63)), 
+                  url("https://stormy9.github.io/nerdvana/curious-dog_lost-password.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -305,8 +296,8 @@ textarea {
 }
 /*============================== CHOOSE ROLE PAGE =====================================*/
 .chooseRole_hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.63), 
-                      rgba(0, 0, 0, 0.63)), 
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
+                        rgba(57, 38, 19, 0.63)), 
                       url("https://stormy9.github.io/nerdvana/happy_doggie_choose.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -318,12 +309,12 @@ textarea {
 }
 
 .pick_buttons {
-    border: 1px solid black;
+    border: 1px solid #4d3319;
     border-radius: 9px;
     padding: 9px;
     text-align: center;
-    background-color: #333333;
-    color: whitesmoke;
+    background-color: #392613;
+    color: #f2e6d9;
 }
 /*========================== USER ACCOUNT/PROFILE FORM PAGES ==========================*/
 .profile_info_form_part {
@@ -337,16 +328,17 @@ textarea {
     margin-bottom: 15px;
 }
 .back_to_choose {
-    border: 1px solid black;
+    background-color: #392613;
+    color: #f2e6d9;
+    border: 1px solid #4d3319;
     border-radius: 9px;
     padding: 9px;
     text-align: center;
-    background-color: #333333;
-    color: whitesmoke;
 }
 /*================================== GENERAL FEATURES =================================*/
 body {
-    background-color: #ffffb3;
+    background-color: #996633;
+    color: #f2e6d9;
 }
 
 p {
@@ -358,26 +350,48 @@ p {
 }
 /*====================================== LISTS ========================================*/
 li {
-    padding-bottom: 9px;
+    padding-bottom: 13px;
 }
 /*====================================== NAVBAR =======================================*/
+.our_navbar {
+    background-color: #392613;
+    height: 42px;
+    color: #f2e6d9;
+}
+
 .navbar-brand {
     font-size: 18px;
+    color: #f2e6d9;
 }
+
+.our_nav_links {
+    color: #f2e6d9;
+}
+
+.nav.li.a {
+    color: #f2e6d9;
+}
+/* NOTHING WILL CHANGE THE TEXT/LINK COLORS!!!!! */
 /*================================== FOOTER\BOTTOM STUFF ==============================*/
 .our_foot {
     position: fixed;
     width: 100%;
+    height: 23px;
+    /* this is so f'ing hacky to get vertical centering..... */
+    line-height: 5px;
+    /*-----^^^^^-----*/
     left: 0;
     bottom: 0;
-    background-color: lightgray;
+    background-color: #dfbf9f;
+    /* matching top & bottom padding also helps w/vertical centering of text */
     padding-top: 9px;
+    padding-bottom: 9px;
     padding-left: 18px;
     font-size: 11px;
-    color: #333333;
+    color: #261a0d;
 }
 /*================================== HEADINGS & DIVIDERS ==============================*/
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
     font-weight: bold;
 }
 
@@ -389,21 +403,21 @@ hr {
 }
 /*==================================== PSEUDO-BUTTONS =================================*/
 .our_buttons {
-    background-color: #333333;
-    color: whitesmoke;
-    border: 1px solid black;
+    background-color: #392613;
+    color: #f2e6d9;
+    border: 1px solid #4d3319;
 }
 /*==================================== PANELS/COLLAPSE ================================*/
 .panel-group {
 
 }
 .our_panel_01 {
-    background-color: #1a1a1a;
-    color: whitesmoke;
+    background-color: #392613;
+    color: #f2e6d9;
 }
 .our_panel_heading {
     /* setting color here leaves outline of color above */
-    background-color: #333333;
+    background-color: #604020;
 }
 .our_panel_title {
 }
@@ -413,25 +427,25 @@ hr {
 /*===================================== LINKS! ========================================*/
 /* unvisited link */
 a:link {
-    color: #e6e6e6;
+    color: #f2e6d9;
     font-weight: bold;
     text-decoration: none;
 }
 /* visited link */
 a:visited {
-    color: #e6e6e6;
+    color: #f2e6d9;
     font-weight: bold;
     text-decoration: none;
 }
 /* mouse over link */
 a:hover {
-    color: #bfbfbf;
+    color: #ff3333;
     font-weight: bold;
     text-decoration: none;
 }
 /* selected link */
 a:active {
-    color: #bfbfbf;
+    color: #ff3333;
     font-weight: bold;
     text-decoration: none;
 }
