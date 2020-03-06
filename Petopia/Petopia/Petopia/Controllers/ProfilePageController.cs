@@ -20,7 +20,7 @@ namespace Petopia.Controllers
         {
             var identityID = User.Identity.GetUserId();
             var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
-
+            
             ProfileViewModel petopiaUser = new ProfileViewModel();
             //populating the viewmodel with a join
             /*
@@ -43,6 +43,7 @@ namespace Petopia.Controllers
             petopiaUser.ResAddress02 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResAddress02).First();
             petopiaUser.ResCity = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResCity).First();
             petopiaUser.ResZipcode = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResZipcode).First();
+            petopiaUser.ProfilePhoto = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ProfilePhoto).First();
 
             //We might not have these so we want to see if we get a result back before populating...
             if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
@@ -55,6 +56,18 @@ namespace Petopia.Controllers
                 petopiaUser.OwnerAverageRating = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.AverageRating).First();
                 petopiaUser.NeedsDetails = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.NeedsDetails).First();
                 petopiaUser.AccessInstructions = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.AccessInstructions).First();
+            }
+            //Tests to make getting pets easier
+            if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
+            {
+                int ownerID = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.PetOwnerID).First();
+                petopiaUser.PetList = db.Pets.Where(x => x.PetOwnerID == ownerID).Select(n => new PetInfo
+                                                                                {
+                                                                                    PetName = n.PetName,
+                                                                                    Species = n.Species,
+                                                                                    Gender = n.Gender,
+                                                                                    PetID = n.PetID
+                                                                                }).ToList();
             }
 
             return View(petopiaUser);
@@ -112,8 +125,8 @@ namespace Petopia.Controllers
                 currentUser.FirstName = model.FirstName;
                 currentUser.LastName = model.LastName;
                 currentUser.ASPNetIdentityID = identityID;
-                currentUser.IsOwner = model.IsOwner;
-                currentUser.IsProvider = model.IsProvider;
+                currentUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsOwner).First();
+                currentUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsProvider).First();
                 currentUser.MainPhone = model.MainPhone;
                 currentUser.AltPhone = model.AltPhone;
                 currentUser.ResAddress01 = model.ResAddress01;
@@ -121,7 +134,6 @@ namespace Petopia.Controllers
                 currentUser.ResCity = model.ResCity;
                 currentUser.ResState = model.ResState;
                 currentUser.ResZipcode = model.ResZipcode;
-                //currentUser.ProfilePhoto = null; //TODO Profile Picture
                 //save PetopiaUser into db
                 if (model.UserProfilePicture != null)
                 {
@@ -137,6 +149,10 @@ namespace Petopia.Controllers
                     byte[] data = new byte[model.UserProfilePicture.ContentLength];
                     model.UserProfilePicture.InputStream.Read(data, 0, model.UserProfilePicture.ContentLength);
                     currentUser.ProfilePhoto = data;
+                }
+                else //If no pic was uploaded, we need to seed the current profile pic into our user
+                {
+                    currentUser.ProfilePhoto = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ProfilePhoto).First();
                 }
                 
 
@@ -168,6 +184,7 @@ namespace Petopia.Controllers
                     db.Entry(currentOwner).State = EntityState.Modified;
                     db.SaveChanges();
                 }
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
             //If we got here something bad happened, return model

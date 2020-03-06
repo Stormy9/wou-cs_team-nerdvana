@@ -31,5 +31,15 @@ namespace Petopia.Models.ViewModels
         public string ResAddress02 { get; set; }
         public string ResCity { get; set; }
         public string ResZipcode { get; set; }
+        //Below here is for Pet Profiles
+        public class PetInfo
+        {
+            public int PetID { get; set; }
+            public string PetName { get; set; }
+            public string Species { get; set; }
+            public string Gender { get; set; }
+        }
+        public List<PetInfo> PetList { get; set; }
+
     }
 }

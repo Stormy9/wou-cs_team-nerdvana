@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Petopia.Models.Pet>
+﻿@model IEnumerable<Petopia.DAL.Pet>
 
 @{
     ViewBag.Title = "Index";
@@ -11,6 +11,9 @@
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PetOwner.AverageRating)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.PetName)
         </th>
@@ -53,14 +56,14 @@
         <th>
             @Html.DisplayNameFor(model => model.AccessInstructions)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PetOwnerID)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetOwner.AverageRating)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.PetName)
         </td>
@@ -102,9 +105,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.AccessInstructions)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PetOwnerID)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.PetID }) |

@@ -10,6 +10,7 @@ namespace Petopia.DAL
         public PetopiaContext()
             : base("name=Petopia_Context_Azure")
         {
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<CareProvider> CareProviders { get; set; }
