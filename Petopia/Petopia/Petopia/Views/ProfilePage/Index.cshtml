@@ -1,0 +1,68 @@
+﻿@model Petopia.Models.ViewModels.ProfileViewModel
+
+@{
+    ViewBag.Title = "Profile Page!";
+}
+
+<h2>Your very own profile page ;)</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ResState)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ResState)
+        </dd>
+        @if (Model.IsProvider == true)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.ProviderAverageRating)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProviderAverageRating)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ExperienceDetails)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ExperienceDetails)
+            </dd>
+        }
+        @if (Model.IsOwner == true)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.OwnerAverageRating)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OwnerAverageRating)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.NeedsDetails)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NeedsDetails)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AccessInstructions)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AccessInstructions)
+            </dd>
+        }
+    </dl>
+</div>
