@@ -6,13 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Petopia.DAL;
 using Petopia.Models;
 
 namespace Petopia.Controllers
 {
     public class PetsController : Controller
     {
-        private PetContext db = new PetContext();
+        private PetopiaContext db = new PetopiaContext();
 
         // GET: Pets
         public ActionResult Index()
@@ -27,7 +28,7 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pet pet = db.Pets.Find(id);
+            DAL.Pet pet = db.Pets.Find(id);
             if (pet == null)
             {
                 return HttpNotFound();
@@ -46,7 +47,7 @@ namespace Petopia.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,AccessInstructions,PetOwnerID")] Pet pet)
+        public ActionResult Create([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,AccessInstructions,PetOwnerID")] DAL.Pet pet)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +66,7 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pet pet = db.Pets.Find(id);
+            DAL.Pet pet = db.Pets.Find(id);
             if (pet == null)
             {
                 return HttpNotFound();
@@ -78,7 +79,7 @@ namespace Petopia.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,AccessInstructions,PetOwnerID")] Pet pet)
+        public ActionResult Edit([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,AccessInstructions,PetOwnerID")] DAL.Pet pet)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +97,7 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Pet pet = db.Pets.Find(id);
+            DAL.Pet pet = db.Pets.Find(id);
             if (pet == null)
             {
                 return HttpNotFound();
@@ -109,7 +110,7 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Pet pet = db.Pets.Find(id);
+            DAL.Pet pet = db.Pets.Find(id);
             db.Pets.Remove(pet);
             db.SaveChanges();
             return RedirectToAction("Index");
