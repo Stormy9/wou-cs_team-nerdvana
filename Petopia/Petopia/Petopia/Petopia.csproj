@@ -406,11 +406,6 @@
     <Content Include="Views\PetOwners\Details.cshtml" />
     <Content Include="Views\PetOwners\Edit.cshtml" />
     <Content Include="Views\PetOwners\Index.cshtml" />
-    <Content Include="Views\Pets\Create.cshtml" />
-    <Content Include="Views\Pets\Delete.cshtml" />
-    <Content Include="Views\Pets\Details.cshtml" />
-    <Content Include="Views\Pets\Edit.cshtml" />
-    <Content Include="Views\Pets\Index.cshtml" />
     <Content Include="Views\CareProviders\Create.cshtml" />
     <Content Include="Views\CareProviders\Delete.cshtml" />
     <Content Include="Views\CareProviders\Details.cshtml" />
@@ -418,6 +413,11 @@
     <Content Include="Views\CareProviders\Index.cshtml" />
     <Content Include="Views\ProfilePage\Index.cshtml" />
     <Content Include="Views\ProfilePage\Edit.cshtml" />
+    <Content Include="Views\Pets\Create.cshtml" />
+    <Content Include="Views\Pets\Delete.cshtml" />
+    <Content Include="Views\Pets\Details.cshtml" />
+    <Content Include="Views\Pets\Edit.cshtml" />
+    <Content Include="Views\Pets\Index.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>

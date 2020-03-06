@@ -6,8 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Petopia.DAL;
-using Petopia.Models;
 
 namespace Petopia.Controllers
 {
@@ -18,7 +18,8 @@ namespace Petopia.Controllers
         // GET: Pets
         public ActionResult Index()
         {
-            return View(db.Pets.ToList());
+            var pets = db.Pets.Include(p => p.PetOwner);
+            return View(pets.ToList());
         }
 
         // GET: Pets/Details/5
@@ -28,7 +29,7 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DAL.Pet pet = db.Pets.Find(id);
+            Pet pet = db.Pets.Find(id);
             if (pet == null)
             {
                 return HttpNotFound();
@@ -39,6 +40,7 @@ namespace Petopia.Controllers
         // GET: Pets/Create
         public ActionResult Create()
         {
+            ViewBag.PetOwnerID = new SelectList(db.PetOwners, "PetOwnerID", "AverageRating");
             return View();
         }
 
@@ -47,15 +49,20 @@ namespace Petopia.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,AccessInstructions,PetOwnerID")] DAL.Pet pet)
+        public ActionResult Create([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,AccessInstructions,PetOwnerID")] Pet pet)
         {
             if (ModelState.IsValid)
             {
+                var identityID = User.Identity.GetUserId();
+                var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+                int ownerID = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.PetOwnerID).First();
+                pet.PetOwnerID = ownerID;
                 db.Pets.Add(pet);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "ProfilePage");
             }
 
+            ViewBag.PetOwnerID = new SelectList(db.PetOwners, "PetOwnerID", "AverageRating", pet.PetOwnerID);
             return View(pet);
         }
 
@@ -66,11 +73,12 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DAL.Pet pet = db.Pets.Find(id);
+            Pet pet = db.Pets.Find(id);
             if (pet == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.PetOwnerID = new SelectList(db.PetOwners, "PetOwnerID", "AverageRating", pet.PetOwnerID);
             return View(pet);
         }
 
@@ -79,14 +87,19 @@ namespace Petopia.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,AccessInstructions,PetOwnerID")] DAL.Pet pet)
+        public ActionResult Edit([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,AccessInstructions,PetOwnerID")] Pet pet)
         {
             if (ModelState.IsValid)
             {
+                var identityID = User.Identity.GetUserId();
+                var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+                int ownerID = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.PetOwnerID).First();
+                pet.PetOwnerID = ownerID;
                 db.Entry(pet).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "ProfilePage");
             }
+            ViewBag.PetOwnerID = new SelectList(db.PetOwners, "PetOwnerID", "AverageRating", pet.PetOwnerID);
             return View(pet);
         }
 
@@ -97,7 +110,7 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DAL.Pet pet = db.Pets.Find(id);
+            Pet pet = db.Pets.Find(id);
             if (pet == null)
             {
                 return HttpNotFound();
@@ -110,7 +123,7 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DAL.Pet pet = db.Pets.Find(id);
+            Pet pet = db.Pets.Find(id);
             db.Pets.Remove(pet);
             db.SaveChanges();
             return RedirectToAction("Index");

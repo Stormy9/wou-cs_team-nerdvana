@@ -72,26 +72,34 @@
     </dl>
     @Html.ActionLink("Edit Profile?", "Edit", new { controller = "ProfilePage" },
                                                     new { @class = "our_nav_links" })
+    @if (Model.IsOwner == true)
+    {
+        @Html.ActionLink("Add new pet!", "Create", new { controller = "Pets" },
+                                                                  new { @class = "our_nav_links" })
+    }
 
 </div>
-@foreach (var item in Model.PetList)
+@if (Model.IsOwner == true)
 {
-    <tr>
-        <td>
-            @Html.DisplayFor(model => item.PetName)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.Species)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.Gender)
-        </td>
+    foreach (var item in Model.PetList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.PetName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Species)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Gender)
+            </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { controller = "Pets", id = item.PetID }) |
-            @Html.ActionLink("Details", "Details", new { controller = "Pets", id = item.PetID }) |
-            @Html.ActionLink("Delete", "Delete", new { controller = "Pets", id = item.PetID })
-        </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { controller = "Pets", id = item.PetID }) |
+                @Html.ActionLink("Details", "Details", new { controller = "Pets", id = item.PetID }) |
+            </td>
 
-    </tr>
+        </tr>
+    }
 }
+
