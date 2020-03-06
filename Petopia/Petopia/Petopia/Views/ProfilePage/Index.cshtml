@@ -9,6 +9,7 @@
 <div>
     <h4>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h4>
     <hr />
+    <img src=@Url.Action("Show", "Image", new { id = Model.UserID } ) height="100" width="100" />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
