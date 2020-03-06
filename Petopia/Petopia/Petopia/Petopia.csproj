@@ -416,6 +416,7 @@
     <Content Include="Views\CareProviders\Edit.cshtml" />
     <Content Include="Views\CareProviders\Index.cshtml" />
     <Content Include="Views\ProfilePage\Index.cshtml" />
+    <Content Include="Views\ProfilePage\Edit.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup />
