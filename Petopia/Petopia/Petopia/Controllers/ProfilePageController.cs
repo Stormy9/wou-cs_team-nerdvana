@@ -29,6 +29,7 @@ namespace Petopia.Controllers
                                                 po => po.UserID,
                                                 (pu, po) => new {PetUse = pu, PetOwn = po }) */
             //linq isnt populating correctly right now so we're doing it manually (TEMP FIX)
+            petopiaUser.UserID = loggedID;
             petopiaUser.FirstName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.FirstName).First();
             petopiaUser.LastName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.LastName).First();
             petopiaUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsOwner).First();
@@ -42,9 +43,7 @@ namespace Petopia.Controllers
             petopiaUser.ResAddress02 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResAddress02).First();
             petopiaUser.ResCity = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResCity).First();
             petopiaUser.ResZipcode = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResZipcode).First();
-            /*
-             * Need to put in way to grab profile picture
-             */
+
             //We might not have these so we want to see if we get a result back before populating...
             if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
             { //If we get 1, then we know this user is a CareProvider
@@ -122,8 +121,25 @@ namespace Petopia.Controllers
                 currentUser.ResCity = model.ResCity;
                 currentUser.ResState = model.ResState;
                 currentUser.ResZipcode = model.ResZipcode;
-                currentUser.ProfilePhoto = null; //TODO Profile Picture
+                //currentUser.ProfilePhoto = null; //TODO Profile Picture
                 //save PetopiaUser into db
+                if (model.UserProfilePicture != null)
+                {
+                    if (model.UserProfilePicture.ContentLength > (4 * 1024 * 1024))
+                    {
+                        ModelState.AddModelError("CustomError", "Image can not be lager than 4MB.");
+                        return View();
+                    }
+                    if (!(model.UserProfilePicture.ContentType == "image/jpeg"))
+                    {
+                        ModelState.AddModelError("CustomError", "Image must be in jpeg format.");
+                    }
+                    byte[] data = new byte[model.UserProfilePicture.ContentLength];
+                    model.UserProfilePicture.InputStream.Read(data, 0, model.UserProfilePicture.ContentLength);
+                    currentUser.ProfilePhoto = data;
+                }
+                
+
                 db.Entry(currentUser).State = EntityState.Modified;
                 db.SaveChanges();
 
