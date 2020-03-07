@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Petopia.Models;
 
 namespace Petopia.Controllers
@@ -13,6 +14,7 @@ namespace Petopia.Controllers
     public class CareProvidersController : Controller
     {
         private CareProviderContext db = new CareProviderContext();
+        private PetopiaUserContext pdb = new PetopiaUserContext();
 
         // GET: CareProviders
         public ActionResult Index()
@@ -50,7 +52,18 @@ namespace Petopia.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var identityID = User.Identity.GetUserId();
+                var loggedID = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+                careProvider.UserID = loggedID;                
+                
                 db.CareProviders.Add(careProvider);
+            
+
+                var id = User.Identity.GetUserId();
+                var currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+                var roleAdd = UserManager.AddToRole(id, "Provider");
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

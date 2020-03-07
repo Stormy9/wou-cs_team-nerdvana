@@ -57,7 +57,6 @@ namespace Petopia.Controllers
                 db.SaveChanges();
                 return RedirectToAction("ChooseRole", "Account");
 
-                
             }
 
             return View(petopiaUser);
