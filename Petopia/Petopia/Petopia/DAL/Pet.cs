@@ -1,4 +1,4 @@
-namespace Petopia.Models
+namespace Petopia.DAL
 {
     using System;
     using System.Collections.Generic;
@@ -19,7 +19,6 @@ namespace Petopia.Models
         [StringLength(24)]
         public string Species { get; set; }
 
-        
         [StringLength(24)]
         public string Breed { get; set; }
 
@@ -27,39 +26,33 @@ namespace Petopia.Models
         [StringLength(8)]
         public string Gender { get; set; }
 
-        
         [StringLength(8)]
         public string Altered { get; set; }
 
-        
+        [Column(TypeName = "date")]
         public DateTime Birthdate { get; set; }
 
-        
+        [Column(TypeName = "date")]
         public DateTime Weight { get; set; }
 
-        
         public string HealthConcerns { get; set; }
 
-        
         public string BehaviorConcerns { get; set; }
 
-       
         public string PetAccess { get; set; }
 
-        
         [StringLength(45)]
         public string EmergencyContactName { get; set; }
 
-        
         [StringLength(12)]
         public string EmergencyContactPhone { get; set; }
 
-        
         public string NeedsDetails { get; set; }
 
-        
         public string AccessInstructions { get; set; }
 
         public int? PetOwnerID { get; set; }
+
+        public virtual PetOwner PetOwner { get; set; }
     }
 }

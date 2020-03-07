@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -24,11 +25,14 @@ namespace Petopia.Controllers
         // GET: PetopiaUsers/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var identityID = User.Identity.GetUserId();
+            var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+            
+            if (loggedID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetopiaUser petopiaUser = db.PetopiaUsers.Find(id);
+            PetopiaUser petopiaUser = db.PetopiaUsers.Find(loggedID);
             if (petopiaUser == null)
             {
                 return HttpNotFound();
@@ -55,8 +59,12 @@ namespace Petopia.Controllers
                 petopiaUser.ASPNetIdentityID = id;
                 db.PetopiaUsers.Add(petopiaUser);
                 db.SaveChanges();
+<<<<<<< HEAD
                 return RedirectToAction("ChooseRole", "Account");
 
+=======
+                return RedirectToAction("ChooseRole", "Account");  
+>>>>>>> b182e7935c5a36e5f2ada6831d2f41083da03e65
             }
 
             return View(petopiaUser);
@@ -81,16 +89,17 @@ namespace Petopia.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,UserName,Password,FirstName,LastName,ASPNetIdentityID,IsOwner,IsProvider,MainPhone,AltPhone,ResAddress01,ResAddress02,ResCity,ResState,ResZipcode,ProfilePhoto")] PetopiaUser petopiaUser)
+        public ActionResult Edit(PetopiaUser model)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(petopiaUser).State = EntityState.Modified;
+                db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(petopiaUser);
+            return View(model);
         }
 
         // GET: PetopiaUsers/Delete/5

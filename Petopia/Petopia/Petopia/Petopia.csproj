@@ -181,12 +181,19 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CareProvidersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OwnersController.cs" />
     <Compile Include="Controllers\PetopiaUsersController.cs" />
     <Compile Include="Controllers\PetOwnersController.cs" />
     <Compile Include="Controllers\PetsController.cs" />
+    <Compile Include="Controllers\ProfilePageController.cs" />
     <Compile Include="Controllers\ProvidersController.cs" />
+    <Compile Include="DAL\CareProvider.cs" />
+    <Compile Include="DAL\Pet.cs" />
+    <Compile Include="DAL\PetopiaContext.cs" />
+    <Compile Include="DAL\PetopiaUser.cs" />
+    <Compile Include="DAL\PetOwner.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,6 +212,7 @@
     <Compile Include="DAL\PetOwnerContext.cs" />
     <Compile Include="Models\Provider.cs" />
     <Compile Include="DAL\ProviderContext.cs" />
+    <Compile Include="Models\ViewModels\ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -398,19 +406,23 @@
     <Content Include="Views\PetOwners\Details.cshtml" />
     <Content Include="Views\PetOwners\Edit.cshtml" />
     <Content Include="Views\PetOwners\Index.cshtml" />
-    <Content Include="Views\Pets\Create.cshtml" />
-    <Content Include="Views\Pets\Delete.cshtml" />
-    <Content Include="Views\Pets\Details.cshtml" />
-    <Content Include="Views\Pets\Edit.cshtml" />
-    <Content Include="Views\Pets\Index.cshtml" />
     <Content Include="Views\CareProviders\Create.cshtml" />
     <Content Include="Views\CareProviders\Delete.cshtml" />
     <Content Include="Views\CareProviders\Details.cshtml" />
     <Content Include="Views\CareProviders\Edit.cshtml" />
     <Content Include="Views\CareProviders\Index.cshtml" />
+    <Content Include="Views\ProfilePage\Index.cshtml" />
+    <Content Include="Views\ProfilePage\Edit.cshtml" />
+    <Content Include="Views\Pets\Create.cshtml" />
+    <Content Include="Views\Pets\Delete.cshtml" />
+    <Content Include="Views\Pets\Details.cshtml" />
+    <Content Include="Views\Pets\Edit.cshtml" />
+    <Content Include="Views\Pets\Index.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Image\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />

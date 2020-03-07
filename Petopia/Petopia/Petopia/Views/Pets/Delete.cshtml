@@ -1,4 +1,4 @@
-﻿@model Petopia.Models.Pet
+﻿@model Petopia.DAL.Pet
 
 @{
     ViewBag.Title = "Delete";
@@ -11,6 +11,14 @@
     <h4>Pet</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PetOwner.AverageRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetOwner.AverageRating)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.PetName)
         </dt>
@@ -121,14 +129,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.AccessInstructions)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PetOwnerID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PetOwnerID)
         </dd>
 
     </dl>

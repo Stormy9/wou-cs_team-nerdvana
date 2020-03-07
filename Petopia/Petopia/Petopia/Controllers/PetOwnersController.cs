@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Petopia.DAL;
 using Petopia.Models;
 
 namespace Petopia.Controllers
@@ -13,6 +15,7 @@ namespace Petopia.Controllers
     public class PetOwnersController : Controller
     {
         private PetOwnerContext db = new PetOwnerContext();
+        private PetopiaContext pdb = new PetopiaContext();
 
         // GET: PetOwners
         public ActionResult Index()
@@ -27,7 +30,7 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetOwner petOwner = db.PetOwners.Find(id);
+            Models.PetOwner petOwner = db.PetOwners.Find(id);
             if (petOwner == null)
             {
                 return HttpNotFound();
@@ -46,13 +49,21 @@ namespace Petopia.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PetOwnerID,AverageRating,NeedsDetails,AccessInstructions,UserID")] PetOwner petOwner)
+        public ActionResult Create([Bind(Include = "PetOwnerID,AverageRating,NeedsDetails,AccessInstructions,UserID")] DAL.PetOwner petOwner)
         {
             if (ModelState.IsValid)
             {
-                db.PetOwners.Add(petOwner);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //Changing Current user to a Pet Owner
+                var identityID = User.Identity.GetUserId();
+                DAL.PetopiaUser currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();
+                currentUser.IsOwner = true;
+                pdb.Entry(currentUser).State = EntityState.Modified;
+                pdb.SaveChanges();
+
+                petOwner.UserID = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+                pdb.PetOwners.Add(petOwner);
+                pdb.SaveChanges();
+                return RedirectToAction("Index", "Home");
             }
 
             return View(petOwner);
@@ -65,7 +76,7 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetOwner petOwner = db.PetOwners.Find(id);
+            Models.PetOwner petOwner = db.PetOwners.Find(id);
             if (petOwner == null)
             {
                 return HttpNotFound();
@@ -78,7 +89,7 @@ namespace Petopia.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PetOwnerID,AverageRating,NeedsDetails,AccessInstructions,UserID")] PetOwner petOwner)
+        public ActionResult Edit([Bind(Include = "PetOwnerID,AverageRating,NeedsDetails,AccessInstructions,UserID")] DAL.PetOwner petOwner)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +107,7 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PetOwner petOwner = db.PetOwners.Find(id);
+            Models.PetOwner petOwner = db.PetOwners.Find(id);
             if (petOwner == null)
             {
                 return HttpNotFound();
@@ -109,7 +120,7 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PetOwner petOwner = db.PetOwners.Find(id);
+            Models.PetOwner petOwner = db.PetOwners.Find(id);
             db.PetOwners.Remove(petOwner);
             db.SaveChanges();
             return RedirectToAction("Index");
