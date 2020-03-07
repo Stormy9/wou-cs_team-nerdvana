@@ -62,7 +62,7 @@ namespace Petopia.Controllers
 
                 var id = User.Identity.GetUserId();
                 var currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
-                var roleAdd = UserManager.AddToRole(id, "Provider");
+                //var roleAdd = UserManager.AddToRole(id, "Provider");
                 
                 db.SaveChanges();
                 return RedirectToAction("Index");
