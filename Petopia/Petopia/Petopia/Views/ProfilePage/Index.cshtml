@@ -17,7 +17,7 @@
         <!---->
         <!-- 1st column --><!-- role\profilePic\caption\badges\PM&FriendButtons -->
         <!-- b/c of col settings, it's 2&1/2 wide -->
-        <div class="col our_col_one">
+        <div class="col col-xs-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 our_col_one">
 
             <!-- owner || provider || both -->
             <div class="owner_provider_box">
@@ -72,7 +72,7 @@
             </div>
 
         </div><!-- END 1st/LEFT COLUMN **OF** 2nd/MIDDLE ROW -->
-        <!---------------------------------------------------------------------------------->
+        <!------------------------------------------------------------------------------>
         <!---->
         <!---->
         <!-- 2nd column --><!-- userName\generalLocation\rating\bio\experience -->
@@ -82,7 +82,8 @@
             <!-- user name -->
             <div class="user_name_box">
                 <h3>
-                    @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)
+                    @Html.DisplayFor(model => model.FirstName) 
+                    @Html.DisplayFor(model => model.LastName)
                 </h3>
             </div>
 
@@ -108,7 +109,7 @@
 
                     @Html.DisplayFor(model => model.ProviderAverageRating)
                 }
-                <!---------------------------------------------------------------------------->
+                <!---------------------------------------------------------------------->
                 @if (Model.IsProvider == true)
                 {
                     @Html.DisplayNameFor(model => model.OwnerAverageRating)
@@ -145,15 +146,13 @@
                 }
 
             </div><!-- end user bio (etc.) box -->
-            <!---->
-            <!---->
         </div><!-- END 2nd\MIDDLE COLUMN  **OF** 2nd/MIDDLE ROW -->
-        <!---------------------------------------------------------------------------------->
+        <!------------------------------------------------------------------------------>
         <!---->
         <!---->
         <!-- 3rd column --><!-- providers/petOwners Near Me (and that's it!) -->
         <!-- b/c of col settings, it's 2&1/2 wide -- try to span two rows height -->
-        <div class="col span-2 our_col_three">
+        <div class="col col-xs-3 col-sm-2.5 col-md-2.5 col-lg-2.5 col-xl-2.5 our_col_three">
 
 
             <!-- auto search result header -->
@@ -168,7 +167,7 @@
             <div class="auto_search_results_box_box">
 
                 <div class="auto_search_results_box">
-                    <!---------------------------------------------------------------------->
+                    <!------------------------------------------------------------------>
                     <div class="search_result_card">
 
                         <a href="#" class="our_a">
@@ -187,8 +186,8 @@
                             <div> ratings here </div>
                         </div>
 
-                    </div>
-                    <!---------------------------------------------------------------------->
+                    </div><!-- card one -->
+                    <!------------------------------------------------------------------>
                     <div class="search_result_card">
 
                         <a href="#" class="our_a">
@@ -207,8 +206,8 @@
                             <div> ratings here </div>
                         </div>
 
-                    </div>
-                    <!---------------------------------------------------------------------->
+                    </div><!-- card two -->
+                    <!------------------------------------------------------------------>
                     <div class="search_result_card">
 
                         <a href="#" class="our_a">
@@ -227,8 +226,8 @@
                             <div> ratings here </div>
                         </div>
 
-                    </div>
-                    <!---------------------------------------------------------------------->
+                    </div><!-- card three -->
+                    <!------------------------------------------------------------------>
                     <div class="search_result_card">
 
                         <a href="#" class="our_a">
@@ -247,8 +246,8 @@
                             <div> ratings here </div>
                         </div>
 
-                    </div>
-                    <!---------------------------------------------------------------------->
+                    </div><!-- card four -->
+                    <!------------------------------------------------------------------>
                     <div class="search_result_card">
 
                         <a href="#" class="our_a">
@@ -267,57 +266,17 @@
                             <div> ratings here </div>
                         </div>
 
-                    </div>
-                    <!---------------------------------------------------------------------->
-                    <div class="search_result_card">
-
-                        <a href="#" class="our_a">
-                            <!-- to carer's profile -->
-                            <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
-                                 alt="profile picture"
-                                 class="search_result_card_img">
-                        </a>
-                        <div class="search_result_card_info">
-                            <a href="#" class="our_a">
-                                <!-- to carer's profile -->
-                                <h6><b> Steve PetCarer </b></h6>
-                            </a>
-                            <p> Northeast Salem, Oregon </p>
-                            <div> badges here </div>
-                            <div> ratings here </div>
-                        </div>
-
-                    </div>
-                    <!---------------------------------------------------------------------->
-                    <div class="search_result_card">
-
-                        <a href="#" class="our_a">
-                            <!-- to carer's profile -->
-                            <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
-                                 alt="profile picture"
-                                 class="search_result_card_img">
-                        </a>
-                        <div class="search_result_card_info">
-                            <a href="#" class="our_a">
-                                <!-- to carer's profile -->
-                                <h6><b> Steve PetCarer </b></h6>
-                            </a>
-                            <p> Northeast Salem, Oregon </p>
-                            <div> badges here </div>
-                            <div> ratings here </div>
-                        </div>
-
-                    </div>
-                    <!---------------------------------------------------------------------->
+                    </div><!-- card five -->
+                    <!------------------------------------------------------------------>
                 </div><!-- END 'auto_search_results_box' -->
             </div><!-- END 'auto_search_results_box_box' -->
         </div><!-- END 3rd\RIGHT-SIDE COLUM  **OF** 2nd/MIDDLE ROW -->
-        <!---------------------------------------------------------------------------------->
+        <!------------------------------------------------------------------------------>
     </div><!-- END 2nd/MIDDLE ROW -->
     <!---->
     <!---->
-    <!--==================================================================================-->
-    <!------------------------------ THIRD/BOTTOM ROW -------------------------------------->
+    <!--==============================================================================-->
+    <!------------------------------ THIRD/BOTTOM ROW ---------------------------------->
     <!---->
     <!---->
     <div class="row our_row_three">
@@ -333,76 +292,75 @@
             <div class="pet_profile_header">
                 <h3> My Pets! </h3>
             </div>
-
-            <!-- pet profile preview box --><!-- holds all preview panels -->
-            <div class="pet_profile_preview_box">
-                <!-------------------------------------------------------------------------->
-                <div class="pet_profile_preview">
-                    <!-- individual panel -->
-
-                    <a href="#">
-                        <!-- link to pet's profile -->
-                        <img class="pet_profile_preview_img" alt="pet profile pic"
-                             src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg">
-                        <div class="pet_preview_name"> Possum </div>
-                        <div class="pet_preview_breed"> Sheltie </div>
-                    </a>
-                    <a href="#">
-                        <!-- link to care record(s) -->
-                        <div class="pet_preview_care_record">
-                            link to this pet's care record
-                        </div>
-                    </a>
-
-                </div><!-- END pet_profile_preview -->
-            </div><!-- END 'pet_profile_preview_box' -->
-        </div><!-- END 4th Column -> one inside 3rd/bottom row -->
-        <!---------------------------------------------------------------------------------->
-        @if (Model.IsOwner == true)
-        {
+            <!-------------------------------------------------------------------------->
+            @if (Model.IsOwner == true)
+            {
             foreach (var item in Model.PetList)
             {
-                <table>
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(model => item.PetName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => item.Species)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => item.Gender)
-                        </td>
+                <!-- pet profile preview box --><!-- holds all preview panels -->
+                <div class="pet_profile_preview_box">
+                <!---------------------------------------------------------------------->
+                    <div class="pet_profile_preview">
+                        <!-- individual panel -->
 
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { controller = "Pets", id = item.PetID }) |
-                            @Html.ActionLink("Details", "Details", new { controller = "Pets", id = item.PetID }) |
-                        </td>
+                        <a href="#">
+                            <!-- link to pet's profile -->
+                            <img class="pet_profile_preview_img" alt="pet profile pic"
+                                 src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg">
 
-                    </tr>
-                </table>
+                            <div class="pet_preview_name">
+                                @Html.DisplayFor(model => item.PetName)
+                            </div>
+                            <div class="pet_preview_breed">
+                                @Html.DisplayFor(model => item.Species) 
+                                                    &nbsp; =&gt; &nbsp; Sheltie
+                            </div>
+                            <div class="pet_preview_breed">
+                                I am a @Html.DisplayFor(model => item.Gender)
+                            </div>
+                        </a>
+
+                        <a href="#">
+                            <!-- link to care record(s) -->
+                            <div class="pet_preview_care_record">
+                                link to this pet's care record
+                            </div>
+                        </a>
+                        <br /><br />
+                        @Html.ActionLink("Edit My Profile", "Edit", 
+                                new { controller = "Pets", id = item.PetID }) |
+                        @Html.ActionLink("Go To My Profile", "Details", 
+                                new { controller = "Pets", id = item.PetID })
+
+                    </div><!-- END pet_profile_preview -->
+                </div><!-- END 'pet_profile_preview_box' -->
             }
         }
-
+        </div><!-- END 4th Column -> one inside 3rd/bottom row -->
+        <!------------------------------------------------------------------------------>
+        <div class="col-md-3 our_col_five" style="border: 1px solid red;">
+            <div style="margin-top: 72px;">
+                <div>
+                    @Html.ActionLink("Edit Profile?", "Edit",
+                                    new { controller = "ProfilePage" },
+                                    new { @class = "our_nav_links" })
+                </div>
+                <div>
+                    @if (Model.IsOwner == true)
+                    {
+                        @Html.ActionLink("Add new pet!", "Create",
+                                    new { controller = "Pets" },
+                                    new { @class = "our_nav_links" })
+                    }
+                </div>
+            </div><!-- END BUTTON BOX -->
+        </div><!-- END COLUMN FIVE \ IN ROW THREE -->
+        <!------------------------------------------------------------------------------>
     </div><!-- END 3rd/BOTTOM ROW -->
     <!---->
     <!---->
-    <!--==================================================================================-->
-    <!------------------------------- FOURTH/BONUS ROW ------------------------------------->
-    <!---->
-    <!---->
-    <!-- figure out better place to put this where it looks nice -- but for now, here!    -->
-    <div>
-
-        @Html.ActionLink("Edit Profile?", "Edit", new { controller = "ProfilePage" },
-                                                    new { @class = "our_nav_links" })
-        @if (Model.IsOwner == true)
-        {
-            @Html.ActionLink("Add new pet!", "Create", new { controller = "Pets" },
-                                                  new { @class = "our_nav_links" })
-        }
-
-    </div>
-    <!--------------------------------- END OF ROWS ---------------------------------------->
+    <!--==============================================================================-->
+    <!--------------------------------- END OF ROWS ------------------------------------>
     </div><!-- END CONTAINER-FLUID -->
 </div><!-- END OUTER_CONTAINER -->
+<!--==================================================================================-->

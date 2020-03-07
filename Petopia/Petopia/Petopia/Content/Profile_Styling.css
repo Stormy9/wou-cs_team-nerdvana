@@ -4,11 +4,11 @@
 }
 /*============================= ROWS ================================*/
 .our_row_one {
-    margin-top: 5px;
+    /*margin-top: 5px;
     padding: 5px;
     background-color: #1a1a1a;
     color: whitesmoke;
-    font-weight: bold;
+    font-weight: bold;*/
 }
 
 .our_row_two {
@@ -23,7 +23,7 @@
     color: whitesmoke;
 }
 /*============================== COLUMNS ============================*/
-.our_col_one, .our_col_two, .our_col_three, .our_col_four {
+.our_col_one, .our_col_two, .our_col_three, .our_col_four, .our_col_five {
     padding: 9px;
     background-color: #996633;
     color: whitesmoke;
