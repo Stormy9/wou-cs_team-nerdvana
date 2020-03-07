@@ -1,105 +1,406 @@
 ﻿@model Petopia.Models.ViewModels.ProfileViewModel
 
 @{
-    ViewBag.Title = "Profile Page!";
+    ViewBag.Title = "your very own profile page!";
 }
+<!------------------------------------ FIRST/TOP ROW ----------------------------------->
+<div class="row our_row_one">
+    <!-- empty/placeholder for now-->
+    <!-- here in case we decide we want it later! -->
+</div>
+<!--==================================================================================-->
+<!---------------------------------- SECOND/MIDDLE ROW --------------------------------->
+<div class="row our_row_two">
+    <!---->
+    <!---->
+    <!-- 1st column --><!-- role\profilePic\caption\badges\PM&FriendButtons -->
+    <!-- b/c of col settings, it's 2&1/2 wide -->
+    <div class="col our_col_one">
 
-<h2>Your very own profile page ;)</h2>
+        <!-- owner || provider || both -->
+        <div class="owner_provider_box">
+            user's role(s) will go here
+        </div>
 
-<div>
-    <h4>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</h4>
-    <hr />
-    @if (Model.ProfilePhoto != null)
+
+        <!-- profile picture -->
+        <div class="profile_pic_box_box">
+            <div class="profile_pic_box">
+                @if (Model.ProfilePhoto != null)
+                {
+                    <img src=@Url.Action("Show", "Image",
+                            new { id = Model.UserID, @class="profile_img" } ) />
+                }
+
+            </div>
+        </div>
+
+
+        <!-- profile pic caption -->
+        <div class="profile_pic_caption_box">
+            <div class="profile_pic_caption">
+                caption for profile photo ^
+            </div>
+        </div>
+
+
+        <!-- pet badges -->
+        <div class="pet_badge_box">
+            <img src="https://stormy9.github.io/nerdvana/badge_dog.PNG"
+                 class="pet_badge">
+            <img src="https://stormy9.github.io/nerdvana/badge_cat.PNG"
+                 class="pet_badge">
+            <img src="https://stormy9.github.io/nerdvana/badge_bunny.PNG"
+                 class="pet_badge">
+        </div>
+
+
+        <!-- private msg + friend buttons -->
+        <div class="button_box">
+            <a href="#" class="our_a">
+                <div class="our_buttons">
+                    PM me!
+                </div>
+            </a>
+            <a href="our_a">
+                <div class="our_buttons">
+                    add friend
+                </div>
+            </a>
+        </div>
+
+    </div><!-- END 1st/LEFT COLUMN **OF** 2nd/MIDDLE ROW -->
+    <!---------------------------------------------------------------------------------->
+    <!---->
+    <!---->
+    <!-- 2nd column --><!-- userName\generalLocation\rating\bio\experience -->
+    <div class="col-xs-6 col-sm-7 col-md-7 col-lg-7 col-xl-7 our_col_two">
+
+
+        <!-- user name -->
+        <div class="user_name_box">
+            <h3>
+                @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)
+            </h3>
+        </div>
+
+
+        <!-- user's general location -->
+        <div class="general_location_box">
+            <div class="general_location">
+                my general location<br />
+                <!-- just stick in state for now / add db field later -->
+                @Html.DisplayFor(model => model.ResState)
+            </div>
+        </div>
+
+
+        <!-- user rating -->
+        <div class="user_rating_box">
+            <img src="https://stormy9.github.io/nerdvana/rating_star_example.PNG"
+                 class="user_rating_star_bar">
+
+            @if (Model.IsProvider == true)
+            {
+                @Html.DisplayNameFor(model => model.ProviderAverageRating)
+
+                @Html.DisplayFor(model => model.ProviderAverageRating)
+            }
+            <!---------------------------------------------------------------------------->
+            @if (Model.IsProvider == true)
+            {
+                @Html.DisplayNameFor(model => model.OwnerAverageRating)
+
+                @Html.DisplayFor(model => model.OwnerAverageRating)
+            }
+        </div>
+
+
+        <!-- user bio & etc. fun stuff -->
+        <div class="user_bio_box">
+            <h4>Stuff About Me:</h4>
+            blah blah blah blah blah blah blah blah blah blah blah blah blah
+            blah blah blah blah blah blah blah blah blah blah blah blah blah
+            blah blah blah blah blah blah blah blah blah blah blah blah blah
+            blah blah blah blah blah blah blah blah blah blah blah blah blah
+            blah blah blah blah blah blah blah blah blah blah blah blah blah
+            blah blah blah blah blah blah blah blah blah blah blah blah blah
+            blah blah blah blah blah blah blah blah blah blah blah blah blah
+            blah blah blah blah blah blah blah blah blah blah blah blah blah
+            blah blah blah blah blah blah blah blah blah blah blah blah blah
+
+            @if (Model.IsProvider == true)
+            {
+                <h4>My Pet Care Experience:</h4>
+                @Html.DisplayFor(model => model.ExperienceDetails)
+            }
+
+            @if (Model.IsOwner == true)
+            {
+                //remember the needs/access details are private aka
+                //    non-profile-displaying info!   [=
+                // but just in case we come up w/something, here this is.....
+            }
+
+        </div><!-- end user bio (etc.) box -->
+        <!---->
+        <!---->
+    </div><!-- END 2nd\MIDDLE COLUMN  **OF** 2nd/MIDDLE ROW -->
+    <!---------------------------------------------------------------------------------->
+    <!---->
+    <!---->
+    <!-- 3rd column --><!-- providers/petOwners Near Me (and that's it!) -->
+    <!-- b/c of col settings, it's 2&1/2 wide -- try to span two rows height -->
+    <div class="col span-2 our_col_three">
+
+
+        <!-- auto search result header -->
+        <div class="auto_search_result_header">
+            <h5 style="margin-left: 5px;"> Pet Care Providers Near Me:</h5>
+            <!---->
+            <!-- this will need if-statement to determine owner/provider -->
+            <!-- for what to display! -->
+        </div>
+
+        <!-- search results -> who's near you? -->
+        <div class="auto_search_results_box_box">
+
+            <div class="auto_search_results_box">
+                <!---------------------------------------------------------------------->
+                <div class="search_result_card">
+
+                    <a href="#" class="our_a">
+                        <!-- to carer's profile -->
+                        <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
+                             alt="profile picture"
+                             class="search_result_card_img">
+                    </a>
+                    <div class="search_result_card_info">
+                        <a href="#" class="our_a">
+                            <!-- to carer's profile -->
+                            <h6><b> Steve PetCarer </b></h6>
+                        </a>
+                        <p> Northeast Salem, Oregon </p>
+                        <div> badges here </div>
+                        <div> ratings here </div>
+                    </div>
+
+                </div>
+                <!---------------------------------------------------------------------->
+                <div class="search_result_card">
+
+                    <a href="#" class="our_a">
+                        <!-- to carer's profile -->
+                        <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
+                             alt="profile picture"
+                             class="search_result_card_img">
+                    </a>
+                    <div class="search_result_card_info">
+                        <a href="#" class="our_a">
+                            <!-- to carer's profile -->
+                            <h6><b> Steve PetCarer </b></h6>
+                        </a>
+                        <p> Northeast Salem, Oregon </p>
+                        <div> badges here </div>
+                        <div> ratings here </div>
+                    </div>
+
+                </div>
+                <!---------------------------------------------------------------------->
+                <div class="search_result_card">
+
+                    <a href="#" class="our_a">
+                        <!-- to carer's profile -->
+                        <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
+                             alt="profile picture"
+                             class="search_result_card_img">
+                    </a>
+                    <div class="search_result_card_info">
+                        <a href="#" class="our_a">
+                            <!-- to carer's profile -->
+                            <h6><b> Steve PetCarer </b></h6>
+                        </a>
+                        <p> Northeast Salem, Oregon </p>
+                        <div> badges here </div>
+                        <div> ratings here </div>
+                    </div>
+
+                </div>
+                <!---------------------------------------------------------------------->
+                <div class="search_result_card">
+
+                    <a href="#" class="our_a">
+                        <!-- to carer's profile -->
+                        <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
+                             alt="profile picture"
+                             class="search_result_card_img">
+                    </a>
+                    <div class="search_result_card_info">
+                        <a href="#" class="our_a">
+                            <!-- to carer's profile -->
+                            <h6><b> Steve PetCarer </b></h6>
+                        </a>
+                        <p> Northeast Salem, Oregon </p>
+                        <div> badges here </div>
+                        <div> ratings here </div>
+                    </div>
+
+                </div>
+                <!---------------------------------------------------------------------->
+                <div class="search_result_card">
+
+                    <a href="#" class="our_a">
+                        <!-- to carer's profile -->
+                        <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
+                             alt="profile picture"
+                             class="search_result_card_img">
+                    </a>
+                    <div class="search_result_card_info">
+                        <a href="#" class="our_a">
+                            <!-- to carer's profile -->
+                            <h6><b> Steve PetCarer </b></h6>
+                        </a>
+                        <p> Northeast Salem, Oregon </p>
+                        <div> badges here </div>
+                        <div> ratings here </div>
+                    </div>
+
+                </div>
+                <!---------------------------------------------------------------------->
+                <div class="search_result_card">
+
+                    <a href="#" class="our_a">
+                        <!-- to carer's profile -->
+                        <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
+                             alt="profile picture"
+                             class="search_result_card_img">
+                    </a>
+                    <div class="search_result_card_info">
+                        <a href="#" class="our_a">
+                            <!-- to carer's profile -->
+                            <h6><b> Steve PetCarer </b></h6>
+                        </a>
+                        <p> Northeast Salem, Oregon </p>
+                        <div> badges here </div>
+                        <div> ratings here </div>
+                    </div>
+
+                </div>
+                <!---------------------------------------------------------------------->
+                <div class="search_result_card">
+
+                    <a href="#" class="our_a">
+                        <!-- to carer's profile -->
+                        <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
+                             alt="profile picture"
+                             class="search_result_card_img">
+                    </a>
+                    <div class="search_result_card_info">
+                        <a href="#" class="our_a">
+                            <!-- to carer's profile -->
+                            <h6><b> Steve PetCarer </b></h6>
+                        </a>
+                        <p> Northeast Salem, Oregon </p>
+                        <div> badges here </div>
+                        <div> ratings here </div>
+                    </div>
+
+                </div>
+                <!---------------------------------------------------------------------->
+            </div><!-- END 'auto_search_results_box' -->
+        </div><!-- END 'auto_search_results_box_box' -->
+    </div><!-- END 3rd\RIGHT-SIDE COLUM  **OF** 2nd/MIDDLE ROW -->
+    <!---------------------------------------------------------------------------------->
+</div><!-- END 2nd/MIDDLE ROW -->
+<!---->
+<!---->
+<!--==================================================================================-->
+<!------------------------------ THIRD/BOTTOM ROW -------------------------------------->
+<!---->
+<!---->
+<div class="row our_row_three">
+    <!-- ROW TO DISPLAY PETS OF USER -->
+    <!---->
+    <!---->
+    <!-- 9-col wide span inside 3rd row & that's it -->
+    <!-- trying (maybe?) to get 3rd colum of 2nd row to span two row's height -->
+    <div class="col-md-9 our_col_four">
+        <!---->
+        <!---->
+        <!-- pet profile preview box header -->
+        <div class="pet_profile_header">
+            <h3> My Pets! </h3>
+        </div>
+
+        <!-- pet profile preview box --><!-- holds all preview panels -->
+        <div class="pet_profile_preview_box">
+            <!-------------------------------------------------------------------------->
+            <div class="pet_profile_preview">
+                <!-- individual panel -->
+
+                <a href="#">
+                    <!-- link to pet's profile -->
+                    <img class="pet_profile_preview_img" alt="pet profile pic"
+                         src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg">
+                    <div class="pet_preview_name"> Possum </div>
+                    <div class="pet_preview_breed"> Sheltie </div>
+                </a>
+                <a href="#">
+                    <!-- link to care record(s) -->
+                    <div class="pet_preview_care_record">
+                        link to this pet's care record
+                    </div>
+                </a>
+
+            </div><!-- END pet_profile_preview -->
+        </div><!-- END 'pet_profile_preview_box' -->
+    </div><!-- END 4th Column -> one inside 3rd/bottom row -->
+    <!---------------------------------------------------------------------------------->
+    @if (Model.IsOwner == true)
     {
-        <img src=@Url.Action("Show", "Image", new { id = Model.UserID } ) height="100" width="100" />
+        foreach (var item in Model.PetList)
+        {
+            <table>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.PetName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Species)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Gender)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { controller = "Pets", id = item.PetID }) |
+                        @Html.ActionLink("Details", "Details", new { controller = "Pets", id = item.PetID }) |
+                    </td>
+
+                </tr>
+            </table>
+        }
     }
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ResState)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ResState)
-        </dd>
-        @if (Model.IsProvider == true)
-        {
-            <dt>
-                @Html.DisplayNameFor(model => model.ProviderAverageRating)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ProviderAverageRating)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.ExperienceDetails)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ExperienceDetails)
-            </dd>
-        }
-        @if (Model.IsOwner == true)
-        {
-            <dt>
-                @Html.DisplayNameFor(model => model.OwnerAverageRating)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.OwnerAverageRating)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.NeedsDetails)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.NeedsDetails)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.AccessInstructions)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.AccessInstructions)
-            </dd>
-        }
-    </dl>
+</div><!-- END 3rd/BOTTOM ROW -->
+<!---->
+<!---->
+<!--==================================================================================-->
+<!------------------------------- FOURTH/BONUS ROW ------------------------------------->
+<!---->
+<!---->
+<!-- figure out better place to put this where it looks nice -- but for now, here!    -->
+<div>
+
     @Html.ActionLink("Edit Profile?", "Edit", new { controller = "ProfilePage" },
-                                                    new { @class = "our_nav_links" })
+                                                new { @class = "our_nav_links" })
     @if (Model.IsOwner == true)
     {
         @Html.ActionLink("Add new pet!", "Create", new { controller = "Pets" },
-                                                                  new { @class = "our_nav_links" })
+                                              new { @class = "our_nav_links" })
     }
 
 </div>
-@if (Model.IsOwner == true)
-{
-    foreach (var item in Model.PetList)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => item.PetName)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Species)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Gender)
-            </td>
+<!--------------------------------- END OF ROWS ---------------------------------------->
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { controller = "Pets", id = item.PetID }) |
-                @Html.ActionLink("Details", "Details", new { controller = "Pets", id = item.PetID }) |
-            </td>
-
-        </tr>
-    }
-}
 
