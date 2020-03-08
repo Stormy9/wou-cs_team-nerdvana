@@ -55,10 +55,10 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Avg Rating:")]
         public string OwnerAverageRating { get; set; }
 
-        [DisplayName("Pet Care Needs:")]
+        [DisplayName("My Pet Care Needs:")]
         public string NeedsDetails { get; set; }
 
-        [DisplayName("Access Instructions:")]
+        [DisplayName("How To Access Home:")]
         public string AccessInstructions { get; set; }
 
 

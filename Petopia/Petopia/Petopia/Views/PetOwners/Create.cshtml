@@ -29,7 +29,7 @@
                          new { htmlAttributes = 
                          new { @class = "form-control our_text_area" }, cols=72, rows=3,
                          style="color: #2e2e1f; border-radius: 5px; padding: 5px;" })
-                    <!-- CSS IS NOT TOUCHING 'our_text_area' CLASS -->
+                    <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
                     @Html.ValidationMessageFor(model => model.NeedsDetails, "", 
                                                         new { @class = "text-danger" })
@@ -62,9 +62,10 @@
             <!--============================ THIRD\RIGHT COLUMN ======================-->
             <div class="col-sm-4 col-md-4">
 
+                <!--============================= BUTTON =============================-->
                 <div class="form-group" style="margin-top: 90px;">
                     <div>
-                        <input type="submit" value="Sign me up as a Pet Owner!" 
+                        <input type="submit" value="Sign me up as a Pet Owner!"
                                class="btn our_buttons" />
                     </div>
                 </div>
