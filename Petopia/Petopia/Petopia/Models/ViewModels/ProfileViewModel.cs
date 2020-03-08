@@ -17,12 +17,15 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Last Name:")]
         public string LastName { get; set; }
 
+
         //===============================================================================
         //Need this to know if we should show owner info on page
         public bool IsOwner { get; set; } 
 
         //Need this to know if we should show provider info on page
         public bool IsProvider { get; set; }
+
+
         //===============================================================================
 
         [DisplayName("State:")]
@@ -33,8 +36,10 @@ namespace Petopia.Models.ViewModels
 
         public HttpPostedFileBase UserProfilePicture { get; set; }
 
+
         //===============================================================================
         //Average rating named changed because it shares name with other average rating
+        //
         //Everything from CareProvider
 
         [DisplayName("Avg Rating:")]
@@ -75,7 +80,7 @@ namespace Petopia.Models.ViewModels
         [DisplayName("City:")]
         public string ResCity { get; set; }
 
-        [DisplayName("Zips:")]
+        [DisplayName("Zip:")]
         public string ResZipcode { get; set; }
 
 
