@@ -61,8 +61,8 @@ namespace Petopia.DAL
 
 
         // how the hell do we pull in Pet Owner first/last name??
-        public virtual PetopiaUser FirstName { get; set; }
+        //public virtual PetopiaUser FirstName { get; set; }
 
-        public virtual PetopiaUser LastName { get; set; }
+        //public virtual PetopiaUser LastName { get; set; }
     }
 }
