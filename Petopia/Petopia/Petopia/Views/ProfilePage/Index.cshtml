@@ -5,13 +5,13 @@
 }
 <div class="outer_container">
     <div class="container-fluid">
-<!------------------------------------ FIRST/TOP ROW ----------------------------------->
+    <!------------------------------------ FIRST/TOP ROW ------------------------------->
     <div class="row our_row_one">
         <!-- empty/placeholder for now-->
         <!-- here in case we decide we want it later! -->
     </div>
-    <!--==================================================================================-->
-    <!---------------------------------- SECOND/MIDDLE ROW --------------------------------->
+    <!--==============================================================================-->
+    <!---------------------------------- SECOND/MIDDLE ROW ----------------------------->
     <div class="row our_row_two">
         <!---->
         <!---->
@@ -161,8 +161,10 @@
 
                 @if (Model.IsProvider == true)
                 {
-                    <h4>My Pet Care Experience:</h4>
-                    @Html.DisplayFor(model => model.ExperienceDetails)
+                    <div class="carer_exp_box">
+                        <h4>My Pet Care Experience:</h4>
+                        @Html.DisplayFor(model => model.ExperienceDetails)
+                    </div>
                 }
 
                 @if (Model.IsOwner == true)
@@ -186,7 +188,6 @@
 
             <!-- auto search result header -->
             <!-- *****STILL PLACEHOLDER(S)***** -->
-
             @if (Model.IsOwner == true)
             {
                 <div class="auto_search_result_header">
@@ -195,7 +196,7 @@
             }
             else
             {
-                <!-- so "IsProvider" -->
+                <!-- so "IsProvider" --><!-- or both? -->
                 <div class="auto_search_result_header">
                     <h5 style="margin-left: 5px;"> Pet Owners I've Worked With:</h5>
                 </div>
@@ -337,7 +338,7 @@
                 {
                     <!-- pet profile preview box --><!-- holds all preview panels -->
                     <div class="pet_profile_preview_box">
-                        <!---------------------------------------------------------------------->
+                    <!---------------------------------------------------------------------->
                         <div class="pet_profile_preview">
                             <!-- individual panel -->
 

@@ -51,8 +51,18 @@ namespace Petopia.DAL
 
         public string AccessInstructions { get; set; }
 
+
+        // Foreign Key
         public int? PetOwnerID { get; set; }
 
+
+        // Pull from other tables:
         public virtual PetOwner PetOwner { get; set; }
+
+
+        // how the hell do we pull in Pet Owner first/last name??
+        public virtual PetopiaUser FirstName { get; set; }
+
+        public virtual PetopiaUser LastName { get; set; }
     }
 }
