@@ -16,26 +16,37 @@
 
         <h2>@ViewBag.Title</h2>
         <hr />
+        <!--========================= TOP ROW FOR ACCORDIANS =========================-->
+        <div class="row" style="margin-bottom: 18px;">
+            <div class="col-sm-8 col-md-8" style="border: 1px solid orange">
+                an accordian thingie will go here
+            </div>
+
+            <div class="col-sm-4 col-md-4" style="border: 1px solid blue">
+                <!-- nothing here \ placeholder -->
+            </div>
+        </div>
+        <!--=========================== SECOND \ MIDDLE ROW ==========================-->
         <!--============================ FIRST\LEFT COLUMN ===========================-->
         <div class="row">
             <div class="col-sm-4 col-md-4">
-                
+
                 <!------------------- PET OWNER NEEDS DETAILS -------------------------->
                 <div class="form-group">
-                    @Html.LabelFor(model => model.NeedsDetails, 
+                    @Html.LabelFor(model => model.NeedsDetails,
                                     htmlAttributes: new { @class = "control-label" })
                     <br />
-                    @Html.TextAreaFor(model => model.NeedsDetails, 
-                         new { htmlAttributes = 
+                    @Html.TextAreaFor(model => model.NeedsDetails,
+                         new { htmlAttributes =
                          new { @class = "form-control our_text_area" }, cols=72, rows=3,
-                         style="color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
-                    @Html.ValidationMessageFor(model => model.NeedsDetails, "", 
+                    @Html.ValidationMessageFor(model => model.NeedsDetails, "",
                                                         new { @class = "text-danger" })
                 </div>
                 <!---------------------------------------------------------------------->
-            </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 1st\TOP ROW -->
+            </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
             <!---->
             <!---->
             <!--=========================== SECOND\MIDDLE COLUMN =====================-->
@@ -43,20 +54,20 @@
 
                 <!---------------- PET OWNER \ HOME ACCESS DETAILS  -------------------->
                 <div class="form-group">
-                    @Html.LabelFor(model => model.AccessInstructions, 
+                    @Html.LabelFor(model => model.AccessInstructions,
                                     htmlAttributes: new { @class = "control-label" })
                     <br />
-                    @Html.TextAreaFor(model => model.AccessInstructions, 
-                         new { htmlAttributes = 
+                    @Html.TextAreaFor(model => model.AccessInstructions,
+                         new { htmlAttributes =
                          new { @class = "form-control our_text_area" }, cols=72, rows=3,
-                         style="color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
-                    @Html.ValidationMessageFor(model => model.AccessInstructions, "", 
+                    @Html.ValidationMessageFor(model => model.AccessInstructions, "",
                                                         new { @class = "text-danger" })
                 </div>
                 <!---------------------------------------------------------------------->
-            </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 1st/TOP ROW -->
+            </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
             <!---->
             <!---->
             <!--============================ THIRD\RIGHT COLUMN ======================-->
@@ -70,15 +81,11 @@
                     </div>
                 </div>
 
-            </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV ; INSIDE 1st/TOP ROW -->
+            </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
             <hr />
         </div><!-- END 1st ROW! -->
-
-
-
-
-            <!-- the user shouldn't be messing with this!!   =]   -->
-            @*<div class="form-group">
+        <!-- the user shouldn't be messing with this!!   =]   -->
+        @*<div class="form-group">
             @Html.LabelFor(model => model.AverageRating, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AverageRating, new { htmlAttributes = new { @class = "form-control" } })
@@ -86,9 +93,9 @@
             </div>
         </div>*@
 
- 
 
-        </div><!-- END FORM DIV -->
+
+    </div><!-- END FORM DIV -->
      }
 <!--==============================================================================-->
 </div><!-- END CONTAINER-FLUID DIV! -->

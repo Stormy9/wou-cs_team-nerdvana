@@ -16,6 +16,17 @@
 
         <h2>@ViewBag.Title!</h2>
         <hr />
+        <!--========================= TOP ROW FOR ACCORDIANS =========================-->
+        <div class="row" style="margin-bottom: 18px;">
+            <div class="col-sm-8 col-md-8" style="border: 1px solid orange">
+                an accordian thingie will go here
+            </div>
+
+            <div class="col-sm-8 col-md-8" style="border: 1px solid blue">
+                <!-- nothing here \ placeholder -->
+            </div>
+        </div>
+        <!--=========================== SECOND \ MIDDLE ROW ==========================-->
         <!--============================ FIRST\LEFT COLUMN ===========================-->
         <div class="row">
             <div class="col-sm-4 col-md-4">
@@ -34,7 +45,7 @@
                     @Html.ValidationMessageFor(model => model.ExperienceDetails, "", new { @class = "text-danger" })
                 </div>
                 <!-------------------------------------------------------------------------->
-            </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 1st\TOP ROW -->
+            </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
             <!---->
             <!---->
             <!--=========================== SECOND\MIDDLE COLUMN =====================-->
@@ -42,7 +53,7 @@
 
                 <!-- EMPTY FOR NOW \ BUT RESERVED! -->
 
-            </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 1st/TOP ROW -->
+            </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
             <!---->
             <!---->
             <!--============================ THIRD\RIGHT COLUMN ======================-->
@@ -57,7 +68,7 @@
 
                 </div>
                 <!---------------------------------------------------------------------->
-            </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV ; INSIDE 1st/TOP ROW -->
+            </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
             <!---->
             <!---->
         </div><!-- END 1st ROW! -->

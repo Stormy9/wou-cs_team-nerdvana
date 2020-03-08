@@ -400,6 +400,7 @@ hr {
     color: black;
     background-color: black;
     border: none;
+    margin-bottom: 0px;
 }
 /*==================================== PSEUDO-BUTTONS =================================*/
 .our_buttons {
@@ -439,13 +440,13 @@ a:visited {
 }
 /* mouse over link */
 a:hover {
-    color: #ff3333;
+    color: #ff4d4d;
     font-weight: bold;
     text-decoration: none;
 }
 /* selected link */
 a:active {
-    color: #ff3333;
+    color: #ff4d4d;
     font-weight: bold;
     text-decoration: none;
 }
