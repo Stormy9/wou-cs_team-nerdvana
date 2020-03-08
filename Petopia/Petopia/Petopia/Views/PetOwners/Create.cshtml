@@ -1,56 +1,97 @@
 ﻿@model Petopia.Models.PetOwner
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "I'm a Pet Owner.....";
 }
+<!--============================= WHOLE DAMNED FORM HERE =============================-->
+<div class="container-fluid">
 
-<h2>Create</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
+        <div class="form">
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>PetOwner</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
+
+        <h2>@ViewBag.Title</h2>
+        <hr />
+        <!--============================ FIRST\LEFT COLUMN ===========================-->
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                
+                <!------------------- PET OWNER NEEDS DETAILS -------------------------->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NeedsDetails, 
+                                    htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.TextAreaFor(model => model.NeedsDetails, 
+                         new { htmlAttributes = 
+                         new { @class = "form-control our_text_area" }, cols=72, rows=3,
+                         style="color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                    <!-- CSS IS NOT TOUCHING 'our_text_area' CLASS -->
+
+                    @Html.ValidationMessageFor(model => model.NeedsDetails, "", 
+                                                        new { @class = "text-danger" })
+                </div>
+                <!---------------------------------------------------------------------->
+            </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 1st\TOP ROW -->
+            <!---->
+            <!---->
+            <!--=========================== SECOND\MIDDLE COLUMN =====================-->
+            <div class="col-sm-4 col-md-4">
+
+                <!---------------- PET OWNER \ HOME ACCESS DETAILS  -------------------->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AccessInstructions, 
+                                    htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.TextAreaFor(model => model.AccessInstructions, 
+                         new { htmlAttributes = 
+                         new { @class = "form-control our_text_area" }, cols=72, rows=3,
+                         style="color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                    <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
+
+                    @Html.ValidationMessageFor(model => model.AccessInstructions, "", 
+                                                        new { @class = "text-danger" })
+                </div>
+                <!---------------------------------------------------------------------->
+            </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 1st/TOP ROW -->
+            <!---->
+            <!---->
+            <!--============================ THIRD\RIGHT COLUMN ======================-->
+            <div class="col-sm-4 col-md-4">
+
+                <div class="form-group" style="margin-top: 90px;">
+                    <div>
+                        <input type="submit" value="Sign me up as a Pet Owner!" 
+                               class="btn our_buttons" />
+                    </div>
+                </div>
+
+            </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV ; INSIDE 1st/TOP ROW -->
+            <hr />
+        </div><!-- END 1st ROW! -->
+
+
+
+
+            <!-- the user shouldn't be messing with this!!   =]   -->
+            @*<div class="form-group">
             @Html.LabelFor(model => model.AverageRating, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AverageRating, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.AverageRating, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.NeedsDetails, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NeedsDetails, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NeedsDetails, "", new { @class = "text-danger" })
-            </div>
-        </div>
+ 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AccessInstructions, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AccessInstructions, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AccessInstructions, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
+        </div><!-- END FORM DIV -->
+     }
+<!--==============================================================================-->
+</div><!-- END CONTAINER-FLUID DIV! -->
+<!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

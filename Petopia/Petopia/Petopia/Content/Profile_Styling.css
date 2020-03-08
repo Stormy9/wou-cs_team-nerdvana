@@ -357,6 +357,7 @@ a:active, .our_a:hover {
     padding: 5px;
     /* something obvious for testing! */
     background-color: red;
+    /* so this does NOT work for TEXTAREA but does for regular input */
 }
 /*======================== MEDIA QUERIES ============================*/
 @media only screen and (max-width: 500px) {
