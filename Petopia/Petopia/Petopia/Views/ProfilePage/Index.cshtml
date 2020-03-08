@@ -16,29 +16,47 @@
         <!---->
         <!---->
         <!-- 1st column --><!-- role\profilePic\caption\badges\PM&FriendButtons -->
-        <!-- b/c of col settings, it's 2&1/2 wide -->
-        <div class="col col-xs-3 col-sm-2 col-md-2 col-lg-2 col-xl-2 our_col_one">
+        <!-- b/c of col settings, it's 2&1/2 wide --><!-- EXCEPT IT'S NOT!!  dammit.  -->
+        <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3 col-x-3l our_col_one">
 
             <!-- owner || provider || both -->
-            <div class="owner_provider_box">
-                user's role(s) will go here
-            </div>
+            @if (Model.IsOwner == true)
+            {
+                <div class="owner_provider_box">
+                    Pet Owner
+                </div>
+            }
+            else
+            {
+                <div class="owner_provider_box">
+                    Pet Carer
+                </div>
+            }
 
 
             <!-- profile picture -->
-            <div class="profile_pic_box_box">
-                <div class="profile_pic_box">
-                    @if (Model.ProfilePhoto != null)
-                    {
+            @if (Model.ProfilePhoto != null)
+            {
+                <div class="profile_pic_box_box">
+                    <div class="profile_pic_box">
                         <img src=@Url.Action("Show", "Image",
-                                new { id = Model.UserID, @class="profile_img" } ) />
-                    }
-
+                                new { id = Model.UserID, @class = "profile_img" }) />
+                    </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                <div class="profile_pic_box_box">
+                    <div class="profile_pic_box">
+                        <img src="https://stormy9.github.io/nerdvana/cute_smiley.png"
+                             class="profile_img" />
+                    </div>
+                </div>
+            }
 
 
             <!-- profile pic caption -->
+            <!-- *****STILL PLACEHOLDER***** -->
             <div class="profile_pic_caption_box">
                 <div class="profile_pic_caption">
                     caption for profile photo ^
@@ -47,6 +65,7 @@
 
 
             <!-- pet badges -->
+            <!-- *****STILL PLACEHOLDER***** -->
             <div class="pet_badge_box">
                 <img src="https://stormy9.github.io/nerdvana/badge_dog.PNG"
                      class="pet_badge">
@@ -58,6 +77,7 @@
 
 
             <!-- private msg + friend buttons -->
+            <!-- *****STILL PLACEHOLDER***** -->
             <div class="button_box">
                 <a href="#" class="our_a">
                     <div class="our_buttons">
@@ -67,6 +87,11 @@
                 <a href="our_a">
                     <div class="our_buttons">
                         add friend
+                    </div>
+                </a>
+                <a href="our_a">
+                    <div class="our_buttons">
+                        all my friends
                     </div>
                 </a>
             </div>
@@ -82,7 +107,7 @@
             <!-- user name -->
             <div class="user_name_box">
                 <h3>
-                    @Html.DisplayFor(model => model.FirstName) 
+                    @Html.DisplayFor(model => model.FirstName)
                     @Html.DisplayFor(model => model.LastName)
                 </h3>
             </div>
@@ -91,7 +116,7 @@
             <!-- user's general location -->
             <div class="general_location_box">
                 <div class="general_location">
-                    my general location<br />
+                    my general location:
                     <!-- just stick in state for now / add db field later -->
                     @Html.DisplayFor(model => model.ResState)
                 </div>
@@ -99,6 +124,7 @@
 
 
             <!-- user rating -->
+            <!-- *****STILL PLACEHOLDER***** -->
             <div class="user_rating_box">
                 <img src="https://stormy9.github.io/nerdvana/rating_star_example.PNG"
                      class="user_rating_star_bar">
@@ -120,6 +146,7 @@
 
 
             <!-- user bio & etc. fun stuff -->
+            <!-- *****STILL PLACEHOLDER***** -->
             <div class="user_bio_box">
                 <h4>Stuff About Me:</h4>
                 blah blah blah blah blah blah blah blah blah blah blah blah blah
@@ -151,18 +178,29 @@
         <!---->
         <!---->
         <!-- 3rd column --><!-- providers/petOwners Near Me (and that's it!) -->
-        <!-- b/c of col settings, it's 2&1/2 wide -- try to span two rows height -->
-        <div class="col col-xs-3 col-sm-2.5 col-md-2.5 col-lg-2.5 col-xl-2.5 our_col_three">
+        <!-- OR -- for Pet Carers, display Pet Owners they've worked with before??  -->
+        <!---->
+        <!-- b/c of col settings, it's 2&1/2 wide -- except it isn't!!!  -->
+        <div class="col col-xs col-sm col-md col-lg col-xl our_col_three">
 
 
             <!-- auto search result header -->
-            <div class="auto_search_result_header">
-                <h5 style="margin-left: 5px;"> Pet Care Providers Near Me:</h5>
-                <!---->
-                <!-- this will need if-statement to determine owner/provider -->
-                <!-- for what to display! -->
-            </div>
+            <!-- *****STILL PLACEHOLDER(S)***** -->
 
+            @if (Model.IsOwner == true)
+            {
+                <div class="auto_search_result_header">
+                    <h5 style="margin-left: 5px;"> Pet Care Providers Near Me:</h5>
+                </div>
+            }
+            else
+            {
+                <!-- so "IsProvider" -->
+                <div class="auto_search_result_header">
+                    <h5 style="margin-left: 5px;"> Pet Owners I've Worked With:</h5>
+                </div>
+            }
+            <!-------------------------------------------------------------------------->
             <!-- search results -> who's near you? -->
             <div class="auto_search_results_box_box">
 
@@ -271,8 +309,8 @@
                 </div><!-- END 'auto_search_results_box' -->
             </div><!-- END 'auto_search_results_box_box' -->
         </div><!-- END 3rd\RIGHT-SIDE COLUM  **OF** 2nd/MIDDLE ROW -->
-        <!------------------------------------------------------------------------------>
-    </div><!-- END 2nd/MIDDLE ROW -->
+                    <!------------------------------------------------------------------------------>
+     </div><!-- END 2nd/MIDDLE ROW -->
     <!---->
     <!---->
     <!--==============================================================================-->
@@ -295,62 +333,69 @@
             <!-------------------------------------------------------------------------->
             @if (Model.IsOwner == true)
             {
-            foreach (var item in Model.PetList)
-            {
-                <!-- pet profile preview box --><!-- holds all preview panels -->
-                <div class="pet_profile_preview_box">
-                <!---------------------------------------------------------------------->
-                    <div class="pet_profile_preview">
-                        <!-- individual panel -->
+                foreach (var item in Model.PetList)
+                {
+                    <!-- pet profile preview box --><!-- holds all preview panels -->
+                    <div class="pet_profile_preview_box">
+                        <!---------------------------------------------------------------------->
+                        <div class="pet_profile_preview">
+                            <!-- individual panel -->
 
-                        <a href="#">
-                            <!-- link to pet's profile -->
-                            <img class="pet_profile_preview_img" alt="pet profile pic"
-                                 src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg">
+                            <a href="#">
+                                <!-- link to pet's profile -->
+                                <img class="pet_profile_preview_img" alt="pet profile pic"
+                                        src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg">
 
-                            <div class="pet_preview_name">
-                                @Html.DisplayFor(model => item.PetName)
-                            </div>
-                            <div class="pet_preview_breed">
-                                @Html.DisplayFor(model => item.Species) 
-                                                    &nbsp; =&gt; &nbsp; Sheltie
-                            </div>
-                            <div class="pet_preview_breed">
-                                I am a @Html.DisplayFor(model => item.Gender)
-                            </div>
-                        </a>
+                                <div class="pet_preview_name">
+                                    My name is: &nbsp;&nbsp;
+                                    @Html.DisplayFor(model => item.PetName)
+                                </div>
+                                <div class="pet_preview_breed">
+                                    @Html.DisplayFor(model => item.Species)
+                                    &nbsp; &rarr; &nbsp; Sheltie
+                                </div>
+                                <div class="pet_preview_breed">
+                                    I am a @Html.DisplayFor(model => item.Gender)
+                                </div>
+                            </a>
 
-                        <a href="#">
-                            <!-- link to care record(s) -->
-                            <div class="pet_preview_care_record">
-                                link to this pet's care record
-                            </div>
-                        </a>
-                        <br /><br />
-                        @Html.ActionLink("Edit My Profile", "Edit", 
-                                new { controller = "Pets", id = item.PetID }) |
-                        @Html.ActionLink("Go To My Profile", "Details", 
-                                new { controller = "Pets", id = item.PetID })
+                            <a href="#">
+                                <!-- link to care record(s) -->
+                                <div class="pet_preview_care_record">
+                                    link to this pet's care record
+                                </div>
+                            </a>
 
-                    </div><!-- END pet_profile_preview -->
-                </div><!-- END 'pet_profile_preview_box' -->
+
+                            <div class="button_box_pet_card">
+                                @Html.ActionLink("Edit This Pet", "Edit",
+                                        new { controller = "Pets", id = item.PetID },
+                                        new { @class = "our_pet_card_buttons" })
+                                @Html.ActionLink("Go To This Pet", "Details",
+                                        new { controller = "Pets", id = item.PetID },
+                                        new { @class = "our_pet_card_buttons " })
+                            </div>
+
+
+                        </div><!-- END pet_profile_preview -->
+                    </div><!-- END 'pet_profile_preview_box' -->
+                }
             }
-        }
         </div><!-- END 4th Column -> one inside 3rd/bottom row -->
         <!------------------------------------------------------------------------------>
-        <div class="col-md-3 our_col_five" style="border: 1px solid red;">
-            <div style="margin-top: 72px;">
+        <div class="col-md-3 our_col_five">
+            <div class="button_box_03" style="text-align: center;">
                 <div>
-                    @Html.ActionLink("Edit Profile?", "Edit",
+                    @Html.ActionLink("Edit My Profile", "Edit",
                                     new { controller = "ProfilePage" },
-                                    new { @class = "our_nav_links" })
+                                    new { @class = "our_other_buttons" })
                 </div>
                 <div>
                     @if (Model.IsOwner == true)
                     {
                         @Html.ActionLink("Add new pet!", "Create",
                                     new { controller = "Pets" },
-                                    new { @class = "our_nav_links" })
+                                    new { @class = "our_other_buttons" })
                     }
                 </div>
             </div><!-- END BUTTON BOX -->

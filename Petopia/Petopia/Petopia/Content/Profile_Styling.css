@@ -46,6 +46,7 @@
 .profile_img {
     width: 99%;
     height: auto;
+    /* this is better here then on the box */
     border: 1px solid #4d3319;
     border-radius: 9px;
 }
@@ -82,8 +83,8 @@
     width: 96%;
     height: 90px;
     padding: 3px;
+    color: whitesmoke;
 }
-
 .our_buttons {
     border: 1px solid #4d3319;
     border-radius: 9px;
@@ -94,6 +95,41 @@
     float: left;
     margin-left: 3px;
     margin-top: 3px;
+}
+/*----------------------------------------*/
+.button_box_pet_card {
+    margin-bottom: 9px;
+    margin-right: 9px;
+    padding: 3px;
+    color: whitesmoke;
+}
+.our_pet_card_buttons {
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    background-color: #392613;
+    color: whitesmoke;
+    font-weight: bold;
+    /*margin-bottom: 18px;*/
+    margin-right: 5px;
+    float: right;
+}
+/*----------------------------------------*/
+.button_box_03 {
+    padding: 3px;
+    color: whitesmoke;
+    margin-top: 72px;
+}
+.our_other_buttons {
+    /* these are being really fucking weird!! */
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    background-color: #392613;
+    color: whitesmoke;
+    font-weight: bold;
+    float: right;
+    margin-right: 5px;
 }
 /*========================= USER NAME ===============================*/
 .user_name_box {
@@ -208,7 +244,7 @@
 }
 
     .pet_profile_preview:hover {
-        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.3);
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
     }
 
 .pet_profile_preview_img {
