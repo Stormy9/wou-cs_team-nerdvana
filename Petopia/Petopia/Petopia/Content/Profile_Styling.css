@@ -85,7 +85,7 @@
     padding: 3px;
     color: whitesmoke;
 }
-.our_buttons {
+.our_profile_buttons {
     border: 1px solid #4d3319;
     border-radius: 9px;
     padding: 9px;
@@ -96,6 +96,23 @@
     margin-left: 3px;
     margin-top: 3px;
 }
+/*----------------------------------------*/
+.our_create-edit_buttons {
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    background-color: #392613;
+    color: whitesmoke;
+    font-weight: bold;
+    /*float: right;*/
+    margin-left: 3px;
+    margin-top: 3px;
+    width: 90px;
+    text-align: center;
+}
+    .our_create-edit_buttons a {
+        color: whitesmoke;
+    }
 /*----------------------------------------*/
 .button_box_pet_card {
     margin-bottom: 9px;
@@ -130,6 +147,7 @@
     font-weight: bold;
     float: right;
     margin-right: 5px;
+    margin-bottom: 5px;
 }
 /*========================= USER NAME ===============================*/
 .user_name_box {
@@ -330,7 +348,16 @@ a:active, .our_a:hover {
     color: #990000;
 }
 /* remember they ^^^ gotta be in that order */
-/*===================================================================*/
+
+/*========================== FORM ERRATA ============================*/
+.our_text_area {
+    /* WHY IS THIS NOT TOUCHING OUR TEXTAREA????? */
+    color: #2e2e1f;
+    border-radius: 5px;
+    padding: 5px;
+    /* something obvious for testing! */
+    background-color: red;
+}
 /*======================== MEDIA QUERIES ============================*/
 @media only screen and (max-width: 500px) {
     /* so 500 & smaller/narrower */

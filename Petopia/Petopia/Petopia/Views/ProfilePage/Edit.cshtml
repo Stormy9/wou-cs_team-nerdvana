@@ -16,12 +16,13 @@
         <h2>@ViewBag.Title:</h2>
         <hr />
         <!--============================ FIRST\LEFT COLUMN ===========================-->
+        <div class="row">
         <div class="col-sm-4 col-md-4">
             <!------------------------------ FIRST NAME -------------------------------->
             <div class="form-group">
 
                 @Html.LabelFor(model => model.FirstName, htmlAttributes:
-                                    new { @class = "control-label" })
+                                                    new { @class = "control-label" })
 
                 @Html.EditorFor(model => model.FirstName,
                             new { htmlAttributes = new { @class = "form-control" } })
@@ -127,6 +128,7 @@
                 @Html.ValidationMessageFor(model => model.ResZipcode, "",
                                                         new { @class = "text-danger" })
             </div>
+            <!-------------------------------------------------------------------------->
         </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV -->
 
 
@@ -151,24 +153,29 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.NeedsDetails, htmlAttributes:
                                                     new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.NeedsDetails,
-                        new { htmlAttributes = new { @class = "form-control" } })
+                    <br />
+                    @Html.TextAreaFor(model => model.NeedsDetails,
+                         new { htmlAttributes = 
+                         new { @class = "form-control our_text_area" }, cols=45, rows=3,
+                         style="color: #2e2e1f; border-radius: 5px; padding: 5px;" })
 
                     @Html.ValidationMessageFor(model => model.NeedsDetails, "",
                                                     new { @class = "text-danger" })
                 </div>
-
+                <!-- CSS IS NOT TOUCHING 'our_text_area' CLASS -->
                 <div class="form-group">
                     @Html.LabelFor(model => model.AccessInstructions,
                                 htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.TextAreaFor(model => model.AccessInstructions,
+                         new { htmlAttributes = 
+                         new { @class = "form-control our_text_area" }, cols=45, rows=3,
+                         style="color: #2e2e1f; border-radius: 5px; padding: 5px;" })
 
-                    @Html.EditorFor(model => model.AccessInstructions,
-                              new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.AccessInstructions, "",
                                                         new { @class = "text-danger" })
                 </div>
-            }
+            }<!-- END IF-STATEMENT(s) -->
             <!--============================ PROFILE PIC =============================-->
             <div class="form-group">
                 @Html.LabelFor(m => m.ProfilePhoto, new { @class = "control-label" })
@@ -177,21 +184,29 @@
 
                 @Html.ValidationMessage("CustomMessage")
             </div>
-            <!--============================== BUTTONS! ==============================-->
-            <div class="button_box">
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn our_buttons" />
-                    </div>
-                </div>
-
-                <div class="our_buttons">
-                    @Html.ActionLink("Cancel!", "Index", new { @class = "our_buttons" })
-                </div>
-            </div><!-- end button_box div -->
-
+            <!-------------------------------------------------------------------------->
         </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV -->
+        </div><!-- END 1st ROW! -->
 
+
+        <!--============================== BUTTONS ===================================-->
+        <div class="row">
+            <div class="col-sm-offset-10 col-sm-2">
+                <div class="button_box">
+                    <div class="form-group">
+                        <div>
+                            <input type="submit" value="Save" class="btn our_buttons" />
+                        </div>
+                    </div>
+
+                    <div class="our_create-edit_buttons">
+                        @Html.ActionLink("Cancel!", "Index", 
+                                                new { @class = "our_buttons" })
+                    </div>
+                </div><!-- end button_box div -->
+            </div>
+        </div>
+        <!--==========================================================================-->
 
         @*
             <div class="form-group">
