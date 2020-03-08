@@ -57,7 +57,7 @@ namespace Petopia.Controllers
                 //Changing Current user to a Pet Owner
                 var identityID = User.Identity.GetUserId();
                 DAL.PetopiaUser currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();
-                currentUser.IsOwner = true;
+                currentUser.IsProvider = true;
                 pdb.Entry(currentUser).State = EntityState.Modified;
                 pdb.SaveChanges();
 
