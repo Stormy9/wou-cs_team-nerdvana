@@ -4,15 +4,15 @@
     ViewBag.Title = "Edit My User Profile";
 }
 
-<!--============================= WHOLE DAMNED FORM HERE =============================-->
-@using (Html.BeginForm("Edit", "ProfilePage", FormMethod.Post, 
-    new {  @class = "form", role = "form", enctype="multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
+<div class="container-fluid">
+    <!--========================== WHOLE DAMNED FORM IN HERE =============================-->
+    @using (Html.BeginForm("Edit", "ProfilePage", FormMethod.Post,
+        new { @class = "form", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="container-fluid"><!-- all the form parts go in here -->
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+
         <h2>@ViewBag.Title:</h2>
         <hr />
         <!--============================ FIRST\LEFT COLUMN ===========================-->
@@ -104,13 +104,16 @@
             </div>
             <!------------------------------- RES STATE -------------------------------->
             <div class="form-group">
-                @Html.LabelFor(model => model.ResState, htmlAttributes: 
+                @Html.LabelFor(model => model.ResState, htmlAttributes:
                                                     new { @class = "control-label" })
 
-                @Html.EditorFor(model => model.ResState, new { htmlAttributes = 
-                                                       new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ResState, new
+                {
+                    htmlAttributes =
+                                                       new { @class = "form-control" }
+                })
 
-                @Html.ValidationMessageFor(model => model.ResState, "", 
+                @Html.ValidationMessageFor(model => model.ResState, "",
                                                         new { @class = "text-danger" })
             </div>
             <!--------------------------------  RES ZIP -------------------------------->
@@ -187,33 +190,31 @@
                 </div>
             </div><!-- end button_box div -->
 
-        </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV -->
+        </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV -->
 
 
-            @*
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsOwner, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsOwner)
-                    @Html.ValidationMessageFor(model => model.IsOwner, "", new { @class = "text-danger" })
+        @*
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsOwner, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsOwner)
+                        @Html.ValidationMessageFor(model => model.IsOwner, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsProvider, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsProvider)
-                    @Html.ValidationMessageFor(model => model.IsProvider, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsProvider, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsProvider)
+                        @Html.ValidationMessageFor(model => model.IsProvider, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>
-            *@
+        *@
         <!--==========================================================================-->
-
-
+    }
     <!--==============================================================================-->
-    </div><!-- end of div where all the form parts go -->
-}
+</div><!-- end of div where all the form parts go -->
