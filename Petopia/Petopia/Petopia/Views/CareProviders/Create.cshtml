@@ -10,22 +10,67 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form">
+    <div class="form">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <h2>@ViewBag.Title!</h2>
         <hr />
         <!--========================= TOP ROW FOR ACCORDIANS =========================-->
-        <div class="row" style="margin-bottom: 18px;">
-            <div class="col-sm-8 col-md-8" style="border: 1px solid orange">
-                an accordian thingie will go here
-            </div>
+        <div class="row" style="margin-bottom: 18px; margin-top: 0; padding-top: 0;">
+            <div class="container-fluid your_info">
+                <!-- why did we have to do another 'container-fluid'?? -->
+                <!-- to keep it from being right up on the outside edges -->
+                <!-- that was not the case in the 'About' page.....    -->
+                <!-- [Your Info] -->
+                <h3> What we do with your info + why we need it: </h3>
 
-            <div class="col-sm-8 col-md-8" style="border: 1px solid blue">
-                <!-- nothing here \ placeholder -->
-            </div>
-        </div>
+                <!------------------------- START 'PANEL GROUP' ------------------------>
+                <div class="panel-group" id="accordion_02">
+
+                    <!------------- PROFILE PANEL, w/HEADING/TITLE + BODY -------------->
+                    <div class="panel our_panel_01">
+
+                        <a data-toggle="collapse" data-parent="#accordion_02"
+                           href="#collapse_PI">
+                            <div class="panel-heading our_panel_heading">
+                                <div class="panel-title our_panel_title">
+                                    <p class="our_panel_p">
+                                        Your profile information:
+                                        <span class="glyphicon glyphicon-resize-vertical"
+                                              style="float: right;">
+                                        </span>
+                                    </p>
+                                </div><!-- end 'panel-title'\'our_panel_title' divs -->
+                            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
+                        </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
+                        <!-------------------------------------------------------------->
+                        <div class="panel-collapse collapse" id="collapse_PI">
+                            <div class="panel-body">
+                                <p>
+                                    The profile information you fill out at Petopia is
+                                    what will actually be shown on your public profile
+                                    with us.
+                                </p>
+                                <p>
+                                    So have as much fun as you like -- make it silly,
+                                    make it thoughtful or inspirational, make it
+                                    whatever you like..... but please keep it nice!
+                                </p>
+                                <p>
+                                    In other words -- imagine your Grandma might be
+                                    reading it.   [=
+                                </p>
+                            </div><!-- end 'panel-body' div -->
+                        </div><!-- end 'panel'\'panel-collapse' div + '#collapse_PI' id -->
+                    </div><!-- end 'panel'/our_panel_01' div -->
+                    <!---->
+                    <!--==============================================================-->
+                </div><!-- end 'panel-group' div + '#accordian_02' id -->
+            </div><!-- END + 'your_info' + 'container-fluid' div -->
+        </div><!-- END ROW ONE!-->
+        <!---->
+        <!---->
         <!--=========================== SECOND \ MIDDLE ROW ==========================-->
         <!--============================ FIRST\LEFT COLUMN ===========================-->
         <div class="row">
@@ -33,13 +78,18 @@
 
                 <!------------------------- PET CARER EXPERIENCE  ---------------------->
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ExperienceDetails, 
+                    @Html.LabelFor(model => model.ExperienceDetails,
                                         htmlAttributes: new { @class = "control-label" })
 
-                    @Html.TextAreaFor(model => model.ExperienceDetails, 
-                         new { htmlAttributes = 
-                         new { @class = "form-control our_text_area" }, cols=72, rows=3,
-                         style="color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                    @Html.TextAreaFor(model => model.ExperienceDetails,
+                         new
+                              {
+                                  htmlAttributes =
+                         new { @class = "form-control our_text_area" },
+                                  cols = 72,
+                                  rows = 3,
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"
+                              })
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
                     @Html.ValidationMessageFor(model => model.ExperienceDetails, "", new { @class = "text-danger" })
@@ -62,7 +112,7 @@
                 <!--============================= BUTTON =============================-->
                 <div class="form-group" style="margin-top: 90px;">
                     <div>
-                        <input type="submit" value="Sign me up as a Pet Carer!" 
+                        <input type="submit" value="Sign me up as a Pet Carer!"
                                class="btn our_buttons" />
                     </div>
 
@@ -72,20 +122,17 @@
             <!---->
             <!---->
         </div><!-- END 1st ROW! -->
+        <!-- the user shouldn't be messing with this!!   =]   -->
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.AverageRating, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AverageRating, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AverageRating, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
 
 
-
-            <!-- the user shouldn't be messing with this!!   =]   -->
-            @*<div class="form-group">
-                @Html.LabelFor(model => model.AverageRating, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.AverageRating, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.AverageRating, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-
-        </div><!-- END FORM DIV! -->
+    </div><!-- END FORM DIV! -->
     }
 </div><!-- END CONTAINER-FLUID DIV -->
 <!--==================================================================================-->
