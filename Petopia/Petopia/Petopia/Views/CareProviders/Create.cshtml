@@ -23,7 +23,7 @@
                 <!-- to keep it from being right up on the outside edges -->
                 <!-- that was not the case in the 'About' page.....    -->
                 <!-- [Your Info] -->
-                <h3> What we do with your info + why we need it: </h3>
+                <h3> What we do with your info + why we ask for it: </h3>
 
                 <!------------------------- START 'PANEL GROUP' ------------------------>
                 <div class="panel-group" id="accordion_02">
@@ -32,11 +32,11 @@
                     <div class="panel our_panel_01">
 
                         <a data-toggle="collapse" data-parent="#accordion_02"
-                           href="#collapse_PI">
+                           href="#collapse_PC">
                             <div class="panel-heading our_panel_heading">
                                 <div class="panel-title our_panel_title">
                                     <p class="our_panel_p">
-                                        Your profile information:
+                                        About this information:
                                         <span class="glyphicon glyphicon-resize-vertical"
                                               style="float: right;">
                                         </span>
@@ -45,21 +45,21 @@
                             </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
                         </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
                         <!-------------------------------------------------------------->
-                        <div class="panel-collapse collapse" id="collapse_PI">
-                            <div class="panel-body">
+                        <div class="panel-collapse collapse" id="collapse_PC">
+                            <div class="panel-body"> <!-- CREATE PET CARER FORM -->
                                 <p>
-                                    The profile information you fill out at Petopia is
-                                    what will actually be shown on your public profile
-                                    with us.
+                                    This is for you to desribe your Pet Care Experience 
+                                    -- like a mini resume.   
                                 </p>
                                 <p>
-                                    So have as much fun as you like -- make it silly,
-                                    make it thoughtful or inspirational, make it
-                                    whatever you like..... but please keep it nice!
+                                    Tell about the types of Pets you're experienced in 
+                                    caring for -- species, breeds, ages, sizes ... along 
+                                    with the types of care you can do.
                                 </p>
                                 <p>
-                                    In other words -- imagine your Grandma might be
-                                    reading it.   [=
+                                    This will show on your profile page so that Pet 
+                                    Owners who are considering hiring you can see just 
+                                    where your expertise is!
                                 </p>
                             </div><!-- end 'panel-body' div -->
                         </div><!-- end 'panel'\'panel-collapse' div + '#collapse_PI' id -->
@@ -82,14 +82,9 @@
                                         htmlAttributes: new { @class = "control-label" })
 
                     @Html.TextAreaFor(model => model.ExperienceDetails,
-                         new
-                              {
-                                  htmlAttributes =
-                         new { @class = "form-control our_text_area" },
-                                  cols = 72,
-                                  rows = 3,
-                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"
-                              })
+                         new { htmlAttributes =
+                         new { @class = "form-control our_text_area" }, cols=90, rows=9,
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
                     @Html.ValidationMessageFor(model => model.ExperienceDetails, "", new { @class = "text-danger" })

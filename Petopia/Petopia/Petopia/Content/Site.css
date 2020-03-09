@@ -400,6 +400,7 @@ hr {
     color: black;
     background-color: black;
     border: none;
+    /* who knew there was a bottom margin -- at least so big?? */
     margin-bottom: 0px;
 }
 /*==================================== PSEUDO-BUTTONS =================================*/

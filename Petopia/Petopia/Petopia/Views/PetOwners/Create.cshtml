@@ -23,7 +23,7 @@
                 <!-- to keep it from being right up on the outside edges -->
                 <!-- that was not the case in the 'About' page.....    -->
                 <!-- [Your Info] -->
-                <h3> What we do with your info + why we need it: </h3>
+                <h3> What we do with your info + why we ask it: </h3>
 
                 <!------------------------- START 'PANEL GROUP' ------------------------>
                 <div class="panel-group" id="accordion_02">
@@ -32,11 +32,11 @@
                     <div class="panel our_panel_01">
 
                         <a data-toggle="collapse" data-parent="#accordion_02"
-                           href="#collapse_PI">
+                           href="#collapse_PO">
                             <div class="panel-heading our_panel_heading">
                                 <div class="panel-title our_panel_title">
                                     <p class="our_panel_p">
-                                        Your profile information:
+                                        Why we ask for this information:
                                         <span class="glyphicon glyphicon-resize-vertical"
                                               style="float: right;">
                                         </span>
@@ -45,21 +45,41 @@
                             </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
                         </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
                         <!-------------------------------------------------------------->
-                        <div class="panel-collapse collapse" id="collapse_PI">
-                            <div class="panel-body">
+                        <div class="panel-collapse collapse" id="collapse_PO">
+                            <div class="panel-body"> <!-- CREATE PET OWNER FORM -->
                                 <p>
-                                    The profile information you fill out at Petopia is
-                                    what will actually be shown on your public profile
-                                    with us.
+                                    <b>Your Pet Care Needs:</b><br />
+                                    Give a brief overview of the primary type(s) of Pet 
+                                    Care you are interested in -- walks?  meds? 
+                                    feed &amp; let out/in?  pickup/drop-off for 
+                                    appointments?  Or full-out pet sitting?
                                 </p>
                                 <p>
-                                    So have as much fun as you like -- make it silly,
-                                    make it thoughtful or inspirational, make it
-                                    whatever you like..... but please keep it nice!
+                                    This information will show on your profile so that 
+                                    prospective Pet Care Providers know what your 
+                                    general needs are.
                                 </p>
                                 <p>
-                                    In other words -- imagine your Grandma might be
-                                    reading it.   [=
+                                    You can of course edit this at any time, or arrange 
+                                    for other/additional care with your Pet Care 
+                                    Provider.
+                                </p>
+                                <br />
+                                <p>
+                                    <b>How To Access Your Home:</b><br />
+                                    This information will <b>NOT</b> display on your 
+                                    profile, so don't worry!  It is secure.
+                                </p>
+                                <p>
+                                    This information will <i>only</i> be provided to 
+                                    the Pet Care Provider you choose to care for your 
+                                    Pet, when you've arranged for them to come to your 
+                                    home.
+                                </p>
+                                <p>
+                                    Again, you can edit this information at any time. 
+                                    We just ask that you provide it through the app for 
+                                    to help ensure personal safety for both parties.
                                 </p>
                             </div><!-- end 'panel-body' div -->
                         </div><!-- end 'panel'\'panel-collapse' div + '#collapse_PI' id -->
@@ -82,14 +102,9 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <br />
                     @Html.TextAreaFor(model => model.NeedsDetails,
-                         new
-                              {
-                                  htmlAttributes =
-                         new { @class = "form-control our_text_area" },
-                                  cols = 72,
-                                  rows = 3,
-                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"
-                              })
+                         new { htmlAttributes =
+                         new { @class = "form-control our_text_area" }, cols=72, rows=5,
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
                     @Html.ValidationMessageFor(model => model.NeedsDetails, "",
@@ -108,14 +123,9 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <br />
                     @Html.TextAreaFor(model => model.AccessInstructions,
-                         new
-                              {
-                                  htmlAttributes =
-                         new { @class = "form-control our_text_area" },
-                                  cols = 72,
-                                  rows = 3,
-                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"
-                              })
+                         new { htmlAttributes =
+                         new { @class = "form-control our_text_area" }, cols=72, rows=5,
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
                     @Html.ValidationMessageFor(model => model.AccessInstructions, "",
