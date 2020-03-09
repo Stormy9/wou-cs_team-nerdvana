@@ -59,7 +59,8 @@ namespace Petopia.Controllers
                 petopiaUser.ASPNetIdentityID = id;
                 db.PetopiaUsers.Add(petopiaUser);
                 db.SaveChanges();
-                return RedirectToAction("ChooseRole", "Account");  
+
+                return RedirectToAction("ChooseRole", "Account");
             }
 
             return View(petopiaUser);

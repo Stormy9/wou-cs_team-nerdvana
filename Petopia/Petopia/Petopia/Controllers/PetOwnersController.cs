@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Petopia.DAL;
 using Petopia.Models;
 
@@ -58,6 +60,12 @@ namespace Petopia.Controllers
                 DAL.PetopiaUser currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();
                 currentUser.IsOwner = true;
                 pdb.Entry(currentUser).State = EntityState.Modified;
+                //Roles.AddUserToRole(currentUser.ASPNetIdentityID, "Owner");
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var theUser = UserManagerExtensions.FindByName(userManager, currentUser.ASPNetIdentityID);
+                UserManagerExtensions.AddToRole(userManager, identityID, "Owner");
+               
+                
                 pdb.SaveChanges();
 
                 petOwner.UserID = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();

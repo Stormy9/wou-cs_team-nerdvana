@@ -6,13 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Petopia.Models;
+using Petopia.DAL;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web.Security;
+using System.Threading.Tasks;
 
 namespace Petopia.Controllers
 {
     public class CareProvidersController : Controller
     {
         private CareProviderContext db = new CareProviderContext();
+        private PetopiaContext pdb = new PetopiaContext();
 
         // GET: CareProviders
         public ActionResult Index()
@@ -27,7 +33,7 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CareProvider careProvider = db.CareProviders.Find(id);
+            Models.CareProvider careProvider = db.CareProviders.Find(id);
             if (careProvider == null)
             {
                 return HttpNotFound();
@@ -46,13 +52,28 @@ namespace Petopia.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CareProviderID,AverageRating,ExperienceDetails,UserID")] CareProvider careProvider)
+        public ActionResult Create([Bind(Include = "CareProviderID,AverageRating,ExperienceDetails,UserID")] DAL.CareProvider careProvider)
         {
             if (ModelState.IsValid)
             {
-                db.CareProviders.Add(careProvider);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                
+                //Changing Current user to a Pet Owner
+                var identityID = User.Identity.GetUserId();
+                DAL.PetopiaUser currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();
+                currentUser.IsProvider = true;
+                pdb.Entry(currentUser).State = EntityState.Modified;
+                //Roles.AddUserToRole(currentUser.ASPNetIdentityID, "Provider");
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var theUser = UserManagerExtensions.FindByName(userManager, currentUser.ASPNetIdentityID);
+                UserManagerExtensions.AddToRole(userManager, identityID, "Provider");
+
+                pdb.SaveChanges();
+
+                careProvider.UserID = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+                pdb.CareProviders.Add(careProvider);
+                pdb.SaveChanges();
+                return RedirectToAction("Index", "Home");
             }
 
             return View(careProvider);
@@ -65,7 +86,7 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CareProvider careProvider = db.CareProviders.Find(id);
+            Models.CareProvider careProvider = db.CareProviders.Find(id);
             if (careProvider == null)
             {
                 return HttpNotFound();
@@ -78,7 +99,7 @@ namespace Petopia.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CareProviderID,AverageRating,ExperienceDetails,UserID")] CareProvider careProvider)
+        public ActionResult Edit([Bind(Include = "CareProviderID,AverageRating,ExperienceDetails,UserID")] DAL.CareProvider careProvider)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +117,7 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CareProvider careProvider = db.CareProviders.Find(id);
+            Models.CareProvider careProvider = db.CareProviders.Find(id);
             if (careProvider == null)
             {
                 return HttpNotFound();
@@ -109,7 +130,7 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CareProvider careProvider = db.CareProviders.Find(id);
+            Models.CareProvider careProvider = db.CareProviders.Find(id);
             db.CareProviders.Remove(careProvider);
             db.SaveChanges();
             return RedirectToAction("Index");
