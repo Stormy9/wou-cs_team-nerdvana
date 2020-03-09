@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Petopia.DAL;
 using Petopia.Models;
 using reCAPTCHA.MVC;
 
@@ -19,6 +20,7 @@ namespace Petopia.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private PetopiaContext pdb = new PetopiaContext();
 
         public AccountController()
         {
@@ -61,6 +63,7 @@ namespace Petopia.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
+
         }
 
         //
@@ -78,6 +81,7 @@ namespace Petopia.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
             switch (result)
             {
                 case SignInStatus.Success:

@@ -1,13 +1,275 @@
 ﻿@model Petopia.DAL.Pet
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Pet Profile!";
 }
 
-<h2>Details</h2>
+<div class="outer_container">
+    <div class="container-fluid">
+        <!------------------------------------ FIRST/TOP ROW ------------------------------->
+        <div class="row our_row_one">
+            <!-- FIRST\TOP ROW -->
+            <!-- empty/placeholder for now-->
+            <!-- here in case we decide we want it later! -->
 
+        </div><!-- END FIRST\TOP ROW -->
+        <!--==============================================================================-->
+        <!---------------------------------- SECOND/MIDDLE ROW ----------------------------->
+        <div class="row our_row_two">
+            <!---->
+            <!---->
+            <!-- 1st column --><!-- role\profilePic\caption -->
+            <!-- b/c of col settings, it's 2&1/2 wide --><!-- EXCEPT IT'S NOT!!  dammit.  -->
+            <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3 col-x-3l our_col_one">
+
+
+                <!-- 'designation'   =] -->
+                <div class="owner_provider_box">
+                    A Pet!  I am a @Html.DisplayFor(model => model.Species).
+                </div>
+
+
+                <!-- profile picture -->
+                @*@if (Model.ProfilePhoto != null)
+                    {
+                        <div class="profile_pic_box_box">
+                            <div class="profile_pic_box">
+                                <img src=@Url.Action("Show", "Image",
+                                    new { id = Model.PetID, @class = "profile_img" }) />
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="profile_pic_box_box">
+                            <div class="profile_pic_box">
+                                <img src="https://stormy9.github.io/images_doggies/Zoey_profile_Pic.jpg"
+                                        class="profile_img" />
+                            </div>
+                        </div>
+                    }*@
+                <!-- profile picture -->
+                <div class="profile_pic_box_box">
+                    <div class="profile_pic_box">
+                        <img src="https://stormy9.github.io/images_doggies/Zoey_profile_Pic.jpg"
+                             class="profile_img" />
+                    </div>
+                </div>
+
+
+                <!-- profile pic caption -->
+                <div class="profile_pic_caption_box">
+                    <div class="profile_pic_caption">
+                        caption for profile pic ^
+                    </div>
+                </div>
+                <!-- stuff goes here -->
+
+            </div><!-- END 1st/LEFT COLUMN **OF** 2nd/MIDDLE ROW -->
+            <!------------------------------------------------------------------------------>
+            <!---->
+            <!---->
+            <!-- 2nd column --><!-- PetName\generalLocation\owner\AboutPet -->
+            <div class="col-xs-6 col-sm-7 col-md-7 col-lg-7 col-xl-7 our_col_two">
+
+                <!-- Pet name -->
+                <div class="user_name_box">
+                    <h3>
+                        My Name Is:  @Html.DisplayFor(model => model.PetName)
+                    </h3>
+                </div>
+
+                <!-- Pet's Person-->
+                <div class="user_name_box">
+                    <h3>My Person is: </h3>
+                    <h4>
+                        <i>
+                            (owner's name)
+                            @*@Html.DisplayFor(model => model.PetopiaUser.FirstName)*@
+                            @*@Html.DisplayFor(model => model.PetopiaUser.LastName)*@
+                        </i>
+                    </h4>
+                </div>
+
+                <!-- Pet's general location -->
+                <div class="general_location_box">
+                    <div class="general_location">
+                        our general location
+                    </div>
+                </div>
+
+                <!-- pet bio & etc. fun stuff -->
+                <div class="user_bio_box">
+                    <h4>Things About Me:</h4>
+                    woof woof woof woof woof woof woof woof woof woof woof woof woof
+                    woof woof woof woof woof woof woof woof woof woof woof woof woof
+                    woof woof woof woof woof woof woof woof woof woof woof woof woof
+                    woof woof woof woof woof woof woof woof woof woof woof woof woof
+                    woof woof woof woof woof woof woof woof woof woof woof woof woof
+                    woof woof woof woof woof woof woof woof woof woof woof woof woof
+                    woof woof woof woof woof woof woof woof woof woof woof woof woof
+                    woof woof woof woof woof woof woof woof woof woof woof woof woof
+                    woof woof woof woof woof woof woof woof woof woof woof woof woof
+                </div>
+
+            </div><!-- END 2nd\MIDDLE COLUMN  **OF** 2nd/MIDDLE ROW -->
+            <!------------------------------------------------------------------------------>
+            <!---->
+            <!---->
+            <!-- 3rd column --><!-- providers/petOwners Near Me (and that's it!) -->
+            <!-- OR -- for Pet Carers, display Pet Owners they've worked with before??  -->
+            <!---->
+            <!-- b/c of col settings, it's 2&1/2 wide -- except it isn't!!!  -->
+            <div class="col col-xs col-sm col-md col-lg col-x  our_col_three">
+
+                <!-- auto search result header -->
+                <div class="auto_search_result_header">
+                    <h5 style="margin-left: 5px;"> My Pet Care Providers:</h5>
+                </div>
+
+                <!-- list this Pet's previous care providers here -->
+                <div class="auto_search_results_box_box">
+
+                    <div class="auto_search_results_box">
+                        <!---------------------------------------------------------->
+                        <div class="search_result_card">
+
+                            <a href="#" class="our_a">
+                                <!-- to carer's profile -->
+                                <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
+                                     alt="profile picture"
+                                     class="search_result_card_img">
+                            </a>
+                            <div class="search_result_card_info">
+                                <a href="#" class="our_a">
+                                    <!-- to carer's profile -->
+                                    <h6><b> Steve PetCarer </b></h6>
+                                </a>
+                                <p> Northeast Salem, Oregon </p>
+                                <div> badges here </div>
+                                <div> ratings here </div>
+                            </div>
+                        </div><!-- card one -->
+                        <!---------------------------------------------------------->
+                        <div class="search_result_card">
+
+                            <a href="#" class="our_a">
+                                <!-- to carer's profile -->
+                                <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
+                                     alt="profile picture"
+                                     class="search_result_card_img">
+                            </a>
+                            <div class="search_result_card_info">
+                                <a href="#" class="our_a">
+                                    <!-- to carer's profile -->
+                                    <h6><b> Steve PetCarer </b></h6>
+                                </a>
+                                <p> Northeast Salem, Oregon </p>
+                                <div> badges here </div>
+                                <div> ratings here </div>
+                            </div>
+                        </div><!-- card two -->
+                        <!---------------------------------------------------------->
+                        <div class="search_result_card">
+
+                            <a href="#" class="our_a">
+                                <!-- to carer's profile -->
+                                <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
+                                     alt="profile picture"
+                                     class="search_result_card_img">
+                            </a>
+                            <div class="search_result_card_info">
+                                <a href="#" class="our_a">
+                                    <!-- to carer's profile -->
+                                    <h6><b> Steve PetCarer </b></h6>
+                                </a>
+                                <p> Northeast Salem, Oregon </p>
+                                <div> badges here </div>
+                                <div> ratings here </div>
+                            </div>
+                        </div><!-- card three -->
+                        <!---------------------------------------------------------->
+                    </div><!-- END 'auto_search_results_box' -->
+                </div><!-- END 'auto_search_results_box_box' -->
+            </div><!-- END 3rd\Right-side Column -->
+            <!---------------------------------------------------------------------->
+
+        </div><!-- END 2nd/MIDDLE ROW -->
+        <!---->
+        <!---->
+        <!--==============================================================================-->
+        <!------------------------------ THIRD/BOTTOM ROW ---------------------------------->
+        <!---->
+        <!---->
+        <div class="row our_row_three">
+            <!-- THIRD\BOTTOM ROW -->
+            <div class="col-md-11 our_col_four">
+
+                <!-- stuff goes here ... bottom row ...
+                        9-column-wide span inside this row <br>
+                        try to get 3rd column in middle row to span two rows in height!  -->
+                <!-- pet profile preview box header -->
+                <div class="pet_profile_header">
+                    <h3> My Pet Care Visits: </h3>
+                </div>
+
+                <table class="pet_care_table">
+                    <tr>
+                        <th class="table_col_one">Date</th>
+                        <th class="table_col_two">Care Provider</th>
+                        <th class="table_col_three">Care Details</th>
+                    </tr>
+                    <tr>
+                        <td>02/16/2020</td>
+                        <td>Steve PetCarer</td>
+                        <td>
+                            blah blah blah blah blah blah blah blah blah
+                            blah blah blah blah blah blah blah blah blah
+                            blah blah blah blah blah blah blah blah blah
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>02/19/2020</td>
+                        <td>Steve PetCarer</td>
+                        <td>
+                            blah blah blah blah blah blah blah blah blah
+                            blah blah blah blah blah blah blah blah blah
+                            blah blah blah blah blah blah blah blah blah
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>02/21/2020</td>
+                        <td>Steve PetCarer</td>
+                        <td>
+                            blah blah blah blah blah blah blah blah blah
+                            blah blah blah blah blah blah blah blah blah
+                            blah blah blah blah blah blah blah blah blah
+                        </td>
+                    </tr>
+                </table>
+
+            </div><!-- END 4th Column -> one inside bottom row -->
+        </div><!-- END THIRD\BOTTOM ROW -->
+        <!---------------------------------------------------------------------->
+
+    </div><!-- END CONTAINER-FLUID -->
+</div><!-- END OUTER CONTAINER \ MAIN CONTAINER INSIDE BODY -->
+<!-- original formatted stuff pulled from db-->
+<div class="button_box_03" style="text-align: center;">
+    <div>
+        @Html.ActionLink("Edit this Pet", "Edit", new { id = Model.PetID },
+                                    new { @class = "our_other_buttons" })
+    </div>
+    <div>
+        @Html.ActionLink("My Owner's Profile", "Index",
+                                        new { controller = "ProfilePage" },
+                                        new { @class = "our_other_buttons" })
+    </div>
+</div><!-- END BUTTON BOX -->
 <div>
-    <h4>Pet</h4>
+    <h4>
+        Pet Scaffolding -- Keep so we can borrow from here as we fill in profile
+    </h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -132,7 +394,4 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PetID }) |
-    @Html.ActionLink("Back to Profile", "Index", new { controller = "ProfilePage" })
-</p>
+

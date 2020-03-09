@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Petopia.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,23 @@ namespace Petopia.Controllers
 {
     public class HomeController : Controller
     {
+        private PetopiaContext pdb = new PetopiaContext();
         public ActionResult Index()
         {
-            return View();
+            //var identityID = User.Identity.GetUserId();
+            //DAL.PetopiaUser currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();
+            bool loggedIn = User.Identity.IsAuthenticated;
+            ViewBag.loggedIn = loggedIn;
+            if (loggedIn)
+            {
+                var identityID = User.Identity.GetUserId();
+                DAL.PetopiaUser currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();
+                return View(currentUser);
+            }
+            else
+            {
+                return View();
+            }
         }
         //-------------------------------------------------------------------------------
 

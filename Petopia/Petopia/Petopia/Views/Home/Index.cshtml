@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Petopia.DAL.PetopiaUser
+@{
     ViewBag.Title = "Petopia!";
 }
 <!-------------------------------------------------------------------------------------->
@@ -18,15 +19,14 @@
                 love your pet even when you can't be home!
             </h3>
             <!-- figure out pause button? -->
-
             <!-------------------------------------------------------------------------->
             <!--------------------------- search box! ---------------------------------->
             <!-- don't forget: do search like this, when we make it functional -->
             @*@using (Html.BeginForm("StockItem", "Home", FormMethod.Post))
-                {
-                    @Html.TextBox("search")
-                    <input type="submit" value="search!" class="btn-danger" id="our_search_button" />
-                }*@
+        {
+            @Html.TextBox("search")
+            <input type="submit" value="search!" class="btn-danger" id="our_search_button" />
+        }*@
 
             <!-- fill in action later, where it goes when you click! -->
             <form class="splash_search" action="">
@@ -39,7 +39,7 @@
             </form>
             <!---------------------- ^^^ search box ^^^----------------------------->
             <!---------------------------------------------------------------------->
-
+            
             <div class="container-fluid splash_intro_box">
                 <div class="container-fluid splash_intro">
                     @Html.ActionLink("Find out how Petopia can benefit you:", "About", "Home")
@@ -47,6 +47,14 @@
                     <br />
                     as a pet owner -- or become a pet care provider with us!
                 </div>
+                @if (ViewBag.loggedIn == true)
+                {
+                    if (Model.IsOwner == false && Model.IsProvider == false)
+                    {
+                        <p>Reminder: You still have no role, choose one here!</p>
+                        @Html.ActionLink("Choose a Role", "ChooseRole", "Account")
+                    }
+                }
             </div>
 
         </div><!-- end splash_overlay div \ search & splash_intro_box inside it -->

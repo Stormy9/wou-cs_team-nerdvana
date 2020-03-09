@@ -4,11 +4,11 @@
 }
 /*============================= ROWS ================================*/
 .our_row_one {
-    margin-top: 5px;
+    /*margin-top: 5px;
     padding: 5px;
     background-color: #1a1a1a;
     color: whitesmoke;
-    font-weight: bold;
+    font-weight: bold;*/
 }
 
 .our_row_two {
@@ -23,7 +23,7 @@
     color: whitesmoke;
 }
 /*============================== COLUMNS ============================*/
-.our_col_one, .our_col_two, .our_col_three, .our_col_four {
+.our_col_one, .our_col_two, .our_col_three, .our_col_four, .our_col_five {
     padding: 9px;
     background-color: #996633;
     color: whitesmoke;
@@ -46,6 +46,7 @@
 .profile_img {
     width: 99%;
     height: auto;
+    /* this is better here then on the box */
     border: 1px solid #4d3319;
     border-radius: 9px;
 }
@@ -82,9 +83,9 @@
     width: 96%;
     height: 90px;
     padding: 3px;
+    color: whitesmoke;
 }
-
-.our_buttons {
+.our_profile_buttons {
     border: 1px solid #4d3319;
     border-radius: 9px;
     padding: 9px;
@@ -94,6 +95,59 @@
     float: left;
     margin-left: 3px;
     margin-top: 3px;
+}
+/*----------------------------------------*/
+.our_create-edit_buttons {
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    background-color: #392613;
+    color: whitesmoke;
+    font-weight: bold;
+    /*float: right;*/
+    margin-left: 3px;
+    margin-top: 3px;
+    width: 90px;
+    text-align: center;
+}
+    .our_create-edit_buttons a {
+        color: whitesmoke;
+    }
+/*----------------------------------------*/
+.button_box_pet_card {
+    margin-bottom: 9px;
+    margin-right: 9px;
+    padding: 3px;
+    color: whitesmoke;
+}
+.our_pet_card_buttons {
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    background-color: #392613;
+    color: whitesmoke;
+    font-weight: bold;
+    /*margin-bottom: 18px;*/
+    margin-right: 5px;
+    float: right;
+}
+/*----------------------------------------*/
+.button_box_03 {
+    padding: 3px;
+    color: whitesmoke;
+    margin-top: 72px;
+}
+.our_other_buttons {
+    /* these are being really fucking weird!! */
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    background-color: #392613;
+    color: whitesmoke;
+    font-weight: bold;
+    float: right;
+    margin-right: 5px;
+    margin-bottom: 5px;
 }
 /*========================= USER NAME ===============================*/
 .user_name_box {
@@ -142,6 +196,12 @@
 }
 /*======================= USER BIO ETC ==============================*/
 .user_bio_box {
+    width: 99%;
+    margin-top: 5px;
+    padding: 15px;
+}
+
+.carer_exp_box {
     width: 99%;
     margin-top: 5px;
     padding: 15px;
@@ -208,7 +268,7 @@
 }
 
     .pet_profile_preview:hover {
-        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.3);
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
     }
 
 .pet_profile_preview_img {
@@ -288,7 +348,16 @@ a:active, .our_a:hover {
     color: #990000;
 }
 /* remember they ^^^ gotta be in that order */
-/*===================================================================*/
+
+/*========================== FORM ERRATA ============================*/
+.our_text_area {
+    /* WHY IS THIS NOT TOUCHING OUR TEXTAREA????? */
+    color: #2e2e1f;
+    border-radius: 5px;
+    padding: 5px;
+    /* something obvious for testing! */
+    background-color: red;
+}
 /*======================== MEDIA QUERIES ============================*/
 @media only screen and (max-width: 500px) {
     /* so 500 & smaller/narrower */

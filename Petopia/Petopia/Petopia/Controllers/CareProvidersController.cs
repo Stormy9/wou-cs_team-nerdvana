@@ -9,6 +9,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Petopia.Models;
 using Petopia.DAL;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Web.Security;
+using System.Threading.Tasks;
 
 namespace Petopia.Controllers
 {
@@ -54,11 +57,17 @@ namespace Petopia.Controllers
             if (ModelState.IsValid)
             {
 
+                
                 //Changing Current user to a Pet Owner
                 var identityID = User.Identity.GetUserId();
                 DAL.PetopiaUser currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();
                 currentUser.IsProvider = true;
                 pdb.Entry(currentUser).State = EntityState.Modified;
+                //Roles.AddUserToRole(currentUser.ASPNetIdentityID, "Provider");
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var theUser = UserManagerExtensions.FindByName(userManager, currentUser.ASPNetIdentityID);
+                UserManagerExtensions.AddToRole(userManager, identityID, "Provider");
+
                 pdb.SaveChanges();
 
                 careProvider.UserID = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
