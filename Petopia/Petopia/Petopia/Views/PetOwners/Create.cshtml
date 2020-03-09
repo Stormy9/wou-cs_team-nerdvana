@@ -1,56 +1,167 @@
 ﻿@model Petopia.Models.PetOwner
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "I'm a Pet Owner.....";
 }
+<!--============================= WHOLE DAMNED FORM HERE =============================-->
+<div class="container-fluid">
 
-<h2>Create</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
+    <div class="form">
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>PetOwner</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
+
+        <h2>@ViewBag.Title</h2>
+        <!--========================= TOP ROW FOR ACCORDIANS =========================-->
+        <div class="row" style="margin-bottom: 18px; margin-top: 0; padding-top: 0;">
+            <div class="container-fluid your_info">
+                <!-- why did we have to do another 'container-fluid'?? -->
+                <!-- to keep it from being right up on the outside edges -->
+                <!-- that was not the case in the 'About' page.....    -->
+                <!-- [Your Info] -->
+                <!------------------------- START 'PANEL GROUP' ------------------------>
+                <div class="panel-group" id="accordion_02">
+
+                    <!------------- PROFILE PANEL, w/HEADING/TITLE + BODY -------------->
+                    <div class="panel our_panel_01">
+
+                        <a data-toggle="collapse" data-parent="#accordion_02"
+                           href="#collapse_PO">
+                            <div class="panel-heading our_panel_heading">
+                                <div class="panel-title our_panel_title">
+                                    <p class="our_panel_p">
+                                        What we do with your info + why we ask it:
+                                        <span class="glyphicon glyphicon-resize-vertical"
+                                              style="float: right;">
+                                        </span>
+                                    </p>
+                                </div><!-- end 'panel-title'\'our_panel_title' divs -->
+                            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
+                        </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
+                        <!-------------------------------------------------------------->
+                        <div class="panel-collapse collapse" id="collapse_PO">
+                            <div class="panel-body"> <!-- CREATE PET OWNER FORM -->
+                                <p>
+                                    <b>Your Pet Care Needs:</b><br />
+                                    Give a brief overview of the primary type(s) of Pet 
+                                    Care you are interested in -- walks?  meds? 
+                                    feed &amp; let out/in?  pickup/drop-off for 
+                                    appointments?  Or full-out pet sitting?
+                                </p>
+                                <p>
+                                    This information will show on your profile so that 
+                                    prospective Pet Care Providers know what your 
+                                    general needs are.
+                                </p>
+                                <p>
+                                    You can of course edit this at any time, or arrange 
+                                    for other/additional care with your Pet Care 
+                                    Provider.
+                                </p>
+                                <br />
+                                <p>
+                                    <b>How To Access Your Home:</b><br />
+                                    This information will <b>NOT</b> display on your 
+                                    profile, so don't worry!  It is secure.
+                                </p>
+                                <p>
+                                    This information will <i>only</i> be provided to 
+                                    the Pet Care Provider you choose to care for your 
+                                    Pet, when you've arranged for them to come to your 
+                                    home.
+                                </p>
+                                <p>
+                                    Again, you can edit this information at any time. 
+                                    We just ask that you provide it through the app for 
+                                    to help ensure personal safety for both parties.
+                                </p>
+                            </div><!-- end 'panel-body' div -->
+                        </div><!-- end 'panel'\'panel-collapse' div + '#collapse_PI' id -->
+                    </div><!-- end 'panel'/our_panel_01' div -->
+                    <!---->
+                    <!--==============================================================-->   
+                </div><!-- end 'panel-group' div + '#accordian_02' id -->
+            </div><!-- END + 'your_info' + 'container-fluid' div -->
+        </div><!-- END ROW ONE!-->
+        <!---->
+        <!---->
+        <!--=========================== SECOND \ MIDDLE ROW ==========================-->
+        <!--============================ FIRST\LEFT COLUMN ===========================-->
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+
+                <!------------------- PET OWNER NEEDS DETAILS -------------------------->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NeedsDetails,
+                                    htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.TextAreaFor(model => model.NeedsDetails,
+                         new { htmlAttributes =
+                         new { @class = "form-control our_text_area" }, cols=72, rows=5,
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                    <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
+
+                    @Html.ValidationMessageFor(model => model.NeedsDetails, "",
+                                                        new { @class = "text-danger" })
+                </div>
+                <!---------------------------------------------------------------------->
+            </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
+            <!---->
+            <!---->
+            <!--=========================== SECOND\MIDDLE COLUMN =====================-->
+            <div class="col-sm-4 col-md-4">
+
+                <!---------------- PET OWNER \ HOME ACCESS DETAILS  -------------------->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AccessInstructions,
+                                    htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.TextAreaFor(model => model.AccessInstructions,
+                         new { htmlAttributes =
+                         new { @class = "form-control our_text_area" }, cols=72, rows=5,
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                    <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
+
+                    @Html.ValidationMessageFor(model => model.AccessInstructions, "",
+                                                        new { @class = "text-danger" })
+                </div>
+                <!---------------------------------------------------------------------->
+            </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
+            <!---->
+            <!---->
+            <!--============================ THIRD\RIGHT COLUMN ======================-->
+            <div class="col-sm-4 col-md-4">
+
+                <!--============================= BUTTON =============================-->
+                <div class="form-group" style="margin-top: 90px;">
+                    <div>
+                        <input type="submit" value="Sign me up as a Pet Owner!"
+                               class="btn our_buttons" />
+                    </div>
+                </div>
+
+            </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
+            <hr />
+        </div><!-- END 1st ROW! -->
+        <!-- the user shouldn't be messing with this!!   =]   -->
+        @*<div class="form-group">
             @Html.LabelFor(model => model.AverageRating, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AverageRating, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.AverageRating, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.NeedsDetails, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NeedsDetails, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NeedsDetails, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AccessInstructions, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AccessInstructions, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AccessInstructions, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
+    </div><!-- END FORM DIV -->
+     }
+<!--==============================================================================-->
+</div><!-- END CONTAINER-FLUID DIV! -->
+<!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

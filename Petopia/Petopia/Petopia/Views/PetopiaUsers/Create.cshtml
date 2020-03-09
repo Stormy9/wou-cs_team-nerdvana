@@ -10,16 +10,116 @@
     {
         @Html.AntiForgeryToken()
 
-    <div class="form">
+        <div class="form">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <h2>@ViewBag.Title!</h2>
         <hr />
+        
+        <!--========================= TOP ROW FOR ACCORDIANS =========================-->
+        <div class="row" style="margin-bottom: 18px; margin-top: 0; padding-top: 0;"> 
+            <div class="container-fluid your_info">
+            <!-- why did we have to do another 'container-fluid'?? -->
+            <!-- to keep it from being right up on the outside edges -->
+            <!-- that was not the case in the 'About' page.....    -->
+                <!-- [Your Info] -->
+                <h3> What we do with your info + why we need it: </h3>
 
+                <!------------------------- START 'PANEL GROUP' ------------------------>
+                <div class="panel-group" id="accordion_02">
+
+                    <!------------- PROFILE PANEL, w/HEADING/TITLE + BODY -------------->
+                    <div class="panel our_panel_01">
+
+                        <a data-toggle="collapse" data-parent="#accordion_02"
+                           href="#collapse_PI">
+                            <div class="panel-heading our_panel_heading">
+                                <div class="panel-title our_panel_title">
+                                    <p class="our_panel_p">
+                                        Your profile information:
+                                        <span class="glyphicon glyphicon-resize-vertical"
+                                              style="float: right;">
+                                        </span>
+                                    </p>
+                                </div><!-- end 'panel-title'\'our_panel_title' divs -->
+                            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
+                        </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
+                        <!-------------------------------------------------------------->
+                        <div class="panel-collapse collapse" id="collapse_PI">
+                            <div class="panel-body"> <!-- PROFILE -->
+                                <p>
+                                    The profile information you fill out at Petopia is 
+                                    what will actually be shown on your public profile 
+                                    with us.
+                                </p>
+                                <p>
+                                    So have as much fun as you like -- make it silly, 
+                                    make it thoughtful or inspirational, make it
+                                    whatever you like..... but please keep it nice!
+                                </p>
+                                <p>
+                                    In other words -- imagine your Grandma might be 
+                                    reading it.   [=
+                                </p>
+                            </div><!-- end 'panel-body' div -->
+                        </div><!-- end 'panel'\'panel-collapse' div + '#collapse_PI' id -->
+                    </div><!-- end 'panel'/our_panel_01' div -->
+                    <!---->
+                    <!--==============================================================-->
+                    <!------------- ACCOUNT PANEL, w/HEADING/TITLE + BODY -------------->
+                    <div class="panel our_panel_01">
+
+                        <a data-toggle="collapse" data-parent="#accordion_02"
+                           href="#collapse_AI">
+                            <div class="panel-heading our_panel_heading">
+                                <div class="panel-title our_panel_title">
+                                    <p class="our_panel_p">
+                                        Your account information
+                                        <span class="glyphicon glyphicon-resize-vertical"
+                                              style="float: right;">
+                                        </span>
+                                    </p>
+                                </div><!-- end 'panel-title'\'our_panel_title' divs -->
+                            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
+                        </a><!-- end '#accordian_02' id + '#collapse_AI' href -->
+                        <!-------------------------------------------------------------->
+                        <div class="panel-collapse collapse" id="collapse_AI">
+                            <div class="panel-body"> <!-- ACCOUNT -->
+                                <p>
+                                    The account information you fill out at Petopia will
+                                    <b>not</b> appear on your profile -- it is
+                                    confidential with Petopia.
+                                </p>
+                                <p>
+                                    <b>For Pet Owners:</b><br />
+                                    When you select a Pet Care Provider and arrange for
+                                    Pet Care with them, only then will Petopia share your
+                                    contact and access information with that Provider, so
+                                    that they can fulfill your Pet Care needs in the best
+                                    way for your Pet(s)!
+                                </p>
+                                <br />
+                                <p>
+                                    <b>For Pet Care Providers:</b><br />
+                                    When you agree to providve Pet Care services for a 
+                                    Pet Owner, we will share your contact information 
+                                    with them so they can contact you and know you're 
+                                    a real person!
+                                </p>
+                            </div><!-- end 'panel-body' div -->
+                        </div><!-- end 'panel-collapse'/'collapse' div+'#collapse_AI' id -->
+                    </div><!-- end 'panel'\'our_panel_01' divs -->
+                </div><!-- end 'panel-group' div + '#accordian_02' id -->
+            </div><!-- END + 'your_info' + 'container-fluid' div -->
+        </div><!-- END ROW ONE!-->
+        <!---->
+        <!---->
+        <!--=========================== SECOND \ MIDDLE ROW ==========================-->
         <!--============================ FIRST\LEFT COLUMN ===========================-->
         <div class="row">
             <div class="col-sm-4 col-md-4">
+                <h4 style="color: #261a0d">Your Profile Information:</h4>
 
                 <!------------------------- FIRST NAME  -------------------------------->
                 <div class="form-group">
@@ -60,12 +160,13 @@
                     @Html.ValidationMessage("CustomMessage")
                 </div>
                 <!---------------------------------------------------------------------->
-            </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 1st/TOP ROW -->
+            </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
             <!---->
             <!---->
             <!--=========================== SECOND\MIDDLE COLUMN =====================-->
             <div class="col-sm-4 col-md-4">
-
+                <h4 style="color: #261a0d;">Your Account Information:</h4>
+                
                 <!----------------------------- MAIN PHONE ----------------------------->
                 <div class="form-group">
                     @Html.LabelFor(model => model.MainPhone,
@@ -89,7 +190,7 @@
                                                       new { @class = "text-danger" })
                 </div>
                 <!---------------------------------------------------------------------->
-            </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 1st/TOP ROW -->
+            </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
             <!---->
             <!---->
             <!--============================ THIRD\RIGHT COLUMN ======================-->
@@ -151,7 +252,7 @@
                                                           new { @class = "text-danger" })
                 </div>
                 <!---------------------------------------------------------------------->
-            </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV ; INSIDE 1st/TOP ROW -->
+            </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
             <hr />
         </div><!-- END 1st ROW!-->
         <!---->
