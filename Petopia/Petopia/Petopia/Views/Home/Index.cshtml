@@ -47,14 +47,6 @@
                     <br />
                     as a pet owner -- or become a pet care provider with us!
                 </div>
-                @if (ViewBag.loggedIn == true)
-                {
-                    if (Model.IsOwner == false && Model.IsProvider == false)
-                    {
-                        <p>Reminder: You still have no role, choose one here!</p>
-                        @Html.ActionLink("Choose a Role", "ChooseRole", "Account")
-                    }
-                }
             </div>
 
         </div><!-- end splash_overlay div \ search & splash_intro_box inside it -->
