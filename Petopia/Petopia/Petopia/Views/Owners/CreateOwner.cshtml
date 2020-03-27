@@ -1,0 +1,174 @@
+﻿@model Petopia.Models.Owner
+
+@{
+    ViewBag.Title = "Set up your Pet Owner profile & account!";
+}
+
+<body class="container-fluid chooseRole_hero">
+    <h2>@ViewBag.Title</h2>
+
+
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+    
+        <div class="form">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <!-------------------------------------------------------------------------->
+            <div class="row profile_info_form_part">
+
+                <!-- Owner PROFILE Information -->
+                <!-- explanation panel - explain info requested -->
+
+                <div class="col-md-9 panel-group">
+                    <div class="panel our_panel_01">
+
+                        <a data-toggle="collapse" href="#collapse_01">
+                            <div class="panel-heading our_panel_heading">
+                                <div class="panel-title our_panel_title">
+                                    <p>
+                                        <span class="glyphicon glyphicon-resize-vertical"
+                                              style="padding-right: 18px;">
+                                        </span>
+                                        Your profile information...
+                                        <i>(click to toggle details)</i>
+                                    </p>
+                                </div><!-- end 'our_panel_title' div -->
+                            </div><!-- end 'our_panel_heading' div -->
+                        </a>
+
+                        <div id="collapse_01" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>
+                                    This information is what will appear on your 
+                                    Petopia profile page..... so make it fun but
+                                    please keep it nice.   [=
+                                </p>
+                            </div>
+                        </div>
+
+                    </div><!-- end 'panel'\'our_panel_01' divs -->
+                </div><!-- end 'panel-group' div -->
+                <!---------------------------------------------------------------------->
+                <!-- actual form labels + fields for OWNER PROFILE INFO -->
+                <div class="form-group">
+                    
+                    <div class="col-sm-5">
+                        @Html.LabelFor(model => model.FirstName)
+
+                        @Html.EditorFor(model => model.FirstName,
+                                new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "",
+                                                          new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <div class="col-sm-5">
+                        @Html.LabelFor(model => model.LastName)
+
+                        @Html.EditorFor(model => model.LastName,
+                                new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "",
+                                                          new { @class = "text-danger" })
+                    </div>
+                </div>
+                <!-- end form labels\fields for OWNER PROFILE INFO -->
+            </div><!-- end row one + 'profile_info_form_part' -->
+
+
+
+            <!-------------------------------------------------------------------------->
+            <div class="row account_info_form_part">
+
+                <!-- Owner ACCOUNT Information -->
+                <!-- explanation panel - explain info requested/reason -->
+
+                <div class="col-md-9 panel-group">
+                    <div class="panel our_panel_01">
+
+                        <a data-toggle="collapse" href="#collapse_02">
+                            <div class="panel-heading our_panel_heading">
+                                <div class="panel-title our_panel_title">
+                                    <p>
+                                        <span class="glyphicon glyphicon-resize-vertical"
+                                              style="padding-right: 18px;">
+                                        </span>
+                                        Your account information...
+                                        <i> (click to toggle details)</i>
+                                    </p>
+                                </div><!-- end 'our_panel_title' div -->
+                            </div><!-- end 'our_panel_heading' div -->
+                        </a>
+
+                        <div id="collapse_02" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>
+                                    This information is your private Petopia account
+                                    information..... it will <b>not</b> go on your profile.
+                                </p>
+                                <p>
+                                    When you choose a Pet Care Provider and arrange services
+                                    with them -- only then will Petopia share your contact
+                                    and access information with that Provider, so that they
+                                    can fulfill your Pet Care needs.
+                                </p>
+                                <p>
+                                    Your payment information will only be shared with 
+                                    our payment service when you authorize payment for 
+                                    the service(s) your Pet Care Provider did.
+                                </p>
+                                <p>
+                                    We recommend keeping communication about a pet and 
+                                    it's care within Petopia, using our Private 
+                                    Messaging and/or Check-In features.  <br />
+                                    <br />
+                                    This way there will be a neat record all in one place
+                                    of what takes place with your Pet's care, which will 
+                                    make future care of your Pet go more smoothly, 
+                                    whether it be with the same Provider or a different 
+                                    one.   [=
+                                </p>
+                            </div>
+                        </div>
+
+                    </div><!-- end 'panel'\'our_panel_01' divs -->
+                </div><!-- end 'panel-group' div -->
+            </div><!-- end row two + 'account_info_form_part' -->
+
+
+
+            <!-------------------------------------------------------------------------->
+            <!-- submit button -->
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <input type="submit" value="Create!"
+                               class="btn btn-default our_buttons" />
+                    </div>
+                </div>
+            </div>
+            <!-------------------------------------------------------------------------->
+        </div><!-- end 'form-horizontal' div -->
+    } 
+    <!-- end 'using (Html.BeginForm())' -->
+
+
+    <div class="row" style="margin-bottom: 36px;">
+        <div class="col-sm-9"></div>
+        <div class="col-sm-2 back_to_choose">
+            @Html.ActionLink("Back to Choose Role", "ChooseRole", "Account")
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+
+    <!---------------------------------------------------------------------------------->
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    <!---------------------------------------------------------------------------------->
+</body>

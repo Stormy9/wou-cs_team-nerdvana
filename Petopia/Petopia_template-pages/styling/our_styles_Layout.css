@@ -1,0 +1,256 @@
+/*========================== CONTAINERS =============================*/
+.outer_container {
+    padding: 5px;
+}
+/*============================= ROWS ================================*/
+.our_row_one {
+    margin-top: 5px;
+    padding: 5px;
+    border: 2px solid black;
+    color: whitesmoke;
+    font-weight: bold;
+    background-color: darkslategray;
+}
+.our_row_two {
+    padding: 5px;
+    border: 2px solid orange;
+    background-color: rgb(255, 198, 77);
+}
+.our_row_three {
+    padding: 5px;
+    border: 1px solid green;
+    color: green;
+    background-color: lightgreen;
+}
+/*============================== COLUMNS ============================*/
+.our_col_one {
+    padding: 9px;
+    border: 2px solid blue;
+    background-color: lightblue;
+}
+.our_col_two {
+    padding: 9px;
+    border: 1px solid black;
+    background-color: gray;
+}
+.our_col_three {
+    padding: 9px;
+    border: 2px solid blue;
+    background-color: lightblue;
+}
+.our_col_four {
+    padding: 9px;
+    border: 2px solid green;
+    background-color: lightgreen;
+}
+/*====================== PET OWNER || PROVIDER ======================*/
+.owner_provider_box {
+    /* text-align: center; */
+    font-weight: bold;
+    color: purple;
+}
+/*========================== PROFILE PIC ============================*/
+.profile_pic_box_box {
+    border: 2px solid blue;
+}
+.profile_pic_box {
+    width: 96%;
+    height: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.profile_img {
+    width: 99%;
+    height: auto;
+}
+/*===================== PROFILE PIC CAPTION ==========================*/
+.profile_pic_caption_box {
+    width: 96%;
+    margin-top: 0;
+    margin-right: 2px;
+    margin-bottom: 9px;
+    margin-left: 2px;
+}
+.profile_pic_caption {
+    padding-top: 0;
+    padding-right: 3px;
+    padding-bottom: 9px;
+    padding-left: 3px;
+}
+/*========================= PET BADGES ===============================*/
+.pet_badge_box {
+    border: 2px solid purple;
+    background-color: lightpink;
+    width: 96%;
+    height: 45px;
+    padding: 3px;
+    margin-bottom: 9px;
+}
+.pet_badge {
+    float: left;
+    width: 36px;
+    height: 36px;
+}
+/*======================== OUR BUTTONS ==============================*/
+.button_box {
+    border: 2px solid blue;
+    background-color: lightseagreen;
+    width: 96%;
+    height: 90px;
+    padding: 3px;
+}
+.our_buttons {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: darkgray;
+    color: whitesmoke;
+    font-weight: bold;
+    float: left;
+    margin-left: 3px;
+    margin-top: 3px;
+}
+/*========================= USER NAME ===============================*/
+.user_name_box {
+    border: 1px solid red;
+    background-color: pink;
+    width: 96%;
+    font-weight: bold;
+    padding: 5px;
+}
+/*===================== GENERAL LOCATION ============================*/
+.general_location_box {
+    width: 96%;
+    margin: 2px;
+    padding: 3px;
+}
+.general_location {
+    font-weight: bold;
+}
+/*======================== USER RATING ==============================*/
+.user_rating_box {
+    border: 1px solid blue;
+    background-color: lightsteelblue;
+    width: 96%;
+    height: 36px;
+    padding: 3px;
+    margin-bottom: 18px;
+}
+/* individual stars */
+.user_rating_star {
+    width: 27px;
+    height: 27px;
+    float: left;
+    margin-left: 1px;
+}
+/* star bar */
+.user_rating_star_bar {
+    width: auto;
+    height: 27px;
+    float: left;
+    margin-left: 1px;
+}
+/*======================= USER BIO ETC ==============================*/
+.user_bio_box {
+    border: 2px solid black;
+    background-color: lightgray;
+    width: 99%;
+    margin-top: 5px;
+    padding: 15px;
+}
+/*============= SEARCH \ NEAR YOU \ PREVIEW CARDS ===================*/
+.auto_search_results_box_box {
+    border: 1px solid darkolivegreen;
+    background-color: olive;
+    padding: 9px;
+    height: 100%;
+}
+.auto_search_results_box {
+    border: 1px solid black;
+    background-color: darkkhaki;
+    /* this will add scrollbars only if\when necessary */
+    overflow: auto;
+    /* Note: overflow property only works for block elements w/specified height */
+    height: 630px; 
+}
+.search_result_card {
+    border: 1px solid blueviolet;
+    background-color: violet;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    width: 99%;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+.search_result_card:hover {
+    box-shadow: 0 9px 15px 0 rgba(0,0,0,0.3);
+}
+.search_result_card_img {
+    min-width: 70%;
+    max-width: 96%;
+    height: auto;
+    margin-top: 3px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+.search_result_card_info {
+    padding: 3px 15px;
+}
+.search_result_card_info p {
+    margin-bottom: 1px;
+}
+/*=================== PET PROFILE PREVIEW BOX =======================*/
+.pet_profile_preview_box {
+    border: 2px solid darkblue;
+    background-color: lightblue;
+    padding: 9px;
+    overflow: auto;
+}
+.pet_profile_preview {
+    border: 2px solid darkred;
+    background-color: pink;
+    height: 145px;
+}
+.pet_profile_preview_img {
+    width: 135px;
+    height: 135px;
+    float: left;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 3px;
+    margin-right: 5px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+}
+.pet_preview_name {
+    font-weight: bold;
+}
+.pet_preview_breed {
+    font-weight: bold;
+}
+/*============================ LINKS! ===============================*/
+/* unvisited link */
+a.link {
+
+}
+/* visited link */
+a.visited {
+
+}
+/* hovered-over link */
+a.hover {
+
+}
+/* selected link */
+a.active {
+
+}
+/* remember they ^^^ gotta be in that order */
+/*===================================================================*/
+/*======================== MEDIA QUERIES ============================*/
+@media only screen and (max-width: 500px) {
+    /* so 500 & smaller/narrower */
+
+}
+/*===================================================================*/

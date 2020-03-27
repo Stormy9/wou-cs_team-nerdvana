@@ -1,0 +1,133 @@
+﻿@model Petopia.Models.CareProvider
+
+@{
+    ViewBag.Title = "I want to be a Pet Care Provider";
+}
+<!--============================= WHOLE DAMNED FORM HERE =============================-->
+<div class="container-fluid">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <h2>@ViewBag.Title!</h2>
+        <!--========================= TOP ROW FOR ACCORDIANS =========================-->
+        <div class="row" style="margin-bottom: 18px; margin-top: 0; padding-top: 0;">
+            <div class="container-fluid your_info">
+                <!-- why did we have to do another 'container-fluid'?? -->
+                <!-- to keep it from being right up on the outside edges -->
+                <!-- that was not the case in the 'About' page.....    -->
+                <!-- [Your Info] -->
+                <!------------------------- START 'PANEL GROUP' ------------------------>
+                <div class="panel-group" id="accordion_02">
+
+                    <!------------- PROFILE PANEL, w/HEADING/TITLE + BODY -------------->
+                    <div class="panel our_panel_01">
+
+                        <a data-toggle="collapse" data-parent="#accordion_02"
+                           href="#collapse_PC">
+                            <div class="panel-heading our_panel_heading">
+                                <div class="panel-title our_panel_title">
+                                    <p class="our_panel_p">
+                                        What we do with your info + why we ask for it:
+                                        <span class="glyphicon glyphicon-resize-vertical"
+                                              style="float: right;">
+                                        </span>
+                                    </p>
+                                </div><!-- end 'panel-title'\'our_panel_title' divs -->
+                            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
+                        </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
+                        <!-------------------------------------------------------------->
+                        <div class="panel-collapse collapse" id="collapse_PC">
+                            <div class="panel-body"> <!-- CREATE PET CARER FORM -->
+                                <p>
+                                    This is for you to desribe your Pet Care Experience 
+                                    -- like a mini resume.   
+                                </p>
+                                <p>
+                                    Tell about the types of Pets you're experienced in 
+                                    caring for -- species, breeds, ages, sizes ... along 
+                                    with the types of care you can do.
+                                </p>
+                                <p>
+                                    This will show on your profile page so that Pet 
+                                    Owners who are considering hiring you can see just 
+                                    where your expertise is!
+                                </p>
+                            </div><!-- end 'panel-body' div -->
+                        </div><!-- end 'panel'\'panel-collapse' div + '#collapse_PI' id -->
+                    </div><!-- end 'panel'/our_panel_01' div -->
+                    <!---->
+                    <!--==============================================================-->
+                </div><!-- end 'panel-group' div + '#accordian_02' id -->
+            </div><!-- END + 'your_info' + 'container-fluid' div -->
+        </div><!-- END ROW ONE!-->
+        <!---->
+        <!---->
+        <!--=========================== SECOND \ MIDDLE ROW ==========================-->
+        <!--============================ FIRST\LEFT COLUMN ===========================-->
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+
+                <!------------------------- PET CARER EXPERIENCE  ---------------------->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ExperienceDetails,
+                                        htmlAttributes: new { @class = "control-label" })
+
+                    @Html.TextAreaFor(model => model.ExperienceDetails,
+                         new { htmlAttributes =
+                         new { @class = "form-control our_text_area" }, cols=90, rows=9,
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                    <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
+
+                    @Html.ValidationMessageFor(model => model.ExperienceDetails, "", new { @class = "text-danger" })
+                </div>
+                <!-------------------------------------------------------------------------->
+            </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
+            <!---->
+            <!---->
+            <!--=========================== SECOND\MIDDLE COLUMN =====================-->
+            <div class="col-sm-4 col-md-4">
+
+                <!-- EMPTY FOR NOW \ BUT RESERVED! -->
+
+            </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
+            <!---->
+            <!---->
+            <!--============================ THIRD\RIGHT COLUMN ======================-->
+            <div class="col-sm-4 col-md-4">
+
+                <!--============================= BUTTON =============================-->
+                <div class="form-group" style="margin-top: 90px;">
+                    <div>
+                        <input type="submit" value="Sign me up as a Pet Carer!"
+                               class="btn our_buttons" />
+                    </div>
+
+                </div>
+                <!---------------------------------------------------------------------->
+            </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
+            <!---->
+            <!---->
+        </div><!-- END 1st ROW! -->
+        <!-- the user shouldn't be messing with this!!   =]   -->
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.AverageRating, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AverageRating, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AverageRating, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+    </div><!-- END FORM DIV! -->
+    }
+</div><!-- END CONTAINER-FLUID DIV -->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

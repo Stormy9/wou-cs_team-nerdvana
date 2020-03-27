@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Petopia.Models;
+using System.Configuration;
 
 namespace Petopia
 {
@@ -58,11 +59,15 @@ namespace Petopia
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+
+            var ID = ConfigurationManager.AppSettings["googleClientID"];
+            var Secret = ConfigurationManager.AppSettings["googleClientSecret"];
+
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = ConfigurationManager.AppSettings["googleClientID"],
+                ClientSecret = ConfigurationManager.AppSettings["googleClientSecret"]
+            });
         }
     }
 }

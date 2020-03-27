@@ -1,4 +1,4 @@
-﻿/* came with this stuff */
+﻿/*==================== came with this stuff in this first part=========================*/
 body {
     padding-top: 50px;
     padding-bottom: 20px;
@@ -24,9 +24,11 @@ textarea {
     max-width: 280px;
 }
 /*=====================================================================================*/
-/* our custom classes */
+/*                                our custom classes                                  */
+/*===================================================================================*/
 
-/* trying out the video 'hero' image thing -- courtesy coverr */
+/*============================= front/splash/home VIDEO ===============================*/
+/* trying out the video 'hero' video+image thing -- courtesy coverr */
 .homepage-hero-module {
     border-right: none;
     border-left: none;
@@ -63,6 +65,12 @@ textarea {
         z-index: 100;
         position: absolute;
         background: rgba(0, 0, 0, 0.4);
+        
+    /* not sure why we get the black back when mid-resize..... */
+    .video-container .filter {
+        z-index: 100;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.2);
         width: 100%;
     }
 
@@ -75,40 +83,489 @@ textarea {
         .video-container video.fillWidth {
             width: 100%;
         }
-/*-------------------------------------------------------------------*/
+/*============================ splash/front/home OVERLAY ==============================*/
 .splash_overlay {
     position: fixed;
     top: 0;
-    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    background: rgba(57, 38, 19, .45);
     color: #f1f1f1;
     width: 100%;
     padding: 20px;
     padding-top: 45px;
     padding-left: 18px;
 }
-/*=====================================================================================*/
 
-.navbar-brand {
+.splash_subtitle {
+    margin-left: 23px;
+}
+
+.splash_search {
+    margin-top: 18px;
+    margin-left: 45px;
+    /* for testing */
+    /*border: 1px solid red;*/
+}
+
+/* TODO -- figure out why the width on this isn't widening! */
+.splash_search_input {
+    width: 50%;
+    padding: 9px;
     font-size: 18px;
 }
 
+.splash_intro_box {
+    text-align: center;
+    width: 100%;
+    height: 45%;
+    /* testing purposes */
+    /*border: 1px solid orange;*/
+}
+
+.splash_intro {
+    position: absolute;
+    display: inline-block;
+    /*bottom: 180px;*/
+    bottom: 18%;
+    text-align: left;
+    font-size: 18px;
+    /* was trying to get placement right on a regular screen   */
+    /* but forgot about phones etc. aka responsiveness   [=   */
+    margin-left: -250px;
+    padding-left: 45px;
+    /* for testing */
+    /*border: 1px solid green;*/
+}
+/*=================================== ABOUT PAGE ======================================*/
+.about_hero {
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
+                        rgba(57, 38, 19, 0.63)), 
+                        url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+    color: #f2e6d9;
+    height: 120vh; /* this is SO much better! */
+    /* this is to center 'about_title' */
+    text-align: center;
+}
+
+.about_title {
+    position: absolute;
+    display: inline-block;
+    bottom: 30%;    /* this is SO much better! */
+    text-align: left;
+    /* okay so it must be centering to the actual photo? */
+    margin-left: -300px;
+    /* left edge of text gets cut off when narrow */
+    padding-left: 45px;
+}
+
+.about_content {
+    color: #261a0d;
+    font-size: 18px;
+    padding: 27px;
+    padding-bottom: 45px;
+}
+
+.any_questions {
+    width: 180px;
+    background-color: #604020;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    color: #f2e6d9;
+    font-size: 18px;
+    text-align: center;
+}
+/*=============================== CONTACT PAGE ========================================*/
+.contact_hero {
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
+                    rgba(57, 38, 19, 0.63)), 
+                    url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+    color: #f2e6d9;
+    height: 120vh;
+}
+
+.contact_title {
+    position: absolute;
+    display: inline-block;
+    bottom: 30%;
+    text-align: left;
+}
+
+.contact_content {
+    color: #261a0d;
+    font-size: 18px;
+    padding-top: 18px;
+    padding-left: 18px;
+}
+
+.email_text {
+    color: #990000;
+    font-weight: bold;
+}
+
+.contact_bottom_stuff {
+    margin-top: 45px;
+    margin-bottom: 45px;
+    padding-left: 18px;
+}
+
+.email_button {
+    width: 180px;
+    background-color: #392613;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    color: #f2e6d9;
+    font-size: 18px;
+    text-align: center;
+}
+/*=============================== REGISTER PAGE =======================================*/
+.register_hero {
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
+                        rgba(57, 38, 19, 0.63)), 
+                        url("https://stormy9.github.io/nerdvana/guineaPig_register.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+    color: #f2f2f2;
+    height: 100%;
+}
+
+.register_title {
+    position: absolute;
+    display: inline-block;
+    bottom: 45px;
+    text-align: left;
+}
+
+.password_rules {
+    width: 35%;
+    border: 1px solid black;
+    border-radius: 11px;
+    font-size: 18px;
+    padding: 18px;
+    margin-top: 36px;
+    margin-left: 45px;
+}
+
+.our_recaptcha {
+    margin-bottom: 9px;
+}
+/*================================= LOGIN PAGE ========================================*/
+.login_hero {
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
+                        rgba(57, 38, 19, 0.63)), 
+                        url("https://stormy9.github.io/nerdvana/parakeet_login.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    position: relative;
+    color: #f2f2f2;
+    height: 100%;
+}
+
+.login_title {
+    position: absolute;
+    display: inline-block;
+    bottom: 45px;
+    text-align: left;
+}
+/*============================ FORGOT PASSWORD PAGE ===================================*/
+.forgotPass_hero {
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
+                        rgba(57, 38, 19, 0.63)), 
+                  url("https://stormy9.github.io/nerdvana/curious-dog_lost-password.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    position: relative;
+    color: #f2f2f2;
+    height: 100%;
+}
+.forgotPass_title {
+    margin-bottom: 18px;
+}
+/*============================== CHOOSE ROLE PAGE =====================================*/
+.chooseRole_hero {
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
+                        rgba(57, 38, 19, 0.63)), 
+                      url("https://stormy9.github.io/nerdvana/happy_doggie_choose.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    position: relative;
+    color: #f2f2f2;
+    height: 100%;
+}
+
+.pick_buttons {
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    text-align: center;
+    background-color: #392613;
+    color: #f2e6d9;
+}
+/*========================== USER ACCOUNT/PROFILE FORM PAGES ==========================*/
+.profile_info_form_part {
+    margin-bottom: 63px;
+}
+.account_info_form_part {
+    margin-top: 9px;
+    margin-bottom: 45px;
+}
+.form-control {
+    margin-bottom: 15px;
+}
+.back_to_choose {
+    background-color: #392613;
+    color: #f2e6d9;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    text-align: center;
+}
+/*================================== GENERAL FEATURES =================================*/
 body {
-    background-color: #ffffb3;
+    background-color: #996633;
+    color: #f2e6d9;
 }
 
-.splash_content {
-    margin-left: 18px;
-    margin-right: 18px;
+p {
+    padding-bottom: 5px;
 }
 
+.text-danger {
+
+}
+/*====================================== LISTS ========================================*/
+li {
+    padding-bottom: 13px;
+}
+/*====================================== NAVBAR =======================================*/
+.our_navbar {
+    background-color: #392613;
+    height: 42px;
+    color: #f2e6d9;
+}
+
+.navbar-brand {
+    font-size: 18px;
+    color: #f2e6d9;
+}
+
+.our_nav_links {
+    color: #f2e6d9;
+}
+
+.nav.li.a {
+    color: #f2e6d9;
+}
+/* NOTHING WILL CHANGE THE TEXT/LINK COLORS!!!!! */
+/*================================== FOOTER\BOTTOM STUFF ==============================*/
 .our_foot {
     position: fixed;
     width: 100%;
+    height: 23px;
+    /* this is so f'ing hacky to get vertical centering..... */
+    line-height: 5px;
+    /*-----^^^^^-----*/
     left: 0;
     bottom: 0;
-    background-color: lightgray;
+    background-color: #dfbf9f;
+    /* matching top & bottom padding also helps w/vertical centering of text */
     padding-top: 9px;
+    padding-bottom: 9px;
     padding-left: 18px;
     font-size: 11px;
-    color: #333333;
+    color: #261a0d;
 }
+/*================================== HEADINGS & DIVIDERS ==============================*/
+h1, h2, h3, h4, h5 {
+    font-weight: bold;
+}
+
+hr {
+    height: 1px;
+    color: black;
+    background-color: black;
+    border: none;
+    /* who knew there was a bottom margin -- at least so big?? */
+    margin-bottom: 0px;
+}
+/*==================================== PSEUDO-BUTTONS =================================*/
+.our_buttons {
+    background-color: #392613;
+    color: #f2e6d9;
+    border: 1px solid #4d3319;
+}
+/*==================================== PANELS/COLLAPSE ================================*/
+.panel-group {
+
+}
+.our_panel_01 {
+    background-color: #392613;
+    color: #f2e6d9;
+}
+.our_panel_heading {
+    /* setting color here leaves outline of color above */
+    background-color: #604020;
+}
+.our_panel_title {
+}
+.our_panel_p {
+    margin-bottom: 0px;
+}
+/*===================================== LINKS! ========================================*/
+/* unvisited link */
+a:link {
+    color: #f2e6d9;
+    font-weight: bold;
+    text-decoration: none;
+}
+/* visited link */
+a:visited {
+    color: #f2e6d9;
+    font-weight: bold;
+    text-decoration: none;
+}
+/* mouse over link */
+a:hover {
+    color: #ff4d4d;
+    font-weight: bold;
+    text-decoration: none;
+}
+/* selected link */
+a:active {
+    color: #ff4d4d;
+    font-weight: bold;
+    text-decoration: none;
+}
+/*=====================================================================================*/
+
+/*                                 MEDIA QUERIES!                                      */
+
+/*=====================================================================================*/
+/* responsive stuff for the couple of spots that need that                             */
+/* the 'natural' positioning of the stuff low on the hero image on the front & about   */
+/* pages was weird on normal-size screens -- fixing that made it look outright stupid  */
+/* on phone-sized screens... and the fix took away the normal BootStrap responsive     */
+/* crap.....  so here we go -- hopefully the best of both worlds here.....      [=     */
+/*=====================================================================================*/
+
+/*================================= 'TYPICAL' PHONES ==================================*/
+@media only screen and (max-width: 500px) {
+    /* so 500px wide and moreThan 400px wide */
+    h1 {
+        font-size: 18px;
+    }
+    h3 {
+        font-size: 17px;
+    }
+    h4 {
+        font-size: 15px;
+    }
+    /****************************** SPLASH max-width: 500px ****************************/
+    .splash_intro {
+        padding-left: 90px;
+        font-size: 16px;
+    }
+    /************************* ABOUT + CONTACT max-width: 500px ************************/
+    .about_title {
+        padding-left: 135px;
+    }
+    .about_content, .contact_content {
+        font-size: 13px;
+    }
+    /*********************** REGISTER max-width: 500px *********************************/
+    .password_rules {
+        width: 90%;
+        font-size: 14px;
+        margin-left: 18px;
+    }
+}
+/*=====================================================================================*/
+
+
+
+/*============================== OLD &/OR SKINNY PHONES ===============================*/
+/* media Query for really old/skinny phones like iPhone 5/SE.....                      */
+@media only screen and (max-width: 400px) {
+    /* so 400px wide and narrower */
+    h1 {
+        font-size: 18px;
+    }
+    h3 {
+        font-size: 17px;
+    }
+    h4 {
+        font-size: 15px;
+    }
+    /*************************** SPLASH max-width: 400px *******************************/
+    .splash_intro {
+        text-align: left;
+        padding-left: 108px;
+        font-size: 15px;
+    }
+    /************************ ABOUT + CONTACT max-width: 400px *************************/
+    .about_title {
+        padding-left: 153px;
+    }
+    .about_content, .contact_content {
+        font-size: 13px;
+    }
+    /************************** REGISTER max-width: 400px ******************************/
+    .password_rules {
+        width: 90%;
+        font-size: 13px;
+        margin-top: 18px;
+        margin-left: 18px;
+    }
+}
+/*=====================================================================================*/
+
+
+
+/*================================== HEIGHT ===========================================*/
+
+/*============================= FOR SIDEWAYS PHONES ===================================*/
+@media only screen and (max-height: 425px) { /* so 425px and shorter */
+    h1 {
+        font-size: 18px;
+    }
+    h3 {
+        font-size: 17px;
+    }
+    h4 {
+        font-size: 15px;
+    }
+    /********************** ABOUT + CONTACT max-height: 425px **************************/
+    .about_content, .contact_content {
+        font-size: 13px;
+    }
+}
+/*=====================================================================================*/
+
+
+/*=====================================================================================*/
+/* how about for the *really* big screens a lot of people have on their desks now?    */
+/*                                                                                  */
+@media only screen and (min-height: 1100px) { /* so 1100px and taller */
+    /* might we want larger font? */
+}
+/*=====================================================================================*/

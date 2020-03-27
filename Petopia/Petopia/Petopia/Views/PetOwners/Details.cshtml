@@ -1,0 +1,50 @@
+﻿@model Petopia.Models.PetOwner
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PetOwner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AverageRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AverageRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NeedsDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NeedsDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccessInstructions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccessInstructions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PetOwnerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

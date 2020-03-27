@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Validation;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -8,7 +9,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Petopia.DAL;
 using Petopia.Models;
+using reCAPTCHA.MVC;
 
 namespace Petopia.Controllers
 {
@@ -17,6 +20,7 @@ namespace Petopia.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private PetopiaContext pdb = new PetopiaContext();
 
         public AccountController()
         {
@@ -59,6 +63,7 @@ namespace Petopia.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
+
         }
 
         //
@@ -76,6 +81,7 @@ namespace Petopia.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
             switch (result)
             {
                 case SignInStatus.Success:
@@ -146,30 +152,57 @@ namespace Petopia.Controllers
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
+        [CaptchaValidator]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
+                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    string id = User.Identity.GetUserId();
+                   
+
+                    return RedirectToAction("Create", "PetopiaUsers");
                 }
                 AddErrors(result);
             }
+            return View(model);
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+        }
+      
+        public ActionResult ChooseRole()
+        {
+            return View();
+        }
+
+        public ActionResult OwnerInfoForm()
+        {
+            return View();
+        }
+
+        public ActionResult ProviderInfoForm()
+        {
+            return View();
+        }
+
+        public ActionResult BothInfoForm()
+        {
+            return View();
         }
 
         //

@@ -1,9 +1,55 @@
 ﻿@model System.Web.Mvc.HandleErrorInfo
 
 @{
-    ViewBag.Title = "Error";
+    ViewBag.Title = "Oops!";
 }
+<head>
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+    <style>
+        body {
+            background-image: url("https://stormy9.github.io/nerdvana/404_cat_v.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: right center;
+            background-size: cover;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .four-oh-four_overlay {
+            position: fixed;
+            top: 0;
+            background: rgba(0, 0, 0, 0.45);
+            color: #f1f1f1;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            padding-top: 45px;
+            padding-left: 18px;
+        }
+
+        .four-oh-four_content {
+            padding-left: 18px;
+            padding-top: 18px;
+            color: #e6e6e6;
+        }
+    </style>
+
+</head>
+<!--==================================================================================-->
+<body>
+
+    <div class="four-oh-four_overlay">
+        <div class="four-oh-four_content">
+            <h1>Oops!</h1>
+            <h2>
+                how did we get here?
+                <br>
+                better go back where you came from.....
+            </h2>
+            <h3><i>(404 Page Not Found)</i></h3>
+            <h3><i>(this is 'Error.cshtml' from 'Shared' folder in our project)</i></h3>
+        </div>
+    </div>
+
+</body>
 

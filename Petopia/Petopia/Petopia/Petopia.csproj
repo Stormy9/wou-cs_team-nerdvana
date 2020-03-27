@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -94,9 +94,14 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="reCAPTCHA.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\reCAPTCH.MVC.1.0.1\lib\net45\reCAPTCHA.MVC.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -174,22 +179,57 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CareProvidersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OwnersController.cs" />
+    <Compile Include="Controllers\PetopiaUsersController.cs" />
+    <Compile Include="Controllers\PetOwnersController.cs" />
+    <Compile Include="Controllers\PetsController.cs" />
+    <Compile Include="Controllers\ProfilePageController.cs" />
+    <Compile Include="Controllers\ProvidersController.cs" />
+    <Compile Include="DAL\CareProvider.cs" />
+    <Compile Include="DAL\Pet.cs" />
+    <Compile Include="DAL\PetopiaContext.cs" />
+    <Compile Include="DAL\PetopiaUser.cs" />
+    <Compile Include="DAL\PetOwner.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CareProvider.cs" />
+    <Compile Include="DAL\CareProviderContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Owner.cs" />
+    <Compile Include="DAL\OwnerContext.cs" />
+    <Compile Include="Models\Pet.cs" />
+    <Compile Include="DAL\PetContext.cs" />
+    <Compile Include="Models\PetopiaUser.cs" />
+    <Compile Include="DAL\PetopiaUserContext.cs" />
+    <Compile Include="Models\PetOwner.cs" />
+    <Compile Include="DAL\PetOwnerContext.cs" />
+    <Compile Include="Models\Provider.cs" />
+    <Compile Include="DAL\ProviderContext.cs" />
+    <Compile Include="Models\ViewModels\ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <Content Include="App_Data\down.sql" />
+    <Content Include="App_Data\up.sql" />
+    <Content Include="App_Data\userDown.sql" />
+    <Content Include="App_Data\userSeed.sql" />
+    <Content Include="App_Data\usersUp.sql" />
+>>>>>>> dev
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Profile_Styling.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -213,6 +253,11 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Views\Templates\PetCarer_Profile_Template.html" />
+    <Content Include="Views\Templates\PetOwner_Profile_Template.html" />
+    <Content Include="Views\Templates\Pet_Profile_Template.html" />
+    <Content Include="Web_deploy.config" />
+    <None Include="Properties\PublishProfiles\petopia-dev - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -340,9 +385,46 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Account\ChooseRole.cshtml" />
+    <Content Include="Views\Account\OwnerInfoForm.cshtml" />
+    <Content Include="Views\Account\ProviderInfoForm.cshtml" />
+    <Content Include="Views\Account\BothInfoForm.cshtml" />
+    <Content Include="Views\Owners\CreateOwner.cshtml" />
+    <Content Include="Views\Owners\Delete.cshtml" />
+    <Content Include="Views\Owners\ProfileOwner.cshtml" />
+    <Content Include="Views\Owners\Edit.cshtml" />
+    <Content Include="Views\Owners\Index.cshtml" />
+    <Content Include="Views\Providers\CreateProvider.cshtml" />
+    <Content Include="Views\Providers\Delete.cshtml" />
+    <Content Include="Views\Providers\ProfileProvider.cshtml" />
+    <Content Include="Views\Providers\Edit.cshtml" />
+    <Content Include="Views\Providers\Index.cshtml" />
+    <Content Include="Views\PetopiaUsers\Create.cshtml" />
+    <Content Include="Views\PetopiaUsers\Delete.cshtml" />
+    <Content Include="Views\PetopiaUsers\Details.cshtml" />
+    <Content Include="Views\PetopiaUsers\Edit.cshtml" />
+    <Content Include="Views\PetopiaUsers\Index.cshtml" />
+    <Content Include="Views\PetOwners\Create.cshtml" />
+    <Content Include="Views\PetOwners\Delete.cshtml" />
+    <Content Include="Views\PetOwners\Details.cshtml" />
+    <Content Include="Views\PetOwners\Edit.cshtml" />
+    <Content Include="Views\PetOwners\Index.cshtml" />
+    <Content Include="Views\CareProviders\Create.cshtml" />
+    <Content Include="Views\CareProviders\Delete.cshtml" />
+    <Content Include="Views\CareProviders\Details.cshtml" />
+    <Content Include="Views\CareProviders\Edit.cshtml" />
+    <Content Include="Views\CareProviders\Index.cshtml" />
+    <Content Include="Views\ProfilePage\Index.cshtml" />
+    <Content Include="Views\ProfilePage\Edit.cshtml" />
+    <Content Include="Views\Pets\Create.cshtml" />
+    <Content Include="Views\Pets\Delete.cshtml" />
+    <Content Include="Views\Pets\Details.cshtml" />
+    <Content Include="Views\Pets\Edit.cshtml" />
+    <Content Include="Views\Pets\Index.cshtml" />
+    <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

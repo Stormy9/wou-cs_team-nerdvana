@@ -9,6 +9,7 @@
 
 
         @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/Profile_Styling.css")
         @Scripts.Render("~/bundles/modernizr")
 
     </head>
@@ -18,27 +19,35 @@
     <body>
 
         <!------------------------------------------------------------------------------>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse navbar-fixed-top our_navbar">
 
             <div class="container-fluid"><!-- this puts navbar content on left edge! -->
 
                 <div class="navbar-header">
 
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" 
+                            data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
 
                     @Html.ActionLink("Petopia!", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Petopia!", "Index", "Home", new { area = "" }, 
+                                                        new { @class = "navbar-brand" })
 
                 </div>
 
 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("What We Do", "About", "Home")</li>
                         <li>@Html.ActionLink("Have Questions?", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("What We Do", "About", new { controller = "Home" }, 
+                                                new { @class = "our_nav_links" })</li>
+                        <li>@Html.ActionLink("Have Questions or Concerns?", "Contact", new { controller = "Home" }, 
+                                                    new { @class = "our_nav_links" })</li>
+                        <li>@Html.ActionLink("Profile", "Index", new { controller = "ProfilePage" },
+                                                    new { @class = "our_nav_links" })</li>
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
@@ -47,7 +56,7 @@
             </div><!-- end container -->
         </div><!-- end navbar -->
 
-
+        <!--==========================================================================-->
 
         <div>
             <!-- took out class="container body-content" so video would span 100% -->
@@ -64,7 +73,7 @@
 
         </div><!-- end div for body content -->
 
-
+        <!--==========================================================================-->
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
