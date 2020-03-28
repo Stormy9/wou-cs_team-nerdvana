@@ -23,6 +23,9 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+
 /*=====================================================================================*/
 /*                                our custom classes                                  */
 /*===================================================================================*/
@@ -38,11 +41,13 @@ textarea {
 .no-video .video-container video,
 .touch .video-container video {
     display: none;
+    /*width: 100%;*/
 }
 
 .no-video .video-container .poster,
 .touch .video-container .poster {
     display: block !important;
+    /*width: 100%;*/
 }
 
 .video-container {
@@ -55,29 +60,46 @@ textarea {
     background: #000;
 }
 
-    .video-container .poster img {
-        width: 100%;
-        bottom: 0;
-        position: absolute;
-    }
+.video-container .poster img {
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    /* just trying something */
+    /* about stupid-ass height on some devices w/the 'color bar' */
+    height: 100%;
+}
 
-    /* not sure why we get the black back when mid-resize..... */
-    .video-container .filter {
-        z-index: 100;
-        position: absolute;
-        background: rgba(0, 0, 0, 0.2);
-        width: 100%;
-    }
+/* not sure why we get the black back when mid-resize..... *//* (across top) */
+.video-container .filter {
+    z-index: 100;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    /* just trying something */
+    /* about stupid-ass height on some devices w/the 'color bar' */
+    height: 100%;
+}
 
-    .video-container video {
-        position: absolute;
-        z-index: 0;
-        bottom: 0;
-    }
+.video-container video {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+}
 
-        .video-container video.fillWidth {
-            width: 100%;
-        }
+.video-container video.fillWidth {
+    width: 100%;
+    /* just trying something */
+    /* about stupid-ass height on some devices w/the 'color bar' */
+    /*height: 120%;*/
+    /* works for the bigger (wider) screens as i was going for */
+    /* but then screwy on like iPads & Kindles & shit -- so put in MQ */
+}
+/* OMFG -- whatever i said/thought before about CSS being the "easy" part */
+/* fucking *forget* it when it comes to the fucking phones..... hahaha!  */
+
+/* WHY IS THE DOGGIE SO FUCKING SKINNY ON VERTICAL PHONES?! */
+
+
 /*============================ splash/front/home OVERLAY ==============================*/
 .splash_overlay {
     position: fixed;
@@ -355,7 +377,9 @@ li {
 /*====================================== NAVBAR =======================================*/
 .our_navbar {
     background-color: #392613;
-    height: 42px;
+    /* THIS is what was making the 'collapse menu' all screwy on vertical phones! */
+    /* but looks hideous in full size -- so MQ it to a min-width */
+    /*height: 42px;*/
     color: #f2e6d9;
 }
 
@@ -451,6 +475,9 @@ a:active {
     font-weight: bold;
     text-decoration: none;
 }
+
+
+
 /*=====================================================================================*/
 
 /*                                 MEDIA QUERIES!                                      */
@@ -463,6 +490,7 @@ a:active {
 /* crap.....  so here we go -- hopefully the best of both worlds here.....      [=     */
 /*=====================================================================================*/
 
+/*=====================================================================================*/
 /*================================= 'TYPICAL' PHONES ==================================*/
 @media only screen and (max-width: 500px) {
     /* so 500px wide and moreThan 400px wide */
@@ -498,6 +526,7 @@ a:active {
 
 
 
+/*=====================================================================================*/
 /*============================== OLD &/OR SKINNY PHONES ===============================*/
 /* media Query for really old/skinny phones like iPhone 5/SE.....                      */
 @media only screen and (max-width: 400px) {
@@ -535,7 +564,18 @@ a:active {
 /*=====================================================================================*/
 
 
+/*=====================================================================================*/
+/*============================== stupid navbar shit ===================================*/
+@media only screen and (min-width: 769px) {
+    /* */
+    .our_navbar {
+        height: 42px;
+    }
+}
 
+
+
+/*=====================================================================================*/
 /*================================== HEIGHT ===========================================*/
 
 /*============================= FOR SIDEWAYS PHONES ===================================*/
@@ -543,9 +583,11 @@ a:active {
     h1 {
         font-size: 18px;
     }
+
     h3 {
         font-size: 17px;
     }
+
     h4 {
         font-size: 15px;
     }
@@ -562,5 +604,16 @@ a:active {
 /*                                                                                  */
 @media only screen and (min-height: 1100px) { /* so 1100px and taller */
     /* might we want larger font? */
+}
+
+@media only screen and (min-width: 1100px) {
+    .video-container video.fillWidth {
+        width: 100%;
+        /* just trying something */
+        /* about stupid-ass height on some devices w/the 'color bar' */
+        height: 120%;
+        /* works for the bigger (wider) screens as i was going for */
+        /* but then screwy on like iPads & Kindles & shit -- so put it in a MQ */
+    }
 }
 /*=====================================================================================*/
