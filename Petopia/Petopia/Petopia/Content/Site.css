@@ -41,13 +41,13 @@ textarea {
 .no-video .video-container video,
 .touch .video-container video {
     display: none;
-    /*width: 100%;*/
+    width: 100%;
 }
 
 .no-video .video-container .poster,
 .touch .video-container .poster {
     display: block !important;
-    /*width: 100%;*/
+    width: 100%;
 }
 
 .video-container {
