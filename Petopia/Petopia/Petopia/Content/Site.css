@@ -86,7 +86,7 @@ textarea {
     bottom: 0;
 }
 
-.video-container video.fillWidth {
+.video-container video .fillWidth {
     width: 100%;
     /* just trying something */
     /* about stupid-ass height on some devices w/the 'color bar' */
@@ -98,6 +98,8 @@ textarea {
 /* fucking *forget* it when it comes to the fucking phones..... hahaha!  */
 
 /* WHY IS THE DOGGIE SO FUCKING SKINNY ON VERTICAL PHONES?! */
+/* which is the poster not the video */
+/* AND -- it only does sometimes.  other times it looks right.  wtf??? */
 
 
 /*============================ splash/front/home OVERLAY ==============================*/
@@ -329,7 +331,7 @@ textarea {
     color: #f2f2f2;
     height: 100%;
 }
-
+/*-------------------- moved .pick_buttons' to 'PSEUDO-BUTTONS' section ---------------*/
 .pick_buttons {
     border: 1px solid #4d3319;
     border-radius: 9px;
@@ -339,6 +341,7 @@ textarea {
     color: #f2e6d9;
 }
 /*========================== USER ACCOUNT/PROFILE FORM PAGES ==========================*/
+/*----- Owners/CreateOwner... Providers/CreateProvider... Pets/CreatePet -------------*/
 .profile_info_form_part {
     margin-bottom: 63px;
 }
@@ -349,6 +352,7 @@ textarea {
 .form-control {
     margin-bottom: 15px;
 }
+/* (not on the "CreatePet" one, just Owner & Provider) */
 .back_to_choose {
     background-color: #392613;
     color: #f2e6d9;
@@ -433,6 +437,11 @@ hr {
     color: #f2e6d9;
     border: 1px solid #4d3319;
 }
+/*--------------------------- MOVE IN THE OTHER PSEUDO-BUTTONS ------------------------*/
+/*----------- ABOUT PAGE --------------------------------------------------------------*/
+/*----------- CONTACT PAGE ------------------------------------------------------------*/
+/* ---------- CHOOSE ROLE PAGE --------------------------------------------------------*/
+
 /*==================================== PANELS/COLLAPSE ================================*/
 .panel-group {
 
@@ -566,7 +575,7 @@ a:active {
 
 /*=====================================================================================*/
 /*============================== stupid navbar shit ===================================*/
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 768px) {
     /* */
     .our_navbar {
         height: 42px;
