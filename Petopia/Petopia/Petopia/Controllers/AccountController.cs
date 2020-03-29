@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Petopia.DAL;
 using Petopia.Models;
+using Petopia.Models.ViewModels;
 using reCAPTCHA.MVC;
 
 namespace Petopia.Controllers
