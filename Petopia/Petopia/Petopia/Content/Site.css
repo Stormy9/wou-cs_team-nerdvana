@@ -342,7 +342,7 @@ textarea {
 }
 /*========================== USER ACCOUNT/PROFILE FORM PAGES ==========================*/
 /*----- Owners/CreateOwner... Providers/CreateProvider... Pets/CreatePet -------------*/
-.profile_info_form_part {
+/*.profile_info_form_part {
     margin-bottom: 63px;
 }
 .account_info_form_part {
@@ -351,7 +351,8 @@ textarea {
 }
 .form-control {
     margin-bottom: 15px;
-}
+}*/
+/*  ^^^--- don't think we're using this anymore ---------*/
 /* (not on the "CreatePet" one, just Owner & Provider) */
 .back_to_choose {
     background-color: #392613;
