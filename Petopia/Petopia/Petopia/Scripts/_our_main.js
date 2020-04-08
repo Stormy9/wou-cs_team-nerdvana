@@ -61,15 +61,35 @@ function scaleBannerVideoSize(element) {
 }
 
 //Implementation of text area character counter.
-var text_max = 200;
-$('#count_message').html('0 / ' + text_max);
+var text_max = 999;
+// TEXT AREA ONE
+$('#count_message_01').html('0 / ' + text_max);
 
-$('#text').keyup(function () {
-    var text_length = $('#text').val().length;
+$('#text01').keyup(function () {
+    var text_length = $('#text01').val().length;
     var text_remaining = text_max - text_length;
 
-    $('#count_message').html(text_length + ' / ' + text_max);
+    $('#count_message_01').html(text_length + ' / ' + text_max);
 });
+//---------------------------------------------------------------------------------------
+// TEXT AREA TWO
+$('#count_message_02').html('0 / ' + text_max);
 
+$('#text02').keyup(function () {
+    var text_length = $('#text02').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_02').html(text_length + ' / ' + text_max);
+});
+//---------------------------------------------------------------------------------------
+// TEXT AREA THREE
+$('#count_message_03').html('0 / ' + text_max);
+
+$('#text03').keyup(function () {
+    var text_length = $('#text03').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_03').html(text_length + ' / ' + text_max);
+});
 
 //=======================================================================================
