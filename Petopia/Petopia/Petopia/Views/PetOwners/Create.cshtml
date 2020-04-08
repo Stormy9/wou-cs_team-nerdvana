@@ -100,8 +100,12 @@
                     <br />
                     @Html.TextAreaFor(model => model.NeedsDetails,
                          new { htmlAttributes =
-                         new { @class = "form-control our_text_area" }, cols=72, rows=5,
-                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                         new { @class = "form-control our_text_area"}, cols=72, rows=5, id = "text", name = "text",
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"})
+                    <span class="pull-right label label-default" id="count_message"></span>
+
+                    <!--Above is the rough implementation of a text area character counter. As of 4/7 the placement of counter is not inside the text area.-->
+                    
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
                     @Html.ValidationMessageFor(model => model.NeedsDetails, "",
@@ -164,4 +168,5 @@
 <!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/_our_main.js")
 }
