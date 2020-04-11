@@ -32,6 +32,8 @@
                 Click\toggle a section and find out more.....
             </p>
         </div><!-- end 1st row + 'about_for' -->
+        <!---->
+        <!---->
         <!--==========================================================================-->
         <!--============================= ROW TWO ====================================-->
         <div class="row panel-group" id="accordion_01">
@@ -82,6 +84,8 @@
                     </div><!-- end 'panel-body' div -->
                 </div><!-- end 'panel-collapse'/'collapse' div + 'collapse_01' id-->
             </div><!-- end 'panel'\'our_panel_01' divs [do you need someone to?] -->
+            <!---->
+            <!---->
             <!--======================================================================-->
             <!-- [how it works\pet owners] -->
             <div class="panel our_panel_01">
@@ -273,13 +277,25 @@
                             <!--======================================================-->
                         </ul>
 
+                        <!-- who knew it would be one of the most annoying things ever,
+                     to link to a section of another page w/Razor --
+                     and who remembered those were called "fragments"??           -->
+                        <!-- while irrationally annoyed, i decided it was better as-is -->
+                        <!-- but then HAD to try one last time.....                       -->
+                        <!-- holy freaking geezus it worked! -->
+                        <!-- "to do this w/Html.ActionLink, you gotta use the overload    -->
+                        <!--  that accepts all possible overloads"                     -->
                         <div class="any_questions">
-                            @Html.ActionLink("Any Questions?", "Contact", "Home")
+                            @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                                null, "petopia_service_question-comment", null, null)
                         </div>
+
                     </div><!-- end 'panel-body' div -->
                 </div><!-- end 'panel-collapse'\'panel' div's + '#collapse_02' id -->
             </div><!-- end 'panel'\'our_panel_01' divs + [how it works\pet owners] -->
-            <!--==========================================================================-->
+            <!--======================================================================-->
+            <!---->
+            <!---->
             <!-- [ how it works\pet carers == Pet Care Providers ] -->
             <div class="panel our_panel_01">
 
@@ -489,13 +505,16 @@
                         </ul>
 
                         <div class="any_questions">
-                            @Html.ActionLink("Any Questions?", "Contact", "Home")
+                            @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                                null, "petopia_service_question-comment", null, null)
                         </div>
 
                     </div><!-- end 'panel-body' div -->
                 </div><!-- end 'panel-collapse'\'collapse' divs + '#collapse_03' id -->
             </div><!-- end 'panel'\'our_panel_01' div + [wanna be PCP?] -->
             <!--======================================================================-->
+            <!---->
+            <!---->
             <!-- [communication: PO\PCP] -->
             <div class="panel our_panel_01">
 
@@ -537,13 +556,16 @@
                         </p>
 
                         <div class="any_questions">
-                            @Html.ActionLink("Any Questions?", "Contact", "Home")
+                            @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                                null, "petopia_service_question-comment", null, null)
                         </div>
 
                     </div><!-- end 'panel-body' div -->
                 </div><!-- end 'panel-collapse'/'collapse' div + '#collapse_01' id-->
             </div><!-- end 'panel'\'our_panel_01' divs + [communication: PO\PCP] -->
         </div><!-- END ROW TWO *AND* 'panel-group' div *AND* '#Accordian_01' id -->
+        <!---->
+        <!---->
         <!--==========================================================================-->
         <!--============================== ROW THREE =================================-->
         <div class="row">
@@ -552,6 +574,8 @@
             </h3>
             <br />
         </div><!-- END ROW THREE -->
+        <!---->
+        <!---->
         <!--==========================================================================-->
         <!--============================== ROW FOUR ==================================-->
         <!-- [Your Info] -->
@@ -595,12 +619,15 @@
                             </p>
 
                             <div class="any_questions">
-                                @Html.ActionLink("Any Questions?", "Contact", "Home")
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                                    null, "petopia_service_question-comment", null, null)
                             </div>
 
                         </div><!-- end 'panel-body' div -->
                     </div><!-- end 'panel'\'panel-collapse' div + '#collapse_PI' id -->
                 </div><!-- end 'panel'/our_panel_01' div -->
+                <!---->
+                <!---->
                 <!--==================================================================-->
                 <div class="panel our_panel_01">
 
@@ -643,7 +670,8 @@
                             </p>
 
                             <div class="any_questions">
-                                @Html.ActionLink("Any Questions?", "Contact", "Home")
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                                    null, "petopia_service_question-comment", null, null)
                             </div>
 
                         </div><!-- end 'panel-body' div -->
@@ -652,6 +680,8 @@
             </div><!-- end 'panel-group' div + '#accordian_02' id -->
         </div><!-- END ROW FOUR *AND* 'panel-group' div + 'your_info' div -->
         <br />
+        <!---->
+        <!---->
         <!--==========================================================================-->
         <!--============================= ROW FIVE ===================================-->
         <div class="row appropriate_rules">
@@ -706,6 +736,8 @@
                                     Likewise, no promotion of animals "at stud" or such
                                     things, either... we are not a dating site, for pets
                                     or people!   [=
+                                    <br /><br />
+                                    In fact, just don't sell *anything*, please!
                                     <br /><br /><br />
                                 </li>
                                 <li>
@@ -721,7 +753,8 @@
                             </p>
 
                             <div class="any_questions">
-                                @Html.ActionLink("Any Questions?", "Contact", "Home")
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                                    null, "inappropriate", null, null)
                             </div>
 
                         </div><!-- end 'panel-body' div -->
@@ -730,7 +763,8 @@
             </div><!-- end 'panel-group' class and 'accordian_04' id -->
         </div><!-- end 'row' + 'appropriate_rules' classes -->
         <br />
-        <!--==========================================================================-->
+        <!---->
+        <!---->
         <!--==========================================================================-->
         <!--============================== ROW SIX ===================================-->
         <div class="row user_disputes">
@@ -788,7 +822,8 @@
                         <!-------------------------------------------------------------->
 
                         <div class="any_questions">
-                            @Html.ActionLink("Any Questions?", "Contact", "Home")
+                            @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                                null, "dispute_resolution", null, null)
                         </div>
 
                         </div><!-- end 'panel-body' div -->
@@ -798,8 +833,8 @@
         </div><!-- end 'row' + 'appropriate_rules' classes -->
         <br />
         <!--==========================================================================-->
-
-
+        <!---->
+        <!---->
         <!--==========================================================================-->
         <!--============================= ROW SEVEN ==================================-->
 
@@ -875,9 +910,10 @@
                     <div class="panel-collapse collapse" id="collapse_CM">
                         <div class="panel-body">
                             <p>
-                                Professional unprofessional, Scrum Lord, recovering procraistinator, and avid coder. Currently working towards
-                                my bachelors in Computer Science. I am tackling this big project with my wonderful group members
-                                Joey and Tricia!
+                                Professional unprofessional, Scrum Lord, recovering 
+                                procraistinator, and avid coder. Currently working towards
+                                my bachelors in Computer Science.  I am tackling this big 
+                                project with my wonderful group members Joey and Tricia!
                             </p>
                         </div><!-- end 'panel-body' div -->
                     </div><!--end 'panel-collapse'\'collapse' div + '#collapse_CM' id -->
@@ -919,6 +955,11 @@
                 you like?  what could be better? are there any new features you'd like to
                 see us figure out to make things more fun?
             </p>
+
+            <div class="any_questions">
+                @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                    null, "team_nerdvana", null, null)
+            </div>
         </div><!-- END ROW FIVE *AND* 'panel-group' + 'about_team' div -->
         <!--==========================================================================-->
     </div><!-- end 'about_content' div -->
