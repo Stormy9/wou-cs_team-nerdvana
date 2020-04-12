@@ -134,17 +134,22 @@ namespace Petopia.Controllers
                 currentUser.ResCity = model.ResCity;
                 currentUser.ResState = model.ResState;
                 currentUser.ResZipcode = model.ResZipcode;
+
+                //Need to put the bools back into the model just in case we have to return
+                model.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsOwner).First();
+                model.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsProvider).First();
                 //save PetopiaUser into db
                 if (model.UserProfilePicture != null)
                 {
                     if (model.UserProfilePicture.ContentLength > (4 * 1024 * 1024))
                     {
                         ModelState.AddModelError("CustomError", "Image can not be lager than 4MB.");
-                        return View();
+                        return View(model);
                     }
                     if (!(model.UserProfilePicture.ContentType == "image/jpeg"))
                     {
                         ModelState.AddModelError("CustomError", "Image must be in jpeg format.");
+                        return View(model);
                     }
                     byte[] data = new byte[model.UserProfilePicture.ContentLength];
                     model.UserProfilePicture.InputStream.Read(data, 0, model.UserProfilePicture.ContentLength);
