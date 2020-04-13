@@ -1,136 +1,136 @@
 ﻿@model Petopia.Models.CareTransaction
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Cancel this Care Appointment";
 }
 
-<h2>Delete</h2>
+<h2>ViewBag.Title</h2>
+<hr />
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>CareTransaction</h4>
-    <hr />
+
+<h3>Are you sure you want to cancel/delete this?</h3>
+<div>    
+
+    <!--==============================================================================-->
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TransactionDate)
+            @Html.DisplayNameFor(model => model.StartDate)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.TransactionDate)
+            @Html.DisplayFor(model => model.StartDate)
         </dd>
+
+        <!------------------------------------------------------------------------------>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <!--==========================================================================-->
 
         <dt>
             @Html.DisplayNameFor(model => model.StartTime)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.StartTime)
         </dd>
 
+        <!------------------------------------------------------------------------------>
+
         <dt>
             @Html.DisplayNameFor(model => model.EndTime)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.EndTime)
         </dd>
 
+        <!--==========================================================================-->
+
         <dt>
             @Html.DisplayNameFor(model => model.CareProvided)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.CareProvided)
         </dd>
 
+        <!------------------------------------------------------------------------------>
+
         <dt>
             @Html.DisplayNameFor(model => model.CareReport)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.CareReport)
         </dd>
 
+        <!--==========================================================================-->
+
         <dt>
             @Html.DisplayNameFor(model => model.Charge)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Charge)
         </dd>
 
+        <!------------------------------------------------------------------------------>
+
         <dt>
             @Html.DisplayNameFor(model => model.Tip)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Tip)
         </dd>
 
+        <!--==========================================================================-->
+
         <dt>
             @Html.DisplayNameFor(model => model.PC_Rating)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.PC_Rating)
         </dd>
 
+        <!------------------------------------------------------------------------------>
+
         <dt>
             @Html.DisplayNameFor(model => model.PC_Comments)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.PC_Comments)
         </dd>
 
+        <!--==========================================================================-->
+
         <dt>
             @Html.DisplayNameFor(model => model.PO_Rating)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.PO_Rating)
         </dd>
 
+        <!------------------------------------------------------------------------------>
+
         <dt>
             @Html.DisplayNameFor(model => model.PO_Comments)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.PO_Comments)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PetOwnerID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PetOwnerID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CareProviderID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CareProviderID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PetID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PetID)
-        </dd>
+        <!--==========================================================================-->
 
     </dl>
+    <!--==============================================================================-->
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Cancel" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
+    <!--==============================================================================-->
 </div>
