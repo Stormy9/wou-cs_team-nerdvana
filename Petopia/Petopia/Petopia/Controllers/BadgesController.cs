@@ -32,7 +32,7 @@ namespace Petopia.Controllers
                 db.UserBadges.Add(UserBadge);
                 db.SaveChanges();
 
-                return RedirectToAction("ChooseRole", "Account");
+                return RedirectToAction("Index", "ProfilePage");
             }
 
             return View(UserBadge);
@@ -43,7 +43,8 @@ namespace Petopia.Controllers
         {
             string id = User.Identity.GetUserId();
             int currentUserID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id).Select(x => x.UserID).First();
-            DAL.UserBadge UserBadges = db.UserBadges.Find(currentUserID);
+            int badgeUserID = db.UserBadges.Where(x => x.UserID == currentUserID).Select(x => x.UserBadgeID).First();
+            DAL.UserBadge UserBadges = db.UserBadges.Find(badgeUserID);
             if (UserBadges == null)
             {
                 return HttpNotFound();
@@ -56,11 +57,15 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(DAL.UserBadge userBadges)
         {
+            string id = User.Identity.GetUserId();
+            userBadges.UserID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id).Select(x => x.UserID).First();
+            userBadges.UserBadgeID = db.UserBadges.Where(x => x.UserID == userBadges.UserID).Select(x => x.UserBadgeID).First();
+
             if (ModelState.IsValid)
             {
                 db.Entry(userBadges).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "ProfilePage");
             }
             return View(userBadges);
         }
