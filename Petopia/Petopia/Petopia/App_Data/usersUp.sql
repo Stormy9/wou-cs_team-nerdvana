@@ -1,7 +1,8 @@
-﻿
+﻿/*   woo-hoo!   */
+/*-------------------------------------------------------------------------------------*/
 CREATE TABLE [dbo].[PetopiaUsers] (
-	
 	[UserID] INT IDENTITY (1,1) NOT NULL, 
+
 	[UserName] NVARCHAR(120),
 	[Password] NVARCHAR(50),
 	[FirstName] NVARCHAR(50) NOT NULL,
@@ -17,22 +18,29 @@ CREATE TABLE [dbo].[PetopiaUsers] (
 	[ResState] NVARCHAR(50) NOT NULL,
 	[ResZipcode] NVARCHAR(24) NOT NULL,
 	[ProfilePhoto] VARBINARY(MAX),
-	CONSTRAINT[PK_dbo.PetopiaUsers] PRIMARY KEY CLUSTERED([UserID] ASC)
 
+	CONSTRAINT[PK_dbo.PetopiaUsers] PRIMARY KEY CLUSTERED([UserID] ASC)
 );
 
+/*-------------------------------------------------------------------------------------*/
 CREATE TABLE [dbo].[PetOwner] (
 	[PetOwnerID] INT IDENTITY (1,1) NOT NULL,
+
 	[AverageRating] NVARCHAR(120),
 	[NeedsDetails] NVARCHAR(MAX) NOT NULL,
 	[AccessInstructions] NVARCHAR(MAX) NOT NULL,
+
 	[UserID] INT,
+
 	CONSTRAINT[PK_dbo.PetOwner] PRIMARY KEY CLUSTERED([PetOwnerID] ASC),
+
 	CONSTRAINT[FK_dbo.PetopiaUsersOwner] FOREIGN KEY([UserID]) REFERENCES [dbo].[PetopiaUsers]([UserID])
 );
 
+/*-------------------------------------------------------------------------------------*/
 CREATE TABLE [dbo].[Pet] (
 	[PetID] INT IDENTITY (1,1) NOT NULL,
+
 	[PetName] NVARCHAR(24) NOT NULL, 
 	[Species] NVARCHAR(24) NOT NULL,
 	[Breed] NVARCHAR(24),
@@ -47,34 +55,82 @@ CREATE TABLE [dbo].[Pet] (
 	[EmergencyContactPhone] NVARCHAR(12),
 	[NeedsDetails] NVARCHAR(MAX),
 	[AccessInstructions] NVARCHAR(MAX),
+
 	[PetOwnerID] INT,
+
 	CONSTRAINT[PK_dbo.Pet] PRIMARY KEY CLUSTERED([PetID] ASC),
+
 	CONSTRAINT[FK_dbo.PetOwner] FOREIGN KEY([PetOwnerID]) REFERENCES [dbo].[PetOwner]([PetOwnerID])
 );
 
+/*-------------------------------------------------------------------------------------*/
 CREATE TABLE [dbo].[CareProvider] (
 	[CareProviderID] INT IDENTITY (1,1) NOT NULL,
+
 	[AverageRating] NVARCHAR(120),
 	[ExperienceDetails] NVARCHAR(MAX) NOT NULL,
+
 	[UserID] INT,
+
 	CONSTRAINT[PK_dbo.CareProvider] PRIMARY KEY CLUSTERED([CareProviderID] ASC),
+
 	CONSTRAINT[FK_dbo.PetopiaUsersProvider] FOREIGN KEY([UserID]) REFERENCES [dbo].[PetopiaUsers]
 );
 
+/*-------------------------------------------------------------------------------------*/
 CREATE TABLE [dbo].[UserBadge] (
 	[UserBadgeID] INT IDENTITY (1,1) NOT NULL,
+
 	[DogOwner] BIT,
 	[DogProvider] BIT,
 	[CatOwner] BIT,
 	[CatProvider] BIT,
 	[BirdOwner] BIT,
 	[BirdProvider] BIT,
+
 	[UserID] INT,
+
 	CONSTRAINT[PK_dbo.UserBadge] PRIMARY KEY CLUSTERED([UserBadgeID] ASC),
+
 	CONSTRAINT[FK_dbo.PetopiaUsersBadges] FOREIGN KEY([UserID]) REFERENCES [dbo].[PetopiaUsers]
 );
 
+/*-------------------------------------------------------------------------------------*/
+/* who knew 'Transaction' was a reserved word?                                        */
+/* i could make a table called that, but querying was a 'no' unless you did [ ]      */
+/* so to save pain in the ass for queries i changed the name as you see here   =]   */
+CREATE TABLE [dbo].[CareTransaction] (
+	[TransactionID] INT IDENTITY (1,1) NOT NULL,
 
+	[TransactionDate] DATE NOT NULL,
+	[StartTime] TIME NOT NULL,
+	[EndTime] TIME NOT NULL,
+	[CareProvided] NVARCHAR(90),
+	[CareReport] NVARCHAR(MAX),
+	[Charge] MONEY,
+	[Tip] MONEY,
+	[PC_Rating] INT,
+	[PC_Comments] NVARCHAR(MAX),
+	[PO_Rating] INT,
+	[PO_Comments] NVARCHAR(MAX),
+
+	[PetOwnerID] INT NOT NULL,
+	[CareProviderID] INT NOT NULL,
+	[PetID] INT NOT NULL,
+
+	CONSTRAINT[PK_dbo.Transaction] PRIMARY KEY CLUSTERED([TransactionID] ASC),
+
+	CONSTRAINT[FK_dbo.Transaction_PetOwner] FOREIGN KEY([PetOwnerID])
+											REFERENCES [dbo].[PetOwner],
+	CONSTRAINT[FK_dbo.Transaction_CareProvider] FOREIGN KEY([CareProviderID]) 
+												REFERENCES [dbo].[CareProvider],
+	CONSTRAINT[FK_dbo.Transaction_Pet] FOREIGN KEY([PetID]) REFERENCES [dbo].[Pet]
+);
+
+
+
+/*=====================================================================================*/
+/* from first go at everything -- here for posterity   =]   */
 /*
 CREATE TABLE [dbo].[Owner] (
 	[OwnerID] NVARCHAR(120) NOT NULL,
