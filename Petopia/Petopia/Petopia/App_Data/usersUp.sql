@@ -99,10 +99,12 @@ CREATE TABLE [dbo].[UserBadge] (
 /* who knew 'Transaction' was a reserved word?                                        */
 /* i could make a table called that, but querying was a 'no' unless you did [ ]      */
 /* so to save pain in the ass for queries i changed the name as you see here   =]   */
+/* did ALTER TABLE to change 'TransactionDate' to 'StartDate'; add 'EndDate'       */
 CREATE TABLE [dbo].[CareTransaction] (
 	[TransactionID] INT IDENTITY (1,1) NOT NULL,
 
-	[TransactionDate] DATE NOT NULL,
+	[StartDate] DATE NOT NULL,
+	[EndDate] DATE NOT NULL,
 	[StartTime] TIME NOT NULL,
 	[EndTime] TIME NOT NULL,
 	[CareProvided] NVARCHAR(90),

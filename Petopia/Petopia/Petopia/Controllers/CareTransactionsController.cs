@@ -14,12 +14,14 @@ namespace Petopia.Controllers
     {
         private CareTransactionsContext db = new CareTransactionsContext();
 
+        //===============================================================================
         // GET: CareTransactions
         public ActionResult Index()
         {
             return View(db.CareTransactions.ToList());
         }
 
+        //===============================================================================
         // GET: CareTransactions/Details/5
         public ActionResult Details(int? id)
         {
@@ -27,37 +29,43 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             CareTransaction careTransaction = db.CareTransactions.Find(id);
+
             if (careTransaction == null)
             {
                 return HttpNotFound();
             }
+
             return View(careTransaction);
         }
 
+        //===============================================================================
         // GET: CareTransactions/Create
         public ActionResult Create()
         {
             return View();
         }
-
+        //-------------------------------------------------------------------------------
         // POST: CareTransactions/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you
+        // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TransactionID,TransactionDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID")] CareTransaction careTransaction)
+        public ActionResult Create([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID")] CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
                 db.CareTransactions.Add(careTransaction);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
             return View(careTransaction);
         }
 
+        //===============================================================================
         // GET: CareTransactions/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -65,30 +73,36 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             CareTransaction careTransaction = db.CareTransactions.Find(id);
+
             if (careTransaction == null)
             {
                 return HttpNotFound();
             }
+
             return View(careTransaction);
         }
-
+        //-------------------------------------------------------------------------------
         // POST: CareTransactions/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you
+        // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TransactionID,TransactionDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID")] CareTransaction careTransaction)
+        public ActionResult Edit([Bind(Include = "TransactionID,StartDate,EndDateStartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID")] CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(careTransaction).State = EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
+
             return View(careTransaction);
         }
 
+        //===============================================================================
         // GET: CareTransactions/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -96,14 +110,17 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             CareTransaction careTransaction = db.CareTransactions.Find(id);
+
             if (careTransaction == null)
             {
                 return HttpNotFound();
             }
+
             return View(careTransaction);
         }
-
+        //-------------------------------------------------------------------------------
         // POST: CareTransactions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -112,9 +129,10 @@ namespace Petopia.Controllers
             CareTransaction careTransaction = db.CareTransactions.Find(id);
             db.CareTransactions.Remove(careTransaction);
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
-
+        //-------------------------------------------------------------------------------
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -123,5 +141,6 @@ namespace Petopia.Controllers
             }
             base.Dispose(disposing);
         }
+        //===============================================================================
     }
 }
