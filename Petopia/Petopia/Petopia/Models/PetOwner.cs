@@ -31,6 +31,7 @@ namespace Petopia.Models
 
 
         //===============================================================================
+        // FOREIGN KEY
         public int? UserID { get; set; }
     }
 }

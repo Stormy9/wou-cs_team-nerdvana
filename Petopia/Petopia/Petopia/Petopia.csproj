@@ -189,6 +189,7 @@
     <Compile Include="Controllers\PetOwnersController.cs" />
     <Compile Include="Controllers\PetsController.cs" />
     <Compile Include="Controllers\ProfilePageController.cs" />
+    <Compile Include="DAL\CareProvider.cs" />
     <Compile Include="DAL\Pet.cs" />
     <Compile Include="DAL\PetopiaContext.cs" />
     <Compile Include="DAL\PetopiaUser.cs" />

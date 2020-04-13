@@ -43,6 +43,8 @@ namespace Petopia.Controllers
             petopiaUser.ResAddress02 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResAddress02).First();
             petopiaUser.ResCity = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResCity).First();
             petopiaUser.ResZipcode = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResZipcode).First();
+
+
             petopiaUser.ProfilePhoto = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ProfilePhoto).First();
 
             //We might not have these so we want to see if we get a result back before populating...
@@ -57,17 +59,18 @@ namespace Petopia.Controllers
                 petopiaUser.NeedsDetails = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.NeedsDetails).First();
                 petopiaUser.AccessInstructions = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.AccessInstructions).First();
             }
+
             //Tests to make getting pets easier
             if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
             {
                 int ownerID = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.PetOwnerID).First();
                 petopiaUser.PetList = db.Pets.Where(x => x.PetOwnerID == ownerID).Select(n => new PetInfo
-                                                                                {
-                                                                                    PetName = n.PetName,
-                                                                                    Species = n.Species,
-                                                                                    Gender = n.Gender,
-                                                                                    PetID = n.PetID
-                                                                                }).ToList();
+                    {
+                        PetName = n.PetName,
+                        Species = n.Species,
+                        Gender = n.Gender,
+                        PetID = n.PetID
+                    }).ToList();
             }
 
             //Check if badges exist and put in ViewBag.
