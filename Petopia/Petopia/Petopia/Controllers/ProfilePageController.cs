@@ -71,7 +71,6 @@ namespace Petopia.Controllers
             }
 
             //Check if badges exist and put in ViewBag.
-            //DAL.UserBadge UserBadges = db.UserBadges.Find(loggedID);
             DAL.UserBadge UserBadges = db.UserBadges.Where(x => x.UserID == loggedID).FirstOrDefault();
             if (UserBadges == null)
             {
@@ -80,7 +79,12 @@ namespace Petopia.Controllers
             else
             {
                 ViewBag.Badges = true;
-                //insert badge stuff into viewmodel here when time comes.
+                ViewBag.DogOwner = UserBadges.DogOwner;
+                ViewBag.DogProvider = UserBadges.DogProvider;
+                ViewBag.CatOwner = UserBadges.CatOwner;
+                ViewBag.CatProvider = UserBadges.CatProvider;
+                ViewBag.BirdOwner = UserBadges.BirdOwner;
+                ViewBag.BirdProvider = UserBadges.BirdProvider;
             }
 
 

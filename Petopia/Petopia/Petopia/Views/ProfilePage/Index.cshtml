@@ -76,7 +76,36 @@
                     {
                         <p>You have not set up badges yet. Press @Html.ActionLink("Here", "Create", new { controller = "Badges" }) to set them up.</p>
                     }
-
+                    @if (ViewBag.DogOwner == true)
+                    {
+                        <img src="https://stormy9.github.io/nerdvana/badge_dog.PNG"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.DogProvider == true)
+                    {
+                        <img src="https://stormy9.github.io/nerdvana/badge_dog.PNG"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.CatOwner == true)
+                    {
+                        <img src="https://stormy9.github.io/nerdvana/badge_cat.PNG"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.CatProvider == true)
+                    {
+                        <img src="https://stormy9.github.io/nerdvana/badge_cat.PNG"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.BirdOwner == true)
+                    {
+                        <img src="https://stormy9.github.io/nerdvana/badge_bunny.PNG"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.BirdProvider == true)
+                    {
+                        <img src="https://stormy9.github.io/nerdvana/badge_bunny.PNG"
+                             class="pet_badge">
+                    }
                     <!--
                     <img src="https://stormy9.github.io/nerdvana/badge_dog.PNG"
                          class="pet_badge">
