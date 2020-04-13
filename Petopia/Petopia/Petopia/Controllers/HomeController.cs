@@ -37,7 +37,9 @@ namespace Petopia.Controllers
         public ActionResult Contact()
         {
             ViewBag.Title = "Contact Petopia";
-            ViewBag.Message_PS = "Have a question about services, or need to report a service issue?";
+            ViewBag.Message_PS = "Have a question about services, or need help resolving" +
+                                                    " a service issue?";
+            ViewBag.Message_PR = "Did you find inappropriate content you would like to report?";
             ViewBag.Message_PT = "Need to report or get help with a technical issue on our site?";
 
             return View();

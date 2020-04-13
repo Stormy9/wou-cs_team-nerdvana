@@ -29,6 +29,12 @@ namespace Petopia
                 roleManager.Create(role2);
             }
 
+            if (!roleManager.RoleExists("Admin"))
+            {
+                var role3 = new IdentityRole();
+                role3.Name = "Admin";
+                roleManager.Create(role3);
+            }
         }
 
         public void Configuration(IAppBuilder app)

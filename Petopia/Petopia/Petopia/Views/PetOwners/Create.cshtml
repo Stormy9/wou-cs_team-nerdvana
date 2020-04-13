@@ -1,7 +1,7 @@
 ﻿@model Petopia.Models.PetOwner
 
 @{
-    ViewBag.Title = "I'm a Pet Owner.....";
+    ViewBag.Title = "I'm a Pet Owner!";
 }
 <!--============================= WHOLE DAMNED FORM HERE =============================-->
 <div class="container-fluid">
@@ -100,8 +100,17 @@
                     <br />
                     @Html.TextAreaFor(model => model.NeedsDetails,
                          new { htmlAttributes =
-                         new { @class = "form-control our_text_area" }, cols=72, rows=5,z
-                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                         new { @class = "form-control our_text_area"}, 
+                             cols=90, rows=5, id = "text01", name = "text01",
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"})
+
+                    <div>
+                        <span class="pull-left label label-default" id="count_message_01"></span>
+                    </div>
+
+                    <!--Above is the rough implementation of a text area character counter. 
+                        As of 4/7 the placement of counter is not inside the text area.  -->
+                    
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
                     @Html.ValidationMessageFor(model => model.NeedsDetails, "",
@@ -121,8 +130,14 @@
                     <br />
                     @Html.TextAreaFor(model => model.AccessInstructions,
                          new { htmlAttributes =
-                         new { @class = "form-control our_text_area" }, cols=72, rows=5,
-                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                         new { @class = "form-control our_text_area"}, 
+                             cols=90, rows=5, id = "text02", name = "text02",
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"})
+
+                    <div>
+                        <span class="pull-left label label-default" id="count_message_02"></span>
+                    </div>
+
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
                     @Html.ValidationMessageFor(model => model.AccessInstructions, "",
@@ -164,4 +179,5 @@
 <!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/_our_main.js")
 }

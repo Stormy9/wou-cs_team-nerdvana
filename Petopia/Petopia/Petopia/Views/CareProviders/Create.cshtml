@@ -81,7 +81,12 @@
                     @Html.TextAreaFor(model => model.ExperienceDetails,
                          new { htmlAttributes =
                          new { @class = "form-control our_text_area" }, cols=90, rows=9,
+                         id = "text03", name = "text03",
                          style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+
+                    <div>
+                        <span class="pull-left label label-default" id="count_message_03"></span>
+                    </div>
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
                     @Html.ValidationMessageFor(model => model.ExperienceDetails, "", new { @class = "text-danger" })
@@ -130,4 +135,5 @@
 <!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/_our_main.js")
 }
