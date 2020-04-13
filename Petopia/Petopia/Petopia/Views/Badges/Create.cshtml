@@ -1,0 +1,78 @@
+﻿@model Petopia.DAL.UserBadge
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="container-fluid">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.DogOwner,
+                                htmlAttributes: new { @class = "control-label" })
+                @Html.CheckBoxFor(model => model.DogOwner, new { @checked = "checked" });
+
+                @Html.ValidationMessageFor(model => model.DogOwner, "",
+                                                    new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DogProvider,
+                                htmlAttributes: new { @class = "control-label" })
+                @Html.CheckBoxFor(model => model.DogProvider, new { @checked = "checked" });
+
+                @Html.ValidationMessageFor(model => model.DogProvider, "",
+                                                    new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CatOwner,
+                                htmlAttributes: new { @class = "control-label" })
+                @Html.CheckBoxFor(model => model.CatOwner, new { @checked = "checked" });
+
+                @Html.ValidationMessageFor(model => model.CatOwner, "",
+                                                    new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CatProvider,
+                                htmlAttributes: new { @class = "control-label" })
+                @Html.CheckBoxFor(model => model.CatProvider, new { @checked = "checked" });
+
+                @Html.ValidationMessageFor(model => model.CatProvider, "",
+                                                    new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.BirdProvider,
+                                htmlAttributes: new { @class = "control-label" })
+                @Html.CheckBoxFor(model => model.BirdProvider, new { @checked = "checked" });
+
+                @Html.ValidationMessageFor(model => model.BirdProvider, "",
+                                                    new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.BirdOwner,
+                                htmlAttributes: new { @class = "control-label" })
+                @Html.CheckBoxFor(model => model.BirdOwner, new { @checked = "checked" });
+
+                @Html.ValidationMessageFor(model => model.BirdOwner, "",
+                                                    new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group" style="margin-top: 90px;">
+                <div>
+                    <input type="submit" value="Add these badges!"
+                           class="btn our_buttons" />
+                </div>
+            </div>
+
+        </div><!-- END FORM DIV -->
+    }
+    <!--==============================================================================-->
+</div><!-- END CONTAINER-FLUID DIV! -->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

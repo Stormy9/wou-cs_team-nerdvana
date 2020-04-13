@@ -17,6 +17,7 @@ namespace Petopia.DAL
         public virtual DbSet<Pet> Pets { get; set; }
         public virtual DbSet<PetopiaUser> PetopiaUsers { get; set; }
         public virtual DbSet<PetOwner> PetOwners { get; set; }
+        public virtual DbSet<UserBadge> UserBadges { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

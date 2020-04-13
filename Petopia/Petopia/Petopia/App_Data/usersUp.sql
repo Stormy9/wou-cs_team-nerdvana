@@ -61,16 +61,18 @@ CREATE TABLE [dbo].[CareProvider] (
 	CONSTRAINT[FK_dbo.PetopiaUsersProvider] FOREIGN KEY([UserID]) REFERENCES [dbo].[PetopiaUsers]
 );
 
-
-
-
-
-
-
-
-
-
-
+CREATE TABLE [dbo].[UserBadge] (
+	[UserBadgeID] INT IDENTITY (1,1) NOT NULL,
+	[DogOwner] BIT,
+	[DogProvider] BIT,
+	[CatOwner] BIT,
+	[CatProvider] BIT,
+	[BirdOwner] BIT,
+	[BirdProvider] BIT,
+	[UserID] INT,
+	CONSTRAINT[PK_dbo.UserBadge] PRIMARY KEY CLUSTERED([UserBadgeID] ASC),
+	CONSTRAINT[FK_dbo.PetopiaUsersBadges] FOREIGN KEY([UserID]) REFERENCES [dbo].[PetopiaUsers]
+);
 
 
 /*
