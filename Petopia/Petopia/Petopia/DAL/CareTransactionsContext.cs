@@ -5,10 +5,10 @@ namespace Petopia.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class CareTransactionContext : DbContext
+    public partial class CareTransactionsContext : DbContext
     {
-        public CareTransactionContext()
-            : base("name=CareTransactionContext")
+        public CareTransactionsContext()
+            : base("name=CareTransactionsContext")
         {
         }
 

@@ -181,6 +181,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BadgesController.cs" />
     <Compile Include="Controllers\CareProvidersController.cs" />
+    <Compile Include="Controllers\CareTransactionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -197,6 +198,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CareTransaction.cs" />
+    <Compile Include="DAL\CareTransactionsContext.cs" />
     <Compile Include="Models\UserBadges.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\CareProvider.cs" />
@@ -404,9 +407,16 @@
     <Content Include="Views\Pets\Index.cshtml" />
     <Content Include="Views\Badges\Create.cshtml" />
     <Content Include="Views\Badges\Edit.cshtml" />
+    <Content Include="Views\CareTransactions\Create.cshtml" />
+    <Content Include="Views\CareTransactions\Delete.cshtml" />
+    <Content Include="Views\CareTransactions\Details.cshtml" />
+    <Content Include="Views\CareTransactions\Edit.cshtml" />
+    <Content Include="Views\CareTransactions\Index.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\Queries\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
