@@ -47,7 +47,7 @@ CREATE TABLE [dbo].[Pet] (
 	[Gender] NVARCHAR(8) NOT NULL,
 	[Altered] NVARCHAR(8),
 	[Birthdate] DATE,
-	[Weight] DATE,
+	[Weight] DATE,	-- ALTER TABLE (change data type)
 	[HealthConcerns] NVARCHAR(MAX),
 	[BehaviorConcerns] NVARCHAR(MAX),
 	[PetAccess] NVARCHAR(MAX),

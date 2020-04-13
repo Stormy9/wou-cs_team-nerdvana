@@ -25,5 +25,8 @@ namespace Petopia.Models
         public int? UserID { get; set; }
 
         //===============================================================================
+        public virtual PetopiaUser PetopiaUser { get; set; }
+
+        //===============================================================================
     }
 }
