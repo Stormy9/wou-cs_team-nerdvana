@@ -377,7 +377,7 @@
                 </div>
                 <!---------------------------------------------------------------------->
                 <!-- we want both owners & providers to be able to show off pets  =]  -->
-                @if (Model.IsOwner == true || Model.IsProvider == true)
+                @if (Model.IsOwner == true)
                 {
                     foreach (var item in Model.PetList)
                     {
@@ -387,28 +387,32 @@
                             <div class="pet_profile_preview">
                                 <!-- individual panel -->
 
-                                <a href="#">
-                                    <!-- link to pet's profile -->
-                                    <img class="pet_profile_preview_img" 
-                                         alt="pet profile pic"
-                                         src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg">
+                                <!-- link to pet's profile -->
+                                <img class="pet_profile_preview_img" 
+                                     alt="pet profile pic"
+                                     src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg">
 
-                                    <div class="pet_preview_name">
-                                        My name is: &nbsp;&nbsp;
-                                        @Html.DisplayFor(model => item.PetName)
-                                    </div>
-                                    <div class="pet_preview_breed">
-                                        @Html.DisplayFor(model => item.Species)
-                                        &nbsp; &rarr; &nbsp; Sheltie
-                                    </div>
-                                    <div class="pet_preview_breed">
-                                        I am a @Html.DisplayFor(model => item.Gender)
-                                    </div>
-                                </a>
+                                <div class="pet_preview_name">
+                                    My name is: &nbsp;&nbsp;
+                                    @Html.DisplayFor(model => item.PetName)
+                                </div>
+                                <div class="pet_preview_breed">
+                                    @Html.DisplayFor(model => item.Species)
+                                    &nbsp; &rarr; &nbsp; 
+                                    @Html.DisplayFor(model => item.Breed)
+                                </div>
+                                <div class="pet_preview_breed">
+                                    I am a @Html.DisplayFor(model => item.Gender)
+                                </div>
+                                <div class="pet_preview_breed">
+                                    My birthday is:
+                                    @Html.DisplayFor(model => item.Birthdate)
+                                </div>
 
                                 <a href="#">
                                     <!-- link to care record(s) -->
-                                    <div class="pet_preview_care_record">
+                                    <div class="pet_preview_care_record" 
+                                         style="padding-top: 5px;">
                                         link to this pet's care record
                                     </div>
                                 </a>

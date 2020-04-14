@@ -91,5 +91,104 @@ $('#text03').keyup(function () {
 
     $('#count_message_03').html(text_length + ' / ' + text_max);
 });
+//---------------------------------------------------------------------------------------
+// TEXT AREA FOUR
+$('#count_message_04').html('0 / ' + text_max);
 
+$('#text04').keyup(function () {
+    var text_length = $('#text04').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_04').html(text_length + ' / ' + text_max);
+});
+//---------------------------------------------------------------------------------------
+// TEXT AREA FIVE
+$('#count_message_05').html('0 / ' + text_max);
+
+$('#text05').keyup(function () {
+    var text_length = $('#text05').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_05').html(text_length + ' / ' + text_max);
+});
+//---------------------------------------------------------------------------------------
+// TEXT AREA SIX
+$('#count_message_06').html('0 / ' + text_max);
+
+$('#text06').keyup(function () {
+    var text_length = $('#text06').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_06').html(text_length + ' / ' + text_max);
+});
+//---------------------------------------------------------------------------------------
+// TEXT AREA SEVEN
+$('#count_message_07').html('0 / ' + text_max);
+
+$('#text07').keyup(function () {
+    var text_length = $('#text07').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_07').html(text_length + ' / ' + text_max);
+});
+//---------------------------------------------------------------------------------------
+// TEXT AREA EIGHT
+$('#count_message_08').html('0 / ' + text_max);
+
+$('#text08').keyup(function () {
+    var text_length = $('#text08').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_08').html(text_length + ' / ' + text_max);
+});
+//---------------------------------------------------------------------------------------
+// TEXT AREA NINE
+$('#count_message_09').html('0 / ' + text_max);
+
+$('#text09').keyup(function () {
+    var text_length = $('#text09').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_09').html(text_length + ' / ' + text_max);
+});
+//---------------------------------------------------------------------------------------
+// TEXT AREA TEN
+$('#count_message_10').html('0 / ' + text_max);
+
+$('#text10').keyup(function () {
+    var text_length = $('#text10').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_10').html(text_length + ' / ' + text_max);
+});
+//---------------------------------------------------------------------------------------
+// TEXT AREA ELEVEN
+$('#count_message_11').html('0 / ' + text_max);
+
+$('#text11').keyup(function () {
+    var text_length = $('#text11').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_11').html(text_length + ' / ' + text_max);
+});
+//---------------------------------------------------------------------------------------
+// TEXT AREA TWELVE
+$('#count_message_12').html('0 / ' + text_max);
+
+$('#text12').keyup(function () {
+    var text_length = $('#text12').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_12').html(text_length + ' / ' + text_max);
+});
+//---------------------------------------------------------------------------------------
+// TEXT AREA THIRTEEN
+$('#count_message_13').html('0 / ' + text_max);
+
+$('#text13').keyup(function () {
+    var text_length = $('#text13').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_13').html(text_length + ' / ' + text_max);
+});
 //=======================================================================================

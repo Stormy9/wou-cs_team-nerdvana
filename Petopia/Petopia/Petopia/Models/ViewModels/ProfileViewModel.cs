@@ -91,7 +91,9 @@ namespace Petopia.Models.ViewModels
             public int PetID { get; set; }
             public string PetName { get; set; }
             public string Species { get; set; }
+            public string Breed { get; set; }
             public string Gender { get; set; }
+            public DateTime Birthdate { get; set; }
         }
         public List<PetInfo> PetList { get; set; }
 

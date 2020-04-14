@@ -263,7 +263,7 @@
     border-radius: 5px;
     box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
     transition: 0.3s;
-    height: 145px;
+    height: 165px;
     margin-bottom: 18px;
 }
 
@@ -272,8 +272,8 @@
     }
 
 .pet_profile_preview_img {
-    width: 135px;
-    height: 135px;
+    width: 155px;
+    height: 155px;
     float: left;
     border-radius: 5px;
     margin-top: 3px;

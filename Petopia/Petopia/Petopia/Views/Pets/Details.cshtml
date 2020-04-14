@@ -13,19 +13,19 @@
             <!-- here in case we decide we want it later! -->
 
         </div><!-- END FIRST\TOP ROW -->
-        <!--==============================================================================-->
-        <!---------------------------------- SECOND/MIDDLE ROW ----------------------------->
+        <!--==========================================================================-->
+        <!-------------------------------- SECOND/MIDDLE ROW --------------------------->
         <div class="row our_row_two">
             <!---->
             <!---->
             <!-- 1st column --><!-- role\profilePic\caption -->
-            <!-- b/c of col settings, it's 2&1/2 wide --><!-- EXCEPT IT'S NOT!!  dammit.  -->
+            <!-- b/c col settings, it's 2&1/2 wide --><!-- EXCEPT IT'S NOT!! dammit -->
             <div class="col col-sm-3 col-md-3 col-lg-3 col-x-3l our_col_one">
 
 
                 <!-- 'designation'   =] -->
                 <div class="owner_provider_box">
-                    A Pet!  I am a @Html.DisplayFor(model => model.Species).
+                    A Pet!
                 </div>
 
 
@@ -56,11 +56,10 @@
                     </div>
                 </div>
 
-
                 <!-- profile pic caption -->
                 <div class="profile_pic_caption_box">
                     <div class="profile_pic_caption">
-                        caption for profile pic ^
+                        @Html.DisplayFor(model => model.PetCaption)
                     </div>
                 </div>
                 <!-- stuff goes here -->
@@ -77,6 +76,12 @@
                     <h3>
                         My Name Is:  @Html.DisplayFor(model => model.PetName)
                     </h3>
+                    <h4>
+                        I am a @Html.DisplayFor(model => model.Breed).
+                    </h4>
+                    <h4>
+                        I was born on @Html.DisplayFor(model => model.Birthdate)
+                    </h4>
                 </div>
 
                 <!-- Pet's Person-->
@@ -101,15 +106,7 @@
                 <!-- pet bio & etc. fun stuff -->
                 <div class="user_bio_box">
                     <h4>Things About Me:</h4>
-                    woof woof woof woof woof woof woof woof woof woof woof woof woof
-                    woof woof woof woof woof woof woof woof woof woof woof woof woof
-                    woof woof woof woof woof woof woof woof woof woof woof woof woof
-                    woof woof woof woof woof woof woof woof woof woof woof woof woof
-                    woof woof woof woof woof woof woof woof woof woof woof woof woof
-                    woof woof woof woof woof woof woof woof woof woof woof woof woof
-                    woof woof woof woof woof woof woof woof woof woof woof woof woof
-                    woof woof woof woof woof woof woof woof woof woof woof woof woof
-                    woof woof woof woof woof woof woof woof woof woof woof woof woof
+                    @Html.DisplayFor(model => model.PetBio)
                 </div>
 
             </div><!-- END 2nd\MIDDLE COLUMN  **OF** 2nd/MIDDLE ROW -->
@@ -268,14 +265,13 @@
 </div><!-- END BUTTON BOX -->
 <div>
     <h4>
-        Pet Scaffolding -- Keep so we can borrow from here as we fill in profile
+        Pet Scaffolding -- Keep for time being to see other pet details as we biuld stuff
     </h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.PetOwner.AverageRating)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.PetOwner.AverageRating)
         </dd>
@@ -283,7 +279,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.PetName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.PetName)
         </dd>
@@ -291,7 +286,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.Species)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Species)
         </dd>
@@ -299,7 +293,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.Breed)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Breed)
         </dd>
@@ -307,7 +300,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.Gender)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Gender)
         </dd>
@@ -315,7 +307,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.Altered)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Altered)
         </dd>
@@ -323,7 +314,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.Birthdate)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Birthdate)
         </dd>
@@ -331,7 +321,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.Weight)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Weight)
         </dd>
@@ -339,7 +328,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.HealthConcerns)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.HealthConcerns)
         </dd>
@@ -347,7 +335,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.BehaviorConcerns)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.BehaviorConcerns)
         </dd>
@@ -355,7 +342,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.PetAccess)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.PetAccess)
         </dd>
@@ -363,7 +349,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.EmergencyContactName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.EmergencyContactName)
         </dd>
@@ -371,7 +356,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.EmergencyContactPhone)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.EmergencyContactPhone)
         </dd>
@@ -379,7 +363,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.NeedsDetails)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.NeedsDetails)
         </dd>
@@ -387,7 +370,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.AccessInstructions)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.AccessInstructions)
         </dd>

@@ -68,7 +68,9 @@ namespace Petopia.Controllers
                     {
                         PetName = n.PetName,
                         Species = n.Species,
+                        Breed = n.Breed,
                         Gender = n.Gender,
+                        Birthdate = n.Birthdate,
                         PetID = n.PetID
                     }).ToList();
             }
