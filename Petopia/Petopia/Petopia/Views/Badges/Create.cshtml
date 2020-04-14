@@ -5,39 +5,94 @@
 }
 <div class="container-fluid">
 
+    <div class="panel our_panel_01">
+
+        <a data-toggle="collapse" data-parent="#accordion_03"
+           href="#collapse_CM">
+            <div class="panel-heading our_panel_heading">
+                <div class="panel-title our_panel_title">
+                    <p class="our_panel_p">
+                        What are badges?
+                        <span class="glyphicon glyphicon-resize-vertical"
+                              style="float: right;">
+                        </span>
+                    </p>
+                </div><!-- end 'panel-title'\'our_panel_title' divs -->
+            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
+        </a><!-- end '#accordian_03' id + '#collapse_CM' href -->
+
+        <div class="panel-collapse collapse" id="collapse_CM">
+            <div class="panel-body">
+                <p>
+                    Badges are a fun way to visualize what kind of pets you own or what kind of animals you specialize in providing services for.
+                    With badges, other people will be able to look at your profile at a glance and learn a little more about you.
+                </p>
+                <p>
+                    Owner badges show what kind of animals you own, whereas provider badges will tell others which animals you specialize in working with.
+                </p>
+            </div><!-- end 'panel-body' div -->
+        </div><!--end 'panel-collapse'\'collapse' div + '#collapse_CM' id -->
+    </div><!-- end 'panel'\'our_panel_01' div -->
+
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <h3>Owner Badges</h3>
+            <hr />
             <div class="form-group">
                 @Html.LabelFor(model => model.DogOwner,
                                 htmlAttributes: new { @class = "control-label" })
+                <img src="https://stormy9.github.io/nerdvana/badge_dog.PNG"
+                     class="pet_badge">
                 @Html.CheckBoxFor(model => model.DogOwner, new { @checked = "checked" });
 
                 @Html.ValidationMessageFor(model => model.DogOwner, "",
                                                     new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.DogProvider,
-                                htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.DogProvider, new { @checked = "checked" });
-
-                @Html.ValidationMessageFor(model => model.DogProvider, "",
-                                                    new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
                 @Html.LabelFor(model => model.CatOwner,
                                 htmlAttributes: new { @class = "control-label" })
+                <img src="https://stormy9.github.io/nerdvana/badge_cat.PNG"
+                     class="pet_badge">
                 @Html.CheckBoxFor(model => model.CatOwner, new { @checked = "checked" });
 
                 @Html.ValidationMessageFor(model => model.CatOwner, "",
                                                     new { @class = "text-danger" })
             </div>
             <div class="form-group">
+                @Html.LabelFor(model => model.BirdOwner,
+                                htmlAttributes: new { @class = "control-label" })
+                <img src="https://stormy9.github.io/nerdvana/badge_bunny.PNG"
+                     class="pet_badge">
+                @Html.CheckBoxFor(model => model.BirdOwner, new { @checked = "checked" });
+
+                @Html.ValidationMessageFor(model => model.BirdOwner, "",
+                                                    new { @class = "text-danger" })
+            </div>
+
+            <h3>Provider Badges</h3>
+            <hr />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DogProvider,
+                                htmlAttributes: new { @class = "control-label" })
+                <img src="https://stormy9.github.io/nerdvana/badge_dog.PNG"
+                     class="pet_badge">
+                @Html.CheckBoxFor(model => model.DogProvider, new { @checked = "checked" });
+
+                @Html.ValidationMessageFor(model => model.DogProvider, "",
+                                                    new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
                 @Html.LabelFor(model => model.CatProvider,
                                 htmlAttributes: new { @class = "control-label" })
+                <img src="https://stormy9.github.io/nerdvana/badge_cat.PNG"
+                     class="pet_badge">
                 @Html.CheckBoxFor(model => model.CatProvider, new { @checked = "checked" });
 
                 @Html.ValidationMessageFor(model => model.CatProvider, "",
@@ -46,19 +101,14 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.BirdProvider,
                                 htmlAttributes: new { @class = "control-label" })
+                <img src="https://stormy9.github.io/nerdvana/badge_bunny.PNG"
+                     class="pet_badge">
                 @Html.CheckBoxFor(model => model.BirdProvider, new { @checked = "checked" });
 
                 @Html.ValidationMessageFor(model => model.BirdProvider, "",
                                                     new { @class = "text-danger" })
             </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.BirdOwner,
-                                htmlAttributes: new { @class = "control-label" })
-                @Html.CheckBoxFor(model => model.BirdOwner, new { @checked = "checked" });
 
-                @Html.ValidationMessageFor(model => model.BirdOwner, "",
-                                                    new { @class = "text-danger" })
-            </div>
 
             <div class="form-group" style="margin-top: 90px;">
                 <div>
