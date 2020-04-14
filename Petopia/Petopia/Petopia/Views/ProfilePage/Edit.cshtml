@@ -18,31 +18,80 @@
         <!--============================ FIRST\LEFT COLUMN ===========================-->
         <div class="row">
             <div class="col-sm-4 col-md-4">
-                <!------------------------------ FIRST NAME -------------------------------->
+                <!------------------------------ FIRST NAME ---------------------------->
                 <div class="form-group">
 
                     @Html.LabelFor(model => model.FirstName, htmlAttributes:
-                                                        new { @class = "control-label" })
+                                                       new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.FirstName,
                                 new { htmlAttributes = new { @class = "form-control" } })
 
                     @Html.ValidationMessageFor(model => model.FirstName, "",
-                                                            new { @class = "text-danger" })
+                                                          new { @class = "text-danger" })
                 </div>
-                <!----------------------------- LAST NAME ---------------------------------->
+                <!----------------------------- LAST NAME ------------------------------>
                 <div class="form-group">
 
                     @Html.LabelFor(model => model.LastName, htmlAttributes:
                                                 new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.LastName,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                               new { htmlAttributes = new { @class = "form-control" } })
 
                     @Html.ValidationMessageFor(model => model.LastName, "",
-                                                            new { @class = "text-danger" })
+                                                         new { @class = "text-danger" })
                 </div>
-                <!---------------------------- MAIN PHONE ---------------------------------->
+                <!---------------------------- TAGLINE --------------------------------->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Tagline, htmlAttributes:
+                                                        new { @class = "control-label" })
+
+                    @Html.EditorFor(model => model.Tagline,
+                                new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.ValidationMessageFor(model => model.Tagline, "",
+                                                         new { @class = "text-danger" })
+                </div>
+                <!-------------------------- GENERAL LOCATION -------------------------->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GeneralLocation, htmlAttributes:
+                                                        new { @class = "control-label" })
+
+                    @Html.EditorFor(model => model.GeneralLocation,
+                                new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.ValidationMessageFor(model => model.GeneralLocation, "",
+                                                     new { @class = "text-danger" })
+                </div>
+                <!------------------------------ USER BIO ------------------------------>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserBio, htmlAttributes:
+                                                        new { @class = "control-label" })
+                    <br />
+                    @Html.TextAreaFor(model => model.UserBio,
+                         new{ htmlAttributes =
+                         new { @class = "form-control our_text_area" },
+                             cols = 90, rows = 5, id = "text15", name = "text15",
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+
+                    <div>
+                        <span class="pull-left label label-default"
+                              id="count_message_15">
+                        </span>
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.UserBio, "",
+                                                      new { @class = "text-danger" })
+                </div>
+                <!---------------------------------------------------------------------->
+            </div><!-- END 1st\LEFT FOUR-COLUMN DIV -->
+            <!---->
+            <!---->
+            <!--============================== SECOND\MIDDLE COLUMN ==================-->
+            <div class="col-sm-4 col-md-4">
+
+                <!---------------------------- MAIN PHONE ------------------------------>
                 <div class="form-group">
                     @Html.LabelFor(model => model.MainPhone, htmlAttributes:
                                                         new { @class = "control-label" })
@@ -51,35 +100,31 @@
                                 new { htmlAttributes = new { @class = "form-control" } })
 
                     @Html.ValidationMessageFor(model => model.MainPhone, "",
-                                                            new { @class = "text-danger" })
+                                                    new { @class = "text-danger" })
                 </div>
-                <!--------------------------- ALTERNATE PHONE ------------------------------>
+                <!--------------------------- ALTERNATE PHONE -------------------------->
                 <div class="form-group">
                     @Html.LabelFor(model => model.AltPhone, htmlAttributes:
-                                                        new { @class = "control-label" })
+                                                    new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.AltPhone,
                                 new { htmlAttributes = new { @class = "form-control" } })
 
                     @Html.ValidationMessageFor(model => model.AltPhone, "",
-                                                            new { @class = "text-danger" })
+                                                    new { @class = "text-danger" })
                 </div>
-                <!-------------------------------------------------------------------------->
-            </div><!-- END 1st\LEFT FOUR-COLUMN DIV -->
-            <!--=========================== SECOND\MIDDLE COLUMN =========================-->
-            <div class="col-sm-4 col-md-4">
-                <!---------------------------- RES ADDRESS 01 ------------------------------>
+                <!---------------------------- RES ADDRESS 01 -------------------------->
                 <div class="form-group">
                     @Html.LabelFor(model => model.ResAddress01, htmlAttributes:
                                                         new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.ResAddress01,
-                                    new { htmlAttributes = new { @class = "form-control" } })
+                                new { htmlAttributes = new { @class = "form-control" } })
 
                     @Html.ValidationMessageFor(model => model.ResAddress01, "",
-                                                             new { @class = "text-danger" })
+                                                        new { @class = "text-danger" })
                 </div>
-                <!---------------------------- RES ADDRESS 02 ------------------------------>
+                <!---------------------------- RES ADDRESS 02 -------------------------->
                 <div class="form-group">
                     @Html.LabelFor(model => model.ResAddress02, htmlAttributes:
                                                         new { @class = "control-label" })
@@ -88,9 +133,9 @@
                                 new { htmlAttributes = new { @class = "form-control" } })
 
                     @Html.ValidationMessageFor(model => model.ResAddress02, "",
-                                                            new { @class = "text-danger" })
+                                                        new { @class = "text-danger" })
                 </div>
-                <!------------------------------- RES CITY  -------------------------------->
+                <!------------------------------- RES CITY  ---------------------------->
                 <div class="form-group">
                     @Html.LabelFor(model => model.ResCity, htmlAttributes:
                                                         new { @class = "control-label" })
@@ -99,51 +144,59 @@
                                 new { htmlAttributes = new { @class = "form-control" } })
 
                     @Html.ValidationMessageFor(model => model.ResCity, "",
-                                                            new { @class = "text-danger" })
+                                                    new { @class = "text-danger" })
                 </div>
-                <!------------------------------- RES STATE -------------------------------->
+                <!------------------------------- RES STATE ---------------------------->
                 <div class="form-group">
                     @Html.LabelFor(model => model.ResState, htmlAttributes:
-                                                        new { @class = "control-label" })
+                                                 new { @class = "control-label" })
 
-                    @Html.EditorFor(model => model.ResState, new
-                    {
-                        htmlAttributes =
-                                                           new { @class = "form-control" }
-                    })
+                    @Html.EditorFor(model => model.ResState,
+                               new { htmlAttributes = new { @class = "form-control" } })
 
                     @Html.ValidationMessageFor(model => model.ResState, "",
-                                                            new { @class = "text-danger" })
+                                                         new { @class = "text-danger" })
                 </div>
-                <!--------------------------------  RES ZIP -------------------------------->
+                <!--------------------------------  RES ZIP ---------------------------->
                 <div class="form-group">
                     @Html.LabelFor(model => model.ResZipcode, htmlAttributes:
-                                                        new { @class = "control-label" })
+                                                      new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.ResZipcode,
                                 new { htmlAttributes = new { @class = "form-control" } })
 
                     @Html.ValidationMessageFor(model => model.ResZipcode, "",
-                                                            new { @class = "text-danger" })
+                                                    new { @class = "text-danger" })
                 </div>
-                <!-------------------------------------------------------------------------->
+                <!---------------------------------------------------------------------->
             </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV -->
-            <!--============================ THIRD\RIGHT COLUMN ==========================-->
+            <!---->
+            <!---->
+            <!--================================ THIRD\RIGHT COLUMN ==================-->
             <div class="col-sm-4 col-md-4">
                 @if (Model.IsProvider == true)
                 {
                     <div class="form-group">
                         @Html.LabelFor(model => model.ExperienceDetails, htmlAttributes:
                                                 new { @class = "control-label" })
+                        <br />
+                        @Html.TextAreaFor(model => model.ExperienceDetails,
+                          new { htmlAttributes =
+                          new { @class = "form-control our_text_area" },
+                              cols = 90, rows = 3, id = "text16", name = "text16",
+                           style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
 
-                        @Html.EditorFor(model => model.ExperienceDetails,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                        <div>
+                            <span class="pull-left label label-default"
+                                  id="count_message_16">
+                            </span>
+                        </div>
 
                         @Html.ValidationMessageFor(model => model.ExperienceDetails, "",
                                                         new { @class = "text-danger" })
                     </div>
                 }
-                <!-------------------------------------------------------------------------->
+                <!---------------------------------------------------------------------->
                 @if (Model.IsOwner == true)
                 {
                     <div class="form-group">
@@ -151,38 +204,43 @@
                                                         new { @class = "control-label" })
                         <br />
                         @Html.TextAreaFor(model => model.NeedsDetails,
-                             new
-                                  {
-                                      htmlAttributes =
-                             new { @class = "form-control our_text_area" },
-                                      cols = 45,
-                                      rows = 3,
-                             style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"
-                                  })
+                          new { htmlAttributes =
+                          new { @class = "form-control our_text_area" },
+                              cols = 90, rows = 3, id = "text17", name = "text17",
+                           style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+
+                        <div>
+                            <span class="pull-left label label-default"
+                                  id="count_message_17">
+                            </span>
+                        </div>
 
                         @Html.ValidationMessageFor(model => model.NeedsDetails, "",
                                                         new { @class = "text-danger" })
                     </div>
+                    <!------------------------------------------------------------------>
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
                     <div class="form-group">
                         @Html.LabelFor(model => model.AccessInstructions,
                                     htmlAttributes: new { @class = "control-label" })
                         <br />
                         @Html.TextAreaFor(model => model.AccessInstructions,
-                             new
-                                  {
-                                      htmlAttributes =
-                             new { @class = "form-control our_text_area" },
-                                      cols = 45,
-                                      rows = 3,
-                             style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"
-                                  })
+                          new { htmlAttributes =
+                          new { @class = "form-control our_text_area" },
+                              cols = 90, rows = 3, id = "text18", name = "text18",
+                          style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+
+                        <div>
+                            <span class="pull-left label label-default"
+                                  id="count_message_18">
+                            </span>
+                        </div>
 
                         @Html.ValidationMessageFor(model => model.AccessInstructions, "",
-                                                            new { @class = "text-danger" })
+                                                        new { @class = "text-danger" })
                     </div>
                 }<!-- END IF-STATEMENT(s) -->
-                <!--============================ PROFILE PIC =============================-->
+                <!--============================ PROFILE PIC =========================-->
                 <div class="form-group">
                     <p>
                         Pictures need to be in JPG format and under 4 MB.
@@ -191,20 +249,33 @@
 
                     @Html.TextBoxFor(m => m.UserProfilePicture, new { type = "file" })
 
-                    @Html.ValidationSummary(true, "Picture MUST be in JPG format and under 4 MB.", new { @class = "text-danger" })
+                    @Html.ValidationSummary(true,
+                                    "Picture MUST be in JPG format and under 4 MB.",
+                                    new { @class = "text-danger" })
                 </div>
-                <!-------------------------------------------------------------------------->
+                <!-------------------------- PROFILE PIC CAPTION ----------------------->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserCaption, htmlAttributes:
+                                                    new { @class = "control-label" })
+
+                    @Html.EditorFor(model => model.UserCaption,
+                                new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.ValidationMessageFor(model => model.UserCaption, "",
+                                                    new { @class = "text-danger" })
+                </div>
+                <!---------------------------------------------------------------------->
             </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV -->
         </div><!-- END 1st ROW! -->
-
-
+        <!---->
+        <!---->
         <!--============================== BUTTONS ===================================-->
         <div class="row">
             <div class="col-sm-offset-10 col-sm-2">
                 <div class="button_box">
                     <div class="form-group">
                         <div>
-                            <input type="submit" value="Save" class="btn our_buttons" />
+                            <input type="submit" value="Update!" class="btn our_buttons" />
                         </div>
                     </div>
 
@@ -242,3 +313,8 @@
     }
     <!--==============================================================================-->
 </div><!-- end of div where all the form parts go -->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/_our_main.js")
+}
