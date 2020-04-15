@@ -120,6 +120,8 @@
                              class="pet_badge">
                     }
                 </div><!-- end pet badge box div -->
+
+
                 <!-- private msg + friend buttons -->
                 <!-- *****STILL PLACEHOLDER***** -->
                 <div class="button_box">
@@ -195,22 +197,7 @@
                 <!-- *****STILL PLACEHOLDER***** -->
                 <div class="user_bio_box">
                     <h4>Stuff About Me:</h4>
-
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah
-                    
-                    
-                    <div id="calendar" style="width:70%"></div>
-
                     @Html.DisplayFor(model => model.UserBio)
-
 
 
                     @if (Model.IsProvider == true)
@@ -227,6 +214,9 @@
                         //    non-profile-displaying info!   [=
                         // but just in case we come up w/something, here this is.....
                     }
+
+
+                    <div id="calendar" style="width:70%"></div>
 
                 </div><!-- end user bio (etc.) box -->
             </div><!-- END 2nd\MIDDLE COLUMN  **OF** 2nd/MIDDLE ROW -->
@@ -393,7 +383,7 @@
                     {
                         <!-- pet profile preview box --><!-- holds all preview panels -->
                         <div class="pet_profile_preview_box">
-                            <!------------------------------------------------------------------>
+                                
                             <div class="pet_profile_preview">
                                 <!-- individual panel -->
                                 <!-- link to pet's profile -->
@@ -426,7 +416,6 @@
                                     </div>
                                 </a>
 
-
                                 <div class="button_box_pet_card">
                                     @Html.ActionLink("Edit This Pet", "Edit",
                                             new { controller = "Pets", id = item.PetID },
@@ -435,7 +424,6 @@
                                             new { controller = "Pets", id = item.PetID },
                                             new { @class = "our_pet_card_buttons " })
                                 </div>
-
 
                             </div><!-- END pet_profile_preview -->
                         </div><!-- END 'pet_profile_preview_box' -->
@@ -471,9 +459,6 @@
     </div><!-- END CONTAINER-FLUID -->
 </div><!-- END OUTER_CONTAINER -->
 <!--==================================================================================-->
-
-
-
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/Scripts/_our_main.js")

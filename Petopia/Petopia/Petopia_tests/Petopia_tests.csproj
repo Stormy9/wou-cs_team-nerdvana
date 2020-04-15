@@ -70,6 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Corrin.cs" />
     <Compile Include="Joey.cs" />
     <Compile Include="PetsControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
