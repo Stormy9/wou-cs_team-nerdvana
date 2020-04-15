@@ -57,7 +57,7 @@ namespace Petopia.Models
         //===============================================================================
 
         [Required]
-        [DisplayName("Street Address*")]
+        [DisplayName("Residential Street Address*")]
         [StringLength(50)]
         public string ResAddress01 { get; set; }
 
