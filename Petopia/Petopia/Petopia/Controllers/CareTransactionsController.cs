@@ -52,7 +52,7 @@ namespace Petopia.Controllers
         // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID")] CareTransaction careTransaction)
+        public ActionResult Create([Bind(Include = "TransactionID,StartDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID,EndDate")] CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace Petopia.Controllers
         // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID")] CareTransaction careTransaction)
+        public ActionResult Edit([Bind(Include = "TransactionID,StartDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID,EndDate")] CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {

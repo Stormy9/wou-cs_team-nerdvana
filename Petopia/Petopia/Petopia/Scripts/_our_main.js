@@ -57,8 +57,9 @@ function scaleBannerVideoSize(element) {
 
     });
 
- 
+
 }
+
 
 //FullCalendar Scripts
 $(window).load(function(){
@@ -73,6 +74,7 @@ $(window).load(function(){
         weekends: true
     });
 });
+
 
 //Implementation of text area character counter.
 var text_max = 999;
