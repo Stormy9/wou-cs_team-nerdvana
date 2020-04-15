@@ -109,6 +109,8 @@ namespace Petopia.Controllers
         }
 
         // GET: PetOwners/Delete/5
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Owner")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -125,7 +127,6 @@ namespace Petopia.Controllers
 
         // POST: PetOwners/Delete/5
         [HttpPost, ActionName("Delete")]
-        [Authorize(Roles="Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

@@ -70,9 +70,7 @@ $(window).load(function(){
             right: 'month,agendaWeek,agendaDay'
         },
         defaultDate: '2019-04-15',
-        weekends: true,
-        //contentHeight: 650,
-        width: 100%
+        weekends: true
     });
 });
 
