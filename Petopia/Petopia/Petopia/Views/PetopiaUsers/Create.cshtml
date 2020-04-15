@@ -18,7 +18,7 @@
         <hr />
         
         <!--========================= TOP ROW FOR ACCORDIANS =========================-->
-        <div class="row" style="margin-bottom: 18px; margin-top: 0; padding-top: 0;"> 
+        <div class="row" style="margin-bottom: 9px; margin-top: 0; padding-top: 0;"> 
             <div class="container-fluid your_info">
             <!-- why did we have to do another 'container-fluid'?? -->
             <!-- to keep it from being right up on the outside edges -->
@@ -121,6 +121,7 @@
             <div class="col-sm-4 col-md-4">
                 <h4 style="color: #261a0d">Your Profile Information:</h4>
 
+                <!------- PROFILE STUFF ------------------------------------------------>
                 <!------------------------- FIRST NAME  -------------------------------->
                 <div class="form-group">
                     @Html.LabelFor(model => model.FirstName,
@@ -143,21 +144,27 @@
                     @Html.ValidationMessageFor(model => model.LastName, "",
                                                          new { @class = "text-danger" })
                 </div>
-                <!---------------------------------------------------------------------->
-                <!---->
-                <!-- we need:  caption, general location, and some other thing, bio?  -->
-                <div style="border: 2px dashed darkblue; margin: 9px; padding: 5px;">
-                    we need to add in caption, general location, bio, and is there
-                    one more thing?  don't think so but not 100%.....
-                </div>
-                <!---->
-                <!--============================ PROFILE PIC =========================-->
+                <!-------------------------- TAGLINE ----------------------------------->
                 <div class="form-group">
-                    @Html.LabelFor(m => m.ProfilePhoto, new { @class = "control-label" })
+                    @Html.LabelFor(model => model.Tagline,
+                                        htmlAttributes: new { @class = "control-label" })
 
-                    @Html.TextBoxFor(m => m.ProfilePhoto, new { type = "file" })
+                    @Html.EditorFor(model => model.Tagline,
+                                new { htmlAttributes = new { @class = "form-control" } })
 
-                    @Html.ValidationMessage("CustomMessage")
+                    @Html.ValidationMessageFor(model => model.Tagline, "",
+                                                         new { @class = "text-danger" })
+                </div>
+                <!------------------------ GENERAL LOCATION ---------------------------->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GeneralLocation,
+                                        htmlAttributes: new { @class = "control-label" })
+
+                    @Html.EditorFor(model => model.GeneralLocation,
+                                new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.ValidationMessageFor(model => model.GeneralLocation, "",
+                                                         new { @class = "text-danger" })
                 </div>
                 <!---------------------------------------------------------------------->
             </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
@@ -165,8 +172,57 @@
             <!---->
             <!--=========================== SECOND\MIDDLE COLUMN =====================-->
             <div class="col-sm-4 col-md-4">
-                <h4 style="color: #261a0d;">Your Account Information:</h4>
                 
+                <!--------------------------- USER BIO --------------------------------->
+                <div class="form-group" style="padding-top: 42px;">
+                    @Html.LabelFor(model => model.UserBio,
+                                        htmlAttributes: new { @class = "control-label" })
+
+                    <br />
+                    @Html.TextAreaFor(model => model.UserBio,
+                         new { htmlAttributes =
+                         new { @class = "form-control our_text_area" }, 
+                             cols=90, rows=5, id = "text14", name = "text14",
+                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+
+                    <div>
+                        <span class="pull-left label label-default" 
+                              id="count_message_14">
+                        </span>
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.UserBio, "",
+                                                         new { @class = "text-danger" })
+                </div>
+                
+                <!--============================ PROFILE PIC =========================-->
+                <div class="form-group" style="padding-top:21px;">
+                    @Html.LabelFor(m => m.ProfilePhoto, new { @class = "control-label" })
+
+                    @Html.TextBoxFor(m => m.ProfilePhoto, new { type = "file" })
+
+                    @Html.ValidationMessage("CustomMessage")
+                </div>
+                <!-------------------------- PROFILE PIC CAPTION! ---------------------->
+                <div class="form-group" style="padding-top:13px;">
+                    @Html.LabelFor(m => m.UserCaption, new { @class = "control-label" })
+
+                    @Html.EditorFor(model => model.UserCaption,
+                                new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.ValidationMessageFor(model => model.UserCaption, "",
+                                                         new { @class = "text-danger" })
+                </div>
+                <!---------------------------------------------------------------------->
+            </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
+            <!---->
+            <!---->
+            <!--============================ THIRD\RIGHT COLUMN ======================-->
+            <div class="col-sm-4 col-md-4">
+
+                <h4 style="color: #261a0d;">Your Account Information:</h4>
+
+                <!-------- ACCOUNT INFO ------------------------------------------------>
                 <!----------------------------- MAIN PHONE ----------------------------->
                 <div class="form-group">
                     @Html.LabelFor(model => model.MainPhone,
@@ -189,12 +245,6 @@
                     @Html.ValidationMessageFor(model => model.AltPhone, "",
                                                       new { @class = "text-danger" })
                 </div>
-                <!---------------------------------------------------------------------->
-            </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
-            <!---->
-            <!---->
-            <!--============================ THIRD\RIGHT COLUMN ======================-->
-            <div class="col-sm-4 col-md-4">
 
                 <!--------------------------- RES ADDRESS 01 --------------------------->
                 <div class="form-group">
@@ -259,23 +309,26 @@
         <!---->
         <!--==========================================================================-->
         <!--================================ BUTTONS! ================================-->
-        <div class="row">
-            <div class="col-sm-offset-10 col-sm-2">
-                <div class="button_box">
+        <div class="row" style="padding-bottom: 18px;">
+            <hr /><br />
 
-                    <div class="form-group">
-                        <div>
-                            <input type="submit" value="Make my Profile!"
-                                   class="btn our_buttons" />
-                        </div>
+            <div class="col-sm-offset-8 col-sm-2 col-md-2">
+
+                <div class="form-group">
+                    <div>
+                        <input type="submit" value="Make my Profile!"
+                                class="btn our_buttons" />
                     </div>
+                </div>
+            </div>
 
-                    <div class="our_create-edit_buttons">
-                        @Html.ActionLink("Cancel! (to home)", "Index", "Home")
-                    </div>
+            <div class="col-sm-2 col-md-2">
 
-                </div><!-- end button_box div -->
-            </div><!-- END COLUMN FOR BUTTON BOX ROW -->
+                <div class="our_create-edit_buttons">
+                    @Html.ActionLink("Cancel! (to home)", "Index", "Home")
+                </div>
+
+            </div><!-- END COLUMN FOR BUTTON ROW -->
         </div><!-- END 2nd ROW! -->
         <!------------------------------------------------------------------------------>
     </div><!-- END FORM DIV! -->
@@ -284,4 +337,5 @@
 <!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/Scripts/_our_main.js")
 }

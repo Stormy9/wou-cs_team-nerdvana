@@ -18,6 +18,11 @@ CREATE TABLE [dbo].[PetopiaUsers] (
 	[ResState] NVARCHAR(50) NOT NULL,
 	[ResZipcode] NVARCHAR(24) NOT NULL,
 	[ProfilePhoto] VARBINARY(MAX),
+	/* these added later with alter table */
+	[UserCaption] NVARCHAR(72),
+	[GeneralLocation] NVARCHAR(72),
+	[Tagline] NVARCHAR(72),
+	[UserBio] NVARCHAR(72),
 
 	CONSTRAINT[PK_dbo.PetopiaUsers] PRIMARY KEY CLUSTERED([UserID] ASC)
 );

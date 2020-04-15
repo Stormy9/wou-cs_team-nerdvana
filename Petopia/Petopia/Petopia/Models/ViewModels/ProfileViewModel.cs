@@ -17,19 +17,15 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Last Name:")]
         public string LastName { get; set; }
 
-
         //===============================================================================
         //Need this to know if we should show owner info on page
         public bool IsOwner { get; set; } 
 
+
         //Need this to know if we should show provider info on page
         public bool IsProvider { get; set; }
 
-
         //===============================================================================
-
-        [DisplayName("State:")]
-        public string ResState { get; set; }
 
         [DisplayName("Profile Pic:")]
         public byte[] ProfilePhoto { get; set; } //needSET
@@ -37,8 +33,23 @@ namespace Petopia.Models.ViewModels
         public HttpPostedFileBase UserProfilePicture { get; set; }
 
 
+        [DisplayName("Caption for your profile pic:")]
+        public string UserCaption { get; set; }
+
         //===============================================================================
-        //Average rating named changed because it shares name with other average rating
+        [DisplayName("Your General Location:")]
+        public string GeneralLocation { get; set; }
+
+
+        [DisplayName("Your Bio - some fun stuff about you:")]
+        public string UserBio { get; set; }
+
+
+        [DisplayName("A tagline to go under your name:")]
+        public string Tagline { get; set; }
+
+        //===============================================================================
+        //Average rating name changed because it shares name with other average rating
         //
         //Everything from CareProvider
 
@@ -47,7 +58,6 @@ namespace Petopia.Models.ViewModels
 
         [DisplayName("Pet Care Experience:")]
         public string ExperienceDetails { get; set; }
-
 
         //===============================================================================
         //Everything from PetOwner
@@ -58,9 +68,8 @@ namespace Petopia.Models.ViewModels
         [DisplayName("My Pet Care Needs:")]
         public string NeedsDetails { get; set; }
 
-        [DisplayName("How To Access Home:")]
+        [DisplayName("How To Access Our Home:")]
         public string AccessInstructions { get; set; }
-
 
         //===============================================================================
         //Everything below here won't be included in the profile page 
@@ -80,9 +89,11 @@ namespace Petopia.Models.ViewModels
         [DisplayName("City:")]
         public string ResCity { get; set; }
 
+        [DisplayName("State:")]
+        public string ResState { get; set; }
+
         [DisplayName("Zip:")]
         public string ResZipcode { get; set; }
-
 
         //===============================================================================
         //Below here is for Pet Profiles

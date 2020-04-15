@@ -16,12 +16,14 @@ namespace Petopia.Controllers
     {
         private PetopiaUserContext db = new PetopiaUserContext();
 
+        //===============================================================================
         // GET: PetopiaUsers
         public ActionResult Index()
         {
             return View(db.PetopiaUsers.ToList());
         }
 
+        //===============================================================================
         // GET: PetopiaUsers/Details/5
         public ActionResult Details(int? id)
         {
@@ -32,26 +34,30 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             PetopiaUser petopiaUser = db.PetopiaUsers.Find(loggedID);
+
             if (petopiaUser == null)
             {
                 return HttpNotFound();
             }
+
             return View(petopiaUser);
         }
 
+        //===============================================================================
         // GET: PetopiaUsers/Create
         public ActionResult Create()
         {
             return View();
         }
-
+        //-------------------------------------------------------------------------------
         // POST: PetopiaUsers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you
+        // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,UserName,Password,FirstName,LastName,ASPNetIdentityID,IsOwner,IsProvider,MainPhone,AltPhone,ResAddress01,ResAddress02,ResCity,ResState,ResZipcode,ProfilePhoto")] PetopiaUser petopiaUser)
+        public ActionResult Create([Bind(Include = "UserID,UserName,Password,FirstName,LastName,ASPNetIdentityID,IsOwner,IsProvider,MainPhone,AltPhone,ResAddress01,ResAddress02,ResCity,ResState,ResZipcode,ProfilePhoto,UserCaption,GeneralLocation,UserBio,Tagline")] PetopiaUser petopiaUser)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +72,7 @@ namespace Petopia.Controllers
             return View(petopiaUser);
         }
 
+        //===============================================================================
         // GET: PetopiaUsers/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -73,31 +80,43 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             PetopiaUser petopiaUser = db.PetopiaUsers.Find(id);
+
             if (petopiaUser == null)
             {
                 return HttpNotFound();
             }
+
             return View(petopiaUser);
         }
-
+        //-------------------------------------------------------------------------------
         // POST: PetopiaUsers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you
+        // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(PetopiaUser model)
         {
+            // just curious:  why does this ActionResult signature not have that big ol'
+            // ([Bind(Include = "lots of stuff")] PetopiaUser petopiaUser)
+            // thing in it -- like, say, is in the PetsController for Edit Pet?
+            //
+            // it's in the Create PetopiaUser, but in the PetsController it's in both
+
             if (ModelState.IsValid)
             {
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
+
             return View(model);
         }
 
+        //===============================================================================
         // GET: PetopiaUsers/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -105,14 +124,17 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             PetopiaUser petopiaUser = db.PetopiaUsers.Find(id);
+
             if (petopiaUser == null)
             {
                 return HttpNotFound();
             }
+
             return View(petopiaUser);
         }
-
+        //-------------------------------------------------------------------------------
         // POST: PetopiaUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -121,9 +143,11 @@ namespace Petopia.Controllers
             PetopiaUser petopiaUser = db.PetopiaUsers.Find(id);
             db.PetopiaUsers.Remove(petopiaUser);
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
+        //===============================================================================
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -132,5 +156,7 @@ namespace Petopia.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //===============================================================================
     }
 }

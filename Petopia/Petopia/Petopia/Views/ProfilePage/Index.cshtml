@@ -66,7 +66,7 @@
                 <!-- *****STILL PLACEHOLDER***** -->
                 <div class="profile_pic_caption_box">
                     <div class="profile_pic_caption">
-                        caption for profile photo ^
+                        @Html.DisplayFor(model => model.UserCaption)
                     </div>
                 </div>
 
@@ -84,6 +84,11 @@
                             You have not set up badges yet.  Press
                             @Html.ActionLink("Here", "Create",
                                     new { controller = "Badges" })
+
+                        <p>You have not set up badges yet.  
+                            Press 
+                            @Html.ActionLink("Here", "Create", 
+                                    new { controller = "Badges" }) 
                             to set them up.
                         </p>
                     }
@@ -153,6 +158,9 @@
                         @Html.DisplayFor(model => model.FirstName)
                         @Html.DisplayFor(model => model.LastName)
                     </h3>
+                    <h4>
+                        @Html.DisplayFor(model => model.Tagline)
+                    </h4>
                 </div>
 
 
@@ -160,8 +168,7 @@
                 <div class="general_location_box">
                     <div class="general_location">
                         my general location:
-                        <!-- just stick in state for now / add db field later -->
-                        @Html.DisplayFor(model => model.ResState)
+                        @Html.DisplayFor(model => model.GeneralLocation)
                     </div>
                 </div>
 
@@ -192,6 +199,7 @@
                 <!-- *****STILL PLACEHOLDER***** -->
                 <div class="user_bio_box">
                     <h4>Stuff About Me:</h4>
+
                     blah blah blah blah blah blah blah blah blah blah blah blah blah
                     blah blah blah blah blah blah blah blah blah blah blah blah blah
                     blah blah blah blah blah blah blah blah blah blah blah blah blah
@@ -204,6 +212,10 @@
                     
                     
                     <div id="calendar" style="width:70%"></div>
+
+                    @Html.DisplayFor(model => model.UserBio)
+
+
 
                     @if (Model.IsProvider == true)
                     {
@@ -225,13 +237,13 @@
             <!-------------------------------------------------------------------------->
             <!---->
             <!---->
-            <!-- 3rd column --><!-- providers/petOwners Near Me (and that's it!) -->
+            <!-- 3rd COLUMN --><!-- providers/petOwners Near Me (and that's it!) -->
             <!-- for Pet Carers, display Pet Owners they've worked with before??  -->
             <!---->
             <!-- b/c of col settings, it's 2&1/2 wide -- except it isn't!!!  -->
             <div class="col col-sm col-md col-lg col-xl our_col_three">
 
-
+                <!-- THIRD COLUMN SCROLL-BOX! -->
                 <!-- auto search result header -->
                 <!-- *****STILL PLACEHOLDER(S)***** -->
                 @if (Model.IsOwner == true)
