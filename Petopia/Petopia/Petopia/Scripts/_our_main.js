@@ -60,6 +60,22 @@ function scaleBannerVideoSize(element) {
  
 }
 
+//FullCalendar Scripts
+$(window).load(function(){
+    // page is now ready, initialize the calendar...
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next,today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        defaultDate: '2019-04-15',
+        weekends: true,
+        //contentHeight: 650,
+        width: 100%
+    });
+});
+
 //Implementation of text area character counter.
 var text_max = 999;
 // TEXT AREA ONE
