@@ -133,7 +133,8 @@ namespace Petopia.Controllers
 
         //===============================================================================
         // GET: CareProviders/Delete/5
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Provider")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
