@@ -75,14 +75,15 @@
                 <div class="pet_badge_box">
                     @if (ViewBag.Badges == true)
                     {
-                        @Html.ActionLink("Edit Badges", "Edit", 
+                        @Html.ActionLink("Edit Badges", "Edit",
                                 new { controller = "Badges" })
                     }
                     else
                     {
-                        <p>You have not set up badges yet.  Press 
-                            @Html.ActionLink("Here", "Create", 
-                                    new { controller = "Badges" }) 
+                        <p>
+                            You have not set up badges yet.  Press
+                            @Html.ActionLink("Here", "Create",
+                                    new { controller = "Badges" })
                             to set them up.
                         </p>
                     }
@@ -118,8 +119,6 @@
                              class="pet_badge">
                     }
                 </div><!-- end pet badge box div -->
-
-
                 <!-- private msg + friend buttons -->
                 <!-- *****STILL PLACEHOLDER***** -->
                 <div class="button_box">
@@ -202,6 +201,9 @@
                     blah blah blah blah blah blah blah blah blah blah blah blah blah
                     blah blah blah blah blah blah blah blah blah blah blah blah blah
                     blah blah blah blah blah blah blah blah blah blah blah blah blah
+                    
+                    
+                    <div id="calendar" style="width:70%"></div>
 
                     @if (Model.IsProvider == true)
                     {
@@ -383,12 +385,11 @@
                     {
                         <!-- pet profile preview box --><!-- holds all preview panels -->
                         <div class="pet_profile_preview_box">
-                    <!------------------------------------------------------------------>
+                            <!------------------------------------------------------------------>
                             <div class="pet_profile_preview">
                                 <!-- individual panel -->
-
                                 <!-- link to pet's profile -->
-                                <img class="pet_profile_preview_img" 
+                                <img class="pet_profile_preview_img"
                                      alt="pet profile pic"
                                      src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg">
 
@@ -398,7 +399,7 @@
                                 </div>
                                 <div class="pet_preview_breed">
                                     @Html.DisplayFor(model => item.Species)
-                                    &nbsp; &rarr; &nbsp; 
+                                    &nbsp; &rarr; &nbsp;
                                     @Html.DisplayFor(model => item.Breed)
                                 </div>
                                 <div class="pet_preview_breed">
@@ -411,7 +412,7 @@
 
                                 <a href="#">
                                     <!-- link to care record(s) -->
-                                    <div class="pet_preview_care_record" 
+                                    <div class="pet_preview_care_record"
                                          style="padding-top: 5px;">
                                         link to this pet's care record
                                     </div>
@@ -458,6 +459,16 @@
         <!---->
         <!--==========================================================================-->
         <!--------------------------------- END OF ROWS -------------------------------->
+        
     </div><!-- END CONTAINER-FLUID -->
 </div><!-- END OUTER_CONTAINER -->
 <!--==================================================================================-->
+
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/_our_main.js")
+    @Scripts.Render("~/Scripts/moment.js")
+    @Scripts.Render("~/Scripts/fullcalendar.js")
+}
