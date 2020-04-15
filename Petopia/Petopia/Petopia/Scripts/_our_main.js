@@ -60,7 +60,13 @@ function scaleBannerVideoSize(element) {
  
 }
 
+
+
 //FullCalendar Scripts
+
+var today = new Date();
+var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
 $(window).on('load', function(){
     // page is now ready, initialize the calendar...
     $('#calendar').fullCalendar({
@@ -69,7 +75,7 @@ $(window).on('load', function(){
             center: 'title',
             right: 'month,agendaWeek,agendaDay'
         },
-        defaultDate: '2019-04-15',
+        defaultDate: this.date,
         weekends: true
     });
 });
