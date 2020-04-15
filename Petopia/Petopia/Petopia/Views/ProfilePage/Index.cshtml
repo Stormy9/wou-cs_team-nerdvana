@@ -80,10 +80,6 @@
                     }
                     else
                     {
-                        <p>
-                            You have not set up badges yet.  Press
-                            @Html.ActionLink("Here", "Create",
-                                    new { controller = "Badges" })
 
                         <p>You have not set up badges yet.  
                             Press 
@@ -185,7 +181,7 @@
 
                         @Html.DisplayFor(model => model.ProviderAverageRating)
                     }
-                    <!------------------------------------------------------------------->
+                    <!------------------------------------------------------------------>
                     @if (Model.IsProvider == true)
                     {
                         @Html.DisplayNameFor(model => model.OwnerAverageRating)
