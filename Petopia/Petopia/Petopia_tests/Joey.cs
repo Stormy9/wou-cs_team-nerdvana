@@ -11,16 +11,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Petopia_tests
 {
-    class Joey
+    [TestClass]
+    public class Joey
     {
         [TestMethod]
-        public void PetsCreate()
+        public void CareProvidersCreate()
         {
             // Arrange
-            PetsController petController = new PetsController();
+            CareProvidersController careProviderController = new CareProvidersController();
 
             // Act
-            ViewResult result = petController.Create() as ViewResult;
+            ViewResult result = careProviderController.Create() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);

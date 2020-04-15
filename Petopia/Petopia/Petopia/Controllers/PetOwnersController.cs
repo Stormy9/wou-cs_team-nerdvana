@@ -125,6 +125,7 @@ namespace Petopia.Controllers
 
         // POST: PetOwners/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles="Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
