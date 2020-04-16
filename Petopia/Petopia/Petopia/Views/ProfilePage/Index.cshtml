@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "your very own profile page!";
 }
+
+@Styles.Render("~/Content/fullcalendar.css")
+
 <div class="outer_container">
     <div class="container-fluid">
         <!-------------------------------- FIRST/TOP ROW ------------------------------->
@@ -80,10 +83,11 @@
                     else
                     {
 
-                        <p>You have not set up badges yet.  
-                            Press 
-                            @Html.ActionLink("Here", "Create", 
-                                    new { controller = "Badges" }) 
+                        <p>
+                            You have not set up badges yet.
+                            Press
+                            @Html.ActionLink("Here", "Create",
+                                    new { controller = "Badges" })
                             to set them up.
                         </p>
                     }
@@ -119,8 +123,6 @@
                              class="pet_badge">
                     }
                 </div><!-- end pet badge box div -->
-
-
                 <!-- private msg + friend buttons -->
                 <!-- *****STILL PLACEHOLDER***** -->
                 <div class="button_box">
@@ -390,7 +392,7 @@
                     {
                         <!-- pet profile preview box --><!-- holds all preview panels -->
                         <div class="pet_profile_preview_box">
-                                
+
                             <div class="pet_profile_preview">
                                 <!-- individual panel -->
                                 <!-- link to pet's profile -->
@@ -462,7 +464,7 @@
         <!---->
         <!--==========================================================================-->
         <!--------------------------------- END OF ROWS -------------------------------->
-        
+
     </div><!-- END CONTAINER-FLUID -->
 </div><!-- END OUTER_CONTAINER -->
 <!--==================================================================================-->

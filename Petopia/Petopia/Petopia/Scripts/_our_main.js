@@ -66,18 +66,80 @@ function scaleBannerVideoSize(element) {
 var today = new Date();
 var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
+
 $(window).on('load', function(){
     // page is now ready, initialize the calendar...
-    $('#calendar').fullCalendar({
+  var calendarEl = $('#calendar');
+//var calendarEl = document.getElementById('calendar');
+  $('#calendar').fullCalendar({
         header: {
             left: 'prev,next,today',
-            center: 'title',
+            center: 'addEventButton,title',
             right: 'month,agendaWeek,agendaDay'
         },
         defaultDate: this.date,
-        weekends: true
-    });
+        weekends: true,
+        customButtons: {
+          addEventButton: {
+            text: 'add event...',
+            click: function() {
+                var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+                //var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+                var date = moment(dateStr);
+
+                if (date.isValid()) { // valid?
+                    $('#calendar').fullCalendar('renderEvent', {
+                        title: 'TEST DYNAMIC EVENT',
+                        start: date,
+                        allDay: true
+                    });
+                    alert('Great. Now, update your database...');
+                } else {
+                    alert('Invalid date.');
+                }
+            }
+          }
+        }
+  });
+    //calendar.render();
 });
+
+
+
+/*
+$(window).on('load', function () {
+    // page is now ready, initialize the calendar...
+    $('#calendar').fullCalendar({
+    defaultView: 'dayGridMonth',
+    header: {
+    center: 'addEventButton'
+},
+customButtons: {
+    addEventButton: {
+        text: 'add event...',
+            click: function() {
+                var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+                var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+
+                if (!isNaN(date.valueOf())) { // valid?
+                    calendar.addEvent({
+                        title: 'dynamic event',
+                        start: date,
+                        allDay: true
+                    });
+                    alert('Great. Now, update your database...');
+                } else {
+                    alert('Invalid date.');
+                }
+            }
+    }
+}
+    });
+
+//calendar.render();
+  });
+*/
+
 
 
 //Implementation of text area character counter.
