@@ -63,7 +63,6 @@
 
 
                 <!-- profile pic caption -->
-                <!-- *****STILL PLACEHOLDER***** -->
                 <div class="profile_pic_caption_box">
                     <div class="profile_pic_caption">
                         @Html.DisplayFor(model => model.UserCaption)
@@ -194,7 +193,6 @@
 
 
                 <!-- user bio & etc. fun stuff -->
-                <!-- *****STILL PLACEHOLDER***** -->
                 <div class="user_bio_box">
                     <h4>Stuff About Me:</h4>
                     @Html.DisplayFor(model => model.UserBio)
@@ -215,10 +213,19 @@
                         // but just in case we come up w/something, here this is.....
                     }
 
-
-                    <div id="calendar" style="width:100%"></div>
-
                 </div><!-- end user bio (etc.) box -->
+
+
+                <!-- calendar to show up for Pet Carers to post availability -->
+                <div class="calendar_box" style="width:100%;">
+                    
+                    <div id="calendar" style="width:100%;">
+
+                    </div>
+
+                </div><!-- end calendar_box div -->
+
+
             </div><!-- END 2nd\MIDDLE COLUMN  **OF** 2nd/MIDDLE ROW -->
             <!-------------------------------------------------------------------------->
             <!---->
