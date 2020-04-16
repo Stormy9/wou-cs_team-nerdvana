@@ -24,7 +24,11 @@ textarea {
     max-width: 280px;
 }
 
-
+/* Calendar styling configuration */
+#calendar {
+    max-width: 900px;
+    margin: 20px auto;
+}
 
 /*=====================================================================================*/
 /*                                our custom classes                                  */
