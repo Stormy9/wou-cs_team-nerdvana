@@ -46,8 +46,11 @@ namespace Petopia.Models
         public TimeSpan EndTime { get; set; }
 
         //-------------------------------------------------------------------------------
-        [StringLength(90)]
-        [DisplayName("Care Provided")]
+        [DisplayName("Care needed this visit")]
+        public string NeededThisVisit { get; set; }
+
+        //-------------------------------------------------------------------------------
+        [DisplayName("Care provided this visit")]
         public string CareProvided { get; set; }
 
         //-------------------------------------------------------------------------------
@@ -55,7 +58,7 @@ namespace Petopia.Models
         public string CareReport { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Fees Charged")]
+        [DisplayName("Fees for this visit")]
         [Column(TypeName = "money")]
         public decimal? Charge { get; set; }
 

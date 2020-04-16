@@ -1,13 +1,16 @@
-﻿using Petopia.Models;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using Petopia.DAL;
+using Petopia.Models;
+using Petopia.Models.ViewModels;
 
 namespace Petopia.Controllers
 {
     public class CareTransactionsController : Controller
     {
+        // pull in the db through DAL\context
         private CareTransactionsContext db = new CareTransactionsContext();
 
         //===============================================================================
@@ -40,6 +43,8 @@ namespace Petopia.Controllers
         // GET: CareTransactions/Create
         public ActionResult Create()
         {
+            //ViewBag.PetOwnerID = new SelectList(db.PetOwner.OrderBy(a => a.AthleteName), "AthleteID", "AthleteName");
+
             return View();
         }
         //-------------------------------------------------------------------------------
@@ -48,7 +53,7 @@ namespace Petopia.Controllers
         // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TransactionID,StartDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID,EndDate")] CareTransaction careTransaction)
+        public ActionResult Create([Bind(Include = "TransactionID,StartDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID,EndDate,NeededThisVisit")] CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +90,7 @@ namespace Petopia.Controllers
         // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TransactionID,StartDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID,EndDate")] CareTransaction careTransaction)
+        public ActionResult Edit([Bind(Include = "TransactionID,StartDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID,EndDate,NeededThisVisit")] CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {

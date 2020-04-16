@@ -205,6 +205,7 @@
     <Compile Include="Models\CareProvider.cs" />
     <Compile Include="DAL\CareProviderContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ViewModels\CareTransactionViewModel.cs" />
     <Compile Include="Models\ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Pet.cs" />
     <Compile Include="DAL\PetContext.cs" />
@@ -508,11 +509,11 @@
     <Content Include="Views\Pets\Index.cshtml" />
     <Content Include="Views\Badges\Create.cshtml" />
     <Content Include="Views\Badges\Edit.cshtml" />
-    <Content Include="Views\CareTransactions\Create.cshtml" />
     <Content Include="Views\CareTransactions\Delete.cshtml" />
     <Content Include="Views\CareTransactions\Details.cshtml" />
     <Content Include="Views\CareTransactions\Edit.cshtml" />
     <Content Include="Views\CareTransactions\Index.cshtml" />
+    <Content Include="Views\CareTransactions\Create.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>
