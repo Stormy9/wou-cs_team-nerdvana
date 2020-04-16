@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,6 +10,8 @@ namespace Petopia.Models.ViewModels
 {
     public class ProfileViewModel
     {
+        //===============================================================================
+        //===============================================================================
         //everything from PetopiaUser
         public int UserID { get; set; }
 
@@ -17,7 +21,7 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Last Name:")]
         public string LastName { get; set; }
 
-        //===============================================================================
+        //-------------------------------------------------------------------------------
         //Need this to know if we should show owner info on page
         public bool IsOwner { get; set; } 
 
@@ -25,7 +29,7 @@ namespace Petopia.Models.ViewModels
         //Need this to know if we should show provider info on page
         public bool IsProvider { get; set; }
 
-        //===============================================================================
+        //-------------------------------------------------------------------------------
 
         [DisplayName("Profile Pic:")]
         public byte[] ProfilePhoto { get; set; } //needSET
@@ -36,7 +40,7 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Caption for your profile pic:")]
         public string UserCaption { get; set; }
 
-        //===============================================================================
+        //-------------------------------------------------------------------------------
         [DisplayName("Your General Location:")]
         public string GeneralLocation { get; set; }
 
@@ -48,7 +52,7 @@ namespace Petopia.Models.ViewModels
         [DisplayName("A tagline to go under your name:")]
         public string Tagline { get; set; }
 
-        //===============================================================================
+        //-------------------------------------------------------------------------------
         //Average rating name changed because it shares name with other average rating
         //
         //Everything from CareProvider
@@ -60,20 +64,22 @@ namespace Petopia.Models.ViewModels
         public string ExperienceDetails { get; set; }
 
         //===============================================================================
+        //===============================================================================
         //Everything from PetOwner
 
         [DisplayName("Avg Rating:")]
         public string OwnerAverageRating { get; set; }
 
         [DisplayName("My Pet Care Needs:")]
-        public string NeedsDetails { get; set; }
+        public string GeneralNeeds { get; set; }
 
         [DisplayName("How To Access Our Home:")]
-        public string AccessInstructions { get; set; }
+        public string HomeAccess { get; set; }
 
         //===============================================================================
+        //===============================================================================
         //Everything below here won't be included in the profile page 
-        //      but can still be edited
+        //      but can still be edited                                  from PetopiaUser
         [DisplayName("Main Phone:")]
         public string MainPhone { get; set; }
 
@@ -96,6 +102,7 @@ namespace Petopia.Models.ViewModels
         public string ResZipcode { get; set; }
 
         //===============================================================================
+        //===============================================================================
         //Below here is for Pet Profiles
         public class PetInfo
         {
@@ -104,6 +111,8 @@ namespace Petopia.Models.ViewModels
             public string Species { get; set; }
             public string Breed { get; set; }
             public string Gender { get; set; }
+
+            [Column(TypeName = "date")]
             public DateTime Birthdate { get; set; }
         }
         public List<PetInfo> PetList { get; set; }

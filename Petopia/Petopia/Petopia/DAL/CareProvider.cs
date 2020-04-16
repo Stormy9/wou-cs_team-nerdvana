@@ -9,16 +9,24 @@ namespace Petopia.DAL
     [Table("CareProvider")]
     public partial class CareProvider
     {
+        //===============================================================================
         public int CareProviderID { get; set; }
 
+        //===============================================================================
         [StringLength(120)]
         public string AverageRating { get; set; }
 
+        //-------------------------------------------------------------------------------
         [Required]
         public string ExperienceDetails { get; set; }
 
+        //===============================================================================
+        // FOREIGN KEY
         public int? UserID { get; set; }
 
+        //===============================================================================
         public virtual PetopiaUser PetopiaUser { get; set; }
+
+        //===============================================================================
     }
 }

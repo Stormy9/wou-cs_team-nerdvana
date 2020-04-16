@@ -26,18 +26,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NeedsDetails, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GeneralNeeds, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NeedsDetails, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NeedsDetails, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.GeneralNeeds, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GeneralNeeds, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AccessInstructions, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.HomeAccess, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AccessInstructions, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AccessInstructions, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.HomeAccess, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HomeAccess, "", new { @class = "text-danger" })
             </div>
         </div>
 

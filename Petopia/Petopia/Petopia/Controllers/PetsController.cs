@@ -48,7 +48,7 @@ namespace Petopia.Controllers
         // GET: Pets/Create
         public ActionResult Create()
         {
-            // wait..... what is this for?  at least the 'AverageRating' part?
+            // pick list for rating?  like for 1 thru 5?
             ViewBag.PetOwnerID = new SelectList(db.PetOwners, "PetOwnerID", "AverageRating");
 
             // boy-girl-altered pick-list
@@ -63,7 +63,7 @@ namespace Petopia.Controllers
         // want to bind to; more details:  https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,AccessInstructions,PetOwnerID,PetCaption,PetBio")] Pet pet)
+        public ActionResult Create([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,PetOwnerID,PetCaption,PetBio")] Pet pet)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Petopia.Controllers
                 return RedirectToAction("Index", "ProfilePage");
             }
 
-            // why is the 'AverageRating' here?
+            // pick list for rating -- like 1 thru 5
             ViewBag.PetOwnerID = new SelectList(db.PetOwners, "PetOwnerID", "AverageRating", pet.PetOwnerID);
 
             // boy-girl-altered pick-list
@@ -103,7 +103,7 @@ namespace Petopia.Controllers
                 return HttpNotFound();
             }
 
-            // still not sure what the 'AverageRating' is doing here   [=
+            // pick-list for rating -- 1 thru 5
             ViewBag.PetOwnerID = new SelectList(db.PetOwners, "PetOwnerID", "AverageRating", pet.PetOwnerID);
 
             // boy-girl-altered pick-list
@@ -117,7 +117,7 @@ namespace Petopia.Controllers
         // want to bind to; more details:  https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,AccessInstructions,PetOwnerID,PetCaption,PetBio")] Pet pet)
+        public ActionResult Edit([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,,PetOwnerID,PetCaption,PetBio")] Pet pet)
         {
             if (ModelState.IsValid)
             {
@@ -132,7 +132,7 @@ namespace Petopia.Controllers
                 return RedirectToAction("Index", "ProfilePage");
             }
 
-            // the 'AverageRating' thing again?
+            // pick list for rating -- like 1 thru 5
             ViewBag.PetOwnerID = new SelectList(db.PetOwners, "PetOwnerID", "AverageRating", pet.PetOwnerID);
 
             // boy-girl-altered pick-list

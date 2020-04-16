@@ -84,10 +84,6 @@ namespace Petopia.DAL
         [DisplayName("What My Pet Needs Done:")]
         public string NeedsDetails { get; set; }
 
-        //-------------------------------------------------------------------------------
-        [DisplayName("How To Access Our Home:")]
-        public string AccessInstructions { get; set; }
-
         //------------------------------------------------------------------------------
         [DisplayName("Profile Photo Caption:")]
         [StringLength(72)]

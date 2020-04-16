@@ -9,6 +9,7 @@ namespace Petopia.Models
 
     public partial class PetopiaUser
     {
+        //===============================================================================
         [Key]
         public int UserID { get; set; }
 

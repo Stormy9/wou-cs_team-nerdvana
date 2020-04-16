@@ -12,8 +12,10 @@ namespace Petopia.Models
         {
         }
 
+        //===============================================================================
         public virtual DbSet<CareTransaction> CareTransactions { get; set; }
 
+        //-------------------------------------------------------------------------------
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CareTransaction>()
@@ -24,5 +26,6 @@ namespace Petopia.Models
                 .Property(e => e.Tip)
                 .HasPrecision(19, 4);
         }
+        //===============================================================================
     }
 }

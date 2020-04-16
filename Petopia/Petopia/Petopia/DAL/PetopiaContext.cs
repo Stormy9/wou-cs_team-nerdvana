@@ -23,7 +23,7 @@ namespace Petopia.DAL
         public virtual DbSet<UserBadge> UserBadges { get; set; }
         public virtual DbSet<CareTransaction> CareTransactions { get; set; }
 
-        //===============================================================================
+        //-------------------------------------------------------------------------------
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }
