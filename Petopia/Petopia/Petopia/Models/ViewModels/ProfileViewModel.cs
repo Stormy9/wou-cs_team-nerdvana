@@ -103,7 +103,7 @@ namespace Petopia.Models.ViewModels
 
         //===============================================================================
         //===============================================================================
-        //Below here is for Pet Profiles  (for the Pet Cards on Owner pages right?)s
+        //Below here is for Pet Profiles  (for the Pet Cards on Owner pages right?)
         public class PetInfo
         {
             public int PetID { get; set; }
@@ -119,6 +119,7 @@ namespace Petopia.Models.ViewModels
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
             public DateTime Birthdate { get; set; }
         }
+        //-------------------------------------------------------------------------------
         public List<PetInfo> PetList { get; set; }
 
         //===============================================================================

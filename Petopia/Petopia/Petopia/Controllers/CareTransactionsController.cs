@@ -11,7 +11,7 @@ namespace Petopia.Controllers
     public class CareTransactionsController : Controller
     {
         // pull in the db through DAL\context
-        private CareTransactionsContext db = new CareTransactionsContext();
+        private PetopiaContext db = new PetopiaContext();
 
         //===============================================================================
         // GET: CareTransactions

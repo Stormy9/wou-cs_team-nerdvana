@@ -17,15 +17,48 @@ namespace Petopia.DAL
 
         //===============================================================================
         public virtual DbSet<CareProvider> CareProviders { get; set; }
-        public virtual DbSet<Pet> Pets { get; set; }
-        public virtual DbSet<PetopiaUser> PetopiaUsers { get; set; }
-        public virtual DbSet<PetOwner> PetOwners { get; set; }
-        public virtual DbSet<UserBadge> UserBadges { get; set; }
-        public virtual DbSet<CareTransaction> CareTransactions { get; set; }
 
         //-------------------------------------------------------------------------------
+        public virtual DbSet<Pet> Pets { get; set; }
+
+        //-------------------------------------------------------------------------------
+        public virtual DbSet<PetopiaUser> PetopiaUsers { get; set; }
+
+        //-------------------------------------------------------------------------------
+        public virtual DbSet<PetOwner> PetOwners { get; set; }
+
+        //------------------------------------------------------------------------------
+        public virtual DbSet<UserBadge> UserBadges { get; set; }
+
+        //-------------------------------------------------------------------------------
+        public virtual DbSet<CareTransaction> CareTransactions { get; set; }
+
+        //===============================================================================
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            // CareProviderContext -- nothing in here in it's context
+
+            //---------------------------------------------------------------------------
+            // CareTransactionsContext
+
+            modelBuilder.Entity<CareTransaction>()
+                .Property(e => e.Charge)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<CareTransaction>()
+                .Property(e => e.Tip)
+                .HasPrecision(19, 4);
+
+            //---------------------------------------------------------------------------
+            // PetContext -- nothing in here in it's context
+
+            //---------------------------------------------------------------------------
+            // PetopiaUserContext -- nothing in here in it's context
+
+            //---------------------------------------------------------------------------
+            // PetOwnerContext -- nothing in here in it's context
+
+            //---------------------------------------------------------------------------
         }
         //===============================================================================
     }
