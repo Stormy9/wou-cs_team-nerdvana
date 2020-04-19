@@ -1,4 +1,3 @@
-
 namespace Petopia.Models
 { 
     using System;
