@@ -64,12 +64,10 @@ function scaleBannerVideoSize(element) {
 //FullCalendar Scripts
 
 var today = new Date();
-var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-
-
+var todaysDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 $(window).on('load', function(){
     // page is now ready, initialize the calendar...
-  var calendarEl = $('#calendar');
+//var calendarEl = $('#calendar');
 //var calendarEl = document.getElementById('calendar');
   $('#calendar').fullCalendar({
         header: {
@@ -77,21 +75,25 @@ $(window).on('load', function(){
             center: 'addEventButton,title',
             right: 'month,agendaWeek,agendaDay'
         },
-        defaultDate: this.date,
+        defaultDate: this.todaysDate,
         weekends: true,
         customButtons: {
           addEventButton: {
             text: 'add event...',
             click: function() {
                 var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-                //var date = new Date(dateStr + 'T00:00:00'); // will be in local time
-                var date = moment(dateStr);
+                //var startDate = prompt('Enter a date in YYYY-MM-DD format');
+                //var startTime = prompt('Enter time in 00:00 format');
+                //var endTime = prompt('Enter time in 00:00 format');
+                var eventDate = new Date(dateStr + 'T00:00:00'); // will be in local time
+                //var date = moment(startDate + startTime);
 
-                if (date.isValid()) { // valid?
+                if (eventDate.isValid()) { // valid?
                     $('#calendar').fullCalendar('renderEvent', {
                         title: 'TEST DYNAMIC EVENT',
-                        start: date,
-                        allDay: true
+                        start: eventDate,
+                        //end: endTime,
+                        allDay: false
                     });
                     alert('Great. Now, update your database...');
                 } else {
