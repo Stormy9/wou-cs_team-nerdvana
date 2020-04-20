@@ -7,6 +7,12 @@ CREATE TABLE [dbo].[PetopiaUsers] (
 	[Password] NVARCHAR(50),
 	[FirstName] NVARCHAR(50) NOT NULL,
 	[LastName] NVARCHAR(50) NOT NULL,
+	/* these added later with alter table */
+	[UserCaption] NVARCHAR(72),
+	[GeneralLocation] NVARCHAR(72),
+	[Tagline] NVARCHAR(72),
+	[UserBio] NVARCHAR(72),
+	/*-----------------------------------*/
 	[ASPNetIdentityID] NVARCHAR (128),
 	[IsOwner] BIT NOT NULL,
 	[IsProvider] BIT NOT NULL,
@@ -18,22 +24,16 @@ CREATE TABLE [dbo].[PetopiaUsers] (
 	[ResState] NVARCHAR(50) NOT NULL,
 	[ResZipcode] NVARCHAR(24) NOT NULL,
 	[ProfilePhoto] VARBINARY(MAX),
-	/* these added later with alter table */
-	[UserCaption] NVARCHAR(72),
-	[GeneralLocation] NVARCHAR(72),
-	[Tagline] NVARCHAR(72),
-	[UserBio] NVARCHAR(72),
 
 	CONSTRAINT[PK_dbo.PetopiaUsers] PRIMARY KEY CLUSTERED([UserID] ASC)
 );
-
 /*-------------------------------------------------------------------------------------*/
 CREATE TABLE [dbo].[PetOwner] (
 	[PetOwnerID] INT IDENTITY (1,1) NOT NULL,
 
 	[AverageRating] NVARCHAR(120),
-	[NeedsDetails] NVARCHAR(MAX) NOT NULL,
-	[AccessInstructions] NVARCHAR(MAX) NOT NULL,
+	[GeneralNeeds] NVARCHAR(MAX) NOT NULL,
+	[HomeAccess] NVARCHAR(MAX) NOT NULL,
 
 	[UserID] INT,
 
@@ -41,7 +41,6 @@ CREATE TABLE [dbo].[PetOwner] (
 
 	CONSTRAINT[FK_dbo.PetopiaUsersOwner] FOREIGN KEY([UserID]) REFERENCES [dbo].[PetopiaUsers]([UserID])
 );
-
 /*-------------------------------------------------------------------------------------*/
 CREATE TABLE [dbo].[Pet] (
 	[PetID] INT IDENTITY (1,1) NOT NULL,
@@ -52,14 +51,18 @@ CREATE TABLE [dbo].[Pet] (
 	[Gender] NVARCHAR(8) NOT NULL,
 	[Altered] NVARCHAR(8),
 	[Birthdate] DATE,
-	[Weight] DATE,	-- ALTER TABLE (change data type)[to NVARCHAR(3)]
+	/* next two added later w/Alter Table */
+	[PetCaption] NVARCHAR(90),
+	[PetBio] NVARCHAR(MAX),
+	/*------------------------------------*/
+	[Weight] NVARCHAR(3),
 	[HealthConcerns] NVARCHAR(MAX),
 	[BehaviorConcerns] NVARCHAR(MAX),
+	/* ---removed AccessInstructions--- */
 	[PetAccess] NVARCHAR(MAX),
+	[NeedsDetails] NVARCHAR(MAX),
 	[EmergencyContactName] NVARCHAR(45),
 	[EmergencyContactPhone] NVARCHAR(12),
-	[NeedsDetails] NVARCHAR(MAX),
-	[AccessInstructions] NVARCHAR(MAX),
 
 	[PetOwnerID] INT,
 
@@ -67,7 +70,6 @@ CREATE TABLE [dbo].[Pet] (
 
 	CONSTRAINT[FK_dbo.PetOwner] FOREIGN KEY([PetOwnerID]) REFERENCES [dbo].[PetOwner]([PetOwnerID])
 );
-
 /*-------------------------------------------------------------------------------------*/
 CREATE TABLE [dbo].[CareProvider] (
 	[CareProviderID] INT IDENTITY (1,1) NOT NULL,
@@ -109,9 +111,14 @@ CREATE TABLE [dbo].[CareTransaction] (
 	[TransactionID] INT IDENTITY (1,1) NOT NULL,
 
 	[StartDate] DATE NOT NULL,
+	/* added later w/Alter Table */
 	[EndDate] DATE NOT NULL,
+	/*--------------------------*/
 	[StartTime] TIME NOT NULL,
 	[EndTime] TIME NOT NULL,
+	/* added later w/Alter Table */
+	[NeededThisVisit] NVARCXHAR(MAX),
+	/*------------------------------*/
 	[CareProvided] NVARCHAR(90),
 	[CareReport] NVARCHAR(MAX),
 	[Charge] MONEY,
