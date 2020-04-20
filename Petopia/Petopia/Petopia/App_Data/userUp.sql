@@ -43,32 +43,33 @@ CREATE TABLE [dbo].[PetOwner] (
 );
 /*-------------------------------------------------------------------------------------*/
 CREATE TABLE [dbo].[Pet] (
-	[PetID] INT IDENTITY (1,1) NOT NULL,
+    [PetID] INT IDENTITY (1,1) NOT NULL,
 
-	[PetName] NVARCHAR(24) NOT NULL, 
-	[Species] NVARCHAR(24) NOT NULL,
-	[Breed] NVARCHAR(24),
-	[Gender] NVARCHAR(8) NOT NULL,
-	[Altered] NVARCHAR(8),
-	[Birthdate] DATE,
-	/* next two added later w/Alter Table */
-	[PetCaption] NVARCHAR(90),
-	[PetBio] NVARCHAR(MAX),
-	/*------------------------------------*/
-	[Weight] NVARCHAR(3),
-	[HealthConcerns] NVARCHAR(MAX),
-	[BehaviorConcerns] NVARCHAR(MAX),
-	/* ---removed AccessInstructions--- */
-	[PetAccess] NVARCHAR(MAX),
-	[NeedsDetails] NVARCHAR(MAX),
-	[EmergencyContactName] NVARCHAR(45),
-	[EmergencyContactPhone] NVARCHAR(12),
+    [PetName] NVARCHAR(24) NOT NULL, 
+    [Species] NVARCHAR(24) NOT NULL,
+    [Breed] NVARCHAR(24),
+    [Gender] NVARCHAR(8) NOT NULL,
+    [Altered] NVARCHAR(8),
+    [Birthdate] DATE,
+    /* next two added later w/Alter Table */
+    [PetCaption] NVARCHAR(90),
+    [PetBio] NVARCHAR(MAX),
+    /*------------------------------------*/
+    [Weight] NVARCHAR(3),
+    [HealthConcerns] NVARCHAR(MAX),
+    [BehaviorConcerns] NVARCHAR(MAX),
+    /* ---removed AccessInstructions--- */
+    [PetAccess] NVARCHAR(MAX),
+    [NeedsDetails] NVARCHAR(MAX),
+    [EmergencyContactName] NVARCHAR(45),
+    [EmergencyContactPhone] NVARCHAR(12),
+	[PetPhoto] VARBINARY(MAX),
 
-	[PetOwnerID] INT,
+    [PetOwnerID] INT,
 
-	CONSTRAINT[PK_dbo.Pet] PRIMARY KEY CLUSTERED([PetID] ASC),
+    CONSTRAINT[PK_dbo.Pet] PRIMARY KEY CLUSTERED([PetID] ASC),
 
-	CONSTRAINT[FK_dbo.PetOwner] FOREIGN KEY([PetOwnerID]) REFERENCES [dbo].[PetOwner]([PetOwnerID])
+    CONSTRAINT[FK_dbo.PetOwner] FOREIGN KEY([PetOwnerID]) REFERENCES [dbo].[PetOwner]([PetOwnerID])
 );
 /*-------------------------------------------------------------------------------------*/
 CREATE TABLE [dbo].[CareProvider] (
