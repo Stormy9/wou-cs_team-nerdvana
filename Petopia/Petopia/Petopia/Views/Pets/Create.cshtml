@@ -7,7 +7,7 @@
 <div class="container-fluid">
 
     @using (Html.BeginForm("Create", "Pets", FormMethod.Post,
-new { @class = "form", role = "form", enctype = "multipart/form-data" }))
+    new { @class = "form", role = "form", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 

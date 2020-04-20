@@ -63,7 +63,7 @@ namespace Petopia.Controllers
         // want to bind to; more details:  https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,PetOwnerID,PetCaption,PetBio")] Pet pet)
+        public ActionResult Create(PetPicViewModel model)
         {
             Pet pet = new Pet();
             if (ModelState.IsValid)
@@ -86,7 +86,6 @@ namespace Petopia.Controllers
                 pet.EmergencyContactName = model.EmergencyContactName;
                 pet.EmergencyContactPhone = model.EmergencyContactPhone;
                 pet.NeedsDetails = model.NeedsDetails;
-                pet.AccessInstructions = model.AccessInstructions;
                 pet.PetCaption = model.PetCaption;
                 pet.PetBio = model.PetBio;
 
@@ -145,13 +144,33 @@ namespace Petopia.Controllers
                 return HttpNotFound();
             }
 
+            PetPicViewModel model = new PetPicViewModel();
+
+            model.PetName = pet.PetName;
+            model.Species = pet.Species;
+            model.Breed = pet.Breed;
+            model.Gender = pet.Gender;
+            model.Altered = pet.Altered;
+            model.Birthdate = pet.Birthdate;
+            model.Weight = pet.Weight;
+            model.HealthConcerns = pet.HealthConcerns;
+            model.BehaviorConcerns = pet.BehaviorConcerns;
+            model.PetAccess = pet.PetAccess;
+            model.EmergencyContactName = pet.EmergencyContactName;
+            model.EmergencyContactPhone = pet.EmergencyContactPhone;
+            model.NeedsDetails = pet.NeedsDetails;
+            model.PetCaption = pet.PetCaption;
+            model.PetBio = pet.PetBio;
+            model.PetID = pet.PetID;
+
+
             // pick-list for rating -- 1 thru 5
             ViewBag.PetOwnerID = new SelectList(db.PetOwners, "PetOwnerID", "AverageRating", pet.PetOwnerID);
 
             // boy-girl-altered pick-list
             ViewBag.GenderList = genderSelectList;
 
-            return View(pet);
+            return View(model);
         }
         //-------------------------------------------------------------------------------
         // POST: Pets/Edit/5
@@ -159,15 +178,60 @@ namespace Petopia.Controllers
         // want to bind to; more details:  https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PetID,PetName,Species,Breed,Gender,Altered,Birthdate,Weight,HealthConcerns,BehaviorConcerns,PetAccess,EmergencyContactName,EmergencyContactPhone,NeedsDetails,,PetOwnerID,PetCaption,PetBio")] Pet pet)
+        public ActionResult Edit(PetPicViewModel model)
         {
+            Pet pet = new Pet();
             if (ModelState.IsValid)
             {
                 var identityID = User.Identity.GetUserId();
                 var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
                 int ownerID = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.PetOwnerID).First();
 
+                
+
                 pet.PetOwnerID = ownerID;
+                pet.PetName = model.PetName;
+                pet.Species = model.Species;
+                pet.Breed = model.Breed;
+                pet.Gender = model.Gender;
+                pet.Altered = model.Altered;
+                pet.Birthdate = model.Birthdate;
+                pet.Weight = model.Weight;
+                pet.HealthConcerns = model.HealthConcerns;
+                pet.BehaviorConcerns = model.BehaviorConcerns;
+                pet.PetAccess = model.PetAccess;
+                pet.EmergencyContactName = model.EmergencyContactName;
+                pet.EmergencyContactPhone = model.EmergencyContactPhone;
+                pet.NeedsDetails = model.NeedsDetails;
+                pet.PetCaption = model.PetCaption;
+                pet.PetBio = model.PetBio;
+
+                if (model.PetPhoto != null)
+                {
+                    if (model.PetPhoto.ContentLength > (4 * 1024 * 1024))
+                    {
+                        ModelState.AddModelError("CustomError", "Image can not be lager than 4MB.");
+                        return View(model);
+                    }
+
+                    if (!(model.PetPhoto.ContentType == "image/jpeg"))
+                    {
+                        ModelState.AddModelError("CustomError", "Image must be in jpeg format.");
+                        return View(model);
+                    }
+
+                    byte[] data = new byte[model.PetPhoto.ContentLength];
+
+                    model.PetPhoto.InputStream.Read(data, 0, model.PetPhoto.ContentLength);
+
+                    pet.PetPhoto = data;
+                }
+                else //If no pic was uploaded, we need to seed the current profile pic into our user
+                {
+                    pet.PetPhoto = db.Pets.Where(x => x.PetID == pet.PetID).Select(x => x.PetPhoto).FirstOrDefault();
+                }
+
+
                 db.Entry(pet).State = EntityState.Modified;
                 db.SaveChanges();
 
@@ -180,7 +244,7 @@ namespace Petopia.Controllers
             // boy-girl-altered pick-list
             ViewBag.GenderList = genderSelectList;
 
-            return View(pet);
+            return View(model);
         }
 
         //===============================================================================

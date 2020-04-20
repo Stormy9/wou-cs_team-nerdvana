@@ -111,6 +111,7 @@ namespace Petopia.Models.ViewModels
             public string Species { get; set; }
             public string Breed { get; set; }
             public string Gender { get; set; }
+            public byte[] PetPhoto { get; set; }
 
             [Column(TypeName = "date")]
             // that ^ is supposed to get rid of the time appendage on the Pet b-days on
