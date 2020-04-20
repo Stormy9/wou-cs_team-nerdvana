@@ -85,10 +85,6 @@ namespace Petopia.Models
         public string NeedsDetails { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("How To Access Our Home:")]
-        public string AccessInstructions { get; set; }
-
-        //------------------------------------------------------------------------------
         [DisplayName("Profile Photo Caption:")]
         public string PetCaption { get; set; }
 
@@ -101,11 +97,11 @@ namespace Petopia.Models
         public int? PetOwnerID { get; set; }
 
         //===============================================================================
-        // Pull from other tables:
+        // Pull from other tables:  (or is it?)
         public virtual PetOwner PetOwner { get; set; }
-
 
         // how the hell do we pull in Pet Owner first/last name??
         //public virtual PetopiaUser petopiaUser { get; set; }
+        //===============================================================================
     }
 }

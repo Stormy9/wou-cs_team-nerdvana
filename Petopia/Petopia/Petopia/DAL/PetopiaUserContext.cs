@@ -1,5 +1,5 @@
 namespace Petopia.Models
-{
+{ 
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -12,10 +12,13 @@ namespace Petopia.Models
         {
         }
 
+        //===============================================================================
         public virtual DbSet<PetopiaUser> PetopiaUsers { get; set; }
 
+        //-------------------------------------------------------------------------------
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }
+        //===============================================================================
     }
 }

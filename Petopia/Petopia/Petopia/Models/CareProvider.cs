@@ -10,18 +10,20 @@ namespace Petopia.Models
     [Table("CareProvider")]
     public partial class CareProvider
     {
+        //===============================================================================
         public int CareProviderID { get; set; }
 
         //===============================================================================
         [StringLength(120)]
         public string AverageRating { get; set; }
 
-        //===============================================================================
+        //-------------------------------------------------------------------------------
         [Required]
         [DisplayName("My Pet Care Experience:")]
         public string ExperienceDetails { get; set; }
 
         //===============================================================================
+        // FOREIGN KEY
         public int? UserID { get; set; }
 
         //===============================================================================

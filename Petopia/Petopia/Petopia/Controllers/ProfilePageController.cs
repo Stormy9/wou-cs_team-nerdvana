@@ -79,9 +79,9 @@ namespace Petopia.Controllers
             {
                 petopiaUser.OwnerAverageRating = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.AverageRating).First();
 
-                petopiaUser.NeedsDetails = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.NeedsDetails).First();
+                petopiaUser.GeneralNeeds = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.GeneralNeeds).First();
 
-                petopiaUser.AccessInstructions = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.AccessInstructions).First();
+                petopiaUser.HomeAccess = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.HomeAccess).First();
             }
 
             //---------------------------------------------------------------------------
@@ -171,9 +171,9 @@ namespace Petopia.Controllers
 
             if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
             {
-                petopiaUser.NeedsDetails = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.NeedsDetails).First();
+                petopiaUser.GeneralNeeds = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.GeneralNeeds).First();
 
-                petopiaUser.AccessInstructions = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.AccessInstructions).First();
+                petopiaUser.HomeAccess = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.HomeAccess).First();
             }
             //---------------------------------------------------------------------------
 
@@ -288,9 +288,9 @@ namespace Petopia.Controllers
 
                     currentOwner.AverageRating = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.AverageRating).First();
 
-                    currentOwner.NeedsDetails = model.NeedsDetails;
+                    currentOwner.GeneralNeeds = model.GeneralNeeds;
 
-                    currentOwner.AccessInstructions = model.AccessInstructions;
+                    currentOwner.HomeAccess = model.HomeAccess;
 
                     currentOwner.UserID = loggedID;
                     
