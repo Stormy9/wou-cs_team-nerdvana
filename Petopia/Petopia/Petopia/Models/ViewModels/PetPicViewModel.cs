@@ -1,16 +1,15 @@
-namespace Petopia.DAL
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 
-    [Table("Pet")]
-    public partial class Pet
+namespace Petopia.Models.ViewModels
+{
+    public class PetPicViewModel
     {
-        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         public int PetID { get; set; }
 
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -99,19 +98,6 @@ namespace Petopia.DAL
         public string PetBio { get; set; }
 
         [DisplayName("Pet pic!")]
-        public byte[] PetPhoto { get; set; }
-
-
-        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        // Foreign Key
-        public int? PetOwnerID { get; set; }
-
-        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        // Pull from other tables:
-        public virtual PetOwner PetOwner { get; set; }
-
-
-        // how the hell do we pull in Pet Owner first/last name??
-        //public virtual PetopiaUser petopiaUser { get; set; }
+        public HttpPostedFileBase PetPhoto { get; set; }
     }
 }

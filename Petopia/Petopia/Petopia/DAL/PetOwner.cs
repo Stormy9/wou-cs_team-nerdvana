@@ -28,11 +28,11 @@ namespace Petopia.DAL
 
 
         [Required]
-        public string NeedsDetails { get; set; }
+        public string GeneralNeeds { get; set; }
 
 
         [Required]
-        public string AccessInstructions { get; set; }
+        public string HomeAccess { get; set; }
 
         //===============================================================================
 

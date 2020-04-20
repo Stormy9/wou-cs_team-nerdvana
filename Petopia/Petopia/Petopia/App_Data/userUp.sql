@@ -52,7 +52,7 @@ CREATE TABLE [dbo].[Pet] (
 	[Gender] NVARCHAR(8) NOT NULL,
 	[Altered] NVARCHAR(8),
 	[Birthdate] DATE,
-	[Weight] DATE,	-- ALTER TABLE (change data type)[to NVARCHAR(3)]
+	[Weight] NVARCHAR(3),	-- ALTER TABLE (change data type)[to NVARCHAR(3)]
 	[HealthConcerns] NVARCHAR(MAX),
 	[BehaviorConcerns] NVARCHAR(MAX),
 	[PetAccess] NVARCHAR(MAX),
@@ -60,6 +60,7 @@ CREATE TABLE [dbo].[Pet] (
 	[EmergencyContactPhone] NVARCHAR(12),
 	[NeedsDetails] NVARCHAR(MAX),
 	[AccessInstructions] NVARCHAR(MAX),
+	[PetPhoto] VARBINARY(MAX),
 
 	[PetOwnerID] INT,
 
