@@ -1,4 +1,5 @@
-﻿@model Petopia.Models.PetopiaUser
+﻿@model Petopia.Models.ViewModels.PetopiaUserLoginViewModel
+
 
 @{
     ViewBag.Title = "Make Your Petopia User Account";
@@ -6,336 +7,347 @@
 <!--============================= WHOLE DAMNED FORM HERE =============================-->
 <div class="container-fluid">
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Create", "PetopiaUsers", FormMethod.Post,
+        new { @class = "form", role = "form", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
         <div class="form">
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <h2>@ViewBag.Title!</h2>
-        <hr />
-        
-        <!--========================= TOP ROW FOR ACCORDIANS =========================-->
-        <div class="row" style="margin-bottom: 9px; margin-top: 0; padding-top: 0;"> 
-            <div class="container-fluid your_info">
-            <!-- why did we have to do another 'container-fluid'?? -->
-            <!-- to keep it from being right up on the outside edges -->
-            <!-- that was not the case in the 'About' page.....    -->
-                <!-- [Your Info] -->
-                <h3> What we do with your info + why we need it: </h3>
-
-                <!------------------------- START 'PANEL GROUP' ------------------------>
-                <div class="panel-group" id="accordion_02">
-
-                    <!------------- PROFILE PANEL, w/HEADING/TITLE + BODY -------------->
-                    <div class="panel our_panel_01">
-
-                        <a data-toggle="collapse" data-parent="#accordion_02"
-                           href="#collapse_PI">
-                            <div class="panel-heading our_panel_heading">
-                                <div class="panel-title our_panel_title">
-                                    <p class="our_panel_p">
-                                        Your profile information:
-                                        <span class="glyphicon glyphicon-resize-vertical"
-                                              style="float: right;">
-                                        </span>
-                                    </p>
-                                </div><!-- end 'panel-title'\'our_panel_title' divs -->
-                            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
-                        </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
-                        <!-------------------------------------------------------------->
-                        <div class="panel-collapse collapse" id="collapse_PI">
-                            <div class="panel-body"> <!-- PROFILE -->
-                                <p>
-                                    The profile information you fill out at Petopia is 
-                                    what will actually be shown on your public profile 
-                                    with us.
-                                </p>
-                                <p>
-                                    So have as much fun as you like -- make it silly, 
-                                    make it thoughtful or inspirational, make it
-                                    whatever you like..... but please keep it nice!
-                                </p>
-                                <p>
-                                    In other words -- imagine your Grandma might be 
-                                    reading it.   [=
-                                </p>
-                            </div><!-- end 'panel-body' div -->
-                        </div><!-- end 'panel'\'panel-collapse' div + '#collapse_PI' id -->
-                    </div><!-- end 'panel'/our_panel_01' div -->
-                    <!---->
-                    <!--==============================================================-->
-                    <!------------- ACCOUNT PANEL, w/HEADING/TITLE + BODY -------------->
-                    <div class="panel our_panel_01">
-
-                        <a data-toggle="collapse" data-parent="#accordion_02"
-                           href="#collapse_AI">
-                            <div class="panel-heading our_panel_heading">
-                                <div class="panel-title our_panel_title">
-                                    <p class="our_panel_p">
-                                        Your account information
-                                        <span class="glyphicon glyphicon-resize-vertical"
-                                              style="float: right;">
-                                        </span>
-                                    </p>
-                                </div><!-- end 'panel-title'\'our_panel_title' divs -->
-                            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
-                        </a><!-- end '#accordian_02' id + '#collapse_AI' href -->
-                        <!-------------------------------------------------------------->
-                        <div class="panel-collapse collapse" id="collapse_AI">
-                            <div class="panel-body"> <!-- ACCOUNT -->
-                                <p>
-                                    The account information you fill out at Petopia will
-                                    <b>not</b> appear on your profile -- it is
-                                    confidential with Petopia.
-                                </p>
-                                <p>
-                                    <b>For Pet Owners:</b><br />
-                                    When you select a Pet Care Provider and arrange for
-                                    Pet Care with them, only then will Petopia share your
-                                    contact and access information with that Provider, so
-                                    that they can fulfill your Pet Care needs in the best
-                                    way for your Pet(s)!
-                                </p>
-                                <br />
-                                <p>
-                                    <b>For Pet Care Providers:</b><br />
-                                    When you agree to providve Pet Care services for a 
-                                    Pet Owner, we will share your contact information 
-                                    with them so they can contact you and know you're 
-                                    a real person!
-                                </p>
-                            </div><!-- end 'panel-body' div -->
-                        </div><!-- end 'panel-collapse'/'collapse' div+'#collapse_AI' id -->
-                    </div><!-- end 'panel'\'our_panel_01' divs -->
-                </div><!-- end 'panel-group' div + '#accordian_02' id -->
-            </div><!-- END + 'your_info' + 'container-fluid' div -->
-        </div><!-- END ROW ONE!-->
-        <!---->
-        <!---->
-        <!--=========================== SECOND \ MIDDLE ROW ==========================-->
-        <!--============================ FIRST\LEFT COLUMN ===========================-->
-        <div class="row">
-            <div class="col-sm-4 col-md-4">
-                <h4 style="color: #261a0d">Your Profile Information:</h4>
-
-                <!------- PROFILE STUFF ------------------------------------------------>
-                <!------------------------- FIRST NAME  -------------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FirstName,
-                                        htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.FirstName,
-                                new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.FirstName, "",
-                                                          new { @class = "text-danger" })
-                </div>
-                <!-------------------------- LAST NAME  -------------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.LastName,
-                                        htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.LastName,
-                                new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.LastName, "",
-                                                         new { @class = "text-danger" })
-                </div>
-                <!-------------------------- TAGLINE ----------------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Tagline,
-                                        htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.Tagline,
-                                new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.Tagline, "",
-                                                         new { @class = "text-danger" })
-                </div>
-                <!------------------------ GENERAL LOCATION ---------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.GeneralLocation,
-                                        htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.GeneralLocation,
-                                new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.GeneralLocation, "",
-                                                         new { @class = "text-danger" })
-                </div>
-                <!---------------------------------------------------------------------->
-            </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
-            <!---->
-            <!---->
-            <!--=========================== SECOND\MIDDLE COLUMN =====================-->
-            <div class="col-sm-4 col-md-4">
-                
-                <!--------------------------- USER BIO --------------------------------->
-                <div class="form-group" style="padding-top: 42px;">
-                    @Html.LabelFor(model => model.UserBio,
-                                        htmlAttributes: new { @class = "control-label" })
-
-                    <br />
-                    @Html.TextAreaFor(model => model.UserBio,
-                         new { htmlAttributes =
-                         new { @class = "form-control our_text_area" }, 
-                             cols=90, rows=5, id = "text14", name = "text14",
-                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
-
-                    <div>
-                        <span class="pull-left label label-default" 
-                              id="count_message_14">
-                        </span>
-                    </div>
-
-                    @Html.ValidationMessageFor(model => model.UserBio, "",
-                                                         new { @class = "text-danger" })
-                </div>
-                
-                <!--============================ PROFILE PIC =========================-->
-                <div class="form-group" style="padding-top:21px;">
-                    @Html.LabelFor(m => m.ProfilePhoto, new { @class = "control-label" })
-
-                    @Html.TextBoxFor(m => m.ProfilePhoto, new { type = "file" })
-
-                    @Html.ValidationMessage("CustomMessage")
-                </div>
-                <!-------------------------- PROFILE PIC CAPTION! ---------------------->
-                <div class="form-group" style="padding-top:13px;">
-                    @Html.LabelFor(m => m.UserCaption, new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.UserCaption,
-                                new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.UserCaption, "",
-                                                         new { @class = "text-danger" })
-                </div>
-                <!---------------------------------------------------------------------->
-            </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
-            <!---->
-            <!---->
-            <!--============================ THIRD\RIGHT COLUMN ======================-->
-            <div class="col-sm-4 col-md-4">
-
-                <h4 style="color: #261a0d;">Your Account Information:</h4>
-
-                <!-------- ACCOUNT INFO ------------------------------------------------>
-                <!----------------------------- MAIN PHONE ----------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.MainPhone,
-                                    htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.MainPhone,
-                        new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.MainPhone, "",
-                                                    new { @class = "text-danger" })
-                </div>
-                <!--------------------------- ALTERNATE PHONE  ------------------------>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.AltPhone,
-                                      htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.AltPhone,
-                            new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.AltPhone, "",
-                                                      new { @class = "text-danger" })
-                </div>
-
-                <!--------------------------- RES ADDRESS 01 --------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ResAddress01,
-                                        htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.ResAddress01,
-                                new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.ResAddress01, "",
-                                                        new { @class = "text-danger" })
-                </div>
-                <!--------------------------- RES ADDRESS 02  -------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ResAddress02,
-                                        htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.ResAddress02,
-                            new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.ResAddress02, "",
-                                                      new { @class = "text-danger" })
-                </div>
-                <!---------------------------- RES CITY -------------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ResCity,
-                                        htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.ResCity,
-                                new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.ResCity, "",
-                                                        new { @class = "text-danger" })
-                </div>
-                <!--------------------------- RES STATE -------------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ResState, htmlAttributes:
-                                                        new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.ResState,
-                                new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.ResState, "",
-                                                        new { @class = "text-danger" })
-                </div>
-                <!---------------------------- RES ZIP  -------------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ResZipcode,
-                                        htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.ResZipcode,
-                                new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.ResZipcode, "",
-                                                          new { @class = "text-danger" })
-                </div>
-                <!---------------------------------------------------------------------->
-            </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
+            <h2>@ViewBag.Title!</h2>
             <hr />
-        </div><!-- END 1st ROW!-->
-        <!---->
-        <!---->
-        <!--==========================================================================-->
-        <!--================================ BUTTONS! ================================-->
-        <div class="row" style="padding-bottom: 18px;">
-            <hr /><br />
 
-            <div class="col-sm-offset-8 col-sm-2 col-md-2">
+            <!--========================= TOP ROW FOR ACCORDIANS =========================-->
+            <div class="row" style="margin-bottom: 9px; margin-top: 0; padding-top: 0;">
+                <div class="container-fluid your_info">
+                    <!-- why did we have to do another 'container-fluid'?? -->
+                    <!-- to keep it from being right up on the outside edges -->
+                    <!-- that was not the case in the 'About' page.....    -->
+                    <!-- [Your Info] -->
+                    <h3> What we do with your info + why we need it: </h3>
 
-                <div class="form-group">
-                    <div>
-                        <input type="submit" value="Make my Profile!"
-                                class="btn our_buttons" />
+                    <!------------------------- START 'PANEL GROUP' ------------------------>
+                    <div class="panel-group" id="accordion_02">
+
+                        <!------------- PROFILE PANEL, w/HEADING/TITLE + BODY -------------->
+                        <div class="panel our_panel_01">
+
+                            <a data-toggle="collapse" data-parent="#accordion_02"
+                               href="#collapse_PI">
+                                <div class="panel-heading our_panel_heading">
+                                    <div class="panel-title our_panel_title">
+                                        <p class="our_panel_p">
+                                            Your profile information:
+                                            <span class="glyphicon glyphicon-resize-vertical"
+                                                  style="float: right;">
+                                            </span>
+                                        </p>
+                                    </div><!-- end 'panel-title'\'our_panel_title' divs -->
+                                </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
+                            </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
+                            <!-------------------------------------------------------------->
+                            <div class="panel-collapse collapse" id="collapse_PI">
+                                <div class="panel-body">
+                                    <!-- PROFILE -->
+                                    <p>
+                                        The profile information you fill out at Petopia is
+                                        what will actually be shown on your public profile
+                                        with us.
+                                    </p>
+                                    <p>
+                                        So have as much fun as you like -- make it silly,
+                                        make it thoughtful or inspirational, make it
+                                        whatever you like..... but please keep it nice!
+                                    </p>
+                                    <p>
+                                        In other words -- imagine your Grandma might be
+                                        reading it.   [=
+                                    </p>
+                                </div><!-- end 'panel-body' div -->
+                            </div><!-- end 'panel'\'panel-collapse' div + '#collapse_PI' id -->
+                        </div><!-- end 'panel'/our_panel_01' div -->
+                        <!---->
+                        <!--==============================================================-->
+                        <!------------- ACCOUNT PANEL, w/HEADING/TITLE + BODY -------------->
+                        <div class="panel our_panel_01">
+
+                            <a data-toggle="collapse" data-parent="#accordion_02"
+                               href="#collapse_AI">
+                                <div class="panel-heading our_panel_heading">
+                                    <div class="panel-title our_panel_title">
+                                        <p class="our_panel_p">
+                                            Your account information
+                                            <span class="glyphicon glyphicon-resize-vertical"
+                                                  style="float: right;">
+                                            </span>
+                                        </p>
+                                    </div><!-- end 'panel-title'\'our_panel_title' divs -->
+                                </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
+                            </a><!-- end '#accordian_02' id + '#collapse_AI' href -->
+                            <!-------------------------------------------------------------->
+                            <div class="panel-collapse collapse" id="collapse_AI">
+                                <div class="panel-body">
+                                    <!-- ACCOUNT -->
+                                    <p>
+                                        The account information you fill out at Petopia will
+                                        <b>not</b> appear on your profile -- it is
+                                        confidential with Petopia.
+                                    </p>
+                                    <p>
+                                        <b>For Pet Owners:</b><br />
+                                        When you select a Pet Care Provider and arrange for
+                                        Pet Care with them, only then will Petopia share your
+                                        contact and access information with that Provider, so
+                                        that they can fulfill your Pet Care needs in the best
+                                        way for your Pet(s)!
+                                    </p>
+                                    <br />
+                                    <p>
+                                        <b>For Pet Care Providers:</b><br />
+                                        When you agree to providve Pet Care services for a
+                                        Pet Owner, we will share your contact information
+                                        with them so they can contact you and know you're
+                                        a real person!
+                                    </p>
+                                </div><!-- end 'panel-body' div -->
+                            </div><!-- end 'panel-collapse'/'collapse' div+'#collapse_AI' id -->
+                        </div><!-- end 'panel'\'our_panel_01' divs -->
+                    </div><!-- end 'panel-group' div + '#accordian_02' id -->
+                </div><!-- END + 'your_info' + 'container-fluid' div -->
+            </div><!-- END ROW ONE!-->
+            <!---->
+            <!---->
+            <!--=========================== SECOND \ MIDDLE ROW ==========================-->
+            <!--============================ FIRST\LEFT COLUMN ===========================-->
+            <div class="row">
+                <div class="col-sm-4 col-md-4">
+                    <h4 style="color: #261a0d">Your Profile Information:</h4>
+
+                    <!------- PROFILE STUFF ------------------------------------------------>
+                    <!------------------------- FIRST NAME  -------------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FirstName,
+                                            htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.FirstName,
+                                    new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.FirstName, "",
+                                                              new { @class = "text-danger" })
+                    </div>
+                    <!-------------------------- LAST NAME  -------------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LastName,
+                                            htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.LastName,
+                                    new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.LastName, "",
+                                                             new { @class = "text-danger" })
+                    </div>
+                    <!-------------------------- TAGLINE ----------------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Tagline,
+                                            htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.Tagline,
+                                    new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.Tagline, "",
+                                                             new { @class = "text-danger" })
+                    </div>
+                    <!------------------------ GENERAL LOCATION ---------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.GeneralLocation,
+                                            htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.GeneralLocation,
+                                    new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.GeneralLocation, "",
+                                                             new { @class = "text-danger" })
+                    </div>
+                    <!---------------------------------------------------------------------->
+                </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
+                <!---->
+                <!---->
+                <!--=========================== SECOND\MIDDLE COLUMN =====================-->
+                <div class="col-sm-4 col-md-4">
+
+                    <!--------------------------- USER BIO --------------------------------->
+                    <div class="form-group" style="padding-top: 42px;">
+                        @Html.LabelFor(model => model.UserBio,
+                                            htmlAttributes: new { @class = "control-label" })
+
+                        <br />
+                        @Html.TextAreaFor(model => model.UserBio,
+                             new
+                                  {
+                                      htmlAttributes =
+                             new { @class = "form-control our_text_area" },
+                                 cols = 90,
+                                      rows = 5,
+                                      id = "text14",
+                                      name = "text14",
+                             style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"
+                                  })
+
+                        <div>
+                            <span class="pull-left label label-default"
+                                  id="count_message_14">
+                            </span>
+                        </div>
+
+                        @Html.ValidationMessageFor(model => model.UserBio, "",
+                                                             new { @class = "text-danger" })
+                    </div>
+
+                    <!--============================ PROFILE PIC =========================-->
+                    <div class="form-group" style="padding-top:21px;">
+                        @Html.LabelFor(m => m.ProfilePhoto, new { @class = "control-label" })
+
+                        @Html.TextBoxFor(m => m.ProfilePhoto, new { type = "file" })
+
+                        @Html.ValidationSummary(true,
+                                        "Picture MUST be in JPG format and under 4 MB.",
+                                        new { @class = "text-danger" })
+                    </div>
+                    <!-------------------------- PROFILE PIC CAPTION! ---------------------->
+                    <div class="form-group" style="padding-top:13px;">
+                        @Html.LabelFor(m => m.UserCaption, new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.UserCaption,
+                                    new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.UserCaption, "",
+                                                             new { @class = "text-danger" })
+                    </div>
+                    <!---------------------------------------------------------------------->
+                </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
+                <!---->
+                <!---->
+                <!--============================ THIRD\RIGHT COLUMN ======================-->
+                <div class="col-sm-4 col-md-4">
+
+                    <h4 style="color: #261a0d;">Your Account Information:</h4>
+
+                    <!-------- ACCOUNT INFO ------------------------------------------------>
+                    <!----------------------------- MAIN PHONE ----------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MainPhone,
+                                        htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.MainPhone,
+                            new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.MainPhone, "",
+                                                        new { @class = "text-danger" })
+                    </div>
+                    <!--------------------------- ALTERNATE PHONE  ------------------------>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AltPhone,
+                                          htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.AltPhone,
+                                new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.AltPhone, "",
+                                                          new { @class = "text-danger" })
+                    </div>
+
+                    <!--------------------------- RES ADDRESS 01 --------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ResAddress01,
+                                            htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.ResAddress01,
+                                    new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.ResAddress01, "",
+                                                            new { @class = "text-danger" })
+                    </div>
+                    <!--------------------------- RES ADDRESS 02  -------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ResAddress02,
+                                            htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.ResAddress02,
+                                new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.ResAddress02, "",
+                                                          new { @class = "text-danger" })
+                    </div>
+                    <!---------------------------- RES CITY -------------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ResCity,
+                                            htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.ResCity,
+                                    new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.ResCity, "",
+                                                            new { @class = "text-danger" })
+                    </div>
+                    <!--------------------------- RES STATE -------------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ResState, htmlAttributes:
+                                                            new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.ResState,
+                                    new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.ResState, "",
+                                                            new { @class = "text-danger" })
+                    </div>
+                    <!---------------------------- RES ZIP  -------------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ResZipcode,
+                                            htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.ResZipcode,
+                                    new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.ResZipcode, "",
+                                                              new { @class = "text-danger" })
+                    </div>
+                    <!---------------------------------------------------------------------->
+                </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
+                <hr />
+            </div><!-- END 1st ROW!-->
+            <!---->
+            <!---->
+            <!--==========================================================================-->
+            <!--================================ BUTTONS! ================================-->
+            <div class="row" style="padding-bottom: 18px;">
+                <hr /><br />
+
+                <div class="col-sm-offset-8 col-sm-2 col-md-2">
+
+                    <div class="form-group">
+                        <div>
+                            <input type="submit" value="Make my Profile!"
+                                   class="btn our_buttons" />
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-sm-2 col-md-2">
+                <div class="col-sm-2 col-md-2">
 
-                <div class="our_create-edit_buttons">
-                    @Html.ActionLink("Cancel! (to home)", "Index", "Home")
-                </div>
+                    <div class="our_create-edit_buttons">
+                        @Html.ActionLink("Cancel! (to home)", "Index", "Home")
+                    </div>
 
-            </div><!-- END COLUMN FOR BUTTON ROW -->
-        </div><!-- END 2nd ROW! -->
-        <!------------------------------------------------------------------------------>
-    </div><!-- END FORM DIV! -->
+                </div><!-- END COLUMN FOR BUTTON ROW -->
+            </div><!-- END 2nd ROW! -->
+            <!------------------------------------------------------------------------------>
+        </div><!-- END FORM DIV! -->
     }
 </div><!-- END CONTAINER-FLUID! -->
 <!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-@Scripts.Render("~/Scripts/_our_main.js")
+    @Scripts.Render("~/Scripts/_our_main.js")
 }
