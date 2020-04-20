@@ -75,7 +75,7 @@ namespace Petopia.Controllers
                 var theUser = UserManagerExtensions.FindByName(userManager, currentUser.ASPNetIdentityID);
 
                 UserManagerExtensions.AddToRole(userManager, identityID, "Owner");
-               
+                //needs details, access instructions
                 
                 pdb.SaveChanges();
 

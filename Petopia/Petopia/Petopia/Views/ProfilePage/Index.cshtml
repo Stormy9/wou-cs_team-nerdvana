@@ -396,9 +396,17 @@
                             <div class="pet_profile_preview">
                                 <!-- individual panel -->
                                 <!-- link to pet's profile -->
-                                <img class="pet_profile_preview_img"
-                                     alt="pet profile pic"
-                                     src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg">
+                                @if (item.PetPhoto != null)
+                                {
+                                            <img src=@Url.Action("ShowPet", "Image",
+                                new { id = item.PetID}) />
+                                }
+                                else
+                                {
+                                    <img class="pet_profile_preview_img"
+                                         alt="pet profile pic"
+                                         src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg">
+                                }
 
                                 <div class="pet_preview_name">
                                     My name is: &nbsp;&nbsp;

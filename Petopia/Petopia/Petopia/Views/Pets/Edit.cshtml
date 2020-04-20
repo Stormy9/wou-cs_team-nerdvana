@@ -1,4 +1,4 @@
-﻿@model Petopia.DAL.Pet
+﻿@model Petopia.Models.ViewModels.PetPicViewModel
 
 @{
     ViewBag.Title = "Edit this Pet";
@@ -6,280 +6,313 @@
 
 <div class="container-fluid">
     <!--========================== WHOLE DAMNED FORM IN HERE =============================-->
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Edit", "Pets", FormMethod.Post,
+    new { @class = "form", role = "form", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
         <div class="form">
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.PetID)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.PetID)
 
-        <h2>@ViewBag.Title!</h2>
-        <hr />
-        <!--============================ FIRST\LEFT COLUMN ===========================-->
-        <div class="row">
-            <div class="col-sm-4 col-md-4">
+            <h2>@ViewBag.Title!</h2>
+            <hr />
+            <!--============================ FIRST\LEFT COLUMN ===========================-->
+            <div class="row">
+                <div class="col-sm-4 col-md-4">
 
-                <h4 style="color: #261a0d">Your Pet's Profile Stuff:</h4>
+                    <h4 style="color: #261a0d">Your Pet's Profile Stuff:</h4>
 
-                <!------- PROFILE STUFF ------------------------------------------------>
-                <!----------------------------- PET NAME ------------------------------->
-                <div class="form-group" style="padding-top: 5px;">
-                    @Html.LabelFor(model => model.PetName, htmlAttributes:
-                                                        new { @class = "control-label" })
+                    <!------- PROFILE STUFF ------------------------------------------------>
+                    <!----------------------------- PET NAME ------------------------------->
+                    <div class="form-group" style="padding-top: 5px;">
+                        @Html.LabelFor(model => model.PetName, htmlAttributes:
+                                                            new { @class = "control-label" })
 
-                    @Html.EditorFor(model => model.PetName,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.PetName,
+                                    new { htmlAttributes = new { @class = "form-control" } })
 
-                    @Html.ValidationMessageFor(model => model.PetName, "",
+                        @Html.ValidationMessageFor(model => model.PetName, "",
+                                                            new { @class = "text-danger" })
+                    </div>
+                    <!----------------------------- PET SPECIES ---------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Species, htmlAttributes:
+                                                            new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.Species,
+                                    new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.Species, "",
+                                                            new { @class = "text-danger" })
+                    </div>
+                    <!----------------------------- PET BREED ------------------------------>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Breed, htmlAttributes:
+                                                            new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.Breed, new
+                        { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.Breed, "",
                                                         new { @class = "text-danger" })
-                </div>
-                <!----------------------------- PET SPECIES ---------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Species, htmlAttributes:
+                    </div>
+
+                    <!------------------------------ PET GENDER ---------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Gender, htmlAttributes:
                                                         new { @class = "control-label" })
 
-                    @Html.EditorFor(model => model.Species,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownList("gender",
+                        (IEnumerable<SelectListItem>)ViewBag.GenderList,
+                           "gender?", new { @class = "form-control", required = "required" })
 
-                    @Html.ValidationMessageFor(model => model.Species, "",
+                        @Html.ValidationMessageFor(model => model.Gender, "",
+                                                            new { @class = "text-danger" })
+                    </div>
+                    <!------------------------------- PET BIRTHDAY ------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Birthdate,
+                                           htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.Birthdate,
+                                    new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.Birthdate, "",
                                                         new { @class = "text-danger" })
-                </div>
-                <!----------------------------- PET BREED ------------------------------>
+                    </div>
+                    <!----------------------- MY PET'S BIO SPOT ---------------------------->
+                    <div class="form-group" style="padding-top: 5px;">
+                        @Html.LabelFor(model => model.PetBio,
+                                           htmlAttributes: new { @class = "control-label" })
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Breed, htmlAttributes:
-                                                        new { @class = "control-label" })
+                        <br /><!-- WTF DO I GOTTA HAVE THIS HERE FOR??? BUT YET I DO..... -->
 
-                    @Html.EditorFor(model => model.Breed, new
-                    { htmlAttributes = new { @class = "form-control" } })
+                        @Html.TextAreaFor(model => model.PetBio,
+                                new
+                                     {
+                                         htmlAttributes =
+                                new { @class = "form-control our_text_area" },
+                                cols = 90,
+                                         rows = 5,
+                                         id = "text13",
+                                         name = "text13",
+                                style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"
+                                     })
 
-                    @Html.ValidationMessageFor(model => model.Breed, "",
-                                                    new { @class = "text-danger" })
-                </div>
+                        <div>
+                            <span class="pull-left label label-default"
+                                  id="count_message_13">
+                            </span>
+                        </div>
 
-                <!------------------------------ PET GENDER ---------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Gender, htmlAttributes:
-                                                    new { @class = "control-label" })
+                        @Html.ValidationMessageFor(model => model.PetBio, "",
+                                                             new { @class = "text-danger" })
+                    </div>
+                    <!------------------------- PET PROFILE PIC ---------------------------->
+                    <div class="form-group" style="padding-top:13px;">
+                        @Html.LabelFor(m => m.PetPhoto, new { @class = "control-label" })
 
-                    @Html.DropDownList("gender",
-                    (IEnumerable<SelectListItem>)ViewBag.GenderList,
-                       "gender?", new { @class = "form-control", required = "required" })
+                        @Html.TextBoxFor(m => m.PetPhoto, new { type = "file" })
 
-                    @Html.ValidationMessageFor(model => model.Gender, "",
+                        @Html.ValidationSummary(true,
+                                        "Picture MUST be in JPG format and under 4 MB.",
+                                        new { @class = "text-danger" })
+                    </div>
+                    <!---------------------- PET PROFILE PIC CAPTION------------------------>
+                    <div class="form-group" style="padding-top: 5px;">
+                        @Html.LabelFor(model => model.PetCaption, htmlAttributes:
+                                                            new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.PetCaption, new
+                        { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.PetCaption, "",
                                                         new { @class = "text-danger" })
-                </div>
-                <!------------------------------- PET BIRTHDAY ------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Birthdate,
-                                       htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.Birthdate,
-                                new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.Birthdate, "",
-                                                    new { @class = "text-danger" })
-                </div>
-                <!----------------------- MY PET'S BIO SPOT ---------------------------->
-                <div class="form-group" style="padding-top: 5px;">
-                    @Html.LabelFor(model => model.PetBio,
-                                       htmlAttributes: new { @class = "control-label" })
-
-                    <br /><!-- WTF DO I GOTTA HAVE THIS HERE FOR??? BUT YET I DO..... -->
-
-                    @Html.TextAreaFor(model => model.PetBio,
-                            new { htmlAttributes =
-                            new { @class = "form-control our_text_area"},
-                            cols=90, rows=5, id = "text13", name = "text13",
-                            style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"})
-
-                    <div>
-                        <span class="pull-left label label-default" 
-                              id="count_message_13">
-                        </span>
                     </div>
+                    <!---------------------------------------------------------------------->
 
-                    @Html.ValidationMessageFor(model => model.PetBio, "",
-                                                         new { @class = "text-danger" })
-                </div>
-                <!------------------------- PET PROFILE PIC ---------------------------->
-                <div class="form-group" style="padding-top: 13px;">
+                </div><!-- END 1st\LEFT FOUR-COLUMN DIV -->
+                <!---->
+                <!---->
+                <!--=========================== SECOND\MIDDLE COLUMN =====================-->
+                <div class="col-sm-4 col-md-4">
 
-                    <div class="temp" style="border: 3px dashed blue; padding: 9px;">
-                        coming: pet photo upload spot!
+                    <h4 style="color: #261a0d;">Your Pet's Care Info:</h4>
+
+                    <!--------- PET CARE INFO ---------------------------------------------->
+                    <!-------------------------------- PET WEIGHT -------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Weight,
+                                           htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.Weight,
+                                   new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.Weight, "",
+                                                           new { @class = "text-danger" })
                     </div>
+                    <!-------------------- PET'S EMERGENCY CONTACT NAME -------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EmergencyContactName,
+                                            htmlAttributes: new { @class = "control-label" })
 
-                </div>
-                <!---------------------- PET PROFILE PIC CAPTION------------------------>
-                <div class="form-group" style="padding-top: 5px;">
-                    @Html.LabelFor(model => model.PetCaption, htmlAttributes:
-                                                        new { @class = "control-label" })
+                        @Html.EditorFor(model => model.EmergencyContactName,
+                                    new { htmlAttributes = new { @class = "form-control" } })
 
-                    @Html.EditorFor(model => model.PetCaption, new
-                    { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EmergencyContactName, "",
+                                                        new { @class = "text-danger" })
+                    </div>
+                    <!------------------- PET'S EMERGENCY CONTACT PHONE -------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EmergencyContactPhone,
+                                           htmlAttributes: new { @class = "control-label" })
 
-                    @Html.ValidationMessageFor(model => model.PetCaption, "",
-                                                    new { @class = "text-danger" })
-                </div>
-                <!---------------------------------------------------------------------->
+                        @Html.EditorFor(model => model.EmergencyContactPhone,
+                                   new { htmlAttributes = new { @class = "form-control" } })
 
-            </div><!-- END 1st\LEFT FOUR-COLUMN DIV -->
+                        @Html.ValidationMessageFor(model => model.EmergencyContactPhone, "",
+                                                             new { @class = "text-danger" })
+                    </div>
+                    <!---------------------- HOW TO ACCESS MY PET -------------------------->
+                    <div class="form-group" style="padding-top: 13px">
+                        @Html.LabelFor(model => model.PetAccess,
+                                           htmlAttributes: new { @class = "control-label" })
+
+                        @Html.TextAreaFor(model => model.PetAccess,
+                                new
+                                     {
+                                         htmlAttributes =
+                                new { @class = "form-control our_text_area" },
+                                cols = 90,
+                                         rows = 3,
+                                         id = "text08",
+                                         name = "text08",
+                                style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"
+                                     })
+
+                        <div>
+                            <span class="pull-left label label-default"
+                                  id="count_message_08">
+                            </span>
+                        </div>
+
+                        @Html.ValidationMessageFor(model => model.PetAccess, "",
+                                                             new { @class = "text-danger" })
+                    </div>
+                    <!---------------------------------------------------------------------->
+
+                </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV -->
+                <!---->
+                <!---->
+                <!--============================ THIRD\RIGHT COLUMN ======================-->
+                <div class="col-sm-4 col-md-4">
+
+                    <!-------------------- WHAT MY PET NEEDS DONE -------------------------->
+                    <div class="form-group" style="padding-top: 13px;">
+                        @Html.LabelFor(model => model.NeedsDetails,
+                                           htmlAttributes: new { @class = "control-label" })
+
+                        @Html.TextAreaFor(model => model.NeedsDetails,
+                                new
+                                     {
+                                         htmlAttributes =
+                                new { @class = "form-control our_text_area" },
+                                cols = 90,
+                                         rows = 5,
+                                         id = "text09",
+                                         name = "text09",
+                                style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"
+                                     })
+
+                        <div>
+                            <span class="pull-left label label-default"
+                                  id="count_message_09">
+                            </span>
+                        </div>
+
+                        @Html.ValidationMessageFor(model => model.NeedsDetails, "",
+                                                           new { @class = "text-danger" })
+                    </div>
+                    <!--------------------- PET'S HEALTH NEEDS/CONCERNS -------------------->
+                    <div class="form-group" style="padding-top: 5px;">
+                        @Html.LabelFor(model => model.HealthConcerns,
+                                            htmlAttributes: new { @class = "control-label" })
+
+                        @Html.TextAreaFor(model => model.HealthConcerns,
+                                new
+                                     {
+                                         htmlAttributes =
+                                new { @class = "form-control our_text_area" },
+                                cols = 90,
+                                         rows = 5,
+                                         id = "text10",
+                                         name = "text10",
+                                style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"
+                                     })
+
+                        <div>
+                            <span class="pull-left label label-default" id="count_message_10">
+                            </span>
+                        </div>
+
+                        @Html.ValidationMessageFor(model => model.HealthConcerns, "",
+                                                        new { @class = "text-danger" })
+                    </div>
+                    <!-------------------- PET'S BEHAVIOR NEEDS/CONCERNS ------------------->
+                    <div class="form-group" style="padding-top: 13px;">
+                        @Html.LabelFor(model => model.BehaviorConcerns,
+                                           htmlAttributes: new { @class = "control-label" })
+
+                        @Html.TextAreaFor(model => model.BehaviorConcerns,
+                                new
+                                     {
+                                         htmlAttributes =
+                                new { @class = "form-control our_text_area" },
+                                cols = 90,
+                                         rows = 5,
+                                         id = "text11",
+                                         name = "text11",
+                                style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"
+                                     })
+
+                        <div>
+                            <span class="pull-left label label-default"
+                                  id="count_message_11">
+                            </span>
+                        </div>
+
+                        @Html.ValidationMessageFor(model => model.BehaviorConcerns, "",
+                                                             new { @class = "text-danger" })
+                    </div>
+                    <!---------------------------------------------------------------------->
+                </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV -->
+            </div><!-- END 1st ROW!-->
             <!---->
             <!---->
-            <!--=========================== SECOND\MIDDLE COLUMN =====================-->
-            <div class="col-sm-4 col-md-4">
-
-                <h4 style="color: #261a0d;">Your Pet's Care Info:</h4>
-
-                <!--------- PET CARE INFO ---------------------------------------------->
-                <!-------------------------------- PET WEIGHT -------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Weight,
-                                       htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.Weight,
-                               new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.Weight, "",
-                                                       new { @class = "text-danger" })
-                </div>
-                <!-------------------- PET'S EMERGENCY CONTACT NAME -------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.EmergencyContactName,
-                                        htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.EmergencyContactName,
-                                new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.EmergencyContactName, "",
-                                                    new { @class = "text-danger" })
-                </div>
-                <!------------------- PET'S EMERGENCY CONTACT PHONE -------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.EmergencyContactPhone,
-                                       htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.EmergencyContactPhone,
-                               new { htmlAttributes = new { @class = "form-control" } })
-
-                    @Html.ValidationMessageFor(model => model.EmergencyContactPhone, "",
-                                                         new { @class = "text-danger" })
-                </div>
-                <!---------------------- HOW TO ACCESS MY PET -------------------------->
-                <div class="form-group" style="padding-top: 13px">
-                    @Html.LabelFor(model => model.PetAccess,
-                                       htmlAttributes: new { @class = "control-label" })
-
-                    @Html.TextAreaFor(model => model.PetAccess,
-                            new { htmlAttributes =
-                            new { @class = "form-control our_text_area"},
-                            cols=90, rows=3, id = "text08", name = "text08",
-                            style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"})
-
-                    <div>
-                        <span class="pull-left label label-default" 
-                              id="count_message_08">
-                        </span>
-                    </div>
-
-                    @Html.ValidationMessageFor(model => model.PetAccess, "",
-                                                         new { @class = "text-danger" })
-                </div>
-                <!---------------------------------------------------------------------->
-
-            </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV -->
-            <!---->
-            <!---->
-            <!--============================ THIRD\RIGHT COLUMN ======================-->
-            <div class="col-sm-4 col-md-4">
-
-                <!-------------------- WHAT MY PET NEEDS DONE -------------------------->
-                <div class="form-group" style="padding-top: 13px;">
-                    @Html.LabelFor(model => model.NeedsDetails,
-                                       htmlAttributes: new { @class = "control-label" })
-
-                    @Html.TextAreaFor(model => model.NeedsDetails,
-                            new { htmlAttributes =
-                            new { @class = "form-control our_text_area"},
-                            cols=90, rows=5, id = "text09", name = "text09",
-                            style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"})
-
-                    <div>
-                        <span class="pull-left label label-default" 
-                              id="count_message_09">
-                        </span>
-                    </div>
-
-                    @Html.ValidationMessageFor(model => model.NeedsDetails, "",
-                                                       new { @class = "text-danger" })
-                </div>
-                <!--------------------- PET'S HEALTH NEEDS/CONCERNS -------------------->
-                <div class="form-group"  style="padding-top: 5px;">
-                    @Html.LabelFor(model => model.HealthConcerns,
-                                        htmlAttributes: new { @class = "control-label" })
-
-                    @Html.TextAreaFor(model => model.HealthConcerns,
-                            new { htmlAttributes =
-                            new { @class = "form-control our_text_area" },
-                            cols = 90, rows = 5, id = "text10", name = "text10",
-                            style="color: #2e2e1f; border-radius: 5px; padding: 5px;" })
-
-                    <div>
-                        <span class="pull-left label label-default" id="count_message_10">
-                        </span>
-                    </div>
-
-                    @Html.ValidationMessageFor(model => model.HealthConcerns, "",
-                                                    new { @class = "text-danger" })
-                </div>
-                <!-------------------- PET'S BEHAVIOR NEEDS/CONCERNS ------------------->
-                <div class="form-group" style="padding-top: 13px;">
-                    @Html.LabelFor(model => model.BehaviorConcerns,
-                                       htmlAttributes: new { @class = "control-label" })
-
-                    @Html.TextAreaFor(model => model.BehaviorConcerns,
-                            new { htmlAttributes =
-                            new { @class = "form-control our_text_area" },
-                            cols = 90, rows = 5, id = "text11", name = "text11",
-                            style="color: #2e2e1f; border-radius: 5px; padding: 5px;" })
-
-                    <div>
-                        <span class="pull-left label label-default"
-                              id="count_message_11">
-                        </span>
-                    </div>
-
-                    @Html.ValidationMessageFor(model => model.BehaviorConcerns, "",
-                                                         new { @class = "text-danger" })
-                </div>
-                <!---------------------------------------------------------------------->
-            </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV -->
-        </div><!-- END 1st ROW!-->
-        <!---->
-        <!---->
-        <!--=========== SECOND ROW! ==================================================-->
-        <!--============================== BUTTONS! ==============================-->
-        <div class="row" style="padding-bottom: 18px;">
-            <div class="col-sm-offset-8 col-sm-2 col-md-2">
+            <!--=========== SECOND ROW! ==================================================-->
+            <!--============================== BUTTONS! ==============================-->
+            <div class="row" style="padding-bottom: 18px;">
+                <div class="col-sm-offset-8 col-sm-2 col-md-2">
                     <div class="form-group">
                         <div>
                             <input type="submit" value="Update My Pet!"
                                    class="btn our_buttons" />
                         </div>
                     </div>
-            </div>
+                </div>
 
-            <div class="col-sm-2 col-md-2">
+                <div class="col-sm-2 col-md-2">
                     <div class="our_create-edit_buttons">
                         @Html.ActionLink("Cancel!", "Index",
                                                     new { controller = "ProfilePage" })
                     </div>
-            </div>
-        </div><!-- END 2nd ROW! -->
-        <!------------------------------------------------------------------------------>
-    </div><!-- END OF FORM DIV! -->
+                </div>
+            </div><!-- END 2nd ROW! -->
+            <!------------------------------------------------------------------------------>
+        </div><!-- END OF FORM DIV! -->
     }
     <!--==============================================================================-->
 </div><!-- END OF CONTAINER-FLUID DIV! -->
