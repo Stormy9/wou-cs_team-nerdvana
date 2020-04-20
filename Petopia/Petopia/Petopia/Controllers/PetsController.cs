@@ -177,6 +177,7 @@ namespace Petopia.Controllers
         // To protect from overposting attacks, please enable the specific properties you
         // want to bind to; more details:  https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(PetPicViewModel model)
         {

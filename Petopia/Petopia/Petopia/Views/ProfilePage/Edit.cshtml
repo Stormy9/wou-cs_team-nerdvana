@@ -200,10 +200,10 @@
                 @if (Model.IsOwner == true)
                 {
                     <div class="form-group">
-                        @Html.LabelFor(model => model.NeedsDetails, htmlAttributes:
+                        @Html.LabelFor(model => model.GeneralNeeds, htmlAttributes:
                                                         new { @class = "control-label" })
                         <br />
-                        @Html.TextAreaFor(model => model.NeedsDetails,
+                        @Html.TextAreaFor(model => model.GeneralNeeds,
                           new { htmlAttributes =
                           new { @class = "form-control our_text_area" },
                               cols = 90, rows = 3, id = "text17", name = "text17",
@@ -215,16 +215,16 @@
                             </span>
                         </div>
 
-                        @Html.ValidationMessageFor(model => model.NeedsDetails, "",
+                        @Html.ValidationMessageFor(model => model.GeneralNeeds, "",
                                                         new { @class = "text-danger" })
                     </div>
                     <!------------------------------------------------------------------>
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
                     <div class="form-group">
-                        @Html.LabelFor(model => model.AccessInstructions,
+                        @Html.LabelFor(model => model.HomeAccess,
                                     htmlAttributes: new { @class = "control-label" })
                         <br />
-                        @Html.TextAreaFor(model => model.AccessInstructions,
+                        @Html.TextAreaFor(model => model.HomeAccess,
                           new { htmlAttributes =
                           new { @class = "form-control our_text_area" },
                               cols = 90, rows = 3, id = "text18", name = "text18",
@@ -236,7 +236,7 @@
                             </span>
                         </div>
 
-                        @Html.ValidationMessageFor(model => model.AccessInstructions, "",
+                        @Html.ValidationMessageFor(model => model.HomeAccess, "",
                                                         new { @class = "text-danger" })
                     </div>
                 }<!-- END IF-STATEMENT(s) -->
