@@ -206,6 +206,7 @@ namespace Petopia.Controllers
                 pet.NeedsDetails = model.NeedsDetails;
                 pet.PetCaption = model.PetCaption;
                 pet.PetBio = model.PetBio;
+                pet.PetID = model.PetID;
 
                 if (model.PetPhoto != null)
                 {

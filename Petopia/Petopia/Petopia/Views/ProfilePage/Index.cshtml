@@ -398,7 +398,7 @@
                                 <!-- link to pet's profile -->
                                 @if (item.PetPhoto != null)
                                 {
-                                            <img src=@Url.Action("Show", "Image",
+                                            <img src=@Url.Action("ShowPet", "Image",
                                 new { id = item.PetID}) />
                                 }
                                 else

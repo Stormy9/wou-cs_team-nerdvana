@@ -31,30 +31,43 @@
 
                 <!-- profile picture -->
                 @*@if (Model.ProfilePhoto != null)
-                    {
-                        <div class="profile_pic_box_box">
-                            <div class="profile_pic_box">
-                                <img src=@Url.Action("Show", "Image",
-                                    new { id = Model.PetID, @class = "profile_img" }) />
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="profile_pic_box_box">
-                            <div class="profile_pic_box">
-                                <img src="https://stormy9.github.io/images_doggies/Zoey_profile_Pic.jpg"
-                                        class="profile_img" />
-                            </div>
-                        </div>
-                    }*@
-                <!-- profile picture -->
-                <div class="profile_pic_box_box">
-                    <div class="profile_pic_box">
-                        <img src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg"
-                             class="profile_img" />
-                    </div>
+        {
+            <div class="profile_pic_box_box">
+                <div class="profile_pic_box">
+                    <img src=@Url.Action("Show", "Image",
+                        new { id = Model.PetID, @class = "profile_img" }) />
                 </div>
+            </div>
+        }
+        else
+        {
+            <div class="profile_pic_box_box">
+                <div class="profile_pic_box">
+                    <img src="https://stormy9.github.io/images_doggies/Zoey_profile_Pic.jpg"
+                            class="profile_img" />
+                </div>
+            </div>
+        }*@
+                <!-- profile picture -->
+                @if (Model.PetPhoto != null)
+                {
+                    <div class="profile_pic_box_box">
+                        <div class="profile_pic_box">
+                            <img src=@Url.Action("ShowPet", "Image",
+                                new { id = Model.PetID, @class = "profile_img" }) />
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="profile_pic_box_box">
+                        <div class="profile_pic_box">
+                            <img src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg"
+                                 class="profile_img" />
+                        </div>
+                    </div>
+                }
+
 
                 <!-- profile pic caption -->
                 <div class="profile_pic_caption_box">
@@ -368,10 +381,10 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AccessInstructions)
+            @Html.DisplayNameFor(model => model.PetAccess)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.AccessInstructions)
+            @Html.DisplayFor(model => model.PetAccess)
         </dd>
 
     </dl>

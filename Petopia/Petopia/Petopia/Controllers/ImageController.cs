@@ -17,5 +17,10 @@ namespace Petopia.Controllers
             var imageData = db.PetopiaUsers.Where(x => x.UserID == id).Select(x => x.ProfilePhoto).First();
             return File(imageData, "image/jpeg");
         }
+        public ActionResult ShowPet(int id)
+        {
+            var imageData = db.Pets.Where(x => x.PetID == id).Select(x => x.PetPhoto).First();
+            return File(imageData, "image/jpeg");
+        }
     }
 }
