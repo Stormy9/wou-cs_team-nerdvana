@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Petopia.Models;
+using Petopia.Models.ViewModels;
 
 namespace Petopia.Controllers
 {
@@ -57,19 +58,62 @@ namespace Petopia.Controllers
         // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,UserName,Password,FirstName,LastName,ASPNetIdentityID,IsOwner,IsProvider,MainPhone,AltPhone,ResAddress01,ResAddress02,ResCity,ResState,ResZipcode,ProfilePhoto,UserCaption,GeneralLocation,UserBio,Tagline")] PetopiaUser petopiaUser)
+        public ActionResult Create(PetopiaUserLoginViewModel model)
         {
             if (ModelState.IsValid)
             {
+                PetopiaUser petopiaUser = new PetopiaUser();
+
                 string id = User.Identity.GetUserId();
                 petopiaUser.ASPNetIdentityID = id;
+
+                petopiaUser.UserName = model.UserName;
+                petopiaUser.Password = model.Password;
+                petopiaUser.FirstName = model.FirstName;
+                petopiaUser.LastName = model.LastName;
+                petopiaUser.IsOwner = false;
+                petopiaUser.IsProvider = false;
+                petopiaUser.MainPhone = model.MainPhone;
+                petopiaUser.AltPhone = model.AltPhone;
+                petopiaUser.ResAddress01 = model.ResAddress01;
+                petopiaUser.ResAddress02 = model.ResAddress02;
+                petopiaUser.ResCity = model.ResCity;
+                petopiaUser.ResState = model.ResState;
+                petopiaUser.ResZipcode = model.ResZipcode;
+                petopiaUser.UserCaption = model.UserCaption;
+                petopiaUser.GeneralLocation = model.GeneralLocation;
+                petopiaUser.UserBio = model.UserBio;
+                petopiaUser.Tagline = model.Tagline;
+
+                //For profile picture
+                if (model.ProfilePhoto != null)
+                {
+                    if (model.ProfilePhoto.ContentLength > (4 * 1024 * 1024))
+                    {
+                        ModelState.AddModelError("CustomError", "Image can not be lager than 4MB.");
+                        return View(model);
+                    }
+
+                    if (!(model.ProfilePhoto.ContentType == "image/jpeg"))
+                    {
+                        ModelState.AddModelError("CustomError", "Image must be in jpeg format.");
+                        return View(model);
+                    }
+
+                    byte[] data = new byte[model.ProfilePhoto.ContentLength];
+
+                    model.ProfilePhoto.InputStream.Read(data, 0, model.ProfilePhoto.ContentLength);
+
+                    petopiaUser.ProfilePhoto = data;
+                }
+
                 db.PetopiaUsers.Add(petopiaUser);
                 db.SaveChanges();
 
                 return RedirectToAction("ChooseRole", "Account");
             }
 
-            return View(petopiaUser);
+            return View(model);
         }
 
         //===============================================================================
