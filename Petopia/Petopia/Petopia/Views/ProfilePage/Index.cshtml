@@ -377,7 +377,7 @@
             <!---->
             <!-- 9-col wide span inside 3rd row & that's it -->
             <!-- trying (maybe?) to get 3rd colum of 2nd row to span two row's height -->
-            <div class="col-md-9 our_col_four">
+            <div class="col-sm-8 col-md-8 our_col_four">
                 <!---->
                 <!---->
                 <!-- pet profile preview box header -->
@@ -448,8 +448,13 @@
                 }
             </div><!-- END 4th Column -> one inside 3rd/bottom row -->
             <!-------------------------------------------------------------------------->
-            <div class="col-sm-3 our_col_five">
+            <div class="col-sm-4 col-md-4 our_col_five">
                 <div class="button_box_03" style="text-align: center;">
+                    <div>
+                        @Html.ActionLink("My Account Info", "Details",
+                                new { controller = "PetopiaUsers" },
+                                new { id = Model.UserID, @class = "our_other_buttons" })
+                    </div>
                     <div>
                         @Html.ActionLink("Edit My Profile", "Edit",
                                         new { controller = "ProfilePage" },
@@ -463,6 +468,7 @@
                                         new { controller = "Pets" },
                                         new { @class = "our_other_buttons" })
                         }
+                        <!-- but it's not working right now   =]   -->
                     </div>
                 </div><!-- END BUTTON BOX -->
             </div><!-- END COLUMN FIVE \ IN ROW THREE -->
