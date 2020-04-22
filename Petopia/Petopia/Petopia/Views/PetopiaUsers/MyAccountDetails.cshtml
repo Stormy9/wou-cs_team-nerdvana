@@ -1,0 +1,35 @@
+﻿@model Petopia.Models.ViewModels.ProfileViewModel
+
+@{
+    ViewBag.Title = "your private account details";
+}
+
+<div class="outer_container">
+    <div class="container-fluid">
+        <h2>@ViewBag.Title:</h2>
+        <hr />
+        <!-------------------------------- FIRST/TOP ROW ------------------------------->
+        <div class="row our_row_one">
+
+            <div class="col-sm-4 col-md-4 our_col_one" style="border:1px solid red;">
+                @Html.DisplayFor(model => model.FirstName)
+                <br />
+                @Html.DisplayFor(model => model.LastName)
+                <br />
+                Home Access:
+                @Html.DisplayFor(model => model.HomeAccess)
+            </div>
+
+        </div>
+        <!--==========================================================================-->
+        <!--------------------------------- END OF ROWS -------------------------------->
+
+    </div><!-- END CONTAINER-FLUID -->
+</div><!-- END OUTER_CONTAINER -->
+<!--==================================================================================-->
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/_our_main.js")
+    @Scripts.Render("~/Scripts/moment.js")
+    @Scripts.Render("~/Scripts/fullcalendar.js")
+}

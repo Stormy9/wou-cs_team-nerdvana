@@ -5,8 +5,8 @@
 }
 
 <div class="container-fluid">
-    <!--========================== WHOLE DAMNED FORM IN HERE =============================-->
-    @using (Html.BeginForm("Edit", "ProfilePage", FormMethod.Post,
+    <!--========================== WHOLE DAMNED FORM IN HERE =========================-->
+    @using (Html.BeginForm("EditProfile", "ProfilePage", FormMethod.Post,
         new { @class = "form", role = "form", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()

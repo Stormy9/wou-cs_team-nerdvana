@@ -17,17 +17,18 @@ namespace Petopia.Controllers
         private PetopiaContext db = new PetopiaContext();
 
         //===============================================================================
-        // GET: ProfilePage
+        //===============================================================================
+        // GET: ProfilePage                                          DISPLAY PROFILE PAGE
         public ActionResult Index()
         {
             var identityID = User.Identity.GetUserId();
-
             var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
             
+
             ProfileViewModel petopiaUser = new ProfileViewModel();
+
             //populating the viewmodel with a join
-            /*
-            petopiaUser = db.PetopiaUsers.Join(db.PetOwners,
+            /*petopiaUser = db.PetopiaUsers.Join(db.PetOwners,
                                                 pu => pu.UserID,
                                                 po => po.UserID,
                                                 (pu, po) => new {PetUse = pu, PetOwn = po }) */
@@ -125,14 +126,15 @@ namespace Petopia.Controllers
         }
         //===============================================================================
         //===============================================================================
-        // GET: ProfilePage/Edit
-        public ActionResult Edit()
+        // GET: ProfilePage/EditProfile
+        public ActionResult EditProfile()
         {
             var identityID = User.Identity.GetUserId();
-
             var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
 
+
             ProfileViewModel petopiaUser = new ProfileViewModel();
+
 
             petopiaUser.FirstName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.FirstName).First();
             petopiaUser.LastName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.LastName).First();
@@ -181,17 +183,18 @@ namespace Petopia.Controllers
             return View(petopiaUser);
         }
         //-------------------------------------------------------------------------------
+        //-------------------------------------------------------------------------------
         // POST: ProfilePage/Edit
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ProfileViewModel model)
+        public ActionResult EditProfile(ProfileViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var identityID = User.Identity.GetUserId();
-
                 var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+
 
                 //Need to split up model into 3 objects to fit into db
 
@@ -303,11 +306,10 @@ namespace Petopia.Controllers
                 //db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            //===========================================================================
+            
             //If we got here something bad happened, return model
             return View(model);
 
-        }
+        }  
     }
 }

@@ -503,7 +503,7 @@
     <Content Include="Views\CareProviders\Edit.cshtml" />
     <Content Include="Views\CareProviders\Index.cshtml" />
     <Content Include="Views\ProfilePage\Index.cshtml" />
-    <Content Include="Views\ProfilePage\Edit.cshtml" />
+    <Content Include="Views\ProfilePage\EditProfile.cshtml" />
     <Content Include="Views\Pets\Create.cshtml" />
     <Content Include="Views\Pets\Delete.cshtml" />
     <Content Include="Views\Pets\Details.cshtml" />
@@ -516,6 +516,7 @@
     <Content Include="Views\CareTransactions\Edit.cshtml" />
     <Content Include="Views\CareTransactions\Index.cshtml" />
     <Content Include="Views\CareTransactions\Create.cshtml" />
+    <Content Include="Views\ProfilePage\MyAccountDetails.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>

@@ -16,6 +16,10 @@ namespace Petopia.Models
         public virtual DbSet<PetopiaUser> PetopiaUsers { get; set; }
 
         //-------------------------------------------------------------------------------
+        public virtual DbSet<PetOwner> PetOwners { get; set; }
+
+        //===============================================================================
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }

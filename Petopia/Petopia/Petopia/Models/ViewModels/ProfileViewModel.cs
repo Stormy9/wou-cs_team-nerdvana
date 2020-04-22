@@ -103,7 +103,7 @@ namespace Petopia.Models.ViewModels
 
         //===============================================================================
         //===============================================================================
-        //Below here is for Pet Profiles  (for the Pet Cards on Owner pages right?)
+        //Below here is for Pet Profiles  (for the Pet Cards on Owner pages)
         public class PetInfo
         {
             public int PetID { get; set; }
