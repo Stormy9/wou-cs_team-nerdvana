@@ -292,7 +292,7 @@ namespace Petopia.Controllers
         }
 
         //===============================================================================
-        //------------ BOY/GIRL DROP-DOWN LIST IN 'CREATE (and edit) ATHLETE' -----------
+        //------------ BOY/GIRL DROP-DOWN LIST IN 'CREATE (and edit) PET' ---------------
         //
         private IList<SelectListItem> genderSelectList = new List<SelectListItem>
         {
