@@ -134,8 +134,10 @@
 /*----------------------------------------*/
 .button_box_03 {
     padding: 3px;
+    padding-right: 18px;
     color: whitesmoke;
-    margin-top: 72px;
+    margin-top: 9px;
+    float: right;
 }
 .our_other_buttons {
     /* these are being really fucking weird!! */
@@ -329,6 +331,20 @@ tr:hover {
 }
 .table_col_three {
     /*width: 50%;*/
+}
+/*========================== ACCOUNT ITEMS ==========================*/
+/* for the 'private petopia user account details' page */
+.account_item {
+    padding: 9px;
+}
+/*======================= PET DETAIL ITEMS ==========================*/
+/* for the 'my private pet details' page */
+.pet_detail_item {
+    padding: 9px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
 }
 /*============================ LINKS! ===============================*/
 /* unvisited link */

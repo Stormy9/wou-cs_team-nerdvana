@@ -10,7 +10,8 @@ namespace Petopia.Models.ViewModels
     public class PetopiaUserLoginViewModel
     {
         //NEED TO MAKE THIS DUMB VIEWMODEL JUST SO WE CAN ADD PROFILE PICTURES ON REGISTER
-        //everything is the same as our PetopiaUser model just with the profile picture changed to the right type.
+        //everything is the same as our PetopiaUser model 
+        //        just with the profile picture changed to the right type.
         public int UserID { get; set; }
 
         //===============================================================================
@@ -24,13 +25,13 @@ namespace Petopia.Models.ViewModels
         //===============================================================================
 
         [Required]
-        [DisplayName("First Name*")]
+        [DisplayName("First name*")]
         [StringLength(50)]
         public string FirstName { get; set; }
 
         //-------------------------------------------------------------------------------
         [Required]
-        [DisplayName("Last Name*")]
+        [DisplayName("Last name*")]
         [StringLength(50)]
         public string LastName { get; set; }
 
@@ -100,12 +101,12 @@ namespace Petopia.Models.ViewModels
         public string Tagline { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Your Bio - some fun stuff about you:")]
+        [DisplayName("Your Bio - some fun stuff about you!")]
         public string UserBio { get; set; }
 
         //-------------------------------------------------------------------------------
         [StringLength(72)]
-        [DisplayName("Your General Location:")]
+        [DisplayName("General Location: (i.e., neighborhood name)")]
         public string GeneralLocation { get; set; }
     }
 }

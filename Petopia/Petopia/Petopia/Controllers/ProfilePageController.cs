@@ -35,9 +35,13 @@ namespace Petopia.Controllers
             //linq isnt populating correctly right now so we're doing it manually (TEMP FIX)
             
             petopiaUser.UserID = loggedID;
+
+
             petopiaUser.FirstName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.FirstName).First();
             petopiaUser.LastName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.LastName).First();
             
+
+            // user role
             petopiaUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsOwner).First();
             petopiaUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsProvider).First();
             
@@ -54,11 +58,14 @@ namespace Petopia.Controllers
             petopiaUser.ResZipcode = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResZipcode).First();
 
 
+            // user profile picture!
             petopiaUser.ProfilePhoto = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ProfilePhoto).First();
 
 
             petopiaUser.UserCaption = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserCaption).First();
 
+
+            // user profile fun stuff
             petopiaUser.Tagline = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.Tagline).First();
 
             petopiaUser.GeneralLocation = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.GeneralLocation).First();
@@ -124,10 +131,13 @@ namespace Petopia.Controllers
 
             return View(petopiaUser);
         }
+
+
+
         //===============================================================================
         //===============================================================================
         // GET: ProfilePage/EditProfile
-        public ActionResult EditProfile()
+        public ActionResult EditMyStuff()
         {
             var identityID = User.Identity.GetUserId();
             var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
@@ -140,11 +150,12 @@ namespace Petopia.Controllers
             petopiaUser.LastName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.LastName).First();
 
 
+            // user role
             petopiaUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsOwner).First();
             petopiaUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsProvider).First();
 
             
-
+            // user account\private info
             petopiaUser.MainPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.MainPhone).First();
             petopiaUser.AltPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.AltPhone).First();
             petopiaUser.ResAddress01 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResAddress01).First();
@@ -154,6 +165,7 @@ namespace Petopia.Controllers
             petopiaUser.ResZipcode = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResZipcode).First();
 
 
+            // user profile fun stuff
             petopiaUser.UserCaption = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserCaption).First();
 
             petopiaUser.Tagline = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.Tagline).First();
@@ -184,11 +196,11 @@ namespace Petopia.Controllers
         }
         //-------------------------------------------------------------------------------
         //-------------------------------------------------------------------------------
-        // POST: ProfilePage/Edit
+        // POST: ProfilePage/EditProfile
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult EditProfile(ProfileViewModel model)
+        public ActionResult EditMyStuff(ProfileViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -206,10 +218,14 @@ namespace Petopia.Controllers
                 currentUser.FirstName = model.FirstName;
                 currentUser.LastName = model.LastName;
 
+
+                // ID & user roles
                 currentUser.ASPNetIdentityID = identityID;
                 currentUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsOwner).First();
                 currentUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsProvider).First();
 
+
+                // user account\private info
                 currentUser.MainPhone = model.MainPhone;
                 currentUser.AltPhone = model.AltPhone;
                 currentUser.ResAddress01 = model.ResAddress01;
@@ -218,6 +234,8 @@ namespace Petopia.Controllers
                 currentUser.ResState = model.ResState;
                 currentUser.ResZipcode = model.ResZipcode;
 
+
+                // user profile fun stuff
                 currentUser.UserCaption = model.UserCaption;
                 currentUser.GeneralLocation = model.GeneralLocation;
                 currentUser.UserBio = model.UserBio;
@@ -230,7 +248,7 @@ namespace Petopia.Controllers
                 model.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsProvider).First();
                
                 //-----------------------------------------------------------------------
-                //save PetopiaUser into db
+                // Profile Pic stuff!
                 if (model.UserProfilePicture != null)
                 {
                     if (model.UserProfilePicture.ContentLength > (4 * 1024 * 1024))
@@ -257,8 +275,9 @@ namespace Petopia.Controllers
                 {
                     currentUser.ProfilePhoto = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ProfilePhoto).First();
                 }
-                
+                //-----------------------------------------------------
 
+                // save ***PetopiaUser*** into db
                 db.Entry(currentUser).State = EntityState.Modified;
                 db.SaveChanges();
 
@@ -270,6 +289,7 @@ namespace Petopia.Controllers
                     DAL.CareProvider currentProvider = new DAL.CareProvider();
                     
                     currentProvider.CareProviderID = db.CareProviders.Where(x => x.UserID == loggedID).Select(x => x.CareProviderID).First();
+
 
                     currentProvider.AverageRating = db.CareProviders.Where(x => x.UserID == loggedID).Select(x => x.AverageRating).First();
 
@@ -289,6 +309,7 @@ namespace Petopia.Controllers
                     DAL.PetOwner currentOwner = new DAL.PetOwner();
                     
                     currentOwner.PetOwnerID = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.PetOwnerID).First();
+
 
                     currentOwner.AverageRating = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.AverageRating).First();
 
@@ -310,6 +331,8 @@ namespace Petopia.Controllers
             //If we got here something bad happened, return model
             return View(model);
 
-        }  
+        }  // END 'EditProfile()' POST
+        //===============================================================================
+        //===============================================================================
     }
 }

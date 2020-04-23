@@ -215,6 +215,7 @@
     <Compile Include="DAL\PetOwnerContext.cs" />
     <Compile Include="Models\ViewModels\PetopiaUserLoginViewModel.cs" />
     <Compile Include="Models\ViewModels\PetPicViewModel.cs" />
+    <Compile Include="Models\ViewModels\MyAccountViewModel.cs" />
     <Compile Include="Models\ViewModels\ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -503,11 +504,11 @@
     <Content Include="Views\CareProviders\Edit.cshtml" />
     <Content Include="Views\CareProviders\Index.cshtml" />
     <Content Include="Views\ProfilePage\Index.cshtml" />
-    <Content Include="Views\ProfilePage\EditProfile.cshtml" />
-    <Content Include="Views\Pets\Create.cshtml" />
+    <Content Include="Views\ProfilePage\EditMyStuff.cshtml" />
+    <Content Include="Views\Pets\CreatePet.cshtml" />
     <Content Include="Views\Pets\Delete.cshtml" />
     <Content Include="Views\Pets\Details.cshtml" />
-    <Content Include="Views\Pets\Edit.cshtml" />
+    <Content Include="Views\Pets\EditPet.cshtml" />
     <Content Include="Views\Pets\Index.cshtml" />
     <Content Include="Views\Badges\Create.cshtml" />
     <Content Include="Views\Badges\Edit.cshtml" />
@@ -516,7 +517,8 @@
     <Content Include="Views\CareTransactions\Edit.cshtml" />
     <Content Include="Views\CareTransactions\Index.cshtml" />
     <Content Include="Views\CareTransactions\Create.cshtml" />
-    <Content Include="Views\ProfilePage\MyAccountDetails.cshtml" />
+    <Content Include="Views\PetopiaUsers\MyAccountDetails.cshtml" />
+    <Content Include="Views\Pets\MyPetDetails.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>

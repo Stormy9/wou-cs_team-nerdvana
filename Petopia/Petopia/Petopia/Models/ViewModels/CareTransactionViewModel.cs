@@ -89,22 +89,12 @@ namespace Petopia.Models.ViewModels
 
         //-------------------------------------------------------------------------------
         // not sure if we need this here?  stuck it here for now though
-        //    (borrowed from Corrin's ProfileViewModel!)
-        // Below here is for Pet Profiles  (for the Pet Cards on Owner pages right?)
+        //    (borrowed\pared down from Corrin's ProfileViewModel!)
+        // Below here is for Pet Profiles 
         public class PetInfo
         {
             public int PetID { get; set; }
             public string PetName { get; set; }
-            public string Species { get; set; }
-            public string Breed { get; set; }
-            public string Gender { get; set; }
-
-            [Column(TypeName = "date")]
-            // that ^ is supposed to get rid of the time appendage on the Pet b-days on
-            // the 'Pet Cards' on Owner profiles..... but, it isn't for some dumb reason
-            [DataType(DataType.Date)]
-            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
-            public DateTime Birthdate { get; set; }
         }
         //-------------------------------------------------------------------------------
         public List<PetInfo> PetList { get; set; }

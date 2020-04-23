@@ -26,9 +26,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Gender)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Altered)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Birthdate)
         </th>
@@ -53,9 +51,7 @@
         <th>
             @Html.DisplayNameFor(model => model.NeedsDetails)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AccessInstructions)
-        </th>
+
         <th></th>
     </tr>
 
@@ -76,9 +72,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Gender)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Altered)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.Birthdate)
         </td>
@@ -103,9 +97,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.NeedsDetails)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccessInstructions)
-        </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.PetID }) |
             @Html.ActionLink("Details", "Details", new { id=item.PetID }) |

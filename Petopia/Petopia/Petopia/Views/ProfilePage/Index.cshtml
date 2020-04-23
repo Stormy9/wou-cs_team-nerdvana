@@ -398,8 +398,8 @@
                                 <!-- link to pet's profile -->
                                 @if (item.PetPhoto != null)
                                 {
-                                            <img src=@Url.Action("ShowPet", "Image",
-                                new { id = item.PetID}) />
+                                    <img src=@Url.Action("ShowPet", "Image",
+                                                            new { id = item.PetID}) />
                                 }
                                 else
                                 {
@@ -434,10 +434,15 @@
                                 </a>
 
                                 <div class="button_box_pet_card">
-                                    @Html.ActionLink("Edit This Pet", "Edit",
+                                    @Html.ActionLink("My Pet Details", "MyPetDetails",
+                                            new { controller = "Pets", id = item.PetID },
+                                            new { @class= "our_pet_card_buttons" } )
+
+                                    @Html.ActionLink("Edit This Pet", "EditPet",
                                             new { controller = "Pets", id = item.PetID },
                                             new { @class = "our_pet_card_buttons" })
-                                    @Html.ActionLink("Go To This Pet", "Details",
+
+                                    @Html.ActionLink("This Pet's Profile", "Details",
                                             new { controller = "Pets", id = item.PetID },
                                             new { @class = "our_pet_card_buttons " })
                                 </div>
@@ -456,7 +461,7 @@
                                 new { id = Model.UserID, @class = "our_other_buttons" })
                     </div>
                     <div>
-                        @Html.ActionLink("Edit My Profile", "EditProfile",
+                        @Html.ActionLink("Edit My Profile", "EditMyStuff",
                                         new { controller = "ProfilePage" },
                                         new { @class = "our_other_buttons" })
                     </div>
@@ -464,7 +469,7 @@
                         <!-- we want carers to be able to have pets too   =]   -->
                         @if (Model.IsOwner == true || Model.IsProvider == true)
                         {
-                            @Html.ActionLink("Add new pet!", "Create",
+                            @Html.ActionLink("Add new pet!", "CreatePet",
                                         new { controller = "Pets" },
                                         new { @class = "our_other_buttons" })
                         }
