@@ -85,7 +85,7 @@ namespace Petopia.Controllers
 
                 pdb.SaveChanges();
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "ProfilePage");
             }
 
             return View(petOwner);
