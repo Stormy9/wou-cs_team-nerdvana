@@ -469,7 +469,7 @@
                         <!-- we want carers to be able to have pets too   =]   -->
                         @if (Model.IsOwner == true || Model.IsProvider == true)
                         {
-                            @Html.ActionLink("Add new pet!", "CreatePet",
+                            @Html.ActionLink("Add a pet!", "AddPet",
                                         new { controller = "Pets" },
                                         new { @class = "our_other_buttons" })
                         }

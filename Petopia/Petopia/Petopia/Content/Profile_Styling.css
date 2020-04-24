@@ -346,6 +346,49 @@ tr:hover {
     box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
     transition: 0.3s;
 }
+    .pet_detail_item:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+/*===================== APPOINTMENTS STUFF ==========================*/
+.make_appt_box {
+    padding: 9px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    margin: 9px;
+}
+    .make_appt_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+.carer_fee_box {
+    padding: 9px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    margin-top: 21px;
+}
+.carer_rating_comment_box {
+    padding: 15px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    width: 45%;
+    margin: 9px;
+    float: left;
+}
+.owner_rating_comment_box {
+    padding: 15px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    width: 45%;
+    margin: 9px;
+    float: right;
+}
 /*============================ LINKS! ===============================*/
 /* unvisited link */
 a:link, .our_a:link {

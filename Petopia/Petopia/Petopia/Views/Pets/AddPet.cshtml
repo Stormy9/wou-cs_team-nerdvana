@@ -6,7 +6,7 @@
 <!--============================= WHOLE DAMNED FORM HERE =============================-->
 <div class="container-fluid">
 
-    @using (Html.BeginForm("CreatePet", "Pets", FormMethod.Post,
+    @using (Html.BeginForm("AddPet", "Pets", FormMethod.Post,
     new { @class = "form", role = "form", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()

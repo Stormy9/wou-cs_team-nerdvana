@@ -170,7 +170,7 @@ namespace Petopia.Models.ViewModels
         public string CareReport { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Charge for this Appointment:")]
+        [DisplayName("Pet Carer's Fee:")]
         public decimal Charge { get; set; }
 
         [DisplayName("Tip?")]
@@ -189,15 +189,18 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Pet Owner Rating:")]
         public int PO_Rating { get; set; }
 
-        [DisplayName("Pet Owner Comments:  (from Pet Carer!")]
+        [DisplayName("Pet Owner Comments:  (from Pet Carer!)")]
         public string PO_Comments { get; set; }
 
         //===============================================================================
         // FOREIGN KEYS FROM CareTransactions TABLE
+        
         public int PetOwnerID { get; set; }
 
+        [DisplayName("Which Pet Carer?")]
         public int CareProviderID { get; set; }
 
+        [DisplayName("Which Pet?")]
         public int PetID { get; set; }
 
         //===============================================================================

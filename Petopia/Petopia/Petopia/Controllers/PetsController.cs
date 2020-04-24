@@ -47,7 +47,7 @@ namespace Petopia.Controllers
 
         //===============================================================================
         // GET: Pets/Create
-        public ActionResult CreatePet()
+        public ActionResult AddPet()
         {
             // pick list for rating?  like for 1 thru 5?
             ViewBag.PetOwnerID = new SelectList(db.PetOwners, "PetOwnerID", "AverageRating");
@@ -64,7 +64,7 @@ namespace Petopia.Controllers
         // want to bind to; more details:  https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreatePet(PetPicViewModel model)
+        public ActionResult AddPet(PetPicViewModel model)
         {
             Pet pet = new Pet();
 

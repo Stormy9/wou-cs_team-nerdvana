@@ -505,7 +505,7 @@
     <Content Include="Views\CareProviders\Index.cshtml" />
     <Content Include="Views\ProfilePage\Index.cshtml" />
     <Content Include="Views\ProfilePage\EditMyStuff.cshtml" />
-    <Content Include="Views\Pets\CreatePet.cshtml" />
+    <Content Include="Views\Pets\AddPet.cshtml" />
     <Content Include="Views\Pets\Delete.cshtml" />
     <Content Include="Views\Pets\Details.cshtml" />
     <Content Include="Views\Pets\EditPet.cshtml" />
