@@ -1,216 +1,365 @@
 ﻿@model Petopia.Models.ViewModels.CareTransactionViewModel
 
 @{
-    ViewBag.Title = "Edit/Update This Care Appointment";
+    ViewBag.Title = "Complete This Care Appointment";
 }
 
 <h2>@ViewBag.Title:</h2>
 <hr />
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("CompleteAppointment", "CareTransactions", FormMethod.Post,
+        new { @class = "form", role = "form", enctype = "multipart/form-data" } ) )
 {
-    @Html.AntiForgeryToken()
+            @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+        <div class="form">
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.TransactionID)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <!--==========================================================================-->
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartDate, 
-                            htmlAttributes: new { @class = "control-label col-md-2" })
+            <!------- change to the user's list (of pet care appointments)! ------->
+            <span style="float: right; padding-right: 5px;">
+                @Html.ActionLink("See all of my Pet Care appointments!", "Index")
+            </span>
+            <span>
+                <input type="submit" value="Complete Appointment!"
+                       class="btn our_buttons" />
+            </span>
+            <!------------------------------------------>
 
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StartDate, 
+            <h2>@ViewBag.Title01!</h2>
+            <!---->
+            <!-- =============================== FIRST\TOP ROW! ======================-->
+            <div class="row make_appt_box">
+
+                <!-- ====================== FIRST ROW -- FIRST COLUMN ===============-->
+                <div class="col-sm-3 col-md-3">
+
+                    <h4> select start date &amp; time: </h4>
+                    <!---->
+                    <!----- INITIATE APPOINTMENT ----------------------------------->
+                    <!-----------------------------START DATE ---------------------->
+                    <div class="form-group" style="padding-top: 5px;">
+                        @Html.LabelFor(model => model.StartDate,
+                                    htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.StartDate,
                             new { htmlAttributes = new { @class = "form-control" } })
 
-                @Html.ValidationMessageFor(model => model.StartDate, "", 
-                            new { @class = "text-danger" })
-            </div>
-        </div>
+                        @Html.ValidationMessageFor(model => model.StartDate, "",
+                                                    new { @class = "text-danger" })
+                    </div>
+                    <!----------------------------- START TIME---------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StartTime,
+                                    htmlAttributes: new { @class = "control-label" })
 
-        <!------------------------------------------------------------------------------>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EndDate, 
-                            htmlAttributes: new { @class = "control-label col-md-2" })
-
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EndDate, 
+                        @Html.EditorFor(model => model.StartTime,
                             new { htmlAttributes = new { @class = "form-control" } })
 
-                @Html.ValidationMessageFor(model => model.EndDate, "", 
-                            new { @class = "text-danger" })
-            </div>
-        </div>
+                        @Html.ValidationMessageFor(model => model.StartTime, "",
+                                                    new { @class = "text-danger" })
+                    </div>
+                    <!-------------------------------------------------------------->
+                </div><!-- END ROW 1 \ COL 1 -->
+                <!--==============================================================-->
+                <!---->
+                <!--===================== FIRST ROW - SECOND COLUMN ==============-->
+                <div class="col-sm-3 col-md-3">
 
-        <!--==========================================================================-->
+                    <h4> select end date &amp; time: </h4>
+                    <!---->
+                    <!----- STILL INITIATE APPOINTMENT ----------------------------->
+                    <!-----------------------------END DATE ------------------------>
+                    <div class="form-group" style="padding-top: 5px;">
+                        @Html.LabelFor(model => model.EndDate,
+                                    htmlAttributes: new { @class = "control-label" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartTime, 
-                            htmlAttributes: new { @class = "control-label col-md-2" })
-
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StartTime, 
+                        @Html.EditorFor(model => model.EndDate,
                             new { htmlAttributes = new { @class = "form-control" } })
 
-                @Html.ValidationMessageFor(model => model.StartTime, "", 
-                            new { @class = "text-danger" })
-            </div>
-        </div>
+                        @Html.ValidationMessageFor(model => model.EndDate, "",
+                                                    new { @class = "text-danger" })
+                    </div>
+                    <!---------------------------- END TIME ------------------------>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EndTime,
+                                    htmlAttributes: new { @class = "control-label" })
 
-        <!------------------------------------------------------------------------------>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EndTime, 
-                            htmlAttributes: new { @class = "control-label col-md-2" })
-
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EndTime, 
+                        @Html.EditorFor(model => model.EndTime,
                             new { htmlAttributes = new { @class = "form-control" } })
 
-                @Html.ValidationMessageFor(model => model.EndTime, "", 
-                            new { @class = "text-danger" })
-            </div>
-        </div>
+                        @Html.ValidationMessageFor(model => model.EndTime, "",
+                                                    new { @class = "text-danger" })
+                    </div>
+                    <!-------------------------------------------------------------->
+                    <h6> <i> can span multiple days, i.e. pet-sitting! </i></h6>
+                    <!------------------------------------------------------------------>
+                </div><!-- END ROW 1 \ COL 2 -->
+                <!--==================================================================-->
+                <!---->
+                <!--=============================== FIRST ROW - THIRD COLUMN =========-->
+                <div class="col-sm-4 col-md-4">
+                    <h4> Instructions for this visit: </h4>
+                    <!----------------------- NEEDED THIS VISIT ----------------------->
+                    @Html.LabelFor(model => model.NeededThisVisit,
+                                    htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.TextAreaFor(model => model.NeededThisVisit,
+                        new { htmlAttributes =
+                        new { @class = "form-control our_text_area" },
+                        cols = 180, rows = 5, id = "", name = "",
+                        style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
 
-        <!--==========================================================================-->
+                    <div>
+                        <!-- do a character counter here! -->
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CareProvided, 
-                            htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.ValidationMessageFor(model => model.NeededThisVisit, "",
+                                                    new { @class = "text-danger" })
+                    <!----------------------------------------------------------------->
+                </div><!-- END ROW 1 \ COL 3 -->
+                <!--==================================================================-->
+                <!---->
+                <!--=============================== FIRST ROW - FOURTH COLUMN ========-->
+                <div class="col-sm-2 col-md-2">
 
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CareProvided, 
+                    <!---------------------------------- WHICH PET? -------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PetID,
+                                        htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.PetID,
+                                new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.PetID, "",
+                                                        new { @class = "text-danger" })
+                    </div>
+                    <!---------------------------- WHICH PET CARER? -------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CareProviderID,
+                                        htmlAttributes: new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.CareProviderID,
                             new { htmlAttributes = new { @class = "form-control" } })
 
-                @Html.ValidationMessageFor(model => model.CareProvided, "", 
-                            new { @class = "text-danger" })
-            </div>
-        </div>
+                        @Html.ValidationMessageFor(model => model.CareProviderID,
+                                                "", new { @class = "text-danger" })
+                    </div>
+                    <!----------------------- BOOK PET CARE APPOINTMENT!  -------------->
+                    <div class="form-group" style="padding-top: 18px;">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Book Appointment!" 
+                                   class="btn our_buttons" />
+                        </div>
+                    </div>
+                    <!------------------------------------------------------------------>
+                </div>
+            <!--======================================================================-->
+            </div><!-- END ROW 1 -->
+            <!---->
+            <!---->
+                <br />
+                <h2>@ViewBag.Title02!</h2>
+            <!---->
+            <!-- =============================== SECOND\MIDDLE ROW! ==================-->
+            <div class="row make_appt_box">
 
-        <!------------------------------------------------------------------------------>
+                <!--============================== SECOND ROW \ FIRST COLUMN =========-->
+                    <div class="col-sm-4 col-md-4">
+                        
+                        <h4> From the Pet Care Provider: </h4>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CareReport, 
-                            htmlAttributes: new { @class = "control-label col-md-2" })
+                        <!----------------- CARE PROVIDED SUMMARY ------------------------>
+                        <div class="form-group" style="padding-top:5px;">
+                            @Html.LabelFor(model => model.CareProvided, 
+                                        htmlAttributes: new { @class = "control-label" })
 
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CareReport, 
-                            new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.CareProvided, 
+                                new { htmlAttributes = 
+                                    new { @class = "form-control", @readonly="readonly",
+                                        @placeholder = "fill out when care complete",
+                                        style = "background-color: lightgray" } })
 
-                @Html.ValidationMessageFor(model => model.CareReport, "", 
-                            new { @class = "text-danger" })
-            </div>
-        </div>
+                            @Html.ValidationMessageFor(model => model.CareProvided, "", 
+                                                        new { @class = "text-danger" })
+                        </div>
+                        <!-------------------------------------------------------------->
+                    </div><!-- END ROW 2 \ COL 1 -->
+                    <!--==============================================================-->
+                    <!---->
+                    <!-- ========================== SECOND ROW \ SECOND COLUMN =======-->
+                    <div class="col-sm-5 col-md-5">
 
-        <!--==========================================================================-->
+                        <h4 style="color: #996633;"> From the Pet Care Provider: </h4>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Charge, 
-                            htmlAttributes: new { @class = "control-label col-md-2" })
+                        <!-------------------- FULL PET CARE REPORT -------------------->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CareReport, 
+                                        htmlAttributes: new { @class = "control-label" })
 
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Charge, 
-                            new { htmlAttributes = new { @class = "form-control" } })
+                            <br />
+                            @Html.TextAreaFor(model => model.CareReport,
+                            new { htmlAttributes =
+                                new { @class = "form-control our_text_area",
+                                      @readonly = "readonly",
+                                      @placeholder = "fill out when care complete", 
+                                      cols = 360, rows = 5, id = "", name = "",
+                                      style = "color: #2e2e1f; border-radius:5px; padding: 5px; background-color: lightgray;" } } )
 
-                @Html.ValidationMessageFor(model => model.Charge, "", 
-                            new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div>
+                                <!-- do a character counter here! -->
+                            </div>
 
-        <!------------------------------------------------------------------------------>
+                            @Html.ValidationMessageFor(model => model.CareReport, "", 
+                                                        new { @class = "text-danger" })
+                        </div>
+                        <!-------------------------------------------------------------->
+                    </div><!-- END ROW 2 \ COL 2 -->
+                    <!--==============================================================-->
+                    <!---->
+                    <!-- ========================== SECOND ROW \ THIRD COLUMN ========-->
+                    <div class="col-sm-3 col-md-3 carer_fee_box">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tip, 
-                            htmlAttributes: new { @class = "control-label col-md-2" })
+                        <!-------------- CHARGE FOR YOUR PET CARE APPT  ---------------->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Charge, 
+                                        htmlAttributes: new { @class = "control-label" })
 
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Tip, 
-                            new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Charge, 
+                                new { htmlAttributes = 
+                                    new { @class = "form-control", @readonly="readonly",
+                                        @placeholder = "fill out when care complete",
+                                        style = "background-color: lightgray" } })
 
-                @Html.ValidationMessageFor(model => model.Tip, "", 
-                            new { @class = "text-danger" })
-            </div>
-        </div>
+                            @Html.ValidationMessageFor(model => model.Charge, "", 
+                                                          new { @class = "text-danger" })
+                        </div>
+                        <!------------------- TIP FOR YOUR PET CARER? ------------------>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Tip, 
+                                        htmlAttributes: new { @class = "control-label" })
 
-        <!--==========================================================================-->
+                            @Html.EditorFor(model => model.Tip, 
+                                new { htmlAttributes = 
+                                    new { @class = "form-control", @readonly="readonly",
+                                        @placeholder = "fill out when care complete",
+                                        style = "background-color: lightgray" } })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PC_Rating, 
-                            htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.ValidationMessageFor(model => model.Tip, "", 
+                                                        new { @class = "text-danger" })
+                        </div>
+                        <!-------------------------------------------------------------->
+                    </div><!-- END ROW 2 \ COL 3 -->
+                <!--==================================================================-->
+                </div><!-- END ROW 2-->
+                <!---->
+                <!---->
+                    <br />
+                    <h2>@ViewBag.Title03:</h2>
+                <!---->
+                <!-- =============================== THIRD\BOTTOM ROW! ===============-->
+                <div class="row make_appt_box">
 
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PC_Rating, 
-                            new { htmlAttributes = new { @class = "form-control" } })
+                    <!--========================== THIRD ROW \ COL ONE ===============-->
+                    <div class="col-sm-6 col-md-6 carer_rating_comment_box" >
 
-                @Html.ValidationMessageFor(model => model.PC_Rating, "", 
-                            new { @class = "text-danger" })
-            </div>
-        </div>
+                        <h4> Pet Carer Rating: </h4>
+                        <!---------------------- PET CARER RATING (from pet owner) ----->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PC_Rating,
+                                        htmlAttributes: new { @class = "control-label" })
 
-        <!------------------------------------------------------------------------------>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PC_Comments, 
-                            htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.DropDownList("rating",
+                            (IEnumerable<SelectListItem>)ViewBag.RatingList, "rating?",
+                                  new { @class = "form-control", required = "required" })
 
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PC_Comments, 
-                            new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PC_Rating,
+                                                "", new { @class = "text-danger" })
+                        </div>
+                        <!--------------- PET CARER COMMENTS (from pet owner) ---------->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PC_Comments, 
+                                        htmlAttributes: new { @class = "control-label" })
 
-                @Html.ValidationMessageFor(model => model.PC_Comments, "", 
-                            new { @class = "text-danger" })
-            </div>
-        </div>
+                            <br />
+                            @Html.TextAreaFor(model => model.PC_Comments,
+                            new { htmlAttributes =
+                            new { @class = "form-control our_text_area" },
+                            cols = 180, rows = 5, id = "", name = "",
+                            style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
 
-        <!--==========================================================================-->
+                            <div>
+                                <!-- do a character counter here! -->
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PO_Rating, 
-                            htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.ValidationMessageFor(model => model.PC_Comments, "", 
+                                                        new { @class = "text-danger" })
+                        </div>
+                        <!-------------------------------------------------------------->
+                    </div><!-- END ROW 3 \ COL 1 -->
+                    <!--==============================================================-->
+                    <!---->
+                    <!-- ========================== THIRD ROW \ SECOND COLUMN ========-->
+                    <div class="col-sm-6 col-md-6 owner_rating_comment_box">
 
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PO_Rating, 
-                            new { htmlAttributes = new { @class = "form-control" } })
+                        <h4> Pet Owner Rating: </h4>
+                        <!---------------------- PET ONWER RATING (from pet carer) ----->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PO_Rating, 
+                                        htmlAttributes: new { @class = "control-label" })
 
-                @Html.ValidationMessageFor(model => model.PO_Rating, "", 
-                            new { @class = "text-danger" })
-            </div>
-        </div>
+                            @Html.DropDownList("rating",
+                              (IEnumerable<SelectListItem>)ViewBag.RatingList, "rating?",
+                                new { @class = "form-control", required = "required" })
 
-        <!------------------------------------------------------------------------------>
+                            @Html.ValidationMessageFor(model => model.PO_Rating, "", 
+                                                        new { @class = "text-danger" })
+                        </div>
+                        <!---------------- PET OWNER COMMENTS (from pet carer) -------->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PO_Comments, 
+                                      htmlAttributes: new { @class = "control-label" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PO_Comments, 
-                            htmlAttributes: new { @class = "control-label col-md-2" })
+                            <br />
+                            @Html.TextAreaFor(model => model.PC_Comments,
+                            new { htmlAttributes =
+                            new { @class = "form-control our_text_area" },
+                            cols = 180, rows = 5, id = "", name = "",
+                            style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
 
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PO_Comments, 
-                            new { htmlAttributes = new { @class = "form-control" } })
+                            <div>
+                                <!-- do a character counter here! -->
+                            </div>
 
-                @Html.ValidationMessageFor(model => model.PO_Comments, "", 
-                            new { @class = "text-danger" })
-            </div>
-        </div>
+                            @Html.ValidationMessageFor(model => model.PO_Comments, "", 
+                                                        new { @class = "text-danger" })
+                        </div>
+                        <!-------------------------------------------------------------->
+                    </div><!-- END ROW 3 \ COL 1 -->
+                <!--==================================================================-->
+                </div><!-- END ROW THREE -->
 
-        <!--==========================================================================-->
+            
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Update!" class="btn btn-default" />
-            </div>
-        </div>
+                <!---------------------------------------------------------------------->
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.PetOwnerID, 
+                                        htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.PetOwnerID, 
+                                new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PetOwnerID, "", 
+                                                        new { @class = "text-danger" })
+                </div>*@
+                <!---------------------------------------------------------------------->
+            
 
-        <!--==========================================================================-->
 
-    </div>
-}
-<!--==================================================================================-->
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+            <!-------------------------------------------------------------------------->
+        </div><!-- END FORM DIV! -->
+    }
+
+</div><!-- END CONTAINER-FLUID DIV! -->
 <!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

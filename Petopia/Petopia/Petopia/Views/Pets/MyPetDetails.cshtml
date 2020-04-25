@@ -4,12 +4,12 @@
     ViewBag.Title = "My private Pet Details";
 }
 
-<div class="outer_container">
+<div class="outer_container" >
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding-bottom: 45px;">
 
         <h2>@ViewBag.Title:</h2>
-        <hr />
+
         <!-------------------------------------- FIRST ROW ----------------------------->
         <div class="row our_row_one">
 
@@ -91,21 +91,24 @@
         <!---->
         <!---------------------------------------------------------------------->
 
+        <!-- original formatted stuff pulled from db-->
+        <div class="button_box_03" style="text-align: center;">
+            <div>
+                @Html.ActionLink("My Owner's Profile", "Index",
+                                                new { controller = "ProfilePage" },
+                                                new { @class = "our_other_buttons" })
+            </div>
+            <div>
+                @Html.ActionLink("This Pet's Profile", "PetProfile", 
+                                                new { id = Model.PetID },
+                                                new { @class = "our_other_buttons" })
+            </div>
+            <div>
+                @Html.ActionLink("Edit this Pet", "EditPet", new { id = Model.PetID },
+                                            new { @class = "our_other_buttons" })
+            </div>
+        </div><!-- END BUTTON BOX -->
+        <!------------------------------------------------------------------------------>
     </div><!-- END CONTAINER-FLUID -->
 </div><!-- END OUTER CONTAINER \ MAIN CONTAINER INSIDE BODY -->
-<!-- original formatted stuff pulled from db-->
-<div class="button_box_03" style="text-align: center;">
-    <div>
-        @Html.ActionLink("My Owner's Profile", "Index",
-                                        new { controller = "ProfilePage" },
-                                        new { @class = "our_other_buttons" })
-    </div>
-    <div>
-        @Html.ActionLink("This Pet's Profile", "Details", new { id = Model.PetID },
-                                        new { @class = "our_other_buttons" })
-    </div>
-    <div>
-        @Html.ActionLink("Edit this Pet", "EditPet", new { id = Model.PetID },
-                                    new { @class = "our_other_buttons" })
-    </div>
-</div><!-- END BUTTON BOX -->
+

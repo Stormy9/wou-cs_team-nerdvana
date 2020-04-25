@@ -18,12 +18,14 @@ namespace Petopia.Controllers
         // GET: CareTransactions
         public ActionResult Index()
         {
+            // original!
             return View(db.CareTransactions.ToList());
+
         }
 
         //===============================================================================
-        // GET: CareTransactions/Details/5
-        public ActionResult Details(int? id)
+        // GET: CareTransactions/AppointmentDetails/5
+        public ActionResult AppointmentDetails(int? id)
         {
             if (id == null)
             {
@@ -116,7 +118,6 @@ namespace Petopia.Controllers
             }
 
             CareTransaction careTransaction = db.CareTransactions.Find(id);
-
             if (careTransaction == null)
             {
                 return HttpNotFound();

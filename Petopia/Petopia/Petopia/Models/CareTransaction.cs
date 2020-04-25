@@ -26,7 +26,7 @@ namespace Petopia.Models
         public DateTime StartDate { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Column(TypeName = "date")] 
+        [Column(TypeName = "date")]
         [DisplayName("End Date")]
         //
         // to get our date-picker:
@@ -59,13 +59,11 @@ namespace Petopia.Models
 
         //-------------------------------------------------------------------------------
         [DisplayName("Fees for this visit")]
-        [Column(TypeName = "money")]
-        public decimal? Charge { get; set; }
+        public float? Charge { get; set; }
 
         //-------------------------------------------------------------------------------
         [DisplayName("Tip (optional)")]
-        [Column(TypeName = "money")]
-        public decimal? Tip { get; set; }
+        public float? Tip { get; set; }
 
         //-------------------------------------------------------------------------------
         [DisplayName("Pet Carer Rating")]
@@ -94,5 +92,6 @@ namespace Petopia.Models
         public int PetID { get; set; }
 
         //===============================================================================
+        
     }
 }

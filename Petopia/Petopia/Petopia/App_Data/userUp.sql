@@ -130,8 +130,8 @@ CREATE TABLE [dbo].[CareTransaction] (
 	[CareProvided] NVARCHAR(90),
 	[CareReport] NVARCHAR(MAX),
 	/*------------------------------------*/
-	[Charge] MONEY,
-	[Tip] MONEY,
+	[Charge] MONEY NULL,
+	[Tip] MONEY NULL,
 	/*------------------------------------*/
 	[PC_Rating] INT,
 	[PC_Comments] NVARCHAR(MAX),

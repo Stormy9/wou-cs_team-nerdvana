@@ -507,13 +507,13 @@
     <Content Include="Views\ProfilePage\EditMyStuff.cshtml" />
     <Content Include="Views\Pets\AddPet.cshtml" />
     <Content Include="Views\Pets\Delete.cshtml" />
-    <Content Include="Views\Pets\Details.cshtml" />
+    <Content Include="Views\Pets\PetProfile.cshtml" />
     <Content Include="Views\Pets\EditPet.cshtml" />
     <Content Include="Views\Pets\Index.cshtml" />
     <Content Include="Views\Badges\Create.cshtml" />
     <Content Include="Views\Badges\Edit.cshtml" />
     <Content Include="Views\CareTransactions\Delete.cshtml" />
-    <Content Include="Views\CareTransactions\Details.cshtml" />
+    <Content Include="Views\CareTransactions\AppointmentDetails.cshtml" />
     <Content Include="Views\CareTransactions\EditAppointment.cshtml" />
     <Content Include="Views\CareTransactions\Index.cshtml" />
     <Content Include="Views\CareTransactions\BookAppointment.cshtml" />

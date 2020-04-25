@@ -15,9 +15,18 @@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+            <span style="float:right;">
+                <input type="submit" value="Add My Pet!"
+                       class="btn our_buttons" />
+
+                @Html.ActionLink("Cancel!", "Index",
+                            new { controller = "ProfilePage" },
+                            new { @class = "btn our_buttons", style = "color: white;" } )
+                <!-- WHY THE FUCK ARE CSS CLASSES NOT APPLYING HERE?!?!?! -->
+            </span>
+
             <h2>@ViewBag.Title</h2>
             <hr />
-
             <!--============================ FIRST\LEFT COLUMN =======================-->
             <div class="row">
                 <div class="col-sm-4 col-md-4">
@@ -269,16 +278,14 @@
                 <div class="col-sm-offset-8 col-sm-2 col-md-2">
                     <div class="form-group">
                         <div>
-                            <input type="submit" value="Add My Pet!"
-                                   class="btn our_buttons" />
+                            
                         </div>
                     </div>
                 </div>
 
                 <div class="col-sm-2 col-md-2">
                     <div class="our_create-edit_buttons">
-                        @Html.ActionLink("Cancel!", "Index",
-                                                    new { controller = "ProfilePage" })
+                        
                     </div>
                 </div>
             </div><!-- END 2nd ROW! -->

@@ -26,8 +26,8 @@ namespace Petopia.Controllers
         }
 
         //===============================================================================
-        // GET: Pets/Details/5                                  // THIS IS PET'S PROFILE!
-        public ActionResult Details(int? id)
+        // GET: Pets/Profile/5                                  // THIS IS PET'S PROFILE!
+        public ActionResult PetProfile(int? id)
         {
             if (id == null)
             {
@@ -46,7 +46,7 @@ namespace Petopia.Controllers
         }
 
         //===============================================================================
-        // GET: Pets/Create
+        // GET: Pets/AddPet
         public ActionResult AddPet()
         {
             // pick list for rating?  like for 1 thru 5?
@@ -59,7 +59,7 @@ namespace Petopia.Controllers
         }
 
         //-------------------------------------------------------------------------------
-        // POST: Pets/Create
+        // POST: Pets/AddPet
         // To protect from overposting attacks, please enable the specific properties you
         // want to bind to; more details:  https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
@@ -117,7 +117,7 @@ namespace Petopia.Controllers
                 db.Pets.Add(pet);
                 db.SaveChanges();
 
-                return RedirectToAction("Details", new { id = pet.PetID });
+                return RedirectToAction("PetProfile", new { id = pet.PetID });
             }
 
             // pick list for rating -- like 1 thru 5
@@ -130,7 +130,7 @@ namespace Petopia.Controllers
         }
 
         //===============================================================================
-        // GET: Pets/Edit/5
+        // GET: Pets/EditPet/5
         public ActionResult EditPet(int? id)
         {
             if (id == null)
@@ -172,7 +172,7 @@ namespace Petopia.Controllers
             return View(model);
         }
         //-------------------------------------------------------------------------------
-        // POST: Pets/Edit/5
+        // POST: Pets/EditPet/5
         // To protect from overposting attacks, please enable the specific properties you
         // want to bind to; more details:  https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
@@ -239,7 +239,7 @@ namespace Petopia.Controllers
                 db.Entry(pet).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Details", new { id = pet.PetID } );
+                return RedirectToAction("PetProfile", new { id = pet.PetID } );
             }
 
             // pick list for rating -- like 1 thru 5

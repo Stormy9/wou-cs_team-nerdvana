@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <!--========================== WHOLE DAMNED FORM IN HERE =========================-->
     @using (Html.BeginForm("EditPet", "Pets", FormMethod.Post,
-    new { @class = "form", role = "form", enctype = "multipart/form-data" }))
+        new { @class = "form", role = "form", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
@@ -15,6 +15,14 @@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.PetID)
+
+            <span style="float:right;">
+                <input type="submit" value="Update My Pet!"
+                       class="btn our_buttons" />
+                @Html.ActionLink("Cancel!", "PetProfile",
+                                          new { controller = "Pets", id = Model.PetID },
+                                          new { @class = "btn our_buttons" })
+            </span>
 
             <h2>@ViewBag.Title!</h2>
             <hr />
@@ -39,10 +47,14 @@
                     <!----------------------------- PET SPECIES ------------------------>
                     <div class="form-group">
                         @Html.LabelFor(model => model.Species, htmlAttributes:
-                                                        new { @class = "control-label" })
+                                new { @class = "control-label", 
+                                    style ="margin-bottom: 0px; padding-bottom: 0px;" })
 
+                        <br /><i style="font-size: 75%;"> 
+                            read-only... you can't edit your pet's species! </i>
                         @Html.EditorFor(model => model.Species,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                                new { htmlAttributes = new { @class = "form-control", 
+                                                             @readonly="readonly" } })
 
                         @Html.ValidationMessageFor(model => model.Species, "",
                                                         new { @class = "text-danger" })
@@ -89,11 +101,11 @@
                                         htmlAttributes: new { @class = "control-label" })
 
                         <br /><!-- WTF DO I GOTTA HAVE THIS HERE??? BUT YET I DO..... -->
-
+                                <!-- just for the 'TextAreaFor' spots -->
                         @Html.TextAreaFor(model => model.PetBio,
                             new { htmlAttributes =
                             new { @class = "form-control our_text_area" },
-                            cols = 90, rows = 5, id = "text13", name = "text13",
+                            cols = 180, rows = 5, id = "text13", name = "text13",
                             style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
 
                         <div>
@@ -173,12 +185,18 @@
                     <!---------------------- HOW TO ACCESS MY PET ---------------------->
                     <div class="form-group" style="padding-top: 13px">
                         @Html.LabelFor(model => model.PetAccess,
-                                        htmlAttributes: new { @class = "control-label" })
+                                    htmlAttributes: new { @class = "control-label", 
+                                    style ="margin-bottom: 0px; padding-bottom: 0px;" })
 
+                        <br /><i style="font-size: 75%;"> 
+                            is your pet in a crate, pen, or certain room?  
+                            <br />where is it's leash, food, dish, medicine, supplies?
+                            <br />and things like that.
+                        </i><br />
                         @Html.TextAreaFor(model => model.PetAccess,
                             new { htmlAttributes =
                             new { @class = "form-control our_text_area" },
-                            cols = 90, rows = 3, id = "text08", name = "text08",
+                            cols = 180, rows = 5, id = "text08", name = "text08",
                             style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
 
                         <div>
@@ -198,15 +216,21 @@
                 <!--============================ THIRD\RIGHT COLUMN ==================-->
                 <div class="col-sm-4 col-md-4">
 
-                    <!-------------------- WHAT MY PET NEEDS DONE ---------------------->
-                    <div class="form-group" style="padding-top: 13px;">
-                        @Html.LabelFor(model => model.NeedsDetails,
-                                        htmlAttributes: new { @class = "control-label" })
+                    <h4 style="color: #996633;">Your Pet's Care Info:</h4>
 
+                    <!-------------------- WHAT MY PET NEEDS DONE ---------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NeedsDetails,
+                                    htmlAttributes: new { @class = "control-label", 
+                                    style ="margin-bottom: 0px; padding-bottom: 0px;" })
+
+                        <br /><i style="font-size: 75%;"> 
+                            in general... you can give specifics for each pet care appointment!  
+                        </i><br />
                         @Html.TextAreaFor(model => model.NeedsDetails,
                             new { htmlAttributes =
                             new { @class = "form-control our_text_area" },
-                            cols = 90, rows = 5, id = "text09", name = "text09",
+                            cols = 180, rows = 5, id = "text09", name = "text09",
                             style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
 
                         <div>
@@ -219,14 +243,14 @@
                                                         new { @class = "text-danger" })
                     </div>
                     <!--------------------- PET'S HEALTH NEEDS/CONCERNS ---------------->
-                    <div class="form-group" style="padding-top: 5px;">
+                    <div class="form-group" style="padding-top: 13px;">
                         @Html.LabelFor(model => model.HealthConcerns,
                                         htmlAttributes: new { @class = "control-label" })
 
                         @Html.TextAreaFor(model => model.HealthConcerns,
                             new { htmlAttributes =
                             new { @class = "form-control our_text_area" },
-                            cols = 90, rows = 5, id = "text10", name = "text10",
+                            cols = 180, rows = 5, id = "text10", name = "text10",
                             style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
 
                         <div>
@@ -246,7 +270,7 @@
                         @Html.TextAreaFor(model => model.BehaviorConcerns,
                             new { htmlAttributes =
                             new { @class = "form-control our_text_area" },
-                            cols = 90, rows = 5, id = "text11", name = "text11",
+                            cols = 180, rows = 5, id = "text11", name = "text11",
                             style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
 
                         <div>
@@ -263,26 +287,6 @@
             </div><!-- END 1st ROW!-->
             <!---->
             <!---->
-            <!--=========== SECOND ROW! ==============================================-->
-            <!--============================== BUTTONS! ==============================-->
-            <div class="row" style="padding-bottom: 18px;">
-                <div class="col-sm-offset-8 col-sm-2 col-md-2">
-
-                    <div class="form-group">
-                        <div>
-                            <input type="submit" value="Update My Pet!"
-                                   class="btn our_buttons" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-2 col-md-2">
-                    <div class="our_create-edit_buttons">
-                        @Html.ActionLink("Cancel!", "Index",
-                                                    new { controller = "ProfilePage" })
-                    </div>
-                </div>
-            </div><!-- END 2nd ROW! -->
             <!-------------------------------------------------------------------------->
         </div><!-- END OF FORM DIV! -->
     }

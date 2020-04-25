@@ -39,16 +39,13 @@ namespace Petopia.DAL
             // CareProviderContext -- nothing in here in it's context
 
             //---------------------------------------------------------------------------
-            // CareTransactionsContext
-
-            modelBuilder.Entity<CareTransaction>()
-                .Property(e => e.Charge)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<CareTransaction>()
-                .Property(e => e.Tip)
-                .HasPrecision(19, 4);
-
+            // CareTransactionsContext -- 
+            //
+            // once i changed db data type from 'money' to 'float' -- for 'charge' & 'tip'
+            // because 'money' data type is not nullable and we need this to be nullable!
+            // i had to re-generate a context & model ..... 
+            //      the new context has nothing here   [=
+            //
             //---------------------------------------------------------------------------
             // PetContext -- nothing in here in it's context
 

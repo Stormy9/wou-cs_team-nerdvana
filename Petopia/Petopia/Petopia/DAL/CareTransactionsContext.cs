@@ -18,13 +18,8 @@ namespace Petopia.Models
         //-------------------------------------------------------------------------------
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CareTransaction>()
-                .Property(e => e.Charge)
-                .HasPrecision(19, 4);
-
-            modelBuilder.Entity<CareTransaction>()
-                .Property(e => e.Tip)
-                .HasPrecision(19, 4);
+            // once i changed datatype in db for 'charge' and 'tip' 
+            // there is nothing here   [=
         }
         //===============================================================================
     }

@@ -171,10 +171,10 @@ namespace Petopia.Models.ViewModels
 
         //-------------------------------------------------------------------------------
         [DisplayName("Pet Carer's Fee:")]
-        public decimal Charge { get; set; }
+        public float? Charge { get; set; }
 
         [DisplayName("Tip?")]
-        public decimal Tip { get; set; }
+        public float? Tip { get; set; }
 
         //-------------------------------------------------------------------------------
         [Range(1,5)]

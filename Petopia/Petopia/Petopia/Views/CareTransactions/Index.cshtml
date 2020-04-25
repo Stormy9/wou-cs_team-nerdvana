@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Petopia.Models.ViewModels.CareTransactionViewModel>
+﻿@model IEnumerable<Petopia.Models.CareTransaction>
 
 @{
     ViewBag.Title = "Index -- All Care Appointment (Transactions)";
@@ -16,6 +16,16 @@
     <tr>
         <!--==========================================================================-->
         <th>
+            @Html.DisplayNameFor(model => model.PetOwnerID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CareProviderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetID)
+        </th>
+        <!--==========================================================================-->
+        <th>
             @Html.DisplayNameFor(model => model.StartDate)
         </th>
         <th>
@@ -27,6 +37,10 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <!--==========================================================================-->
+        <th>
+            @Html.DisplayNameFor(model=> model.NeededThisVisit)
         </th>
         <!--==========================================================================-->
         <th>
@@ -64,6 +78,16 @@
     <tr>
         <!--==========================================================================-->
         <td>
+            @Html.DisplayFor(modelItem => item.PetOwnerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CareProviderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetID)
+        </td>
+        <!--==========================================================================-->
+        <td>
             @Html.DisplayFor(modelItem => item.StartDate)
         </td>
         <td>
@@ -75,6 +99,10 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <!--==========================================================================-->
+        <td>
+            @Html.DisplayFor(modelItem => item.NeededThisVisit)
         </td>
         <!--==========================================================================-->
         <td>
@@ -106,9 +134,9 @@
         </td>
         <!--==========================================================================-->
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TransactionID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TransactionID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TransactionID })
+            @Html.ActionLink("Edit", "EditAppointment", new { id=item.TransactionID }) |
+            @Html.ActionLink("Details", "AppointmentDetails", new { id=item.TransactionID }) |
+            @Html.ActionLink("Cancel Appt", "Delete", new { id=item.TransactionID })
         </td>
         <!--==========================================================================-->
     </tr>
