@@ -1,0 +1,137 @@
+﻿@model Petopia.Models.CareTransaction
+
+@{
+    ViewBag.Title = "Your Pet Care Appointment is Confirmed!";
+}
+
+<div class="container-fluid">
+
+    <h2>@ViewBag.Title</h2>
+
+    <div class="container-fluid my_appt_box" style="padding: 15px;">
+
+        <!--============================= ROW ZERO! ==========================-->
+        <div class="row" style="margin-bottom: 35px;">
+
+            <span style="float:left; margin-left: 25px; margin-right: 25px;">
+                <span class="our_appt_label">
+                    @Html.DisplayNameFor(model => model.PetID) &nbsp;
+                </span>
+                @Html.DisplayFor(model => model.PetID)
+            </span>
+
+            <span style="float: left; margin-right: 25px;">
+                <span class="our_appt_label">
+                    @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
+                </span>
+                @Html.DisplayFor(model => model.PetOwnerID)
+            </span>
+
+            <span style="float:left; margin-right: 25px;">
+                <span class="our_appt_label">
+                    @Html.DisplayNameFor(model => model.CareProviderID) &nbsp;
+                </span>
+                @Html.DisplayFor(model => model.CareProviderID)
+            </span>
+
+        </div><!-- END ROW ZERO -->
+        <!---->
+        <!---->
+        <!--=================================== ROW ONE ======================-->
+        <div class="row our_row_one">
+            <!------------------------------- ROW 1 \ COL 1 -------------------->
+            <div class="col-sm-1 col-md-1">
+
+                <div style="margin-bottom: 13px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.StartDate)<br />
+                    </span>
+                    @Html.DisplayFor(model => model.StartDate)
+                </div>
+
+                <div style="margin-top: 13px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.StartTime)<br />
+                    </span>
+                    @Html.DisplayFor(model => model.StartTime)
+                </div>
+
+            </div><!-- END ROW 1 \ COL 1 -->
+            <!------------------------------------------------------------------>
+            <!---->
+            <!--------------------------- ROW 1 \ COL 2 ------------------------>
+            <div class="col-sm-1 col-md-1">
+
+                <div style="margin-bottom: 13px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.EndDate)<br />
+                    </span>
+                    @Html.DisplayFor(model => model.EndDate)
+                </div>
+
+                <div style="margin-top: 13px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.EndTime)<br />
+                    </span>
+                    @Html.DisplayFor(model => model.EndTime)
+                </div>
+
+            </div><!-- END ROW 1 \ COL 2 -->
+            <!---->
+            <!--------------------------- ROW 1 \ COL 3 ------------------------>
+            <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+
+                <div>
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.NeededThisVisit)<br />
+                    </span>
+                    @Html.DisplayFor(model => model.NeededThisVisit)
+                </div>
+
+            </div><!-- END ROW 1 \ COL 3 -->
+            <!------------------------------------------------------------------>
+            <!---->
+        </div><!-- END ROW 1 -->
+        <!---->
+        <!---->
+        <!--=============================== ROW TWO ==============================-->
+        <div class="row our_row_three" style="margin-top: 36px;">
+
+            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                @Html.ActionLink("This Pet's Profile", "PetProfile",
+                                    new { controller = "Pets", id = Model.PetID })
+            </span>
+
+            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                @Html.ActionLink("All this Pet's care appointments", 
+                                    "CareTransactions", new { id = Model.PetID })
+            </span>
+
+        </div><!-- END ROW TWO -->
+        <!--======================================================================-->
+        <!---->
+        <!---->
+        <!--=============================== ROW THREE ============================-->
+        <div class="row our_row_three" style="margin-top: 5px;">
+
+            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                @Html.ActionLink("My Profile", "Index",
+                                            new { controller = "ProfilePage" })
+            </span>
+
+            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                @Html.ActionLink("All my Pet care appointments", "MyAppointments",
+                                                    new { id = Model.PetOwnerID })
+            </span>
+
+        </div><!-- END ROW THREE -->
+        <!--======================================================================-->
+
+    </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
+
+</div><!-- END CONTAINER-FLUID (outer-most container) -->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<!--==================================================================================-->

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Petopia.Models.CareTransaction>
 
 @{
-    ViewBag.Title = "Appointments for my Pets";
+    ViewBag.Title = "My Pet's Care Appointments";
 }
 
     <div class="container-fluid" style="margin-bottom: 45px;"><!-- outer container -->
@@ -22,7 +22,7 @@
         @foreach (var item in Model)
         { 
             <div class="container-fluid my_appt_box" style="padding: 15px;">
-
+            
                 <!--============================= ROW ZERO! ==========================-->
                 <div class="row" style="margin-bottom: 35px;">
 
@@ -31,21 +31,25 @@
                             @Html.DisplayNameFor(model => model.PetID): &nbsp;
                         </span>
                             @Html.DisplayFor(modelItem => item.PetID)
+                        </span>
+
+                    <span style="margin-left: 45px; font-weight: bold;">
+                        here until i get id's hooked up right!   [=]
                     </span>
 
-                        <span style="float: left; margin-right: 25px;">
-                            @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
-                            @Html.DisplayFor(modelItem => item.PetOwnerID)
-                        </span>
-                        <span style="float:left; margin-right: 25px;">
-                            @Html.DisplayNameFor(model => model.CareProviderID): &nbsp;
-                            @Html.DisplayFor(modelItem => item.CareProviderID)
-                        </span>
+                    <span style="float: left; margin-right: 25px;">
+                        @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
+                        @Html.DisplayFor(modelItem => item.PetOwnerID)
+                    </span>
+                    <span style="float:left; margin-right: 25px;">
+                        @Html.DisplayNameFor(model => model.CareProviderID): &nbsp;
+                        @Html.DisplayFor(modelItem => item.CareProviderID)
+                    </span>
 
                 </div><!-- END ROW ZERO -->
                 <!---->
                 <!---->
-                <!--=================================== ROW ONE ======================-->
+                <!--=============================== ROW ONE ==========================-->
                 <div class="row our_row_one">
                     <!------------------------------- ROW 1 \ COL 1 -------------------->
                     <div class="col-sm-1 col-md-1">
@@ -91,7 +95,7 @@
 
                         <div>
                             <span class="our_appt_label">
-                                @Html.DisplayNameFor(model => model.NeededThisVisit)<br/>
+                                @Html.DisplayNameFor(model => model.NeededThisVisit)<br />
                             </span>
                                 @Html.DisplayFor(modelItem => item.NeededThisVisit)
                         </div>
@@ -113,18 +117,18 @@
                     <!------------------------------------------------------------------>
                     <!---->
                     <!----------------------------- ROW 1 \ COL 5 ---------------------->
-                    <div class="col-sm-2 col-md-2" style="margin-left: 23px;">
+                    <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
 
                         <div style="margin-bottom: 13px;">
                             <span class="our_appt_label">
-                                @Html.DisplayNameFor(model => model.Charge)<br />
+                                @Html.DisplayNameFor(model => model.Charge) &nbsp;$
                             </span>
                                 @Html.DisplayFor(modelItem => item.Charge)
                         </div>
 
                         <div style="margin-top: 13px;">
                             <span class="our_appt_label">
-                                @Html.DisplayNameFor(model => model.Tip)<br />
+                                @Html.DisplayNameFor(model => model.Tip) &nbsp;$
                             </span>
                                 @Html.DisplayFor(modelItem => item.Tip)
                         </div>
@@ -151,7 +155,7 @@
                 <!---------------------------------------------------------------------->
                 <!---->
                 <!----------------------------------- ROW 2 \ COL 2 -------------------->
-                <div class="col-sm-3 col-md-3" style="margin-left: 45px;">
+                <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
 
                     <div>
                         <span class="our_appt_label">
@@ -171,7 +175,7 @@
                 <!---------------------------------------------------------------------->
                 <!---->
                 <!----------------------------------- ROW 2 \ COL 3 -------------------->
-                <div class="col-sm-3 col-md-3" style="margin-left: 45px;">
+                <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
 
                     <div>
                         <span class="our_appt_label">
@@ -179,7 +183,6 @@
                         </span>
                             @Html.DisplayFor(modelItem => item.PO_Rating)
                     </div>
-
                     <div>
                         <span class="our_appt_label">
                             @Html.DisplayNameFor(model => model.PO_Comments)<br />
@@ -187,7 +190,7 @@
                             @Html.DisplayFor(modelItem => item.PO_Comments)
                     </div>
 
-                </div><!-- END ROW 2 \ COL 3 -->
+                </div>
                 <!---------------------------------------------------------------------->
             </div><!-- END ROW 2 -->
             <!---->
@@ -212,7 +215,7 @@
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("This Pet's Profile", "PetProfile",
-                                        new { controller = "Pets", id = item.PetID })
+                                        new { controller = "Pets", id = item.PetID } )
                 </span>
 
             </div><!-- END ROW THREE-->
@@ -220,9 +223,8 @@
 
             </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
         }
-        <!--======================================================================-->
-        <!---->
-    </div><!-- END CONTAINER-FLUID (the outer one) -->
+    <!--==============================================================================-->
+    </div><!-- END CONTAINER-FLUID -->
 <!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

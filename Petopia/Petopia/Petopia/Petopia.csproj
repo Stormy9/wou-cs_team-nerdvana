@@ -513,7 +513,7 @@
     <Content Include="Views\Badges\Create.cshtml" />
     <Content Include="Views\Badges\Edit.cshtml" />
     <Content Include="Views\CareTransactions\Delete.cshtml" />
-    <Content Include="Views\CareTransactions\AppointmentDetails.cshtml" />
+    <Content Include="Views\CareTransactions\AppointmentConfirmation.cshtml" />
     <Content Include="Views\CareTransactions\EditAppointment.cshtml" />
     <Content Include="Views\CareTransactions\Index.cshtml" />
     <Content Include="Views\CareTransactions\BookAppointment.cshtml" />
@@ -521,6 +521,8 @@
     <Content Include="Views\Pets\MyPetDetails.cshtml" />
     <Content Include="Views\CareTransactions\CompleteAppointment.cshtml" />
     <Content Include="Views\CareTransactions\MyAppointments.cshtml" />
+    <Content Include="Views\CareTransactions\MyPetsAppointments.cshtml" />
+    <Content Include="Views\CareTransactions\AppointmentDetails.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>

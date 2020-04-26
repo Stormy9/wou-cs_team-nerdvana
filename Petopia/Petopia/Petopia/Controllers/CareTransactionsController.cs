@@ -33,7 +33,6 @@ namespace Petopia.Controllers
             }
 
             CareTransaction careTransaction = db.CareTransactions.Find(id);
-
             if (careTransaction == null)
             {
                 return HttpNotFound();
@@ -65,7 +64,7 @@ namespace Petopia.Controllers
                 db.CareTransactions.Add(careTransaction);
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("AppointmentConfirmation", new { id = careTransaction.TransactionID });
             }
 
             return View(careTransaction);
@@ -101,7 +100,7 @@ namespace Petopia.Controllers
                 db.Entry(careTransaction).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("AppointmentConfirmation", new { id = careTransaction.TransactionID });
             }
 
             return View(careTransaction);
@@ -134,6 +133,7 @@ namespace Petopia.Controllers
             db.CareTransactions.Remove(careTransaction);
             db.SaveChanges();
 
+            // CHANGE THIS!!!
             return RedirectToAction("Index");
         }
         //-------------------------------------------------------------------------------
@@ -147,6 +147,24 @@ namespace Petopia.Controllers
         }
         //===============================================================================
         // our added 'ActionResult' methods.....
+        //===============================================================================
+        // GET: CareTransactions/AppointmentConfirmation/5
+        public ActionResult AppointmentConfirmation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            CareTransaction careTransaction = db.CareTransactions.Find(id);
+            if (careTransaction == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(careTransaction);
+        }
+
         //===============================================================================
         // GET: CareTransactions/Edit/5
         public ActionResult CompleteAppointment(int? id)
@@ -177,7 +195,8 @@ namespace Petopia.Controllers
                 db.Entry(careTransaction).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                // ADD USER ID  like: , new { id = careTransaction.TransactionID }
+                return RedirectToAction("MyAppointments");
             }
 
             return View(careTransaction);
@@ -192,6 +211,16 @@ namespace Petopia.Controllers
 
             // OBVIOUSLY.....
             // make this so that it only returns the logged-in user's stuff!!!
+        }
+        //===============================================================================
+        // GET: CareTransactions
+        public ActionResult MyPetsAppointments()
+        {
+            // original!
+            return View(db.CareTransactions.ToList());
+
+            // OBVIOUSLY.....
+            // make this so that it only returns the logged-in user's PET'S stuff!!!
         }
         //===============================================================================
     }
