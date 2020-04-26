@@ -179,8 +179,8 @@
                         @Html.DisplayFor(model => model.Tagline)
                     </h4>
                 </div>
-
-
+                <!---->
+                <!---->
                 <!-- user's general location -->
                 <div class="general_location_box">
                     <div class="general_location">
@@ -188,13 +188,11 @@
                         @Html.DisplayFor(model => model.GeneralLocation)
                     </div>
                 </div>
-
-
+                <!---->
+                <!---->
                 <!-- user rating -->
                 <!-- *****STILL PLACEHOLDER***** -->
                 <div class="user_rating_box">
-                    <img src="https://stormy9.github.io/nerdvana/rating_star_example.PNG"
-                         class="user_rating_star_bar">
 
                     @if (Model.IsProvider == true)
                     {
@@ -209,9 +207,13 @@
 
                         @Html.DisplayFor(model => model.OwnerAverageRating)
                     }
+
+                    <br />
+                    <img src="https://stormy9.github.io/nerdvana/rating_star_example.PNG"
+                         class="user_rating_star_bar">
                 </div>
-
-
+                <!---->
+                <!---->
                 <!-- user bio & etc. fun stuff -->
                 <div class="user_bio_box">
                     <h4>Stuff About Me:</h4>

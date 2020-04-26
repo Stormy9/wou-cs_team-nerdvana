@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Petopia.DAL;
 using Petopia.Models;
 using Petopia.Models.ViewModels;
@@ -206,18 +207,37 @@ namespace Petopia.Controllers
         // GET: CareTransactions
         public ActionResult MyAppointments()
         {
-            // original!
-            return View(db.CareTransactions.ToList());
+            var identityID = User.Identity.GetUserId();
+
+            var loggedID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
+                                          .Select(u => u.UserID).First();
+
+
+            var userAppts = db.CareTransactions.Where(ct => ct.PetOwnerID == loggedID)
+                                               .OrderBy(ct => ct.StartDate);
+                                            // is the .Where() part right??
+
+            return View(userAppts.ToList());
+
+
+            // original!  (from scaffolding)
+            //return View(db.CareTransactions.ToList());
 
             // OBVIOUSLY.....
             // make this so that it only returns the logged-in user's stuff!!!
         }
         //===============================================================================
         // GET: CareTransactions
-        public ActionResult MyPetsAppointments()
+        public ActionResult MyPetsAppointments(int? id)
         {
+            var thisPet = db.CareTransactions.Where(ct => ct.PetID == id)
+                                             .OrderBy(ct => ct.StartDate);
+
+            return View(thisPet.ToList());
+
+
             // original!
-            return View(db.CareTransactions.ToList());
+            //return View(db.CareTransactions.ToList());
 
             // OBVIOUSLY.....
             // make this so that it only returns the logged-in user's PET'S stuff!!!
