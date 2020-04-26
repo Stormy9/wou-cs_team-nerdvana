@@ -33,7 +33,7 @@ CREATE TABLE [dbo].[PetopiaUsers] (
 CREATE TABLE [dbo].[PetOwner] (
 	[PetOwnerID] INT IDENTITY (1,1) NOT NULL,
 
-	[AverageRating] NVARCHAR(120),
+	[AverageRating] INT(1),
 	[GeneralNeeds] NVARCHAR(MAX) NOT NULL,
 	[HomeAccess] NVARCHAR(MAX) NOT NULL,
 
@@ -80,7 +80,7 @@ CREATE TABLE [dbo].[Pet] (
 CREATE TABLE [dbo].[CareProvider] (
 	[CareProviderID] INT IDENTITY (1,1) NOT NULL,
 
-	[AverageRating] NVARCHAR(120),
+	[AverageRating] INT(1),
 	[ExperienceDetails] NVARCHAR(MAX) NOT NULL,
 
 	[UserID] INT,
@@ -130,8 +130,8 @@ CREATE TABLE [dbo].[CareTransaction] (
 	[CareProvided] NVARCHAR(90),
 	[CareReport] NVARCHAR(MAX),
 	/*------------------------------------*/
-	[Charge] MONEY NULL,
-	[Tip] MONEY NULL,
+	[Charge] FLOAT(2) NULL,
+	[Tip] FLOAT(2) NULL,
 	/*------------------------------------*/
 	[PC_Rating] INT,
 	[PC_Comments] NVARCHAR(MAX),

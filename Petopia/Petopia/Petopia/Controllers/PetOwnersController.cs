@@ -35,7 +35,6 @@ namespace Petopia.Controllers
             }
 
             Models.PetOwner petOwner = db.PetOwners.Find(id);
-
             if (petOwner == null)
             {
                 return HttpNotFound();
@@ -101,7 +100,6 @@ namespace Petopia.Controllers
             }
 
             Models.PetOwner petOwner = db.PetOwners.Find(id);
-
             if (petOwner == null)
             {
                 return HttpNotFound();

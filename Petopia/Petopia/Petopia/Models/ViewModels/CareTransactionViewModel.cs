@@ -152,12 +152,18 @@ namespace Petopia.Models.ViewModels
 
         //-------------------------------------------------------------------------------
         [DataType(DataType.Time)]
+        //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
         [DisplayName("Start Time:")]
-        public DateTime StartTime { get; set; }
+        public TimeSpan StartTime { get; set; }
+
+        //SERIOUSLY! DISPLAYING TIME IN 12-HOUR FORMAT SHOULsDN'T BE THIS F'ING DIFFICULT!
+        // YES I TRIED CHANGING FROM 'TimeSpan' to 'DateTime'
+        // I remember this shit being unconscionably difficult in 460 as well.
 
         [DataType(DataType.Time)]
+        //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
         [DisplayName("End Time:")]
-        public DateTime EndTime { get; set; }
+        public TimeSpan EndTime { get; set; }
 
         //-------------------------------------------------------------------------------
         [DisplayName("What my Pet needs for this appointment:")]
@@ -166,28 +172,28 @@ namespace Petopia.Models.ViewModels
         [DisplayName("What I did for your Pet this appointment:")]
         public string CareProvided { get; set; }
 
-        [DisplayName("Care Report -- Details:")]
+        [DisplayName("Full Pet Care Report -- Details:")]
         public string CareReport { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Pet Carer's Fee:")]
+        [DisplayName("Pet Carer's fee for this visit:")]
         public float? Charge { get; set; }
 
-        [DisplayName("Tip?")]
+        [DisplayName("Tip? (optional)")]
         public float? Tip { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Range(1,5)]
+        //[Range(0,5)] <= handle in .cshtml or else it can't be nullable!
         [DisplayName("Pet Carer Rating:")]
-        public int PC_Rating { get; set; }
+        public int? PC_Rating { get; set; }
 
         [DisplayName("Pet Carer Comments:  (from Pet Owner!)")]
         public string PC_Comments { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Range(1, 5)]
+        //[Range(0,5)] <= handle in .cshtml or else it can't be nullable!
         [DisplayName("Pet Owner Rating:")]
-        public int PO_Rating { get; set; }
+        public int? PO_Rating { get; set; }
 
         [DisplayName("Pet Owner Comments:  (from Pet Carer!)")]
         public string PO_Comments { get; set; }
@@ -195,6 +201,7 @@ namespace Petopia.Models.ViewModels
         //===============================================================================
         // FOREIGN KEYS FROM CareTransactions TABLE
         
+        [DisplayName("Pet's Owner:")]
         public int PetOwnerID { get; set; }
 
         [DisplayName("Which Pet Carer?")]

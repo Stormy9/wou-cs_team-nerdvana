@@ -520,6 +520,7 @@
     <Content Include="Views\PetopiaUsers\MyAccountDetails.cshtml" />
     <Content Include="Views\Pets\MyPetDetails.cshtml" />
     <Content Include="Views\CareTransactions\CompleteAppointment.cshtml" />
+    <Content Include="Views\CareTransactions\MyAppointments.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>

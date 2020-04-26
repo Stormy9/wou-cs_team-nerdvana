@@ -50,7 +50,6 @@ namespace Petopia.Controllers
             //
             //ViewBag.PetOwnerID = new SelectList(db.PetOwner.OrderBy(a => a.AthleteName), "AthleteID", "AthleteName");
 
-            ViewBag.RatingList = ratingSelectList;
             return View();
         }
         //-------------------------------------------------------------------------------
@@ -147,23 +146,7 @@ namespace Petopia.Controllers
             base.Dispose(disposing);
         }
         //===============================================================================
-        //===============================================================================
-        //---------- RATING DROP-DOWN LIST IN 'CREATE (and edit) APPOINTMENT' -----------
-        //
-        private IList<SelectListItem> ratingSelectList = new List<SelectListItem>
-        {
-            new SelectListItem
-                { Value = "1", Text = "1" },
-            new SelectListItem
-                { Value = "2", Text = "2" },
-            new SelectListItem
-                { Value = "3", Text = "3" },
-            new SelectListItem
-                { Value = "4", Text = "4" },
-            new SelectListItem
-                { Value = "5", Text = "5" }
-        };
-        //===============================================================================
+        // our added 'ActionResult' methods.....
         //===============================================================================
         // GET: CareTransactions/Edit/5
         public ActionResult CompleteAppointment(int? id)
@@ -182,7 +165,7 @@ namespace Petopia.Controllers
             return View(careTransaction);
         }
         //-------------------------------------------------------------------------------
-        // POST: CareTransactions/Edit/5
+        // POST: CareTransactions/CompleteAppointment/5
         // To protect from overposting attacks, please enable the specific properties you
         // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
@@ -200,6 +183,16 @@ namespace Petopia.Controllers
             return View(careTransaction);
         }
 
+        //===============================================================================
+        // GET: CareTransactions
+        public ActionResult MyAppointments()
+        {
+            // original!
+            return View(db.CareTransactions.ToList());
+
+            // OBVIOUSLY.....
+            // make this so that it only returns the logged-in user's stuff!!!
+        }
         //===============================================================================
     }
 }

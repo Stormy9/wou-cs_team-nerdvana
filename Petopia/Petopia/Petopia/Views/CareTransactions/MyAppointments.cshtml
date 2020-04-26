@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<Petopia.Models.CareTransaction>
 
 @{
-    ViewBag.Title = "Index -- All Pet Care Appointments (Transactions)";
-    ViewBag.Title02 = "View for Admin + Petopia Staff";
+    ViewBag.Title = "My Pet Care Appointments";
 }
 
 <div class="container-fluid">
@@ -11,7 +10,6 @@
         @Html.ActionLink("Book a new Pet Care Appointment!", "BookAppointment")
     </span>
     <h2>@ViewBag.Title:</h2>
-    <h4><i>@ViewBag.Title02</i></h4>
 
     <table class="table">
         <tr>
@@ -138,11 +136,11 @@
                 <td>
                     @Html.ActionLink("Edit Appt", "EditAppointment",
                                                 new { id = item.TransactionID }) <hr />
-                    @Html.ActionLink("Appt Details", "AppointmentDetails", 
+                    @Html.ActionLink("Appt Details", "AppointmentDetails",
                                                 new { id = item.TransactionID }) <hr />
-                    @Html.ActionLink("Cancel Appt", "Delete", 
+                    @Html.ActionLink("Cancel Appt", "Delete",
                                                 new { id = item.TransactionID }) <hr />
-                    @Html.ActionLink("Complete Appt", "CompleteAppointment", 
+                    @Html.ActionLink("Complete Appt", "CompleteAppointment",
                                                 new { id = item.TransactionID })
                 </td>
                 <!--==========================================================================-->

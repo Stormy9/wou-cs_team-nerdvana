@@ -16,7 +16,7 @@ namespace Petopia.Models
 
         //===============================================================================
         [Column(TypeName = "date")]     // gets rid of '12:00:00 AM' appendage
-        [DisplayName("Start Date")]
+        [DisplayName("Start Date:")]
         //
         // adding this to the data definition gives me a date-picker in the view
         [DataType(DataType.Date)]
@@ -27,7 +27,7 @@ namespace Petopia.Models
 
         //-------------------------------------------------------------------------------
         [Column(TypeName = "date")]
-        [DisplayName("End Date")]
+        [DisplayName("End Date:")]
         //
         // to get our date-picker:
         [DataType(DataType.Date)]
@@ -36,59 +36,70 @@ namespace Petopia.Models
         public DateTime EndDate { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Start Time")]
+        [DisplayName("Start Time:")]
         [DataType(DataType.Time)]
+        //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
         public TimeSpan StartTime { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("End Time")]
+        //SERIOUSLY! DISPLAYING TIME IN 12-HOUR FORMAT SHOULsDN'T BE THIS F'ING DIFFICULT!
+        // YES I TRIED CHANGING FROM 'TimeSpan' to 'DateTime'
+        // I remember this shit being unconscionably difficult in 460 as well.
+        //-------------------------------------------------------------------------------
+        [DisplayName("End Time:")]
         [DataType(DataType.Time)]
+        //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
         public TimeSpan EndTime { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Care needed this visit")]
+        [DisplayName("Care needed this visit:")]
         public string NeededThisVisit { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Care provided this visit")]
+        [DisplayName("What I did for your Pet this appointment:")]
         public string CareProvided { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Care Report")]
+        [DisplayName("Full Pet Care Report -- Details:")]
         public string CareReport { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Fees for this visit")]
+        [DisplayName("Pet Carer's fee for this visit:")]
         public float? Charge { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Tip (optional)")]
+        [DisplayName("Tip? (optional)")]
         public float? Tip { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Pet Carer Rating")]
+        //[Range(0,5)] <= handle in .cshtml or else it can't be nullable!
+        [DisplayName("Pet Carer Rating:")]
         public int? PC_Rating { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Comments on Pet Carer (from Pet Owner)")]
+        [DisplayName("Comments on Pet Carer:  (from Pet Owner!)")]
         public string PC_Comments { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Pet Owner Rating")]
+        //[Range(0,5)] <= handle in .cshtml or else it can't be nullable!
+        [DisplayName("Pet Owner Rating:")]
         public int? PO_Rating { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Comments on Pet Owner (from Pet Carer)")]
+        [DisplayName("Comments on Pet Owner:  (from Pet Carer!)")]
         public string PO_Comments { get; set; }
 
         //===============================================================================
         // FOREIGN KEYS
+        [DisplayName("Pet's Owner:")]
         public int PetOwnerID { get; set; }
 
         //-------------------------------------------------------------------------------
+        [DisplayName("Which Pet Carer?")]
         public int CareProviderID { get; set; }
 
         //-------------------------------------------------------------------------------
+        [DisplayName("Which Pet?")]
         public int PetID { get; set; }
 
         //===============================================================================
