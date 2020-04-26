@@ -361,6 +361,17 @@ tr:hover {
     .make_appt_box:hover {
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
     }
+.my_appt_box {
+    padding: 9px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    margin: 9px;
+}
+    .make_appt_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
 .carer_fee_box {
     padding: 9px;
     border: 1px solid #4d3319;
