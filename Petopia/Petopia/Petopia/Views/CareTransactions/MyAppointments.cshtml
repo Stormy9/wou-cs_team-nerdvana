@@ -13,7 +13,8 @@
         
         <span style="float:right; margin-right:5px; margin-top:15px;" 
               class="btn our_buttons">
-            @Html.ActionLink("Back to my Profile", "Index" )
+            @Html.ActionLink("Back to my Profile", "Index", 
+                                    new { Controller = "ProfilePage" } )
         </span>
 
         <h2>@ViewBag.Title:</h2>
@@ -33,14 +34,21 @@
                             @Html.DisplayFor(modelItem => item.PetID)
                     </span>
 
-                        <span style="float: left; margin-right: 25px;">
-                            @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
-                            @Html.DisplayFor(modelItem => item.PetOwnerID)
+                    <span style="float:left; margin-right: 25px;">
+                        <span class="our_appt_label">
+                            @Html.DisplayNameFor(model => model.CareProviderID) &nbsp;
                         </span>
-                        <span style="float:left; margin-right: 25px;">
-                            @Html.DisplayNameFor(model => model.CareProviderID): &nbsp;
                             @Html.DisplayFor(modelItem => item.CareProviderID)
-                        </span>
+                    </span>
+
+                    <span style="float: left; margin-right: 25px;">
+                        @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
+                        @Html.DisplayFor(modelItem => item.PetOwnerID)
+                    </span>
+
+                    <span style="margin-left: 45px; font-weight: bold;">
+                        here until i get id's hooked up right!   [=]
+                    </span>
 
                 </div><!-- END ROW ZERO -->
                 <!---->
@@ -151,7 +159,7 @@
                 <!---------------------------------------------------------------------->
                 <!---->
                 <!----------------------------------- ROW 2 \ COL 2 -------------------->
-                <div class="col-sm-3 col-md-3" style="margin-left: 45px;">
+                <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
 
                     <div>
                         <span class="our_appt_label">
@@ -171,7 +179,7 @@
                 <!---------------------------------------------------------------------->
                 <!---->
                 <!----------------------------------- ROW 2 \ COL 3 -------------------->
-                <div class="col-sm-3 col-md-3" style="margin-left: 45px;">
+                <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
 
                     <div>
                         <span class="our_appt_label">

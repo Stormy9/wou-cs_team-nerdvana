@@ -13,7 +13,8 @@
         
         <span style="float:right; margin-right:5px; margin-top:15px;" 
               class="btn our_buttons">
-            @Html.ActionLink("Back to my Profile", "Index" )
+            @Html.ActionLink("Back to my Profile", "Index", 
+                                        new { Controller = "ProfilePage" } )
         </span>
 
         <h2>@ViewBag.Title:</h2>
@@ -37,13 +38,16 @@
                         here until i get id's hooked up right!   [=]
                     </span>
 
+                    <span style="float:left; margin-right: 25px;">
+                        <span class="our_appt_label">
+                            @Html.DisplayNameFor(model => model.CareProviderID) &nbsp;
+                        </span>
+                        @Html.DisplayFor(modelItem => item.CareProviderID)
+                    </span>
+
                     <span style="float: left; margin-right: 25px;">
                         @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
                         @Html.DisplayFor(modelItem => item.PetOwnerID)
-                    </span>
-                    <span style="float:left; margin-right: 25px;">
-                        @Html.DisplayNameFor(model => model.CareProviderID): &nbsp;
-                        @Html.DisplayFor(modelItem => item.CareProviderID)
                     </span>
 
                 </div><!-- END ROW ZERO -->
