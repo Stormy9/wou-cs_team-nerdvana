@@ -8,7 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Petopia.DAL;
+using Petopia.Models;
 using Petopia.Models.ViewModels;
+using static Petopia.Models.ViewModels.PetGalleryViewModel;
 
 namespace Petopia.Controllers
 {
@@ -34,7 +36,7 @@ namespace Petopia.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Pet pet = db.Pets.Find(id);
+            DAL.Pet pet = db.Pets.Find(id);
             if (pet == null)
             {
                 return HttpNotFound();
@@ -66,11 +68,11 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreatePet(PetPicViewModel model)
         {
-            Pet pet = new Pet();
+            DAL.Pet pet = new DAL.Pet();
 
             if (ModelState.IsValid)
             {
-                
+
                 var identityID = User.Identity.GetUserId();
                 var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
                 int ownerID = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.PetOwnerID).First();
@@ -138,7 +140,7 @@ namespace Petopia.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Pet pet = db.Pets.Find(id);
+            DAL.Pet pet = db.Pets.Find(id);
             if (pet == null)
             {
                 return HttpNotFound();
@@ -180,7 +182,7 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditPet(PetPicViewModel model)
         {
-            Pet pet = new Pet();
+            DAL.Pet pet = new DAL.Pet();
 
             if (ModelState.IsValid)
             {
@@ -188,7 +190,7 @@ namespace Petopia.Controllers
                 var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
                 int ownerID = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.PetOwnerID).First();
 
-                
+
                 pet.PetOwnerID = ownerID;
 
                 pet.PetName = model.PetName;
@@ -206,7 +208,7 @@ namespace Petopia.Controllers
                 pet.EmergencyContactName = model.EmergencyContactName;
                 pet.EmergencyContactPhone = model.EmergencyContactPhone;
                 pet.NeedsDetails = model.NeedsDetails;
-                
+
                 pet.PetID = model.PetID;
 
                 // pet profile picture 
@@ -239,7 +241,7 @@ namespace Petopia.Controllers
                 db.Entry(pet).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Details", new { id = pet.PetID } );
+                return RedirectToAction("Details", new { id = pet.PetID });
             }
 
             // pick list for rating -- like 1 thru 5
@@ -260,7 +262,7 @@ namespace Petopia.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Pet pet = db.Pets.Find(id);
+            DAL.Pet pet = db.Pets.Find(id);
             if (pet == null)
             {
                 return HttpNotFound();
@@ -274,7 +276,7 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Pet pet = db.Pets.Find(id);
+            DAL.Pet pet = db.Pets.Find(id);
             db.Pets.Remove(pet);
             db.SaveChanges();
 
@@ -313,7 +315,7 @@ namespace Petopia.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Pet pet = db.Pets.Find(id);
+            DAL.Pet pet = db.Pets.Find(id);
             if (pet == null)
             {
                 return HttpNotFound();
@@ -322,5 +324,72 @@ namespace Petopia.Controllers
             return View(pet);
         }
         //===============================================================================
+        public ActionResult PetGallery(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            PetGalleryViewModel petGal = new PetGalleryViewModel();
+
+            petGal.CurrentPetID = id;
+
+            petGal.PetGalleryList = db.PetGallery.Where(x => x.PetID == id).Select(n => new PetGalleryInfo
+            {
+                PetPicID = n.PetPicID,
+                PetID = n.PetID,
+                Comment = n.Comment
+            }).ToList();
+            ViewBag.ImageCount = db.PetGallery.Where(x => x.PetID == id).Count();
+
+            return View(petGal);
+        }
+        //GET: Pet/PetGallerCreate
+        public ActionResult PetGalleryCreate(int? id)
+        {
+            PetGalleryViewModel PetG = new PetGalleryViewModel();
+            PetG.CurrentPetID = db.Pets.Where(x => x.PetID == id).Select(x => x.PetID).First();
+
+
+            return View(PetG);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult PetGalleryCreate(PetGalleryViewModel model)
+        {
+            PetGallery newPhoto = new PetGallery();
+
+            if (model.GalleryPhoto != null)
+            {
+                if (model.GalleryPhoto.ContentLength > (4 * 1024 * 1024))
+                {
+                    ModelState.AddModelError("CustomError", "Image can not be lager than 4MB.");
+                    return View(model);
+                }
+
+                if (!(model.GalleryPhoto.ContentType == "image/jpeg"))
+                {
+                    ModelState.AddModelError("CustomError", "Image must be in jpeg format.");
+                    return View(model);
+                }
+
+                byte[] data = new byte[model.GalleryPhoto.ContentLength];
+
+                model.GalleryPhoto.InputStream.Read(data, 0, model.GalleryPhoto.ContentLength);
+
+                newPhoto.GalleryPhoto = data;
+            }
+
+            newPhoto.Comment = model.PhotoComment;
+            newPhoto.PetID = model.CurrentPetID;
+
+            db.PetGallery.Add(newPhoto);
+            db.SaveChanges();
+
+            return RedirectToAction("PetGallery", new { id = model.CurrentPetID });
+        }
     }
 }

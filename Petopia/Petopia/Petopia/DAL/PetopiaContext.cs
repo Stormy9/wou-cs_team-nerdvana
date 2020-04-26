@@ -34,6 +34,7 @@ namespace Petopia.DAL
         public virtual DbSet<CareTransaction> CareTransactions { get; set; }
 
         //===============================================================================
+        public virtual DbSet<PetGallery> PetGallery { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // CareProviderContext -- nothing in here in it's context

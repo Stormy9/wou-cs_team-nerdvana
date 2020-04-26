@@ -1,0 +1,72 @@
+﻿@model Petopia.Models.ViewModels.PetGalleryViewModel
+
+@{
+    ViewBag.Title = "Add a picture!";
+}
+<!--============================= WHOLE DAMNED FORM HERE =============================-->
+<div class="container-fluid">
+
+    @using (Html.BeginForm("PetGalleryCreate", "Pets", FormMethod.Post,
+    new { @class = "form", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <h2>@ViewBag.Title</h2>
+            <hr />
+
+            <div class="row">
+                <div class="col-sm-4 col-md-4">
+
+                    <h4 style="color: #261a0d">Upload a new picture of your pet!:</h4>
+
+                    <div class="form-group" style="padding-top: 5px;">
+                        @Html.LabelFor(model => model.PhotoComment, htmlAttributes:
+                                             new { @class = "control-label" })
+
+                        @Html.EditorFor(model => model.PhotoComment,
+                     new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.PhotoComment, "",
+                                             new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group" style="padding-top: 5px;">
+                        @Html.HiddenFor(model => model.CurrentPetID)
+                    </div>
+                    <div class="form-group" style="padding-top:13px;">
+                        @Html.LabelFor(m => m.GalleryPhoto, new { @class = "control-label" })
+
+                        @Html.TextBoxFor(m => m.GalleryPhoto, new { type = "file" })
+
+                        @Html.ValidationSummary(true,
+                             "Picture MUST be in JPG format and under 4 MB.",
+                             new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-2 col-md-2">
+                        <div class="col-sm-offset-8 col-sm-2 col-md-2">
+                            <div class="form-group">
+                                <div>
+                                    <input type="submit" value="Add My Pet!"
+                                           class="btn our_buttons" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="our_create-edit_buttons">
+                            @Html.ActionLink("Cancel!", "PetGallery",
+                                         new { controller = "Pets" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/_our_main.js")
+}
+
