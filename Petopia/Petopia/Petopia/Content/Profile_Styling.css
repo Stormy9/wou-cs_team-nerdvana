@@ -115,6 +115,7 @@
     }
 /*----------------------------------------*/
 .button_box_pet_card {
+    margin-top: 23px;
     margin-bottom: 9px;
     margin-right: 9px;
     padding: 3px;
@@ -204,6 +205,12 @@
 }
 
 .carer_exp_box {
+    width: 99%;
+    margin-top: 5px;
+    padding: 15px;
+}
+
+.general_pet_care_needs_box {
     width: 99%;
     margin-top: 5px;
     padding: 15px;

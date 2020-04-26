@@ -137,7 +137,7 @@ namespace Petopia.Models.ViewModels
         //
         // adding this to the data definition gives us a date-picker in the view
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
         // it also formats things correctly for going into our db..... yay!
         //
         [DisplayName("Start Date:")]
@@ -146,7 +146,7 @@ namespace Petopia.Models.ViewModels
 
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
         [DisplayName("End Date:")]
         public DateTime EndDate { get; set; }
 

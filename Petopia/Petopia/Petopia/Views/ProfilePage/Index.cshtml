@@ -78,16 +78,18 @@
                     @if (ViewBag.Badges == true)
                     {
                         @Html.ActionLink("Edit Badges", "Edit",
-                                new { controller = "Badges" })
+                                new { controller = "Badges" },
+                                new { @class = "btn our_buttons", 
+                                        style="margin-left: 9px;" } )
                     }
                     else
                     {
-
                         <p>
-                            You have not set up badges yet.
+                            You have not set up badges yet.<br />
                             Press
                             @Html.ActionLink("Here", "Create",
-                                    new { controller = "Badges" })
+                                    new { controller = "Badges" },
+                                    new { @class = "btn our_buttons" } )
                             to set them up.
                         </p>
                     }
@@ -123,6 +125,8 @@
                              class="pet_badge">
                     }
                 </div><!-- end pet badge box div -->
+                <!---->
+                <!---->
                 <!-- private msg + friend buttons -->
                 <!-- *****STILL PLACEHOLDER***** -->
                 <div class="button_box">
@@ -142,6 +146,20 @@
                         </div>
                     </a>
                 </div>
+                <!---->
+                <!---->
+                <!-- Book & View Pet Care Appointment Buttons -->
+                @Html.ActionLink("Book a Pet Care appointment!", "BookAppointment",
+                                new { controller = "CareTransactions" },
+                                new { id = Model.UserID, @class = "btn our_buttons", 
+                                        style="margin-bottom:5px;" })
+                <br />
+                @Html.ActionLink("See all my Pet Care appointments", "MyAppointments",
+                                new { controller = "CareTransactions" },
+                                new { id = Model.UserID, @class = "btn our_buttons", 
+                                        style="margin-bottom:5px;" })
+
+                <!---------------------------------------------->
 
             </div><!-- END 1st/LEFT COLUMN **OF** 2nd/MIDDLE ROW -->
             <!-------------------------------------------------------------------------->
@@ -185,7 +203,7 @@
                         @Html.DisplayFor(model => model.ProviderAverageRating)
                     }
                     <!------------------------------------------------------------------>
-                    @if (Model.IsProvider == true)
+                    @if (Model.IsOwner == true)
                     {
                         @Html.DisplayNameFor(model => model.OwnerAverageRating)
 
@@ -203,16 +221,16 @@
                     @if (Model.IsProvider == true)
                     {
                         <div class="carer_exp_box">
-                            <h4>My Pet Care Experience:</h4>
+                            <h4> My Pet Care Experience: </h4>
                             @Html.DisplayFor(model => model.ExperienceDetails)
                         </div>
                     }
 
                     @if (Model.IsOwner == true)
                     {
-                        //remember the needs/access details are private aka
-                        //    non-profile-displaying info!   [=
-                        // but just in case we come up w/something, here this is.....
+                        <div class="general_pet_care_needs_box">
+                            <h4> My General Pet Care Needs: </h4>
+                        </div>
                     }
 
                 </div><!-- end user bio (etc.) box -->
@@ -425,18 +443,15 @@
                                     @Html.DisplayFor(model => item.Birthdate)
                                 </div>
 
-                                <a href="#">
-                                    <!-- link to care record(s) -->
-                                    <div class="pet_preview_care_record"
-                                         style="padding-top: 5px;">
-                                        link to this pet's care record
-                                    </div>
-                                </a>
-
+                                
                                 <div class="button_box_pet_card">
+                                    @Html.ActionLink("This Pet's Care Appts", "MyPetsAppointments",
+                                            new { controller = "CareTransactions", id = item.PetID },
+                                            new { @class = "our_pet_card_buttons " })
+
                                     @Html.ActionLink("My Pet Details", "MyPetDetails",
                                             new { controller = "Pets", id = item.PetID },
-                                            new { @class= "our_pet_card_buttons" } )
+                                            new { @class = "our_pet_card_buttons" })
 
                                     @Html.ActionLink("Edit This Pet", "EditPet",
                                             new { controller = "Pets", id = item.PetID },
@@ -445,6 +460,7 @@
                                     @Html.ActionLink("This Pet's Profile", "PetProfile",
                                             new { controller = "Pets", id = item.PetID },
                                             new { @class = "our_pet_card_buttons " })
+
                                 </div>
 
                             </div><!-- END pet_profile_preview -->

@@ -20,7 +20,7 @@ namespace Petopia.Models
         //
         // adding this to the data definition gives me a date-picker in the view
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
         // it also formats things correctly for going into our db..... yay!
         //
         public DateTime StartDate { get; set; }
@@ -31,11 +31,12 @@ namespace Petopia.Models
         //
         // to get our date-picker:
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
         //
         public DateTime EndDate { get; set; }
 
         //-------------------------------------------------------------------------------
+        [Column(TypeName = "time")]
         [DisplayName("Start Time:")]
         [DataType(DataType.Time)]
         //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
@@ -46,6 +47,7 @@ namespace Petopia.Models
         // YES I TRIED CHANGING FROM 'TimeSpan' to 'DateTime'
         // I remember this shit being unconscionably difficult in 460 as well.
         //-------------------------------------------------------------------------------
+        [Column(TypeName = "time")]
         [DisplayName("End Time:")]
         [DataType(DataType.Time)]
         //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
