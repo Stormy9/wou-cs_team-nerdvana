@@ -64,19 +64,25 @@
 
                     <div>
                         @Html.ActionLink("My Owner's Profile", "Index",
-                                                        new { controller = "ProfilePage" },
-                                                        new { @class = "our_other_buttons" })
-                    </div>
-                    <br />
-                    <div>
-                        @Html.ActionLink("My Pet Details", "MyPetDetails",
-                                            new { controller = "Pets", id = Model.PetID },
+                                            new { controller = "ProfilePage" },
                                             new { @class = "our_other_buttons" })
                     </div>
                     <br />
                     <div>
-                        @Html.ActionLink("Edit this Pet", "EditPet", new { id = Model.PetID },
-                                                    new { @class = "our_other_buttons" })
+                        @Html.ActionLink("This Pet's Details", "MyPetDetails",
+                                        new { controller = "Pets", id = Model.PetID },
+                                        new { @class = "our_other_buttons" })
+                    </div>
+                    <br />
+                    <div>
+                        @Html.ActionLink("Edit this Pet", "EditPet", 
+                                        new { controller = "Pets", id = Model.PetID },
+                                        new { @class = "our_other_buttons" })
+                    </div>
+                    <div>
+                        @Html.ActionLink("My Care Appointments", "MyPetsAppointments",
+                             new { controller = "CareTransactions", id = Model.PetID },
+                                new { @class = "our_other_buttons" })
                     </div>
                     
                 </div><!-- END BUTTON BOX -->

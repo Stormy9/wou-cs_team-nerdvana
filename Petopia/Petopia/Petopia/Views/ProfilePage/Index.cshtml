@@ -234,18 +234,22 @@
                     }
 
                 </div><!-- end user bio (etc.) box -->
-
-
+                <!---->
+                <!---->
                 <!-- calendar to show up for Pet Carers to post availability -->
-                <div class="calendar_box" style="width:100%;">
+                @if (Model.IsProvider == true)
+                { 
+                    <div class="calendar_box" style="width:100%;">
                     
                     <div id="calendar" style="width:100%;">
 
                     </div>
 
                 </div><!-- end calendar_box div -->
-
-
+                }
+                <!----------------------------------------------------------->
+                <!---->
+                <!---->
             </div><!-- END 2nd\MIDDLE COLUMN  **OF** 2nd/MIDDLE ROW -->
             <!-------------------------------------------------------------------------->
             <!---->
