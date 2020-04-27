@@ -1071,7 +1071,6 @@
     <Content Include="Views\CareTransactions\AppointmentConfirmation.cshtml" />
     <Content Include="Views\CareTransactions\EditAppointment.cshtml" />
     <Content Include="Views\CareTransactions\Index.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\CareTransactions\Create.cshtml" />
     <Content Include="Views\Shared\_AdminLteTopMenu.cshtml" />
     <Content Include="Views\Shared\_AdminLteLeftMenu.cshtml" />
@@ -1079,7 +1078,6 @@
     <Content Include="Views\Shared\_AdminLteBreadcrumb.cshtml" />
     <Content Include="Views\AdminLte\Index.cshtml" />
     <Content Include="Views\AdminLte\Colors.cshtml" />
-=======
     <Content Include="Views\CareTransactions\BookAppointment.cshtml" />
     <Content Include="Views\PetopiaUsers\MyAccountDetails.cshtml" />
     <Content Include="Views\Pets\MyPetDetails.cshtml" />
@@ -1091,7 +1089,6 @@
     <Content Include="Views\Pets\PetGallery.cshtml" />
     <Content Include="Views\Pets\PetGalleryCreate.cshtml" />
     <Content Include="Views\CareTransactions\EditConfirmation.cshtml" />
->>>>>>> 4d91cf3b462fa8e21e765efb770ff92b14a91df7
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>
