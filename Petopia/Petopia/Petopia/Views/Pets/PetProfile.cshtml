@@ -84,7 +84,12 @@
                            new { controller = "CareTransactions", id = Model.PetID },
                            new { @class = "our_other_buttons", style="color: #f2e6d9;" })
                     </div>
-                    
+                    <br />
+                    <div>
+                        @Html.ActionLink("Edit Gallery", "PetGallery", new { id = Model.PetID },
+                                                    new { @class = "our_other_buttons" })
+                    </div>
+
                 </div><!-- END BUTTON BOX -->
 
 

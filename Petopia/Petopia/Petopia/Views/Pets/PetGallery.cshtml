@@ -1,0 +1,47 @@
+﻿@model Petopia.Models.ViewModels.PetGalleryViewModel
+@{
+    ViewBag.Title = "PetGallery";
+}
+
+@if (ViewBag.ImageCount >= 5)
+{
+    <p>You can only have a max of 5 pictures in your gallery, please delete one to add another</p>
+}
+else
+{
+    @Html.ActionLink("Add a new picture!", "PetGalleryCreate",
+                                            new { id = Model.CurrentPetID },
+                                            new { @class = "our_other_buttons" })
+}
+
+<div>
+    <table>
+        @foreach (var item in Model.PetGalleryList)
+        {
+            <tr>
+                <td>
+                    <div class="profile_pic_box_box">
+                        <div class="profile_pic_box">
+                            <img src=@Url.Action("ShowPetGallery", "Image",
+                                new { id = item.PetPicID, @class = "profile_img" }) />
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.Comment)
+                </td>
+
+                <td>
+                    <a onclick="location.href='@Url.Action("PetGalleryDelete","Pets", new { id = item.PetPicID })'" href="#">Delete Picture</a>
+                    @*Html.ActionLink("Delete", "Delete", new { id = item.PetPicID })*@
+                </td>
+
+            </tr>
+        }
+    </table>
+</div>
+
+
+
+
