@@ -1,12 +1,12 @@
 ﻿@model Petopia.Models.ViewModels.ProfileViewModel
 
 @{
-    ViewBag.Title = "Edit My User Profile";
+    ViewBag.Title = "Edit my Petopia Profile + Account";
 }
 
 <div class="container-fluid">
-    <!--========================== WHOLE DAMNED FORM IN HERE =============================-->
-    @using (Html.BeginForm("Edit", "ProfilePage", FormMethod.Post,
+    <!--========================== WHOLE DAMNED FORM IN HERE =========================-->
+    @using (Html.BeginForm("EditMyStuff", "ProfilePage", FormMethod.Post,
         new { @class = "form", role = "form", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-sm-4 col-md-4">
                 <!------------------------------ FIRST NAME ---------------------------->
-                <div class="form-group">
+                <div class="form-group" style="padding-top: 5px;">
 
                     @Html.LabelFor(model => model.FirstName, htmlAttributes:
                                                        new { @class = "control-label" })
@@ -92,7 +92,7 @@
             <div class="col-sm-4 col-md-4">
 
                 <!---------------------------- MAIN PHONE ------------------------------>
-                <div class="form-group">
+                <div class="form-group" style="padding-top: 5px;">
                     @Html.LabelFor(model => model.MainPhone, htmlAttributes:
                                                         new { @class = "control-label" })
 
@@ -176,7 +176,7 @@
             <div class="col-sm-4 col-md-4">
                 @if (Model.IsProvider == true)
                 {
-                    <div class="form-group">
+                    <div class="form-group" style="padding-top: 5px;">
                         @Html.LabelFor(model => model.ExperienceDetails, htmlAttributes:
                                                 new { @class = "control-label" })
                         <br />
@@ -199,7 +199,7 @@
                 <!---------------------------------------------------------------------->
                 @if (Model.IsOwner == true)
                 {
-                    <div class="form-group">
+                    <div class="form-group" style="padding-top: 5px;">
                         @Html.LabelFor(model => model.GeneralNeeds, htmlAttributes:
                                                         new { @class = "control-label" })
                         <br />
@@ -220,7 +220,7 @@
                     </div>
                     <!------------------------------------------------------------------>
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
-                    <div class="form-group">
+                    <div class="form-group" style="padding-top:13px;">
                         @Html.LabelFor(model => model.HomeAccess,
                                     htmlAttributes: new { @class = "control-label" })
                         <br />
@@ -241,7 +241,7 @@
                     </div>
                 }<!-- END IF-STATEMENT(s) -->
                 <!--============================ PROFILE PIC =========================-->
-                <div class="form-group">
+                <div class="form-group" style="padding-top:21px;">
                     <p>
                         Pictures need to be in JPG format and under 4 MB.
                     </p>
@@ -254,7 +254,7 @@
                                     new { @class = "text-danger" })
                 </div>
                 <!-------------------------- PROFILE PIC CAPTION ----------------------->
-                <div class="form-group">
+                <div class="form-group" style="padding-top:13px;">
                     @Html.LabelFor(model => model.UserCaption, htmlAttributes:
                                                     new { @class = "control-label" })
 
@@ -271,44 +271,29 @@
         <!---->
         <!--============================== BUTTONS ===================================-->
         <div class="row" style="padding-bottom: 18px;">
-            <div class="col-sm-offset-10 col-sm-2">
+            <hr /><br />
+
+            <div class="col-sm-offset-8 col-md-offset-8 col-sm-2 col-md-2">
                 <div class="button_box">
                     <div class="form-group">
                         <div>
-                            <input type="submit" value="Update!" class="btn our_buttons" />
+                            <input type="submit" value="Update my Stuff!" 
+                                   class="btn our_buttons" />
                         </div>
                     </div>
+                </div><!-- end button_box div -->
+            </div><!-- END FIRST COLUM -->
 
-                    <div class="our_create-edit_buttons">
+            <div class=" col-sm-2 col-md-2">
+                <div class="button_box" >
+                    <div class="our_create-edit_buttons" >
                         @Html.ActionLink("Cancel!", "Index",
-                                                new { @class = "our_buttons" })
+                                new { @class = "our_buttons", 
+                                      style = "color: #f2e6d9; font-weight: normal;" })
                     </div>
                 </div><!-- end button_box div -->
-            </div>
-        </div>
-        <!--==========================================================================-->
-
-        @*
-            <div class="form-group">
-                @Html.LabelFor(model => model.IsOwner, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.IsOwner)
-                        @Html.ValidationMessageFor(model => model.IsOwner, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.IsProvider, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.IsProvider)
-                        @Html.ValidationMessageFor(model => model.IsProvider, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-        *@
+            </div><!-- END FIRST COLUMN -->
+        </div><!-- END BOTTOM ROW (for buttons only!) -->
         <!--==========================================================================-->
     }
     <!--==============================================================================-->

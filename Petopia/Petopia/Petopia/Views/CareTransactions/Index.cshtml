@@ -1,116 +1,152 @@
-﻿@model IEnumerable<Petopia.Models.ViewModels.CareTransactionViewModel>
+﻿@model IEnumerable<Petopia.Models.CareTransaction>
 
 @{
-    ViewBag.Title = "Index -- All Care Appointment (Transactions)";
+    ViewBag.Title = "Index -- All Pet Care Appointments (Transactions)";
+    ViewBag.Title02 = "View for Admin + Petopia Staff";
 }
 
-<h2>@ViewBag.Title:</h2>
-<hr />
+<div class="container-fluid">
 
+    <span style="float:right; padding-right:5px; padding-top:15px;">
+        @Html.ActionLink("Book a new Pet Care Appointment!", "BookAppointment")
+    </span>
+    <h2>@ViewBag.Title:</h2>
+    <h4><i>@ViewBag.Title02</i></h4>
 
-<p>
-    @Html.ActionLink("Create New Care Appointment", "Create")
-</p>
+    <table class="table">
+        <tr>
+            <!--==========================================================================-->
+            <th>
+                @Html.DisplayNameFor(model => model.PetOwnerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CareProviderID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PetID)
+            </th>
+            <!--==========================================================================-->
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <!--==========================================================================-->
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </th>
+            <!--==========================================================================-->
+            <th>
+                @Html.DisplayNameFor(model => model.NeededThisVisit)
+            </th>
+            <!--==========================================================================-->
+            <th>
+                @Html.DisplayNameFor(model => model.CareProvided)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CareReport)
+            </th>
+            <!--==========================================================================-->
+            <th>
+                @Html.DisplayNameFor(model => model.Charge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tip)
+            </th>
+            <!--==========================================================================-->
+            <th>
+                @Html.DisplayNameFor(model => model.PC_Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PC_Comments)
+            </th>
+            <!--==========================================================================-->
+            <th>
+                @Html.DisplayNameFor(model => model.PO_Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PO_Comments)
+            </th>
+            <!--==========================================================================-->
+            <th></th>
+        </tr>
 
-<table class="table">
-    <tr>
-        <!--==========================================================================-->
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <!--==========================================================================-->
-        <th>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </th>
-        <!--==========================================================================-->
-        <th>
-            @Html.DisplayNameFor(model => model.CareProvided)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CareReport)
-        </th>
-        <!--==========================================================================-->
-        <th>
-            @Html.DisplayNameFor(model => model.Charge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tip)
-        </th>
-        <!--==========================================================================-->
-        <th>
-            @Html.DisplayNameFor(model => model.PC_Rating)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PC_Comments)
-        </th>
-        <!--==========================================================================-->
-        <th>
-            @Html.DisplayNameFor(model => model.PO_Rating)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PO_Comments)
-        </th>
-        <!--==========================================================================-->
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <!--==========================================================================-->
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <!--==========================================================================-->
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <!--==========================================================================-->
-        <td>
-            @Html.DisplayFor(modelItem => item.CareProvided)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CareReport)
-        </td>
-        <!--==========================================================================-->
-        <td>
-            @Html.DisplayFor(modelItem => item.Charge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tip)
-        </td>
-        <!--==========================================================================-->
-        <td>
-            @Html.DisplayFor(modelItem => item.PC_Rating)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PC_Comments)
-        </td>
-        <!--==========================================================================-->
-        <td>
-            @Html.DisplayFor(modelItem => item.PO_Rating)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PO_Comments)
-        </td>
-        <!--==========================================================================-->
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TransactionID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TransactionID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TransactionID })
-        </td>
-        <!--==========================================================================-->
-    </tr>
-}
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <!--==========================================================================-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.PetOwnerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CareProviderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PetID)
+                </td>
+                <!--==========================================================================-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <!--==========================================================================-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <!--==========================================================================-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.NeededThisVisit)
+                </td>
+                <!--==========================================================================-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.CareProvided)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CareReport)
+                </td>
+                <!--==========================================================================-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.Charge)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tip)
+                </td>
+                <!--==========================================================================-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.PC_Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PC_Comments)
+                </td>
+                <!--==========================================================================-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.PO_Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PO_Comments)
+                </td>
+                <!--==========================================================================-->
+                <td>
+                    @Html.ActionLink("Edit Appt", "EditAppointment",
+                                                new { id = item.TransactionID }) <hr />
+                    @Html.ActionLink("Appt Details", "AppointmentDetails", 
+                                                new { id = item.TransactionID }) <hr />
+                    @Html.ActionLink("Cancel Appt", "Delete", 
+                                                new { id = item.TransactionID }) <hr />
+                    @Html.ActionLink("Complete Appt", "CompleteAppointment", 
+                                                new { id = item.TransactionID })
+                </td>
+                <!--==========================================================================-->
+            </tr>
+        }
+    </table>
+</div><!-- END CONTAINER-FLUID -->

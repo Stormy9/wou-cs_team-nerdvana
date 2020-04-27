@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -65,6 +65,9 @@
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -171,9 +174,6 @@
     <Reference Include="Microsoft.Owin.Security.Cookies">
       <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -204,6 +204,7 @@
     </Compile>
     <Compile Include="Models\CareTransaction.cs" />
     <Compile Include="DAL\CareTransactionsContext.cs" />
+    <Compile Include="Models\PetGallery.cs" />
     <Compile Include="Models\UserBadges.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\CareProvider.cs" />
@@ -218,8 +219,10 @@
     <Compile Include="DAL\PetopiaUserContext.cs" />
     <Compile Include="Models\PetOwner.cs" />
     <Compile Include="DAL\PetOwnerContext.cs" />
+    <Compile Include="Models\ViewModels\PetGalleryViewModel.cs" />
     <Compile Include="Models\ViewModels\PetopiaUserLoginViewModel.cs" />
     <Compile Include="Models\ViewModels\PetPicViewModel.cs" />
+    <Compile Include="Models\ViewModels\MyAccountViewModel.cs" />
     <Compile Include="Models\ViewModels\ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -1056,18 +1059,19 @@
     <Content Include="Views\CareProviders\Edit.cshtml" />
     <Content Include="Views\CareProviders\Index.cshtml" />
     <Content Include="Views\ProfilePage\Index.cshtml" />
-    <Content Include="Views\ProfilePage\Edit.cshtml" />
-    <Content Include="Views\Pets\Create.cshtml" />
+    <Content Include="Views\ProfilePage\EditMyStuff.cshtml" />
+    <Content Include="Views\Pets\AddPet.cshtml" />
     <Content Include="Views\Pets\Delete.cshtml" />
-    <Content Include="Views\Pets\Details.cshtml" />
-    <Content Include="Views\Pets\Edit.cshtml" />
+    <Content Include="Views\Pets\PetProfile.cshtml" />
+    <Content Include="Views\Pets\EditPet.cshtml" />
     <Content Include="Views\Pets\Index.cshtml" />
     <Content Include="Views\Badges\Create.cshtml" />
     <Content Include="Views\Badges\Edit.cshtml" />
     <Content Include="Views\CareTransactions\Delete.cshtml" />
-    <Content Include="Views\CareTransactions\Details.cshtml" />
-    <Content Include="Views\CareTransactions\Edit.cshtml" />
+    <Content Include="Views\CareTransactions\AppointmentConfirmation.cshtml" />
+    <Content Include="Views\CareTransactions\EditAppointment.cshtml" />
     <Content Include="Views\CareTransactions\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\CareTransactions\Create.cshtml" />
     <Content Include="Views\Shared\_AdminLteTopMenu.cshtml" />
     <Content Include="Views\Shared\_AdminLteLeftMenu.cshtml" />
@@ -1075,6 +1079,19 @@
     <Content Include="Views\Shared\_AdminLteBreadcrumb.cshtml" />
     <Content Include="Views\AdminLte\Index.cshtml" />
     <Content Include="Views\AdminLte\Colors.cshtml" />
+=======
+    <Content Include="Views\CareTransactions\BookAppointment.cshtml" />
+    <Content Include="Views\PetopiaUsers\MyAccountDetails.cshtml" />
+    <Content Include="Views\Pets\MyPetDetails.cshtml" />
+    <Content Include="Views\CareTransactions\CompleteAppointment.cshtml" />
+    <Content Include="Views\CareTransactions\MyAppointments.cshtml" />
+    <Content Include="Views\CareTransactions\MyPetsAppointments.cshtml" />
+    <Content Include="Views\CareTransactions\AppointmentDetails.cshtml" />
+    <Content Include="Views\CareTransactions\DeleteConfirmation.cshtml" />
+    <Content Include="Views\Pets\PetGallery.cshtml" />
+    <Content Include="Views\Pets\PetGalleryCreate.cshtml" />
+    <Content Include="Views\CareTransactions\EditConfirmation.cshtml" />
+>>>>>>> 4d91cf3b462fa8e21e765efb770ff92b14a91df7
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>
@@ -1124,9 +1141,9 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -33,16 +33,12 @@ namespace Petopia.DAL
         //-------------------------------------------------------------------------------
         [Required]
         [DisplayName("Pet's Gender:")]
-        [StringLength(8)]
+        [StringLength(18)]
         public string Gender { get; set; }
 
         //-------------------------------------------------------------------------------
-        // now we're thinking to fold in 'Altered?' with Gender in a drop-down         //
-        //-------------------------------------------------------------------------------
-        [DisplayName("Altered?")]
-        [StringLength(8)]
-        public string Altered { get; set; }
-
+        // we folded in 'Altered?' with Gender in a drop-down -- way smoother!        //
+        //
         //-------------------------------------------------------------------------------
         [Column(TypeName = "date")]     // gets rid of '12:00:00 AM' appendage
         //
@@ -103,11 +99,8 @@ namespace Petopia.DAL
         public int? PetOwnerID { get; set; }
 
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        // Pull from other tables:
+        // Pull from other tables:??
         public virtual PetOwner PetOwner { get; set; }
 
-
-        // how the hell do we pull in Pet Owner first/last name??
-        //public virtual PetopiaUser petopiaUser { get; set; }
     }
 }

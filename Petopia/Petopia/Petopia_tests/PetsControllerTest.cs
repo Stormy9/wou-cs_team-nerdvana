@@ -22,7 +22,7 @@ namespace Petopia_tests
             PetsController petController = new PetsController();
 
             // Act
-            ViewResult result = petController.Create() as ViewResult;
+            ViewResult result = petController.AddPet() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
@@ -35,7 +35,7 @@ namespace Petopia_tests
             PetsController petController = new PetsController();
 
             // Act
-            ViewResult result = petController.Edit(5) as ViewResult;
+            ViewResult result = petController.EditPet(5) as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
@@ -48,7 +48,7 @@ namespace Petopia_tests
             PetsController petController = new PetsController();
 
             // Act
-            ViewResult result = petController.Details(5) as ViewResult;
+            ViewResult result = petController.PetProfile(5) as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);

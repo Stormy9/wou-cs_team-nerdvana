@@ -33,16 +33,13 @@ namespace Petopia.Models
         //-------------------------------------------------------------------------------
         [Required]
         [DisplayName("Pet's Gender:")]
-        [StringLength(8)]
+        [StringLength(18)]
         public string Gender { get; set; }
 
         //-------------------------------------------------------------------------------
-        // now we're thinking to fold in 'Altered?' with Gender in a drop-down         //
+        // we folded in 'Altered?' with Gender in a drop-down -- a lot smoother!       //
         //-------------------------------------------------------------------------------
-        [DisplayName("Altered?")]
-        [StringLength(8)]
-        public string Altered { get; set; }
-
+        //
         //-------------------------------------------------------------------------------
         [Column(TypeName = "date")]     // gets rid of '12:00:00 AM' appendage
         //

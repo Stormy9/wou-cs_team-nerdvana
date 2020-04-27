@@ -377,7 +377,7 @@ p {
 }
 
 .text-danger {
-
+    font-weight: bold;
 }
 /*====================================== LISTS ========================================*/
 li {
@@ -440,8 +440,13 @@ hr {
 .our_buttons {
     background-color: #392613;
     color: #f2e6d9;
+    font-weight: normal;
     border: 1px solid #4d3319;
 }
+    .our_buttons a:link {
+        color: #f2e6d9;
+        font-weight: normal;
+    }
 /*--------------------------- MOVE IN THE OTHER PSEUDO-BUTTONS ------------------------*/
 /*----------- ABOUT PAGE --------------------------------------------------------------*/
 /*----------- CONTACT PAGE ------------------------------------------------------------*/

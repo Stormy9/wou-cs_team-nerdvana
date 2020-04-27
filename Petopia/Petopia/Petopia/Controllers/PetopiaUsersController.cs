@@ -30,14 +30,13 @@ namespace Petopia.Controllers
         {
             var identityID = User.Identity.GetUserId();
             var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
-            
+
             if (loggedID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             PetopiaUser petopiaUser = db.PetopiaUsers.Find(loggedID);
-
             if (petopiaUser == null)
             {
                 return HttpNotFound();
@@ -63,23 +62,29 @@ namespace Petopia.Controllers
             if (ModelState.IsValid)
             {
                 PetopiaUser petopiaUser = new PetopiaUser();
+                //------------------------------------------
 
                 string id = User.Identity.GetUserId();
                 petopiaUser.ASPNetIdentityID = id;
 
                 petopiaUser.UserName = model.UserName;
                 petopiaUser.Password = model.Password;
+
                 petopiaUser.FirstName = model.FirstName;
                 petopiaUser.LastName = model.LastName;
+
                 petopiaUser.IsOwner = false;
                 petopiaUser.IsProvider = false;
+
                 petopiaUser.MainPhone = model.MainPhone;
                 petopiaUser.AltPhone = model.AltPhone;
+
                 petopiaUser.ResAddress01 = model.ResAddress01;
                 petopiaUser.ResAddress02 = model.ResAddress02;
                 petopiaUser.ResCity = model.ResCity;
                 petopiaUser.ResState = model.ResState;
                 petopiaUser.ResZipcode = model.ResZipcode;
+
                 petopiaUser.UserCaption = model.UserCaption;
                 petopiaUser.GeneralLocation = model.GeneralLocation;
                 petopiaUser.UserBio = model.UserBio;
@@ -107,6 +112,7 @@ namespace Petopia.Controllers
                     petopiaUser.ProfilePhoto = data;
                 }
 
+                //-----------------------------------------------------
                 db.PetopiaUsers.Add(petopiaUser);
                 db.SaveChanges();
 
@@ -170,7 +176,6 @@ namespace Petopia.Controllers
             }
 
             PetopiaUser petopiaUser = db.PetopiaUsers.Find(id);
-
             if (petopiaUser == null)
             {
                 return HttpNotFound();
@@ -200,6 +205,70 @@ namespace Petopia.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+        //===============================================================================
+        //===============================================================================
+        public ActionResult MyAccountDetails()
+        {
+            // JUST the non-public\profile *private* account info
+            // modified from ProfilePageController\Index()
+
+            var identityID = User.Identity.GetUserId();
+            var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+
+
+            // This.....
+            MyAccountViewModel petopiaUser = new MyAccountViewModel();
+
+
+            //populating the viewmodel with a join
+            /*petopiaUser = db.PetopiaUsers.Join(db.PetOwners,
+                                                pu => pu.UserID,
+                                                po => po.UserID,
+                                                (pu, po) => new {PetUse = pu, PetOwn = po }) */
+            //linq isnt populating correctly right now so we're doing it manually (TEMP FIX)
+
+
+            petopiaUser.UserID = loggedID;
+
+
+            petopiaUser.FirstName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.FirstName).First();
+            petopiaUser.LastName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.LastName).First();
+
+
+            petopiaUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsOwner).First();
+            petopiaUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsProvider).First();
+
+
+            petopiaUser.MainPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.MainPhone).First();
+            petopiaUser.AltPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.AltPhone).First();
+
+
+            petopiaUser.ResAddress01 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResAddress01).First();
+            petopiaUser.ResAddress02 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResAddress02).First();
+            petopiaUser.ResCity = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResCity).First();
+            petopiaUser.ResState = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResState).First();
+            petopiaUser.ResZipcode = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResZipcode).First();
+
+
+            //---------------------------------------------------------------------------
+
+
+            if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
+            {
+                // 'OwnerAverageRating' is a public-facing profile item -- this is Account Only
+                // 'GeneralNeeds' is (will be) a public-facing profile item -- this is Account Only
+
+                // 'HomeAccess' is Account Only   [=
+                petopiaUser.HomeAccess = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.HomeAccess).First();
+            }
+
+
+            return View(petopiaUser);
+
+        } // END 'MyAccountDetails()' GET
 
         //===============================================================================
     }

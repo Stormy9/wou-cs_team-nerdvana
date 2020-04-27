@@ -32,16 +32,13 @@ namespace Petopia.Models.ViewModels
         //-------------------------------------------------------------------------------
         [Required]
         [DisplayName("Pet's Gender:")]
-        [StringLength(8)]
+        [StringLength(18)]
         public string Gender { get; set; }
 
         //-------------------------------------------------------------------------------
-        // now we're thinking to fold in 'Altered?' with Gender in a drop-down         //
+        // we folded in 'Altered?' with Gender in a drop-down -- a lot smoother!       //
         //-------------------------------------------------------------------------------
-        [DisplayName("Altered?")]
-        [StringLength(8)]
-        public string Altered { get; set; }
-
+        //
         //-------------------------------------------------------------------------------
         [Column(TypeName = "date")]     // gets rid of '12:00:00 AM' appendage
         //
@@ -84,12 +81,12 @@ namespace Petopia.Models.ViewModels
         [DisplayName("What My Pet Needs Done:")]
         public string NeedsDetails { get; set; }
 
-        //-------------------------------------------------------------------------------
-        [DisplayName("How To Access Our Home:")]
-        public string AccessInstructions { get; set; }
-
         //------------------------------------------------------------------------------
-        [DisplayName("Profile Photo Caption:")]
+        [DisplayName("Pet pic!")]
+        public HttpPostedFileBase PetPhoto { get; set; }
+
+
+        [DisplayName("Profile pic caption:")]
         [StringLength(72)]
         public string PetCaption { get; set; }
 
@@ -97,7 +94,11 @@ namespace Petopia.Models.ViewModels
         [DisplayName("My Pet's Bio:")]
         public string PetBio { get; set; }
 
-        [DisplayName("Pet pic!")]
-        public HttpPostedFileBase PetPhoto { get; set; }
+        //===============================================================================
+        // to put owner's name on pet's profile!
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+        //===============================================================================
     }
 }

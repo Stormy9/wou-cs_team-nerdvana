@@ -1,59 +1,61 @@
 ﻿@model Petopia.Models.PetopiaUser
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "All PetopiaUser Details:  Profile + Account";
+    ViewBag.Comment = "(this is here for future administrative puprposes";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>PetopiaUser</h4>
-    <hr />
+
+<div class="container-fluid">
+
+    <h2> @ViewBag.Title</h2>
+    <h4> <i> @ViewBag.Comment </i> </h4>
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.UserName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.UserName)
         </dd>
 
+
         <dt>
             @Html.DisplayNameFor(model => model.Password)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Password)
         </dd>
 
+
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.FirstName)
         </dd>
 
+
         <dt>
             @Html.DisplayNameFor(model => model.LastName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.LastName)
         </dd>
 
+
         <dt>
             @Html.DisplayNameFor(model => model.ASPNetIdentityID)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ASPNetIdentityID)
         </dd>
 
+
         <dt>
             @Html.DisplayNameFor(model => model.IsOwner)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.IsOwner)
         </dd>
@@ -61,77 +63,111 @@
         <dt>
             @Html.DisplayNameFor(model => model.IsProvider)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.IsProvider)
         </dd>
 
+
         <dt>
             @Html.DisplayNameFor(model => model.MainPhone)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.MainPhone)
         </dd>
 
+
         <dt>
             @Html.DisplayNameFor(model => model.AltPhone)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.AltPhone)
         </dd>
 
+
         <dt>
             @Html.DisplayNameFor(model => model.ResAddress01)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ResAddress01)
         </dd>
 
+
         <dt>
             @Html.DisplayNameFor(model => model.ResAddress02)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ResAddress02)
         </dd>
 
+
         <dt>
             @Html.DisplayNameFor(model => model.ResCity)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ResCity)
         </dd>
 
+
         <dt>
             @Html.DisplayNameFor(model => model.ResState)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ResState)
         </dd>
 
+
         <dt>
             @Html.DisplayNameFor(model => model.ResZipcode)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ResZipcode)
         </dd>
 
+
         <dt>
             @Html.DisplayNameFor(model => model.ProfilePhoto)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ProfilePhoto)
         </dd>
 
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserCaption)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserCaption)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tagline)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tagline)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneralLocation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GeneralLocation)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserBio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserBio)
+        </dd>
+
     </dl>
+
 </div>
+
+<!--==================================================================================-->
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
     @Html.ActionLink("Back to List", "Index")

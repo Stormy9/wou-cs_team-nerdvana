@@ -1,14 +1,12 @@
 ﻿@model Petopia.Models.CareTransaction
 
 @{
-    ViewBag.Title = "Cancel this Care Appointment";
-    ViewBag.Title02 = "Are you sure you want to cancel?";
+    ViewBag.Title = "You have successfully edited your Pet Care Appointment!";
 }
 
 <div class="container-fluid">
 
-    <h2>@ViewBag.Title:</h2>
-    <h3>@ViewBag.Title02</h3>
+    <h2>@ViewBag.Title</h2>
 
     <div class="container-fluid my_appt_box" style="padding: 15px;">
 
@@ -99,35 +97,44 @@
         <!--=============================== ROW TWO ==============================-->
         <div class="row our_row_three" style="margin-top: 36px;">
 
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
+            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                @Html.ActionLink("This Pet's Profile", "PetProfile",
+                                    new { controller = "Pets", id = Model.PetID }, 
+                                    new { style="color:#f2e6d9"})
+            </span>
 
-                <span class="form-actions no-color" 
-                      style="float: right; margin-right: 5px;">
-                    <input type="submit" value="Cancel this Appointment"
-                           class="btn our_buttons" />
-                </span>
+            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                @Html.ActionLink("All this Pet's care appointments",
+                                    "CareTransactions", new { id = Model.PetID },
+                                    new { style="color:#f2e6d9"})
+            </span>
 
-                <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                        
-                    @Html.ActionLink("All my Pet Care appointments", "MyAppointments",
-                                        new { controller = "CareTransactions" })
-                </span>
-
-                <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                    @Html.ActionLink("All this Pet's care appointments",
-                        "MyPetsAppointments", new
-                             {controller = "CareTransactions",
-                                                    id = Model.PetID})
-                </span>
-            }
-            <!--==================================================================-->
         </div><!-- END ROW TWO -->
-        <!--======================================================================-->
+        <!--==========================================================================-->
         <!---->
+        <!---->
+        <!--================================= ROW THREE ==============================-->
+        <div class="row our_row_three" style="margin-top: 5px;">
+
+            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                @Html.ActionLink("My Profile", "Index",
+                                        new { controller = "ProfilePage" }, 
+                                        new { style="color: #f2e6d9;"} )
+            </span>
+
+            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                @Html.ActionLink("All my Pet care appointments", "MyAppointments",
+                        new { id = Model.PetOwnerID }, new { style="color: #f2e6d9;"})
+            </span>
+
+        </div><!-- END ROW THREE -->
         <!--======================================================================-->
+
     </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
 
 </div><!-- END CONTAINER-FLUID (outer-most container) -->
-<!--==============================================================================-->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<!--==================================================================================-->

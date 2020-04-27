@@ -83,59 +83,68 @@
     width: 96%;
     height: 90px;
     padding: 3px;
-    color: whitesmoke;
+    color: #f2e6d9;
 }
 .our_profile_buttons {
     border: 1px solid #4d3319;
     border-radius: 9px;
     padding: 9px;
     background-color: #392613;
-    color: whitesmoke;
-    font-weight: bold;
+    color: #f2e6d9;
     float: left;
     margin-left: 3px;
     margin-top: 3px;
 }
+    .our_profile_buttons a:link {
+        font-weight: normal;
+    }
 /*----------------------------------------*/
 .our_create-edit_buttons {
     border: 1px solid #4d3319;
     border-radius: 9px;
     padding: 9px;
     background-color: #392613;
-    color: whitesmoke;
-    font-weight: bold;
+    color: #f2e6d9;
     /*float: right;*/
     margin-left: 3px;
     margin-top: 3px;
     width: 90px;
     text-align: center;
 }
-    .our_create-edit_buttons a {
-        color: whitesmoke;
+    .our_create-edit_buttons a:link {
+        color: #f2e6d9;
+        font-weight: normal;
     }
 /*----------------------------------------*/
 .button_box_pet_card {
+    margin-top: 23px;
     margin-bottom: 9px;
     margin-right: 9px;
     padding: 3px;
-    color: whitesmoke;
+    color: #f2e6d9;
 }
 .our_pet_card_buttons {
     border: 1px solid #4d3319;
     border-radius: 9px;
     padding: 9px;
     background-color: #392613;
-    color: whitesmoke;
-    font-weight: bold;
+    color: #f2e6d9;
+    font-weight: normal;
     /*margin-bottom: 18px;*/
     margin-right: 5px;
     float: right;
 }
+    .our_pet_card_buttons a:link {
+        color: #f2e6d9;
+        font-weight: normal;
+    }
 /*----------------------------------------*/
 .button_box_03 {
     padding: 3px;
-    color: whitesmoke;
-    margin-top: 72px;
+    padding-right: 18px;
+    color: #f2e6d9;
+    margin-top: 9px;
+    float: right;
 }
 .our_other_buttons {
     /* these are being really fucking weird!! */
@@ -143,12 +152,15 @@
     border-radius: 9px;
     padding: 9px;
     background-color: #392613;
-    color: whitesmoke;
-    font-weight: bold;
+    color: #f2e6d9;
     float: right;
     margin-right: 5px;
     margin-bottom: 5px;
 }
+    .our_other_buttons a:link {
+        color: #f2e6d9;
+        font-weight: normal;
+    }
 /*========================= USER NAME ===============================*/
 .user_name_box {
     width: 96%;
@@ -202,6 +214,12 @@
 }
 
 .carer_exp_box {
+    width: 99%;
+    margin-top: 5px;
+    padding: 15px;
+}
+
+.general_pet_care_needs_box {
     width: 99%;
     margin-top: 5px;
     padding: 15px;
@@ -329,6 +347,79 @@ tr:hover {
 }
 .table_col_three {
     /*width: 50%;*/
+}
+/*========================== ACCOUNT ITEMS ==========================*/
+/* for the 'private petopia user account details' page */
+.account_item {
+    padding: 9px;
+}
+/*======================= PET DETAIL ITEMS ==========================*/
+/* for the 'my private pet details' page */
+.pet_detail_item {
+    padding: 9px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+    .pet_detail_item:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+/*===================== APPOINTMENTS STUFF ==========================*/
+.make_appt_box {
+    padding: 9px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    margin: 9px;
+}
+    .make_appt_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+.my_appt_box {
+    padding: 9px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    margin-left: 9px;
+    margin-right: 9px;
+    margin-bottom: 27px;
+}
+    .my_appt_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+.our_appt_label {
+    font-weight: bold;
+    color: #392613;
+}
+.carer_fee_box {
+    padding: 9px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+.carer_rating_comment_box {
+    padding: 15px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    width: 45%;
+    margin: 9px;
+    float: left;
+}
+.owner_rating_comment_box {
+    padding: 15px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    width: 45%;
+    margin: 9px;
+    float: right;
 }
 /*============================ LINKS! ===============================*/
 /* unvisited link */

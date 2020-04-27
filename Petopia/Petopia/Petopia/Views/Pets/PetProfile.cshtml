@@ -5,8 +5,9 @@
 }
 
 <div class="outer_container">
+
     <div class="container-fluid">
-        <!------------------------------------ FIRST/TOP ROW ------------------------------->
+        <!------------------------------------ FIRST/TOP ROW --------------------------->
         <div class="row our_row_one">
             <!-- FIRST\TOP ROW -->
             <!-- empty/placeholder for now-->
@@ -25,29 +26,10 @@
 
                 <!-- 'designation'   =] -->
                 <div class="owner_provider_box">
-                    A Pet!
+                    A @Html.DisplayFor(model => model.Species) Pet!
                 </div>
 
 
-                <!-- profile picture -->
-                @*@if (Model.ProfilePhoto != null)
-        {
-            <div class="profile_pic_box_box">
-                <div class="profile_pic_box">
-                    <img src=@Url.Action("Show", "Image",
-                        new { id = Model.PetID, @class = "profile_img" }) />
-                </div>
-            </div>
-        }
-        else
-        {
-            <div class="profile_pic_box_box">
-                <div class="profile_pic_box">
-                    <img src="https://stormy9.github.io/images_doggies/Zoey_profile_Pic.jpg"
-                            class="profile_img" />
-                </div>
-            </div>
-        }*@
                 <!-- profile picture -->
                 @if (Model.PetPhoto != null)
                 {
@@ -75,10 +57,56 @@
                         @Html.DisplayFor(model => model.PetCaption)
                     </div>
                 </div>
-                <!-- stuff goes here -->
+
+
+                <!-- pet profile buttons -->
+                <div class="button_box_03" style="text-align: center;">
+                    <!-- css is not reaching these... not all of it anyway -- some parts
+                         of it is, but not others -- super f'ing annoying... it works if
+                         it's hard-coded here, but that should *NOT* have to be! 
+
+                         ALSO: it works for the user profiles, but not here... wtf?? 
+                         WELL... it *was*, then it stopped... seriously, WTF?!        
+                         this is a serious annoyance to not be able to set styles 
+                         FROM THE FUCKING STYLE SHEETS!!  not all of them anyway!!! -->
+                    <div>
+                        @Html.ActionLink("My Owner's Profile", "Index",
+                               new { controller = "ProfilePage" },
+                               new { @class = "our_other_buttons", 
+                                     style="color: #f2e6d9; font-weight: normal;" })
+                    </div>
+                    <br />
+                    <div>
+                        @Html.ActionLink("This Pet's Details", "MyPetDetails",
+                               new { controller = "Pets", id = Model.PetID },
+                               new { @class = "our_other_buttons", 
+                                     style="color: #f2e6d9; font-weight: normal;" })
+                    </div>
+                    <br />
+                    <div>
+                        @Html.ActionLink("Edit this Pet", "EditPet", 
+                               new { controller = "Pets", id = Model.PetID },
+                               new { @class = "our_other_buttons", 
+                                     style="color: #f2e6d9; font-weight: normal;" })
+                    </div>
+                    <div>
+                        @Html.ActionLink("My Care Appointments", "MyPetsAppointments",
+                               new { controller = "CareTransactions", id = Model.PetID },
+                               new { @class = "our_other_buttons", 
+                                     style="color: #f2e6d9; font-weight: normal;" })
+                    </div>
+                    <br />
+                    <div>
+                        @Html.ActionLink("Edit Gallery", "PetGallery", new { id = Model.PetID },
+                                    new { @class = "our_other_buttons", 
+                                        style="color: #f2e6d9; font-weight: normal;" })
+                    </div>
+
+                </div><!-- END BUTTON BOX -->
+
 
             </div><!-- END 1st/LEFT COLUMN **OF** 2nd/MIDDLE ROW -->
-            <!------------------------------------------------------------------------------>
+            <!-------------------------------------------------------------------------->
             <!---->
             <!---->
             <!-- 2nd column --><!-- PetName\generalLocation\owner\AboutPet -->
@@ -89,12 +117,15 @@
                     <h3>
                         My Name Is:  @Html.DisplayFor(model => model.PetName)
                     </h3>
-                    <h4>
-                        I am a @Html.DisplayFor(model => model.Breed).
-                    </h4>
-                    <h4>
+                    <h5>
+                        I am a @Html.DisplayFor(model => model.Breed)
+                    </h5>
+                    <h5>
                         I was born on @Html.DisplayFor(model => model.Birthdate)
-                    </h4>
+                    </h5>
+                    <h5>
+                        I am a @Html.DisplayFor(model => model.Gender)
+                    </h5>
                 </div>
 
                 <!-- Pet's Person-->
@@ -103,7 +134,7 @@
                     <h4>
                         <i>
                             (owner's name)
-                            @*@Html.DisplayFor(model => model.PetopiaUser.FirstName)*@
+                            @*@Html.DisplayFor(model => model.FirstName)*@
                             @*@Html.DisplayFor(model => model.PetopiaUser.LastName)*@
                         </i>
                     </h4>
@@ -123,11 +154,11 @@
                 </div>
 
             </div><!-- END 2nd\MIDDLE COLUMN  **OF** 2nd/MIDDLE ROW -->
-            <!------------------------------------------------------------------------------>
+            <!-------------------------------------------------------------------------->
             <!---->
             <!---->
             <!-- 3rd column --><!-- providers/petOwners Near Me (and that's it!) -->
-            <!-- OR -- for Pet Carers, display Pet Owners they've worked with before??  -->
+            <!-- OR -- for Pet Carers, display Pet Owners they've worked with before -->
             <!---->
             <!-- b/c of col settings, it's 2&1/2 wide -- except it isn't!!!  -->
             <div class="col col-sm col-md col-lg col-x  our_col_three">
@@ -141,7 +172,7 @@
                 <div class="auto_search_results_box_box">
 
                     <div class="auto_search_results_box">
-                        <!---------------------------------------------------------->
+                        <!-------------------------------------------------------------->
                         <div class="search_result_card">
 
                             <a href="#" class="our_a">
@@ -207,8 +238,8 @@
         </div><!-- END 2nd/MIDDLE ROW -->
         <!---->
         <!---->
-        <!--==============================================================================-->
-        <!------------------------------ THIRD/BOTTOM ROW ---------------------------------->
+        <!--==========================================================================-->
+        <!------------------------------ THIRD/BOTTOM ROW ------------------------------>
         <!---->
         <!---->
         <div class="row our_row_three">
@@ -217,7 +248,7 @@
 
                 <!-- stuff goes here ... bottom row ...
                         9-column-wide span inside this row <br>
-                        try to get 3rd column in middle row to span two rows in height!  -->
+                     try to get 3rd column in middle row to span two rows in height!  -->
                 <!-- pet profile preview box header -->
                 <div class="pet_profile_header">
                     <h3> My Pet Care Visits: </h3>
@@ -260,133 +291,18 @@
 
             </div><!-- END 4th Column -> one inside bottom row -->
         </div><!-- END THIRD\BOTTOM ROW -->
-        <!---------------------------------------------------------------------->
+        <!------------------------------------------------------------------------------>
+        <!---->
+        <!------------------------ FOURTH (BUTTON) ROW --------------------------------->
+        <div class="row our_row_four">
 
+            <div class="col-sm-offset-8 col-md-offset-8 col-sm-4 col-md-4">
+
+                <!-- decided to move buttons! -->
+
+            </div><!-- end only column in 4th row -->
+
+        </div><!-- END FOURTH (BUTTON) ROW -->
     </div><!-- END CONTAINER-FLUID -->
 </div><!-- END OUTER CONTAINER \ MAIN CONTAINER INSIDE BODY -->
-<!-- original formatted stuff pulled from db-->
-<div class="button_box_03" style="text-align: center;">
-    <div>
-        @Html.ActionLink("Edit this Pet", "Edit", new { id = Model.PetID },
-                                    new { @class = "our_other_buttons" })
-    </div>
-    <div>
-        @Html.ActionLink("My Owner's Profile", "Index",
-                                        new { controller = "ProfilePage" },
-                                        new { @class = "our_other_buttons" })
-    </div>
-</div><!-- END BUTTON BOX -->
-<div>
-    <h4>
-        Pet Scaffolding -- Keep for time being to see other pet details as we biuld stuff
-    </h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PetOwner.AverageRating)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PetOwner.AverageRating)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PetName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PetName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Species)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Species)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Breed)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Breed)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Altered)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Altered)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Birthdate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Birthdate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Weight)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HealthConcerns)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.HealthConcerns)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BehaviorConcerns)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.BehaviorConcerns)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PetAccess)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PetAccess)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmergencyContactName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EmergencyContactName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmergencyContactPhone)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EmergencyContactPhone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NeedsDetails)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NeedsDetails)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PetAccess)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PetAccess)
-        </dd>
-
-    </dl>
-</div>
-
+<!--==================================================================================-->

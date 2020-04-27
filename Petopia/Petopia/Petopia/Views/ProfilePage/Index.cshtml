@@ -78,16 +78,19 @@
                     @if (ViewBag.Badges == true)
                     {
                         @Html.ActionLink("Edit Badges", "Edit",
-                                new { controller = "Badges" })
+                                new { controller = "Badges" },
+                                new { @class = "btn our_buttons", 
+                        style="margin-left: 9px; color: #f2e6d9; font-weight: normal;" } )
                     }
                     else
                     {
-
                         <p>
-                            You have not set up badges yet.
+                            You have not set up badges yet.<br />
                             Press
                             @Html.ActionLink("Here", "Create",
-                                    new { controller = "Badges" })
+                                    new { controller = "Badges" },
+                                    new { @class = "btn our_buttons", 
+                            style="margin-left: 9px; color: #f2e6d9; font-weight: normal;" } )
                             to set them up.
                         </p>
                     }
@@ -123,6 +126,8 @@
                              class="pet_badge">
                     }
                 </div><!-- end pet badge box div -->
+                <!---->
+                <!---->
                 <!-- private msg + friend buttons -->
                 <!-- *****STILL PLACEHOLDER***** -->
                 <div class="button_box">
@@ -142,6 +147,20 @@
                         </div>
                     </a>
                 </div>
+                <!---->
+                <!---->
+                <!-- Book & View Pet Care Appointment Buttons -->
+                @Html.ActionLink("Book a Pet Care appointment!", "BookAppointment",
+                                new { controller = "CareTransactions" },
+                                new { id = Model.UserID, @class = "btn our_buttons", 
+                                        style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
+                <br />
+                @Html.ActionLink("See all my Pet Care appointments", "MyAppointments",
+                                new { controller = "CareTransactions" },
+                                new { id = Model.UserID, @class = "btn our_buttons", 
+                                        style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
+
+                <!---------------------------------------------->
 
             </div><!-- END 1st/LEFT COLUMN **OF** 2nd/MIDDLE ROW -->
             <!-------------------------------------------------------------------------->
@@ -161,8 +180,8 @@
                         @Html.DisplayFor(model => model.Tagline)
                     </h4>
                 </div>
-
-
+                <!---->
+                <!---->
                 <!-- user's general location -->
                 <div class="general_location_box">
                     <div class="general_location">
@@ -170,13 +189,11 @@
                         @Html.DisplayFor(model => model.GeneralLocation)
                     </div>
                 </div>
-
-
+                <!---->
+                <!---->
                 <!-- user rating -->
                 <!-- *****STILL PLACEHOLDER***** -->
                 <div class="user_rating_box">
-                    <img src="https://stormy9.github.io/nerdvana/rating_star_example.PNG"
-                         class="user_rating_star_bar">
 
                     @if (Model.IsProvider == true)
                     {
@@ -185,15 +202,19 @@
                         @Html.DisplayFor(model => model.ProviderAverageRating)
                     }
                     <!------------------------------------------------------------------>
-                    @if (Model.IsProvider == true)
+                    @if (Model.IsOwner == true)
                     {
                         @Html.DisplayNameFor(model => model.OwnerAverageRating)
 
                         @Html.DisplayFor(model => model.OwnerAverageRating)
                     }
+
+                    <br />
+                    <img src="https://stormy9.github.io/nerdvana/rating_star_example.PNG"
+                         class="user_rating_star_bar">
                 </div>
-
-
+                <!---->
+                <!---->
                 <!-- user bio & etc. fun stuff -->
                 <div class="user_bio_box">
                     <h4>Stuff About Me:</h4>
@@ -203,31 +224,35 @@
                     @if (Model.IsProvider == true)
                     {
                         <div class="carer_exp_box">
-                            <h4>My Pet Care Experience:</h4>
+                            <h4> My Pet Care Experience: </h4>
                             @Html.DisplayFor(model => model.ExperienceDetails)
                         </div>
                     }
 
                     @if (Model.IsOwner == true)
                     {
-                        //remember the needs/access details are private aka
-                        //    non-profile-displaying info!   [=
-                        // but just in case we come up w/something, here this is.....
+                        <div class="general_pet_care_needs_box">
+                            <h4> My General Pet Care Needs: </h4>
+                        </div>
                     }
 
                 </div><!-- end user bio (etc.) box -->
-
-
+                <!---->
+                <!---->
                 <!-- calendar to show up for Pet Carers to post availability -->
-                <div class="calendar_box" style="width:100%;">
+                @if (Model.IsProvider == true)
+                { 
+                    <div class="calendar_box" style="width:100%;">
                     
                     <div id="calendar" style="width:100%;">
 
                     </div>
 
                 </div><!-- end calendar_box div -->
-
-
+                }
+                <!----------------------------------------------------------->
+                <!---->
+                <!---->
             </div><!-- END 2nd\MIDDLE COLUMN  **OF** 2nd/MIDDLE ROW -->
             <!-------------------------------------------------------------------------->
             <!---->
@@ -377,7 +402,7 @@
             <!---->
             <!-- 9-col wide span inside 3rd row & that's it -->
             <!-- trying (maybe?) to get 3rd colum of 2nd row to span two row's height -->
-            <div class="col-md-9 our_col_four">
+            <div class="col-sm-8 col-md-8 our_col_four">
                 <!---->
                 <!---->
                 <!-- pet profile preview box header -->
@@ -398,8 +423,8 @@
                                 <!-- link to pet's profile -->
                                 @if (item.PetPhoto != null)
                                 {
-                                            <img src=@Url.Action("ShowPet", "Image",
-                                new { id = item.PetID}) />
+                                    <img src=@Url.Action("ShowPet", "Image",
+                                                            new { id = item.PetID}) />
                                 }
                                 else
                                 {
@@ -425,21 +450,28 @@
                                     @Html.DisplayFor(model => item.Birthdate)
                                 </div>
 
-                                <a href="#">
-                                    <!-- link to care record(s) -->
-                                    <div class="pet_preview_care_record"
-                                         style="padding-top: 5px;">
-                                        link to this pet's care record
-                                    </div>
-                                </a>
-
+                                
                                 <div class="button_box_pet_card">
-                                    @Html.ActionLink("Edit This Pet", "Edit",
+                                    @Html.ActionLink("This Pet's Care Appts", "MyPetsAppointments",
+                                        new { controller = "CareTransactions", id = item.PetID },
+                                        new { @class = "our_pet_card_buttons", 
+                                            style = "color: #f2e6d9; font-weight: normal;" })
+
+                                    @Html.ActionLink("My Pet Details", "MyPetDetails",
+                                        new { controller = "Pets", id = item.PetID },
+                                        new { @class = "our_pet_card_buttons", 
+                                            style="color: #f2e6d9; font-weight: normal;" })
+
+                                    @Html.ActionLink("Edit This Pet", "EditPet",
                                             new { controller = "Pets", id = item.PetID },
-                                            new { @class = "our_pet_card_buttons" })
-                                    @Html.ActionLink("Go To This Pet", "Details",
+                                            new { @class = "our_pet_card_buttons", 
+                                                style="color: #f2e6d9; font-weight: normal;" })
+
+                                    @Html.ActionLink("This Pet's Profile", "PetProfile",
                                             new { controller = "Pets", id = item.PetID },
-                                            new { @class = "our_pet_card_buttons " })
+                                            new { @class = "our_pet_card_buttons", 
+                                                style="color: #f2e6d9;  font-weight: normal;" })
+
                                 </div>
 
                             </div><!-- END pet_profile_preview -->
@@ -448,21 +480,30 @@
                 }
             </div><!-- END 4th Column -> one inside 3rd/bottom row -->
             <!-------------------------------------------------------------------------->
-            <div class="col-sm-3 our_col_five">
+            <div class="col-sm-4 col-md-4 our_col_five">
                 <div class="button_box_03" style="text-align: center;">
                     <div>
-                        @Html.ActionLink("Edit My Profile", "Edit",
+                        @Html.ActionLink("My Account Info", "MyAccountDetails",
+                                new { controller = "PetopiaUsers" },
+                                new { id = Model.UserID, @class = "our_other_buttons", 
+                                        style="color: #f2e6d9; font-weight: normal;" })
+                    </div>
+                    <div>
+                        @Html.ActionLink("Edit My Profile", "EditMyStuff",
                                         new { controller = "ProfilePage" },
-                                        new { @class = "our_other_buttons" })
+                                        new { @class = "our_other_buttons", 
+                                        style="color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <div>
                         <!-- we want carers to be able to have pets too   =]   -->
                         @if (Model.IsOwner == true || Model.IsProvider == true)
                         {
-                            @Html.ActionLink("Add new pet!", "Create",
+                            @Html.ActionLink("Add a pet!", "AddPet",
                                         new { controller = "Pets" },
-                                        new { @class = "our_other_buttons" })
+                                        new { @class = "our_other_buttons", 
+                                        style="color: #f2e6d9; font-weight: normal;" })
                         }
+                        <!-- but it's not working right now   =]   -->
                     </div>
                 </div><!-- END BUTTON BOX -->
             </div><!-- END COLUMN FIVE \ IN ROW THREE -->
