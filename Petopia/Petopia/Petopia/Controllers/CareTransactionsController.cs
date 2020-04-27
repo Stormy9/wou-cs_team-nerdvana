@@ -21,7 +21,7 @@ namespace Petopia.Controllers
         {
             // original!
             return View(db.CareTransactions.ToList());
-
+            // like what the admins would see -- every appointment for every user
         }
 
         //===============================================================================
@@ -53,19 +53,33 @@ namespace Petopia.Controllers
             return View();
         }
         //-------------------------------------------------------------------------------
-        // POST: CareTransactions/Create
+        // POST: CareTransactions/BookAppointment
         // To protect from overposting attacks, please enable the specific properties you
         // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult BookAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
+        public ActionResult BookAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
+          "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
+          "CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
         {
+            // the model -- or ViewModel -- acts as a type
+            //CareTransactionViewModel appt = new CareTransactionViewModel();
+
             if (ModelState.IsValid)
             {
+                //var identityID = User.Identity.GetUserId();
+
+                //var loggedID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
+                //                              .Select(u => u.UserID).First();
+
+                // gotta have a little more in here -- understand examples better!
+                //appt.PetOwnerID = careTransaction.PetOwnerID;
+
                 db.CareTransactions.Add(careTransaction);
                 db.SaveChanges();
 
-                return RedirectToAction("AppointmentConfirmation", new { id = careTransaction.TransactionID });
+                return RedirectToAction("AppointmentConfirmation", 
+                                         new { id = careTransaction.TransactionID });
             }
 
             return View(careTransaction);
@@ -94,14 +108,17 @@ namespace Petopia.Controllers
         // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
+        public ActionResult EditAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport,Charge," +
+          "Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID," +
+            "NeededThisVisit")] CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(careTransaction).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("AppointmentConfirmation", new { id = careTransaction.TransactionID });
+                return RedirectToAction("AppointmentConfirmation", 
+                                        new { id = careTransaction.TransactionID });
             }
 
             return View(careTransaction);
@@ -135,7 +152,7 @@ namespace Petopia.Controllers
             db.SaveChanges();
 
             // CHANGE THIS!!!
-            return RedirectToAction("Index");
+            return RedirectToAction("DeleteConfirmation");
         }
         //-------------------------------------------------------------------------------
         protected override void Dispose(bool disposing)
@@ -167,7 +184,7 @@ namespace Petopia.Controllers
         }
 
         //===============================================================================
-        // GET: CareTransactions/Edit/5
+        // GET: CareTransactions/CompleteAppointment/5
         public ActionResult CompleteAppointment(int? id)
         {
             if (id == null)
@@ -227,7 +244,7 @@ namespace Petopia.Controllers
             // make this so that it only returns the logged-in user's stuff!!!
         }
         //===============================================================================
-        // GET: CareTransactions
+        // GET: CareTransactions/MyPetsAppointments/5
         public ActionResult MyPetsAppointments(int? id)
         {
             var thisPet = db.CareTransactions.Where(ct => ct.PetID == id)
@@ -241,6 +258,12 @@ namespace Petopia.Controllers
 
             // OBVIOUSLY.....
             // make this so that it only returns the logged-in user's PET'S stuff!!!
+        }
+        //===============================================================================
+        // GET: CareTransactions/DeleteConfirmation
+        public ActionResult DeleteConfirmation()
+        {
+            return View();
         }
         //===============================================================================
     }

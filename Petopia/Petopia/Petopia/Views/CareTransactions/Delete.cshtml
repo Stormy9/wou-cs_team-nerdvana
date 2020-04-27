@@ -2,135 +2,132 @@
 
 @{
     ViewBag.Title = "Cancel this Care Appointment";
+    ViewBag.Title02 = "Are you sure you want to cancel?";
 }
 
-<h2>ViewBag.Title</h2>
-<hr />
+<div class="container-fluid">
 
+    <h2>@ViewBag.Title:</h2>
+    <h3>@ViewBag.Title02</h3>
 
-<h3>Are you sure you want to cancel/delete this?</h3>
-<div>    
+    <div class="container-fluid my_appt_box" style="padding: 15px;">
 
-    <!--==============================================================================-->
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
+        <!--============================= ROW ZERO! ==========================-->
+        <div class="row" style="margin-bottom: 35px;">
 
-        <!------------------------------------------------------------------------------>
+            <span style="float:left; margin-left: 25px; margin-right: 25px;">
+                <span class="our_appt_label">
+                    @Html.DisplayNameFor(model => model.PetID) &nbsp;
+                </span>
+                @Html.DisplayFor(model => model.PetID)
+            </span>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
+            <span style="float: left; margin-right: 25px;">
+                <span class="our_appt_label">
+                    @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
+                </span>
+                @Html.DisplayFor(model => model.PetOwnerID)
+            </span>
 
-        <!--==========================================================================-->
+            <span style="float:left; margin-right: 25px;">
+                <span class="our_appt_label">
+                    @Html.DisplayNameFor(model => model.CareProviderID) &nbsp;
+                </span>
+                @Html.DisplayFor(model => model.CareProviderID)
+            </span>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
+        </div><!-- END ROW ZERO -->
+        <!---->
+        <!---->
+        <!--=================================== ROW ONE ======================-->
+        <div class="row our_row_one">
+            <!------------------------------- ROW 1 \ COL 1 -------------------->
+            <div class="col-sm-1 col-md-1">
 
-        <!------------------------------------------------------------------------------>
+                <div style="margin-bottom: 13px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.StartDate)<br />
+                    </span>
+                    @Html.DisplayFor(model => model.StartDate)
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
+                <div style="margin-top: 13px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.StartTime)<br />
+                    </span>
+                    @Html.DisplayFor(model => model.StartTime)
+                </div>
 
-        <!--==========================================================================-->
+            </div><!-- END ROW 1 \ COL 1 -->
+            <!------------------------------------------------------------------>
+            <!---->
+            <!--------------------------- ROW 1 \ COL 2 ------------------------>
+            <div class="col-sm-1 col-md-1">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CareProvided)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CareProvided)
-        </dd>
+                <div style="margin-bottom: 13px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.EndDate)<br />
+                    </span>
+                    @Html.DisplayFor(model => model.EndDate)
+                </div>
 
-        <!------------------------------------------------------------------------------>
+                <div style="margin-top: 13px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.EndTime)<br />
+                    </span>
+                    @Html.DisplayFor(model => model.EndTime)
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CareReport)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CareReport)
-        </dd>
+            </div><!-- END ROW 1 \ COL 2 -->
+            <!---->
+            <!--------------------------- ROW 1 \ COL 3 ------------------------>
+            <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
 
-        <!--==========================================================================-->
+                <div>
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.NeededThisVisit)<br />
+                    </span>
+                    @Html.DisplayFor(model => model.NeededThisVisit)
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Charge)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Charge)
-        </dd>
+            </div><!-- END ROW 1 \ COL 3 -->
+            <!------------------------------------------------------------------>
+            <!---->
+        </div><!-- END ROW 1 -->
+        <!---->
+        <!---->
+        <!--=============================== ROW TWO ==============================-->
+        <div class="row our_row_three" style="margin-top: 36px;">
 
-        <!------------------------------------------------------------------------------>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Tip)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Tip)
-        </dd>
+                <span class="form-actions no-color" 
+                      style="float: right; margin-right: 5px;">
+                    <input type="submit" value="Cancel this Appointment"
+                           class="btn our_buttons" />
+                </span>
 
-        <!--==========================================================================-->
+                <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                        
+                    @Html.ActionLink("All my Pet Care appointments", "MyAppointments",
+                                        new { controller = "CareTransactions" })
+                </span>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PC_Rating)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PC_Rating)
-        </dd>
+                <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                    @Html.ActionLink("All this Pet's care appointments",
+                        "MyPetsAppointments", new
+                             {controller = "CareTransactions",
+                                                    id = Model.PetID})
+                </span>
+            }
+            <!--==================================================================-->
+        </div><!-- END ROW TWO -->
+        <!--======================================================================-->
+        <!---->
+        <!--======================================================================-->
+    </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
 
-        <!------------------------------------------------------------------------------>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PC_Comments)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PC_Comments)
-        </dd>
-
-        <!--==========================================================================-->
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PO_Rating)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PO_Rating)
-        </dd>
-
-        <!------------------------------------------------------------------------------>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PO_Comments)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PO_Comments)
-        </dd>
-
-        <!--==========================================================================-->
-
-    </dl>
-    <!--==============================================================================-->
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Cancel" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-    <!--==============================================================================-->
-</div>
+</div><!-- END CONTAINER-FLUID (outer-most container) -->
+<!--==============================================================================-->

@@ -134,11 +134,17 @@
                         @Html.ValidationMessageFor(model => model.CareProviderID,
                                                 "", new { @class = "text-danger" })
                     </div>
-                    <!----------------------- BOOK PET CARE APPOINTMENT!  -------------->
+                    <!----------------------- EDIT PET CARE APPOINTMENT!  -------------->
                     <div class="form-group" style="padding-top: 18px;">
                         <span style="float: right; padding-right: 5px;">
                             <input type="submit" value="Update this Appointment!"
-                                   class="btn our_buttons" /></span>
+                                   class="btn our_buttons" />
+                        </span>
+                        <span style="float: right; margin-right: 5px;" 
+                              class="btn our_buttons">
+                            @Html.ActionLink("Cancel", "MyAppointments",
+                                            new { style = "color: #f2e6d9;" })
+                        </span>
                     </div>
                     <!------------------------------------------------------------------>
                 </div>
@@ -152,8 +158,10 @@
                 <div class="form-group" style="float: right;">
                     @Html.LabelFor(model => model.PetOwnerID, 
                                         htmlAttributes: new { @class = "control-label" })
+
                         @Html.EditorFor(model => model.PetOwnerID, 
                                 new { htmlAttributes = new { @class = "form-control" } })
+
                         @Html.ValidationMessageFor(model => model.PetOwnerID, "", 
                                                         new { @class = "text-danger" })
                 </div>

@@ -1,4 +1,4 @@
-﻿@model Petopia.Models.ViewModels.CareTransactionViewModel
+﻿@model Petopia.Models.CareTransaction
 
 @{
     ViewBag.Title = "Petopia - Book a Pet Care appointment";
@@ -22,6 +22,7 @@
             <!------- change to the user's list (of pet care appointments)! ------->
             <span style="float: right; padding-right: 5px;">
                 @Html.ActionLink("See all of my Pet Care appointments!", "Index")
+                @*@Html.HiddenFor(model => Model.PetOwnerID)*@
             </span>
             <!------------------------------------------>
 
@@ -158,7 +159,6 @@
             <!---->
             <!---->
                 <br />            
-
                 <!---------------------------------------------------------------------->
                 <div class="form-group" style="float: right;">
                     @Html.LabelFor(model => model.PetOwnerID, 

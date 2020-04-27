@@ -89,23 +89,23 @@
 
         </div><!-- END THIRD\BOTTOM ROW -->
         <!---->
-        <!---------------------------------------------------------------------->
+        <!------------------------------------------------------------------------------>
 
         <!-- original formatted stuff pulled from db-->
         <div class="button_box_03" style="text-align: center;">
             <div>
                 @Html.ActionLink("My Owner's Profile", "Index",
-                                                new { controller = "ProfilePage" },
-                                                new { @class = "our_other_buttons" })
+                        new { controller = "ProfilePage" },
+                        new { @class = "our_other_buttons", style="color: #f2e6d9;" })
             </div>
             <div>
                 @Html.ActionLink("This Pet's Profile", "PetProfile", 
-                                                new { id = Model.PetID },
-                                                new { @class = "our_other_buttons" })
+                        new { id = Model.PetID },
+                        new { @class = "our_other_buttons", style="color: #f2e6d9;" })
             </div>
             <div>
                 @Html.ActionLink("Edit this Pet", "EditPet", new { id = Model.PetID },
-                                            new { @class = "our_other_buttons" })
+                        new { @class = "our_other_buttons", style="color: #f2e6d9;" })
             </div>
         </div><!-- END BUTTON BOX -->
         <!------------------------------------------------------------------------------>

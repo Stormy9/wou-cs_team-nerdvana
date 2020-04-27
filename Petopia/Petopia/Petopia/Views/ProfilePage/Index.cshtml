@@ -80,7 +80,7 @@
                         @Html.ActionLink("Edit Badges", "Edit",
                                 new { controller = "Badges" },
                                 new { @class = "btn our_buttons", 
-                                        style="margin-left: 9px;" } )
+                                        style="margin-left: 9px; color: #f2e6d9;" } )
                     }
                     else
                     {
@@ -89,7 +89,8 @@
                             Press
                             @Html.ActionLink("Here", "Create",
                                     new { controller = "Badges" },
-                                    new { @class = "btn our_buttons" } )
+                                    new { @class = "btn our_buttons", 
+                                        style="margin-left: 9px; color: #f2e6d9;" } )
                             to set them up.
                         </p>
                     }
@@ -152,12 +153,12 @@
                 @Html.ActionLink("Book a Pet Care appointment!", "BookAppointment",
                                 new { controller = "CareTransactions" },
                                 new { id = Model.UserID, @class = "btn our_buttons", 
-                                        style="margin-bottom:5px;" })
+                                        style="margin-bottom:5px; color: #f2e6d9;" })
                 <br />
                 @Html.ActionLink("See all my Pet Care appointments", "MyAppointments",
                                 new { controller = "CareTransactions" },
                                 new { id = Model.UserID, @class = "btn our_buttons", 
-                                        style="margin-bottom:5px;" })
+                                        style="margin-bottom:5px; color: #f2e6d9;" })
 
                 <!---------------------------------------------->
 
@@ -452,20 +453,20 @@
                                 
                                 <div class="button_box_pet_card">
                                     @Html.ActionLink("This Pet's Care Appts", "MyPetsAppointments",
-                                            new { controller = "CareTransactions", id = item.PetID },
-                                            new { @class = "our_pet_card_buttons " })
+                                        new { controller = "CareTransactions", id = item.PetID },
+                                        new { @class = "our_pet_card_buttons", style = "color: #f2e6d9;" })
 
                                     @Html.ActionLink("My Pet Details", "MyPetDetails",
-                                            new { controller = "Pets", id = item.PetID },
-                                            new { @class = "our_pet_card_buttons" })
+                                        new { controller = "Pets", id = item.PetID },
+                                        new { @class = "our_pet_card_buttons", style="color: #f2e6d9;" })
 
                                     @Html.ActionLink("Edit This Pet", "EditPet",
                                             new { controller = "Pets", id = item.PetID },
-                                            new { @class = "our_pet_card_buttons" })
+                                            new { @class = "our_pet_card_buttons", style="color: #f2e6d9;" })
 
                                     @Html.ActionLink("This Pet's Profile", "PetProfile",
                                             new { controller = "Pets", id = item.PetID },
-                                            new { @class = "our_pet_card_buttons " })
+                                            new { @class = "our_pet_card_buttons", style="color: #f2e6d9;" })
 
                                 </div>
 
@@ -480,12 +481,14 @@
                     <div>
                         @Html.ActionLink("My Account Info", "MyAccountDetails",
                                 new { controller = "PetopiaUsers" },
-                                new { id = Model.UserID, @class = "our_other_buttons" })
+                                new { id = Model.UserID, @class = "our_other_buttons", 
+                                                         style="color: #f2e6d9;" })
                     </div>
                     <div>
                         @Html.ActionLink("Edit My Profile", "EditMyStuff",
                                         new { controller = "ProfilePage" },
-                                        new { @class = "our_other_buttons" })
+                                        new { @class = "our_other_buttons", 
+                                                style="color: #f2e6d9;" })
                     </div>
                     <div>
                         <!-- we want carers to be able to have pets too   =]   -->
@@ -493,7 +496,8 @@
                         {
                             @Html.ActionLink("Add a pet!", "AddPet",
                                         new { controller = "Pets" },
-                                        new { @class = "our_other_buttons" })
+                                        new { @class = "our_other_buttons", 
+                                              style="color: #f2e6d9;" })
                         }
                         <!-- but it's not working right now   =]   -->
                     </div>

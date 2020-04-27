@@ -136,7 +136,7 @@ namespace Petopia.Controllers
 
         //===============================================================================
         //===============================================================================
-        // GET: ProfilePage/EditProfile
+        // GET: ProfilePage/EditMyStuff
         public ActionResult EditMyStuff()
         {
             var identityID = User.Identity.GetUserId();

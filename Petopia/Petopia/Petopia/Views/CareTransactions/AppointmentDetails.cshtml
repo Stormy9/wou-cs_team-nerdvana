@@ -21,11 +21,15 @@
                 </span>
 
                 <span style="float: left; margin-right: 25px;">
-                    @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
+                    </span>
                     @Html.DisplayFor(model => model.PetOwnerID)
                 </span>
                 <span style="float:left; margin-right: 25px;">
-                    @Html.DisplayNameFor(model => model.CareProviderID): &nbsp;
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.CareProviderID): &nbsp;
+                    </span>
                     @Html.DisplayFor(model => model.CareProviderID)
                 </span>
 
@@ -184,22 +188,23 @@
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("Cancel this Appointment", "Delete",
-                                                new { id = Model.TransactionID })
+                               new { id = Model.TransactionID, style="color: #f2e6d9;" })
                 </span>
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("Edit this Appointment", "EditAppointment",
-                                                    new { id = Model.TransactionID })
+                               new { id = Model.TransactionID, style="color: #f2e6d9;" })
                 </span>
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("Complete this Appointment", "CompleteAppointment",
-                                                new { id = Model.TransactionID })
+                               new { id = Model.TransactionID, style="color: #f2e6d9;" })
                 </span>
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("This Pet's Profile", "PetProfile",
-                                        new { controller = "Pets", id = Model.PetID })
+                                        new { controller = "Pets", id = Model.PetID, 
+                                                style="color: #f2e6d9;" })
                 </span>
 
             </div><!-- END ROW THREE-->

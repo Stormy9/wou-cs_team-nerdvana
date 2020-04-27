@@ -523,6 +523,7 @@
     <Content Include="Views\CareTransactions\MyAppointments.cshtml" />
     <Content Include="Views\CareTransactions\MyPetsAppointments.cshtml" />
     <Content Include="Views\CareTransactions\AppointmentDetails.cshtml" />
+    <Content Include="Views\CareTransactions\DeleteConfirmation.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>
