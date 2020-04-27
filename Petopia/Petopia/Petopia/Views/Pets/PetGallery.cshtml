@@ -33,9 +33,8 @@ else
                 </td>
 
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.PetPicID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.PetPicID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.PetPicID })
+                    <a onclick="location.href='@Url.Action("PetGalleryDelete","Pets", new { id = item.PetPicID })'" href="#">Delete Picture</a>
+                    @*Html.ActionLink("Delete", "Delete", new { id = item.PetPicID })*@
                 </td>
 
             </tr>

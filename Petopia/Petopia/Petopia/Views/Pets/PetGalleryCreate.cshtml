@@ -55,8 +55,7 @@
                             </div>
                         </div>
                         <div class="our_create-edit_buttons">
-                            @Html.ActionLink("Cancel!", "PetGallery",
-                                         new { controller = "Pets" })
+                            @Html.ActionLink("Cancel", "PetGallery", new { id = Model.CurrentPetID })
                         </div>
                     </div>
                 </div>

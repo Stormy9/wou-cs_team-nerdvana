@@ -390,5 +390,15 @@ namespace Petopia.Controllers
 
             return RedirectToAction("PetGallery", new { id = model.CurrentPetID });
         }
+
+        public ActionResult PetGalleryDelete(int id)
+        {
+            PetGallery petG = db.PetGallery.Find(id);
+            int? petID = petG.PetID;
+            db.PetGallery.Remove(petG);
+            db.SaveChanges();
+
+            return RedirectToAction("PetGallery", new { id =  petID});
+        }
     }
 }
