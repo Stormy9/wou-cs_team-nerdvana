@@ -99,29 +99,32 @@
 
             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                 @Html.ActionLink("This Pet's Profile", "PetProfile",
-                                    new { controller = "Pets", id = Model.PetID })
+                                    new { controller = "Pets", id = Model.PetID }, 
+                                    new { style="color:#f2e6d9"})
             </span>
 
             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                @Html.ActionLink("All this Pet's care appointments", 
-                                    "CareTransactions", new { id = Model.PetID })
+                @Html.ActionLink("All this Pet's care appointments",
+                                    "CareTransactions", new { id = Model.PetID },
+                                    new { style="color:#f2e6d9"})
             </span>
 
         </div><!-- END ROW TWO -->
-        <!--======================================================================-->
+        <!--==========================================================================-->
         <!---->
         <!---->
-        <!--=============================== ROW THREE ============================-->
+        <!--================================= ROW THREE ==============================-->
         <div class="row our_row_three" style="margin-top: 5px;">
 
             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                 @Html.ActionLink("My Profile", "Index",
-                        new { controller = "ProfilePage", style="color: #f2e6d9;" })
+                                        new { controller = "ProfilePage" }, 
+                                        new { style="color: #f2e6d9;"} )
             </span>
 
             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                 @Html.ActionLink("All my Pet care appointments", "MyAppointments",
-                        new { id = Model.PetOwnerID, style="color: #f2e6d9;" })
+                        new { id = Model.PetOwnerID }, new { style="color: #f2e6d9;"})
             </span>
 
         </div><!-- END ROW THREE -->

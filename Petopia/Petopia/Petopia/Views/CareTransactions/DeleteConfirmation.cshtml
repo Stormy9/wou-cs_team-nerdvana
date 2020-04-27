@@ -26,11 +26,13 @@
 
             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                 @Html.ActionLink("My Profile", "Index",
-                        new { controller = "ProfilePage", style="color: #f2e6d9;" })
+                                    new { controller = "ProfilePage" }, 
+                                    new { style = "color: #f2e6d9;" } )
             </span>
 
             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                 @Html.ActionLink("All my Pet care appointments", "MyAppointments", 
+                                new { controller = "CareTransactions" },
                                 new { style="color: #f2e6d9;"})
             </span>
 
