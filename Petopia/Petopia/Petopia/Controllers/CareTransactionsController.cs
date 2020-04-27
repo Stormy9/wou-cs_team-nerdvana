@@ -60,8 +60,12 @@ namespace Petopia.Controllers
 
             // OR -- does this go in the [HttpPost] BookAppointment() ActionResult???
             // then put 'petOwnerID' into the 'PetOwnerID' field of CareTransaction.....
+            // seems like it makes more sense to go here?  
+            //      but it's not here in 'AddPet()'... ?
 
-            // based off Victoria's example! (although it's a bit hinkey somehow)
+            // based off Victoria's example ..... and this works!
+            //   'BookAppointment()' is now bound to the currently logged-in user!
+            //
             //      why isn't this working like Corrin's AddPet() though?
             ViewBag.petOwnerID = petOwnerID;
 
@@ -87,13 +91,11 @@ namespace Petopia.Controllers
           "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
           "CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
         {
-            // the model -- or ViewModel -- acts as a type
-            //CareTransactionViewModel appt = new CareTransactionViewModel();
-
             if (ModelState.IsValid)
             {
-                // set up modeled after Corrin's AddPet()   =]
-                CareTransaction appt = new CareTransaction();
+                // trying like Corrin's 'AddPet()'
+                // but this doesn't like that way.....  haha!
+                //CareTransaction appt = new CareTransaction();
 
                 var identityID = User.Identity.GetUserId();
 
@@ -104,6 +106,7 @@ namespace Petopia.Controllers
                                              .Select(po => po.PetOwnerID)
                                              .First();
 
+                // based from 'AddPet()'
                 //appt.PetOwnerID = petOwnerID;
 
                 db.CareTransactions.Add(careTransaction);   // tried w/ Add(appt) - no go
