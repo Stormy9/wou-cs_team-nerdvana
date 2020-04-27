@@ -12,6 +12,8 @@ namespace Petopia.Models.ViewModels
     {
         //===============================================================================
         //===============================================================================
+        //                                                          PetopiaUsers table
+        //===============================================================================
         // MAIN stuff from PetopiaUsers table:
         public int UserId { get; set; }
 
@@ -51,8 +53,8 @@ namespace Petopia.Models.ViewModels
         public string ResZipcode { get; set; }
 
         //===============================================================================
-        //
-        //
+        //===============================================================================
+        //                                                                  Pets table
         //===============================================================================
         // main thing from Pet table:
         [DisplayName("Pet's name:")]
@@ -94,7 +96,7 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Pet's emergency contact #:")]
         public string EmergencyContactPhone { get; set; }
 
-        //-------------------------------------------------------------------------------
+        //===============================================================================
         // we will need a Pet List to make a drop-down for a User's Pets -- 
         //   -- for the owner to choose which Pet they are booking care for
         //
@@ -109,8 +111,8 @@ namespace Petopia.Models.ViewModels
         public List<PetInfo> PetList { get; set; }
         
         //===============================================================================
-        //
-        //
+        //===============================================================================
+        //                                                              PetOwners Table
         //===============================================================================
         // the "background\private info" from PetOwner table:
         [DisplayName("How to access our Home:")]
@@ -120,19 +122,39 @@ namespace Petopia.Models.ViewModels
         public string GeneralNeeds { get; set; }
 
         //===============================================================================
+        //===============================================================================
+        //                                                          CareProvider table
+        //===============================================================================
         // the "background info" from the CareProvider table:
 
         // don't think we need any for this part of things?     well, maybe?
         [DisplayName("My Pet Care Experience:")]
         public string ExperienceDetails { get; set; }
+
         //===============================================================================
+        // we will need a List of Care Providers, to make a drop-down list of them,
+        //   for a Users to select one when they book a pet care appointmentPets -- 
         //
-        //
+        //    (borrowed\pared down from Corrin's ProfileViewModel!)
+        // Below here is for Care Provider drop-down list 
+        //      -- choose a Care Provider to care for your Pet
+        public class CareProviderInfo
+        {
+            public int CareProviderID { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+        }
+        //-------------------------------------------------------------------------------
+        public List<CareProviderInfo> CarerList { get; set; }
+
+        //===============================================================================
+        //===============================================================================
+        //                                                      CareTransactions table
         //===============================================================================
         // now the stuff from the actual CareTransactions table!
         public int TransactionID { get; set; }
 
-        //-------------------------------------------------------------------------------
+        //===============================================================================
         [Column(TypeName = "date")]     // gets rid of '12:00:00 AM' appendage
         //
         // adding this to the data definition gives us a date-picker in the view
@@ -151,6 +173,7 @@ namespace Petopia.Models.ViewModels
         public DateTime EndDate { get; set; }
 
         //-------------------------------------------------------------------------------
+        [Column(TypeName ="time")]
         [DataType(DataType.Time)]
         //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
         [DisplayName("Start Time:")]
@@ -160,12 +183,13 @@ namespace Petopia.Models.ViewModels
         // YES I TRIED CHANGING FROM 'TimeSpan' to 'DateTime'
         // I remember this shit being unconscionably difficult in 460 as well.
 
+        [Column(TypeName = "time")]
         [DataType(DataType.Time)]
         //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
         [DisplayName("End Time:")]
         public TimeSpan EndTime { get; set; }
 
-        //-------------------------------------------------------------------------------
+        //===============================================================================
         [DisplayName("What my Pet needs for this appointment:")]
         public string NeededThisVisit { get; set; }
 
@@ -182,7 +206,7 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Tip? (optional)")]
         public float? Tip { get; set; }
 
-        //-------------------------------------------------------------------------------
+        //===============================================================================
         //[Range(0,5)] <= handle in .cshtml or else it can't be nullable!
         [DisplayName("Pet Carer Rating:")]
         public int? PC_Rating { get; set; }
@@ -209,6 +233,52 @@ namespace Petopia.Models.ViewModels
 
         [DisplayName("Which Pet?")]
         public int PetID { get; set; }
+
+        //===============================================================================
+        // we will need a List of Care Providers, to make a drop-down list of them,
+        //   for a Users to select one when they book a pet care appointmentPets -- 
+        //
+        //    (borrowed\pared down from Corrin's ProfileViewModel!)
+        // Below here is for Care Provider drop-down list 
+        //      -- choose a Care Provider to care for your Pet
+        public class CareTransactionInfo
+        {
+            public int TransactionID { get; set; }
+
+            public DateTime StartDate { get; set; }
+
+            public DateTime EndDate { get; set; }
+
+            public TimeSpan StartTime { get; set; }
+
+            public TimeSpan EndTime { get; set; }
+
+            public string NeededThisVisit { get; set; }
+
+            public string CareProvided { get; set; }
+
+            public string CareReport { get; set; }
+
+            public float? Charge { get; set; }
+
+            public float? Tip { get; set; }
+
+            public int? PC_Rating { get; set; }
+
+            public string PC_Comments { get; set; }
+
+            public int? PO_Rating { get; set; }
+
+            public string PO_Comments { get; set; }
+
+            public int PetOwnerID { get; set; }
+
+            public int CareProviderID { get; set; }
+
+            public int PetID { get; set; }
+        }
+        //-------------------------------------------------------------------------------
+        public List<CareTransactionInfo> ApptList { get; set; }
 
         //===============================================================================
         //===============================================================================

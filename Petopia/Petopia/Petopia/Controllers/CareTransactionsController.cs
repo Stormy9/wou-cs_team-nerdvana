@@ -46,9 +46,28 @@ namespace Petopia.Controllers
         // GET: CareTransactions/Create
         public ActionResult BookAppointment()
         {
-            // a possibly useful example of ... something
+            // *** Trying to get the logged-in user's ID, into the 'PetOwnerID'
+            //     field, for when a user clicks to book a Pet Care appointment!
             //
-            //ViewBag.PetOwnerID = new SelectList(db.PetOwner.OrderBy(a => a.AthleteName), "AthleteID", "AthleteName");
+            var identityID = User.Identity.GetUserId();
+
+            var loggedID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
+                                          .Select(u => u.UserID).First();
+
+            int petOwnerID = db.PetOwners.Where(po => po.PetOwnerID == loggedID)
+                                         .Select(po => po.PetOwnerID)
+                                         .First();
+
+            // then put 'petOwnerID' into the 'PetOwnerID' field of CareTransaction.....
+
+
+            // *** Trying to get a list of logged-in user's pets for drop-down
+            //           when owner is booking a pet care appointment
+            //
+            var thesePets = db.Pets.Where(po => po.PetOwnerID == loggedID);
+            
+            //ViewBag.UsersPets = new SelectList(db.Pets.Where(p => p.PetOwnerID = thesePets), "PetId", "PetName");
+
 
             return View();
         }
@@ -206,14 +225,15 @@ namespace Petopia.Controllers
         // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CompleteAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport,Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
+        public ActionResult CompleteAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
+            " Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
+            "CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(careTransaction).State = EntityState.Modified;
                 db.SaveChanges();
 
-                // ADD USER ID  like: , new { id = careTransaction.TransactionID }
                 return RedirectToAction("MyAppointments");
             }
 
