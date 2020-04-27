@@ -20,7 +20,7 @@ namespace Petopia.Models
         //
         // adding this to the data definition gives me a date-picker in the view
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         // it also formats things correctly for going into our db..... yay!
         //
         public DateTime StartDate { get; set; }
@@ -31,7 +31,7 @@ namespace Petopia.Models
         //
         // to get our date-picker:
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         //
         public DateTime EndDate { get; set; }
 

@@ -22,7 +22,7 @@
             <!------- change to the user's list (of pet care appointments)! ------->
             <span style="float: right; padding-right: 5px;">
                 @Html.ActionLink("See all of my Pet Care appointments!", "Index")
-                @*@Html.HiddenFor(model => Model.PetOwnerID)*@
+                @Html.Hidden("PetOwnerID", (object)ViewBag.petOwnerID)
             </span>
             <!------------------------------------------>
 
@@ -160,14 +160,16 @@
             <!---->
                 <br />            
                 <!---------------------------------------------------------------------->
-                <div class="form-group" style="float: right;">
+                @*<div class="form-group" style="float: right;">
+                    @Html.DisplayFor(model => model.PetOwnerID)
+
                     @Html.LabelFor(model => model.PetOwnerID, 
                                         htmlAttributes: new { @class = "control-label" })
                         @Html.EditorFor(model => model.PetOwnerID, 
                                 new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.PetOwnerID, "", 
                                                         new { @class = "text-danger" })
-                </div>
+                </div>*@
                 <!---------------------------------------------------------------------->
             
 

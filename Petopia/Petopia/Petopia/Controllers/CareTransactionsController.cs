@@ -58,9 +58,15 @@ namespace Petopia.Controllers
                                          .Select(po => po.PetOwnerID)
                                          .First();
 
+            // OR -- does this go in the [HttpPost] BookAppointment() ActionResult???
             // then put 'petOwnerID' into the 'PetOwnerID' field of CareTransaction.....
 
+            // based off Victoria's example! (although it's a bit hinkey somehow)
+            //      why isn't this working like Corrin's AddPet() though?
+            ViewBag.petOwnerID = petOwnerID;
 
+            //
+            //---------------------------------------------------------------------------
             // *** Trying to get a list of logged-in user's pets for drop-down
             //           when owner is booking a pet care appointment
             //
@@ -86,15 +92,21 @@ namespace Petopia.Controllers
 
             if (ModelState.IsValid)
             {
-                //var identityID = User.Identity.GetUserId();
+                // set up modeled after Corrin's AddPet()   =]
+                CareTransaction appt = new CareTransaction();
 
-                //var loggedID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
-                //                              .Select(u => u.UserID).First();
+                var identityID = User.Identity.GetUserId();
 
-                // gotta have a little more in here -- understand examples better!
-                //appt.PetOwnerID = careTransaction.PetOwnerID;
+                var loggedID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
+                                              .Select(u => u.UserID).First();
 
-                db.CareTransactions.Add(careTransaction);
+                int petOwnerID = db.PetOwners.Where(po => po.UserID == loggedID)
+                                             .Select(po => po.PetOwnerID)
+                                             .First();
+
+                //appt.PetOwnerID = petOwnerID;
+
+                db.CareTransactions.Add(careTransaction);   // tried w/ Add(appt) - no go
                 db.SaveChanges();
 
                 return RedirectToAction("AppointmentConfirmation", 
@@ -136,7 +148,7 @@ namespace Petopia.Controllers
                 db.Entry(careTransaction).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("AppointmentConfirmation", 
+                return RedirectToAction("EditConfirmation", 
                                         new { id = careTransaction.TransactionID });
             }
 
@@ -203,6 +215,29 @@ namespace Petopia.Controllers
         }
 
         //===============================================================================
+        // GET: CareTransaction/EditConfirmation/5
+        public ActionResult EditConfirmation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            CareTransaction careTransaction = db.CareTransactions.Find(id);
+            if (careTransaction == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(careTransaction);
+        }
+        //===============================================================================
+        // GET: CareTransactions/DeleteConfirmation
+        public ActionResult DeleteConfirmation()
+        {
+            return View();
+        }
+        //===============================================================================
         // GET: CareTransactions/CompleteAppointment/5
         public ActionResult CompleteAppointment(int? id)
         {
@@ -257,11 +292,9 @@ namespace Petopia.Controllers
             return View(userAppts.ToList());
 
 
-            // original!  (from scaffolding)
-            //return View(db.CareTransactions.ToList());
-
             // OBVIOUSLY.....
             // make this so that it only returns the logged-in user's stuff!!!
+            // it seems to be doing this now, yay!
         }
         //===============================================================================
         // GET: CareTransactions/MyPetsAppointments/5
@@ -278,12 +311,6 @@ namespace Petopia.Controllers
 
             // OBVIOUSLY.....
             // make this so that it only returns the logged-in user's PET'S stuff!!!
-        }
-        //===============================================================================
-        // GET: CareTransactions/DeleteConfirmation
-        public ActionResult DeleteConfirmation()
-        {
-            return View();
         }
         //===============================================================================
     }

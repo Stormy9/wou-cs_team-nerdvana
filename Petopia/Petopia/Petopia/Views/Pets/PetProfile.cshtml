@@ -61,33 +61,45 @@
 
                 <!-- pet profile buttons -->
                 <div class="button_box_03" style="text-align: center;">
+                    <!-- css is not reaching these... not all of it anyway -- some parts
+                         of it is, but not others -- super f'ing annoying... it works if
+                         it's hard-coded here, but that should *NOT* have to be! 
 
+                         ALSO: it works for the user profiles, but not here... wtf?? 
+                         WELL... it *was*, then it stopped... seriously, WTF?!        
+                         this is a serious annoyance to not be able to set styles 
+                         FROM THE FUCKING STYLE SHEETS!!  not all of them anyway!!! -->
                     <div>
                         @Html.ActionLink("My Owner's Profile", "Index",
-                           new { controller = "ProfilePage" },
-                           new { @class = "our_other_buttons", style="color: #f2e6d9;" })
+                               new { controller = "ProfilePage" },
+                               new { @class = "our_other_buttons", 
+                                     style="color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <br />
                     <div>
                         @Html.ActionLink("This Pet's Details", "MyPetDetails",
-                           new { controller = "Pets", id = Model.PetID },
-                           new { @class = "our_other_buttons", style="color: #f2e6d9;" })
+                               new { controller = "Pets", id = Model.PetID },
+                               new { @class = "our_other_buttons", 
+                                     style="color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <br />
                     <div>
                         @Html.ActionLink("Edit this Pet", "EditPet", 
-                           new { controller = "Pets", id = Model.PetID },
-                           new { @class = "our_other_buttons", style="color: #f2e6d9;" })
+                               new { controller = "Pets", id = Model.PetID },
+                               new { @class = "our_other_buttons", 
+                                     style="color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <div>
                         @Html.ActionLink("My Care Appointments", "MyPetsAppointments",
-                           new { controller = "CareTransactions", id = Model.PetID },
-                           new { @class = "our_other_buttons", style="color: #f2e6d9;" })
+                               new { controller = "CareTransactions", id = Model.PetID },
+                               new { @class = "our_other_buttons", 
+                                     style="color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <br />
                     <div>
                         @Html.ActionLink("Edit Gallery", "PetGallery", new { id = Model.PetID },
-                                                    new { @class = "our_other_buttons" })
+                                    new { @class = "our_other_buttons", 
+                                        style="color: #f2e6d9; font-weight: normal;" })
                     </div>
 
                 </div><!-- END BUTTON BOX -->
