@@ -351,7 +351,6 @@ namespace Petopia.Controllers
             PetGalleryViewModel PetG = new PetGalleryViewModel();
             PetG.CurrentPetID = db.Pets.Where(x => x.PetID == id).Select(x => x.PetID).First();
 
-
             return View(PetG);
         }
 
