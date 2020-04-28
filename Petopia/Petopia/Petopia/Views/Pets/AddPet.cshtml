@@ -76,8 +76,8 @@
                                                         new { @class = "control-label" })
 
                         @Html.DropDownList("gender",
-                        (IEnumerable<SelectListItem>)ViewBag.GenderList, "gender?", 
-                                new { @class = "form-control", required = "required" })
+                        (IEnumerable<SelectListItem>)ViewBag.GenderList, "gender?",
+                           new { @class = "form-control", required = "required" })
 
                         @Html.ValidationMessageFor(model => model.Gender, "",
                                                         new { @class = "text-danger" })

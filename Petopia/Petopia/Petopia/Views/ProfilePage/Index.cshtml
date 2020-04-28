@@ -49,8 +49,8 @@
                 {
                     <div class="profile_pic_box_box">
                         <div class="profile_pic_box">
-                            <img src=@Url.Action("Show", "Image",
-                                new { id = Model.UserID, @class = "profile_img" }) />
+                            <img src=@Url.Action("Show", "Image", new { id = Model.UserID }) 
+                                 class="profile_img" />
                         </div>
                     </div>
                 }
@@ -233,6 +233,7 @@
                     {
                         <div class="general_pet_care_needs_box">
                             <h4> My General Pet Care Needs: </h4>
+                            @Html.DisplayFor(model => model.GeneralNeeds)
                         </div>
                     }
 
@@ -423,8 +424,7 @@
                                 <!-- link to pet's profile -->
                                 @if (item.PetPhoto != null)
                                 {
-                                    <img src=@Url.Action("ShowPet", "Image",
-                                                            new { id = item.PetID}) />
+                                    <img src=@Url.Action("ShowPet", "Image", new { id = item.PetID }) class="pet_profile_preview_img"/>
                                 }
                                 else
                                 {

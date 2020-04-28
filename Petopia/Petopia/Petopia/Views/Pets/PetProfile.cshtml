@@ -35,8 +35,8 @@
                 {
                     <div class="profile_pic_box_box">
                         <div class="profile_pic_box">
-                            <img src=@Url.Action("ShowPet", "Image",
-                                new { id = Model.PetID, @class = "profile_img" }) />
+                            <img src=@Url.Action("ShowPet", "Image", new { id = Model.PetID }) 
+                                 class="profile_img"/>
                         </div>
                     </div>
                 }
@@ -121,7 +121,7 @@
                         I am a @Html.DisplayFor(model => model.Breed)
                     </h5>
                     <h5>
-                        I was born on @Html.DisplayFor(model => model.Birthdate)
+                        I was born on @ViewBag.PetsBday
                     </h5>
                     <h5>
                         I am a @Html.DisplayFor(model => model.Gender)
@@ -133,9 +133,9 @@
                     <h3>My Person is: </h3>
                     <h4>
                         <i>
-                            (owner's name)
                             @*@Html.DisplayFor(model => model.FirstName)*@
                             @*@Html.DisplayFor(model => model.PetopiaUser.LastName)*@
+                            @ViewBag.PetsOwnersFirstName&nbsp;@ViewBag.PetOwnersLastName
                         </i>
                     </h4>
                 </div>
@@ -143,7 +143,7 @@
                 <!-- Pet's general location -->
                 <div class="general_location_box">
                     <div class="general_location">
-                        our general location
+                        our general location: @ViewBag.PetsGeneralLocation
                     </div>
                 </div>
 
