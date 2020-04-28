@@ -39,7 +39,7 @@ namespace Petopia.Models
         [Column(TypeName = "time")]
         [DisplayName("Start Time:")]
         [DataType(DataType.Time)]
-        //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
         public TimeSpan StartTime { get; set; }
 
         //-------------------------------------------------------------------------------
@@ -50,15 +50,15 @@ namespace Petopia.Models
         [Column(TypeName = "time")]
         [DisplayName("End Time:")]
         [DataType(DataType.Time)]
-        //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
         public TimeSpan EndTime { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Care needed this visit:")]
+        [DisplayName("Pet Care instructions this visit:")]
         public string NeededThisVisit { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("What I did for your Pet this appointment:")]
+        [DisplayName("Pet Care recap:")]
         public string CareProvided { get; set; }
 
         //-------------------------------------------------------------------------------

@@ -97,7 +97,7 @@
         <!---->
         <!---->
         <!--=============================== ROW TWO ==============================-->
-        <div class="row our_row_three" style="margin-top: 36px;">
+        <div class="row our_row_three">
 
             @using (Html.BeginForm())
             {
@@ -112,14 +112,15 @@
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                         
                     @Html.ActionLink("All my Pet Care appointments", "MyAppointments",
-                                        new { controller = "CareTransactions" })
+                                        new { controller = "CareTransactions" }, 
+                                        new { style="color: #f2e6d9;"})
                 </span>
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("All this Pet's care appointments",
                         "MyPetsAppointments", new
                              {controller = "CareTransactions",
-                                                    id = Model.PetID})
+                              id = Model.PetID}, new { style="color: #f2e6d9;"})
                 </span>
             }
             <!--==================================================================-->

@@ -2,7 +2,13 @@
 
 @{
     ViewBag.Title = "Appointments for my Pets";
-}
+    //this works!!!!!
+    var today = DateTime.Now.ToString("yyyy-MM-dd");
+} 
+
+<!-- if we wanna split the table by 'old' and 'upcoming' appointments, 
+     we do this:  (at)if (ViewBag.EndDate > (at)today ) {}                
+     around each table                                              -->
 
     <div class="container-fluid" style="margin-bottom: 45px;"><!-- outer container -->
 
@@ -44,13 +50,14 @@
                             @Html.DisplayFor(modelItem => item.CareProviderID)
                     </span>
 
-                    <span style="float: left; margin-right: 25px;">
+                    <!-- this was here to test pulling in correct PetOwnerID! -->
+                    @*<span style="float: left; margin-right: 25px;">
                         @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
                         @Html.DisplayFor(modelItem => item.PetOwnerID)
-                    </span>
+                    </span>*@
 
                     <span style="margin-left: 45px; font-weight: bold;">
-                        here until i get id's hooked up right!   [=]
+                        here until we can pull in pet name + pet carer name!   [=
                     </span>
 
                 </div><!-- END ROW ZERO -->

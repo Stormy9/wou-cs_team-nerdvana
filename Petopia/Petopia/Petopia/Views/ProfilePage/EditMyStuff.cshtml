@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit my Petopia Profile + Account";
 }
 
-<div class="container-fluid">
+<div class="container-fluid" style="padding-bottom: 35px;">
     <!--========================== WHOLE DAMNED FORM IN HERE =========================-->
     @using (Html.BeginForm("EditMyStuff", "ProfilePage", FormMethod.Post,
         new { @class = "form", role = "form", enctype = "multipart/form-data" }))
@@ -12,6 +12,22 @@
         @Html.AntiForgeryToken()
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <!--============================= BUTTONS! ===================================-->
+        <span style="float:right;">
+                
+            <input type="submit" value="Update my Stuff!"
+                    class="btn our_buttons" />
+
+            <!-- why does this have to be in a span?? these are so f'ing weird..... -->
+            <span class="btn our_buttons">
+                @Html.ActionLink("Cancel!", "Index",
+                        new { @class = "btn our_buttons" },
+                              new { style = "color: #f2e6d9; font-weight: normal;" })
+            </span>
+
+        </span>
+        <!--==========================================================================-->
 
         <h2>@ViewBag.Title:</h2>
         <hr />
@@ -269,31 +285,6 @@
         </div><!-- END 1st ROW! -->
         <!---->
         <!---->
-        <!--============================== BUTTONS ===================================-->
-        <div class="row" style="padding-bottom: 18px;">
-            <hr /><br />
-
-            <div class="col-sm-offset-8 col-md-offset-8 col-sm-2 col-md-2">
-                <div class="button_box">
-                    <div class="form-group">
-                        <div>
-                            <input type="submit" value="Update my Stuff!" 
-                                   class="btn our_buttons" />
-                        </div>
-                    </div>
-                </div><!-- end button_box div -->
-            </div><!-- END FIRST COLUM -->
-
-            <div class=" col-sm-2 col-md-2">
-                <div class="button_box" >
-                    <div class="our_create-edit_buttons" >
-                        @Html.ActionLink("Cancel!", "Index",
-                                new { @class = "our_buttons", 
-                                      style = "color: #f2e6d9; font-weight: normal;" })
-                    </div>
-                </div><!-- end button_box div -->
-            </div><!-- END FIRST COLUMN -->
-        </div><!-- END BOTTOM ROW (for buttons only!) -->
         <!--==========================================================================-->
     }
     <!--==============================================================================-->

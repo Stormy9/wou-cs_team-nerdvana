@@ -76,8 +76,8 @@
                                                         new { @class = "control-label" })
 
                         @Html.DropDownList("gender",
-                        (IEnumerable<SelectListItem>)ViewBag.GenderList, "gender?", 
-                                new { @class = "form-control", required = "required" })
+                        (IEnumerable<SelectListItem>)ViewBag.GenderList, "gender?",
+                           new { @class = "form-control", required = "required" })
 
                         @Html.ValidationMessageFor(model => model.Gender, "",
                                                         new { @class = "text-danger" })
@@ -103,7 +103,7 @@
                         @Html.TextAreaFor(model => model.PetBio,
                             new { htmlAttributes =
                             new { @class = "form-control our_text_area" },
-                            cols = 90, rows = 5, id = "text12", name = "text12",
+                            cols = 180, rows = 5, id = "text12", name = "text12",
                             style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
 
                         <div>
@@ -188,7 +188,7 @@
                         @Html.TextAreaFor(model => model.PetAccess,
                             new { htmlAttributes =
                             new { @class = "form-control our_text_area" },
-                            cols = 90, rows = 3, id = "text07", name = "text07",
+                            cols = 180, rows = 3, id = "text07", name = "text07",
                             style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
 
                         <div>
@@ -215,7 +215,7 @@
                         @Html.TextAreaFor(model => model.NeedsDetails,
                             new { htmlAttributes =
                             new { @class = "form-control our_text_area" },
-                            cols = 90, rows = 5, id = "text06", name = "text06",
+                            cols = 180, rows = 5, id = "text06", name = "text06",
                             style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
 
                         <div>
@@ -235,7 +235,7 @@
                         @Html.TextAreaFor(model => model.HealthConcerns,
                             new { htmlAttributes =
                             new { @class = "form-control our_text_area" },
-                            cols = 90, rows = 5, id = "text04", name = "text04",
+                            cols = 180, rows = 5, id = "text04", name = "text04",
                             style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
 
                         <div>
@@ -255,7 +255,7 @@
                         @Html.TextAreaFor(model => model.BehaviorConcerns,
                             new { htmlAttributes =
                             new { @class = "form-control our_text_area" },
-                            cols = 90, rows = 5, id = "text05", name = "text05",
+                            cols = 180, rows = 5, id = "text05", name = "text05",
                             style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
 
                         <div>

@@ -18,18 +18,21 @@ namespace Petopia.Models.ViewModels
         public int UserId { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Owner's first name:")]
+        [DisplayName("First name:")]                                // PetopiaUsers
         public string FirstName { get; set; }
 
-        [DisplayName("Owner's last name:")]
+        [DisplayName("Last name:")]
         public string LastName { get; set; }
 
         //-------------------------------------------------------------------------------
+        [DisplayName("Pet Owner?")]                                 // PetopiaUsers
         public bool IsOwner { get; set; }
+
+        [DisplayName("Pet Carer?")]
         public bool IsProvider { get; set; }
 
         //===============================================================================
-        // Background\Private Account Info from PetopiaUsers table:
+        // Background\Private Account Info from                     PetopiaUsers table
         [DisplayName("Main Phone #:")]
         public string MainPhone { get; set; }
 
@@ -37,7 +40,7 @@ namespace Petopia.Models.ViewModels
         public string AltPhone { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Residential Street Address:")]
+        [DisplayName("Residential Street Address:")]                    // PetopiaUsers
         public string ResAddress01 { get; set; }
 
         [DisplayName("Address, 2nd line:")]
@@ -56,12 +59,14 @@ namespace Petopia.Models.ViewModels
         //===============================================================================
         //                                                                  Pets table
         //===============================================================================
-        // main thing from Pet table:
+        // main things from Pet table:
+        public int PetID { get; set; }
+
         [DisplayName("Pet's name:")]
         public string PetName { get; set; }
         
         //===============================================================================
-        // the "background\private details" from Pet table:
+        // the "background\private details" from                            Pet table:
         [DisplayName("Pet's species:")]
         public string Species { get; set; }
 
@@ -101,10 +106,13 @@ namespace Petopia.Models.ViewModels
         //   -- for the owner to choose which Pet they are booking care for
         //
         //    (borrowed\pared down from Corrin's ProfileViewModel!)
-        // Below here is for Pet drop-down list -- choose Pet to get care for 
+        // Below here is for Pet drop-down list 
+        //        -- choose which of your Pets to get care for (since you can have many!)
+        //    ALSO -- to display Pet Carer's names in Appointment Listing Views
         public class PetInfo
         {
             public int PetID { get; set; }
+
             public string PetName { get; set; }
         }
         //-------------------------------------------------------------------------------
@@ -115,17 +123,25 @@ namespace Petopia.Models.ViewModels
         //                                                              PetOwners Table
         //===============================================================================
         // the "background\private info" from PetOwner table:
+        // 
+        public int PetOwnerID { get; set; }
+
         [DisplayName("How to access our Home:")]
         public string HomeAccess { get; set; }
 
         [DisplayName("My General Pet Care Needs:")]
         public string GeneralNeeds { get; set; }
 
+        // foreign key???
+        public int PO_UserID { get; set; }
+
         //===============================================================================
         //===============================================================================
         //                                                          CareProvider table
         //===============================================================================
         // the "background info" from the CareProvider table:
+
+        public int CareProviderID { get; set; }
 
         // don't think we need any for this part of things?     well, maybe?
         [DisplayName("My Pet Care Experience:")]
@@ -138,11 +154,10 @@ namespace Petopia.Models.ViewModels
         //    (borrowed\pared down from Corrin's ProfileViewModel!)
         // Below here is for Care Provider drop-down list 
         //      -- choose a Care Provider to care for your Pet
+        //   ALSO -- to display Pet Carer's names in Appointment Listing Views
         public class CareProviderInfo
         {
             public int CareProviderID { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
         }
         //-------------------------------------------------------------------------------
         public List<CareProviderInfo> CarerList { get; set; }
@@ -173,7 +188,7 @@ namespace Petopia.Models.ViewModels
         public DateTime EndDate { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Column(TypeName ="time")]
+        [Column(TypeName ="time")]                                    // CareTransactions
         [DataType(DataType.Time)]
         //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
         [DisplayName("Start Time:")]
@@ -190,16 +205,18 @@ namespace Petopia.Models.ViewModels
         public TimeSpan EndTime { get; set; }
 
         //===============================================================================
-        [DisplayName("What my Pet needs for this appointment:")]
+        //                                                            // CareTransactions
+        [DisplayName("Pet Care instructions this visit:")]
         public string NeededThisVisit { get; set; }
 
-        [DisplayName("What I did for your Pet this appointment:")]
+        [DisplayName("Pet Care recap:")]
         public string CareProvided { get; set; }
 
         [DisplayName("Full Pet Care Report -- Details:")]
         public string CareReport { get; set; }
 
         //-------------------------------------------------------------------------------
+        //                                                            // CareTransactions
         [DisplayName("Pet Carer's fee for this visit:")]
         public float? Charge { get; set; }
 
@@ -223,16 +240,16 @@ namespace Petopia.Models.ViewModels
         public string PO_Comments { get; set; }
 
         //===============================================================================
-        // FOREIGN KEYS FROM CareTransactions TABLE
+        // FOREIGN KEYS FROM CareTransactions TABLE                   // CareTransactions
         
         [DisplayName("Pet's Owner:")]
-        public int PetOwnerID { get; set; }
+        public int CT_PetOwnerID { get; set; }
 
         [DisplayName("Which Pet Carer?")]
-        public int CareProviderID { get; set; }
+        public int CT_CareProviderID { get; set; }
 
         [DisplayName("Which Pet?")]
-        public int PetID { get; set; }
+        public int CT_PetID { get; set; }
 
         //===============================================================================
         // we will need a List of Care Providers, to make a drop-down list of them,

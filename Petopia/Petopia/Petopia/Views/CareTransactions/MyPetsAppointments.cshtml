@@ -2,20 +2,28 @@
 
 @{
     ViewBag.Title = "My Pet's Care Appointments";
+    //this works!!!!!
+    var today = DateTime.Now.ToString("yyyy-MM-dd");
 }
+
+<!-- if we wanna split the table by 'old' and 'upcoming' appointments, 
+     we do this:  (at)if (ViewBag.EndDate > (at)today ) {}                
+     around each table                                              -->
 
     <div class="container-fluid" style="margin-bottom: 45px;"><!-- outer container -->
 
         <span style="float:right; margin-right:5px; margin-top:15px;" 
               class="btn our_buttons">
             @Html.ActionLink("Book a new Pet Care Appointment!", "BookAppointment", 
+                                new { Controller = "CareTransactions"},
                                 new { style = "color: #f2e6d9;"} )
         </span>
         
         <span style="float:right; margin-right:5px; margin-top:15px;" 
               class="btn our_buttons">
-            @Html.ActionLink("Back to my Profile", "Index", 
-                        new { Controller = "ProfilePage", style = "color: #f2e6d9;" } )
+            @Html.ActionLink("Back to my Profile", "Index",
+                                    new { Controller = "ProfilePage" }, 
+                                    new {style = "color: #f2e6d9;" } )
         </span>
 
         <h2>@ViewBag.Title:</h2>
@@ -36,7 +44,7 @@
                         </span>
 
                     <span style="margin-left: 45px; font-weight: bold;">
-                        here until i get id's hooked up right!   [=]
+                        here until i get id's hooked up right!   [=
                     </span>
 
                     <span style="float:left; margin-right: 25px;">
@@ -205,23 +213,24 @@
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("Cancel this Appointment", "Delete",
-                            new { id = item.TransactionID, style = "color: #f2e6d9;" })
+                            new { id = item.TransactionID }, new {style = "color: #f2e6d9;" })
                 </span>
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("Edit this Appointment", "EditAppointment",
-                            new { id = item.TransactionID, style = "color: #f2e6d9;" })
+                            new { id = item.TransactionID }, new {style = "color: #f2e6d9;" })
                 </span>
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("Complete this Appointment", "CompleteAppointment",
-                            new { id = item.TransactionID, style = "color: #f2e6d9;" })
+                            new { id = item.TransactionID }, 
+                            new {style = "color: #f2e6d9;" })
                 </span>
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("This Pet's Profile", "PetProfile",
-                            new { controller = "Pets", id = item.PetID, 
-                                                       style = "color: #f2e6d9;" } )
+                            new { controller = "Pets", id = item.PetID },
+                                                    new { style = "color: #f2e6d9;" } )
                 </span>
 
             </div><!-- END ROW THREE-->
