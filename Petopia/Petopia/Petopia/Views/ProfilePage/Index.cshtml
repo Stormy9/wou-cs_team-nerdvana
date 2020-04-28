@@ -485,14 +485,15 @@
                     <div>
                         @Html.ActionLink("My Account Info", "MyAccountDetails",
                                 new { controller = "PetopiaUsers" },
-                                new { id = Model.UserID, @class = "our_other_buttons", 
-                                        style="color: #f2e6d9; font-weight: normal;" })
+                                new { id = Model.UserID,
+                                         @class = "our_other_buttons",
+                                        style = "color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <div>
                         @Html.ActionLink("Edit My Profile", "EditMyStuff",
                                         new { controller = "ProfilePage" },
-                                        new { @class = "our_other_buttons", 
-                                        style="color: #f2e6d9; font-weight: normal;" })
+                                        new { @class = "our_other_buttons",
+                                        style = "color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <div>
                         <!-- we want carers to be able to have pets too   =]   -->
@@ -500,8 +501,8 @@
                         {
                             @Html.ActionLink("Add a pet!", "AddPet",
                                         new { controller = "Pets" },
-                                        new { @class = "our_other_buttons", 
-                                        style="color: #f2e6d9; font-weight: normal;" })
+                                        new { @class = "our_other_buttons",
+                                        style = "color: #f2e6d9; font-weight: normal;" })
                         }
                         <!-- but it's not working right now   =]   -->
                     </div>

@@ -18,13 +18,7 @@
                     @Html.DisplayNameFor(model => model.PetID) &nbsp;
                 </span>
                 @Html.DisplayFor(model => model.PetID)
-            </span>
-
-            <span style="float: left; margin-right: 25px;">
-                <span class="our_appt_label">
-                    @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
-                </span>
-                @Html.DisplayFor(model => model.PetOwnerID)
+                @ViewBag.PetName
             </span>
 
             <span style="float:left; margin-right: 25px;">
@@ -32,6 +26,14 @@
                     @Html.DisplayNameFor(model => model.CareProviderID) &nbsp;
                 </span>
                 @Html.DisplayFor(model => model.CareProviderID)
+                @ViewBag.CarerFirstName @ViewBag.CarerLastName
+            </span>
+
+            <span style="float: left; margin-right: 25px;">
+                <span class="our_appt_label">
+                    @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
+                </span>
+                @Html.DisplayFor(model => model.PetOwnerID)
             </span>
 
         </div><!-- END ROW ZERO -->
@@ -46,8 +48,9 @@
                     <span class="our_appt_label">
                         @Html.DisplayNameFor(model => model.StartDate)<br />
                     </span>
-                    @Html.DisplayFor(model => model.StartDate)
-                </div>
+                    @*@Html.DisplayFor(model => model.StartDate)*@
+                    @ViewBag.ApptStartDate
+                </div><!-- not one thing from S.O. will format the date! -->
 
                 <div style="margin-top: 13px;">
                     <span class="our_appt_label">
@@ -66,7 +69,8 @@
                     <span class="our_appt_label">
                         @Html.DisplayNameFor(model => model.EndDate)<br />
                     </span>
-                    @Html.DisplayFor(model => model.EndDate)
+                    @*@Html.DisplayFor(model => model.EndDate)*@
+                    @ViewBag.ApptEndDate
                 </div>
 
                 <div style="margin-top: 13px;">

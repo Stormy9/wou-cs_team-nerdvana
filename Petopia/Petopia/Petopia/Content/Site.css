@@ -252,6 +252,13 @@ textarea {
     font-size: 18px;
     text-align: center;
 }
+    .email_button:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .email_button:active {
+        transform: translateY(3px);
+    }
 /*=============================== REGISTER PAGE =======================================*/
 .register_hero {
     background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
@@ -344,6 +351,13 @@ textarea {
     background-color: #392613;
     color: #f2e6d9;
 }
+    .pick_buttons:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .pick_buttons:active {
+        transform: translateY(3px);
+    }
 /*========================== USER ACCOUNT/PROFILE FORM PAGES ==========================*/
 /*----- Owners/CreateOwner... Providers/CreateProvider... Pets/CreatePet -------------*/
 /*.profile_info_form_part {
@@ -446,6 +460,13 @@ hr {
     .our_buttons a:link {
         color: #f2e6d9;
         font-weight: normal;
+    }
+    .our_buttons:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .our_buttons:active {
+        transform: translateY(3px);
     }
 /*--------------------------- MOVE IN THE OTHER PSEUDO-BUTTONS ------------------------*/
 /*----------- ABOUT PAGE --------------------------------------------------------------*/

@@ -98,6 +98,13 @@
     .our_profile_buttons a:link {
         font-weight: normal;
     }
+    .our_profile_buttons:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .our_profile_buttons:active {
+        transform: translateY(3px);
+    }
 /*----------------------------------------*/
 .our_create-edit_buttons {
     border: 1px solid #4d3319;
@@ -114,6 +121,13 @@
     .our_create-edit_buttons a:link {
         color: #f2e6d9;
         font-weight: normal;
+    }
+    .our_create-edit_buttons:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .our_create-edit_buttons:active {
+        transform: translateY(3px);
     }
 /*----------------------------------------*/
 .button_box_pet_card {
@@ -138,6 +152,13 @@
         color: #f2e6d9;
         font-weight: normal;
     }
+    .our_pet_card_buttons:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .our_pet_card_buttons:active {
+        transform: translateY(3px);
+    }
 /*----------------------------------------*/
 .button_box_03 {
     padding: 3px;
@@ -160,6 +181,13 @@
     .our_other_buttons a:link {
         color: #f2e6d9;
         font-weight: normal;
+    }
+    .our_other_buttons:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .our_other_buttons:active {
+        transform: translateY(3px);
     }
 /*========================= USER NAME ===============================*/
 .user_name_box {
@@ -374,9 +402,7 @@ tr:hover {
     transition: 0.3s;
     margin: 9px;
 }
-    .make_appt_box:hover {
-        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
-    }
+
 .my_appt_box {
     padding: 9px;
     border: 1px solid #4d3319;

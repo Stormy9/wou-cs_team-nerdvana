@@ -18,6 +18,7 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <!-- THIS IS ***VERY*** IMPORTANT!!!!! -->
             @Html.HiddenFor(model => model.TransactionID)
+            @Html.HiddenFor(model => model.PetOwnerID)
             <!---->
             <!---->
             <!------- change to the user's list (of pet care appointments)! ------->
@@ -165,9 +166,9 @@
             </div><!-- END ROW 1 -->
             <!---->
             <!---->
-            <!--===========--><!-- HERE UNTIL CONTROLLER SET UP!!!!! -->
+            <!--=======--><!-- HERE UNTIL CONTROLLER SET UP!!!!! --><!-- for testing! -->
             <!-------------------------------------------------------------------------->
-                <div class="form-group" style="float: right;">
+                @*<div class="form-group" style="float: right;">
                     @Html.LabelFor(model => model.PetOwnerID, 
                                         htmlAttributes: new { @class = "control-label" })
 
@@ -177,7 +178,7 @@
 
                         @Html.ValidationMessageFor(model => model.PetOwnerID, "", 
                                                         new { @class = "text-danger" })
-                </div>
+                </div>*@
             <!-------------------------------------------------------------------------->
             <!---->
             <!---->
@@ -223,11 +224,14 @@
                             @Html.TextAreaFor(model => model.CareReport,
                                 new { htmlAttributes =
                                 new { @class = "form-control our_text_area" },
-                                cols = 180, rows = 5, id = "", name = "",
+                                cols = 180, rows = 5, id = "text21", name = "text21",
                                 style= "color:#2e2e1f; border-radius:5px; padding:5px;"})
 
                             <div>
                                 <!-- do a character counter here! -->
+                                <span class="pull-left label label-default"
+                                    id="count_message_21">
+                                </span>
                             </div>
 
                             @Html.ValidationMessageFor(model => model.CareReport, "", 
@@ -303,11 +307,14 @@
                             @Html.TextAreaFor(model => model.PC_Comments,
                                 new { htmlAttributes =
                                 new { @class = "form-control our_text_area" },
-                                cols = 180, rows = 5, id = "", name = "",
+                                cols = 180, rows = 5, id = "text22", name = "text22",
                                 style= "color:#2e2e1f; border-radius:5px; padding:5px;"})
 
                             <div>
                                 <!-- do a character counter here! -->
+                                <span class="pull-left label label-default"
+                                    id="count_message_22">
+                                </span>
                             </div>
 
                             @Html.ValidationMessageFor(model => model.PC_Comments, "", 
@@ -325,7 +332,7 @@
                             @Html.LabelFor(model => model.PO_Rating, 
                                         htmlAttributes: new { @class = "control-label" })
 
-                            @Html.EditorFor(model => model.PC_Rating,
+                            @Html.EditorFor(model => model.PO_Rating,
                             new { htmlAttributes = 
                                 new { @class = "form-control", min=1, max=5,
                                       @placeholder = "rate pet owner 1 - 5" } })
@@ -341,11 +348,14 @@
                             @Html.TextAreaFor(model => model.PO_Comments,
                                 new { htmlAttributes =
                                 new { @class = "form-control our_text_area" },
-                                cols = 180, rows = 5, id = "", name = "",
+                                cols = 180, rows = 5, id = "text23", name = "text23",
                                 style= "color:#2e2e1f; border-radius:5px; padding:5px;"})
 
                             <div>
                                 <!-- do a character counter here! -->
+                                <span class="pull-left label label-default"
+                                    id="count_message_23">
+                                </span>
                             </div>
 
                             @Html.ValidationMessageFor(model => model.PO_Comments, "", 
@@ -376,5 +386,6 @@
 <!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/_our_main.js")
 }
 <!--==================================================================================-->

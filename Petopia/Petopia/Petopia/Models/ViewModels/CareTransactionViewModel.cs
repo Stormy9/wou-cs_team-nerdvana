@@ -18,10 +18,10 @@ namespace Petopia.Models.ViewModels
         public int UserId { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Owner's first name:")]
+        [DisplayName("First name:")]
         public string FirstName { get; set; }
 
-        [DisplayName("Owner's last name:")]
+        [DisplayName("Last name:")]
         public string LastName { get; set; }
 
         //-------------------------------------------------------------------------------
@@ -101,7 +101,9 @@ namespace Petopia.Models.ViewModels
         //   -- for the owner to choose which Pet they are booking care for
         //
         //    (borrowed\pared down from Corrin's ProfileViewModel!)
-        // Below here is for Pet drop-down list -- choose Pet to get care for 
+        // Below here is for Pet drop-down list 
+        //        -- choose which of your Pets to get care for (since you can have many!)
+        //    ALSO -- to display Pet Carer's names in Appointment Listing Views
         public class PetInfo
         {
             public int PetID { get; set; }
@@ -138,11 +140,10 @@ namespace Petopia.Models.ViewModels
         //    (borrowed\pared down from Corrin's ProfileViewModel!)
         // Below here is for Care Provider drop-down list 
         //      -- choose a Care Provider to care for your Pet
+        //   ALSO -- to display Pet Carer's names in Appointment Listing Views
         public class CareProviderInfo
         {
             public int CareProviderID { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
         }
         //-------------------------------------------------------------------------------
         public List<CareProviderInfo> CarerList { get; set; }

@@ -57,7 +57,6 @@ function scaleBannerVideoSize(element) {
 
     });
 
-
 }
 
 
@@ -324,5 +323,55 @@ $('#text18').keyup(function () {
     var text_remaining = text_max - text_length;
 
     $('#count_message_18').html(text_length + ' / ' + text_max);
+});
+//=======================================================================================
+// TEXT AREA NINETEEN
+$('#count_message_19').html('0 / ' + text_max);
+
+$('#text19').keyup(function () {
+    var text_length = $('#text19').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_19').html(text_length + ' / ' + text_max);
+});
+//=======================================================================================
+// TEXT AREA TWENTY
+$('#count_message_20').html('0 / ' + text_max);
+
+$('#text20').keyup(function () {
+    var text_length = $('#text20').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_20').html(text_length + ' / ' + text_max);
+});
+//=======================================================================================
+// TEXT AREA TWENTYONE
+$('#count_message_21').html('0 / ' + text_max);
+
+$('#text21').keyup(function () {
+    var text_length = $('#text21').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_21').html(text_length + ' / ' + text_max);
+});
+//=======================================================================================
+// TEXT AREA TWENTYTWO
+$('#count_message_22').html('0 / ' + text_max);
+
+$('#text22').keyup(function () {
+    var text_length = $('#text22').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_22').html(text_length + ' / ' + text_max);
+});
+//=======================================================================================
+// TEXT AREA TWENTYTHREE
+$('#count_message_23').html('0 / ' + text_max);
+
+$('#text23').keyup(function () {
+    var text_length = $('#text23').val().length;
+    var text_remaining = text_max - text_length;
+
+    $('#count_message_23').html(text_length + ' / ' + text_max);
 });
 //=======================================================================================
