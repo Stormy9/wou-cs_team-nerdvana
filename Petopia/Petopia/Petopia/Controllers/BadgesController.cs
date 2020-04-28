@@ -17,6 +17,9 @@ namespace Petopia.Controllers
         // GET: UserBadge/Create
         public ActionResult Create()
         {
+            string id = User.Identity.GetUserId();
+            ViewBag.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id).Select(x => x.IsOwner).First();
+            ViewBag.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id).Select(x => x.IsProvider).First();
             return View();
         }
         // POST: UserBadge/Create
@@ -44,6 +47,9 @@ namespace Petopia.Controllers
             string id = User.Identity.GetUserId();
             int currentUserID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id).Select(x => x.UserID).First();
             int badgeUserID = db.UserBadges.Where(x => x.UserID == currentUserID).Select(x => x.UserBadgeID).First();
+            ViewBag.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id).Select(x => x.IsOwner).First();
+            ViewBag.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id).Select(x => x.IsProvider).First();
+
             DAL.UserBadge UserBadges = db.UserBadges.Find(badgeUserID);
             if (UserBadges == null)
             {
