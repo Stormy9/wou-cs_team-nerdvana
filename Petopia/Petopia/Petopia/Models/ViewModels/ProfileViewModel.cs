@@ -23,15 +23,15 @@ namespace Petopia.Models.ViewModels
         public string LastName { get; set; }
 
         //-------------------------------------------------------------------------------
-        //Need this to know if we should show owner info on page
-        public bool IsOwner { get; set; } 
+        //Need this to know if we should show owner info on page          // PetopiaUsers
+        public bool IsOwner { get; set; }
 
 
         //Need this to know if we should show provider info on page
         public bool IsProvider { get; set; }
 
         //-------------------------------------------------------------------------------
-        // Profile Pic stuff!
+        // Profile Pic stuff!                                             // PetopiaUsers
         //
         [DisplayName("My profile picture:")]
         public byte[] ProfilePhoto { get; set; } //needSET
@@ -43,7 +43,7 @@ namespace Petopia.Models.ViewModels
         public string UserCaption { get; set; }
 
         //-------------------------------------------------------------------------------
-        // the rest of the profile-showing PetopiaUser stuff:
+        // the rest of the profile-showing PetopiaUser stuff:             // PetopiaUsers
         //
         [DisplayName("General Location: (i.e., neighborhood name)")]
         public string GeneralLocation { get; set; }
@@ -57,7 +57,7 @@ namespace Petopia.Models.ViewModels
         public string Tagline { get; set; }
 
         //===============================================================================
-        //Everything from CareProvider
+        //Everything from CareProvider                                    // CareProvider
         //
         // profile thing:
         [DisplayName("My Pet Care Experience:")]
@@ -68,9 +68,9 @@ namespace Petopia.Models.ViewModels
         [DisplayName("My average rating:")]
         public string ProviderAverageRating { get; set; }
 
-        
+
         //===============================================================================
-        //Everything from PetOwner
+        //Everything from PetOwner                                          // PetOwner
         //
         // profile thing -- the thing we're after:
         [DisplayName("My general Pet Care needs:")]
@@ -87,7 +87,7 @@ namespace Petopia.Models.ViewModels
 
         //===============================================================================
         //Everything below here won't be included in the profile page
-        //   it's Account-Only, not profile-showing, stuff from PetopiaUser... 
+        //   it's Account-Only, not profile-showing, stuff from            PetopiaUser...
         //
         //      it can be viewed FROM PetopiaUsers/MyAccountDetails
         //      and can still be edited of course -- FROM PetopiaUser/MyAccountEdit
@@ -117,7 +117,7 @@ namespace Petopia.Models.ViewModels
         public string ResZipcode { get; set; }
 
         //===============================================================================
-        //Below here is for Pet Profiles  (for the Pet Cards on Owner Profile)
+        //Below here is for Pet Profiles  (for the Pet Cards on Owner Profiles)      Pets
         public class PetInfo
         {
             public int PetID { get; set; }
@@ -137,6 +137,49 @@ namespace Petopia.Models.ViewModels
         //-------------------------------------------------------------------------------
         public List<PetInfo> PetList { get; set; }
 
+        //===============================================================================
+        //===============================================================================
+        // i think we'll need this for the search result cards [in right-side column] ?
+        //                        or something at least like this??
+        public class petopiaUsersInfo
+        { 
+            public int UserID { get; set; }
+
+            public string FirstName { get; set; }
+
+            public string LastName { get; set; }
+
+            public string GeneralLocation { get; set; }
+        }
+        //-------------------------------------------------------------------------------
+        public List<petopiaUsersInfo> PetopiaUsersList { get; set; }
+
+        //===============================================================================
+        // i think we'll need this, too, for the search result cards in the profiles?
+        //                               or something like it, for UserBadges??
+        public class userBadgesInfo
+        { 
+            public int UserBadgeID { get; set; }
+
+            public bool DogOwner { get; set; }
+
+            public bool DogProvider { get; set; }
+
+            public bool CatOwner { get; set; }
+
+            public bool CatProvider { get; set; }
+
+            public bool BirdOwner { get; set; }
+
+            public bool BirdProvider { get; set; }
+
+            // foreign key
+            public int UserID { get; set; }
+        }
+        //-------------------------------------------------------------------------------
+        public List<userBadgesInfo> UserBadgesList { get; set; }
+
+        //===============================================================================
         //===============================================================================
     }
 }
