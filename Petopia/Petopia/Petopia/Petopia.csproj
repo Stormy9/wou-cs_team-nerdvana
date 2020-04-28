@@ -186,6 +186,7 @@
     <Compile Include="Controllers\BadgesController.cs" />
     <Compile Include="Controllers\CareProvidersController.cs" />
     <Compile Include="Controllers\CareTransactionsController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -204,6 +205,7 @@
     </Compile>
     <Compile Include="Models\CareTransaction.cs" />
     <Compile Include="DAL\CareTransactionsContext.cs" />
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\PetGallery.cs" />
     <Compile Include="Models\UserBadges.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
@@ -1093,6 +1095,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Queries\" />
+    <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
