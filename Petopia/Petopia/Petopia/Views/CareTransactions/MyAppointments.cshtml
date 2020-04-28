@@ -2,7 +2,13 @@
 
 @{
     ViewBag.Title = "Appointments for my Pets";
-}
+    //this works!!!!!
+    var today = DateTime.Now.ToString("yyyy-MM-dd");
+} 
+
+<!-- if we wanna split the table by 'old' and 'upcoming' appointments, 
+     we do this:  (at)if (ViewBag.EndDate > (at)today ) {}                
+     around each table                                              -->
 
     <div class="container-fluid" style="margin-bottom: 45px;"><!-- outer container -->
 
