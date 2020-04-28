@@ -111,9 +111,9 @@
             </span>
 
             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                @Html.ActionLink("All this Pet's care appointments",
-                                    "CareTransactions", new { id = Model.PetID },
-                                    new { style="color:#f2e6d9"})
+                @Html.ActionLink("All this Pet's care appointments", "MyPetsAppointments",
+                                new { controller = "CareTransactions", id = Model.PetID },
+                                new { style="color:#f2e6d9"})
             </span>
 
         </div><!-- END ROW TWO -->
