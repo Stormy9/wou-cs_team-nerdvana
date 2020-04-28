@@ -17,7 +17,7 @@
                 <span class="our_appt_label">
                     @Html.DisplayNameFor(model => model.PetID) &nbsp;
                 </span>
-                @Html.DisplayFor(model => model.PetID)
+                @*@Html.DisplayFor(model => model.PetID)*@
                 @ViewBag.PetName
             </span>
 
@@ -25,16 +25,17 @@
                 <span class="our_appt_label">
                     @Html.DisplayNameFor(model => model.CareProviderID) &nbsp;
                 </span>
-                @Html.DisplayFor(model => model.CareProviderID)
-                @ViewBag.CarerFirstName @ViewBag.CarerLastName
+                @*@Html.DisplayFor(model => model.CareProviderID)*@
+                @ViewBag.CarerFirstName&nbsp;@ViewBag.CarerLastName
             </span>
 
-            <span style="float: left; margin-right: 25px;">
+            <!-- was here for testing/proof -->
+            @*<span style="float: left; margin-right: 25px;">
                 <span class="our_appt_label">
                     @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
                 </span>
                 @Html.DisplayFor(model => model.PetOwnerID)
-            </span>
+            </span>*@
 
         </div><!-- END ROW ZERO -->
         <!---->
@@ -50,13 +51,14 @@
                     </span>
                     @*@Html.DisplayFor(model => model.StartDate)*@
                     @ViewBag.ApptStartDate
-                </div><!-- not one thing from S.O. will format the date! -->
+                </div>
 
                 <div style="margin-top: 13px;">
                     <span class="our_appt_label">
                         @Html.DisplayNameFor(model => model.StartTime)<br />
                     </span>
                     @Html.DisplayFor(model => model.StartTime)
+                    @ViewBag.ApptStartTime
                 </div>
 
             </div><!-- END ROW 1 \ COL 1 -->
@@ -78,6 +80,7 @@
                         @Html.DisplayNameFor(model => model.EndTime)<br />
                     </span>
                     @Html.DisplayFor(model => model.EndTime)
+                    @ViewBag.ApptEndTime
                 </div>
 
             </div><!-- END ROW 1 \ COL 2 -->
@@ -99,7 +102,7 @@
         <!---->
         <!---->
         <!--=============================== ROW TWO ==============================-->
-        <div class="row our_row_three" style="margin-top: 36px;">
+        <div class="row our_row_three">
 
             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                 @Html.ActionLink("This Pet's Profile", "PetProfile",

@@ -206,10 +206,10 @@ namespace Petopia.Models.ViewModels
 
         //===============================================================================
         //                                                            // CareTransactions
-        [DisplayName("What my Pet needs for this appointment:")]
+        [DisplayName("Pet Care instructions this visit:")]
         public string NeededThisVisit { get; set; }
 
-        [DisplayName("What I did for your Pet this appointment:")]
+        [DisplayName("Pet Care recap:")]
         public string CareProvided { get; set; }
 
         [DisplayName("Full Pet Care Report -- Details:")]

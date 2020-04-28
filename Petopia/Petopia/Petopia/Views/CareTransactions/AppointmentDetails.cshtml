@@ -6,6 +6,13 @@
 
     <div class="container-fluid">
 
+        <h4>
+            <span style="float:right; font-style: italic; 
+                            margin-top: 18px; margin-right: 23px;">
+                for admin use
+            </span>
+        </h4>
+
         <h2>@ViewBag.Title:</h2>
 
         <div class="container-fluid my_appt_box" style="padding: 15px;">
@@ -17,20 +24,24 @@
                     <span class="our_appt_label">
                         @Html.DisplayNameFor(model => model.PetID): &nbsp;
                     </span>
-                    @Html.DisplayFor(model => model.PetID)
+                    @*@Html.DisplayFor(model => model.PetID)*@
+                    @ViewBag.PetName
+                </span>
+
+                <span style="float:left; margin-right: 25px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.CareProviderID): &nbsp;
+                    </span>
+                    @*@Html.DisplayFor(model => model.CareProviderID)*@
+                    @ViewBag.CarerFirstName&nbsp;@ViewBag.CarerLastName
                 </span>
 
                 <span style="float: left; margin-right: 25px;">
                     <span class="our_appt_label">
                         @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
                     </span>
-                    @Html.DisplayFor(model => model.PetOwnerID)
-                </span>
-                <span style="float:left; margin-right: 25px;">
-                    <span class="our_appt_label">
-                        @Html.DisplayNameFor(model => model.CareProviderID): &nbsp;
-                    </span>
-                    @Html.DisplayFor(model => model.CareProviderID)
+                    @*@Html.DisplayFor(model => model.PetOwnerID)*@
+                    @ViewBag.PetOwnerFirstName&nbsp;@ViewBag.PetOwnerLastName
                 </span>
 
             </div><!-- END ROW ZERO -->
@@ -45,14 +56,16 @@
                         <span class="our_appt_label">
                             @Html.DisplayNameFor(model => model.StartDate)<br />
                         </span>
-                        @Html.DisplayFor(model => model.StartDate)
+                        @*@Html.DisplayFor(model => model.StartDate)*@
+                        @ViewBag.ApptStartDate
                     </div>
 
                     <div style="margin-top: 13px;">
                         <span class="our_appt_label">
                             @Html.DisplayNameFor(model => model.StartTime)<br />
                         </span>
-                        @Html.DisplayFor(model => model.StartTime)
+                        @*@Html.DisplayFor(model => model.StartTime)*@
+                        @ViewBag.ApptStartTime
                     </div>
 
                 </div><!-- END ROW 1 \ COL 1 -->
@@ -65,14 +78,16 @@
                         <span class="our_appt_label">
                             @Html.DisplayNameFor(model => model.EndDate)<br />
                         </span>
-                        @Html.DisplayFor(model => model.EndDate)
+                        @*@Html.DisplayFor(model => model.EndDate)*@
+                        @ViewBag.ApptEndDate
                     </div>
 
                     <div style="margin-top: 13px;">
                         <span class="our_appt_label">
                             @Html.DisplayNameFor(model => model.EndTime)<br />
                         </span>
-                        @Html.DisplayFor(model => model.EndTime)
+                        @*@Html.DisplayFor(model => model.EndTime)*@
+                        @ViewBag.ApptEndTime
                     </div>
 
                 </div><!-- END ROW 1 \ COL 2 -->
@@ -188,23 +203,23 @@
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("Cancel this Appointment", "Delete",
-                               new { id = Model.TransactionID, style="color: #f2e6d9;" })
+                               new { id = Model.TransactionID }, new {style="color: #f2e6d9;" })
                 </span>
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("Edit this Appointment", "EditAppointment",
-                               new { id = Model.TransactionID, style="color: #f2e6d9;" })
+                               new { id = Model.TransactionID }, new {style="color: #f2e6d9;" })
                 </span>
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("Complete this Appointment", "CompleteAppointment",
-                               new { id = Model.TransactionID, style="color: #f2e6d9;" })
+                               new { id = Model.TransactionID }, new {style="color: #f2e6d9;" })
                 </span>
 
                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                     @Html.ActionLink("This Pet's Profile", "PetProfile",
-                                        new { controller = "Pets", id = Model.PetID, 
-                                                style="color: #f2e6d9;" })
+                                        new { controller = "Pets", id = Model.PetID },
+                                                new {style="color: #f2e6d9;" })
                 </span>
 
             </div><!-- END ROW THREE-->

@@ -47,6 +47,77 @@ namespace Petopia.Controllers
                 return HttpNotFound();
             }
 
+
+            //---------------------------------------------------------------------------
+            // trying to pull the Pet's Name for display!         it worked!   =]
+            var thisPetID = careTransaction.PetID;
+
+            var thisPetName = db.Pets.Where(p => p.PetID == thisPetID)
+                                     .Select(pn => pn.PetName)
+                                     .FirstOrDefault();
+
+            ViewBag.PetName = thisPetName;
+            //---------------------------------------------------------------------------
+            // getting the Pet Carer name for display!              it worked!   =]
+            var thisCarerID = careTransaction.CareProviderID;
+
+            var thisCarerUserID = db.CareProviders.Where(cp => cp.CareProviderID == thisCarerID)
+                                                  .Select(cpID => cpID.UserID)
+                                                  .FirstOrDefault();
+
+            var thisCarerFirstName = db.PetopiaUsers.Where(cp => cp.UserID == thisCarerUserID)
+                                                    .Select(cpn => cpn.FirstName)
+                                                    .FirstOrDefault();
+
+            var thisCarerLastName = db.PetopiaUsers.Where(cp => cp.UserID == thisCarerUserID)
+                                                    .Select(cpn => cpn.LastName)
+                                                    .FirstOrDefault();
+
+            ViewBag.CarerFirstName = thisCarerFirstName;
+            ViewBag.CarerLastName = thisCarerLastName;
+            //---------------------------------------------------------------------------
+            // getting the Pet Owner name for display
+            var thisPetOwnerID = careTransaction.PetOwnerID;
+
+            var thisPetOwnerUserID = db.PetOwners.Where(po => po.PetOwnerID == thisPetOwnerID)
+                                                 .Select(poID => poID.UserID)
+                                                 .FirstOrDefault();
+
+            var thisPetOwnerFirstName = db.PetopiaUsers.Where(po => po.UserID == thisPetOwnerUserID)
+                                                       .Select(pon => pon.FirstName)
+                                                       .FirstOrDefault();
+
+            var thisPetOwnerLastName = db.PetopiaUsers.Where(po => po.UserID == thisPetOwnerUserID)
+                                                      .Select(pon => pon.LastName)
+                                                      .FirstOrDefault();
+
+            ViewBag.PetOwnerFirstName = thisPetOwnerFirstName;
+            ViewBag.PetOwnerLastName = thisPetOwnerLastName;
+            //---------------------------------------------------------------------------
+            // getting start & end dates -- to format the display           it worked!
+            var thisStartDate = careTransaction.StartDate;
+            var thisEndDate = careTransaction.EndDate;
+
+            var formatStartDate = thisStartDate.ToString("MM/dd/yyyy");
+            var formatEndDate = thisEndDate.ToString("MM/dd/yyyy");
+
+            ViewBag.ApptStartDate = formatStartDate;
+            ViewBag.ApptEndDate = formatEndDate;
+
+            //---------------------------------------------------------------------------
+            // getting start & end times -- to format the display
+            var thisStartTime = careTransaction.StartDate;
+            var thisEndTime = careTransaction.EndDate;
+
+            var formatStartTime = thisStartTime.ToShortTimeString();
+            var formatEndTime = thisEndTime.ToShortTimeString();
+
+            ViewBag.ApptStartTime = formatStartTime;
+            ViewBag.ApptEndTime = formatEndTime;
+
+            //---------------------------------------------------------------------------
+
+
             return View(careTransaction);
         }
 
@@ -260,6 +331,18 @@ namespace Petopia.Controllers
             ViewBag.ApptEndDate = formatEndDate;
 
             //---------------------------------------------------------------------------
+            // getting start & end times -- to format the display
+            var thisStartTime = careTransaction.StartDate;
+            var thisEndTime = careTransaction.EndDate;
+
+            var formatStartTime = thisStartTime.ToShortTimeString();
+            var formatEndTime = thisEndTime.ToShortTimeString();
+
+            ViewBag.ApptStartTime = formatStartTime;
+            ViewBag.ApptEndTime = formatEndTime;
+
+            //---------------------------------------------------------------------------
+
 
             return View(careTransaction);
         }
@@ -317,6 +400,18 @@ namespace Petopia.Controllers
             ViewBag.ApptEndDate = formatEndDate;
 
             //---------------------------------------------------------------------------
+            // getting start & end times -- to format the display
+            var thisStartTime = careTransaction.StartDate;
+            var thisEndTime = careTransaction.EndDate;
+
+            var formatStartTime = thisStartTime.ToString("hh:mm:tt");
+            var formatEndTime = thisEndTime.ToString("hh:mm:tt");
+
+            ViewBag.ApptStartTime = formatStartTime;
+            ViewBag.ApptEndTime = formatEndTime;
+
+            //---------------------------------------------------------------------------
+
 
             return View(careTransaction);
         }
@@ -381,6 +476,7 @@ namespace Petopia.Controllers
             //---------------------------------------------------------------------------
             //
             // NEED TO PULL IN PET NAME, CARE PROVIDER FIRST + LAST NAME SOMEHOW
+            //        PLUS formatted date & formatted time while we're at it
             // MADE CareTransactionViewModel BUT CAN'T GET IT PULLED IN CORRECTLY   ]=
             //
             //---------------------------------------------------------------------------
@@ -404,6 +500,7 @@ namespace Petopia.Controllers
             //---------------------------------------------------------------------------
             //
             // NEED TO PULL IN PET NAME, CARE PROVIDER FIRST + LAST NAME SOMEHOW
+            //        PLUS formatted date & formatted time while we're at it
             // MADE CareTransactionViewModel BUT CAN'T GET IT PULLED IN CORRECTLY   ]=
             //
             //---------------------------------------------------------------------------
