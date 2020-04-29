@@ -1,7 +1,9 @@
 ﻿@model Petopia.Models.ViewModels.PetGalleryViewModel
 
 @{
-    ViewBag.Title = "Add a picture!";
+    ViewBag.Title = "Your Pet Photo Gallery!";
+    ViewBag.Title02 = "(limit of five per pet)";
+
 }
 <!--============================= WHOLE DAMNED FORM HERE =============================-->
 <div class="container-fluid">
@@ -19,11 +21,39 @@
             <hr />
 
             <div class="row">
-                <div class="col-sm-4 col-md-4">
 
-                    <h4 style="color: #261a0d">Upload a new picture of your pet!:</h4>
+                <div class="col-sm-6 col-md-6 our_column_one">
 
-                    <div class="form-group" style="padding-top: 5px;">
+                    <!------------------------ GALLERY PHOTO  -------------------------->
+                    <div class="form-group" style="padding-top:13px;">
+                        @Html.LabelFor(m => m.GalleryPhoto,
+                                new { @class = "control-label", 
+                          style="font-size: 125%; color: #261a0d; margin-bottom:0px;" } )
+
+                        <h5 style="margin-top: 0px; padding-top:0px;"> 
+                            <i> @ViewBag.Title02 </i> </h5>
+
+                        @Html.TextBoxFor(m => m.GalleryPhoto, new { type = "file" })
+
+                        @Html.ValidationSummary(true,
+                             "Picture MUST be in JPG format and under 4 MB.",
+                             new { @class = "text-danger" })
+                    </div>
+                    <!---->
+                    <!------------------------------------------------------------------>
+                    <div>
+                        <div style="width:50%; border: 1px dashed #261a0d; font-size:90%;
+                                border-radius: 18px; padding:9px; text-align: center; ">
+                            <i>
+                                pet pictures need to be in .jpg format, <br />
+                                and each one under 4MB in size.
+                            </i>
+                        </div>
+                    </div>
+                    <!------------------------------------------------------------------>
+                    <!---->
+                    <!----------------------------- PHOTO COMMENT ---------------------->
+                    <div class="form-group" style="padding-top: 23px;">
                         @Html.LabelFor(model => model.PhotoComment, htmlAttributes:
                                              new { @class = "control-label" })
 
@@ -33,39 +63,38 @@
                         @Html.ValidationMessageFor(model => model.PhotoComment, "",
                                              new { @class = "text-danger" })
                     </div>
-                    <div class="form-group" style="padding-top: 5px;">
+                    <!---->
+                    <!------------------------------------------------------------------>
+                    <div class="form-group">
                         @Html.HiddenFor(model => model.CurrentPetID)
                     </div>
-                    <div class="form-group" style="padding-top:13px;">
-                        @Html.LabelFor(m => m.GalleryPhoto, new { @class = "control-label" })
-
-                        @Html.TextBoxFor(m => m.GalleryPhoto, new { type = "file" })
-
-                        @Html.ValidationSummary(true,
-                             "Picture MUST be in JPG format and under 4 MB.",
-                             new { @class = "text-danger" })
-                    </div>
-                    <div class="col-sm-2 col-md-2">
-                        <div class="col-sm-offset-8 col-sm-2 col-md-2">
-                            <div class="form-group">
-                                <div>
-                                    <input type="submit" value="Add My Pet!"
-                                           class="btn our_buttons" />
-                                </div>
+                    <!------------------------------------------------------------------>
+                    <!---->
+                    <!----------------------------------- BUTTONS ---------------------->
+                    <div class="button-box" style="margin-top: 23px;">
+                        <div class="form-group">
+                            <div>
+                                <input type="submit" value="Add New Photo!"
+                                       class="btn our_buttons" />
                             </div>
                         </div>
-                        <div class="our_create-edit_buttons">
-                            @Html.ActionLink("Cancel", "PetGallery", new { id = Model.CurrentPetID })
+                        <!------------------------------------------------------------------>
+                        <div class="btn our_buttons">
+                            @Html.ActionLink("Cancel", "PetGallery",
+                                        new { id = Model.CurrentPetID },
+                                        new { style = "color:#f2e6d9; font-weight: normal;" })
                         </div>
                     </div>
-                </div>
-            </div>
+                    <!--==============================================================-->
+                </div><!-- END COLUMN ONE -->
+            </div><!-- END ROW -->
         </div>
     }
-</div>
-
+    <!--==============================================================================-->
+</div><!-- END CONTAINER-FLUID -->
+<!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/Scripts/_our_main.js")
 }
-
+<!--==================================================================================-->
