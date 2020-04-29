@@ -1075,7 +1075,6 @@
     <Content Include="Views\CareTransactions\AppointmentConfirmation.cshtml" />
     <Content Include="Views\CareTransactions\EditAppointment.cshtml" />
     <Content Include="Views\CareTransactions\Index.cshtml" />
-    <Content Include="Views\CareTransactions\Create.cshtml" />
     <Content Include="Views\Shared\_AdminLteTopMenu.cshtml" />
     <Content Include="Views\Shared\_AdminLteLeftMenu.cshtml" />
     <Content Include="Views\Shared\_AdminLteLayout.cshtml" />

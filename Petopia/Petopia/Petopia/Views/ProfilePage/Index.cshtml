@@ -79,8 +79,8 @@
                     {
                         @Html.ActionLink("Edit Badges", "Edit",
                                 new { controller = "Badges" },
-                                new { @class = "btn our_buttons",
-                        style = "margin-left: 9px; color: #f2e6d9; font-weight: normal;" })
+                                new { @class = "btn our_profile_buttons",
+                        style = "margin-left: 9px; color: #f2e6d9; font-weight: normal; float: right;" })
                     }
                     else
                     {
@@ -89,8 +89,8 @@
                             Press
                             @Html.ActionLink("Here", "Create",
                                     new { controller = "Badges" },
-                                    new { @class = "btn our_buttons",
-                            style = "margin-left: 9px; color: #f2e6d9; font-weight: normal;" })
+                                    new { @class = "btn our_profile_buttons",
+                            style = "margin-left: 9px; color: #f2e6d9; font-weight: normal; float: right;" })
                             to set them up.
                         </p>
                     }
@@ -222,12 +222,12 @@
                 <!-- Book & View Pet Care Appointment Buttons -->
                 @Html.ActionLink("Book a Pet Care appointment!", "BookAppointment",
                                 new { controller = "CareTransactions" },
-                                new { id = Model.UserID, @class = "btn our_buttons", 
+                                new { id = Model.UserID, @class = "btn our_profile_buttons", 
                                         style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
                 <br />
                 @Html.ActionLink("See all my Pet Care appointments", "MyAppointments",
                                 new { controller = "CareTransactions" },
-                                new { id = Model.UserID, @class = "btn our_buttons", 
+                                new { id = Model.UserID, @class = "btn our_profile_buttons", 
                                         style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
 
                 <!---------------------------------------------->
