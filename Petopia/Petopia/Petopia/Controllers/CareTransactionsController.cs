@@ -20,6 +20,7 @@ namespace Petopia.Controllers
 
         //===============================================================================
         // GET: CareTransactions
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             //---------------------------------------------------------------------------
