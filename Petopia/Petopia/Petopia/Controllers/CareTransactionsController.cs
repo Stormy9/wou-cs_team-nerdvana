@@ -25,10 +25,29 @@ namespace Petopia.Controllers
             // MADE CareTransactionViewModel BUT CAN'T GET IT PULLED IN CORRECTLY   ]=
             //
             //---------------------------------------------------------------------------
+            CareTransactionViewModel Vmodel = new CareTransactionViewModel();
+
+            Vmodel.IndexInfoList = (from ct in db.CareTransactions
+                                    join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
+                                    join po in db.PetOwners on ct.PetOwnerID equals po.PetOwnerID
+                                    join puO in db.PetopiaUsers on po.UserID equals puO.UserID
+                                    join puP in db.PetopiaUsers on cp.UserID equals puP.UserID
+                                    join p in db.Pets on ct.PetID equals p.PetID
+                                    select new CareTransactionViewModel.IndexInfo
+                                    {
+                                        PetName = p.PetName,
+                                        PetProviderFirstName = puP.FirstName,
+                                        PetProviderLastName = puP.LastName,
+                                        PetOwnerFirstName = puO.FirstName,
+                                        PetOwnerLastName = puO.LastName,
+                                        StartDate = ct.StartDate,
+                                        EndDate = ct.EndDate,
+                                        TransactionID = ct.TransactionID
+                                    }).ToList();
 
 
             // original!
-            return View(db.CareTransactions.ToList());
+            return View(Vmodel);
             // like what the admins would see -- every appointment for every user
         }
 
