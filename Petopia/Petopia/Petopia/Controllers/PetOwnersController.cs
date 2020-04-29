@@ -128,7 +128,6 @@ namespace Petopia.Controllers
 
         //===============================================================================
         // GET: PetOwners/Delete/5
-        [Authorize(Roles = "Admin")]
         [Authorize(Roles = "Owner")]
         public ActionResult Delete(int? id)
         {
