@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Petopia.DAL;
 using Petopia.Models;
 using Petopia.Models.ViewModels;
+using System.Configuration;
 
 namespace Petopia.Controllers
 {
@@ -317,8 +320,15 @@ namespace Petopia.Controllers
                                                     .Select(cpn => cpn.LastName)
                                                     .FirstOrDefault();
 
+            var thisCarerAspIdentity = db.PetopiaUsers.Where(cp => cp.UserID == thisCarerUserID)
+                                                      .Select(asp => asp.ASPNetIdentityID)
+                                                      .FirstOrDefault();
+
+            var thisCarerEmail = db.ASPNetUsers.Where(pu => pu.Id == thisCarerAspIdentity).Select(ce => ce.Email).FirstOrDefault();                                                                                       
+                                                                                                   
             ViewBag.CarerFirstName = thisCarerFirstName;
             ViewBag.CarerLastName = thisCarerLastName;
+            ViewBag.CarerEmail = thisCarerEmail;
             //---------------------------------------------------------------------------
             // getting start & end dates -- to format the display           it worked!
             var thisStartDate = careTransaction.StartDate;
@@ -343,6 +353,30 @@ namespace Petopia.Controllers
 
             //---------------------------------------------------------------------------
 
+            try
+            {
+                var EmailSubject = "[Petopia] Pet Owner has scheduled an appointment with you";
+                var EmailBody = "Hi someone has scheduled an appointment for your services, please navigate over to http://petopia-dev.azurewebsites.net to confirm the information on the request.";
+
+                MailAddress FromEmail = new MailAddress(ConfigurationManager.AppSettings["gmailAccount"]);
+                MailAddress ToEmail = new MailAddress(thisCarerEmail);
+
+                MailMessage mail = new MailMessage(FromEmail, ToEmail);
+
+                mail.Subject = EmailSubject;
+                mail.Body = EmailBody;
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+            }
+            catch(Exception e)
+            {
+
+            }
 
             return View(careTransaction);
         }
