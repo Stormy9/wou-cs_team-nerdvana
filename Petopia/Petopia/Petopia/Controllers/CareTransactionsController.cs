@@ -194,10 +194,6 @@ namespace Petopia.Controllers
         {
             if (ModelState.IsValid)
             {
-                // trying like Corrin's 'AddPet()'
-                // but it  doesn't like things that way.....  haha!
-                //CareTransaction appt = new CareTransaction();
-
                 var identityID = User.Identity.GetUserId();
 
                 var loggedID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
@@ -207,10 +203,10 @@ namespace Petopia.Controllers
                                              .Select(po => po.PetOwnerID)
                                              .FirstOrDefault();
 
-                // based from 'AddPet()' -- but didn't work this way
-                //appt.PetOwnerID = petOwnerID;
+                // this seems to be really important, haha
+                careTransaction.PetOwnerID = petOwnerID;
 
-                db.CareTransactions.Add(careTransaction);   // tried w/ Add(appt) - no go
+                db.CareTransactions.Add(careTransaction);
                 db.SaveChanges();
 
                 return RedirectToAction("AppointmentConfirmation", 
