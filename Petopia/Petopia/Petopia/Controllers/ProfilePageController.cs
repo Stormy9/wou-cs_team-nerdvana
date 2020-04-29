@@ -126,9 +126,21 @@ namespace Petopia.Controllers
                 ViewBag.CatProvider = UserBadges.CatProvider;
                 ViewBag.BirdOwner = UserBadges.BirdOwner;
                 ViewBag.BirdProvider = UserBadges.BirdProvider;
+                ViewBag.FishOwner = UserBadges.FishOwner;
+                ViewBag.FishProvider = UserBadges.FishProvider;
+                ViewBag.HorseOwner = UserBadges.HorseOwner;
+                ViewBag.HorseProvider = UserBadges.HorseProvider;
+                ViewBag.LivestockOwner = UserBadges.LivestockOwner;
+                ViewBag.LivestockProvider = UserBadges.LivestockProvider;
+                ViewBag.RabbitOwner = UserBadges.RabbitOwner;
+                ViewBag.RabbitProvider = UserBadges.RabbitProvider;
+                ViewBag.ReptileOwner = UserBadges.ReptileOwner;
+                ViewBag.ReptileProvider = UserBadges.ReptileProvider;
+                ViewBag.RodentOwner = UserBadges.RodentOwner;
+                ViewBag.RodentProvider = UserBadges.RodentProvider;
+                ViewBag.OtherOwner = UserBadges.OtherOwner;
+                ViewBag.OtherProvider = UserBadges.OtherProvider;
             }
-
-
             return View(petopiaUser);
         }
 
