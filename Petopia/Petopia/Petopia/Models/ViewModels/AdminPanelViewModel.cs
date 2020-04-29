@@ -79,8 +79,7 @@ namespace Petopia.Models.ViewModels
             [DisplayName("Zip:")]
             public string ResZipcode { get; set; }
         }
-
         public List<AdminPetopiaUser> UserList { get; set; }
         
-    }
+    }    
 }

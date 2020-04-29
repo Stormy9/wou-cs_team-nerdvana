@@ -20,6 +20,7 @@ namespace AdminLteMvc.Controllers
         /// The home page of the AdminLTE demo dashboard, recreated in this new system
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var identityID = User.Identity.GetUserId();

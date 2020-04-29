@@ -203,6 +203,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetUser.cs" />
+    <Compile Include="DAL\AspNetUsersContext.cs" />
     <Compile Include="Models\CareTransaction.cs" />
     <Compile Include="DAL\CareTransactionsContext.cs" />
     <Compile Include="Models\EmailModel.cs" />
