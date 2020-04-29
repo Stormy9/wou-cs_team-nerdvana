@@ -102,7 +102,7 @@ $(window).on('load', function(){
           }
         }
   });
-    //calendar.render();
+    calendar.render();
 });
 
 
