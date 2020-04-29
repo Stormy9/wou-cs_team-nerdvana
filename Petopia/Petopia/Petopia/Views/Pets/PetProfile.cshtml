@@ -71,7 +71,7 @@
                          FROM THE FUCKING STYLE SHEETS!!  not all of them anyway!!! -->
                     <div>
                         @Html.ActionLink("Pet Pic Gallery", "PetGallery", new { id = Model.PetID },
-                                    new { @class = "our_other_buttons", 
+                                    new { @class = "our_profile_buttons", 
                                         style="color: #f2e6d9; font-weight: normal;" })
                     </div>
 
@@ -80,19 +80,19 @@
                     <div>
                         @Html.ActionLink("This Pet's Details", "MyPetDetails",
                                new { controller = "Pets", id = Model.PetID },
-                               new { @class = "our_other_buttons", 
+                               new { @class = "our_profile_buttons", 
                                      style="color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <div>
                         @Html.ActionLink("My Care Appointments", "MyPetsAppointments",
                                new { controller = "CareTransactions", id = Model.PetID },
-                               new { @class = "our_other_buttons", 
+                               new { @class = "our_profile_buttons", 
                                      style="color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <div>
                         @Html.ActionLink("Edit this Pet", "EditPet", 
                                new { controller = "Pets", id = Model.PetID },
-                               new { @class = "our_other_buttons", 
+                               new { @class = "our_profile_buttons", 
                                      style="color: #f2e6d9; font-weight: normal;" })
                     </div>
 
@@ -141,18 +141,20 @@
                     </div>
                 </div>
 
-                    <div style="margin-left: 23px; margin-bottom: 9px;">
+                    <div style="margin-left: 23px; margin-bottom: 23px;">
                         @Html.ActionLink("My Owner's Profile", "Index",
                                new { controller = "ProfilePage" },
-                               new { @class = "btn our_buttons", 
+                               new { @class = "btn our_profile_buttons", 
                                      style="color: #f2e6d9; font-weight: normal;" })
                     </div>
-
+                    <br />
 
                 <!-- pet bio & etc. fun stuff -->
-                <div class="user_bio_box">
+                <div class="user_bio_box" style="margin-top: 23px;">
+
                     <h4>Things About Me:</h4>
                     @Html.DisplayFor(model => model.PetBio)
+
                 </div>
 
             </div><!-- END 2nd\MIDDLE COLUMN  **OF** 2nd/MIDDLE ROW -->
