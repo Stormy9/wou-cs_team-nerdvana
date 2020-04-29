@@ -299,5 +299,17 @@ namespace Petopia.Models.ViewModels
 
         //===============================================================================
         //===============================================================================
+        public class IndexInfo
+        {
+            public string PetName { get; set; }
+            public string PetOwnerFirstName { get; set; }
+            public string PetOwnerLastName { get; set; }
+            public string PetProviderFirstName { get; set; }
+            public string PetProviderLastName { get; set; }
+            public DateTime StartDate { get; set; }
+            public DateTime EndDate { get; set; }
+            public int TransactionID { get; set; }
+        }
+        public List<IndexInfo> IndexInfoList { get; set; }
     }
 }

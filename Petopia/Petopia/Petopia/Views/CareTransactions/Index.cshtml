@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Petopia.Models.CareTransaction>
+﻿@model Petopia.Models.ViewModels.CareTransactionViewModel
 
 @{
     ViewBag.Title = "Index -- All Pet Care Appointments (Transactions)";
@@ -17,122 +17,46 @@
         <tr>
             <!--==========================================================================-->
             <th>
-                @Html.DisplayNameFor(model => model.PetOwnerID)
+                Pet Name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CareProviderID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PetID)
+                Owners Name
             </th>
             <!--==========================================================================-->
             <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
+                Providers Name
             </th>
             <!--==========================================================================-->
             <th>
-                @Html.DisplayNameFor(model => model.StartTime)
+                Start Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EndTime)
-            </th>
-            <!--==========================================================================-->
-            <th>
-                @Html.DisplayNameFor(model => model.NeededThisVisit)
-            </th>
-            <!--==========================================================================-->
-            <th>
-                @Html.DisplayNameFor(model => model.CareProvided)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CareReport)
-            </th>
-            <!--==========================================================================-->
-            <th>
-                @Html.DisplayNameFor(model => model.Charge)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tip)
-            </th>
-            <!--==========================================================================-->
-            <th>
-                @Html.DisplayNameFor(model => model.PC_Rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PC_Comments)
-            </th>
-            <!--==========================================================================-->
-            <th>
-                @Html.DisplayNameFor(model => model.PO_Rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PO_Comments)
+                End Date
             </th>
             <!--==========================================================================-->
             <th></th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.IndexInfoList)
         {
             <tr>
                 <!--==========================================================================-->
                 <td>
-                    @Html.DisplayFor(modelItem => item.PetOwnerID)
+                    @Html.DisplayFor(model => item.PetName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CareProviderID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PetID)
+                    @Html.DisplayFor(model => item.PetOwnerFirstName) @Html.DisplayFor(model => item.PetOwnerLastName)
                 </td>
                 <!--==========================================================================-->
                 <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
+                    @Html.DisplayFor(model => item.PetProviderFirstName) @Html.DisplayFor(model => item.PetProviderLastName)
                 </td>
                 <!--==========================================================================-->
                 <td>
-                    @Html.DisplayFor(modelItem => item.StartTime)
+                    @Html.DisplayFor(model => item.StartDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EndTime)
-                </td>
-                <!--==========================================================================-->
-                <td>
-                    @Html.DisplayFor(modelItem => item.NeededThisVisit)
-                </td>
-                <!--==========================================================================-->
-                <td>
-                    @Html.DisplayFor(modelItem => item.CareProvided)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CareReport)
-                </td>
-                <!--==========================================================================-->
-                <td>
-                    @Html.DisplayFor(modelItem => item.Charge)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Tip)
-                </td>
-                <!--==========================================================================-->
-                <td>
-                    @Html.DisplayFor(modelItem => item.PC_Rating)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PC_Comments)
-                </td>
-                <!--==========================================================================-->
-                <td>
-                    @Html.DisplayFor(modelItem => item.PO_Rating)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PO_Comments)
+                    @Html.DisplayFor(model => item.EndDate)
                 </td>
                 <!--==========================================================================-->
                 <td>
