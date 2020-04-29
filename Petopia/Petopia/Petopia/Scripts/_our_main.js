@@ -84,15 +84,15 @@ $(window).on('load', function(){
                 //var startDate = prompt('Enter a date in YYYY-MM-DD format');
                 //var startTime = prompt('Enter time in 00:00 format');
                 //var endTime = prompt('Enter time in 00:00 format');
-                var eventDate = new Date(dateStr + 'T00:00:00'); // will be in local time
-                //var date = moment(startDate + startTime);
+                //var eventDate = new Date(dateStr + 'T00:00:00'); // will be in local time
+                var date = moment(dateStr);
+                
 
-                if (eventDate.isValid()) { // valid?
+                if (date.isValid()) { // valid?
                     $('#calendar').fullCalendar('renderEvent', {
                         title: 'TEST DYNAMIC EVENT',
-                        start: eventDate,
-                        //end: endTime,
-                        allDay: false
+                        start: date,
+                        allDay: true
                     });
                     alert('Great. Now, update your database...');
                 } else {
