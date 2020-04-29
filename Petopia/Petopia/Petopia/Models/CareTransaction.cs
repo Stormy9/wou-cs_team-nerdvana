@@ -46,6 +46,7 @@ namespace Petopia.Models
         //SERIOUSLY! DISPLAYING TIME IN 12-HOUR FORMAT SHOULsDN'T BE THIS F'ING DIFFICULT!
         // YES I TRIED CHANGING FROM 'TimeSpan' to 'DateTime'
         // I remember this shit being unconscionably difficult in 460 as well.
+        // can't even do it with a 'ToString("hh:mm tt")' in the Controller!!
         //-------------------------------------------------------------------------------
         [Column(TypeName = "time")]
         [DisplayName("End Time:")]

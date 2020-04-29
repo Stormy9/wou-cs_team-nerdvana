@@ -10,8 +10,9 @@
 else
 {
     @Html.ActionLink("Add a new picture!", "PetGalleryCreate",
-                                            new { id = Model.CurrentPetID },
-                                            new { @class = "our_other_buttons" })
+                new { id = Model.CurrentPetID },
+                new { @class = "btn our_other_buttons", 
+                     style="color: #f2e6d9; font-weight: normal;" })
 }
 
 <div>
@@ -23,7 +24,8 @@ else
                     <div class="profile_pic_box_box">
                         <div class="profile_pic_box">
                             <img src=@Url.Action("ShowPetGallery", "Image",
-                                new { id = item.PetPicID, @class = "profile_img" }) />
+                                new { id = item.PetPicID }) class="profile_img" 
+                                 style="width:450px; height:auto;" />
                         </div>
                     </div>
                 </td>
@@ -33,7 +35,10 @@ else
                 </td>
 
                 <td>
-                    <a onclick="location.href='@Url.Action("PetGalleryDelete","Pets", new { id = item.PetPicID })'" href="#">Delete Picture</a>
+                    <a onclick="location.href='@Url.Action("PetGalleryDelete","Pets", 
+                                              new { id = item.PetPicID })'" href="#">
+                        Delete Picture
+                    </a>
                     @*Html.ActionLink("Delete", "Delete", new { id = item.PetPicID })*@
                 </td>
 
