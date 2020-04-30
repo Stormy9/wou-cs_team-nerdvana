@@ -258,9 +258,17 @@ namespace Petopia.Models.ViewModels
         //    (borrowed\pared down from Corrin's ProfileViewModel!)
         // Below here is for Care Provider drop-down list 
         //      -- choose a Care Provider to care for your Pet
-        public class CareTransactionInfo
+        public class OurApptInfoList
         {
-            public int TransactionID { get; set; }
+            public string PetName { get; set; }
+
+            public string PetOwnerFirstName { get; set; }
+
+            public string PetOwnerLastName { get; set; }
+
+            public string PetCarerFirstName { get; set; }
+
+            public string PetCarerLastName { get; set; }
 
             public DateTime StartDate { get; set; }
 
@@ -288,14 +296,10 @@ namespace Petopia.Models.ViewModels
 
             public string PO_Comments { get; set; }
 
-            public int PetOwnerID { get; set; }
-
-            public int CareProviderID { get; set; }
-
-            public int PetID { get; set; }
+            public int CareTransactionID { get; set; }
         }
-        //-------------------------------------------------------------------------------
-        public List<CareTransactionInfo> ApptList { get; set; }
+        //-------------------------------------------------------------
+        public List<OurApptInfoList> ApptList { get; set; }
 
         //===============================================================================
         //===============================================================================

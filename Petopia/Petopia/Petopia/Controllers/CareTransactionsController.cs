@@ -24,10 +24,7 @@ namespace Petopia.Controllers
         public ActionResult Index()
         {
             //---------------------------------------------------------------------------
-            //
-            // NEED TO PULL IN PET NAME, CARE PROVIDER FIRST + LAST NAME SOMEHOW
-            // MADE CareTransactionViewModel BUT CAN'T GET IT PULLED IN CORRECTLY   ]=
-            //
+            // thank you Corrin!   [=
             //---------------------------------------------------------------------------
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
 
@@ -50,7 +47,6 @@ namespace Petopia.Controllers
                                     }).ToList();
 
 
-            // original!
             return View(Vmodel);
             // like what the admins would see -- every appointment for every user
         }
@@ -534,10 +530,6 @@ namespace Petopia.Controllers
 
             return View(userAppts.ToList());
 
-
-            // OBVIOUSLY.....
-            // make this so that it only returns the logged-in user's stuff!!!
-            // it seems to be doing this now, yay!
         }
         //===============================================================================
         // GET: CareTransactions/MyPetsAppointments/5
@@ -558,10 +550,21 @@ namespace Petopia.Controllers
 
             return View(thisPet.ToList());
 
+        }
+        //===============================================================================
+        public ActionResult TestingPage()
+        {
+            var identityID = User.Identity.GetUserId();
 
-            // OBVIOUSLY.....
-            // make this so that it only returns the requested pet's stuff!!!
-            // it seems to be doing this now, yay!
+            var loggedID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
+                                          .Select(u => u.UserID).FirstOrDefault();
+
+
+            var userAppts = db.CareTransactions.Where(ct => ct.PetOwnerID == loggedID)
+                                               .OrderBy(ct => ct.StartDate);
+
+           
+            return View(userAppts.ToList());
         }
         //===============================================================================
     }
