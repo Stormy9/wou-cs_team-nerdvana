@@ -35,8 +35,11 @@ namespace Petopia.DAL
 
         //===============================================================================
         public virtual DbSet<PetGallery> PetGallery { get; set; }
+
         //===============================================================================
         public virtual DbSet<AspNetUser> ASPNetUsers { get; set; }
+
+        //===============================================================================
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

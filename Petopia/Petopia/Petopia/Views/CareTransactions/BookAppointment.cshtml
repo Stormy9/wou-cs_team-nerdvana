@@ -174,17 +174,15 @@
         <!---->
         <br />
         <!---------------------------------------------------------------------->
-                            <!--  THIS WAS HERE FOR TESTING STUFF OUT AT FIRST! -->
-        @*<div class="form-group" style="float: right;">
-            @Html.DisplayFor(model => model.PetOwnerID)
+                                            <!--  HERE FOR TESTING STUFF OUT! -->
+        <div class="form-group" style="float: right;">
 
-            @Html.LabelFor(model => model.PetOwnerID,
-                                htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.PetOwnerID,
-                        new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PetOwnerID, "",
-                                                new { @class = "text-danger" })
-        </div>*@
+            IdentityID = @ViewBag.identityID <br />
+            PetopiaUserID = @ViewBag.petopiaUserID <br />
+            PetOwnerID = @ViewBag.petOwnerID <br />
+            PetOwner_UserID = @ViewBag.petOwner_UserID <br />
+            User_Email = @ViewBag.user_Email
+        </div>
         <!---------------------------------------------------------------------->
         <!-------------------------------------------------------------------------->
     </div><!-- END FORM DIV! -->

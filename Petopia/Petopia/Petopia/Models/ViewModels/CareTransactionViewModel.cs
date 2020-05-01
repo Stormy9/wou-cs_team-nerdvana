@@ -126,6 +126,9 @@ namespace Petopia.Models.ViewModels
         // 
         public int PetOwnerID { get; set; }
 
+        [DisplayName("Pet's Owner:")]
+        public string PetOwnerName { get; set; }
+
         [DisplayName("How to access our Home:")]
         public string HomeAccess { get; set; }
 
@@ -142,6 +145,9 @@ namespace Petopia.Models.ViewModels
         // the "background info" from the CareProvider table:
 
         public int CareProviderID { get; set; }
+
+        [DisplayName("Pet Carer:")]
+        public string PetCarerName { get; set; }
 
         // don't think we need any for this part of things?     well, maybe?
         [DisplayName("My Pet Care Experience:")]
@@ -252,54 +258,88 @@ namespace Petopia.Models.ViewModels
         public int CT_PetID { get; set; }
 
         //===============================================================================
-        // we will need a List of Care Providers, to make a drop-down list of them,
-        //   for a Users to select one when they book a pet care appointmentPets -- 
-        //
-        //    (borrowed\pared down from Corrin's ProfileViewModel!)
-        // Below here is for Care Provider drop-down list 
-        //      -- choose a Care Provider to care for your Pet
-        public class OurApptInfoList
+        //===============================================================================
+        public class ApptInfo
         {
+            [DisplayName("PetID:")]
+            public int PetID { get; set; }
+
+            [DisplayName("Pet's name:")]
             public string PetName { get; set; }
+            //---------------------------------------------------------
 
+            [DisplayName("PetOwnerID:")]
+            public int PetOwnerID { get; set; }
+
+            [DisplayName("Pet's Owner:")]
+            public string PetOwnerName { get; set; }
             public string PetOwnerFirstName { get; set; }
-
             public string PetOwnerLastName { get; set; }
 
-            public string PetCarerFirstName { get; set; }
+            //---------------------------------------------------------
+            [DisplayName("PetCarerID:")]
+            public int PetCarerID { get; set; }
 
+            [DisplayName("Pet Carer:")]
+            public string PetCarerName { get; set; }
+            public string PetCarerFirstName { get; set; }
             public string PetCarerLastName { get; set; }
 
+            //---------------------------------------------------------
+            [Column(TypeName = "date")]
+            [DataType(DataType.Date)]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
             public DateTime StartDate { get; set; }
 
+            [Column(TypeName = "date")]
+            [DataType(DataType.Date)]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
             public DateTime EndDate { get; set; }
 
+            //---------------------------------------------------------
+            [Column(TypeName = "time")]
+            [DataType(DataType.Time)]
             public TimeSpan StartTime { get; set; }
 
+            [Column(TypeName = "time")]
+            [DataType(DataType.Time)]
             public TimeSpan EndTime { get; set; }
 
+            //---------------------------------------------------------
+            [DisplayName("Pet Care instructions this visit:")]
             public string NeededThisVisit { get; set; }
 
+            [DisplayName("Pet Care recap:")]
             public string CareProvided { get; set; }
 
+            [DisplayName("Full Pet Care Report -- Details:")]
             public string CareReport { get; set; }
 
+            //---------------------------------------------------------
+            [DisplayName("Pet Carer's fee for this visit:")]
             public float? Charge { get; set; }
 
+            [DisplayName("Tip? (optional)")]
             public float? Tip { get; set; }
 
+            //---------------------------------------------------------
+            [DisplayName("Pet Carer Rating:")]
             public int? PC_Rating { get; set; }
 
+            [DisplayName("Pet Carer Comments:  (from Pet Owner!)")]
             public string PC_Comments { get; set; }
 
+            //---------------------------------------------------------
+            [DisplayName("Pet Owner Rating:")]
             public int? PO_Rating { get; set; }
 
+            [DisplayName("Pet Owner Comments:  (from Pet Carer!)")]
             public string PO_Comments { get; set; }
 
+            //---------------------------------------------------------
             public int CareTransactionID { get; set; }
         }
-        //-------------------------------------------------------------
-        public List<OurApptInfoList> ApptList { get; set; }
+        public List<ApptInfo> ApptInfoList { get; set; }
 
         //===============================================================================
         //===============================================================================
