@@ -518,6 +518,12 @@ namespace Petopia.Controllers
             var userAppts = db.CareTransactions.Where(ct => ct.PetOwnerID == loggedID)
                                                .OrderBy(ct => ct.StartDate);
 
+            //---------------------------------------------------------------------------
+            // pull in fields to test for null/empty???  but here??? or just in View???
+            // to test for empty/null so we can change background color or something of
+            // the form field -- like "hey, remember to do this!"
+            //
+            var careProvided = "blah";
 
             //---------------------------------------------------------------------------
             //
@@ -529,7 +535,6 @@ namespace Petopia.Controllers
 
 
             return View(userAppts.ToList());
-
         }
         //===============================================================================
         // GET: CareTransactions/MyPetsAppointments/5
@@ -538,6 +543,12 @@ namespace Petopia.Controllers
             var thisPet = db.CareTransactions.Where(ct => ct.PetID == id)
                                              .OrderBy(ct => ct.StartDate);
 
+            //---------------------------------------------------------------------------
+            // pull in fields to test for null/empty???  but here??? or just in View???
+            // to test for empty/null so we can change background color or something of
+            // the form field -- like "hey, remember to do this!"
+            //
+            var careProvided = "blah";
 
             //---------------------------------------------------------------------------
             //
