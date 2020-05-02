@@ -473,7 +473,7 @@ hr {
 /*----------- CONTACT PAGE ------------------------------------------------------------*/
 /* ---------- CHOOSE ROLE PAGE --------------------------------------------------------*/
 
-/*==================================== PANELS/COLLAPSE ================================*/
+/*==================================== PANELS/COLLAPSE//ACCORIDONS=====================*/
 .panel-group {
 
 }
@@ -481,15 +481,34 @@ hr {
     background-color: #392613;
     color: #f2e6d9;
 }
+    .our_panel_01 a:link, .our_panel_01 a:hover {
+        color: #130d06;
+    }
 .our_panel_heading {
     /* setting color here leaves outline of color above */
     background-color: #604020;
 }
 .our_panel_title {
+    color: #261a0d;
 }
+    .our_panel_title > a:before {
+        font-family: "Glyphicons Halflings";
+        content: "\e114"; /* \e114 original == down */
+        float: right;
+        margin-left: 15px;
+    }
+    .our_panel_title > a.collapsed:before {
+        content: "\e080"; /* \e080 original == right */
+    }
 .our_panel_p {
     margin-bottom: 0px;
 }
+.panel:after {
+    /* the little arrow stuff goes on panel-title!! */
+}
+    .panel.collapse:after {
+        /* not the panel!! */
+    }
 /*===================================== LINKS! ========================================*/
 /* unvisited link */
 a:link {

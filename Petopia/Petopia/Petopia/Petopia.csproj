@@ -1092,6 +1092,7 @@
     <Content Include="Views\Pets\PetGallery.cshtml" />
     <Content Include="Views\Pets\PetGalleryCreate.cshtml" />
     <Content Include="Views\CareTransactions\EditConfirmation.cshtml" />
+    <Content Include="Views\CareTransactions\test_crap.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>

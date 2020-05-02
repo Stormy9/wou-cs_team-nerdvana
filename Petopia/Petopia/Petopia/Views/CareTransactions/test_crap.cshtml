@@ -1,0 +1,93 @@
+﻿@model Petopia.Models.ViewModels.CareTransactionViewModel
+
+@{
+    ViewBag.Title = "a spot to test stuff";
+}
+
+<div class="container-fluid">
+
+    <h2>@ViewBag.Title</h2>
+
+    <div class="container-fluid my_appt_box" style="padding: 15px;">
+
+        <!--=============================== ROW ONE ==================================-->
+        <div class="row our_row_one" style="margin-top: 36px;">
+
+            <div>
+                Where do you want to go?
+            </div>
+
+        </div><!-- END ROW ONE -->
+        <!---->
+        <!---->
+        <!--================================ ROW TWO =================================-->
+        <div class="row our_row_two" style="margin-top: 36px;">
+
+            <div>
+                @ViewBag.identityID <br />
+                @ViewBag.petopiaUserID <br />
+                @ViewBag.petOwnerID <br />
+                @ViewBag.petOwner_UserID <br />
+                @ViewBag.thisPetOwner <br />
+                @ViewBag.user_Email <br />
+
+            </div>
+
+            <div style="margin-bottom: 18px;">
+                <h5> hopefully, this owner's list of pet names!   [= </h5>
+                <ul>
+                    @foreach (var item in Model.PetNameList)
+                    {
+                        <li>
+                            @Html.DisplayFor(model => item.PetName)
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <div>
+                <h5> trying for check-boxes.....</h5>
+                @*@foreach (var item in Model.PetNameList)
+                { 
+                    @Html.CheckBoxFor(model => item.PetID)
+                }*@
+            </div>
+
+            @*<div class="col-md-10">
+                @Html.DropDownList("pet_names",
+                    (IEnumerable<SelectListItem>)ViewBag.petSelectList,
+                        "which pet?", new { @class = "form-control"})
+
+                @Html.ValidationMessageFor(model => model.PetID, "",
+                                                          new { @class = "text-danger" })
+            </div>*@
+
+        </div>
+        <!---->
+        <!---->
+        <!--=============================== ROW THREE ================================-->
+        <div class="row our_row_three" style="margin-top: 5px;">
+
+            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                @Html.ActionLink("My Profile", "Index",
+                                    new { controller = "ProfilePage" },
+                                    new { style = "color: #f2e6d9;" })
+            </span>
+
+            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                @Html.ActionLink("All my Pet care appointments", "MyAppointments",
+                                new { controller = "CareTransactions" },
+                                new { style = "color: #f2e6d9;" })
+            </span>
+
+        </div><!-- END ROW TWO -->
+        <!--======================================================================-->
+
+    </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
+
+</div><!-- END CONTAINER-FLUID (outer-most container) -->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<!--==================================================================================-->

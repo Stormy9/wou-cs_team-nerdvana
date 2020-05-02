@@ -172,8 +172,11 @@
             </div><!-- END ROW 1 -->
             <!---->
             <!---->
-                <br />            
-
+                <br />      
+                @*@Html.DropDownList("CareProviderID", null, "carer name", htmlAttributes: 
+                new { @class = "form-control", placeholder = "carer name", required = "required" })
+                
+                @ViewBag.PetCarers*@
                 <!---------------------------------------------------------------------->
                 <!-- here for initial testing til i hooked in the PetOwnerID! -->
                 @*<div class="form-group" style="float: right;">

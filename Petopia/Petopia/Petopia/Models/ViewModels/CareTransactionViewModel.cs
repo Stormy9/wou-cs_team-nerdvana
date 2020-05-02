@@ -109,14 +109,14 @@ namespace Petopia.Models.ViewModels
         // Below here is for Pet drop-down list 
         //        -- choose which of your Pets to get care for (since you can have many!)
         //    ALSO -- to display Pet Carer's names in Appointment Listing Views
-        public class PetInfo
+        public class PetNames
         {
             public int PetID { get; set; }
 
             public string PetName { get; set; }
         }
         //-------------------------------------------------------------------------------
-        public List<PetInfo> PetList { get; set; }
+        public List<PetNames> PetNameList { get; set; }
         
         //===============================================================================
         //===============================================================================
@@ -126,6 +126,7 @@ namespace Petopia.Models.ViewModels
         // 
         public int PetOwnerID { get; set; }
 
+        // is there anything we can do with this?
         [DisplayName("Pet's Owner:")]
         public string PetOwnerName { get; set; }
 
@@ -146,6 +147,7 @@ namespace Petopia.Models.ViewModels
 
         public int CareProviderID { get; set; }
 
+        // is there anything we can do with this?
         [DisplayName("Pet Carer:")]
         public string PetCarerName { get; set; }
 
@@ -164,9 +166,12 @@ namespace Petopia.Models.ViewModels
         public class CareProviderInfo
         {
             public int CareProviderID { get; set; }
+
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
         }
         //-------------------------------------------------------------------------------
-        public List<CareProviderInfo> CarerList { get; set; }
+        public List<CareProviderInfo> PetCarerList { get; set; }
 
         //===============================================================================
         //===============================================================================

@@ -1,37 +1,36 @@
 ﻿@model Petopia.DAL.UserBadge
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit your Pet badges!";
 }
-<div class="container-fluid">
+<div class="container-fluid" style="padding-top: 9px;">
 
     <div class="panel our_panel_01">
 
-        <a data-toggle="collapse" data-parent="#accordion_03"
-           href="#collapse_CM">
-            <div class="panel-heading our_panel_heading">
-                <div class="panel-title our_panel_title">
+        <div class="panel-heading our_panel_heading">
+            <div class="panel-title our_panel_title">
+                <a data-toggle="collapse" data-parent="#accordion_03" href="#collapse_badges">
                     <p class="our_panel_p">
                         What are badges?
-                        <span class="glyphicon glyphicon-resize-vertical"
-                              style="float: right;">
-                        </span>
                     </p>
-                </div><!-- end 'panel-title'\'our_panel_title' divs -->
-            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
-        </a><!-- end '#accordian_03' id + '#collapse_CM' href -->
-
-        <div class="panel-collapse collapse" id="collapse_CM">
+                </a><!-- end '#accordian_03' id + '#collapse_badges' href -->
+            </div><!-- end 'panel-title'\'our_panel_title' divs -->
+        </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
+        
+        <div class="panel-collapse collapse" id="collapse_badges">
             <div class="panel-body">
                 <p>
-                    Badges are a fun way to visualize what kind of pets you own or what kind of animals you specialize in providing services for.
-                    With badges, other people will be able to look at your profile at a glance and learn a little more about you.
+                    Badges are a fun way to visualize what kind of pets you own or what 
+                    kind of animals you specialize in providing services for.
+                    With badges, other people will be able to look at your profile at a 
+                    glance and learn a little more about you.
                 </p>
                 <p>
-                    Owner badges show what kind of animals you own, whereas provider badges will tell others which animals you specialize in working with.
+                    Owner badges show what kind of animals you own, whereas provider 
+                    badges will tell others which animals you specialize in working with.
                 </p>
             </div><!-- end 'panel-body' div -->
-        </div><!--end 'panel-collapse'\'collapse' div + '#collapse_CM' id -->
+        </div><!--end 'panel-collapse'\'collapse' div + '#collapse_badges' id -->
     </div><!-- end 'panel'\'our_panel_01' div -->
 
     @using (Html.BeginForm())
@@ -44,14 +43,14 @@
 
             @if (ViewBag.IsOwner == true)
             {
-                <h3>Owner Badges</h3>
-                <hr />
+                <h3>Pet Owner Badges</h3>
+
                 <div class="form-group">
                     @Html.LabelFor(model => model.DogOwner,
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_owner.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.DogOwner, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.DogOwner, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.DogOwner, "",
                                                         new { @class = "text-danger" })
@@ -61,7 +60,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_owner.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.CatOwner, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.CatOwner, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.CatOwner, "",
                                                         new { @class = "text-danger" })
@@ -71,7 +70,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_owner.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.BirdOwner, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.BirdOwner, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.BirdOwner, "",
                                                         new { @class = "text-danger" })
@@ -81,7 +80,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_owner.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.FishOwner, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.FishOwner, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.FishOwner, "",
                                                         new { @class = "text-danger" })
@@ -91,7 +90,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_owner.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.HorseOwner, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.HorseOwner, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.HorseOwner, "",
                                                         new { @class = "text-danger" })
@@ -101,7 +100,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_owner.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.LivestockOwner, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.LivestockOwner, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.LivestockOwner, "",
                                                         new { @class = "text-danger" })
@@ -111,7 +110,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_owner.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.RabbitOwner, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.RabbitOwner, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.RabbitOwner, "",
                                                         new { @class = "text-danger" })
@@ -121,7 +120,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_owner.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.ReptileOwner, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.ReptileOwner, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.ReptileOwner, "",
                                                         new { @class = "text-danger" })
@@ -131,7 +130,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_owner.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.RodentOwner, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.RodentOwner, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.RodentOwner, "",
                                                         new { @class = "text-danger" })
@@ -141,7 +140,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_owner.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.OtherOwner, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.OtherOwner, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.OtherOwner, "",
                                                         new { @class = "text-danger" })
@@ -151,15 +150,14 @@
             @if (ViewBag.IsProvider == true)
             {
 
-                <h3>Provider Badges</h3>
-                <hr />
+                <h3>Pet Care Provider Badges</h3>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.DogProvider,
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_provider.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.DogProvider, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.DogProvider, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.DogProvider, "",
                                                         new { @class = "text-danger" })
@@ -170,7 +168,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_provider.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.CatProvider, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.CatProvider, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.CatProvider, "",
                                                         new { @class = "text-danger" })
@@ -180,7 +178,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_provider.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.BirdProvider, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.BirdProvider, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.BirdProvider, "",
                                                         new { @class = "text-danger" })
@@ -190,7 +188,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_provider.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.FishProvider, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.FishProvider, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.FishProvider, "",
                                                         new { @class = "text-danger" })
@@ -200,7 +198,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_provider.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.HorseProvider, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.HorseProvider, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.HorseProvider, "",
                                                         new { @class = "text-danger" })
@@ -210,7 +208,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_provider.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.LivestockProvider, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.LivestockProvider, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.LivestockProvider, "",
                                                         new { @class = "text-danger" })
@@ -220,7 +218,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_provider.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.RabbitProvider, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.RabbitProvider, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.RabbitProvider, "",
                                                         new { @class = "text-danger" })
@@ -230,7 +228,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_provider.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.ReptileProvider, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.ReptileProvider, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.ReptileProvider, "",
                                                         new { @class = "text-danger" })
@@ -240,7 +238,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_provider.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.RodentProvider, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.RodentProvider, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.RodentProvider, "",
                                                         new { @class = "text-danger" })
@@ -250,7 +248,7 @@
                                     htmlAttributes: new { @class = "control-label" })
                     <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_provider.png"
                          class="pet_badge">
-                    @Html.CheckBoxFor(model => model.OtherProvider, new { @checked = "checked" });
+                    @Html.CheckBoxFor(model => model.OtherProvider, new { @checked = "checked" })
 
                     @Html.ValidationMessageFor(model => model.OtherProvider, "",
                                                         new { @class = "text-danger" })

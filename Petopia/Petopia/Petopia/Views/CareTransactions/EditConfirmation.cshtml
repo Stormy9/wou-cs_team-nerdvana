@@ -2,11 +2,13 @@
 
 @{
     ViewBag.Title = "You have successfully edited your Pet Care Appointment!";
+    ViewBag.Title02 = "an email has been sent to your Pet Care Provider!";
 }
 
 <div class="container-fluid">
 
     <h2>@ViewBag.Title</h2>
+    <h4>@ViewBag.Title02</h4>
 
     <div class="container-fluid my_appt_box" style="padding: 15px;">
 
@@ -23,17 +25,18 @@
 
             <span style="float:left; margin-right: 25px;">
                 <span class="our_appt_label">
+                    @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
+                </span>
+                @*@Html.DisplayFor(model => model.PetOwnerID)*@
+                @ViewBag.OwnerFirstName&nbsp;@ViewBag.OwnerLastName
+            </span>
+
+            <span style="float:left; margin-right: 25px;">
+                <span class="our_appt_label">
                     @Html.DisplayNameFor(model => model.CareProviderID) &nbsp;
                 </span>
                 @Html.DisplayFor(model => model.CareProviderID)
                 @ViewBag.CarerFirstName&nbsp;@ViewBag.CarerLastName
-            </span>
-
-            <span style="float: left; margin-right: 25px;">
-                <span class="our_appt_label">
-                    @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
-                </span>
-                @Html.DisplayFor(model => model.PetOwnerID)
             </span>
 
         </div><!-- END ROW ZERO -->
@@ -111,7 +114,7 @@
 
             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                 @Html.ActionLink("All this Pet's care appointments",
-                                    "CareTransactions", new { id = Model.PetID },
+                                    "MyPetsAppointments", new { id = Model.PetID },
                                     new { style="color:#f2e6d9"})
             </span>
 
