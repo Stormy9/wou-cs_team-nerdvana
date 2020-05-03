@@ -44,7 +44,6 @@
 
 
                 <!-- profile picture -->
-                <!-- WE HAVE ISSUES WITH USER-UPLOADED IMAGES!!! -->
                 @if (Model.ProfilePhoto != null)
                 {
                     <div class="profile_pic_box_box">
@@ -89,8 +88,7 @@
                             Press
                             @Html.ActionLink("Here", "Create",
                                     new { controller = "Badges" },
-                                    new { @class = "btn our_profile_buttons",
-                            style = "margin-left: 9px; color: #f2e6d9; font-weight: normal; float: right;" })
+                                    new { @class = "email_text" })
                             to set them up.
                         </p>
                     }

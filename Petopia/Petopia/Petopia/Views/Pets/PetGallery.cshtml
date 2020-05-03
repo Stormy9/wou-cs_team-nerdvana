@@ -1,6 +1,8 @@
 ﻿@model Petopia.Models.ViewModels.PetGalleryViewModel
 @{
     ViewBag.Title = "Your Pet Photo Gallery!";
+    var loggedInUser = ViewBag.loggedInUser;
+    var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
 }
 
 
@@ -12,24 +14,26 @@
                     margin-top:9px; margin-bottom:0px;">
             @ViewBag.Title
         </h2>
-
-        @if (ViewBag.ImageCount >= 5)
-        {
-            <p>
-                You can only have a max of 5 pictures in your gallery,
-                please delete one to add another
-            </p>
+        
+        @if (loggedInUser == thisPetsOwner)
+        { 
+            if (ViewBag.ImageCount >= 5)
+            {
+                <p>
+                    You can only have a max of 5 pictures in your gallery,
+                    please delete one to add another
+                </p>
+            }
+            else
+            {
+                <span style="float:right;">
+                    @Html.ActionLink("Add a new picture!", "PetGalleryCreate",
+                            new { id = Model.CurrentPetID },
+                            new { @class = "btn our_other_buttons",
+                                 style = "color: #f2e6d9; font-weight: normal;" })
+                </span>
+            }
         }
-        else
-        {
-            <span style="float:right;">
-                @Html.ActionLink("Add a new picture!", "PetGalleryCreate",
-                        new { id = Model.CurrentPetID },
-                        new { @class = "btn our_other_buttons",
-                             style = "color: #f2e6d9; font-weight: normal;" })
-            </span>
-        }
-
     </div><!-- end row for button! -->
     <!--==============================================================================-->
     <div class="row">
@@ -68,14 +72,17 @@
                         <td style="width: 15%; padding: 9px; border: none; 
                                     position: relative;">
 
-                            <div class="btn our_buttons" style="position: absolute; 
-                                                               bottom:5px; right: 5px;">
+                            @if(loggedInUser == thisPetsOwner)
+                            { 
+                                <div class="btn our_buttons" style="position: absolute; 
+                                                                   bottom:5px; right: 5px;">
 
-                                <a onclick="location.href='@Url.Action("PetGalleryDelete",
-                                        "Pets", new { id = item.PetPicID })'" href="#">
-                                    Remove this picture
-                                </a>
-                            </div>
+                                    <a onclick="location.href='@Url.Action("PetGalleryDelete",
+                                            "Pets", new { id = item.PetPicID })'" href="#">
+                                        Remove this picture
+                                    </a>
+                                </div>
+                            }
 
                             @*Html.ActionLink("Delete", "Delete", 
                                                     new { id = item.PetPicID })*@

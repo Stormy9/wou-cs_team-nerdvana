@@ -114,6 +114,8 @@ namespace Petopia.Models.ViewModels
             public int PetID { get; set; }
 
             public string PetName { get; set; }
+
+            public bool PetIsChecked { get; set; }
         }
         //-------------------------------------------------------------------------------
         public List<PetNames> PetNameList { get; set; }
@@ -155,6 +157,9 @@ namespace Petopia.Models.ViewModels
         [DisplayName("My Pet Care Experience:")]
         public string ExperienceDetails { get; set; }
 
+        // foreign key???
+        public int CP_UserID { get; set; }
+
         //===============================================================================
         // we will need a List of Care Providers, to make a drop-down list of them,
         //   for a Users to select one when they book a pet care appointmentPets -- 
@@ -167,8 +172,10 @@ namespace Petopia.Models.ViewModels
         {
             public int CareProviderID { get; set; }
 
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
+            public string CP_FirstName { get; set; }
+            public string CP_LastName { get; set; }
+            public string CP_Name { get; set; }
+            public string CP_Zipcode { get; set; }
         }
         //-------------------------------------------------------------------------------
         public List<CareProviderInfo> PetCarerList { get; set; }
@@ -348,6 +355,7 @@ namespace Petopia.Models.ViewModels
 
         //===============================================================================
         //===============================================================================
+        // for the admin-level "every appointment" view
         public class IndexInfo
         {
             public string PetName { get; set; }

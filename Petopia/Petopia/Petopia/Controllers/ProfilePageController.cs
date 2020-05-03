@@ -22,7 +22,9 @@ namespace Petopia.Controllers
         public ActionResult Index()
         {
             var identityID = User.Identity.GetUserId();
-            var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+            var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                          .Select(x => x.UserID)
+                                          .First();
             
 
             ProfileViewModel petopiaUser = new ProfileViewModel();
@@ -36,41 +38,53 @@ namespace Petopia.Controllers
             
             petopiaUser.UserID = loggedID;
 
-
-            petopiaUser.FirstName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.FirstName).First();
-            petopiaUser.LastName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.LastName).First();
+            petopiaUser.FirstName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                   .Select(x => x.FirstName).First();
+            petopiaUser.LastName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                  .Select(x => x.LastName).First();
             
-
             // user role
-            petopiaUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsOwner).First();
-            petopiaUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsProvider).First();
+            petopiaUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                 .Select(x => x.IsOwner).First();
+            petopiaUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                    .Select(x => x.IsProvider).First();
             
             
-
             // This stuff probably won't be displayed in the profile 
             //    but will be put into the model just in case
-            petopiaUser.MainPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.MainPhone).First();
-            petopiaUser.AltPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.AltPhone).First();
-            petopiaUser.ResAddress01 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResAddress01).First();
-            petopiaUser.ResAddress02 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResAddress02).First();
-            petopiaUser.ResCity = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResCity).First();
-            petopiaUser.ResState = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResState).First();
-            petopiaUser.ResZipcode = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResZipcode).First();
+            petopiaUser.MainPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                   .Select(x => x.MainPhone).First();
+            petopiaUser.AltPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                  .Select(x => x.AltPhone).First();
+            petopiaUser.ResAddress01 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                      .Select(x => x.ResAddress01).First();
+            petopiaUser.ResAddress02 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                      .Select(x => x.ResAddress02).First();
+            petopiaUser.ResCity = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                 .Select(x => x.ResCity).First();
+            petopiaUser.ResState = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                  .Select(x => x.ResState).First();
+            petopiaUser.ResZipcode = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                    .Select(x => x.ResZipcode).First();
 
 
             // user profile picture!
-            petopiaUser.ProfilePhoto = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ProfilePhoto).First();
+            petopiaUser.ProfilePhoto = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                      .Select(x => x.ProfilePhoto).First();
 
-
-            petopiaUser.UserCaption = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserCaption).First();
+            petopiaUser.UserCaption = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                     .Select(x => x.UserCaption).First();
 
 
             // user profile fun stuff
-            petopiaUser.Tagline = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.Tagline).First();
+            petopiaUser.Tagline = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                 .Select(x => x.Tagline).First();
 
-            petopiaUser.GeneralLocation = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.GeneralLocation).First();
+            petopiaUser.GeneralLocation = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                         .Select(x => x.GeneralLocation).First();
 
-            petopiaUser.UserBio = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserBio).First();
+            petopiaUser.UserBio = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                 .Select(x => x.UserBio).First();
 
 
             //---------------------------------------------------------------------------
@@ -78,27 +92,34 @@ namespace Petopia.Controllers
             if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
             { 
                 //If we get 1, then we know this user is a CareProvider
-                petopiaUser.ProviderAverageRating = db.CareProviders.Where(x => x.UserID == loggedID).Select(x => x.AverageRating).First();
+                petopiaUser.ProviderAverageRating = db.CareProviders.Where(x => x.UserID == loggedID)
+                                                                    .Select(x => x.AverageRating).First();
 
-                petopiaUser.ExperienceDetails = db.CareProviders.Where(x => x.UserID == loggedID).Select(x => x.ExperienceDetails).First();
+                petopiaUser.ExperienceDetails = db.CareProviders.Where(x => x.UserID == loggedID)
+                                                                .Select(x => x.ExperienceDetails).First();
             }
 
             if(db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
             {
-                petopiaUser.OwnerAverageRating = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.AverageRating).First();
+                petopiaUser.OwnerAverageRating = db.PetOwners.Where(x => x.UserID == loggedID)
+                                                             .Select(x => x.AverageRating).First();
 
-                petopiaUser.GeneralNeeds = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.GeneralNeeds).First();
+                petopiaUser.GeneralNeeds = db.PetOwners.Where(x => x.UserID == loggedID)
+                                                       .Select(x => x.GeneralNeeds).First();
 
-                petopiaUser.HomeAccess = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.HomeAccess).First();
+                petopiaUser.HomeAccess = db.PetOwners.Where(x => x.UserID == loggedID)
+                                                     .Select(x => x.HomeAccess).First();
             }
 
             //---------------------------------------------------------------------------
             //Tests to make getting pets easier
             if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
             {
-                int ownerID = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.PetOwnerID).First();
+                int ownerID = db.PetOwners.Where(x => x.UserID == loggedID)
+                                          .Select(x => x.PetOwnerID).First();
 
-                petopiaUser.PetList = db.Pets.Where(x => x.PetOwnerID == ownerID).Select(n => new PetInfo
+                petopiaUser.PetList = db.Pets.Where(x => x.PetOwnerID == ownerID)
+                                             .Select(n => new PetInfo
                     {
                         PetName = n.PetName,
                         Species = n.Species,
@@ -112,7 +133,9 @@ namespace Petopia.Controllers
 
             //---------------------------------------------------------------------------
             //Check if badges exist and put in ViewBag.
-            DAL.UserBadge UserBadges = db.UserBadges.Where(x => x.UserID == loggedID).FirstOrDefault();
+            DAL.UserBadge UserBadges = db.UserBadges.Where(x => x.UserID == loggedID)
+                                                    .FirstOrDefault();
+
             if (UserBadges == null)
             {
                 ViewBag.Badges = false;
@@ -144,47 +167,60 @@ namespace Petopia.Controllers
             return View(petopiaUser);
         }
 
-
-
         //===============================================================================
         //===============================================================================
         // GET: ProfilePage/EditMyStuff
         public ActionResult EditMyStuff()
         {
             var identityID = User.Identity.GetUserId();
-            var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+            var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                          .Select(x => x.UserID).First();
 
 
             ProfileViewModel petopiaUser = new ProfileViewModel();
 
-
-            petopiaUser.FirstName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.FirstName).First();
-            petopiaUser.LastName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.LastName).First();
+            petopiaUser.FirstName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                   .Select(x => x.FirstName).First();
+            petopiaUser.LastName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                  .Select(x => x.LastName).First();
 
 
             // user role
-            petopiaUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsOwner).First();
-            petopiaUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsProvider).First();
+            petopiaUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                 .Select(x => x.IsOwner).First();
+            petopiaUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                    .Select(x => x.IsProvider).First();
 
             
             // user account\private info
-            petopiaUser.MainPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.MainPhone).First();
-            petopiaUser.AltPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.AltPhone).First();
-            petopiaUser.ResAddress01 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResAddress01).First();
-            petopiaUser.ResAddress02 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResAddress02).First();
-            petopiaUser.ResCity = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResCity).First();
-            petopiaUser.ResState = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResState).First();
-            petopiaUser.ResZipcode = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ResZipcode).First();
+            petopiaUser.MainPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                   .Select(x => x.MainPhone).First();
+            petopiaUser.AltPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                  .Select(x => x.AltPhone).First();
+            petopiaUser.ResAddress01 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                      .Select(x => x.ResAddress01).First();
+            petopiaUser.ResAddress02 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                      .Select(x => x.ResAddress02).First();
+            petopiaUser.ResCity = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                 .Select(x => x.ResCity).First();
+            petopiaUser.ResState = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                  .Select(x => x.ResState).First();
+            petopiaUser.ResZipcode = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                    .Select(x => x.ResZipcode).First();
 
 
             // user profile fun stuff
-            petopiaUser.UserCaption = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserCaption).First();
+            petopiaUser.UserCaption = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                     .Select(x => x.UserCaption).First();
 
-            petopiaUser.Tagline = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.Tagline).First();
+            petopiaUser.Tagline = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                 .Select(x => x.Tagline).First();
 
-            petopiaUser.GeneralLocation = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.GeneralLocation).First();
+            petopiaUser.GeneralLocation = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                         .Select(x => x.GeneralLocation).First();
 
-            petopiaUser.UserBio = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserBio).First();
+            petopiaUser.UserBio = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                 .Select(x => x.UserBio).First();
 
 
             //---------------------------------------------------------------------------
@@ -193,14 +229,17 @@ namespace Petopia.Controllers
             if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
             { 
                 //If we get 1, then we know this user is a CareProvider
-                petopiaUser.ExperienceDetails = db.CareProviders.Where(x => x.UserID == loggedID).Select(x => x.ExperienceDetails).First();
+                petopiaUser.ExperienceDetails = db.CareProviders.Where(x => x.UserID == loggedID)
+                                                                .Select(x => x.ExperienceDetails).First();
             }
 
             if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
             {
-                petopiaUser.GeneralNeeds = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.GeneralNeeds).First();
+                petopiaUser.GeneralNeeds = db.PetOwners.Where(x => x.UserID == loggedID)
+                                                       .Select(x => x.GeneralNeeds).First();
 
-                petopiaUser.HomeAccess = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.HomeAccess).First();
+                petopiaUser.HomeAccess = db.PetOwners.Where(x => x.UserID == loggedID)
+                                                     .Select(x => x.HomeAccess).First();
             }
             //---------------------------------------------------------------------------
 
@@ -217,7 +256,8 @@ namespace Petopia.Controllers
             if (ModelState.IsValid)
             {
                 var identityID = User.Identity.GetUserId();
-                var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+                var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                              .Select(x => x.UserID).First();
 
 
                 //Need to split up model into 3 objects to fit into db
@@ -233,8 +273,10 @@ namespace Petopia.Controllers
 
                 // ID & user roles
                 currentUser.ASPNetIdentityID = identityID;
-                currentUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsOwner).First();
-                currentUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsProvider).First();
+                currentUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                     .Select(x => x.IsOwner).First();
+                currentUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                        .Select(x => x.IsProvider).First();
 
 
                 // user account\private info
@@ -255,9 +297,11 @@ namespace Petopia.Controllers
 
                 //-----------------------------------------------------------------------
                 //Need to put the bools back into the model just in case we have to return
-                model.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsOwner).First();
+                model.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                               .Select(x => x.IsOwner).First();
 
-                model.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.IsProvider).First();
+                model.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                  .Select(x => x.IsProvider).First();
                
                 //-----------------------------------------------------------------------
                 // Profile Pic stuff!
@@ -285,7 +329,8 @@ namespace Petopia.Controllers
                 //If no pic was uploaded, we need to seed the current profile pic into our user
                 else
                 {
-                    currentUser.ProfilePhoto = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.ProfilePhoto).First();
+                    currentUser.ProfilePhoto = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                              .Select(x => x.ProfilePhoto).First();
                 }
                 //-----------------------------------------------------
 
@@ -300,10 +345,12 @@ namespace Petopia.Controllers
                     //If we get 1, then we know this user is a CareProvider
                     DAL.CareProvider currentProvider = new DAL.CareProvider();
                     
-                    currentProvider.CareProviderID = db.CareProviders.Where(x => x.UserID == loggedID).Select(x => x.CareProviderID).First();
+                    currentProvider.CareProviderID = db.CareProviders.Where(x => x.UserID == loggedID)
+                                                                     .Select(x => x.CareProviderID).First();
 
 
-                    currentProvider.AverageRating = db.CareProviders.Where(x => x.UserID == loggedID).Select(x => x.AverageRating).First();
+                    currentProvider.AverageRating = db.CareProviders.Where(x => x.UserID == loggedID)
+                                                                    .Select(x => x.AverageRating).First();
 
                     currentProvider.ExperienceDetails = model.ExperienceDetails;
 
@@ -320,10 +367,12 @@ namespace Petopia.Controllers
                     //If we get 1, then we know this user is a PetOwner
                     DAL.PetOwner currentOwner = new DAL.PetOwner();
                     
-                    currentOwner.PetOwnerID = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.PetOwnerID).First();
+                    currentOwner.PetOwnerID = db.PetOwners.Where(x => x.UserID == loggedID)
+                                                          .Select(x => x.PetOwnerID).First();
 
 
-                    currentOwner.AverageRating = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.AverageRating).First();
+                    currentOwner.AverageRating = db.PetOwners.Where(x => x.UserID == loggedID)
+                                                             .Select(x => x.AverageRating).First();
 
                     currentOwner.GeneralNeeds = model.GeneralNeeds;
 
