@@ -540,18 +540,6 @@
                             <div class="row our_row_three">
 
                                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                                    @Html.ActionLink("Cancel this Appointment", "Delete",
-                                                                new { id = item.CareTransactionID },
-                                                                new { style = "color: #f2e6d9;" })
-                                </span>
-
-                                <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                                    @Html.ActionLink("Edit this Appointment", "EditAppointment",
-                                                                    new { id = item.CareTransactionID },
-                                                                    new { style = "color: #f2e6d9;" })
-                                </span>
-
-                                <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                     @Html.ActionLink("Complete this Appointment", "CompleteAppointment",
                                                                     new { id = item.CareTransactionID },
                                                                     new { style = "color: #f2e6d9;" })

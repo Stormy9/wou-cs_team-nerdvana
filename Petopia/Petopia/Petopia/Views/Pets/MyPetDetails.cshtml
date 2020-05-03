@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "My private Pet Details";
+    var loggedInUser = ViewBag.loggedInUser;
+    var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
 }
 
 <div class="outer_container" >
@@ -10,105 +12,116 @@
 
         <h2>@ViewBag.Title:</h2>
 
-        <!-------------------------------------- FIRST ROW ----------------------------->
-        <div class="row our_row_one">
+        @if (loggedInUser == thisPetsOwner)
+        {
+            <!-------------------------------------- FIRST ROW ------------------------->
+            <div class="row our_row_one">
 
-            <div class="col-sm-4 col-md-4 our_col_one">
+                <div class="col-sm-4 col-md-4 our_col_one">
 
-                <div class="pet_detail_item">
-                    <h5> Pet's name: </h5>
-                    @Html.DisplayFor(model => model.PetName)
+                    <div class="pet_detail_item">
+                        <h5> Pet's name: </h5>
+                        @Html.DisplayFor(model => model.PetName)
+                    </div>
+
                 </div>
 
-            </div>
+                <div class="col-sm-4 col-md-4 our_col_two">
 
-            <div class="col-sm-4 col-md-4 our_col_two">
+                    <div class="pet_detail_item">
+                        <h5> @Html.DisplayNameFor(model => model.Weight) </h5>
+                        @Html.DisplayFor(model => model.Weight)
+                    </div>
 
-                <div class="pet_detail_item">
-                    <h5> @Html.DisplayNameFor(model  => model.Weight) </h5>
-                    @Html.DisplayFor(model => model.Weight)
                 </div>
 
-            </div>
+                <div class="col-sm-4 col-md-4 our_col_three">
 
-            <div class="col-sm-4 col-md-4 our_col_three">
+                    <div class="pet_detail_item">
+                        <h5> Emergency Contact Info: </h5>
+                        @Html.DisplayFor(model => model.EmergencyContactName) <br />
+                        @Html.DisplayFor(model => model.EmergencyContactPhone)
+                    </div>
 
-                <div class="pet_detail_item">
-                    <h5> Emergency Contact Info: </h5>
-                    @Html.DisplayFor(model => model.EmergencyContactName) <br />
-                    @Html.DisplayFor(model => model.EmergencyContactPhone)
                 </div>
 
-            </div>
+            </div><!-- END FIRST\TOP ROW -->
+            <!---->
+            <!------------------------------------ SECOND ROW -------------------------->
+            <div class="row our_row_two">
 
-        </div><!-- END FIRST\TOP ROW -->
-        <!---->
-        <!------------------------------------ SECOND ROW ------------------------------>
-        <div class="row our_row_two">
+                <div class="col-sm-6 col-md-6 our_col_one">
 
-            <div class="col-sm-6 col-md-6 our_col_one">
+                    <div class="pet_detail_item">
+                        <h5> @Html.DisplayNameFor(model => model.HealthConcerns)  </h5>
+                        @Html.DisplayFor(model => model.HealthConcerns)
+                    </div>
 
-                <div class="pet_detail_item">
-                    <h5> @Html.DisplayNameFor(model => model.HealthConcerns)  </h5>
-                    @Html.DisplayFor(model => model.HealthConcerns)
                 </div>
 
-            </div>
+                <div class="col-sm-6 col-md-6 our_col_two">
 
-            <div class="col-sm-6 col-md-6 our_col_two">
-
-                <div class="pet_detail_item">
-                    <h5> @Html.DisplayNameFor(model  => model.BehaviorConcerns)  </h5>
-                    @Html.DisplayFor(model => model.BehaviorConcerns)
-                </div>
-            </div>
-
-        </div><!-- END 2nd/MIDDLE ROW -->
-        <!---->
-        <!--------------------------------- THIRD ROW ---------------------------------->
-        <!---->
-        <div class="row our_row_three">
-
-            <div class="col-sm-6 col-md-6 our_col_one">
-
-                <div class="pet_detail_item">
-                    <h5> @Html.DisplayNameFor(model  => model.PetAccess)  </h5>
-                    @Html.DisplayFor(model => model.PetAccess)
+                    <div class="pet_detail_item">
+                        <h5> @Html.DisplayNameFor(model => model.BehaviorConcerns)  </h5>
+                        @Html.DisplayFor(model => model.BehaviorConcerns)
+                    </div>
                 </div>
 
-            </div>
+            </div><!-- END 2nd/MIDDLE ROW -->
+            <!---->
+            <!--------------------------------- THIRD ROW ------------------------------>
+            <!---->
+            <div class="row our_row_three">
 
-            <div class="col-sm-6 col-md-6 our_col_two">
+                <div class="col-sm-6 col-md-6 our_col_one">
 
-                <div class="pet_detail_item">
-                    <h5> @Html.DisplayNameFor(model  => model.NeedsDetails)  </h5>
-                    @Html.DisplayFor(model => model.NeedsDetails)
+                    <div class="pet_detail_item">
+                        <h5> @Html.DisplayNameFor(model => model.PetAccess)  </h5>
+                        @Html.DisplayFor(model => model.PetAccess)
+                    </div>
+
                 </div>
 
-            </div>
+                <div class="col-sm-6 col-md-6 our_col_two">
 
-        </div><!-- END THIRD\BOTTOM ROW -->
-        <!---->
-        <!------------------------------------------------------------------------------>
+                    <div class="pet_detail_item">
+                        <h5> @Html.DisplayNameFor(model => model.NeedsDetails)  </h5>
+                        @Html.DisplayFor(model => model.NeedsDetails)
+                    </div>
 
-        <!-- original formatted stuff pulled from db-->
-        <div class="button_box_03" style="text-align: center;">
-            <div>
-                @Html.ActionLink("My Owner's Profile", "Index",
-                        new { controller = "ProfilePage" },
-                        new { @class = "our_other_buttons", style="color: #f2e6d9;" })
-            </div>
-            <div>
-                @Html.ActionLink("This Pet's Profile", "PetProfile", 
-                        new { id = Model.PetID },
-                        new { @class = "our_other_buttons", style="color: #f2e6d9;" })
-            </div>
-            <div>
-                @Html.ActionLink("Edit this Pet", "EditPet", new { id = Model.PetID },
-                        new { @class = "our_other_buttons", style="color: #f2e6d9;" })
-            </div>
-        </div><!-- END BUTTON BOX -->
-        <!------------------------------------------------------------------------------>
+                </div>
+
+            </div><!-- END THIRD\BOTTOM ROW -->
+            <!---->
+            <!-------------------------------------------------------------------------->
+
+            <!-- original formatted stuff pulled from db-->
+            <div class="button_box_03" style="text-align: center;">
+                <div>
+                    @Html.ActionLink("My Owner's Profile", "Index",
+                            new { controller = "ProfilePage" },
+                            new { @class = "our_other_buttons", 
+                                  style = "color: #f2e6d9;" })
+                </div>
+                <div>
+                    @Html.ActionLink("This Pet's Profile", "PetProfile",
+                            new { id = Model.PetID },
+                            new { @class = "our_other_buttons", 
+                                  style = "color: #f2e6d9;" })
+                </div>
+                <div>
+                    @Html.ActionLink("Edit this Pet", "EditPet", 
+                                        new { id = Model.PetID },
+                                        new { @class = "our_other_buttons", 
+                                              style = "color: #f2e6d9;" })
+                </div>
+            </div><!-- END BUTTON BOX -->
+            <!-------------------------------------------------------------------------->
+        }
+        else 
+        { 
+            <h5> you are not this pet's owner! </h5>
+        }
     </div><!-- END CONTAINER-FLUID -->
 </div><!-- END OUTER CONTAINER \ MAIN CONTAINER INSIDE BODY -->
 

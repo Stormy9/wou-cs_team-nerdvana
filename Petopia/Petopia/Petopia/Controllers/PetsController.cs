@@ -98,7 +98,8 @@ namespace Petopia.Controllers
 
             // so kinda backwards from the queries in the profile or care transaction controllers!
             ViewBag.thisPetsOwnersID = "This Pet's PetOwnerID: " + thisPetsOwnersID;
-            ViewBag.thisPetsOwnersPetopiaUserID = "This Pet's Owner's PetopiaUserID: " + thisPetsOwnersPetopiaUserID;
+            ViewBag.thisPetsOwnersPetopiaUserID = "This Pet's Owner's PetopiaUserID: " 
+                                                        + thisPetsOwnersPetopiaUserID;
             ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
             ViewBag.loggedInUser = loggedInUser;
 
@@ -134,8 +135,13 @@ namespace Petopia.Controllers
             {
 
                 var identityID = User.Identity.GetUserId();
-                var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
-                int ownerID = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.PetOwnerID).First();
+                var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                              .Select(x => x.UserID)
+                                              .First();
+
+                int ownerID = db.PetOwners.Where(x => x.UserID == loggedID)
+                                          .Select(x => x.PetOwnerID)
+                                          .First();
 
                 pet.PetName = model.PetName;
                 pet.Species = model.Species;
@@ -231,6 +237,33 @@ namespace Petopia.Controllers
             // boy-girl-altered pick-list
             ViewBag.GenderList = genderSelectList;
 
+            //---------------------------------------------------------------------------
+            // testing to find this Pet's owner -- 
+            //        to ONLY show details/appts/editPet buttons to the Pet's owner!
+            // find this Pet's Owner's ID
+            var thisPetsOwnersID = db.Pets.Where(p => p.PetID == id)
+                                          .Select(poID => poID.PetOwnerID)
+                                          .FirstOrDefault();
+
+            // now pull this Pet Owner's PetopiaUser ID
+            var thisPetsOwnersPetopiaUserID = db.PetOwners.Where(pu => pu.PetOwnerID == thisPetsOwnersID)
+                                                          .Select(puID => puID.UserID)
+                                                          .FirstOrDefault();
+
+            // now pull this PetopiaUser's ASPNetIdentityID
+            var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsOwnersPetopiaUserID)
+                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                                .FirstOrDefault();
+
+            // now pull the logged-in user's ID
+            var loggedInUser = User.Identity.GetUserId();
+
+            // so kinda backwards from the queries in the profile or care transaction controllers!
+            ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
+            ViewBag.loggedInUser = loggedInUser;
+
+            //---------------------------------------------------------------------------
+
             return View(model);
         }
         //-------------------------------------------------------------------------------
@@ -247,8 +280,14 @@ namespace Petopia.Controllers
             if (ModelState.IsValid)
             {
                 var identityID = User.Identity.GetUserId();
-                var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
-                int ownerID = db.PetOwners.Where(x => x.UserID == loggedID).Select(x => x.PetOwnerID).First();
+
+                var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                              .Select(x => x.UserID)
+                                              .First();
+
+                int ownerID = db.PetOwners.Where(x => x.UserID == loggedID)
+                                          .Select(x => x.PetOwnerID)
+                                          .First();
 
 
                 pet.PetOwnerID = ownerID;
@@ -381,7 +420,34 @@ namespace Petopia.Controllers
             {
                 return HttpNotFound();
             }
-        
+
+            //---------------------------------------------------------------------------
+            // testing to find this Pet's owner -- 
+            //        to ONLY show details/appts/editPet buttons to the Pet's owner!
+            // find this Pet's Owner's ID
+            var thisPetsOwnersID = db.Pets.Where(p => p.PetID == id)
+                                          .Select(poID => poID.PetOwnerID)
+                                          .FirstOrDefault();
+
+            // now pull this Pet Owner's PetopiaUser ID
+            var thisPetsOwnersPetopiaUserID = db.PetOwners.Where(pu => pu.PetOwnerID == thisPetsOwnersID)
+                                                          .Select(puID => puID.UserID)
+                                                          .FirstOrDefault();
+
+            // now pull this PetopiaUser's ASPNetIdentityID
+            var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsOwnersPetopiaUserID)
+                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                                .FirstOrDefault();
+
+            // now pull the logged-in user's ID
+            var loggedInUser = User.Identity.GetUserId();
+
+            // so kinda backwards from the queries in the profile or care transaction controllers!
+            ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
+            ViewBag.loggedInUser = loggedInUser;
+
+            //---------------------------------------------------------------------------
+
             return View(pet);
         }
         //===============================================================================
@@ -439,7 +505,9 @@ namespace Petopia.Controllers
         public ActionResult PetGalleryCreate(int? id)
         {
             PetGalleryViewModel PetG = new PetGalleryViewModel();
-            PetG.CurrentPetID = db.Pets.Where(x => x.PetID == id).Select(x => x.PetID).First();
+            PetG.CurrentPetID = db.Pets.Where(x => x.PetID == id)
+                                       .Select(x => x.PetID)
+                                       .First();
 
             return View(PetG);
         }

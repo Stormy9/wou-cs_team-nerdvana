@@ -227,6 +227,31 @@ namespace Petopia.Controllers
                 return HttpNotFound();
             }
 
+            //---------------------------------------------------------------------------
+            // to make sure only the pet's owner can see this page!
+            var thisPetsID = db.CareTransactions.Where(p => p.TransactionID == id)
+                                                .Select(pID => pID.PetID)
+                                                .FirstOrDefault();
+
+            var thisPetsOwnersID = db.CareTransactions.Where(ct => ct.TransactionID == id)
+                                                      .Select(poID => poID.PetOwnerID)
+                                                      .FirstOrDefault();
+
+            var thisPetsOwnersPetopiaUserID = db.PetOwners.Where(po => po.PetOwnerID == thisPetsOwnersID)
+                                                          .Select(pUID => pUID.UserID)
+                                                          .FirstOrDefault();
+
+            var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsOwnersPetopiaUserID)
+                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                                .FirstOrDefault();
+
+            var loggedInUser = User.Identity.GetUserId();
+
+            ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
+            ViewBag.loggedInUser = loggedInUser;
+
+            //---------------------------------------------------------------------------
+
             return View(careTransaction);
         }
         //-------------------------------------------------------------------------------
@@ -265,6 +290,47 @@ namespace Petopia.Controllers
             {
                 return HttpNotFound();
             }
+
+            //---------------------------------------------------------------------------
+            // to make sure only the pet's owner can see this page!
+            var thisPetsID = db.CareTransactions.Where(p => p.TransactionID == id)
+                                                .Select(pID => pID.PetID)
+                                                .FirstOrDefault();
+
+            var thisPetsOwnersID = db.CareTransactions.Where(ct => ct.TransactionID == id)
+                                                      .Select(poID => poID.PetOwnerID)
+                                                      .FirstOrDefault();
+
+            var thisPetsOwnersPetopiaUserID = db.PetOwners.Where(po => po.PetOwnerID == thisPetsOwnersID)
+                                                          .Select(pUID => pUID.UserID)
+                                                          .FirstOrDefault();
+
+            var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsOwnersPetopiaUserID)
+                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                                .FirstOrDefault();
+
+            //---------------------------------------------------------
+            var thisPetsCarersID = db.CareTransactions.Where(ct => ct.TransactionID == id)
+                                                      .Select(cpID => cpID.CareProviderID)
+                                                      .FirstOrDefault();
+
+            var thisPetsCarersPetopiaUserID = db.CareProviders.Where(cp => cp.CareProviderID == thisPetsCarersID)
+                                                              .Select(cpID => cpID.UserID)
+                                                              .FirstOrDefault();
+
+            var thisPetsCarersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsCarersPetopiaUserID)
+                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                                .FirstOrDefault();
+
+            //---------------------------------------------------------
+            var loggedInUser = User.Identity.GetUserId();
+
+            ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
+            ViewBag.thisPetsCarersASPNetIdentityID = thisPetsCarersASPNetIdentityID;
+            ViewBag.loggedInUser = loggedInUser;
+            ViewBag.thisPetsCarersID = thisPetsCarersID;
+
+            //---------------------------------------------------------------------------
 
             return View(careTransaction);
         }
@@ -522,6 +588,47 @@ namespace Petopia.Controllers
                 return HttpNotFound();
             }
 
+            //---------------------------------------------------------------------------
+            // to make sure only the pet's owner & carer can see this page!
+            var thisCareTransactionPetID = db.CareTransactions.Where(ct => ct.TransactionID == id)
+                                                              .Select(ctPID => ctPID.PetID)
+                                                              .FirstOrDefault();
+
+            var thisPetsOwnersID = db.CareTransactions.Where(ct => ct.TransactionID == id)
+                                                      .Select(poID => poID.PetOwnerID)
+                                                      .FirstOrDefault();
+
+            var thisPetsOwnersPetopiaUserID = db.PetOwners.Where(po => po.PetOwnerID == thisPetsOwnersID)
+                                                          .Select(pUID => pUID.UserID)
+                                                          .FirstOrDefault();
+
+            var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsOwnersPetopiaUserID)
+                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                                .FirstOrDefault();
+
+            //---------------------------------------------------------
+            var thisPetsCarersID = db.CareTransactions.Where(ct => ct.TransactionID == id)
+                                                      .Select(cpID => cpID.CareProviderID)
+                                                      .FirstOrDefault();
+
+            var thisPetsCarersPetopiaUserID = db.CareProviders.Where(cp => cp.CareProviderID == thisPetsCarersID)
+                                                              .Select(cpID => cpID.UserID)
+                                                              .FirstOrDefault();
+
+            var thisPetsCarersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsCarersPetopiaUserID)
+                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                                .FirstOrDefault();
+
+            //---------------------------------------------------------
+            var loggedInUser = User.Identity.GetUserId();
+
+            ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
+            ViewBag.thisPetsCarersASPNetIdentityID = thisPetsCarersASPNetIdentityID;
+            ViewBag.loggedInUser = loggedInUser;
+            ViewBag.thisPetsCarersID = thisPetsCarersID;
+
+            //---------------------------------------------------------------------------
+
             return View(careTransaction);
         }
         //-------------------------------------------------------------------------------
@@ -637,6 +744,25 @@ namespace Petopia.Controllers
             var thisPet = db.CareTransactions.Where(ct => ct.PetID == id)
                                              .Select(pID => pID.PetID)
                                              .FirstOrDefault();
+
+            //---------------------------------------------------------------------------
+            // to make sure only the pet's owner can see this page!
+            var thisPetsOwnersID = db.CareTransactions.Where(ct => ct.PetID == id)
+                                                      .Select(poID => poID.PetOwnerID)
+                                                      .FirstOrDefault();
+
+            var thisPetsOwnersPetopiaUserID = db.PetOwners.Where(po => po.PetOwnerID == thisPetsOwnersID)
+                                                          .Select(pUID => pUID.UserID)
+                                                          .FirstOrDefault();
+
+            var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsOwnersPetopiaUserID)
+                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                                .FirstOrDefault();
+
+            var loggedInUser = User.Identity.GetUserId();
+
+            ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
+            ViewBag.loggedInUser = loggedInUser;
 
             //---------------------------------------------------------------------------
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
