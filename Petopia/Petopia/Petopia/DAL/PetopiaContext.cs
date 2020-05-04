@@ -64,6 +64,10 @@ namespace Petopia.DAL
 
             //---------------------------------------------------------------------------
         }
+        // tried scaffolding 'Views/Home/PetCarerSearchResult' 
+        //    just to see what I'd get -- and it stuck this in here.....
+        //
+        //public System.Data.Entity.DbSet<Petopia.Models.ViewModels.SearchViewModel> SearchViewModels { get; set; }
         //===============================================================================
     }
 }

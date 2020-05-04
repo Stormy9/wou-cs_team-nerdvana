@@ -47,14 +47,15 @@ namespace Petopia.Controllers
         }
         //===============================================================================
         //===============================================================================
-        public ActionResult PetCarerSearchResult(string searchZip)
+        public ActionResult PetCarerSearchResult(string searchZip)   // string searchZip
         {
+            searchZip = "97301";
             ViewBag.SearchZip = searchZip;
 
             SearchViewModel carerSearch = new SearchViewModel();
 
             carerSearch.PetCarerSearchList = (from pu in pdb.PetopiaUsers
-                                              where pu.ResZipcode == searchZip && pu.IsProvider
+                                              where pu.ResZipcode.Contains(searchZip) && pu.IsProvider
 
                                               join cp in pdb.CareProviders on pu.UserID equals cp.UserID
                                               join ub in pdb.UserBadges on cp.UserID equals ub.UserID

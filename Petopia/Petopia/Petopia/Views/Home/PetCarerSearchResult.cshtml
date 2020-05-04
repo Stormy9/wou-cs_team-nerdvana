@@ -1,0 +1,171 @@
+﻿@model Petopia.Models.ViewModels.SearchViewModel
+
+@{
+    ViewBag.Title = "Your Pet Care search results";
+}
+
+<div class="container-fluid">
+
+    <div class="row our_row_one">
+
+        <div class="col-sm-12 col-md-12 our_col_one">
+
+            <h2> @ViewBag.Title! </h2>
+
+            <table class="table">
+                <tr>
+                    <!------------------------------------------------------------>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CP_ID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CP_Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PU_ZipCode)
+                    </th>
+                    <!------------------------------------------------------------>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsDogProvider)
+                    </th>
+
+                    <!------------------------------------------------------------>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsCatProvider)
+                    </th>
+
+                    <!------------------------------------------------------------>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsBirdProvider)
+                    </th>
+
+                    <!------------------------------------------------------------>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsFishProvider)
+                    </th>
+
+                    <!------------------------------------------------------------>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsRabbitProvider)
+                    </th>
+
+                    <!------------------------------------------------------------>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsRodentProvider)
+                    </th>
+
+                    <!------------------------------------------------------------>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsReptileProvider)
+                    </th>
+
+                    <!------------------------------------------------------------>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsHorseProvider)
+                    </th>
+
+                    <!------------------------------------------------------------>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsLivestockProvider)
+                    </th>
+
+                    <!------------------------------------------------------------>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsOtherProvider)
+                    </th>
+
+                    <!------------------------------------------------------------>
+                </tr>
+                <!--==================================================================================-->
+
+                @foreach (var item in Model.PetCarerSearchList)
+                {
+                    <tr>
+                        <!------------------------------------------------------------>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CP_ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CP_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CP_Zipcode)
+                        </td>
+                        <!------------------------------------------------------------>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsDogProvider)
+                        </td>
+
+                        <!------------------------------------------------------------>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsCatProvider)
+                        </td>
+
+                        <!------------------------------------------------------------>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsBirdProvider)
+                        </td>
+
+                        <!------------------------------------------------------------>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsFishProvider)
+                        </td>
+
+                        <!------------------------------------------------------------>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsRabbitProvider)
+                        </td>
+
+                        <!------------------------------------------------------------>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsRodentProvider)
+                        </td>
+
+                        <!------------------------------------------------------------>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsReptileProvider)
+                        </td>
+
+                        <!------------------------------------------------------------>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsHorseProvider)
+                        </td>
+
+                        <!------------------------------------------------------------>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsLivestockProvider)
+                        </td>
+
+                        <!------------------------------------------------------------>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsOtherProvider)
+                        </td>
+
+                        <!------------------------------------------------------------>
+                    </tr>
+                }
+                <!--==================================================================================-->
+            </table>
+        </div>
+    </div>
+</div>
