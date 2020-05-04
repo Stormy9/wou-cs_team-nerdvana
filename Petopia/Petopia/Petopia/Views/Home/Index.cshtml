@@ -30,23 +30,30 @@
         <h3 class="splash_subtitle">
             love your pet even when you can't be home!
         </h3>
+        <h5 class="splash_subtitle" style="margin-left: 45px;"> 
+            find pet care near you! 
+        </h5>
 
         <!------------------------------------------------------------------------------>
-        
 
+        <div style="margin-left: 45px;">
+            @using (Html.BeginForm("PetCarerSearchResult", "Home", FormMethod.Post))
+            {
+                <!-- 'action' is where you go when it clicks, but we don't need it now -->
+                <form class="splash_search" action="">
+                    <div class="form-group splash_form">
+                        <!-- TODO: figure out why this won't widen w/CSS -->
+                        @Html.TextBox("searchZip", null,
+                                    new { @class = "form-control splash_search_input",
+                                          placeholder = "zip code" })
+                    </div>
 
-
-        <!-- fill in action later, where it goes when you click! -->
-        <form class="splash_search" action="">
-            <div class="form-group splash_form">
-                <!-- TODO: figure out why this won't widen w/CSS -->
-                <input type="text" class="form-control splash_search_input"
-                        placeholder="find pet care near you!">
-            </div>
-            <button type="submit" class="btn btn-default our_buttons">
-                Fetch!
-            </button>
-        </form><!-- end search form/box div -->
+                    <button type="submit" class="btn btn-default our_buttons">
+                        Fetch!
+                    </button>
+                </form>
+            }
+        </div><!-- end search form/box div -->
         <!------------------------------------------------------------------------------>
 
         <div class="container-fluid splash_intro_box">
@@ -57,6 +64,7 @@
                 as a pet owner -- or become a pet care provider with us!
             </div>
         </div><!-- end intro \ intro_box divs -->
+
         <!------------------------------------------------------------------------------>
 
     </div><!-- end splash_overlay div -->
