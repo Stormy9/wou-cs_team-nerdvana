@@ -27,60 +27,61 @@ textarea {
 /*============================= front/splash/home VIDEO ===============================*/
 /* trying out the video 'hero' video+image thing -- courtesy coverr */
 .homepage-hero-module {
-    border-right: none;
-    border-left: none;
-    position: relative;
+    border-right: none; /* checked with coverr */
+    border-left: none; /* checked with cover */
+    position: relative; /* checked with cover */
 }
 .no-video .video-container video,
 .touch .video-container video {
-    display: none;
-    width: 100%;
+    display: none; /* checked with cover */
+    /*width: 100%;*//* i added this part for some reason i forget! */
 }
 .no-video .video-container .poster,
 .touch .video-container .poster {
-    display: block !important;
-    width: 100%;
+    display: block !important; /* checked with cover */
+    /*width: 100%;*/ /* i added this part for some reason i forget! */
 }
 .video-container {
-    position: relative;
-    bottom: 0%;
-    left: 0%;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    background: #000;
+    position: relative; /* checked with cover */
+    bottom: 0%; /* checked with cover */
+    left: 0%; /* checked with cover */
+    height: 100%; /* checked with cover */
+    width: 100%; /* checked with cover */
+    overflow: hidden; /* checked with cover */
+    background: #000; /* checked with cover */
 }
-.video-container .poster img {
-    width: 100%;
-    bottom: 0;
-    position: absolute;
-    /* just trying something */
-    /* about stupid-ass height on some devices w/the 'color bar' */
-    height: 100%;
-}
+    .video-container .poster img {
+        width: 100%; /* checked with cover */
+        bottom: 0; /* checked with cover */
+        position: absolute; /* checked with cover */
+        /* just trying something */
+        /* about stupid-ass height on some devices w/the 'color bar' */
+        /*height: 100%;*/
+    }
 /* not sure why we get the black back when mid-resize..... *//* (across top) */
-.video-container .filter {
-    z-index: 100;
-    position: absolute;
-    background: rgba(0, 0, 0, 0.2);
-    width: 100%;
-    /* just trying something */
-    /* about stupid-ass height on some devices w/the 'color bar' */
-    height: 100%;
-}
-.video-container video {
-    position: absolute;
-    z-index: 0;
-    bottom: 0;
-}
-.video-container video .fillWidth {
-    width: 100%;
-    /* just trying something */
-    /* about stupid-ass height on some devices w/the 'color bar' */
-    /*height: 120%;*/
-    /* works for the bigger (wider) screens as i was going for */
-    /* but then screwy on like iPads & Kindles & shit -- so put in MQ */
-}
+    .video-container .filter {
+        z-index: 100; /* checked with cover */
+        position: absolute; /* checked with cover */
+        /*background: rgba(0, 0, 0, 0.2);*/
+        background: rgba(57, 38, 19, .45); /* checked with cover */
+        width: 100%; /* checked with cover */
+        /* just trying something */
+        /* about stupid-ass height on some devices w/the 'color bar' */
+        /*height: 100%;*/
+    }
+    .video-container video {
+        z-index: 0; /* checked with cover */
+        position: absolute; /* checked with cover */
+        bottom: 0; /* checked with cover */
+    }
+        .video-container video .fillWidth {
+            width: 100%; /* checked with cover */
+            /* just trying something */
+            /* about stupid-ass height on some devices w/the 'color bar' */
+            /*height: 120%;*/
+            /* works for the bigger (wider) screens as i was going for */
+            /* but then screwy on like iPads & Kindles & shit -- so put in MQ */
+        }
 /* OMFG -- whatever i said/thought before about CSS being the "easy" part */
 /* fucking *forget* it when it comes to the fucking phones..... hahaha!  */
 
@@ -91,15 +92,15 @@ textarea {
 
 /*============================ splash/front/home OVERLAY ==============================*/
 .splash_overlay {
+    background: rgba(57, 38, 19, .45);
     position: fixed;
     top: 0;
     height: 100%;
-    background: rgba(57, 38, 19, .45);
-    color: #f1f1f1;
     width: 100%;
-    padding: 20px;
+    padding: 23px;
     padding-top: 45px;
     padding-left: 18px;
+    color: #f1f1f1;
 }
 .splash_subtitle {
     margin-left: 23px;
