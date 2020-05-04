@@ -23,7 +23,7 @@ namespace Petopia.Models.ViewModels
 
         public string CP_LastName { get; set; }
 
-        [DisplayName("CP_Zip")]
+        [DisplayName("CP_Zip:")]
         public string PU_ZipCode { get; set; }
 
         //-------------------------------------------------------------------------------

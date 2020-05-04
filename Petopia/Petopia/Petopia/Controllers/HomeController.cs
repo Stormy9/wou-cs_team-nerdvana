@@ -49,7 +49,10 @@ namespace Petopia.Controllers
         //===============================================================================
         public ActionResult PetCarerSearchResult(string searchZip)   // string searchZip
         {
-            searchZip = "97301";
+            // this was here just to prove the Query worked   [=
+            //searchZip = "97301";
+
+            // in case we want it.....
             ViewBag.SearchZip = searchZip;
 
             SearchViewModel carerSearch = new SearchViewModel();
@@ -63,7 +66,8 @@ namespace Petopia.Controllers
                                               select new SearchViewModel.CareProviderSearch
                                               {
                                                   CP_ID = cp.CareProviderID,
-                                                  CP_Name = pu.FirstName + pu.LastName,
+                                                  CP_Name = pu.FirstName + " " + pu.LastName,
+                                                  CP_Zipcode = pu.ResZipcode,
 
                                                   IsDogProvider = ub.DogProvider,
                                                   IsCatProvider = ub.CatProvider,
@@ -77,6 +81,7 @@ namespace Petopia.Controllers
                                                   IsOtherProvider = ub.OtherProvider
 
                                               }).ToList();
+
 
             return View(carerSearch);
         }

@@ -8,164 +8,145 @@
 
     <div class="row our_row_one">
 
-        <div class="col-sm-12 col-md-12 our_col_one">
+        <!--------------------------------- COLUMN ONE --------------------------------->
 
-            <h2> @ViewBag.Title! </h2>
+        <div class="col-sm-1 col-md-1 our_col_one">
+            <!-- spacer column -->
+        </div>
 
-            <table class="table">
-                <tr>
-                    <!------------------------------------------------------------>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CP_ID)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CP_Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.PU_ZipCode)
-                    </th>
-                    <!------------------------------------------------------------>
+        <!----------------------------------- COLUMN TWO \ MAIN ------------------------>
 
-                    <th>
-                        @Html.DisplayNameFor(model => model.IsDogProvider)
-                    </th>
+        <div class="col-sm-10 col-md-10 our_col_two">
 
-                    <!------------------------------------------------------------>
+                <h2> @ViewBag.Title! </h2>
 
-                    <th>
-                        @Html.DisplayNameFor(model => model.IsCatProvider)
-                    </th>
-
-                    <!------------------------------------------------------------>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.IsBirdProvider)
-                    </th>
-
-                    <!------------------------------------------------------------>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.IsFishProvider)
-                    </th>
-
-                    <!------------------------------------------------------------>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.IsRabbitProvider)
-                    </th>
-
-                    <!------------------------------------------------------------>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.IsRodentProvider)
-                    </th>
-
-                    <!------------------------------------------------------------>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.IsReptileProvider)
-                    </th>
-
-                    <!------------------------------------------------------------>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.IsHorseProvider)
-                    </th>
-
-                    <!------------------------------------------------------------>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.IsLivestockProvider)
-                    </th>
-
-                    <!------------------------------------------------------------>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.IsOtherProvider)
-                    </th>
-
-                    <!------------------------------------------------------------>
-                </tr>
-                <!--==================================================================================-->
-
-                @foreach (var item in Model.PetCarerSearchList)
+                @if (Model != null)
                 {
-                    <tr>
-                        <!------------------------------------------------------------>
-                        <td>
+                    foreach (var item in Model.PetCarerSearchList)
+                    {
+                        <div style="border:1px solid orange; border-radius: 11px;
+                                    margin: 11px; padding: 11px;  float: left;
+                                    width: 27%; min-height: 180px;">
+
+                            @Html.DisplayNameFor(model => model.CP_ID)&nbsp;
                             @Html.DisplayFor(modelItem => item.CP_ID)
-                        </td>
-                        <td>
+                            <br />
+                            @Html.DisplayNameFor(model => model.CP_Name)&nbsp;
                             @Html.DisplayFor(modelItem => item.CP_Name)
-                        </td>
-                        <td>
+                            <br />
+                            @Html.DisplayNameFor(model => model.PU_ZipCode)&nbsp;
                             @Html.DisplayFor(modelItem => item.CP_Zipcode)
-                        </td>
-                        <!------------------------------------------------------------>
+                            <br />
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsDogProvider)
-                        </td>
+                            @if (item.IsDogProvider is true)
+                            {
+                                <h5> dogs! </h5>
+                            }
 
-                        <!------------------------------------------------------------>
+                            @if (item.IsCatProvider is true)
+                            {
+                                <h5> cats! </h5>
+                            }
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsCatProvider)
-                        </td>
+                            @if (item.IsBirdProvider is true)
+                            {
+                                <h5> birds! </h5>
+                            }
 
-                        <!------------------------------------------------------------>
+                            @if (item.IsFishProvider is true)
+                            {
+                                <h5> fish! </h5>
+                            }
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsBirdProvider)
-                        </td>
+                            @if (item.IsRabbitProvider is true)
+                            {
+                                <h5> bunnies! </h5>
+                            }
 
-                        <!------------------------------------------------------------>
+                            @if (item.IsRodentProvider is true)
+                            {
+                                <h5> rodents! </h5>
+                                <h6> hamsters, gerbils, guinea pigs, more! </h6>
+                            }
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsFishProvider)
-                        </td>
+                            @if (item.IsReptileProvider is true)
+                            {
+                                <h5> reptiles! </h5>
+                                <h6> snakes, lizards, more! </h6>
+                            }
 
-                        <!------------------------------------------------------------>
+                            @if (item.IsHorseProvider is true)
+                            {
+                                <h5> horses! </h5>
+                            }
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsRabbitProvider)
-                        </td>
+                            @if (item.IsLivestockProvider is true)
+                            {
+                                <h5> livestock! </h5>
+                                <h6> goats, chickens, pigs, sheep, more! </h6>
+                            }
 
-                        <!------------------------------------------------------------>
+                            @if (item.IsOtherProvider is true)
+                            {
+                                <h5> other! </h5>
+                            }
+                        </div>
+                    }
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsRodentProvider)
-                        </td>
-
-                        <!------------------------------------------------------------>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsReptileProvider)
-                        </td>
-
-                        <!------------------------------------------------------------>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsHorseProvider)
-                        </td>
-
-                        <!------------------------------------------------------------>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsLivestockProvider)
-                        </td>
-
-                        <!------------------------------------------------------------>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IsOtherProvider)
-                        </td>
-
-                        <!------------------------------------------------------------>
-                    </tr>
                 }
-                <!--==================================================================================-->
-            </table>
+                else
+                {
+                    <h3>
+                        there aren't any pet carers registered in your area yet!
+                    </h3>
+                }
+
+        </div><!-- end middle column (10-wide) -->
+
+        <!------------------------------------- COLUMN THREE --------------------------->
+
+        <div class="col-sm-1 col-md-1 our_col_three">
+            <!-- spacer column -->
+        </div>
+        <!------------------------------------------------------------------------------>
+       
+    </div><!-- end row one-->
+    <!---------------------------------------------------------------------------------->
+    <div class="row our_row_two">
+
+        <div class="col-sm-1 col-md-1 our_col_one">
+
+        </div>
+
+        <div class="col-sm-10 col-md-10 our_col_two">
+
+            <div style="margin-left: 45px;">
+
+            <h3> search again?</h3>
+
+            @using (Html.BeginForm("PetCarerSearchResult", "Home", FormMethod.Post))
+            {
+                <!-- 'action' is where you go when it clicks, but we don't need it now -->
+                <form class="splash_search" action="">
+                    <div class="form-group splash_form">
+                        <!-- TODO: figure out why this won't widen w/CSS -->
+                        @Html.TextBox("searchZip", null,
+                                    new { @class = "form-control splash_search_input",
+                                          placeholder = "enter your zip code....." })
+                    </div>
+
+                    <button type="submit" class="btn btn-default our_buttons">
+                        Fetch!
+                    </button>
+                </form>
+            }
+            </div><!-- end search form/box div -->
+
+        </div>
+
+        <div class="col-sm-1 col-md-1 our_col_three">
+
         </div>
     </div>
-</div>
+    <!---------------------------------------------------------------------------------->
+</div><!-- end container-fluid \ outer container -->
