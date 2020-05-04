@@ -1,29 +1,31 @@
 ﻿using Microsoft.AspNet.Identity;
-using Petopia.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Petopia.DAL;
+using Petopia.Models;
+using Petopia.Models.ViewModels;
 
 namespace Petopia.Controllers
 {
     public class HomeController : Controller
     {
         private PetopiaContext pdb = new PetopiaContext();
+
         public ActionResult Index()
         {
             //var identityID = User.Identity.GetUserId();
             //DAL.PetopiaUser currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();
+
             bool loggedIn = User.Identity.IsAuthenticated;
             ViewBag.loggedIn = loggedIn;
-           
-            
-                return View();
-            
-        }
-        //-------------------------------------------------------------------------------
 
+           
+                return View();
+        }
+        //===============================================================================
         public ActionResult About()
         {
             ViewBag.Title = "What does Petopia do?"; 
@@ -32,8 +34,7 @@ namespace Petopia.Controllers
 
             return View();
         }
-        //-------------------------------------------------------------------------------
-
+        //===============================================================================
         public ActionResult Contact()
         {
             ViewBag.Title = "Contact Petopia";
@@ -44,6 +45,40 @@ namespace Petopia.Controllers
 
             return View();
         }
+        //===============================================================================
+        //===============================================================================
+        public ActionResult PetCarerSearchResult(string searchZip)
+        {
+            ViewBag.SearchZip = searchZip;
 
+            SearchViewModel carerSearch = new SearchViewModel();
+
+            carerSearch.PetCarerSearchList = (from pu in pdb.PetopiaUsers
+                                              where pu.ResZipcode == searchZip && pu.IsProvider
+
+                                              join cp in pdb.CareProviders on pu.UserID equals cp.UserID
+                                              join ub in pdb.UserBadges on cp.UserID equals ub.UserID
+
+                                              select new SearchViewModel.CareProviderSearch
+                                              {
+                                                  CP_ID = cp.CareProviderID,
+                                                  CP_Name = pu.FirstName + pu.LastName,
+
+                                                  IsDogProvider = ub.DogProvider,
+                                                  IsCatProvider = ub.CatProvider,
+                                                  IsBirdProvider = ub.BirdProvider,
+                                                  IsFishProvider = ub.FishProvider,
+                                                  IsHorseProvider = ub.HorseProvider,
+                                                  IsLivestockProvider = ub.LivestockProvider,
+                                                  IsRabbitProvider = ub.RabbitProvider,
+                                                  IsReptileProvider = ub.ReptileProvider,
+                                                  IsRodentProvider = ub.RodentProvider,
+                                                  IsOtherProvider = ub.OtherProvider
+
+                                              }).ToList();
+
+            return View(carerSearch);
+        }
+        //===============================================================================
     }
 }

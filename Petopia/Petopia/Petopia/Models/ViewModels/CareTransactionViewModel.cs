@@ -368,5 +368,8 @@ namespace Petopia.Models.ViewModels
             public int TransactionID { get; set; }
         }
         public List<IndexInfo> IndexInfoList { get; set; }
+
+        //===============================================================================
+        //===============================================================================
     }
 }
