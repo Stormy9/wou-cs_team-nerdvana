@@ -69,7 +69,7 @@ namespace Petopia.Controllers
                                                   CP_ID = cp.CareProviderID,
                                                   CP_PU_ID = pu.UserID,
                                                   CP_Name = pu.FirstName + " " + pu.LastName,
-                                                  CP_Zipcode = pu.ResZipcode,
+                                                  PU_Zipcode = pu.ResZipcode,
 
                                                   CP_Profile_Pic = pu.ProfilePhoto,
                                                   ExperienceDetails = cp.ExperienceDetails,
@@ -113,7 +113,7 @@ namespace Petopia.Controllers
                                                   PO_ID = po.PetOwnerID,
                                                   PO_PU_ID = pu.UserID,
                                                   PO_Name = pu.FirstName + " " + pu.LastName,
-                                                  PO_Zipcode = pu.ResZipcode,
+                                                  PU_Zipcode = pu.ResZipcode,
 
                                                   PO_Profile_Pic = pu.ProfilePhoto,
                                                   GeneralNeeds = po.GeneralNeeds,

@@ -88,8 +88,8 @@ namespace Petopia.Models.ViewModels
             [DisplayName("Name:")]
             public string CP_Name { get; set; }
 
-            [DisplayName("CP_Zip")]
-            public string CP_Zipcode { get; set; }
+            [DisplayName("PU_Zip")]
+            public string PU_Zipcode { get; set; }
 
             //---------------------------------------------------------
             [DisplayName("My profile picture:")]
@@ -140,7 +140,7 @@ namespace Petopia.Models.ViewModels
         public IQueryable<CareProviderSearch> PetCarerSearchList { get; set; }
 
         //===============================================================================
-        //                     Pet Owner Search
+        //                                   Pet Owner Search
         //===============================================================================
         public int PO_ID { get; set; }
 
@@ -156,8 +156,8 @@ namespace Petopia.Models.ViewModels
 
         public string PU_Last_Name { get; set; }
 
-        [DisplayName("CP_Zip:")]
-        public string PU_Zip_Code { get; set; }
+        //[DisplayName("PU_Zip:")]
+        //public string PU_Zip_Code { get; set; }
 
         //-------------------------------------------------------------
         [DisplayName("My profile picture:")]
@@ -215,8 +215,8 @@ namespace Petopia.Models.ViewModels
             [DisplayName("Name:")]
             public string PO_Name { get; set; }
 
-            [DisplayName("CP_Zip")]
-            public string PO_Zipcode { get; set; }
+            [DisplayName("PU_Zip")]
+            public string PU_Zipcode { get; set; }
 
             //---------------------------------------------------------
             [DisplayName("My profile picture:")]
