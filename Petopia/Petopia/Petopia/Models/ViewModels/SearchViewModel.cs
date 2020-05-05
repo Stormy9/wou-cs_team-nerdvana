@@ -29,6 +29,7 @@ namespace Petopia.Models.ViewModels
 
         public string CP_LastName { get; set; }
 
+        // this is the same as for pet owner search
         [DisplayName("CP_Zip:")]
         public string PU_ZipCode { get; set; }
 
@@ -88,7 +89,7 @@ namespace Petopia.Models.ViewModels
             [DisplayName("Name:")]
             public string CP_Name { get; set; }
 
-            [DisplayName("PU_Zip")]
+            [DisplayName("PU_Zip:")]
             public string PU_Zipcode { get; set; }
 
             //---------------------------------------------------------
@@ -215,7 +216,7 @@ namespace Petopia.Models.ViewModels
             [DisplayName("Name:")]
             public string PO_Name { get; set; }
 
-            [DisplayName("PU_Zip")]
+            [DisplayName("PU_Zip:")]
             public string PU_Zipcode { get; set; }
 
             //---------------------------------------------------------
