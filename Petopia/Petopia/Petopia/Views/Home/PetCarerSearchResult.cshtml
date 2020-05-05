@@ -18,100 +18,135 @@
 
         <div class="col-sm-10 col-md-10 our_col_two">
 
-                <h2> @ViewBag.Title! </h2>
+            <h2> @ViewBag.Title! </h2>
 
-                @if (Model != null)
+            @if (Model != null)
+            {
+                foreach (var item in Model.PetCarerSearchList)
                 {
-                    foreach (var item in Model.PetCarerSearchList)
-                    {
-                        <div style="border:1px solid orange; border-radius: 11px;
-                                    margin: 11px; padding: 11px;  float: left;
-                                    width: 27%; min-height: 180px;">
-
+                    <div class="splash_search_result_box">
+                        
+                        <div class="search_result_test_proof_data">
                             @Html.DisplayNameFor(model => model.CP_ID)&nbsp;
-                            @Html.DisplayFor(modelItem => item.CP_ID)
-                            <br />
+                            @Html.DisplayFor(modelItem => item.CP_ID) &lt;=&gt;
+                            @Html.DisplayNameFor(model => model.PU_ZipCode)&nbsp;
+                            @Html.DisplayFor(modelItem => item.CP_Zipcode)<br />
+                            later the name &amp; photo will be linked to the
+                            care provider's profile page!   [=
+                        </div>
+                        <div class="search_result_cp_name">
                             @Html.DisplayNameFor(model => model.CP_Name)&nbsp;
                             @Html.DisplayFor(modelItem => item.CP_Name)
-                            <br />
-                            @Html.DisplayNameFor(model => model.PU_ZipCode)&nbsp;
-                            @Html.DisplayFor(modelItem => item.CP_Zipcode)
-                            <br />
-                            @if (Model.CP_Profile_Pic != null)
-                            {
-                                <div class="profile_pic_box_box">
-                                    <div class="profile_pic_box">
-                                        <img src=@Url.Action("Show", "Image", new { id = Model.CP_PU_ID }) 
-                                             class="profile_img" />
-                                    </div>
+                        </div>
+                                                    
+                        <!-- MINI PROFILE PICTURE FOR CARE PROVIDER! -->
+                        @if (Model.CP_Profile_Pic != null)
+                        {
+                            <div class="search_result_profile_pic_box_box">
+                                <div class="search_result_profile_pic_box">
+                                    <img src=@Url.Action("Show", "Image", new { id = Model.CP_PU_ID }) 
+                                            class="search_result_profile_img" />
                                 </div>
-                            }
-                            else
-                            { 
-                                <div class="profile_pic_box_box">
-                                    <div class="profile_pic_box">
-                                        <img src="https://stormy9.github.io/nerdvana/cute_smiley.png" 
-                                             class="profile_img" />
-                                    </div>
+                            </div>
+                        }
+                        else
+                        { 
+                            <div class="search_result_profile_pic_box_box">
+                                <div class="search_result_profile_pic_box">
+                                    <img src="https://stormy9.github.io/nerdvana/cute_smiley.png" 
+                                            class="search_result_profile_img" />
                                 </div>
-                            }
-                            <br />
+                            </div>
+                        }
+                        <br />
 
-                            @if (item.IsDogProvider is true)
-                            {
+                        <!-- PET BADGES! -->
+                        <div class="search_result_pc_badge_box">
+                        @if (item.IsDogProvider is true)
+                        {
+                            @*<div class="search_result_pc_badge_box">
                                 <h5> dogs! </h5>
-                            }
+                            </div>*@
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_provider.png" class="pet_badge">
+                        }
 
-                            @if (item.IsCatProvider is true)
-                            {
+                        @if (item.IsCatProvider is true)
+                        {
+                            @*<div class="search_result_pc_badge_box">
                                 <h5> cats! </h5>
-                            }
+                            </div>*@
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_provider.png" class="pet_badge">
+                        }
 
-                            @if (item.IsBirdProvider is true)
-                            {
+                        @if (item.IsBirdProvider is true)
+                        {
+                            @*<div class="search_result_pc_badge_box">
                                 <h5> birds! </h5>
-                            }
+                            </div>*@
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_provider.png" class="pet_badge">
+                        }
 
-                            @if (item.IsFishProvider is true)
-                            {
+                        @if (item.IsFishProvider is true)
+                        {
+                            @*<div class="search_result_pc_badge_box">
                                 <h5> fish! </h5>
-                            }
+                            </div>*@
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_provider.png" class="pet_badge">
+                        }
 
-                            @if (item.IsRabbitProvider is true)
-                            {
+                        @if (item.IsRabbitProvider is true)
+                        {
+                            @*<div class="search_result_pc_badge_box">
                                 <h5> bunnies! </h5>
-                            }
+                            </div>*@
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_provider.png" class="pet_badge">
+                        }
 
-                            @if (item.IsRodentProvider is true)
-                            {
+                        @if (item.IsRodentProvider is true)
+                        {
+                            @*<div class="search_result_pc_badge_box">
                                 <h5> rodents! </h5>
                                 <h6> hamsters, gerbils, guinea pigs, more! </h6>
-                            }
+                            </div>*@
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_provider.png" class="pet_badge">
+                        }
 
-                            @if (item.IsReptileProvider is true)
-                            {
+                        @if (item.IsReptileProvider is true)
+                        {
+                            @*<div class="search_result_pc_badge_box">
                                 <h5> reptiles! </h5>
                                 <h6> snakes, lizards, more! </h6>
-                            }
+                            </div>*@
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_provider.png" class="pet_badge">
+                        }
 
-                            @if (item.IsHorseProvider is true)
-                            {
+                        @if (item.IsHorseProvider is true)
+                        {
+                            @*<div class="search_result_pc_badge_box">
                                 <h5> horses! </h5>
-                            }
+                            </div>*@
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_provider.png" class="pet_badge">
+                        }
 
-                            @if (item.IsLivestockProvider is true)
-                            {
+                        @if (item.IsLivestockProvider is true)
+                        {
+                            @*<div class="search_result_pc_badge_box">
                                 <h5> livestock! </h5>
                                 <h6> goats, chickens, pigs, sheep, more! </h6>
-                            }
+                            </div>*@
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_provider.png" class="pet_badge">
+                        }
 
-                            @if (item.IsOtherProvider is true)
-                            {
+                        @if (item.IsOtherProvider is true)
+                        {
+                            @*<div class="search_result_pc_badge_box">
                                 <h5> other! </h5>
-                            }
+                            </div>*@
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_provider.png" class="pet_badge">
+                        }
                         </div>
-                    }
-
+                    </div><!-- end div 'splash_search_result_box' -->
+                    } <!-- end the 'foreach' loop -->
                 }
                 else
                 {
@@ -127,6 +162,7 @@
         <div class="col-sm-1 col-md-1 our_col_three">
             <!-- spacer column -->
         </div>
+
         <!------------------------------------------------------------------------------>
        
     </div><!-- end row one-->

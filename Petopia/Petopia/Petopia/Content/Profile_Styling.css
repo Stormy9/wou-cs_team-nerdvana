@@ -42,7 +42,6 @@
     /* border: 1px solid black;
     border-radius: 5px; */
 }
-/* WE HAVE ISSUES WITH USER-UPLOADED IMAGES!!! */
 .profile_img {
     width: 99%;
     height: auto;
@@ -269,7 +268,6 @@
     /* Note: overflow property only works for block elements w/specified height */
     height: 630px;
 }
-
 .search_result_card {
     background-color: #604020;
     box-shadow: 0 5px 9px 0 rgba(0,0,0,0.6);
@@ -278,11 +276,9 @@
     border-radius: 5px;
     margin-bottom: 18px;
 }
-
     .search_result_card:hover {
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
     }
-
 .search_result_card_img {
     min-width: 70%;
     max-width: 93%;
@@ -305,7 +301,6 @@
     padding: 9px;
     overflow: auto;
 }
-
 .pet_profile_preview {
     border: 1px solid #4d3319;
     border-radius: 5px;
@@ -314,11 +309,9 @@
     height: 165px;
     margin-bottom: 18px;
 }
-
     .pet_profile_preview:hover {
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
     }
-
 .pet_profile_preview_img {
     width: 155px;
     height: 155px;
@@ -347,7 +340,12 @@
     padding: 5px;
     border: 1px solid #4d3319;
     border-radius: 9px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
 }
+    .pet_gallery_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
 .pet_gallery_photo_part {
 
 }

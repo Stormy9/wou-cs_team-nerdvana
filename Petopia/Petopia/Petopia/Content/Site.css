@@ -138,11 +138,62 @@ textarea {
     /* for testing */
     /*border: 1px solid green;*/
 }
+/*======== SEARCH RESULT PAGE STUFF ===================================================*/
+.splash_search_result_box {
+    border: 1px solid #4d3319;
+    border-radius: 11px;
+    margin: 11px;
+    padding: 11px;
+    float: left;
+    width: 27%;
+    min-height: 160px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.6);
+    transition: 0.3s;
+}
+    .splash_search_result_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+.search_result_test_proof_data {
+    font-size: 75%;
+    font-style: italic;
+}
+.search_result_cp_name {
+    font-weight: bold;
+    color: #392613;
+    margin-bottom: 5px;
+}
+.search_result_profile_pic_box_box {
+    display: inline-block;
+    float: left;
+}
+.search_result_profile_pic_box {
+    width: 92px;
+    height: auto;
+    /*border: 1px solid black;
+    border-radius: 5px;*/ 
+}
+.search_result_profile_img {
+    width: 90px;
+    height: auto;
+    /* this is better here then on the box */
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+}
+.search_result_pc_badge_box {
+    display: inline-block;
+    float: left;
+    margin-left: 3px;
+    padding-top: 30px;
+    /* for testing */
+    /*border: 1px solid green;*/
+}
+.pet_badge {
+    width: 36px;
+    height: 36px;
+}
 /*=================================== ABOUT PAGE ======================================*/
 .about_hero {
-    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
-                        rgba(57, 38, 19, 0.63)), 
-                        url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), rgba(57, 38, 19, 0.63)), url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

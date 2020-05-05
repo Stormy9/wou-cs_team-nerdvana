@@ -1,9 +1,11 @@
 ﻿@model Petopia.Models.ViewModels.PetGalleryViewModel
 @{
-    ViewBag.Title = "'s Photo Gallery!";
     var loggedInUser = ViewBag.loggedInUser;
     var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
     var thisPetID = ViewBag.ThisPetID;
+    var thisPetName = ViewBag.ThisPetsName;
+    ViewBag.Title = "Pet Photo Gallery!";
+    ViewBag.PetName = "'s Photo Gallery!";
 }
 
 
@@ -13,7 +15,7 @@
         
         <h2 style="text-align:center; color: #261a0d;
                     margin-top:9px; margin-bottom:0px;">
-            @ViewBag.ThisPetsName@ViewBag.Title 
+            @ViewBag.ThisPetsName@ViewBag.PetName 
         </h2>
 
         @if (loggedInUser == thisPetsOwner)
