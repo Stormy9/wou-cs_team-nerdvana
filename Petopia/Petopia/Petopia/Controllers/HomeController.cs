@@ -50,6 +50,7 @@ namespace Petopia.Controllers
         public ActionResult PetCarerSearchResult(string searchZip)   // string searchZip
         {
             // this was here just to prove the Query worked   [=
+            //    compared to results in MSSQL Server Manager
             //searchZip = "97301";
 
             // in case we want it.....
@@ -87,8 +88,51 @@ namespace Petopia.Controllers
 
                                               });
 
-
             return View(carerSearch);
+        }
+        //===============================================================================
+        public ActionResult PetOwnerSearchResult(string searchZip)   // string searchZip
+        {
+            // this was here just to prove the Query worked   [=
+            //    compared to results in MSSQL Server Manager
+            //searchZip = "97301";
+
+            // in case we want it.....
+            ViewBag.SearchZip = searchZip;
+
+            SearchViewModel ownerSearch = new SearchViewModel();
+
+            ownerSearch.PetOwnerSearchList = (from pu in pdb.PetopiaUsers
+                                              where pu.ResZipcode.Contains(searchZip) && pu.IsOwner
+
+                                              join po in pdb.PetOwners on pu.UserID equals po.UserID
+                                              join ub in pdb.UserBadges on po.UserID equals ub.UserID
+
+                                              select new SearchViewModel.PetOwnerSearch
+                                              {
+                                                  PO_ID = po.PetOwnerID,
+                                                  PO_PU_ID = pu.UserID,
+                                                  PO_Name = pu.FirstName + " " + pu.LastName,
+                                                  PO_Zipcode = pu.ResZipcode,
+
+                                                  PO_Profile_Pic = pu.ProfilePhoto,
+                                                  GeneralNeeds = po.GeneralNeeds,
+                                                  OwnerAverageRating = po.AverageRating,
+
+                                                  IsDogOwner = ub.DogOwner,
+                                                  IsCatOwner = ub.CatOwner,
+                                                  IsBirdOwner = ub.BirdOwner,
+                                                  IsFishOwner = ub.FishOwner,
+                                                  IsHorseOwner = ub.HorseOwner,
+                                                  IsLivestockOwner = ub.LivestockOwner,
+                                                  IsRabbitOwner = ub.RabbitOwner,
+                                                  IsReptileOwner = ub.ReptileOwner,
+                                                  IsRodentOwner = ub.RodentOwner,
+                                                  IsOtherOwner = ub.OtherOwner
+
+                                              });
+
+            return View(ownerSearch);
         }
         //===============================================================================
     }

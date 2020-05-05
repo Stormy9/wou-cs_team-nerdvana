@@ -102,13 +102,9 @@ namespace Petopia.Models.ViewModels
         public string EmergencyContactPhone { get; set; }
 
         //===============================================================================
-        // we will need a Pet List to make a drop-down for a User's Pets -- 
-        //   -- for the owner to choose which Pet they are booking care for
-        //
-        //    (borrowed\pared down from Corrin's ProfileViewModel!)
-        // Below here is for Pet drop-down list 
-        //        -- choose which of your Pets to get care for (since you can have many!)
-        //    ALSO -- to display Pet Carer's names in Appointment Listing Views
+        // we will need a Pet List to make check-boxes for a User's Pets -- 
+        //   -- for the owner to choose which Pet(s) they are booking care for
+        //    ALSO -- to display Pet's names in Appointment Listing Views
         public class PetNames
         {
             public int PetID { get; set; }

@@ -12,6 +12,9 @@ namespace Petopia.Models.ViewModels
 {
     public class SearchViewModel
     {
+        //===============================================================================
+        //                                pet care provivder search
+        //===============================================================================
         public int CP_ID { get; set; }
 
         [DisplayName("CP_PU_ID")]
@@ -137,5 +140,130 @@ namespace Petopia.Models.ViewModels
         public IQueryable<CareProviderSearch> PetCarerSearchList { get; set; }
 
         //===============================================================================
+        //                     Pet Owner Search
+        //===============================================================================
+        public int PO_ID { get; set; }
+
+        [DisplayName("PO_PU_ID")]
+        public int PO_PU_ID { get; set; }
+
+        //public int PetopiaUserID { get; set; }
+
+        [DisplayName("Name:")]
+        public string PO_Name { get; set; }
+
+        public string PU_First_Name { get; set; }
+
+        public string PU_Last_Name { get; set; }
+
+        [DisplayName("CP_Zip:")]
+        public string PU_Zip_Code { get; set; }
+
+        //-------------------------------------------------------------
+        [DisplayName("My profile picture:")]
+        public byte[] PO_Profile_Pic { get; set; } // this is the one
+
+        public HttpPostedFileBase PO_Profile_Photo { get; set; }
+        //-------------------------------------------------------------
+
+        [DisplayName("My Pet Care Needs:")]
+        public string GeneralNeeds { get; set; }
+
+        [DisplayName("My average rating:")]
+        public string OwnerAverageRating { get; set; }
+
+        //-------------------------------------------------------------------------------
+        [DisplayName("Dog?")]
+        public bool IsDogOwner { get; set; }
+
+        [DisplayName("Cat?")]
+        public bool IsCatOwner { get; set; }
+
+        [DisplayName("Bird?")]
+        public bool IsBirdOwner { get; set; }
+
+        [DisplayName("Fish?")]
+        public bool IsFishOwner { get; set; }
+
+        [DisplayName("Horse?")]
+        public bool IsHorseOwner { get; set; }
+
+        [DisplayName("Livestock?")]
+        public bool IsLivestockOwner { get; set; }
+
+        [DisplayName("Rabbit?")]
+        public bool IsRabbitOwner { get; set; }
+
+        [DisplayName("Reptile?")]
+        public bool IsReptileOwner { get; set; }
+
+        [DisplayName("Rodent?")]
+        public bool IsRodentOwner { get; set; }
+
+        [DisplayName("Other?")]
+        public bool IsOtherOwner { get; set; }
+
+        //===============================================================================
+        public class PetOwnerSearch
+        {
+            [DisplayName("CP_ID")]
+            public int PO_ID { get; set; }
+
+            [DisplayName("CP_PU_ID")]
+            public int PO_PU_ID { get; set; }
+
+            [DisplayName("Name:")]
+            public string PO_Name { get; set; }
+
+            [DisplayName("CP_Zip")]
+            public string PO_Zipcode { get; set; }
+
+            //---------------------------------------------------------
+            [DisplayName("My profile picture:")]
+            public byte[] PO_Profile_Pic { get; set; } // this is the one
+
+            public HttpPostedFileBase PO_Profile_Photo { get; set; }
+            //---------------------------------------------------------
+
+            [DisplayName("My Pet Care Needs:")]
+            public string GeneralNeeds { get; set; }
+
+            [DisplayName("My average rating:")]
+            public string OwnerAverageRating { get; set; }
+
+            //---------------------------------------------------------
+            // add badge status!
+            [DisplayName("Dog?")]
+            public bool IsDogOwner { get; set; }
+
+            [DisplayName("Cat?")]
+            public bool IsCatOwner { get; set; }
+
+            [DisplayName("Bird?")]
+            public bool IsBirdOwner { get; set; }
+
+            [DisplayName("Fish?")]
+            public bool IsFishOwner { get; set; }
+
+            [DisplayName("Horse?")]
+            public bool IsHorseOwner { get; set; }
+
+            [DisplayName("Livestock>?")]
+            public bool IsLivestockOwner { get; set; }
+
+            [DisplayName("Rabbit?")]
+            public bool IsRabbitOwner { get; set; }
+
+            [DisplayName("Reptile?")]
+            public bool IsReptileOwner { get; set; }
+
+            [DisplayName("Rodent?")]
+            public bool IsRodentOwner { get; set; }
+
+            [DisplayName("Other?")]
+            public bool IsOtherOwner { get; set; }
+        }
+        //-------------------------------------------------------------------------------
+        public IQueryable<PetOwnerSearch> PetOwnerSearchList { get; set; }
     }
 }

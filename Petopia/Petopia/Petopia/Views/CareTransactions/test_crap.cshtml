@@ -63,7 +63,7 @@
                                 @Html.CheckBoxFor(model => item.PetIsChecked, 
                                                             new { @checked = "checked" })
 
-                                @Html.DisplayFor(model => item.PetName)
+                                @Html.DisplayFor(model => item.PetIsChecked)
 
                                 @Html.ValidationMessageFor(model => item.PetIsChecked, "", 
                                                           new { @class = "text-danger" })

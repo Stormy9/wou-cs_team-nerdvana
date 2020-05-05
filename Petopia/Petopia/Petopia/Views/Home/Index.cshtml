@@ -30,12 +30,12 @@
         <h3 class="splash_subtitle">
             love your pet even when you can't be home!
         </h3>
-        <h5 class="splash_subtitle" style="margin-left: 45px;"> 
-            find pet care near you! 
-        </h5>
 
         <!------------------------------------------------------------------------------>
 
+        <h5 class="splash_subtitle" style="margin-left: 45px;">
+            find pet care near you!
+        </h5>
         <div style="margin-left: 45px;">
             @using (Html.BeginForm("PetCarerSearchResult", "Home", FormMethod.Post))
             {
@@ -49,6 +49,34 @@
                     </div>
 
                     <button type="submit" class="btn btn-default our_buttons">
+                        Fetch!
+                    </button>
+                </form>
+            }
+        </div><!-- end search form/box div -->
+
+        <!------------------------------------------------------------------------------>
+
+        <h5 class="splash_subtitle" style="margin-left: 45px; margin-top: 23px; margin-bottom: 0px;">
+            interested in becoming a pet care provider with us?
+        </h5>
+        <h5 class="splash_subtitle" style="margin-left: 45px; margin-top: 0px;">
+            find pet owners near you!
+        </h5>
+
+        <div style="margin-left: 45px;">
+            @using (Html.BeginForm("PetOwnerSearchResult", "Home", FormMethod.Post))
+            {
+                <!-- 'action' is where you go when it clicks, but we don't need it now -->
+                <form class="splash_search" action="">
+                    <div class="form-group splash_form">
+                        <!-- TODO: figure out why this won't widen w/CSS -->
+                        @Html.TextBox("searchZip", null,
+                                    new { @class = "form-control splash_search_input",
+                                          placeholder = "enter your zip code....." })
+                    </div>
+
+                    <button type="submit" class="btn btn-default our_buttons" >
                         Fetch!
                     </button>
                 </form>
