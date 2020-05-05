@@ -26,7 +26,6 @@ namespace Petopia.Models.ViewModels
         //Need this to know if we should show owner info on page          // PetopiaUsers
         public bool IsOwner { get; set; }
 
-
         //Need this to know if we should show provider info on page
         public bool IsProvider { get; set; }
 

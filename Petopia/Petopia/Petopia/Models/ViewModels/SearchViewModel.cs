@@ -29,10 +29,12 @@ namespace Petopia.Models.ViewModels
         [DisplayName("CP_Zip:")]
         public string PU_ZipCode { get; set; }
 
+        //-------------------------------------------------------------
         [DisplayName("My profile picture:")]
-        public byte[] ProfilePhoto { get; set; } //needSET
+        public byte[] CP_Profile_Pic { get; set; } // this is the one
 
-        public HttpPostedFileBase UserProfilePicture { get; set; }
+        public HttpPostedFileBase CP_Profile_Photo { get; set; }
+        //-------------------------------------------------------------
 
         [DisplayName("My Pet Care Experience:")]
         public string ExperienceDetails { get; set; }
@@ -86,10 +88,12 @@ namespace Petopia.Models.ViewModels
             [DisplayName("CP_Zip")]
             public string CP_Zipcode { get; set; }
 
+            //---------------------------------------------------------
             [DisplayName("My profile picture:")]
-            public byte[] ProfilePhoto { get; set; } //needSET
+            public byte[] CP_Profile_Pic { get; set; } // this is the one
 
-            public HttpPostedFileBase UserProfilePicture { get; set; }
+            public HttpPostedFileBase CP_Profile_Photo { get; set; }
+            //---------------------------------------------------------
 
             [DisplayName("My Pet Care Experience:")]
             public string ExperienceDetails { get; set; }

@@ -37,6 +37,25 @@
                             @Html.DisplayNameFor(model => model.PU_ZipCode)&nbsp;
                             @Html.DisplayFor(modelItem => item.CP_Zipcode)
                             <br />
+                            @if (Model.CP_Profile_Pic != null)
+                            {
+                                <div class="profile_pic_box_box">
+                                    <div class="profile_pic_box">
+                                        <img src=@Url.Action("Show", "Image", new { id = Model.CP_PU_ID }) 
+                                             class="profile_img" />
+                                    </div>
+                                </div>
+                            }
+                            else
+                            { 
+                                <div class="profile_pic_box_box">
+                                    <div class="profile_pic_box">
+                                        <img src="https://stormy9.github.io/nerdvana/cute_smiley.png" 
+                                             class="profile_img" />
+                                    </div>
+                                </div>
+                            }
+                            <br />
 
                             @if (item.IsDogProvider is true)
                             {

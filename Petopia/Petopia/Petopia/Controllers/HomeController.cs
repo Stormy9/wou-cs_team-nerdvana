@@ -66,8 +66,13 @@ namespace Petopia.Controllers
                                               select new SearchViewModel.CareProviderSearch
                                               {
                                                   CP_ID = cp.CareProviderID,
+                                                  CP_PU_ID = pu.UserID,
                                                   CP_Name = pu.FirstName + " " + pu.LastName,
                                                   CP_Zipcode = pu.ResZipcode,
+
+                                                  CP_Profile_Pic = pu.ProfilePhoto,
+                                                  ExperienceDetails = cp.ExperienceDetails,
+                                                  ProviderAverageRating = cp.AverageRating,
 
                                                   IsDogProvider = ub.DogProvider,
                                                   IsCatProvider = ub.CatProvider,
