@@ -43,9 +43,10 @@
                 <form class="splash_search" action="">
                     <div class="form-group splash_form">
                         <!-- TODO: figure out why this won't widen w/CSS -->
+                        <!-- aha!  it was the 'came-with' stuff way up top! -->
                         @Html.TextBox("searchZip", null,
                                     new { @class = "form-control splash_search_input",
-                                          placeholder = "enter your zip code....." })
+                                          placeholder = "enter your zip code....."})
                     </div>
 
                     <button type="submit" class="btn btn-default our_buttons">

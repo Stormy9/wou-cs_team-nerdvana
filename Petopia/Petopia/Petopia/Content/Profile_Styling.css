@@ -77,6 +77,12 @@
     width: 36px;
     height: 36px;
 }
+.badge_form {
+    float: left;
+    margin-right: 35px;
+    /* for testing */
+    /*border: 1px dashed blue;*/
+}
 /*======================== OUR BUTTONS ==============================*/
 .button_box {
     width: 96%;

@@ -18,7 +18,7 @@ body {
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 360px;
 }
 /*=====================================================================================*/
 /*                                our custom classes                                  */
@@ -114,7 +114,7 @@ textarea {
 }
 /* TODO -- figure out why the width on this isn't widening! */
 .splash_search_input {
-    width: 50%;
+    width: 199px;
     padding: 9px;
     font-size: 18px;
 }
@@ -426,14 +426,17 @@ hr {
     text-align: center;
 }
     .our_buttons a:link {
+        background-color: #392613;
         color: #f2e6d9;
         font-weight: normal;
     }
     .our_buttons:hover {
+        background-color: #392613;
         color: #f2e6d9;
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
     }
     .our_buttons:active {
+        background-color: #392613;
         transform: translateY(3px);
     }
 /*-------- MOVE IN THE OTHER PSEUDO-BUTTONS -------------------------*/
