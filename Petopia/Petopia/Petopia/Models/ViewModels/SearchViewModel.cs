@@ -14,6 +14,9 @@ namespace Petopia.Models.ViewModels
     {
         public int CP_ID { get; set; }
 
+        [DisplayName("CP_PU_ID")]
+        public int CP_PU_ID { get; set; }
+
         public int PetopiaUserID { get; set; }
 
         [DisplayName("Name:")]
@@ -25,6 +28,17 @@ namespace Petopia.Models.ViewModels
 
         [DisplayName("CP_Zip:")]
         public string PU_ZipCode { get; set; }
+
+        [DisplayName("My profile picture:")]
+        public byte[] ProfilePhoto { get; set; } //needSET
+
+        public HttpPostedFileBase UserProfilePicture { get; set; }
+
+        [DisplayName("My Pet Care Experience:")]
+        public string ExperienceDetails { get; set; }
+
+        [DisplayName("My average rating:")]
+        public string ProviderAverageRating { get; set; }
 
         //-------------------------------------------------------------------------------
         [DisplayName("Dog?")]
@@ -63,12 +77,27 @@ namespace Petopia.Models.ViewModels
             [DisplayName("CP_ID")]
             public int CP_ID { get; set; }
 
-            [DisplayName("Care Provider Name:")]
+            [DisplayName("CP_PU_ID")]
+            public int CP_PU_ID { get; set; }
+
+            [DisplayName("Name:")]
             public string CP_Name { get; set; }
 
             [DisplayName("CP_Zip")]
             public string CP_Zipcode { get; set; }
 
+            [DisplayName("My profile picture:")]
+            public byte[] ProfilePhoto { get; set; } //needSET
+
+            public HttpPostedFileBase UserProfilePicture { get; set; }
+
+            [DisplayName("My Pet Care Experience:")]
+            public string ExperienceDetails { get; set; }
+
+            [DisplayName("My average rating:")]
+            public string ProviderAverageRating { get; set; }
+
+            //---------------------------------------------------------
             // add badge status!
             [DisplayName("Dog?")]
             public bool IsDogProvider { get; set; }
@@ -101,7 +130,7 @@ namespace Petopia.Models.ViewModels
             public bool IsOtherProvider { get; set; }
         }
         //-------------------------------------------------------------------------------
-        public List<CareProviderSearch> PetCarerSearchList { get; set; }
+        public IQueryable<CareProviderSearch> PetCarerSearchList { get; set; }
 
         //===============================================================================
     }

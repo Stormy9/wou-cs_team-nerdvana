@@ -453,23 +453,30 @@ namespace Petopia.Controllers
         //===============================================================================
         public ActionResult PetGallery(int? id)
         {
+            var ThisPetsName = db.Pets.Where(pn => pn.PetID == id)
+                                      .Select(pn => pn.PetName)
+                                      .FirstOrDefault();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
+            
             PetGalleryViewModel petGal = new PetGalleryViewModel();
 
             petGal.CurrentPetID = id;
 
-            petGal.PetGalleryList = db.PetGallery.Where(x => x.PetID == id).Select(n => new PetGalleryInfo
-            {
-                PetPicID = n.PetPicID,
-                PetID = n.PetID,
-                Comment = n.Comment
-            }).ToList();
+            petGal.PetGalleryList = db.PetGallery.Where(x => x.PetID == id)
+                                                 .Select(n => new PetGalleryInfo
+                                                 {
+                                                     PetPicID = n.PetPicID,
+                                                     PetID = n.PetID,
+                                                     Comment = n.Comment
+                                                 }).ToList();
 
             ViewBag.ImageCount = db.PetGallery.Where(x => x.PetID == id).Count();
+            ViewBag.ThisPetID = id;
+            ViewBag.ThisPetsName = ThisPetsName;
 
             //---------------------------------------------------------------------------
             // testing to find this Pet's owner -- 
