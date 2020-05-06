@@ -12,27 +12,27 @@ namespace Petopia.Models.ViewModels
     {
         //===============================================================================
         //===============================================================================
-        //                                                          PetopiaUsers table
+        //                                                        from PetopiaUsers table
         //===============================================================================
         // MAIN stuff from PetopiaUsers table:
         public int UserId { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("First name:")]                                // PetopiaUsers
+        [DisplayName("First name:")]                                      // PetopiaUsers
         public string FirstName { get; set; }
 
         [DisplayName("Last name:")]
         public string LastName { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Pet Owner?")]                                 // PetopiaUsers
+        [DisplayName("Pet Owner?")]                                       // PetopiaUsers
         public bool IsOwner { get; set; }
 
         [DisplayName("Pet Carer?")]
         public bool IsProvider { get; set; }
 
         //===============================================================================
-        // Background\Private Account Info from                     PetopiaUsers table
+        // Background\Private Account Info from                        PetopiaUsers table
         [DisplayName("Main Phone #:")]
         public string MainPhone { get; set; }
 
@@ -40,7 +40,7 @@ namespace Petopia.Models.ViewModels
         public string AltPhone { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Residential Street Address:")]                    // PetopiaUsers
+        [DisplayName("Residential Street Address:")]                      // PetopiaUsers
         public string ResAddress01 { get; set; }
 
         [DisplayName("Address, 2nd line:")]
@@ -57,7 +57,7 @@ namespace Petopia.Models.ViewModels
 
         //===============================================================================
         //===============================================================================
-        //                                                                  Pets table
+        //                                                                     Pets table
         //===============================================================================
         // main things from Pet table:
         public int PetID { get; set; }
@@ -66,7 +66,7 @@ namespace Petopia.Models.ViewModels
         public string PetName { get; set; }
         
         //===============================================================================
-        // the "background\private details" from                            Pet table:
+        // the public/profile details from                                     Pet table:
         [DisplayName("Pet's species:")]
         public string Species { get; set; }
 
@@ -80,6 +80,8 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Pet's Birthday:")]
         public DateTime Birthday { get; set; }
 
+        //-------------------------------------------------------------------------------
+        // the background\private details from                                 Pet table:
         [DisplayName("Pet's weight:")]
         public string Weight { get; set; }
 
@@ -102,9 +104,9 @@ namespace Petopia.Models.ViewModels
         public string EmergencyContactPhone { get; set; }
 
         //===============================================================================
-        // we will need a Pet List to make check-boxes for a User's Pets -- 
-        //   -- for the owner to choose which Pet(s) they are booking care for
-        //    ALSO -- to display Pet's names in Appointment Listing Views
+        // we will need a Pet List to make check-boxes for a User's Pets            Pets
+        //   -- for owner to choose which Pet(s) they're booking care for           List
+        //    ALSO -- to display Pet's names in Appointment Listing Views?
         public class PetNames
         {
             public int PetID { get; set; }
@@ -120,7 +122,6 @@ namespace Petopia.Models.ViewModels
         //===============================================================================
         //                                                                PetOwner Table
         //===============================================================================
-        // the "background\private info" from PetOwner table:
         // 
         public int PetOwnerID { get; set; }
 
@@ -128,11 +129,13 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Pet's Owner:")]
         public string PetOwnerName { get; set; }
 
-        [DisplayName("How to access our Home:")]
-        public string HomeAccess { get; set; }
-
         [DisplayName("My General Pet Care Needs:")]
         public string GeneralNeeds { get; set; }
+
+        //-------------------------------------------------------------------------------
+        // the "background\private info" from PetOwner table:
+        [DisplayName("How to access our Home:")]
+        public string HomeAccess { get; set; }
 
         // foreign key???
         public int PO_UserID { get; set; }
@@ -175,6 +178,10 @@ namespace Petopia.Models.ViewModels
         }
         //-------------------------------------------------------------------------------
         public List<CareProviderInfo> PetCarerList { get; set; }
+
+        // something i was trying but it doesn't seem to work because of type mis-match
+        public List<CareProviderInfo> PetCarerSelectList { get; set; }
+        
 
         //===============================================================================
         //===============================================================================

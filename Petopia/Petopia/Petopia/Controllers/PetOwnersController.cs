@@ -78,7 +78,8 @@ namespace Petopia.Controllers
                 
                 pdb.SaveChanges();
 
-                petOwner.UserID = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+                petOwner.UserID = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                  .Select(x => x.UserID).First();
 
                 pdb.PetOwners.Add(petOwner);
 

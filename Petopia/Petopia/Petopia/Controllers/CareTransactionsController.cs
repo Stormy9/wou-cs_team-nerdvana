@@ -823,28 +823,35 @@ namespace Petopia.Controllers
                                                .Select(u => u.UserID)
                                                .FirstOrDefault();
 
-            // getting the FK column 'UserID' in the 'PetOwners' table
+            // this currently logged-in user: get the FK 'UserID' from the 'PetOwners' table
             var petOwnerID = db.PetOwners.Where(u => u.UserID == petopiaUserID)
                                          .Select(po => po.PetOwnerID)
                                          .FirstOrDefault();
 
-            // this is ONLY for double-checking crap   [=
+            // this currently logged-in user: this is ONLY for double-checking crap   [=
             var petOwner_UserID = db.PetOwners.Where(u => u.UserID == petopiaUserID)
                                               .Select(po => po.UserID)
                                               .FirstOrDefault();
-            // still just checking
+
+            // this currently logged-in user: still just checking
             var user_Email = db.ASPNetUsers.Where(u => u.Id == identityID)
                                            .Select(ue => ue.Email)
                                            .FirstOrDefault();
 
-            // this Pet Owner (instead of 'userAppts' like in 'MyAppointments')(and not a list)
+            // this currently logged-in user -- a Pet Owner -- via CareTransactions
+            //    (instead of 'userAppts' like in 'MyAppointments')(and not a list)
             var thisPetOwner = db.CareTransactions.Where(ct => ct.PetOwnerID == petOwnerID)
                                                   .Select(tpo => tpo.PetOwnerID)
                                                   .FirstOrDefault();
 
+            // This logged-in PetopiaUser(PetOwner)'s Zipcode
+            var thisPetOwnerZip = db.PetopiaUsers.Where(poz => poz.UserID == petOwner_UserID)
+                                             .Select(poz => poz.ResZipcode)
+                                             .FirstOrDefault();
+
             // this Pet Owner's Pets -- by name (i hope, haha) -- nope..... need to do more   [=
             var thisOwnersPets = db.Pets.Where(p => p.PetOwnerID == petOwnerID)
-                                        .Select(pn => pn.PetName )
+                                        .Select(pn => pn.PetName)
                                         .ToList();
 
             // for testing/proofing stuff!
@@ -854,6 +861,9 @@ namespace Petopia.Controllers
             ViewBag.petOwner_UserID = "this user's PetOwnerID=>PetopiaUserID: " + petOwner_UserID;
             ViewBag.user_Email = "this user's email: " + user_Email;
             ViewBag.thisPetOwner = "this user's CareTransaction=>PetOwnerID: " + thisPetOwner;
+            ViewBag.thisPetOwnerZip = "this logged-in user/PetOwner's ZipCode: " + thisPetOwnerZip;
+            ViewBag.thisOwnersPets = "this owner's pet list [1]: " + thisOwnersPets[1];
+            ViewBag.thisOwnersPetsList = thisOwnersPets;
 
             //---------------------------------------------------------------------------
             // trying to get a (displayable) list of this Owner's Pet's Names!
@@ -869,29 +879,65 @@ namespace Petopia.Controllers
                                                  
                                              }).ToList();
 
-            // Pet Owner Zipcode
-            var petOwnerZip = db.PetopiaUsers.Where(poz => poz.UserID == petOwner_UserID)
-                                             .Select(poz => poz.ResZipcode)
-                                             .FirstOrDefault();
-
-            // get list of Pet Care Provider IDs
-            testLists.PetCarerList = (from cp in db.CareProviders
-                                      join pu in db.PetopiaUsers on cp.UserID equals pu.UserID
-                                      // left \ right side of 'equals' is important!
+            // get list of Pet Care Provider + IDs --
+            //  where CareProvider Zipcode == currentlyLogged-inUser Zipcode -- it works!
+            //   -- this is what makes the blue cards on the test_crap View
+            testLists.PetCarerList = (from pu in db.PetopiaUsers
+                                      where pu.ResZipcode == thisPetOwnerZip
+                                      join cp in db.CareProviders on pu.UserID equals cp.UserID
                                       select new CareTransactionViewModel.CareProviderInfo
                                       {
                                           CareProviderID = cp.CareProviderID,
-                                          // can't believe this was this easy!  haha!
                                           CP_Name = pu.FirstName + " " + pu.LastName,
                                           CP_Zipcode = pu.ResZipcode
+
                                       }).ToList();
 
-            //Pet Carers with matching Zipcode to Pet Owner
-            //var petCarerZip = db.PetopiaUsers.Where(pcz => pcz.UserID == db.CareProviders.UserID)
-            //                                 .
+            //---------------------------------------------------------------------------
+            // now trying to get those results into a SelectList dammit..... 
+            //   this really should NOT be as difficult as this has been, 
+            //      having tried about 73 slight variations of things now.....
+            //        (why are there so many ways to do a SelectList anyway???)
+            List<SelectListItem> PetCarerSelectList = (from pu in db.PetopiaUsers
+                                                        where pu.ResZipcode == thisPetOwnerZip
+                                                        join cp in db.CareProviders on pu.UserID equals cp.UserID
+                                                        select new SelectListItem
+                                                        {
+                                                            Value = cp.CareProviderID.ToString(),
+                                                            Text = pu.FirstName + " " + pu.LastName
 
-            //testLists.PetCarerList = (from cpn in db.CareProviders
-            //                                   where cpn. )
+                                                        }).ToList();
+
+            ViewBag.PetCarerSelectList = PetCarerSelectList;
+            //
+            // ^^^ this finally works -- at least in appearance..... 
+            //        don't know yet, if it will pass the ID correctly..... 
+            //     why did i have to '.ToString()' it, and will that pass correctly?
+            //      since ID's are ints?  how did this work in those other projects?
+            //       they were a bit more "direct" and not based off a query like this
+            //---------------------------------------------------------------------------
+
+
+            // testing SelectList of Pet Care Providers + IDs -- with zipcodes that match logged-in user
+            var woof = (from pu in db.PetopiaUsers
+                        where pu.ResZipcode == thisPetOwnerZip
+                        join cp in db.CareProviders on pu.UserID equals cp.UserID
+                        select new SelectListItem
+                        {
+                            Value = "cp.CareProviderID",
+                            Text = "pu.FirstName" + "pu.LastName"
+
+                        }).ToList();
+
+            ViewBag.woof = woof;
+
+            // working on a stupid-ass SelectList.....
+            //
+            // SelectList of Pet Carers with matching Zipcode to logged-in user
+            ViewBag.CP_byZip_SelectList = new SelectList(db.PetopiaUsers.OrderBy(ln => ln.LastName)
+                      .Where(z => z.ResZipcode == thisPetOwnerZip & z.IsProvider), "UserID", "LastName");
+
+            ViewBag.CP_matchZip_SelectList = new SelectList(woof, "CareProviderID", "CP_Name");
 
             return View(testLists);
         }                                                // modeled after Edit() [GET]

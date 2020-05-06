@@ -95,9 +95,11 @@ namespace Petopia.Models.ViewModels
         // and because it's part of creating a PetopiaUser record!   [=
         //
         [DisplayName("Main Phone #")]
+        [StringLength(12)]
         public string MainPhone { get; set; }
 
         [DisplayName("Alternate Phone #")]
+        [StringLength(12)]
         public string AltPhone { get; set; }
 
         [DisplayName("Residential Address:")]
@@ -110,9 +112,11 @@ namespace Petopia.Models.ViewModels
         public string ResCity { get; set; }
 
         [DisplayName("State:")]
+        [StringLength(2)]
         public string ResState { get; set; }
 
         [DisplayName("ZipCode:")]
+        [StringLength(5)]
         public string ResZipcode { get; set; }
 
         //===============================================================================

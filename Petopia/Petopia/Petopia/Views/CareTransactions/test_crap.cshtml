@@ -21,12 +21,24 @@
                     @ViewBag.petOwner_UserID <br />
                     @ViewBag.thisPetOwner <br />
                     @ViewBag.user_Email <br />
+                    @ViewBag.thisPetOwnerZip <br />
+                    @ViewBag.thisOwnersPets
+
+                    <!-- this works! -->
+                    <h5> trying to print 'thisOwnersPetsList' from var.....</h5>
+                    @for (int i = 0; i < ViewBag.thisOwnersPetsList.Count; i++)
+                    { 
+                        <p> @ViewBag.thisOwnersPetsList[i] </p>
+                    }
+
+                    
 
                 </div>
             </div><!-- end column one -->
             <!--------------------------------------------------------------------------->
             <div class="col-sm-6 col-md-6">
                 <h5> hopefully, this owner's list of pet names!   [= </h5>
+                <h6> from 'testLists.PetNameList' </h6>
                 <ul>
                     @foreach (var item in Model.PetNameList)
                     {
@@ -63,7 +75,8 @@
                                 @Html.CheckBoxFor(model => item.PetIsChecked, 
                                                             new { @checked = "checked" })
 
-                                @Html.DisplayFor(model => item.PetIsChecked)
+                                @Html.HiddenFor(model => item.PetIsChecked) <!-- ??? -->
+                                @Html.DisplayFor(model => item.PetName)
 
                                 @Html.ValidationMessageFor(model => item.PetIsChecked, "", 
                                                           new { @class = "text-danger" })
@@ -82,8 +95,23 @@
             <!------------------------------ column two -------------------------------->
             <div class="col-sm-3 col-md-3">
                 
+                <!-- trying for pet carer w/matching zip code select list... -->
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.PetCarerName, htmlAttributes: new { @class = "control-label" })
+
+                    @Html.DropDownList("PetCarerSelectList", (IEnumerable<SelectListItem>)ViewBag.PetCarerSelectList, "pet carer name", htmlAttributes: new { @class="form-control"})
+
+                    @*@Html.DropDownList("AthleteID", null, "athlete name", 
+                   htmlAttributes: new { @class = "form-control", placeholder = "athlete name", 
+                                         required = "required" })*@
+
+                </div>
+
+
                 <!-- pet carer list -->
                 <h5> hopefully this is a list of Pet Carer ID's, names, &amp; zip-codes: </h5>
+                <h6> with zipcodes that match the currently logged-in user/PetOwner) </h6>
                 @foreach (var item in Model.PetCarerList)
                 {
                     <div style="margin-bottom: 5px; border:2px solid blue; border-radius: 11px; 

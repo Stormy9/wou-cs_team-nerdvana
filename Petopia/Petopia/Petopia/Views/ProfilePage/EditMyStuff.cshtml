@@ -186,7 +186,7 @@
 
                     @Html.EditorFor(model => model.ResZipcode,
                                 new { htmlAttributes = new { @class = "form-control", 
-                                        @placeholder="four-digit extension optional" } })
+                                            @placeholder="only first five digits" } })
 
                     @Html.ValidationMessageFor(model => model.ResZipcode, "",
                                                     new { @class = "text-danger" })
