@@ -179,7 +179,10 @@ namespace Petopia.Models.ViewModels
         //-------------------------------------------------------------------------------
         public List<CareProviderInfo> PetCarerList { get; set; }
 
-        // something i was trying but it doesn't seem to work because of type mis-match
+        // was trying to set a SelectList here like some examples i saw online,
+        //  but it just didn't like that -- now i forget why, haha.....
+        //   i looked at and tried *SO* many examples!!!   [=
+        //    okay just found stuff that says specifically to NOT do SelectLists here
         public List<CareProviderInfo> PetCarerSelectList { get; set; }
         
 

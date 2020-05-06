@@ -95,6 +95,14 @@
             <!------------------------------ column two -------------------------------->
             <div class="col-sm-3 col-md-3">
                 
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.PetName, htmlAttributes: new { @class = "control-label"})
+
+                    @Html.DropDownList("ThisOwnersPetsSelectList", (IEnumerable<SelectListItem>)ViewBag.ThisOwnersPetsSelectList, "my pets", htmlAttributes: new { @class="form-control"})
+
+                </div>
+
                 <!-- trying for pet carer w/matching zip code select list... -->
                 <div class="form-group">
 
@@ -107,7 +115,6 @@
                                          required = "required" })*@
 
                 </div>
-
 
                 <!-- pet carer list -->
                 <h5> hopefully this is a list of Pet Carer ID's, names, &amp; zip-codes: </h5>

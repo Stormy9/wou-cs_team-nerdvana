@@ -881,7 +881,7 @@ namespace Petopia.Controllers
 
             // get list of Pet Care Provider + IDs --
             //  where CareProvider Zipcode == currentlyLogged-inUser Zipcode -- it works!
-            //   -- this is what makes the blue cards on the test_crap View
+            //   --> THIS IS WHAT MAKES THE BLUE CARDS ON THE 'test_crap' VIEW <--
             testLists.PetCarerList = (from pu in db.PetopiaUsers
                                       where pu.ResZipcode == thisPetOwnerZip
                                       join cp in db.CareProviders on pu.UserID equals cp.UserID
@@ -894,7 +894,8 @@ namespace Petopia.Controllers
                                       }).ToList();
 
             //---------------------------------------------------------------------------
-            // now trying to get those results into a SelectList dammit..... 
+            //
+            // now trying to get those "blue card" results into a SelectList dammit..... 
             //   this really should NOT be as difficult as this has been, 
             //      having tried about 73 slight variations of things now.....
             //        (why are there so many ways to do a SelectList anyway???)
@@ -909,16 +910,30 @@ namespace Petopia.Controllers
                                                         }).ToList();
 
             ViewBag.PetCarerSelectList = PetCarerSelectList;
-            //
             // ^^^ this finally works -- at least in appearance..... 
             //        don't know yet, if it will pass the ID correctly..... 
             //     why did i have to '.ToString()' it, and will that pass correctly?
             //      since ID's are ints?  how did this work in those other projects?
             //       they were a bit more "direct" and not based off a query like this
             //---------------------------------------------------------------------------
+            //
+            // now to try the same thing to make a SelectList of the currently logged-in
+            //   PetOwner's Pets.....
+            List<SelectListItem> ThisOwnersPetsSelectList = (from pn in db.Pets
+                                                            where pn.PetOwnerID == thisPetOwner
+                                                            select new SelectListItem
+                                                            {
+                                                                Value = pn.PetID.ToString(),
+                                                                Text = pn.PetName
 
+                                                            }).ToList();
 
-            // testing SelectList of Pet Care Providers + IDs -- with zipcodes that match logged-in user
+            ViewBag.ThisOwnersPetsSelectList = ThisOwnersPetsSelectList;
+
+            //---------------------------------------------------------------------------
+            //
+            // (early) testing & fiddling around w/doing a SelectList of PetCareProviders
+            //  + IDs -- with zipcodes that match logged-in user
             var woof = (from pu in db.PetopiaUsers
                         where pu.ResZipcode == thisPetOwnerZip
                         join cp in db.CareProviders on pu.UserID equals cp.UserID
@@ -931,13 +946,15 @@ namespace Petopia.Controllers
 
             ViewBag.woof = woof;
 
-            // working on a stupid-ass SelectList.....
+            // trying various ways to get a stupid-ass SelectList.....
             //
             // SelectList of Pet Carers with matching Zipcode to logged-in user
             ViewBag.CP_byZip_SelectList = new SelectList(db.PetopiaUsers.OrderBy(ln => ln.LastName)
                       .Where(z => z.ResZipcode == thisPetOwnerZip & z.IsProvider), "UserID", "LastName");
 
             ViewBag.CP_matchZip_SelectList = new SelectList(woof, "CareProviderID", "CP_Name");
+
+
 
             return View(testLists);
         }                                                // modeled after Edit() [GET]
