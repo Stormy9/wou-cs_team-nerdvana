@@ -47,11 +47,11 @@ namespace Petopia.Models
         //===============================================================================
         [Required]
         [DisplayName("Main Phone #*")]
-        [StringLength(50)]
+        [StringLength(12)]
         public string MainPhone { get; set; }
 
         //-------------------------------------------------------------------------------
-        [StringLength(50)]
+        [StringLength(12)]
         [DisplayName("Alternate Phone #")]
         public string AltPhone { get; set; }
 
@@ -76,13 +76,13 @@ namespace Petopia.Models
         //-------------------------------------------------------------------------------
         [Required]
         [DisplayName("State*")]
-        [StringLength(50)]
+        [StringLength(2)]
         public string ResState { get; set; }
 
         //-------------------------------------------------------------------------------
         [Required]
         [DisplayName("ZipCode*")]
-        [StringLength(24)]
+        [StringLength(5)]
         public string ResZipcode { get; set; }
 
         //===============================================================================

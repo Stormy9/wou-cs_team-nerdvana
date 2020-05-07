@@ -11,6 +11,10 @@ namespace Petopia.Models.ViewModels
     public class MyAccountViewModel
     {
         //===============================================================================
+        //     this is for getting the private account info of a user
+        //     pet care providers have no "extra" private info like pet owners
+        //        so they aren't on here   [=
+        //===============================================================================
         // account things from PetopiaUser
         // 
         public int UserID { get; set; }
