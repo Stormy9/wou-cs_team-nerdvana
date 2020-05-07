@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Petopia.DAL;
 using Petopia.Models;
 using Petopia.Models.ViewModels;
+using SimpleZipCode;
 
 namespace Petopia.Controllers
 {
@@ -19,11 +20,25 @@ namespace Petopia.Controllers
             //var identityID = User.Identity.GetUserId();
             //DAL.PetopiaUser currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();
 
+            var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
+
+            var OwnerLocation = ZipCodes.Get("97301");
+            var ZipCodesNearOwner = ZipCodes.RadiusSearch(OwnerLocation, 10);
+            
+            List<String> zipsList = new List<String>();
+
+            foreach(ZipCode zip in ZipCodesNearOwner)
+            {
+                zipsList.Add(zip.PostalCode);
+            }
+
+            ViewBag.ZipList = String.Join(",", zipsList.ToArray());
+
             bool loggedIn = User.Identity.IsAuthenticated;
             ViewBag.loggedIn = loggedIn;
 
+            return View();
            
-                return View();
         }
         //===============================================================================
         public ActionResult About()
