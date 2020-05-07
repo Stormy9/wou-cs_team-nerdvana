@@ -142,38 +142,81 @@ namespace Petopia.Controllers
         // GET: CareTransactions/Create
         public ActionResult BookAppointment()
         {
-            // got logged-in user's ID, into the 'PetOwnerID' field, 
-            //    for when a user clicks to book a Pet Care appointment!
-            //
+            // get logged-in user's PetOwnerID, into the 'PetOwnerID' field,
             var identityID = User.Identity.GetUserId();
 
-            var petopiaUserID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
-                                               .Select(u => u.UserID)
-                                               .FirstOrDefault();
+            var thisPetopiaUserID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
+                                                   .Select(u => u.UserID)
+                                                   .FirstOrDefault();
 
-            int petOwnerID = db.PetOwners.Where(po => po.UserID == petopiaUserID)
-                                         .Select(po => po.PetOwnerID)
-                                         .FirstOrDefault();
+            int thisPetOwnerID = db.PetOwners.Where(po => po.UserID == thisPetopiaUserID)
+                                             .Select(po => po.PetOwnerID)
+                                             .FirstOrDefault();
 
-            var petOwner_UserID = db.PetOwners.Where(po => po.UserID == petopiaUserID)
-                                              .Select(po => po.UserID)
-                                              .FirstOrDefault();
+            // this logged-in PetopiaUser(PetOwner)'s Zipcode
+            var thisPetOwnerZip = db.PetopiaUsers.Where(poz => poz.UserID == thisPetopiaUserID)
+                                             .Select(poz => poz.ResZipcode)
+                                             .FirstOrDefault();
 
-            // for testing \ proofing.....
-            ViewBag.identityID = identityID;
-            ViewBag.petopiaUserID = petopiaUserID;
-            ViewBag.petOwnerID = petOwnerID;
-            ViewBag.petOwner_UserID = petOwner_UserID;
-            
             //---------------------------------------------------------------------------
-            // *** Trying to get a list of logged-in user's pets for drop-down
-            //           when owner is booking a pet care appointment
+            // see 'test_crap' at the end here for notes..... 
+            // --> SELECT LIST OF THIS LOGGED-IN PET OWNER'S PETS <--
+            List<SelectListItem> ThisOwnersPetsSelectList = (from pn in db.Pets
+                                                             where pn.PetOwnerID == thisPetOwnerID
+                                                             select new SelectListItem
+                                                             {
+                                                                 Value = pn.PetID.ToString(),
+                                                                 Text = pn.PetName
+
+                                                             }).ToList();
+
+            //ViewBag.ThisOwnersPetsSelectList = new SelectList(ThisOwnersPetsSelectList);
+            // ^^^ for one thing, the drop-down says 'System.Web.Mvc.SelectListItem'
+            // error returned:  System.InvalidOperationException: 
+            //                  There is no ViewData item of type 'IEnumerable<SelectListItem>' 
+            //                  that has the key 'ThisOwnersPetsSelectList'.
             //
-            //var thesePets = db.Pets.Where(po => po.PetOwnerID == loggedID);
-            
-            //ViewBag.UsersPets = new SelectList(db.Pets.Where(p => p.PetOwnerID = thesePets), "PetId", "PetName");
+            // there's also the:  `new SelectList(PetCarerSelectList, "value", "text")`
+            // similar to how we did for HW8 in 460 -- but wtf to put for those, w/query?
+            //    -->  page won't even load w/the things i tried for "value" & "text"
+            //
+            //   --> comment one or the other out to see what it does <--
+            //
+            // this one actually shows the pet names!  but returns error:
+            //          System.InvalidOperationException: 
+            //          There is no ViewData item of type 'IEnumerable<SelectListItem>' 
+            //          that has the key 'ThisOwnersPetsSelectList'.
+            ViewBag.ThisOwnersPetsSelectList = ThisOwnersPetsSelectList;
 
             //---------------------------------------------------------------------------
+            // see 'test_crap' at the end here for notes..... 
+            // --> SELECT LIST OF PET CARERS w/ZIPCODE MATCHING THIS LOGGED-IN PET OWNER
+            List<SelectListItem> PetCarerSelectList = (from pu in db.PetopiaUsers
+                                                       where pu.ResZipcode == thisPetOwnerZip
+                                                       join cp in db.CareProviders on pu.UserID equals cp.UserID
+                                                       select new SelectListItem
+                                                       {
+                                                           Value = cp.CareProviderID.ToString(),
+                                                           Text = pu.FirstName + " " + pu.LastName
+
+                                                       }).ToList();
+
+            //ViewBag.PetCarerSelectList = new SelectList(PetCarerSelectList);
+            // ^^^ for one thing, the drop-down says 'System.Web.Mvc.SelectListItem'
+            // ^-- it doesn't get here, but i'm sure it would error like the pet one
+            //
+            // there's also the:  `new SelectList(PetCarerSelectList, "value", "text")`
+            // similar to how we did for HW8 in 460 -- but wtf to put for those, w/query?
+            //     --> page won't even load w/the things i tried for "value" & "text"
+            //
+            //   --> comment one or the other out to see what it does <--
+            //
+            // this one actually shows the matching pet carer names!  but returns error:
+            // ^-- it doesn't get here, but i'm sure it would error like the pet one
+            ViewBag.PetCarerSelectList = PetCarerSelectList;
+
+            //---------------------------------------------------------------------------
+
 
             return View();
         }
@@ -189,18 +232,85 @@ namespace Petopia.Controllers
         {
             if (ModelState.IsValid)
             {
+                // get logged-in user's PetOwnerID, into the 'PetOwnerID' field,
                 var identityID = User.Identity.GetUserId();
 
-                var petopiaUserID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
-                                              .Select(u => u.UserID)
-                                              .FirstOrDefault();
+                var thisPetopiaUserID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
+                                                       .Select(u => u.UserID)
+                                                       .FirstOrDefault();
 
-                int petOwnerID = db.PetOwners.Where(po => po.UserID == petopiaUserID)
-                                             .Select(po => po.PetOwnerID)
-                                             .FirstOrDefault();
+                int thisPetOwnerID = db.PetOwners.Where(po => po.UserID == thisPetopiaUserID)
+                                                 .Select(po => po.PetOwnerID)
+                                                 .FirstOrDefault();
+
+                // this logged-in PetopiaUser(PetOwner)'s Zipcode
+                var thisPetOwnerZip = db.PetopiaUsers.Where(poz => poz.UserID == thisPetopiaUserID)
+                                                     .Select(poz => poz.ResZipcode)
+                                                     .FirstOrDefault();
+
+                //-----------------------------------------------------------------------
 
                 // this seems to be really important, haha
-                careTransaction.PetOwnerID = petOwnerID;
+                careTransaction.PetOwnerID = thisPetOwnerID;
+
+                //---------------------------------------------------------------------------
+                // see 'test_crap' at the end here for notes..... 
+                // --> SELECT LIST OF THIS LOGGED-IN PET OWNER'S PETS <--
+                List<SelectListItem> ThisOwnersPetsSelectList = (from pn in db.Pets
+                                                                 where pn.PetOwnerID == thisPetOwnerID
+                                                                 select new SelectListItem
+                                                                 {
+                                                                     Value = pn.PetID.ToString(),
+                                                                     Text = pn.PetName
+
+                                                                 }).ToList();
+
+                //ViewBag.ThisOwnersPetsSelectList = new SelectList(ThisOwnersPetsSelectList);
+                // ^^^ for one thing, the drop-down says 'System.Web.Mvc.SelectListItem'
+                // error returned:  System.InvalidOperationException: 
+                //                  There is no ViewData item of type 'IEnumerable<SelectListItem>' 
+                //                  that has the key 'ThisOwnersPetsSelectList'.
+                //
+                // there's also the:  `new SelectList(PetCarerSelectList, "value", "text")`
+                // similar to how we did for HW8 in 460 -- but wtf to put for those, w/query?
+                //      page won't even load w/the things i tried for "value" & "text"
+                //
+                //   --> comment one or the other out to see what it does <--
+                //
+                // this one actually shows the matching pet names!  but returns error:
+                //          System.InvalidOperationException: 
+                //          There is no ViewData item of type 'IEnumerable<SelectListItem>' 
+                //          that has the key 'ThisOwnersPetsSelectList'. 
+                ViewBag.ThisOwnersPetsSelectList = ThisOwnersPetsSelectList;
+
+                //---------------------------------------------------------------------------
+                // see 'test_crap' at the end here for notes..... this was working there   =]
+                // --> SELECT LIST OF PET CARERS w/ZIPCODE MATCHING THIS LOGGED-IN PET OWNER
+                List<SelectListItem> PetCarerSelectList = (from pu in db.PetopiaUsers
+                                                           where pu.ResZipcode == thisPetOwnerZip
+                                                           join cp in db.CareProviders on pu.UserID equals cp.UserID
+                                                           select new SelectListItem
+                                                           {
+                                                               Value = cp.CareProviderID.ToString(),
+                                                               Text = pu.FirstName + " " + pu.LastName
+
+                                                           }).ToList();
+
+                //ViewBag.PetCarerSelectList = new SelectList(PetCarerSelectList);
+                // ^^^ for one thing, the drop-down says 'System.Web.Mvc.SelectListItem'
+                // ^-- it doesn't get here, but i'm sure it would error like the pet one
+                //
+                // there's also the:  `new SelectList(PetCarerSelectList, "value", "text")`
+                // similar to how we did for HW8 in 460 -- but wtf to put for those, w/query?
+                //      page won't even load w/the things i tried for "value" & "text"
+                //
+                //   --> comment one or the other out to see what it does <--
+                //
+                // this one actually shows the matching pet carer names!  but returns error:
+                // ^-- it doesn't get here, but i'm sure it would error like the pet one
+                ViewBag.PetCarerSelectList = PetCarerSelectList;
+
+                //-----------------------------------------------------------------------
 
                 db.CareTransactions.Add(careTransaction);
                 db.SaveChanges();
@@ -814,6 +924,9 @@ namespace Petopia.Controllers
         }
         //===============================================================================
         //===============================================================================
+        //===============================================================================
+        //===============================================================================
+        //===============================================================================
         public ActionResult test_crap()
         {
             var identityID = User.Identity.GetUserId();
@@ -894,7 +1007,6 @@ namespace Petopia.Controllers
                                       }).ToList();
 
             //---------------------------------------------------------------------------
-            //
             // now trying to get those "blue card" results into a SelectList dammit..... 
             //   this really should NOT be as difficult as this has been, 
             //      having tried about 73 slight variations of things now.....
@@ -911,7 +1023,7 @@ namespace Petopia.Controllers
 
             ViewBag.PetCarerSelectList = PetCarerSelectList;
             // ^^^ this finally works -- at least in appearance..... 
-            //        don't know yet, if it will pass the ID correctly..... 
+            //     don't know yet, if it will pass the ID correctly  <-- IT DOES NOT!!!!!
             //     why did i have to '.ToString()' it, and will that pass correctly?
             //      since ID's are ints?  how did this work in those other projects?
             //       they were a bit more "direct" and not based off a query like this
@@ -929,7 +1041,7 @@ namespace Petopia.Controllers
                                                             }).ToList();
 
             ViewBag.ThisOwnersPetsSelectList = ThisOwnersPetsSelectList;
-
+            // same as with the Pet Carer Select List  <-- DOES NOT PASS ID CORRECTLY
             //---------------------------------------------------------------------------
             //
             // (early) testing & fiddling around w/doing a SelectList of PetCareProviders
@@ -957,10 +1069,10 @@ namespace Petopia.Controllers
 
 
             return View(testLists);
-        }                                                // modeled after Edit() [GET]
+        }                                                
         //===============================================================================
-        [HttpPost]                                      // modeled after Edit() [POST]
-        [AllowAnonymous]
+        [HttpPost]                                     // not actually doing anything
+        [AllowAnonymous]                                // with this yet   [=
         [ValidateAntiForgeryToken]
         public ActionResult test_crap(int? id)
         {
@@ -971,7 +1083,6 @@ namespace Petopia.Controllers
                 // the currently logged-in user
                 var PetopiaUserID = db.PetopiaUsers.Where(pu => pu.ASPNetIdentityID == identityID)
                                                    .Select(pu => pu.UserID).First();
-
 
             }
 

@@ -140,9 +140,14 @@
                     @Html.LabelFor(model => model.PetID,
                                     htmlAttributes: new { @class = "control-label" })
 
-                    @Html.EditorFor(model => model.PetID,
+                    @Html.DropDownList("ThisOwnersPetsSelectList", 
+                    (IEnumerable<SelectListItem>)ViewBag.ThisOwnersPetsSelectList, "my pets", 
+                            htmlAttributes: new { @class="form-control"})
+
+                    <!-- this works perfectly -- but is obviously NOT practical nor userFriendly! -->
+                    @*@Html.EditorFor(model => model.PetID,
                         new { htmlAttributes = 
-                            new { @class = "form-control", @tabindex = "6", min="1" } })
+                            new { @class = "form-control", @tabindex = "6", min="1" } })*@
 
                     @Html.ValidationMessageFor(model => model.PetID, "",
                                                     new { @class = "text-danger" })
@@ -152,9 +157,14 @@
                     @Html.LabelFor(model => model.CareProviderID,
                                     htmlAttributes: new { @class = "control-label" })
 
-                    @Html.EditorFor(model => model.CareProviderID,
+                    @Html.DropDownList("PetCarerSelectList", 
+                    (IEnumerable<SelectListItem>)ViewBag.PetCarerSelectList, "pet carer name", 
+                            htmlAttributes: new { @class="form-control"})
+
+                    <!-- this works perfectly -- but is obviously NOT practical nor userFriendly! -->
+                    @*@Html.EditorFor(model => model.CareProviderID,
                         new { htmlAttributes = 
-                            new { @class = "form-control", @tabindex = "7", min="1" } })
+                            new { @class = "form-control", @tabindex = "7", min="1" } })*@
 
                     @Html.ValidationMessageFor(model => model.CareProviderID,
                                             "", new { @class = "text-danger" })
