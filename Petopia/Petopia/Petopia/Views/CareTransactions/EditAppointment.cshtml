@@ -4,193 +4,212 @@
     ViewBag.Title = "Edit/Update This Pet Care Appointment";
     //this works!!!!!
     var today = DateTime.Now.ToString("yyyy-MM-dd");
+    var loggedInUser = ViewBag.loggedInUser;
+    var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
 }
 
 <div class="container-fluid" style="padding-bottom:45px;">
 
-@using (Html.BeginForm("EditAppointment", "CareTransactions", FormMethod.Post,
-            new { @class = "form", role = "form", enctype = "multipart/form-data" } ))
+    <!-- testing purposes! -->
+    <div style="display:none;"> 
+        logged-in user: @loggedInUser  <br />
+        this pet's owner: @thisPetsOwner <br />
+    </div>
+@if (loggedInUser == thisPetsOwner)
 {
-    @Html.AntiForgeryToken()
+    using (Html.BeginForm("EditAppointment", "CareTransactions", FormMethod.Post,
+                new { @class = "form", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="form">
+        <div class="form">
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.TransactionID)
-        @Html.HiddenFor(model => model.PetOwnerID)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.TransactionID)
+            @Html.HiddenFor(model => model.PetOwnerID)
 
-        <span style="float: right; padding-right: 5px;">
-            @Html.ActionLink("See all my Pet Care appointments", "MyAppointments",
-                new { controller = "CareTransactions" },
-                new { @class = "btn our_buttons", 
-                style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
-        </span>
+            <span style="float: right; padding-right: 5px;">
+                @Html.ActionLink("See all my Pet Care appointments", "MyAppointments",
+                      new { controller = "CareTransactions" },
+                      new{ @class = "btn our_buttons",
+                           style = "margin-bottom:5px; color: #f2e6d9; font-weight: normal;"})
+            </span>
 
-        <h2>@ViewBag.Title:</h2>
+            <h2>@ViewBag.Title:</h2>
 
-        <!-- =============================== FIRST\TOP ROW! ==========================-->
-            <div class="row make_appt_box">
+            <!-- =============================== FIRST\TOP ROW! ==========================-->
+                <div class="row make_appt_box">
 
-                <!-- ====================== FIRST ROW -- FIRST COLUMN ================-->
-                <div class="col-sm-3 col-md-3">
+                    <!-- ====================== FIRST ROW -- FIRST COLUMN ================-->
+                    <div class="col-sm-3 col-md-3">
 
-                    <h4> select start date &amp; time: </h4>
-                    <!---->
-                    <!-----------------------------START DATE -------------------------->
-                    <div class="form-group" style="padding-top: 5px;">
-                        @Html.LabelFor(model => model.StartDate,
-                                    htmlAttributes: new { @class = "control-label" })
+                        <h4> select start date &amp; time: </h4>
+                        <!---->
+                        <!-----------------------------START DATE -------------------------->
+                        <div class="form-group" style="padding-top: 5px;">
+                            @Html.LabelFor(model => model.StartDate,
+                                htmlAttributes: new { @class = "control-label" })
 
-                        @Html.EditorFor(model => model.StartDate,
-                            new { htmlAttributes = 
-                                new { @class = "form-control", @tabindex = "1", min=@today } })
+                            @Html.EditorFor(model => model.StartDate,
+                                  new { htmlAttributes =
+                                      new { @class = "form-control", 
+                                            @tabindex = "1", min = @today }})
 
-                        @Html.ValidationMessageFor(model => model.StartDate, "",
-                                                    new { @class = "text-danger" })
-                    </div>
-                    <!--------------------------------- START TIME---------------------->
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.StartTime,
-                                    htmlAttributes: new { @class = "control-label" })
-
-                        @Html.EditorFor(model => model.StartTime,
-                            new { htmlAttributes = 
-                                new { @class = "form-control", @tabindex = "3" } })
-
-                        @Html.ValidationMessageFor(model => model.StartTime, "",
-                                                    new { @class = "text-danger" })
-                    </div>
-                    <!------------------------------------------------------------------>
-                </div><!-- END ROW 1 \ COL 1 -->
-                <!--==================================================================-->
-                <!---->
-                <!--========================= FIRST ROW - SECOND COLUMN ==============-->
-                <div class="col-sm-3 col-md-3">
-
-                    <h4> select end date &amp; time: </h4>
-                    <!---->
-                    <!-----------------------------END DATE ---------------------------->
-                    <div class="form-group" style="padding-top: 5px;">
-                        @Html.LabelFor(model => model.EndDate,
-                                    htmlAttributes: new { @class = "control-label" })
-
-                        @Html.EditorFor(model => model.EndDate,
-                            new { htmlAttributes = 
-                                new { @class = "form-control", @tabindex = "1", min=@today } })
-
-                        @Html.ValidationMessageFor(model => model.EndDate, "",
-                                                    new { @class = "text-danger" })
-                    </div>
-                    <!---------------------------- END TIME ---------------------------->
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.EndTime,
-                                    htmlAttributes: new { @class = "control-label" })
-
-                        @Html.EditorFor(model => model.EndTime,
-                            new { htmlAttributes = 
-                                new { @class = "form-control", @tabindex = "4" } })
-
-                        @Html.ValidationMessageFor(model => model.EndTime, "",
-                                                    new { @class = "text-danger" })
-                    </div>
-                    <!------------------------------------------------------------------>
-                    <h6> <i> can span multiple days, i.e. pet-sitting! </i></h6>
-                    <!------------------------------------------------------------------>
-                </div><!-- END ROW 1 \ COL 2 -->
-                <!--==================================================================-->
-                <!---->
-                <!--=============================== FIRST ROW - THIRD COLUMN =========-->
-                <div class="col-sm-4 col-md-4">
-                    <h4> Instructions for this visit: </h4>
-                    <!----------------------- NEEDED THIS VISIT ----------------------->
-                    @Html.LabelFor(model => model.NeededThisVisit,
-                                    htmlAttributes: new { @class = "control-label" })
-                    <br />
-                    @Html.TextAreaFor(model => model.NeededThisVisit,
-                        new { htmlAttributes =
-                        new { @class = "form-control our_text_area", @tabindex = "5" },
-                        cols = 180, rows = 5, id = "text20", name = "text20",
-                        style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
-
-                    <div>
-                        <!-- do a character counter here! -->
-                        <span class="pull-left label label-default"
-                              id="count_message_20">
-                        </span>
-                    </div>
-
-                    @Html.ValidationMessageFor(model => model.NeededThisVisit, "",
-                                                    new { @class = "text-danger" })
-                    <!----------------------------------------------------------------->
-                </div><!-- END ROW 1 \ COL 3 -->
-                <!--==================================================================-->
-                <!---->
-                <!--=============================== FIRST ROW - FOURTH COLUMN ========-->
-                <div class="col-sm-2 col-md-2">
-
-                    <!---------------------------------- WHICH PET? -------------------->
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PetID,
-                                        htmlAttributes: new { @class = "control-label" })
-
-                        @Html.EditorFor(model => model.PetID,
-                            new { htmlAttributes = 
-                            new { @class = "form-control", @tabindex = "6", min="1" } })
-
-                        @Html.ValidationMessageFor(model => model.PetID, "",
+                            @Html.ValidationMessageFor(model => model.StartDate, "",
                                                         new { @class = "text-danger" })
-                    </div>
-                    <!---------------------------- WHICH PET CARER? -------------------->
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.CareProviderID,
-                                        htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <!--------------------------------- START TIME---------------------->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StartTime,
+                                    htmlAttributes: new { @class = "control-label" })
 
-                        @Html.EditorFor(model => model.CareProviderID,
-                            new { htmlAttributes = 
-                                new { @class = "form-control", @tabindex = "7", min="1" } })
+                            @Html.EditorFor(model => model.StartTime,
+                                  new { htmlAttributes =
+                                      new { @class = "form-control", @tabindex = "3" } })
 
-                        @Html.ValidationMessageFor(model => model.CareProviderID,
-                                                "", new { @class = "text-danger" })
-                    </div>
-                    <!----------------------- EDIT PET CARE APPOINTMENT!  -------------->
-                    <div class="form-group" style="padding-top: 18px;">
+                            @Html.ValidationMessageFor(model => model.StartTime, "",
+                          new { @class = "text-danger" })
+                        </div>
+                        <!------------------------------------------------------------------>
+                    </div><!-- END ROW 1 \ COL 1 -->
+                    <!--==================================================================-->
+                    <!---->
+                    <!--========================= FIRST ROW - SECOND COLUMN ==============-->
+                    <div class="col-sm-3 col-md-3">
 
-                        <span style="float: right; margin-right: 5px; margin-bottom: 5px;">
-                            <input type="submit" value="Update this Appointment!"
-                                   class="btn our_buttons" />
-                        </span>
-                        <span style="float: right; margin-right: 5px;" 
-                              class="btn our_buttons">
-                            @Html.ActionLink("Cancel", "MyAppointments",
-                                        new { Controller = "CareTransactions"},
-                                        new { style="color: #f2e6d9;"} )
-                        </span>
-                    </div>
-                    <!------------------------------------------------------------------>
-                </div>
-            <!--======================================================================-->
-            </div><!-- END ROW 1 -->
-            <!---->
-            <!---->
-                <br />            
+                        <h4> select end date &amp; time: </h4>
+                        <!---->
+                        <!-----------------------------END DATE ---------------------------->
+                        <div class="form-group" style="padding-top: 5px;">
+                            @Html.LabelFor(model => model.EndDate,
+                                htmlAttributes: new { @class = "control-label" })
 
-                <!---------------------------------------------------------------------->
-                <!-- here for initial testing til i hooked in the PetOwnerID! -->
-                @*<div class="form-group" style="float: right;">
-                    @Html.LabelFor(model => model.PetOwnerID,
-                                        htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.EndDate,
+                                  new { htmlAttributes =
+                                      new { @class = "form-control", 
+                                            @tabindex = "1", min = @today }})
 
-                        @Html.EditorFor(model => model.PetOwnerID, 
-                                new { htmlAttributes = new { @class = "form-control" } })
-
-                        @Html.ValidationMessageFor(model => model.PetOwnerID, "", 
+                            @Html.ValidationMessageFor(model => model.EndDate, "",
                                                         new { @class = "text-danger" })
-                </div>*@
-                <!---------------------------------------------------------------------->
+                        </div>
+                        <!---------------------------- END TIME ---------------------------->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EndTime,
+                                    htmlAttributes: new { @class = "control-label" })
+
+                            @Html.EditorFor(model => model.EndTime,
+                                  new { htmlAttributes =
+                                      new { @class = "form-control", @tabindex = "4" }})
+
+                            @Html.ValidationMessageFor(model => model.EndTime, "",
+                                    new { @class = "text-danger" })
+                        </div>
+                        <!------------------------------------------------------------------>
+                        <h6> <i> can span multiple days, i.e. pet-sitting! </i></h6>
+                        <!------------------------------------------------------------------>
+                    </div><!-- END ROW 1 \ COL 2 -->
+                    <!--==================================================================-->
+                    <!---->
+                    <!--=============================== FIRST ROW - THIRD COLUMN =========-->
+                    <div class="col-sm-4 col-md-4">
+                        <h4> Instructions for this visit: </h4>
+                        <!----------------------- NEEDED THIS VISIT ----------------------->
+                        @Html.LabelFor(model => model.NeededThisVisit,
+                                htmlAttributes: new { @class = "control-label" })
+                        <br />
+                        @Html.TextAreaFor(model => model.NeededThisVisit,
+                            new { htmlAttributes =
+                              new { @class = "form-control our_text_area", @tabindex = "5" },
+                                  cols = 180, rows = 5, id = "text20", name = "text20",
+                                  style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
+
+                        <div>
+                            <!-- do a character counter here! -->
+                            <span class="pull-left label label-default"
+                                  id="count_message_20">
+                            </span>
+                        </div>
+
+                        @Html.ValidationMessageFor(model => model.NeededThisVisit, "",
+                                                    new { @class = "text-danger" })
+                        <!----------------------------------------------------------------->
+                    </div><!-- END ROW 1 \ COL 3 -->
+                    <!--==================================================================-->
+                    <!---->
+                    <!--=============================== FIRST ROW - FOURTH COLUMN ========-->
+                    <div class="col-sm-2 col-md-2">
+
+                        <!---------------------------------- WHICH PET? -------------------->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PetID,
+                                    htmlAttributes: new { @class = "control-label" })
+
+                            @Html.EditorFor(model => model.PetID,
+                                new { htmlAttributes =
+                                  new { @class = "form-control", @tabindex = "6", min = "1" } })
+
+                            @Html.ValidationMessageFor(model => model.PetID, "",
+                                                    new { @class = "text-danger" })
+                        </div>
+                        <!---------------------------- WHICH PET CARER? -------------------->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CareProviderID,
+                                    htmlAttributes: new { @class = "control-label" })
+
+                            @Html.EditorFor(model => model.CareProviderID,
+                                  new { htmlAttributes =
+                                      new { @class = "form-control", @tabindex = "7", min = "1" }})
+
+                            @Html.ValidationMessageFor(model => model.CareProviderID,
+                                                    "", new { @class = "text-danger" })
+                        </div>
+                        <!----------------------- EDIT PET CARE APPOINTMENT!  -------------->
+                        <div class="form-group" style="padding-top: 18px;">
+
+                            <span style="float: right; margin-right: 5px; margin-bottom: 5px;">
+                                <input type="submit" value="Update this Appointment!"
+                                       class="btn our_buttons" />
+                            </span>
+                            <span style="float: right; margin-right: 5px;" 
+                                  class="btn our_buttons">
+                                @Html.ActionLink("Cancel", "MyAppointments",
+                                          new { Controller = "CareTransactions" },
+                                          new { style = "color: #f2e6d9;" })
+                            </span>
+                        </div>
+                        <!------------------------------------------------------------------>
+                    </div>
+                <!--======================================================================-->
+                </div><!-- END ROW 1 -->
+                <!---->
+                <!---->
+                    <br />      
+                    @*@Html.DropDownList("CareProviderID", null, "carer name", htmlAttributes: 
+                    new { @class = "form-control", placeholder = "carer name", required = "required" })
+                
+                    @ViewBag.PetCarers*@
+                    <!---------------------------------------------------------------------->
+                    <!-- here for initial testing til i hooked in the PetOwnerID! -->
+                    @*<div class="form-group" style="float: right;">
+                        @Html.LabelFor(model => model.PetOwnerID,
+                                            htmlAttributes: new { @class = "control-label" })
+
+                            @Html.EditorFor(model => model.PetOwnerID, 
+                                    new { htmlAttributes = new { @class = "form-control" } })
+
+                            @Html.ValidationMessageFor(model => model.PetOwnerID, "", 
+                                                            new { @class = "text-danger" })
+                    </div>*@
+                    <!---------------------------------------------------------------------->
             
 
-            <!-------------------------------------------------------------------------->
-        </div><!-- END FORM DIV! -->
+                <!-------------------------------------------------------------------------->
+            </div><!-- END FORM DIV! -->
+    }
+}
+else
+{ 
+    <h5> you are not this pet's owner! </h5>
 }
 <!--==================================================================================-->
 </div><!-- END CONTAINER-FLUID DIV! -->

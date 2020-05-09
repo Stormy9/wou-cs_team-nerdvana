@@ -34,15 +34,14 @@
 }
 /*========================== PROFILE PIC ============================*/
 .profile_pic_box_box {
-}
 
+}
 .profile_pic_box {
     width: 96%;
     height: auto;
     /* border: 1px solid black;
     border-radius: 5px; */
 }
-/* WE HAVE ISSUES WITH USER-UPLOADED IMAGES!!! */
 .profile_img {
     width: 99%;
     height: auto;
@@ -78,12 +77,19 @@
     width: 36px;
     height: 36px;
 }
+.badge_form {
+    float: left;
+    margin-right: 35px;
+    /* for testing */
+    /*border: 1px dashed blue;*/
+}
 /*======================== OUR BUTTONS ==============================*/
 .button_box {
     width: 96%;
     height: 90px;
     padding: 3px;
     color: #f2e6d9;
+    margin-top: 13px;
 }
 .our_profile_buttons {
     border: 1px solid #4d3319;
@@ -91,6 +97,7 @@
     padding: 9px;
     background-color: #392613;
     color: #f2e6d9;
+    font-weight: normal;
     float: left;
     margin-left: 3px;
     margin-top: 3px;
@@ -267,7 +274,6 @@
     /* Note: overflow property only works for block elements w/specified height */
     height: 630px;
 }
-
 .search_result_card {
     background-color: #604020;
     box-shadow: 0 5px 9px 0 rgba(0,0,0,0.6);
@@ -276,11 +282,9 @@
     border-radius: 5px;
     margin-bottom: 18px;
 }
-
     .search_result_card:hover {
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
     }
-
 .search_result_card_img {
     min-width: 70%;
     max-width: 93%;
@@ -303,7 +307,6 @@
     padding: 9px;
     overflow: auto;
 }
-
 .pet_profile_preview {
     border: 1px solid #4d3319;
     border-radius: 5px;
@@ -312,11 +315,9 @@
     height: 165px;
     margin-bottom: 18px;
 }
-
     .pet_profile_preview:hover {
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
     }
-
 .pet_profile_preview_img {
     width: 155px;
     height: 155px;
@@ -327,7 +328,6 @@
     margin-bottom: 3px;
     margin-left: 3px;
 }
-
 .pet_preview_name {
     font-weight: bold;
 }
@@ -339,6 +339,75 @@
 .pet_preview_care_record {
     font-weight: bold;
 }
+/*====================== PET PHOTO GALLERY ==========================*/
+.pet_gallery_box {
+    float: left;
+    margin: 13px;
+    padding: 5px;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+    .pet_gallery_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+.pet_gallery_photo_part {
+
+}
+.pet_gallery_photo_box_box {
+    /*display: inline-block;*/
+}
+.pet_gallery_photo_box {
+    width: 96%;
+    height: auto;
+    /* border: 1px solid black;
+    border-radius: 5px; */
+}
+.pet_gallery_image {
+    width: auto;
+    height: 350px;
+    /* this is better here then on the box */
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+}
+.pet_gallery_photo_comment_part {
+    display: inline-block;
+    float: left;
+    padding: 5px 5px 0px 15px;
+    font-weight: bold;
+    color: #392613;
+    /* for testing */
+    /*border: 1px solid orange;*/
+}
+.pet_gallery_button_part {
+    display: inline-block;
+    float: right;
+    padding: 5px;
+    /* for testing */
+    /*border: 1px solid green;*/
+}
+.pet_gallery_button {
+    background-color: #392613;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 1px 5px 1px 5px;
+    color: #f2e6d9;
+    font-weight: normal;
+    font-style: italic;
+    text-align: center;
+}
+    .pet_gallery_button a:link {
+        color: #f2e6d9;
+        font-weight: normal;
+    }
+    .pet_gallery_button:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .pet_gallery_button:active {
+        transform: translateY(3px);
+    }
 /*====================== TABLE for PET CARE =========================*/
 .pet_care_table {
     width: 100%;

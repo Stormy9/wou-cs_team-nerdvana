@@ -3,33 +3,23 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
     /*padding-left: 15px;
     padding-right: 15px;*/
 }
-
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
     white-space: normal;
 }
-
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 360px;
 }
-
-/* Calendar styling configuration */
-#calendar {
-    max-width: 900px;
-    margin: 20px auto;
-}
-
 /*=====================================================================================*/
 /*                                our custom classes                                  */
 /*===================================================================================*/
@@ -37,67 +27,61 @@ textarea {
 /*============================= front/splash/home VIDEO ===============================*/
 /* trying out the video 'hero' video+image thing -- courtesy coverr */
 .homepage-hero-module {
-    border-right: none;
-    border-left: none;
-    position: relative;
+    border-right: none; /* checked with coverr */
+    border-left: none; /* checked with cover */
+    position: relative; /* checked with cover */
 }
-
 .no-video .video-container video,
 .touch .video-container video {
-    display: none;
-    width: 100%;
+    display: none; /* checked with cover */
+    /*width: 100%;*//* i added this part for some reason i forget! */
 }
-
 .no-video .video-container .poster,
 .touch .video-container .poster {
-    display: block !important;
-    width: 100%;
+    display: block !important; /* checked with cover */
+    /*width: 100%;*/ /* i added this part for some reason i forget! */
 }
-
 .video-container {
-    position: relative;
-    bottom: 0%;
-    left: 0%;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    background: #000;
+    position: relative; /* checked with cover */
+    bottom: 0%; /* checked with cover */
+    left: 0%; /* checked with cover */
+    height: 100%; /* checked with cover */
+    width: 100%; /* checked with cover */
+    overflow: hidden; /* checked with cover */
+    background: #000; /* checked with cover */
 }
-
-.video-container .poster img {
-    width: 100%;
-    bottom: 0;
-    position: absolute;
-    /* just trying something */
-    /* about stupid-ass height on some devices w/the 'color bar' */
-    height: 100%;
-}
-
+    .video-container .poster img {
+        width: 100%; /* checked with cover */
+        bottom: 0; /* checked with cover */
+        position: absolute; /* checked with cover */
+        /* just trying something */
+        /* about stupid-ass height on some devices w/the 'color bar' */
+        /*height: 100%;*/
+    }
 /* not sure why we get the black back when mid-resize..... *//* (across top) */
-.video-container .filter {
-    z-index: 100;
-    position: absolute;
-    background: rgba(0, 0, 0, 0.2);
-    width: 100%;
-    /* just trying something */
-    /* about stupid-ass height on some devices w/the 'color bar' */
-    height: 100%;
-}
-
-.video-container video {
-    position: absolute;
-    z-index: 0;
-    bottom: 0;
-}
-
-.video-container video .fillWidth {
-    width: 100%;
-    /* just trying something */
-    /* about stupid-ass height on some devices w/the 'color bar' */
-    /*height: 120%;*/
-    /* works for the bigger (wider) screens as i was going for */
-    /* but then screwy on like iPads & Kindles & shit -- so put in MQ */
-}
+    .video-container .filter {
+        z-index: 100; /* checked with cover */
+        position: absolute; /* checked with cover */
+        /*background: rgba(0, 0, 0, 0.2);*/
+        background: rgba(57, 38, 19, .45); /* checked with cover */
+        width: 100%; /* checked with cover */
+        /* just trying something */
+        /* about stupid-ass height on some devices w/the 'color bar' */
+        /*height: 100%;*/
+    }
+    .video-container video {
+        z-index: 0; /* checked with cover */
+        position: absolute; /* checked with cover */
+        bottom: 0; /* checked with cover */
+    }
+        .video-container video .fillWidth {
+            width: 100%; /* checked with cover */
+            /* just trying something */
+            /* about stupid-ass height on some devices w/the 'color bar' */
+            /*height: 120%;*/
+            /* works for the bigger (wider) screens as i was going for */
+            /* but then screwy on like iPads & Kindles & shit -- so put in MQ */
+        }
 /* OMFG -- whatever i said/thought before about CSS being the "easy" part */
 /* fucking *forget* it when it comes to the fucking phones..... hahaha!  */
 
@@ -108,35 +92,32 @@ textarea {
 
 /*============================ splash/front/home OVERLAY ==============================*/
 .splash_overlay {
+    background: rgba(57, 38, 19, .45);
     position: fixed;
     top: 0;
     height: 100%;
-    background: rgba(57, 38, 19, .45);
-    color: #f1f1f1;
     width: 100%;
-    padding: 20px;
+    padding: 23px;
     padding-top: 45px;
     padding-left: 18px;
+    color: #f1f1f1;
 }
-
 .splash_subtitle {
     margin-left: 23px;
 }
-
 .splash_search {
     margin-top: 18px;
+    margin-bottom: 0px;
     margin-left: 45px;
     /* for testing */
     /*border: 1px solid red;*/
 }
-
 /* TODO -- figure out why the width on this isn't widening! */
 .splash_search_input {
-    width: 50%;
+    width: 199px;
     padding: 9px;
     font-size: 18px;
 }
-
 .splash_intro_box {
     text-align: center;
     width: 100%;
@@ -144,7 +125,6 @@ textarea {
     /* testing purposes */
     /*border: 1px solid orange;*/
 }
-
 .splash_intro {
     position: absolute;
     display: inline-block;
@@ -159,11 +139,62 @@ textarea {
     /* for testing */
     /*border: 1px solid green;*/
 }
+/*======== SEARCH RESULT PAGE STUFF ===================================================*/
+.splash_search_result_box {
+    border: 1px solid #4d3319;
+    border-radius: 11px;
+    margin: 11px;
+    padding: 11px;
+    float: left;
+    width: 27%;
+    min-height: 160px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.6);
+    transition: 0.3s;
+}
+    .splash_search_result_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+.search_result_test_proof_data {
+    font-size: 75%;
+    font-style: italic;
+}
+.search_result_cp_name {
+    font-weight: bold;
+    color: #392613;
+    margin-bottom: 5px;
+}
+.search_result_profile_pic_box_box {
+    display: inline-block;
+    float: left;
+}
+.search_result_profile_pic_box {
+    width: 92px;
+    height: auto;
+    /*border: 1px solid black;
+    border-radius: 5px;*/ 
+}
+.search_result_profile_img {
+    width: 90px;
+    height: auto;
+    /* this is better here then on the box */
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+}
+.search_result_pc_badge_box {
+    display: inline-block;
+    float: left;
+    margin-left: 3px;
+    padding-top: 30px;
+    /* for testing */
+    /*border: 1px solid green;*/
+}
+.pet_badge {
+    width: 36px;
+    height: 36px;
+}
 /*=================================== ABOUT PAGE ======================================*/
 .about_hero {
-    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
-                        rgba(57, 38, 19, 0.63)), 
-                        url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), rgba(57, 38, 19, 0.63)), url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -174,7 +205,6 @@ textarea {
     /* this is to center 'about_title' */
     text-align: center;
 }
-
 .about_title {
     position: absolute;
     display: inline-block;
@@ -185,23 +215,11 @@ textarea {
     /* left edge of text gets cut off when narrow */
     padding-left: 45px;
 }
-
 .about_content {
     color: #261a0d;
     font-size: 18px;
     padding: 27px;
     padding-bottom: 45px;
-}
-
-.any_questions {
-    width: 180px;
-    background-color: #604020;
-    border: 1px solid #4d3319;
-    border-radius: 9px;
-    padding: 9px;
-    color: #f2e6d9;
-    font-size: 18px;
-    text-align: center;
 }
 /*=============================== CONTACT PAGE ========================================*/
 .contact_hero {
@@ -216,49 +234,27 @@ textarea {
     color: #f2e6d9;
     height: 120vh;
 }
-
 .contact_title {
     position: absolute;
     display: inline-block;
     bottom: 30%;
     text-align: left;
 }
-
 .contact_content {
     color: #261a0d;
     font-size: 18px;
     padding-top: 18px;
     padding-left: 18px;
 }
-
 .email_text {
     color: #990000;
     font-weight: bold;
 }
-
 .contact_bottom_stuff {
     margin-top: 45px;
     margin-bottom: 45px;
     padding-left: 18px;
 }
-
-.email_button {
-    width: 180px;
-    background-color: #392613;
-    border: 1px solid #4d3319;
-    border-radius: 9px;
-    padding: 9px;
-    color: #f2e6d9;
-    font-size: 18px;
-    text-align: center;
-}
-    .email_button:hover {
-        color: #f2e6d9;
-        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
-    }
-    .email_button:active {
-        transform: translateY(3px);
-    }
 /*=============================== REGISTER PAGE =======================================*/
 .register_hero {
     background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
@@ -272,14 +268,12 @@ textarea {
     color: #f2f2f2;
     height: 100%;
 }
-
 .register_title {
     position: absolute;
     display: inline-block;
     bottom: 45px;
     text-align: left;
 }
-
 .password_rules {
     width: 35%;
     border: 1px solid black;
@@ -289,7 +283,6 @@ textarea {
     margin-top: 36px;
     margin-left: 45px;
 }
-
 .our_recaptcha {
     margin-bottom: 9px;
 }
@@ -306,7 +299,6 @@ textarea {
     color: #f2f2f2;
     height: 100%;
 }
-
 .login_title {
     position: absolute;
     display: inline-block;
@@ -343,21 +335,7 @@ textarea {
     height: 100%;
 }
 /*-------------------- moved .pick_buttons' to 'PSEUDO-BUTTONS' section ---------------*/
-.pick_buttons {
-    border: 1px solid #4d3319;
-    border-radius: 9px;
-    padding: 9px;
-    text-align: center;
-    background-color: #392613;
-    color: #f2e6d9;
-}
-    .pick_buttons:hover {
-        color: #f2e6d9;
-        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
-    }
-    .pick_buttons:active {
-        transform: translateY(3px);
-    }
+
 /*========================== USER ACCOUNT/PROFILE FORM PAGES ==========================*/
 /*----- Owners/CreateOwner... Providers/CreateProvider... Pets/CreatePet -------------*/
 /*.profile_info_form_part {
@@ -372,24 +350,15 @@ textarea {
 }*/
 /*  ^^^--- don't think we're using this anymore ---------*/
 /* (not on the "CreatePet" one, just Owner & Provider) */
-.back_to_choose {
-    background-color: #392613;
-    color: #f2e6d9;
-    border: 1px solid #4d3319;
-    border-radius: 9px;
-    padding: 9px;
-    text-align: center;
-}
+
 /*================================== GENERAL FEATURES =================================*/
 body {
     background-color: #996633;
     color: #f2e6d9;
 }
-
 p {
     padding-bottom: 5px;
 }
-
 .text-danger {
     font-weight: bold;
 }
@@ -405,16 +374,13 @@ li {
     /*height: 42px;*/
     color: #f2e6d9;
 }
-
 .navbar-brand {
     font-size: 18px;
     color: #f2e6d9;
 }
-
 .our_nav_links {
     color: #f2e6d9;
 }
-
 .nav.li.a {
     color: #f2e6d9;
 }
@@ -441,7 +407,6 @@ li {
 h1, h2, h3, h4, h5 {
     font-weight: bold;
 }
-
 hr {
     height: 1px;
     color: black;
@@ -453,27 +418,83 @@ hr {
 /*==================================== PSEUDO-BUTTONS =================================*/
 .our_buttons {
     background-color: #392613;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
     color: #f2e6d9;
     font-weight: normal;
-    border: 1px solid #4d3319;
+    text-align: center;
 }
     .our_buttons a:link {
+        background-color: #392613;
         color: #f2e6d9;
         font-weight: normal;
     }
     .our_buttons:hover {
+        background-color: #392613;
         color: #f2e6d9;
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
     }
     .our_buttons:active {
+        background-color: #392613;
         transform: translateY(3px);
     }
-/*--------------------------- MOVE IN THE OTHER PSEUDO-BUTTONS ------------------------*/
-/*----------- ABOUT PAGE --------------------------------------------------------------*/
-/*----------- CONTACT PAGE ------------------------------------------------------------*/
-/* ---------- CHOOSE ROLE PAGE --------------------------------------------------------*/
-
-/*==================================== PANELS/COLLAPSE ================================*/
+/*-------- MOVE IN THE OTHER PSEUDO-BUTTONS -------------------------*/
+/*--------------------------- OUR_BUTTONS => ABOUT PAGE? ------------*/
+.any_questions {
+    background-color: #604020;   /* notice different b/c panels */
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    color: #f2e6d9;
+    font-size: 18px;
+    text-align: center;
+    width: 180px;
+}
+/*-------------------------- OUR_BUTTONS => CONTACT PAGE ------------*/
+.email_button {
+    background-color: #392613;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    color: #f2e6d9;
+    font-size: 18px;
+    text-align: center;
+    width: 180px;
+}
+    .email_button:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .email_button:active {
+        transform: translateY(3px);
+    }
+/* ---------------------- OUR_BUTTONS => CHOOSE ROLE PAGE -----------*/
+.pick_buttons {
+    background-color: #392613;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    color: #f2e6d9;
+    text-align: center;
+}
+    .pick_buttons:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .pick_buttons:active {
+        transform: translateY(3px);
+    }
+.back_to_choose {
+    background-color: #392613;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    color: #f2e6d9;
+    text-align: center;
+}
+/*-------------------------------------------------------------------*/
+/*==================================== PANELS/COLLAPSE//ACCORIDONS=====================*/
 .panel-group {
 
 }
@@ -481,15 +502,41 @@ hr {
     background-color: #392613;
     color: #f2e6d9;
 }
+    .our_panel_01 a:link, .our_panel_01 a:hover {
+        color: #130d06;
+    }
 .our_panel_heading {
     /* setting color here leaves outline of color above */
     background-color: #604020;
 }
 .our_panel_title {
+    color: #261a0d;
 }
+    .our_panel_title > a:before {
+        font-family: "Glyphicons Halflings";
+        content: "\e114"; /* \e114 original == down */
+        float: right;
+        margin-left: 15px;
+    }
+    .our_panel_title > a.collapsed:before {
+        content: "\e080"; /* \e080 original == right */
+    }
 .our_panel_p {
     margin-bottom: 0px;
 }
+/*=====================================================================================*/
+/* FOR THE ACCORDIONS \ PANELS \ COLLAPSE -- for the little arrows to work right       */
+/* 1) panel-group                                                                      */
+/*    2) panel                                                                         */
+/*       3) panel-heading                                                              */
+/*          4) panel-title -- the css for the little arrows goes here!                 */
+/*             5) a data-toggle                                                        */
+/*             5) /a data-toggle                                                       */
+/*          4) panel-title                                                             */
+/*       3) panel-heading                                                              */
+/*   2) panel -- content!                                                              */
+/* 1) panel-group                                                                      */
+/*=====================================================================================*/
 /*===================================== LINKS! ========================================*/
 /* unvisited link */
 a:link {
@@ -515,13 +562,14 @@ a:active {
     font-weight: bold;
     text-decoration: none;
 }
-
-
-
+/*================================ OUR CALENDAR! ======================================*/
+/* Calendar styling configuration */
+#calendar {
+    max-width: 900px;
+    margin: 20px auto;
+}
 /*=====================================================================================*/
-
 /*                                 MEDIA QUERIES!                                      */
-
 /*=====================================================================================*/
 /* responsive stuff for the couple of spots that need that                             */
 /* the 'natural' positioning of the stuff low on the hero image on the front & about   */
@@ -656,4 +704,3 @@ a:active {
         /* but then screwy on like iPads & Kindles & shit -- so put it in a MQ */
     }
 }
-/*=====================================================================================*/

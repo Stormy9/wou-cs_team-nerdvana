@@ -1,6 +1,11 @@
 ﻿@model Petopia.Models.ViewModels.PetGalleryViewModel
 @{
-    ViewBag.Title = "Your Pet Photo Gallery!";
+    var loggedInUser = ViewBag.loggedInUser;
+    var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
+    var thisPetID = ViewBag.ThisPetID;
+    var thisPetName = ViewBag.ThisPetsName;
+    ViewBag.Title = "Pet Photo Gallery!";
+    ViewBag.PetName = "'s Photo Gallery!";
 }
 
 
@@ -8,27 +13,37 @@
     <!--==============================================================================-->
     <div class="row" style="margin-bottom: 18px;">
         
-        <h2 style="text-align:center; color: #261a0d; 
+        <h2 style="text-align:center; color: #261a0d;
                     margin-top:9px; margin-bottom:0px;">
-            @ViewBag.Title
+            @ViewBag.ThisPetsName@ViewBag.PetName 
         </h2>
 
-        @if (ViewBag.ImageCount >= 5)
-        {
-            <p>
-                You can only have a max of 5 pictures in your gallery,
-                please delete one to add another
-            </p>
+        @if (loggedInUser == thisPetsOwner)
+        { 
+            if (ViewBag.ImageCount >= 5)
+            {
+                <p>
+                    You can only have a max of 5 pictures in your gallery,
+                    please delete one to add another
+                </p>
+            }
+            else
+            {
+                <span style="float:right; margin: 5px;">
+                    @Html.ActionLink("Add a new picture!", "PetGalleryCreate",
+                            new { id = Model.CurrentPetID },
+                            new { @class = "btn our_buttons",
+                                 style = "color: #f2e6d9; font-weight: normal;" })
+                </span>
+            }
         }
-        else
-        {
-            <span style="float:right;">
-                @Html.ActionLink("Add a new picture!", "PetGalleryCreate",
-                        new { id = Model.CurrentPetID },
-                        new { @class = "btn our_other_buttons",
-                             style = "color: #f2e6d9; font-weight: normal;" })
-            </span>
-        }
+
+        <span style="float:right; margin: 5px;">
+            @Html.ActionLink("Back to Pet's Profile", "PetProfile",
+                    new { id = thisPetID },
+                    new { @class = "btn our_buttons",
+                            style = "color: #f2e6d9; font-weight: normal" })
+        </span>
 
     </div><!-- end row for button! -->
     <!--==============================================================================-->
@@ -40,51 +55,43 @@
         <!--------------------------------->
         <div class="col-sm-10 col-md-10">
 
-            <table style="width:100%; border: 1px solid #261a0d; border-radius: 5px;">
+            @foreach (var item in Model.PetGalleryList)
+            { 
+                <div class="pet_gallery_box">
 
-                @foreach (var item in Model.PetGalleryList)
-                {
-                    <tr style="border: none;">
+                    <div class="pet_gallery_photo_part">
 
-                        <td style="padding: 9px; width:45%; margin: auto; 
-                                    text-align: center; border:none;">
+                        <div class="pet_gallery_photo_box_box">
+                            <div class="pet_gallery_photo_box">
 
-                            <div class="profile_pic_box_box" 
-                                 style="display:inline-block;">
+                                <img src=@Url.Action("ShowPetGallery", "Image", 
+                                                     new { id = item.PetPicID })
+                                     class="pet_gallery_image" />
 
-                                <div class="profile_pic_box">
-                                    <img src=@Url.Action("ShowPetGallery", "Image",
-                                new { id = item.PetPicID }) class="profile_img"
-                                         style="width:450px; height:auto;" />
-                                </div>
-                            </div>
+                            </div><!-- end 'pet_gallery_photo_box' -->
+                        </div>
+                    </div><!-- end 'pet_gallery_photo_part' -->
 
-                        </td>
-                        <!-------------------------------------------------------------->
-                        <td style="padding: 9px; width:40%; border: none;">
-                            @Html.DisplayFor(model => item.Comment)
-                        </td>
-                        <!-------------------------------------------------------------->
-                        <td style="width: 15%; padding: 9px; border: none; 
-                                    position: relative;">
+                    <div class="pet_gallery_photo_comment_part">
+                        @Html.DisplayFor(model => item.Comment)
 
-                            <div class="btn our_buttons" style="position: absolute; 
-                                                               bottom:5px; right: 5px;">
+                        
+                    </div><!-- end 'photo_comment-part' -->
+
+                    <div class="pet_gallery_button_part" style="float:right;">
+                        @if (loggedInUser == thisPetsOwner)
+                        {
+                            <div class="btn pet_gallery_button" >
 
                                 <a onclick="location.href='@Url.Action("PetGalleryDelete",
                                         "Pets", new { id = item.PetPicID })'" href="#">
-                                    Remove this picture
+                                    remove
                                 </a>
                             </div>
-
-                            @*Html.ActionLink("Delete", "Delete", 
-                                                    new { id = item.PetPicID })*@
-
-                        </td>
-                        <!-------------------------------------------------------------->
-                    </tr>
-                }
-            </table>
+                        }
+                    </div><!-- end 'button_part' -->
+                </div><!-- end 'pet_gallery_box' -->
+            }
         </div><!-- end middle column -->
         <!--------------------------------->
         <div class="col-sm-1 col-md-1">

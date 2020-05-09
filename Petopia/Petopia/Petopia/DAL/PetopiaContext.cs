@@ -35,8 +35,11 @@ namespace Petopia.DAL
 
         //===============================================================================
         public virtual DbSet<PetGallery> PetGallery { get; set; }
+
         //===============================================================================
         public virtual DbSet<AspNetUser> ASPNetUsers { get; set; }
+
+        //===============================================================================
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -61,6 +64,10 @@ namespace Petopia.DAL
 
             //---------------------------------------------------------------------------
         }
+        // tried scaffolding 'Views/Home/PetCarerSearchResult' 
+        //    just to see what I'd get -- and it stuck this in here.....
+        //
+        //public System.Data.Entity.DbSet<Petopia.Models.ViewModels.SearchViewModel> SearchViewModels { get; set; }
         //===============================================================================
     }
 }

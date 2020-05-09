@@ -63,7 +63,7 @@ namespace Petopia.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Changing Current user to a Pet Owner
+                //Changing Current user to a Pet Care Provider
                 var identityID = User.Identity.GetUserId();
                 DAL.PetopiaUser currentUser = 
                     pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();

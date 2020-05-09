@@ -58,7 +58,7 @@ function scaleBannerVideoSize(element) {
     });
 
 }
-
+//=======================================================================================
 
 //FullCalendar Scripts
 
@@ -84,15 +84,15 @@ $(window).on('load', function(){
                 //var startDate = prompt('Enter a date in YYYY-MM-DD format');
                 //var startTime = prompt('Enter time in 00:00 format');
                 //var endTime = prompt('Enter time in 00:00 format');
-                var eventDate = new Date(dateStr + 'T00:00:00'); // will be in local time
-                //var date = moment(startDate + startTime);
+                //var eventDate = new Date(dateStr + 'T00:00:00'); // will be in local time
+                var date = moment(dateStr);
+                
 
-                if (eventDate.isValid()) { // valid?
+                if (date.isValid()) { // valid?
                     $('#calendar').fullCalendar('renderEvent', {
                         title: 'TEST DYNAMIC EVENT',
-                        start: eventDate,
-                        //end: endTime,
-                        allDay: false
+                        start: date,
+                        allDay: true
                     });
                     alert('Great. Now, update your database...');
                 } else {
@@ -102,9 +102,8 @@ $(window).on('load', function(){
           }
         }
   });
-    //calendar.render();
+    calendar.render();
 });
-
 
 
 /*
@@ -142,7 +141,7 @@ customButtons: {
 */
 
 
-
+//=======================================================================================
 //Implementation of text area character counter.
 var text_max = 999;
 // TEXT AREA ONE
@@ -324,7 +323,7 @@ $('#text18').keyup(function () {
 
     $('#count_message_18').html(text_length + ' / ' + text_max);
 });
-//=======================================================================================
+//---------------------------------------------------------------------------------------
 // TEXT AREA NINETEEN
 $('#count_message_19').html('0 / ' + text_max);
 
@@ -334,7 +333,7 @@ $('#text19').keyup(function () {
 
     $('#count_message_19').html(text_length + ' / ' + text_max);
 });
-//=======================================================================================
+//---------------------------------------------------------------------------------------
 // TEXT AREA TWENTY
 $('#count_message_20').html('0 / ' + text_max);
 
@@ -344,7 +343,7 @@ $('#text20').keyup(function () {
 
     $('#count_message_20').html(text_length + ' / ' + text_max);
 });
-//=======================================================================================
+//---------------------------------------------------------------------------------------
 // TEXT AREA TWENTYONE
 $('#count_message_21').html('0 / ' + text_max);
 
@@ -354,7 +353,7 @@ $('#text21').keyup(function () {
 
     $('#count_message_21').html(text_length + ' / ' + text_max);
 });
-//=======================================================================================
+//---------------------------------------------------------------------------------------
 // TEXT AREA TWENTYTWO
 $('#count_message_22').html('0 / ' + text_max);
 
@@ -364,7 +363,7 @@ $('#text22').keyup(function () {
 
     $('#count_message_22').html(text_length + ' / ' + text_max);
 });
-//=======================================================================================
+//---------------------------------------------------------------------------------------
 // TEXT AREA TWENTYTHREE
 $('#count_message_23').html('0 / ' + text_max);
 

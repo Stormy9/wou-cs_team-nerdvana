@@ -33,24 +33,19 @@
 
                     <!------------- PROFILE PANEL, w/HEADING/TITLE + BODY -------------->
                     <div class="panel our_panel_01">
-
-                        <a data-toggle="collapse" data-parent="#accordion_02"
-                            href="#collapse_PI">
-                            <div class="panel-heading our_panel_heading">
-                                <div class="panel-title our_panel_title">
+                        
+                        <div class="panel-heading our_panel_heading">
+                            <div class="panel-title our_panel_title">
+                                <a data-toggle="collapse" data-parent="#accordion_02" href="#collapse_PI">
                                     <p class="our_panel_p">
                                         Your profile information:
-                                        <span class="glyphicon glyphicon-resize-vertical"
-                                                style="float: right;">
-                                        </span>
                                     </p>
-                                </div><!-- end 'panel-title'\'our_panel_title' divs -->
-                            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
-                        </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
+                                </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
+                            </div><!-- end 'panel-title'\'our_panel_title' divs -->
+                        </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
                         <!-------------------------------------------------------------->
                         <div class="panel-collapse collapse" id="collapse_PI">
-                            <div class="panel-body">
-                                <!-- PROFILE -->
+                            <div class="panel-body"> <!-- PROFILE -->
                                 <p>
                                     The profile information you fill out at Petopia is
                                     what will actually be shown on your public profile
@@ -72,24 +67,19 @@
                     <!--==============================================================-->
                     <!------------- ACCOUNT PANEL, w/HEADING/TITLE + BODY -------------->
                     <div class="panel our_panel_01">
-
-                        <a data-toggle="collapse" data-parent="#accordion_02"
-                            href="#collapse_AI">
-                            <div class="panel-heading our_panel_heading">
-                                <div class="panel-title our_panel_title">
+                        
+                        <div class="panel-heading our_panel_heading">
+                            <div class="panel-title our_panel_title">
+                                <a data-toggle="collapse" data-parent="#accordion_02" href="#collapse_AI">
                                     <p class="our_panel_p">
                                         Your account information
-                                        <span class="glyphicon glyphicon-resize-vertical"
-                                                style="float: right;">
-                                        </span>
                                     </p>
-                                </div><!-- end 'panel-title'\'our_panel_title' divs -->
-                            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
-                        </a><!-- end '#accordian_02' id + '#collapse_AI' href -->
+                                </a><!-- end '#accordian_02' id + '#collapse_AI' href -->
+                            </div><!-- end 'panel-title'\'our_panel_title' divs -->
+                        </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
                         <!-------------------------------------------------------------->
                         <div class="panel-collapse collapse" id="collapse_AI">
-                            <div class="panel-body">
-                                <!-- ACCOUNT -->
+                            <div class="panel-body"> <!-- ACCOUNT -->
                                 <p>
                                     The account information you fill out at Petopia will
                                     <b>not</b> appear on your profile -- it is
@@ -154,10 +144,11 @@
                                         htmlAttributes: new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.Tagline,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                                new { htmlAttributes = new { @class = "form-control", 
+                              @placeholder="i.e., a pet lover who also loves pizza!" } })
 
                     @Html.ValidationMessageFor(model => model.Tagline, "",
-                                                            new { @class = "text-danger" })
+                                                          new { @class = "text-danger" })
                 </div>
                 <!------------------------ GENERAL LOCATION ---------------------------->
                 <div class="form-group">
@@ -165,7 +156,8 @@
                                         htmlAttributes: new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.GeneralLocation,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                                new { htmlAttributes = new { @class = "form-control", 
+                              @placeholder="i.e., your neighborhood or area of town" } })
 
                     @Html.ValidationMessageFor(model => model.GeneralLocation, "",
                                                             new { @class = "text-danger" })
@@ -214,10 +206,11 @@
                     @Html.LabelFor(m => m.UserCaption, new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.UserCaption,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                                new { htmlAttributes = new { @class = "form-control", 
+                                @placeholder="what's going on in this picture?  (:" } })
 
                     @Html.ValidationMessageFor(model => model.UserCaption, "",
-                                                            new { @class = "text-danger" })
+                                                         new { @class = "text-danger" })
                 </div>
                 <!---------------------------------------------------------------------->
             </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
@@ -235,7 +228,8 @@
                                     htmlAttributes: new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.MainPhone,
-                        new { htmlAttributes = new { @class = "form-control" } })
+                        new { htmlAttributes = new { @class = "form-control", 
+                                                    @placeholder="000-000-0000" } })
 
                     @Html.ValidationMessageFor(model => model.MainPhone, "",
                                                     new { @class = "text-danger" })
@@ -246,7 +240,8 @@
                                         htmlAttributes: new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.AltPhone,
-                            new { htmlAttributes = new { @class = "form-control" } })
+                            new { htmlAttributes = new { @class = "form-control", 
+                                                        @placeholder="000-000-0000" } })
 
                     @Html.ValidationMessageFor(model => model.AltPhone, "",
                                                         new { @class = "text-danger" })
@@ -266,10 +261,11 @@
                 <!--------------------------- RES ADDRESS 02  -------------------------->
                 <div class="form-group">
                     @Html.LabelFor(model => model.ResAddress02,
-                                        htmlAttributes: new { @class = "control-label" })
+                                       htmlAttributes: new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.ResAddress02,
-                            new { htmlAttributes = new { @class = "form-control" } })
+                            new { htmlAttributes = new { @class = "form-control", 
+                                           @placeholder="i.e., apartment or suite #" } })
 
                     @Html.ValidationMessageFor(model => model.ResAddress02, "",
                                                         new { @class = "text-danger" })
@@ -291,7 +287,8 @@
                                                         new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.ResState,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                                new { htmlAttributes = new { @class = "form-control", 
+                                                @placeholder="two-letter state code" } })
 
                     @Html.ValidationMessageFor(model => model.ResState, "",
                                                         new { @class = "text-danger" })
@@ -302,10 +299,11 @@
                                         htmlAttributes: new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.ResZipcode,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                                new { htmlAttributes = new { @class = "form-control", 
+                                              @placeholder="only first five digits" } })
 
                     @Html.ValidationMessageFor(model => model.ResZipcode, "",
-                                                            new { @class = "text-danger" })
+                                                         new { @class = "text-danger" })
                 </div>
                 <!---------------------------------------------------------------------->
             </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->

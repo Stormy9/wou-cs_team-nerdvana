@@ -11,6 +11,7 @@ namespace Petopia.Models.ViewModels
     {
         public int? CurrentPetID { get; set; }
 
+        public string PetName { get; set; }
 
         [DisplayName("Add new gallery picture for your Pet!")]
         public HttpPostedFileBase GalleryPhoto { get; set; }
@@ -26,6 +27,7 @@ namespace Petopia.Models.ViewModels
         {
             public int PetPicID { get; set; }
             public int? PetID { get; set; }
+            public string PetName { get; set; }
             public string Comment { get; set; }
         }
         //-------------------------------------------------------------------------------

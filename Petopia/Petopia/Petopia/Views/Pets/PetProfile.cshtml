@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Pet Profile!";
+    var loggedInUser = ViewBag.loggedInUser;
+    var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
 }
 
 <div class="outer_container">
@@ -71,33 +73,35 @@
                          FROM THE FUCKING STYLE SHEETS!!  not all of them anyway!!! -->
                     <div>
                         @Html.ActionLink("Pet Pic Gallery", "PetGallery", new { id = Model.PetID },
-                                    new { @class = "our_other_buttons", 
+                                    new { @class = "our_profile_buttons", 
                                         style="color: #f2e6d9; font-weight: normal;" })
                     </div>
 
-                    <!-- ADD IF-STATEMENT TO CHECK IF USER IS PET'S OWNER -->
+                    <!-- IF-STATEMENT TO CHECK IF USER IS PET'S OWNER     -->
                     <!-- THEN ONLY SHOW **THESE** BUTTONS IF THAT IS TRUE -->
+                    @if(loggedInUser == thisPetsOwner)
+                    { 
                     <div>
                         @Html.ActionLink("This Pet's Details", "MyPetDetails",
                                new { controller = "Pets", id = Model.PetID },
-                               new { @class = "our_other_buttons", 
+                               new { @class = "our_profile_buttons", 
                                      style="color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <div>
                         @Html.ActionLink("My Care Appointments", "MyPetsAppointments",
                                new { controller = "CareTransactions", id = Model.PetID },
-                               new { @class = "our_other_buttons", 
+                               new { @class = "our_profile_buttons", 
                                      style="color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <div>
                         @Html.ActionLink("Edit this Pet", "EditPet", 
                                new { controller = "Pets", id = Model.PetID },
-                               new { @class = "our_other_buttons", 
+                               new { @class = "our_profile_buttons", 
                                      style="color: #f2e6d9; font-weight: normal;" })
                     </div>
-
+                    }
+                    
                 </div><!-- END BUTTON BOX -->
-
 
             </div><!-- END 1st/LEFT COLUMN **OF** 2nd/MIDDLE ROW -->
             <!-------------------------------------------------------------------------->
@@ -141,19 +145,22 @@
                     </div>
                 </div>
 
-                    <div style="margin-left: 23px; margin-bottom: 9px;">
+                    <div style="margin-left: 23px; margin-bottom: 23px;">
                         @Html.ActionLink("My Owner's Profile", "Index",
                                new { controller = "ProfilePage" },
-                               new { @class = "btn our_buttons", 
+                               new { @class = "btn our_profile_buttons", 
                                      style="color: #f2e6d9; font-weight: normal;" })
                     </div>
-
+                    <br />
 
                 <!-- pet bio & etc. fun stuff -->
-                <div class="user_bio_box">
+                <div class="user_bio_box" style="margin-top: 23px;">
+
                     <h4>Things About Me:</h4>
                     @Html.DisplayFor(model => model.PetBio)
+
                 </div>
+
 
             </div><!-- END 2nd\MIDDLE COLUMN  **OF** 2nd/MIDDLE ROW -->
             <!-------------------------------------------------------------------------->
@@ -298,9 +305,30 @@
         <!------------------------ FOURTH (BUTTON) ROW --------------------------------->
         <div class="row our_row_four">
 
-            <div class="col-sm-offset-8 col-md-offset-8 col-sm-4 col-md-4">
+            <div class="col-sm-offset-6 col-md-offset-6 col-sm-6 col-md-6">
 
                 <!-- decided to move buttons! -->
+                <!-- here to test for finding this pet's owner's ID's! -->
+                <!-- so we can ONLY show the details/appts/editPet buttons -->
+                <!-- to the given pet's owner and no one else! -->
+                <div style="border: 2px solid blue; border-radius: 11px; padding: 5px; display:none;">
+                    <h5> This Pet's Owners Info -- for testing: </h5>
+                    @ViewBag.thisPetsOwnersID <br />
+                    @ViewBag.thisPetsOwnersPetopiaUserID <br />
+                    thisPetsOwnersASPNetIdentityID: @ViewBag.thisPetsOwnersASPNetIdentityID<br />
+                    the currently logged-in user: @ViewBag.loggedInUser <br />
+                    <p> var loggedInUser: @loggedInUser </p>
+                    <p> var thisPetsOwner: @thisPetsOwner  </p>
+                    <br />
+                    @if (loggedInUser == thisPetsOwner)
+                    {
+                        <p> the logged-in user is this pet's owner! </p>
+                    }
+                    else
+                    {
+                        <p> the logged-in user is not this pet's owner! </p>
+                    }
+                </div>
 
             </div><!-- end only column in 4th row -->
 

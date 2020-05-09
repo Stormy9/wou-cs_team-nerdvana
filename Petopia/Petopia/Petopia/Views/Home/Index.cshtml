@@ -3,97 +3,102 @@
     ViewBag.Title = "Petopia!";
 }
 <!-------------------------------------------------------------------------------------->
-<div class="homepage-hero-module">
-    <div class="video-container">
+    <div class="homepage-hero-module">
+        <div class="video-container">
+            <div class="filter"></div>
 
-        <div class="filter"></div>
+            <video autoplay loop muted playsinline
+                   src="https://stormy9.github.io/nerdvana/Dog-Lovers.mp4"
+                   class="fillWidth" id="splash_video">
+            </video>
 
-        <video autoplay loop muted playsinline
-               src="https://stormy9.github.io/nerdvana/Dog-Lovers.mp4"
-               class="fillWidth" id="splash_video"></video>
+            <!-------------------- hidden \ for when video can't operate --------------->
 
-        <!------------------------------------------------------------------------------>
-        <div class="splash_overlay">
-            <h1>Petopia:  in-home pet-care services</h1>
-            <h3 class="splash_subtitle">
-                love your pet even when you can't be home!
-            </h3>
-            <!-- figure out pause button? -->
+            <div class="poster hidden">
+                <img src="https://stormy9.github.io/nerdvana/my_Dog-Lovers_01.png"
+                        alt="">
+            </div><!-- END poster hidden div -->
+
             <!-------------------------------------------------------------------------->
-            <!--------------------------- search box! ---------------------------------->
-            <!-- don't forget: do search like this, when we make it functional -->
-            @*@using (Html.BeginForm("StockItem", "Home", FormMethod.Post))
-        {
-            @Html.TextBox("search")
-            <input type="submit" value="search!" class="btn-danger" id="our_search_button" />
-        }*@
+        </div><!-- video-container div -->
+    </div><!-- end homepage-hero-module div -->
+    <!--==============================================================================-->
+    <!--                                     our content                              -->
+    <div class="splash_overlay">
 
-            <!-- fill in action later, where it goes when you click! -->
-            <form class="splash_search" action="">
-                <div class="form-group splash_form">
-                    <!-- TODO: figure out why this won't widen w/CSS -->
-                    <input type="text" class="form-control splash_search_input"
-                           placeholder="find pet care near you!">
-                </div>
-                <button type="submit" class="btn btn-default our_buttons">Fetch!</button>
-            </form>
-            <!---------------------- ^^^ search box ^^^----------------------------->
-            <!---------------------------------------------------------------------->
-            
-            <div class="container-fluid splash_intro_box">
-                <div class="container-fluid splash_intro">
-                    @Html.ActionLink("Find out how Petopia can benefit you:", "About", "Home")
-
-                    <br />
-                    as a pet owner -- or become a pet care provider with us!
-                </div>
-            </div>
-
-        </div><!-- end splash_overlay div \ search & splash_intro_box inside it -->
-        <!------------------------------------------------------------------------------>
-
+        <h1>Petopia:  in-home pet-care services</h1>
+        <h3 class="splash_subtitle">
+            love your pet even when you can't be home!
+        </h3>
 
         <!------------------------------------------------------------------------------>
-        <!-------------------- hidden \ for when video can't operate ------------------->
-        <div class="poster hidden">
-            <img src="https://stormy9.github.io/nerdvana/my_Dog-Lovers_01.png"
-                 alt="">
 
-            <!-- gotta copy this to here, so it shows up on mobile -- or otherwise -->
-            <!-- when the video is not operable -->
-            <div class="splash_overlay">
-                <h1>Petopia:  in-home pet-care services</h1>
-                <h3 class="splash_subtitle">
-                    love your pet even when you can't be home!
-                </h3>
-
-                <!-- fill in action later, where it goes when you click! -->
+        <h5 class="splash_subtitle" style="margin-left: 45px;">
+            find pet care near you!
+        </h5>
+        <div style="margin-left: 45px;">
+            @using (Html.BeginForm("PetCarerSearchResult", "Home", FormMethod.Post))
+            {
+                <!-- 'action' is where you go when it clicks, but we don't need it now -->
                 <form class="splash_search" action="">
                     <div class="form-group splash_form">
                         <!-- TODO: figure out why this won't widen w/CSS -->
-                        <input type="text" class="form-control splash_search_input"
-                               placeholder="find pet care near you!">
+                        <!-- aha!  it was the 'came-with' stuff way up top! -->
+                        @Html.TextBox("searchZip", null,
+                                    new { @class = "form-control splash_search_input",
+                                          placeholder = "enter your zip code....."})
                     </div>
-                    <button type="submit" class="btn btn-default our_buttons">Fetch!
+
+                    <button type="submit" class="btn btn-default our_buttons">
+                        Fetch!
                     </button>
-                </form><!-- end search form/box div -->
+                </form>
+            }
+        </div><!-- end search form/box div -->
 
-                <div class="container-fluid splash_intro_box">
-                    <div class="container-fluid splash_intro">
-                        @Html.ActionLink("Find out how Petopia can benefit you:", 
-                                                                    "About", "Home")
-                        <br />
-                        as a pet owner -- or become a pet care provider with us!
+        <!------------------------------------------------------------------------------>
+
+        <h5 class="splash_subtitle" style="margin-left: 45px; margin-top: 23px; margin-bottom: 0px;">
+            interested in becoming a pet care provider with us?
+        </h5>
+        <h5 class="splash_subtitle" style="margin-left: 45px; margin-top: 0px;">
+            find pet owners near you!
+        </h5>
+
+        <div style="margin-left: 45px;">
+            @using (Html.BeginForm("PetOwnerSearchResult", "Home", FormMethod.Post))
+            {
+                <!-- 'action' is where you go when it clicks, but we don't need it now -->
+                <form class="splash_search" action="">
+                    <div class="form-group splash_form">
+
+                        @Html.TextBox("searchZip", null,
+                                    new { @class = "form-control splash_search_input",
+                                          placeholder = "enter your zip code....." })
                     </div>
-                </div><!-- end intro \ intro_box divs -->
 
-            </div><!-- end splash_overlay div -->
+                    <button type="submit" class="btn btn-default our_buttons" >
+                        Fetch!
+                    </button>
+                </form>
+            }
+        </div><!-- end search form/box div -->
 
-        </div><!-- END poster hidden div -->
         <!------------------------------------------------------------------------------>
+
+        <div class="container-fluid splash_intro_box">
+            <div class="container-fluid splash_intro">
+                @Html.ActionLink("Find out how Petopia can benefit you:",
+                                                            "About", "Home")
+                <br />
+                as a pet owner -- or become a pet care provider with us!
+            </div>
+        </div><!-- end intro \ intro_box divs -->
+
         <!------------------------------------------------------------------------------>
-    </div><!-- video-container div -->
-</div><!-- end homepage-hero-module div -->
+
+    </div><!-- end splash_overlay div -->
+
 <!-------------------------------------------------------------------------------------->
 @section scripts {
     <script type="text/javascript" src="~/Scripts/_our_main.js"></script>

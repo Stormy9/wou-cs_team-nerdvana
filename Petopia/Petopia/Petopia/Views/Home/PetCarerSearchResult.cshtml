@@ -1,0 +1,174 @@
+﻿@model Petopia.Models.ViewModels.SearchViewModel
+
+@{
+    ViewBag.Title = "Your Pet Care search results";
+}
+
+<div class="container-fluid">
+
+    <div class="row our_row_one">
+
+        <!--------------------------------- COLUMN ONE --------------------------------->
+
+        <div class="col-sm-1 col-md-1 our_col_one">
+            <!-- spacer column -->
+        </div>
+
+        <!----------------------------------- COLUMN TWO \ MAIN ------------------------>
+
+        <div class="col-sm-10 col-md-10 our_col_two">
+
+            <h2> @ViewBag.Title! </h2>
+
+            @if (Model != null)
+            {
+                foreach (var item in Model.PetCarerSearchList)
+                {
+                    <div class="splash_search_result_box">
+                        
+                        <div class="search_result_test_proof_data">
+                            @Html.DisplayNameFor(model => model.CP_ID)&nbsp;
+                            @Html.DisplayFor(modelItem => item.CP_ID) &lt;=&gt;
+                            @Html.DisplayNameFor(model => model.PU_ZipCode)&nbsp;
+                            @Html.DisplayFor(modelItem => item.PU_Zipcode)<br />
+                            later the name &amp; photo will be linked to the
+                            care provider's profile page!   [=
+                        </div>
+                        <div class="search_result_cp_name">
+                            @Html.DisplayNameFor(model => model.CP_Name)&nbsp;
+                            @Html.DisplayFor(modelItem => item.CP_Name)
+                        </div>
+                                                    
+                        <!-- MINI PROFILE PICTURE FOR CARE PROVIDER! -->
+                        @if (Model.CP_Profile_Pic != null)
+                        {
+                            <div class="search_result_profile_pic_box_box">
+                                <div class="search_result_profile_pic_box">
+                                    <img src=@Url.Action("Show", "Image", new { id = Model.CP_PU_ID }) 
+                                            class="search_result_profile_img" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        { 
+                            <div class="search_result_profile_pic_box_box">
+                                <div class="search_result_profile_pic_box">
+                                    <img src="https://stormy9.github.io/nerdvana/cute_smiley.png" 
+                                            class="search_result_profile_img" />
+                                </div>
+                            </div>
+                        }
+                        <br />
+
+                        <!-- PET BADGES! -->
+                        <div class="search_result_pc_badge_box">
+                        @if (item.IsDogProvider is true)
+                        {
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_provider.png" class="pet_badge">
+                        }
+
+                        @if (item.IsCatProvider is true)
+                        {
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_provider.png" class="pet_badge">
+                        }
+
+                        @if (item.IsBirdProvider is true)
+                        {
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_provider.png" class="pet_badge">
+                        }
+
+                        @if (item.IsFishProvider is true)
+                        {
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_provider.png" class="pet_badge">
+                        }
+
+                        @if (item.IsRabbitProvider is true)
+                        {
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_provider.png" class="pet_badge">
+                        }
+
+                        @if (item.IsRodentProvider is true)
+                        {
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_provider.png" class="pet_badge">
+                        }
+
+                        @if (item.IsReptileProvider is true)
+                        {
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_provider.png" class="pet_badge">
+                        }
+
+                        @if (item.IsHorseProvider is true)
+                        {
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_provider.png" class="pet_badge">
+                        }
+
+                        @if (item.IsLivestockProvider is true)
+                        {
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_provider.png" class="pet_badge">
+                        }
+
+                        @if (item.IsOtherProvider is true)
+                        {
+                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_provider.png" class="pet_badge">
+                        }
+                        </div>
+                    </div><!-- end div 'splash_search_result_box' -->
+                    } <!-- end the 'foreach' loop -->
+                }
+                else
+                {
+                    <h3>
+                        there aren't any pet carers registered in your area yet!
+                    </h3>
+                }
+
+        </div><!-- end middle column (10-wide) -->
+
+        <!------------------------------------- COLUMN THREE --------------------------->
+
+        <div class="col-sm-1 col-md-1 our_col_three">
+            <!-- spacer column -->
+        </div>
+
+        <!------------------------------------------------------------------------------>
+       
+    </div><!-- end row one-->
+    <!---------------------------------------------------------------------------------->
+    <div class="row our_row_two">
+
+        <div class="col-sm-1 col-md-1 our_col_one">
+
+        </div>
+
+        <div class="col-sm-10 col-md-10 our_col_two">
+
+            <div style="margin-left: 45px;">
+
+            <h3> search again?</h3>
+
+            @using (Html.BeginForm("PetCarerSearchResult", "Home", FormMethod.Post))
+            {
+                <!-- 'action' is where you go when it clicks, but we don't need it now -->
+                <form class="splash_search" action="">
+                    <div class="form-group splash_form">
+                        <!-- TODO: figure out why this won't widen w/CSS -->
+                        @Html.TextBox("searchZip", null,
+                                    new { @class = "form-control splash_search_input",
+                                          placeholder = "enter your zip code....." })
+                    </div>
+
+                    <button type="submit" class="btn btn-default our_buttons">
+                        Fetch!
+                    </button>
+                </form>
+            }
+            </div><!-- end search form/box div -->
+
+        </div>
+
+        <div class="col-sm-1 col-md-1 our_col_three">
+
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------->
+</div><!-- end container-fluid \ outer container -->
