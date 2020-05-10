@@ -1097,6 +1097,7 @@
     <Content Include="Views\CareTransactions\test_crap_return.cshtml" />
     <Content Include="Views\Home\PetCarerSearchResult.cshtml" />
     <Content Include="Views\Home\PetOwnerSearchResult.cshtml" />
+    <Content Include="Views\ProfilePage\VisitProfile.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>

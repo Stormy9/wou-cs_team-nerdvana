@@ -393,7 +393,157 @@ namespace Petopia.Controllers
             return View(model);
 
         }  // END 'EditProfile()' POST
-        //===============================================================================
-        //===============================================================================
+           //===============================================================================
+           //===============================================================================
+           //===============================================================================
+           //===============================================================================
+           // GET: ProfilePage                                          DISPLAY PROFILE PAGE
+        public ActionResult VisitProfile(int loggedID)
+        {
+            var identityID = db.PetopiaUsers.Where(x => x.UserID == loggedID)
+                                            .Select(x => x.ASPNetIdentityID)
+                                            .First();
+
+
+            ProfileViewModel petopiaUser = new ProfileViewModel();
+
+            //populating the viewmodel with a join
+            /*petopiaUser = db.PetopiaUsers.Join(db.PetOwners,
+                                                pu => pu.UserID,
+                                                po => po.UserID,
+                                                (pu, po) => new {PetUse = pu, PetOwn = po }) */
+            //linq isnt populating correctly right now so we're doing it manually (TEMP FIX)
+
+            petopiaUser.UserID = loggedID;
+
+            petopiaUser.FirstName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                   .Select(x => x.FirstName).First();
+            petopiaUser.LastName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                  .Select(x => x.LastName).First();
+
+            // user role
+            petopiaUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                 .Select(x => x.IsOwner).First();
+            petopiaUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                    .Select(x => x.IsProvider).First();
+
+
+            // This stuff probably won't be displayed in the profile 
+            //    but will be put into the model just in case
+            petopiaUser.MainPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                   .Select(x => x.MainPhone).First();
+            petopiaUser.AltPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                  .Select(x => x.AltPhone).First();
+            petopiaUser.ResAddress01 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                      .Select(x => x.ResAddress01).First();
+            petopiaUser.ResAddress02 = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                      .Select(x => x.ResAddress02).First();
+            petopiaUser.ResCity = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                 .Select(x => x.ResCity).First();
+            petopiaUser.ResState = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                  .Select(x => x.ResState).First();
+            petopiaUser.ResZipcode = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                    .Select(x => x.ResZipcode).First();
+
+
+            // user profile picture!
+            petopiaUser.ProfilePhoto = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                      .Select(x => x.ProfilePhoto).First();
+
+            petopiaUser.UserCaption = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                     .Select(x => x.UserCaption).First();
+
+
+            // user profile fun stuff
+            petopiaUser.Tagline = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                 .Select(x => x.Tagline).First();
+
+            petopiaUser.GeneralLocation = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                         .Select(x => x.GeneralLocation).First();
+
+            petopiaUser.UserBio = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                                 .Select(x => x.UserBio).First();
+
+
+            //---------------------------------------------------------------------------
+            //We might not have these so we want to see if we get a result back before populating...
+            if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
+            {
+                //If we get 1, then we know this user is a CareProvider
+                petopiaUser.ProviderAverageRating = db.CareProviders.Where(x => x.UserID == loggedID)
+                                                                    .Select(x => x.AverageRating).First();
+
+                petopiaUser.ExperienceDetails = db.CareProviders.Where(x => x.UserID == loggedID)
+                                                                .Select(x => x.ExperienceDetails).First();
+            }
+
+            if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
+            {
+                petopiaUser.OwnerAverageRating = db.PetOwners.Where(x => x.UserID == loggedID)
+                                                             .Select(x => x.AverageRating).First();
+
+                petopiaUser.GeneralNeeds = db.PetOwners.Where(x => x.UserID == loggedID)
+                                                       .Select(x => x.GeneralNeeds).First();
+
+                petopiaUser.HomeAccess = db.PetOwners.Where(x => x.UserID == loggedID)
+                                                     .Select(x => x.HomeAccess).First();
+            }
+
+            //---------------------------------------------------------------------------
+            //Tests to make getting pets easier
+            if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
+            {
+                int ownerID = db.PetOwners.Where(x => x.UserID == loggedID)
+                                          .Select(x => x.PetOwnerID).First();
+
+                petopiaUser.PetList = db.Pets.Where(x => x.PetOwnerID == ownerID)
+                                             .Select(n => new PetInfo
+                                             {
+                                                 PetName = n.PetName,
+                                                 Species = n.Species,
+                                                 Breed = n.Breed,
+                                                 Gender = n.Gender,
+                                                 Birthdate = n.Birthdate,
+                                                 PetID = n.PetID,
+                                                 PetPhoto = n.PetPhoto,
+                                                 PetOwnersID = n.PetOwnerID
+                                             }).ToList();
+            }
+
+            //---------------------------------------------------------------------------
+            //Check if badges exist and put in ViewBag.
+            DAL.UserBadge UserBadges = db.UserBadges.Where(x => x.UserID == loggedID)
+                                                    .FirstOrDefault();
+
+            if (UserBadges == null)
+            {
+                ViewBag.Badges = false;
+            }
+            else
+            {
+                ViewBag.Badges = true;
+                ViewBag.DogOwner = UserBadges.DogOwner;
+                ViewBag.DogProvider = UserBadges.DogProvider;
+                ViewBag.CatOwner = UserBadges.CatOwner;
+                ViewBag.CatProvider = UserBadges.CatProvider;
+                ViewBag.BirdOwner = UserBadges.BirdOwner;
+                ViewBag.BirdProvider = UserBadges.BirdProvider;
+                ViewBag.FishOwner = UserBadges.FishOwner;
+                ViewBag.FishProvider = UserBadges.FishProvider;
+                ViewBag.HorseOwner = UserBadges.HorseOwner;
+                ViewBag.HorseProvider = UserBadges.HorseProvider;
+                ViewBag.LivestockOwner = UserBadges.LivestockOwner;
+                ViewBag.LivestockProvider = UserBadges.LivestockProvider;
+                ViewBag.RabbitOwner = UserBadges.RabbitOwner;
+                ViewBag.RabbitProvider = UserBadges.RabbitProvider;
+                ViewBag.ReptileOwner = UserBadges.ReptileOwner;
+                ViewBag.ReptileProvider = UserBadges.ReptileProvider;
+                ViewBag.RodentOwner = UserBadges.RodentOwner;
+                ViewBag.RodentProvider = UserBadges.RodentProvider;
+                ViewBag.OtherOwner = UserBadges.OtherOwner;
+                ViewBag.OtherProvider = UserBadges.OtherProvider;
+            }
+            return View(petopiaUser);
+        }
     }
 }
