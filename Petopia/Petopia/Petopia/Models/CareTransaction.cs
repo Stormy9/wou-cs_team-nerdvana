@@ -37,8 +37,8 @@ namespace Petopia.Models
 
         //-------------------------------------------------------------------------------
         [Column(TypeName = "time")]
-        [DisplayName("Start Time:")]
         [DataType(DataType.Time)]
+        [DisplayName("Start Time:")]
         //[DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
         public TimeSpan StartTime { get; set; }
 
@@ -49,13 +49,13 @@ namespace Petopia.Models
         // can't even do it with a 'ToString("hh:mm tt")' in the Controller!!
         //-------------------------------------------------------------------------------
         [Column(TypeName = "time")]
-        [DisplayName("End Time:")]
         [DataType(DataType.Time)]
+        [DisplayName("End Time:")]
         //[DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
         public TimeSpan EndTime { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Pet Care instructions this visit:")]
+        [DisplayName("Pet Care instructions for this visit:")]
         public string NeededThisVisit { get; set; }
 
         //-------------------------------------------------------------------------------

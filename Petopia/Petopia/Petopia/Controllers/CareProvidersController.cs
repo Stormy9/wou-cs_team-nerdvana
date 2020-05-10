@@ -22,7 +22,7 @@ namespace Petopia.Controllers
 
         //===============================================================================
         // GET: CareProviders
-        public ActionResult Index()
+        public ActionResult AdminIndex()
         {
             return View(db.CareProviders.ToList());
         }

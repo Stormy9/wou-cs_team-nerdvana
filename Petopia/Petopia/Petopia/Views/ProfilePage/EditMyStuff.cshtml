@@ -20,10 +20,11 @@
                     class="btn our_buttons" />
 
             <!-- why does this have to be in a span?? these are so f'ing weird..... -->
-            <span class="btn our_buttons">
+            <span style="color: #f2e6d9;">
                 @Html.ActionLink("Cancel!", "Index",
-                        new { @class = "btn our_buttons" },
-                              new { style = "color: #f2e6d9; font-weight: normal;" })
+                    new { controller = "ProfilePage"},
+                        new { @class = "btn our_buttons",
+                              style = "color: #f2e6d9; font-weight: normal;" })
             </span>
 
         </span>
@@ -41,7 +42,8 @@
                                                        new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.FirstName,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                                new { htmlAttributes = new { @class = "form-control", 
+                                                             @autofocus = "autofocus" } })
 
                     @Html.ValidationMessageFor(model => model.FirstName, "",
                                                           new { @class = "text-danger" })
@@ -90,8 +92,8 @@
                     @Html.TextAreaFor(model => model.UserBio,
                          new{ htmlAttributes =
                          new { @class = "form-control our_text_area" },
-                             cols = 90, rows = 5, id = "text15", name = "text15",
-                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                               rows = 5, id = "text15", name = "text15",
+                         style = "color:#2e2e1f; border-radius:5px; padding: 5px; width:90%" })
 
                     <div>
                         <span class="pull-left label label-default"
@@ -206,8 +208,8 @@
                         @Html.TextAreaFor(model => model.ExperienceDetails,
                           new { htmlAttributes =
                           new { @class = "form-control our_text_area" },
-                              cols = 90, rows = 3, id = "text16", name = "text16",
-                           style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                                rows = 3, id = "text16", name = "text16",
+                           style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
 
                         <div>
                             <span class="pull-left label label-default"
@@ -229,8 +231,8 @@
                         @Html.TextAreaFor(model => model.GeneralNeeds,
                           new { htmlAttributes =
                           new { @class = "form-control our_text_area" },
-                              cols = 90, rows = 3, id = "text17", name = "text17",
-                           style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                                rows = 3, id = "text17", name = "text17",
+                           style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
 
                         <div>
                             <span class="pull-left label label-default"
@@ -249,8 +251,8 @@
                         @Html.TextAreaFor(model => model.HomeAccess,
                           new { htmlAttributes =
                           new { @class = "form-control our_text_area" },
-                              cols = 90, rows = 3, id = "text18", name = "text18",
-                          style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                                rows = 3, id = "text18", name = "text18",
+                          style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
 
                         <div>
                             <span class="pull-left label label-default"

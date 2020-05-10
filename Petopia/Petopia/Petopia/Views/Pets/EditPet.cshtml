@@ -46,7 +46,8 @@
                                                         new { @class = "control-label" })
 
                             @Html.EditorFor(model => model.PetName,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                                new { htmlAttributes = new { @class = "form-control", 
+                                                        @autofocus = "autofocus" } })
 
                             @Html.ValidationMessageFor(model => model.PetName, "",
                                                         new { @class = "text-danger" })
@@ -114,8 +115,9 @@
                             @Html.TextAreaFor(model => model.PetBio,
                                 new { htmlAttributes =
                                 new { @class = "form-control our_text_area" },
-                                cols = 180, rows = 5, id = "text13", name = "text13",
-                                style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                                      rows = 5, id = "text13", name = "text13",
+                                      @placeholder="fun things about your pet's personality!",
+                                style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%" })
 
                             <div>
                                 <span class="pull-left label label-default"
@@ -210,11 +212,13 @@
                                 <br />where is it's leash, food, dish, medicine, supplies?
                                 <br />and things like that.
                             </i><br />
+
                             @Html.TextAreaFor(model => model.PetAccess,
                                 new { htmlAttributes =
                                 new { @class = "form-control our_text_area" },
-                                cols = 180, rows = 5, id = "text08", name = "text08",
-                                style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
+                                      rows = 5, id = "text08", name = "text08",
+                                      @placeholder="i.e., he sleeps in a big crate in the living room",
+                                style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
 
                             <div>
                                 <span class="pull-left label label-default"
@@ -242,14 +246,16 @@
                                     style ="margin-bottom: 0px; padding-bottom: 0px;" })
 
                             <br /><i style="font-size: 75%;"> 
-                                in general... you can give specifics for each pet 
+                                just in general... you can give specifics for each pet 
                                 care appointment!  
                             </i><br />
+
                             @Html.TextAreaFor(model => model.NeedsDetails,
                                 new { htmlAttributes =
                                 new { @class = "form-control our_text_area" },
-                                cols = 180, rows = 5, id = "text09", name = "text09",
-                                style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
+                                      rows = 5, id = "text09", name = "text09",
+                                      @placeholder="i.e., meds, special food, help up the stairs",
+                                style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
 
                             <div>
                                 <span class="pull-left label label-default"
@@ -268,8 +274,9 @@
                             @Html.TextAreaFor(model => model.HealthConcerns,
                                 new { htmlAttributes =
                                 new { @class = "form-control our_text_area" },
-                                cols = 180, rows = 5, id = "text10", name = "text10",
-                                style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
+                                rows = 5, id = "text10", name = "text10",
+                                @placeholder="i.e., arthritis, hard-of-hearing, allergies",
+                                style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
 
                             <div>
                                 <span class="pull-left label label-default" 
@@ -288,8 +295,10 @@
                             @Html.TextAreaFor(model => model.BehaviorConcerns,
                                 new { htmlAttributes =
                                 new { @class = "form-control our_text_area" },
-                                cols = 180, rows = 5, id = "text11", name = "text11",
-                                style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
+                                      rows = 5, id = "text11", name = "text11",
+                                      @placeholder="i.e., fears & phobias, any aggression triggers, " +
+                                  "stand to the right of the door when you let him out",
+                                style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
 
                             <div>
                                 <span class="pull-left label label-default"

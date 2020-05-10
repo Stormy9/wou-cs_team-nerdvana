@@ -21,13 +21,6 @@
     {
         <span style="float:right; margin-right:5px; margin-top:15px;"
               class="btn our_buttons">
-            @Html.ActionLink("Book a new Pet Care Appointment!", "BookAppointment",
-                                          new { Controller = "CareTransactions" },
-                                          new { style = "color: #f2e6d9;" })
-        </span>
-
-        <span style="float:right; margin-right:5px; margin-top:15px;"
-              class="btn our_buttons">
             @Html.ActionLink("Back to my Profile", "Index",
                                               new { Controller = "ProfilePage" },
                                               new { style = "color: #f2e6d9;" })
@@ -271,25 +264,25 @@
                             <div class="row our_row_three">
 
                                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                                    @Html.ActionLink("Cancel this Appointment", "Delete",
+                                    @Html.ActionLink("Cancel Appointment", "Delete",
                                           new { id = item.CareTransactionID },
                                           new { style = "color: #f2e6d9;" })
                                 </span>
 
                                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                                    @Html.ActionLink("Edit this Appointment", "EditAppointment",
+                                    @Html.ActionLink("Edit Appointment", "EditAppointment",
                                               new { id = item.CareTransactionID },
                                               new { style = "color: #f2e6d9;" })
                                 </span>
 
                                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                                    @Html.ActionLink("Complete this Appointment", "CompleteAppointment",
+                                    @Html.ActionLink("Complete Appointment", "CompleteAppointment",
                                               new { id = item.CareTransactionID },
                                               new { style = "color: #f2e6d9;" })
                                 </span>
 
                                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                                    @Html.ActionLink("This Pet's Profile", "PetProfile",
+                                    @Html.ActionLink("Pet's Profile", "PetProfile",
                       new { controller = "Pets", id = item.PetID },
                               new { style = "color: #f2e6d9;" })
                                 </span>
@@ -532,7 +525,7 @@
 
                                     <span style="float: right; margin-right: 5px;" 
                                           class="btn our_buttons">
-                                        @Html.ActionLink("Complete this Appointment", 
+                                        @Html.ActionLink("Complete Appointment", 
                                                          "CompleteAppointment",
                                                   new { id = item.CareTransactionID },
                                                   new { style = "color: #f2e6d9;" })
@@ -540,7 +533,7 @@
 
                                     <span style="float: right; margin-right: 5px;" 
                                           class="btn our_buttons">
-                                        @Html.ActionLink("This Pet's Profile", "PetProfile",
+                                        @Html.ActionLink("Pet's Profile", "PetProfile",
                                           new { controller = "Pets", id = item.PetID },
                                                   new { style = "color: #f2e6d9;" })
                                     </span>

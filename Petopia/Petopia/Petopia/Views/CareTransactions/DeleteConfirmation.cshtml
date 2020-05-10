@@ -1,14 +1,15 @@
 ﻿@model Petopia.Models.CareTransaction
 
 @{
-    ViewBag.Title = "Your Pet Care appointment has been canceled!";
-    ViewBag.Title02 = "an email has been sent to your Pet Care Provider!";
+    ViewBag.Title = "Cancel Pet Care Confirmation!";
+    ViewBag.Title01 = "'s Pet Care appointment has been canceled!";
+    ViewBag.Title02 = "an email has been sent to you & your Pet Care Provider!";
 }
 
 <div class="container-fluid">
 
-    <h2>@ViewBag.Title</h2>
-    <h4>@ViewBag.Title02</h4>
+    <h2> @ViewBag.PetName@ViewBag.Title01 </h2>
+    <h4> @ViewBag.Title02 </h4>
 
     <div class="container-fluid my_appt_box" style="padding: 15px;">
 
@@ -30,6 +31,12 @@
                 @Html.ActionLink("My Profile", "Index",
                                     new { controller = "ProfilePage" }, 
                                     new { style = "color: #f2e6d9;" } )
+            </span>
+
+            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                @Html.ActionLink("Pet's Profile", "PetProfile",
+                                    new { controller = "Pets", id = Model.PetID },
+                                    new { style = "color:#f2e6d9" })
             </span>
 
             <span style="float: right; margin-right: 5px;" class="btn our_buttons">

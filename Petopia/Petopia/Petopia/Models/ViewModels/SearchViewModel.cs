@@ -138,7 +138,10 @@ namespace Petopia.Models.ViewModels
             public bool IsOtherProvider { get; set; }
         }
         //-------------------------------------------------------------------------------
-        public IQueryable<CareProviderSearch> PetCarerSearchList { get; set; }
+        //public IQueryable<CareProviderSearch> PetCarerSearchList { get; set; }
+
+        // just testing/playing around with some stuff to see what happens.....
+        public List<CareProviderSearch> PetCarerSearchList { get; set; }
 
         //===============================================================================
         //                                   Pet Owner Search

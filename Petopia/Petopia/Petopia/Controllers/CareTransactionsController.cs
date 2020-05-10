@@ -21,7 +21,7 @@ namespace Petopia.Controllers
         //===============================================================================
         // GET: CareTransactions
         [Authorize(Roles = "Admin")]
-        public ActionResult Index()
+        public ActionResult AdminIndex()
         {
             //---------------------------------------------------------------------------
             // thank you Corrin!   [=
@@ -140,9 +140,21 @@ namespace Petopia.Controllers
         }
         //===============================================================================
         // GET: CareTransactions/Create
-        public ActionResult BookAppointment()
+        public ActionResult BookAppointment(int? id)
         {
-            // get logged-in user's PetOwnerID, into the 'PetOwnerID' field,
+            //---------------------------------------------------------------------------
+            // getting the pet that was passed in:
+            var thisPetID = id;
+            ViewBag.thisPetId = thisPetID;
+
+            var thisPetName = db.Pets.Where(p => p.PetID == thisPetID)
+                                     .Select(pn => pn.PetName)
+                                     .FirstOrDefault();
+
+            ViewBag.thisPetName = thisPetName;
+
+            //---------------------------------------------------------------------------
+            // get logged-in user's PetOwnerID, into the 'PetOwnerID' field:
             var identityID = User.Identity.GetUserId();
 
             var thisPetopiaUserID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
@@ -152,6 +164,8 @@ namespace Petopia.Controllers
             int thisPetOwnerID = db.PetOwners.Where(po => po.UserID == thisPetopiaUserID)
                                              .Select(po => po.PetOwnerID)
                                              .FirstOrDefault();
+
+            ViewBag.petOwnerID = thisPetOwnerID;
 
             // this logged-in PetopiaUser(PetOwner)'s Zipcode
             var thisPetOwnerZip = db.PetopiaUsers.Where(poz => poz.UserID == thisPetopiaUserID)
@@ -189,7 +203,6 @@ namespace Petopia.Controllers
             ViewBag.ThisOwnersPetsSelectList = ThisOwnersPetsSelectList;
 
             //---------------------------------------------------------------------------
-            // see 'test_crap' at the end here for notes..... 
             // --> SELECT LIST OF PET CARERS w/ZIPCODE MATCHING THIS LOGGED-IN PET OWNER
             List<SelectListItem> PetCarerSelectList = (from pu in db.PetopiaUsers
                                                        where pu.ResZipcode == thisPetOwnerZip
@@ -202,23 +215,52 @@ namespace Petopia.Controllers
                                                        }).ToList();
 
             //ViewBag.PetCarerSelectList = new SelectList(PetCarerSelectList);
-            // ^^^ for one thing, the drop-down says 'System.Web.Mvc.SelectListItem'
-            // ^-- it doesn't get here, but i'm sure it would error like the pet one
-            //
-            // there's also the:  `new SelectList(PetCarerSelectList, "value", "text")`
-            // similar to how we did for HW8 in 460 -- but wtf to put for those, w/query?
-            //     --> page won't even load w/the things i tried for "value" & "text"
             //
             //   --> comment one or the other out to see what it does <--
             //
-            // this one actually shows the matching pet carer names!  but returns error:
-            // ^-- it doesn't get here, but i'm sure it would error like the pet one
+            // essentially exactly the same behavior as with the pet list .....
             ViewBag.PetCarerSelectList = PetCarerSelectList;
+
+            // tried `ViewData` again after Joey said it -- it still confuses me, this:
+            //ViewData.PetCarerSelectList = PetCarerSelectList;
+            // ^-- this makes red squiggly w/error message.....
+
+            //---------------------------------------------------------------------------
+            // a "for now" thing.....
+            //var PetCarerList = (from pu in db.PetopiaUsers
+            //                    join cp in db.CareProviders on pu.UserID equals cp.UserID
+            //                    where pu.ResZipcode == thisPetOwnerZip
+            //                    select new
+            //                    {
+            //                        ID = cp.CareProviderID,
+            //                        Name = pu.FirstName + " " + pu.LastName
+
+            //                    }).ToList();
+
+            //ViewBag.PetCarerList = PetCarerList;
+            // 
+            // displays weird, so [DUH!] pull in f'ing ViewModel like in 'test_crap()'
+            //          as in returning full object, with the { ... } and all
+
+            //---------------------------------------------------------------------------
+            CareTransactionViewModel MatchingPetCarers = new CareTransactionViewModel();
+
+            // get list of Pet Care Provider IDs + Names--
+            //  where CareProvider Zipcode == currentlyLogged - inUser Zipcode-- it works!
+            //    --> THIS IS WHAT MAKES THE BLUE CARDS ON THE 'test_crap' VIEW < --
+            MatchingPetCarers.PetCarerList = (from pu in db.PetopiaUsers
+                                              where pu.ResZipcode == thisPetOwnerZip
+                                              join cp in db.CareProviders on pu.UserID equals cp.UserID
+                                              select new CareTransactionViewModel.CareProviderInfo
+                                              {
+                                                  CareProviderID = cp.CareProviderID,
+                                                  CP_Name = pu.FirstName + " " + pu.LastName,
+
+                                              }).ToList();
 
             //---------------------------------------------------------------------------
 
-
-            return View();
+            return View(MatchingPetCarers);
         }
         //-------------------------------------------------------------------------------
         // POST: CareTransactions/BookAppointment
@@ -284,7 +326,6 @@ namespace Petopia.Controllers
                 ViewBag.ThisOwnersPetsSelectList = ThisOwnersPetsSelectList;
 
                 //---------------------------------------------------------------------------
-                // see 'test_crap' at the end here for notes..... this was working there   =]
                 // --> SELECT LIST OF PET CARERS w/ZIPCODE MATCHING THIS LOGGED-IN PET OWNER
                 List<SelectListItem> PetCarerSelectList = (from pu in db.PetopiaUsers
                                                            where pu.ResZipcode == thisPetOwnerZip
@@ -297,17 +338,10 @@ namespace Petopia.Controllers
                                                            }).ToList();
 
                 //ViewBag.PetCarerSelectList = new SelectList(PetCarerSelectList);
-                // ^^^ for one thing, the drop-down says 'System.Web.Mvc.SelectListItem'
-                // ^-- it doesn't get here, but i'm sure it would error like the pet one
-                //
-                // there's also the:  `new SelectList(PetCarerSelectList, "value", "text")`
-                // similar to how we did for HW8 in 460 -- but wtf to put for those, w/query?
-                //      page won't even load w/the things i tried for "value" & "text"
                 //
                 //   --> comment one or the other out to see what it does <--
                 //
-                // this one actually shows the matching pet carer names!  but returns error:
-                // ^-- it doesn't get here, but i'm sure it would error like the pet one
+                // essentially exactly the same behavior as with the pet list .....
                 ViewBag.PetCarerSelectList = PetCarerSelectList;
 
                 //-----------------------------------------------------------------------
@@ -357,8 +391,13 @@ namespace Petopia.Controllers
 
             var loggedInUser = User.Identity.GetUserId();
 
+            var petName = db.Pets.Where(p => p.PetID == careTransaction.PetID)
+                                 .Select(pn => pn.PetName)
+                                 .FirstOrDefault();
+
             ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
             ViewBag.loggedInUser = loggedInUser;
+            ViewBag.PetName = petName;
 
             //---------------------------------------------------------------------------
 
@@ -439,6 +478,13 @@ namespace Petopia.Controllers
             ViewBag.thisPetsCarersASPNetIdentityID = thisPetsCarersASPNetIdentityID;
             ViewBag.loggedInUser = loggedInUser;
             ViewBag.thisPetsCarersID = thisPetsCarersID;
+
+            //---------------------------------------------------------
+            var thisPetsName = db.Pets.Where(p => p.PetID == thisPetsID)
+                                      .Select(pn => pn.PetName)
+                                      .FirstOrDefault();
+
+            ViewBag.PetsName = thisPetsName;
 
             //---------------------------------------------------------------------------
 
@@ -732,6 +778,25 @@ namespace Petopia.Controllers
             //---------------------------------------------------------
             var loggedInUser = User.Identity.GetUserId();
 
+            //---------------------------------------------------------
+            var petName = db.Pets.Where(p => p.PetID == careTransaction.PetID)
+                                 .Select(pn => pn.PetName)
+                                 .FirstOrDefault();
+
+            ViewBag.PetName = petName;
+
+            //---------------------------------------------------------
+            var petCarerFirstName = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsCarersPetopiaUserID)
+                                                   .Select(cfn => cfn.FirstName)
+                                                   .FirstOrDefault();
+            var petCarerLastName = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsCarersPetopiaUserID)
+                                                  .Select(cln => cln.LastName)
+                                                  .FirstOrDefault();
+
+            ViewBag.PetCarerName = petCarerFirstName + " " + petCarerLastName;
+
+            //---------------------------------------------------------
+
             ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
             ViewBag.thisPetsCarersASPNetIdentityID = thisPetsCarersASPNetIdentityID;
             ViewBag.loggedInUser = loggedInUser;
@@ -962,7 +1027,7 @@ namespace Petopia.Controllers
                                              .Select(poz => poz.ResZipcode)
                                              .FirstOrDefault();
 
-            // this Pet Owner's Pets -- by name (i hope, haha) -- nope..... need to do more   [=
+            // this Pet Owner's Pets -- by name (i hope, haha) -- yeah now it works   [=
             var thisOwnersPets = db.Pets.Where(p => p.PetOwnerID == petOwnerID)
                                         .Select(pn => pn.PetName)
                                         .ToList();

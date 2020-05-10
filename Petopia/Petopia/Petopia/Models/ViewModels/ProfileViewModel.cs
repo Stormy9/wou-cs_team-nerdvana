@@ -134,7 +134,7 @@ namespace Petopia.Models.ViewModels
             // that ^ is supposed to get rid of the time appendage on the Pet b-days on
             // the 'Pet Cards' on Owner profiles..... but, it isn't for some dumb reason
             [DataType(DataType.Date)]
-            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMMM dd, yyyy}")]
             public DateTime Birthdate { get; set; }
         }
         //-------------------------------------------------------------------------------

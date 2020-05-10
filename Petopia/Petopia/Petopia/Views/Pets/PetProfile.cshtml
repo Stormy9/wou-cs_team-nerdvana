@@ -46,7 +46,7 @@
                 {
                     <div class="profile_pic_box_box">
                         <div class="profile_pic_box">
-                            <img src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg"
+                            <img src="https://stormy9.github.io/nerdvana/pointyEaredSilhouette.png"
                                  class="profile_img" />
                         </div>
                     </div>
@@ -62,7 +62,7 @@
 
 
                 <!-- pet profile buttons -->
-                <div class="button_box_03" style="text-align: center;">
+                <div class="button_box_04">
                     <!-- css is not reaching these... not all of it anyway -- some parts
                          of it is, but not others -- super f'ing annoying... it works if
                          it's hard-coded here, but that should *NOT* have to be! 
@@ -72,7 +72,7 @@
                          this is a serious annoyance to not be able to set styles 
                          FROM THE FUCKING STYLE SHEETS!!  not all of them anyway!!! -->
                     <div>
-                        @Html.ActionLink("Pet Pic Gallery", "PetGallery", new { id = Model.PetID },
+                        @Html.ActionLink("My Picture Gallery", "PetGallery", new { id = Model.PetID },
                                     new { @class = "our_profile_buttons", 
                                         style="color: #f2e6d9; font-weight: normal;" })
                     </div>
@@ -82,10 +82,10 @@
                     @if(loggedInUser == thisPetsOwner)
                     { 
                     <div>
-                        @Html.ActionLink("This Pet's Details", "MyPetDetails",
-                               new { controller = "Pets", id = Model.PetID },
-                               new { @class = "our_profile_buttons", 
-                                     style="color: #f2e6d9; font-weight: normal;" })
+                        @Html.ActionLink("Book care for Me!", "BookAppointment",
+                                new { controller="CareTransactions", id = Model.PetID},
+                                new { @class="our_profile_buttons",
+                                      style="color:#f2e6d9; font-weight:normal;"})
                     </div>
                     <div>
                         @Html.ActionLink("My Care Appointments", "MyPetsAppointments",
@@ -94,7 +94,13 @@
                                      style="color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <div>
-                        @Html.ActionLink("Edit this Pet", "EditPet", 
+                        @Html.ActionLink("My Private Details", "MyPetDetails",
+                               new { controller = "Pets", id = Model.PetID },
+                               new { @class = "our_profile_buttons", 
+                                     style="color: #f2e6d9; font-weight: normal;" })
+                    </div>
+                    <div>
+                        @Html.ActionLink("Edit my Info", "EditPet", 
                                new { controller = "Pets", id = Model.PetID },
                                new { @class = "our_profile_buttons", 
                                      style="color: #f2e6d9; font-weight: normal;" })
@@ -252,58 +258,6 @@
         <!---->
         <!---->
         <div class="row our_row_three">
-            <!-- THIRD\BOTTOM ROW -->
-            <div class="col-md-11 our_col_four">
-
-                <!-- stuff goes here ... bottom row ...
-                        9-column-wide span inside this row <br>
-                     try to get 3rd column in middle row to span two rows in height!  -->
-                <!-- pet profile preview box header -->
-                <div class="pet_profile_header">
-                    <h3> My Pet Care Visits: </h3>
-                </div>
-
-                <table class="pet_care_table">
-                    <tr>
-                        <th class="table_col_one">Date</th>
-                        <th class="table_col_two">Care Provider</th>
-                        <th class="table_col_three">Care Details</th>
-                    </tr>
-                    <tr>
-                        <td>02/16/2020</td>
-                        <td>Steve PetCarer</td>
-                        <td>
-                            blah blah blah blah blah blah blah blah blah
-                            blah blah blah blah blah blah blah blah blah
-                            blah blah blah blah blah blah blah blah blah
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>02/19/2020</td>
-                        <td>Steve PetCarer</td>
-                        <td>
-                            blah blah blah blah blah blah blah blah blah
-                            blah blah blah blah blah blah blah blah blah
-                            blah blah blah blah blah blah blah blah blah
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>02/21/2020</td>
-                        <td>Steve PetCarer</td>
-                        <td>
-                            blah blah blah blah blah blah blah blah blah
-                            blah blah blah blah blah blah blah blah blah
-                            blah blah blah blah blah blah blah blah blah
-                        </td>
-                    </tr>
-                </table>
-
-            </div><!-- END 4th Column -> one inside bottom row -->
-        </div><!-- END THIRD\BOTTOM ROW -->
-        <!------------------------------------------------------------------------------>
-        <!---->
-        <!------------------------ FOURTH (BUTTON) ROW --------------------------------->
-        <div class="row our_row_four">
 
             <div class="col-sm-offset-6 col-md-offset-6 col-sm-6 col-md-6">
 

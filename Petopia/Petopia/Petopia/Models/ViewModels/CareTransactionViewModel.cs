@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel;
 
 namespace Petopia.Models.ViewModels
 {
@@ -144,15 +144,16 @@ namespace Petopia.Models.ViewModels
         //===============================================================================
         //                                                          CareProvider table
         //===============================================================================
-        // the "background info" from the CareProvider table:
+        // the "main info" from the CareProvider table:
 
+        [DisplayName("Which Pet Carer?")]
         public int CareProviderID { get; set; }
 
         // is there anything we can do with this?
         [DisplayName("Pet Carer:")]
         public string PetCarerName { get; set; }
 
-        // don't think we need any for this part of things?     well, maybe?
+        // don't think we need any for this part of things?     well, maybe, later?
         [DisplayName("My Pet Care Experience:")]
         public string ExperienceDetails { get; set; }
 
@@ -171,8 +172,6 @@ namespace Petopia.Models.ViewModels
         {
             public int CareProviderID { get; set; }
 
-            public string CP_FirstName { get; set; }
-            public string CP_LastName { get; set; }
             public string CP_Name { get; set; }
             public string CP_Zipcode { get; set; }
         }
@@ -188,7 +187,7 @@ namespace Petopia.Models.ViewModels
 
         //===============================================================================
         //===============================================================================
-        //                                                      CareTransactions table
+        //                                                         CareTransactions table
         //===============================================================================
         // now the stuff from the actual CareTransactions table!
         public int TransactionID { get; set; }
@@ -212,25 +211,27 @@ namespace Petopia.Models.ViewModels
         public DateTime EndDate { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Column(TypeName ="time")]                                    // CareTransactions
+        [Column(TypeName = "time")]                                   // CareTransactions
         [DataType(DataType.Time)]
-        //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
         [DisplayName("Start Time:")]
+        //[DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
         public TimeSpan StartTime { get; set; }
 
+        //-------------------------------------------------------------------------------
         //SERIOUSLY! DISPLAYING TIME IN 12-HOUR FORMAT SHOULsDN'T BE THIS F'ING DIFFICULT!
         // YES I TRIED CHANGING FROM 'TimeSpan' to 'DateTime'
         // I remember this shit being unconscionably difficult in 460 as well.
-
+        // can't even do it with a 'ToString("hh:mm tt")' in the Controller!!
+        //-------------------------------------------------------------------------------
         [Column(TypeName = "time")]
         [DataType(DataType.Time)]
-        //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
         [DisplayName("End Time:")]
+        //[DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
         public TimeSpan EndTime { get; set; }
 
         //===============================================================================
         //                                                            // CareTransactions
-        [DisplayName("Pet Care instructions this visit:")]
+        [DisplayName("Pet Care instructions for this visit:")]
         public string NeededThisVisit { get; set; }
 
         [DisplayName("Pet Care recap:")]

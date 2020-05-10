@@ -101,19 +101,19 @@
                     @Html.ActionLink("My Owner's Profile", "Index",
                             new { controller = "ProfilePage" },
                             new { @class = "our_other_buttons", 
-                                  style = "color: #f2e6d9;" })
+                                  style = "color:#f2e6d9; font-weight:normal;" })
                 </div>
                 <div>
                     @Html.ActionLink("This Pet's Profile", "PetProfile",
                             new { id = Model.PetID },
                             new { @class = "our_other_buttons", 
-                                  style = "color: #f2e6d9;" })
+                                  style = "color: #f2e6d9; font-weight:normal;" })
                 </div>
                 <div>
                     @Html.ActionLink("Edit this Pet", "EditPet", 
-                                        new { id = Model.PetID },
-                                        new { @class = "our_other_buttons", 
-                                              style = "color: #f2e6d9;" })
+                                new { id = Model.PetID },
+                                new { @class = "our_other_buttons", 
+                                        style = "color: #f2e6d9; font-weight:normal;" })
                 </div>
             </div><!-- END BUTTON BOX -->
             <!-------------------------------------------------------------------------->

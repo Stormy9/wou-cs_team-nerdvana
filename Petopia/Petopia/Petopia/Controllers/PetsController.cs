@@ -20,7 +20,7 @@ namespace Petopia.Controllers
 
         //===============================================================================
         // GET: Pets
-        public ActionResult Index()
+        public ActionResult AdminIndex()
         {
             var pets = db.Pets.Include(p => p.PetOwner);
 

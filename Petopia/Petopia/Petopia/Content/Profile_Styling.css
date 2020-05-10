@@ -10,13 +10,11 @@
     color: whitesmoke;
     font-weight: bold;*/
 }
-
 .our_row_two {
     padding: 5px;
     background-color: #996633;
     color: whitesmoke;
 }
-
 .our_row_three {
     padding: 5px;
     background-color: #996633;
@@ -173,6 +171,15 @@
     color: #f2e6d9;
     margin-top: 5px;
     float: right;
+    text-align: center;
+}
+.button_box_04 {
+    padding: 3px;
+    padding-right: 18px;
+    color: #f2e6d9;
+    margin-top: 5px;
+    float: left;
+    text-align: center;
 }
 .our_other_buttons {
     /* these are being really fucking weird!! */
@@ -310,7 +317,7 @@
 .pet_profile_preview {
     border: 1px solid #4d3319;
     border-radius: 5px;
-    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.45);
     transition: 0.3s;
     height: 165px;
     margin-bottom: 18px;

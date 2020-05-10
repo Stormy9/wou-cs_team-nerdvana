@@ -20,7 +20,7 @@
 
             <h2> @ViewBag.Title </h2>
 
-            @if (Model != null)
+            @if (Model.PetCarerSearchList.Any())
             {
                 foreach (var item in Model.PetOwnerSearchList)
                 {
@@ -118,7 +118,7 @@
             else
             {
                 <h3>
-                    there aren't any pet carers registered in your area yet!
+                    there aren't any pet owners registered in your area yet!
                 </h3>
             }
 

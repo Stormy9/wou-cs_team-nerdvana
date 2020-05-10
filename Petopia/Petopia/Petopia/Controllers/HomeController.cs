@@ -86,7 +86,7 @@ namespace Petopia.Controllers
                                                   IsRodentProvider = ub.RodentProvider,
                                                   IsOtherProvider = ub.OtherProvider
 
-                                              });
+                                              }).ToList();
 
             return View(carerSearch);
         }
