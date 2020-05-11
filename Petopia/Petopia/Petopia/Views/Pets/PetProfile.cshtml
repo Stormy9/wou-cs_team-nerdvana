@@ -72,13 +72,9 @@
                          this is a serious annoyance to not be able to set styles
                          FROM THE FUCKING STYLE SHEETS!!  not all of them anyway!!! -->
                     <div>
-                        @Html.ActionLink("My Picture Gallery", "PetGallery", new { id = Model.PetID },
+                        @Html.ActionLink("My Pet Pic Gallery", "PetGallery", new { id = Model.PetID },
                                     new { @class = "our_profile_buttons", 
                                         style="color: #f2e6d9; font-weight: normal;" })
-
-                        @Html.ActionLink("Pet Pic Gallery", "PetGallery", new { id = Model.PetID },
-                                    new { @class = "our_profile_buttons",
-                                        style = "color: #f2e6d9; font-weight: normal;" })
                     </div>
 
                     <!-- IF-STATEMENT TO CHECK IF USER IS PET'S OWNER     -->
@@ -110,32 +106,6 @@
                                      style="color: #f2e6d9; font-weight: normal;" })
                     </div>
                     }
-
-                    @if (loggedInUser == thisPetsOwner)
-                    {
-                        <div>
-                            @Html.ActionLink("This Pet's Details", "MyPetDetails",
-                                   new { controller = "Pets", id = Model.PetID },
-                                   new { @class = "our_profile_buttons",
-                                         style = "color: #f2e6d9; font-weight: normal;" })
-                        </div>
-                        <div>
-                            @Html.ActionLink("My Care Appointments", "MyPetsAppointments",
-                                   new { controller = "CareTransactions", id = Model.PetID },
-                                   new { @class = "our_profile_buttons",
-                                         style = "color: #f2e6d9; font-weight: normal;" })
-                        </div>
-                        <div>
-                            @Html.ActionLink("Edit this Pet", "EditPet",
-                                   new { controller = "Pets", id = Model.PetID },
-                                   new
-                                        {
-                                            @class = "our_profile_buttons",
-                                         style = "color: #f2e6d9; font-weight: normal;"
-                                        })
-                        </div>
-                    }
-
                 </div><!-- END BUTTON BOX -->
 
             </div><!-- END 1st/LEFT COLUMN **OF** 2nd/MIDDLE ROW -->
@@ -164,13 +134,9 @@
                 <!-- Pet's Person-->
                 <div class="user_name_box">
                     <h3>My Person is: </h3>
-                    <h4>
-                        <i>
-                            @*@Html.DisplayFor(model => model.FirstName)*@
-                            @*@Html.DisplayFor(model => model.PetopiaUser.LastName)*@
+                    <h4><i>
                             @ViewBag.PetsOwnersFirstName&nbsp;@ViewBag.PetOwnersLastName
-                        </i>
-                    </h4>
+                    </i></h4>
                 </div>
 
                 <!-- Pet's (owner's) general location -->

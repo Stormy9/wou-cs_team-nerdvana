@@ -75,6 +75,12 @@
                 <!-- pet badges -->
                 <div class="pet_badge_box">
                     <!------------------------------------------------------------------>
+                    <!-- let profile-visitors know this person hasn't done bages yet! -->
+                    @if (ViewBag.Badges == false)
+                    { 
+                        <p> this user hasn't set up badges yet! </p>
+                    }
+                    <!------------------------------------------------------------------>
                     @if (ViewBag.DogOwner == true)
                     {
                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_owner.png"
@@ -468,7 +474,7 @@
                                 {
                                     <img class="pet_profile_preview_img"
                                          alt="pet profile pic"
-                                         src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg">
+                                         src="https://stormy9.github.io/nerdvana/pointyEaredSilhouette.png">
                                 }
 
                                 <div class="pet_preview_name">
@@ -492,11 +498,8 @@
                                 <div class="button_box_pet_card">
                                     @Html.ActionLink("This Pet's Profile", "PetProfile",
                                             new { controller = "Pets", id = item.PetID },
-                                            new
-                                                 {
-                                                     @class = "our_pet_card_buttons",
-                                                style = "color: #f2e6d9;  font-weight: normal;"
-                                                 })
+                                            new { @class = "our_pet_card_buttons",
+                                                style = "color: #f2e6d9;  font-weight: normal;" })
 
                                 </div>
 

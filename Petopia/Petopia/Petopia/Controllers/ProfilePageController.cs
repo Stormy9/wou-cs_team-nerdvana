@@ -393,13 +393,19 @@ namespace Petopia.Controllers
             return View(model);
 
         }  // END 'EditProfile()' POST
-           //===============================================================================
-           //===============================================================================
-           //===============================================================================
-           //===============================================================================
-           // GET: ProfilePage                                          DISPLAY PROFILE PAGE
+        //===============================================================================
+        //===============================================================================
+        //===============================================================================
+        //===============================================================================
+        // GET: ProfilePage                                          DISPLAY PROFILE PAGE
         public ActionResult VisitProfile(int loggedID)
         {
+            // loggedID is being passed in as PetOwnerID from the Pet table\DAL.Pet
+            //   added this part b/c it was calling the PetOwnerID as PetopiaUserID   =]
+            loggedID = db.PetOwners.Where(po => po.PetOwnerID == loggedID)
+                                                     .Select(UID => UID.UserID)
+                                                     .FirstOrDefault().Value;
+
             var identityID = db.PetopiaUsers.Where(x => x.UserID == loggedID)
                                             .Select(x => x.ASPNetIdentityID)
                                             .First();
