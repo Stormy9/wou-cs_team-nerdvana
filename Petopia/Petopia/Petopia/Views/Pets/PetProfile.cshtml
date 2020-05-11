@@ -4,6 +4,7 @@
     ViewBag.Title = "Pet Profile!";
     var loggedInUser = ViewBag.loggedInUser;
     var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
+    var thisPetsOwnersPetopiaID = ViewBag.PetOwnerPetopiaID;
 }
 
 <div class="outer_container">
@@ -159,7 +160,7 @@
                 {
                     <div style="margin-left: 23px; margin-bottom: 23px;">
                         @Html.ActionLink("My Owner's Profile", "VisitProfile",
-                               new { controller = "ProfilePage", loggedID = Model.PetOwnerID },
+                               new { controller = "ProfilePage", loggedID = thisPetsOwnersPetopiaID },
                                new { @class = "btn our_profile_buttons",
                                      style = "color: #f2e6d9; font-weight: normal;" })
                     </div>

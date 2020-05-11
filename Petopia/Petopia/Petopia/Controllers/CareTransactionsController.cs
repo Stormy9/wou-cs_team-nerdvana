@@ -827,6 +827,7 @@ namespace Petopia.Controllers
             return View(careTransaction);
         }
         //===============================================================================
+        //===============================================================================
         // GET: CareTransactions
         public ActionResult MyAppointments()
         {
@@ -864,6 +865,7 @@ namespace Petopia.Controllers
             ViewBag.user_Email = user_Email;
             ViewBag.thisPetOwner = thisPetOwner;
 
+            // still inside 'MyAppointments()'
             //---------------------------------------------------------------------------
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
 
@@ -880,36 +882,24 @@ namespace Petopia.Controllers
                                    select new CareTransactionViewModel.ApptInfo
                                    {
                                        PetName = p.PetName,
-                                       PetOwnerFirstName = puO.FirstName,
-                                       PetOwnerLastName = puO.LastName,
+                                       PetOwnerFirstName = puO.FirstName, PetOwnerLastName = puO.LastName,
+                                       PetCarerFirstName = puP.FirstName, PetCarerLastName = puP.LastName,
 
-                                       PetCarerFirstName = puP.FirstName,
-                                       PetCarerLastName = puP.LastName,
-
-                                       StartDate = ct.StartDate,
-                                       EndDate = ct.EndDate,
-
-                                       StartTime = ct.StartTime,
-                                       EndTime = ct.EndTime,
+                                       StartDate = ct.StartDate, EndDate = ct.EndDate,
+                                       StartTime = ct.StartTime, EndTime = ct.EndTime,
 
                                        NeededThisVisit = ct.NeededThisVisit,
                                        CareProvided = ct.CareProvided,
                                        CareReport = ct.CareReport,
+                                       Charge = ct.Charge, Tip = ct.Tip,
 
-                                       Charge = ct.Charge,
-                                       Tip = ct.Tip,
+                                       PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
+                                       PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
 
-                                       PC_Rating = ct.PC_Rating,
-                                       PC_Comments = ct.PC_Comments,
-                                       PO_Rating = ct.PO_Rating,
-                                       PO_Comments = ct.PO_Comments,
-
-                                       PetID = ct.PetID,
-                                       PetOwnerID = ct.PetOwnerID,
-                                       PetCarerID = ct.CareProviderID,
+                                       PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, PetCarerID = ct.CareProviderID,
                                        CareTransactionID = ct.TransactionID
                                    }).ToList();
-            
+
             return View(Vmodel);
         }
         //===============================================================================
@@ -939,12 +929,11 @@ namespace Petopia.Controllers
             ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
             ViewBag.loggedInUser = loggedInUser;
 
+            // still inside 'MyPetsAppointments()'
             //---------------------------------------------------------------------------
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
 
-            Vmodel.ApptInfoList = (from ct in db.CareTransactions
-                                   where ct.PetID == thisPet
-                                   orderby ct.StartDate
+            Vmodel.ApptInfoList = (from ct in db.CareTransactions where ct.PetID == thisPet orderby ct.StartDate
 
                                    join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
                                    join po in db.PetOwners on ct.PetOwnerID equals po.PetOwnerID
@@ -955,33 +944,21 @@ namespace Petopia.Controllers
                                    select new CareTransactionViewModel.ApptInfo
                                    {
                                        PetName = p.PetName,
-                                       PetOwnerFirstName = puO.FirstName,
-                                       PetOwnerLastName = puO.LastName,
+                                       PetOwnerFirstName = puO.FirstName, PetOwnerLastName = puO.LastName,
+                                       PetCarerFirstName = puP.FirstName, PetCarerLastName = puP.LastName,
 
-                                       PetCarerFirstName = puP.FirstName,
-                                       PetCarerLastName = puP.LastName,
-
-                                       StartDate = ct.StartDate,
-                                       EndDate = ct.EndDate,
-
-                                       StartTime = ct.StartTime,
-                                       EndTime = ct.EndTime,
+                                       StartDate = ct.StartDate, EndDate = ct.EndDate,
+                                       StartTime = ct.StartTime, EndTime = ct.EndTime,
 
                                        NeededThisVisit = ct.NeededThisVisit,
                                        CareProvided = ct.CareProvided,
                                        CareReport = ct.CareReport,
+                                       Charge = ct.Charge, Tip = ct.Tip,
 
-                                       Charge = ct.Charge,
-                                       Tip = ct.Tip,
+                                       PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
+                                       PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
 
-                                       PC_Rating = ct.PC_Rating,
-                                       PC_Comments = ct.PC_Comments,
-                                       PO_Rating = ct.PO_Rating,
-                                       PO_Comments = ct.PO_Comments,
-
-                                       PetID = ct.PetID,
-                                       PetOwnerID = ct.PetOwnerID,
-                                       PetCarerID = ct.CareProviderID,
+                                       PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, PetCarerID = ct.CareProviderID,
                                        CareTransactionID = ct.TransactionID
                                    }).ToList();
 

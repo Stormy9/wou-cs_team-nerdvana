@@ -42,7 +42,7 @@
         <!------------------------------ 1st TAB => Upcoming Appts --------------------->
         <div id="home" class="tab-pane fade in active">
 
-            @foreach (var item in Model.ApptInfoList)
+            @foreach (var item in Model.ApptInfoList  )
             {
                 //hey! don't need another (at) sign in here
                 if (item.EndDate > todaysDate)
@@ -54,26 +54,15 @@
 
                             <div class="col-sm-12 col-md-12">
 
+                                <!------------------------------------------------------>
                                 <span style="float:left;">
-                                    <!-------------------------------------------------->
-                                    @*<span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.PetID) ==
-                                    </span>
-                                    @Html.DisplayFor(model => item.PetID)&nbsp;*@
-
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => model.PetName)&nbsp;&nbsp;
                                     </span>
                                     @Html.DisplayFor(model => item.PetName)
                                 </span>
                                 <!------------------------------------------------------>
-
                                 <span style="float:left; margin-left: 25px;">
-                                    @*<span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.PetOwnerID) == 
-                                    </span>
-                                    @Html.DisplayFor(model => item.PetOwnerID)*@
-
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => item.PetOwnerName)&nbsp;&nbsp;
                                     </span>
@@ -82,11 +71,6 @@
                                 </span>
                                 <!------------------------------------------------------>
                                 <span style="float:left; margin-left: 25px;">
-                                    @*<span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.CareProviderID) ==
-                                    </span>
-                                    @Html.DisplayFor(model => item.PetCarerID)*@
-
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => item.PetCarerName)&nbsp;
                                     </span>
@@ -116,7 +100,6 @@
 
                                 <div style="margin-bottom: 5px;">
                                     <span class="our_appt_label">
-                                        @*@Html.DisplayNameFor(model => model.StartDate)*@
                                         <b>From:</b><br />
                                     </span>
                                     @Html.DisplayFor(model => item.StartDate)
@@ -125,7 +108,6 @@
 
                                 <div>
                                     <span class="our_appt_label">
-                                        @*@Html.DisplayNameFor(model => model.StartTime)<br />*@
                                         at:
                                     </span>
                                     @Html.DisplayFor(model => item.StartTime)
@@ -140,7 +122,6 @@
 
                                 <div style="margin-bottom: 5px;">
                                     <span class="our_appt_label">
-                                        @*@Html.DisplayNameFor(model => model.EndDate)*@
                                         <b>To:</b><br />
                                     </span>
                                     @Html.DisplayFor(model => item.EndDate)
@@ -149,7 +130,6 @@
 
                                 <div>
                                     <span class="our_appt_label">
-                                        @*@Html.DisplayNameFor(model => model.EndTime)<br />*@
                                         at:
                                     </span>
                                     @Html.DisplayFor(model => item.EndTime)
@@ -268,33 +248,40 @@
 
                             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                 @Html.ActionLink("Cancel Appointment", "Delete",
+                                                        new { id = item.CareTransactionID },
+                                                        new { style = "color: #f2e6d9;" })
+                            </span>
+
+                            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                                @Html.ActionLink("Edit Appointment", "EditAppointment",
                                                             new { id = item.CareTransactionID },
                                                             new { style = "color: #f2e6d9;" })
                             </span>
 
                             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                                @Html.ActionLink("Edit Appointment", "EditAppointment",
-                                                                new { id = item.CareTransactionID },
-                                                                new { style = "color: #f2e6d9;" })
-                            </span>
-
-                            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                 @Html.ActionLink("Complete Appointment", "CompleteAppointment",
-                                                                new { id = item.CareTransactionID },
-                                                                new { style = "color: #f2e6d9;" })
+                                                            new { id = item.CareTransactionID },
+                                                            new { style = "color: #f2e6d9;" })
                             </span>
 
                             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                 @Html.ActionLink("Pet's Profile", "PetProfile",
-                                        new { controller = "Pets", id = item.PetID },
-                                                new { style = "color: #f2e6d9;" })
+                                    new { controller = "Pets", id = item.PetID },
+                                            new { style = "color: #f2e6d9;" })
                             </span>
 
                         </div><!-- END ROW THREE-->
                         <!--==========================================================-->
                     </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
-                }
-            }
+                } <!-- end date test -->
+            } <!-- end 'foreach' loop -->
+
+
+
+        <!--   (at)if (Model.PetCarerSearchList.Count() > 0)-->
+
+
+
         </div><!-- END DIV WHERE ID==HOME --><!-- aka UPCOMING APPTS! -->
         <!---->
         <!---->
@@ -318,11 +305,6 @@
 
                                     <!-------------------------------------------------->
                                     <span style="float:left;">
-                                        @*<span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PetID) ==
-                                        </span>
-                                        @Html.DisplayFor(model => item.PetID)*@
-
                                         <span class="our_appt_label">
                                             @Html.DisplayNameFor(model => model.PetName)&nbsp;&nbsp;
                                         </span>
@@ -331,11 +313,6 @@
                                     <!-------------------------------------------------->
 
                                     <span style="float:left; margin-left: 25px;">
-                                        @*<span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PetOwnerID) ==
-                                        </span>
-                                        @Html.DisplayFor(model => item.PetOwnerID)*@
-
                                         <span class="our_appt_label">
                                             @Html.DisplayNameFor(model => item.PetOwnerName)&nbsp;&nbsp;
                                         </span>
@@ -345,11 +322,6 @@
                                     <!-------------------------------------------------->
 
                                     <span style="float:left; margin-left: 25px;">
-                                        @*<span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.CareProviderID) ==
-                                        </span>
-                                        @Html.DisplayFor(model => item.PetCarerID)*@
-
                                         <span class="our_appt_label">
                                             @Html.DisplayNameFor(model => item.PetCarerName)&nbsp;&nbsp;
                                         </span>
@@ -379,7 +351,6 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            @*@Html.DisplayNameFor(model => model.StartDate)*@
                                             From:<br />
                                         </span>
                                         @Html.DisplayFor(model => item.StartDate)
@@ -387,7 +358,6 @@
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @*@Html.DisplayNameFor(model => model.StartTime)*@
                                             at:<br />
                                         </span>
                                         @Html.DisplayFor(model => item.StartTime)
@@ -401,7 +371,6 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            @*@Html.DisplayNameFor(model => model.EndDate)*@
                                             To:<br />
                                         </span>
                                         @Html.DisplayFor(model => item.EndDate)
@@ -409,7 +378,6 @@
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @*@Html.DisplayNameFor(model => model.EndTime)*@
                                             at:<br />
                                         </span>
                                         @Html.DisplayFor(model => item.EndTime)
@@ -440,7 +408,7 @@
 
                                         @*@if (String.IsNullOrEmpty())
                                             {
-                                                trying to test for null/empty
+                                                test for null/empty
                                                 to change background color if true!
                                             }*@
                                         @Html.DisplayFor(model => item.CareProvided)

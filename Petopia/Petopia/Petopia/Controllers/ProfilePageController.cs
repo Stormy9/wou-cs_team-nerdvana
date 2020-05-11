@@ -395,16 +395,18 @@ namespace Petopia.Controllers
         }  // END 'EditProfile()' POST
         //===============================================================================
         //===============================================================================
-        //===============================================================================
-        //===============================================================================
-        // GET: ProfilePage                                          DISPLAY PROFILE PAGE
+        // GET: ProfilePage                                            VISIT PROFILE PAGE
         public ActionResult VisitProfile(int loggedID)
         {
-            // loggedID is being passed in as PetOwnerID from the Pet table\DAL.Pet
-            //   added this part b/c it was calling the PetOwnerID as PetopiaUserID   =]
-            loggedID = db.PetOwners.Where(po => po.PetOwnerID == loggedID)
-                                                     .Select(UID => UID.UserID)
-                                                     .FirstOrDefault().Value;
+            // originally -- from the Pet Profile Page -- which was the only place we had
+            //     a link to `VisitProfile(id)` to start with..... anyway we were passing 
+            //     in the owner's `PetOwnerID` instead of their `PetopiaUserID`.....
+            //       that was getting us the incorrect ProfilePage!
+            // SO...
+            //  make sure, wherever we link to `VisitProfile(id)`, that we are passing
+            //  in the `PetopiaUserID` and not `PetOwnerID` or `CareProviderID`
+            //     -- that can be done via ViewBag like i did in the Pet Profile Page
+            
 
             var identityID = db.PetopiaUsers.Where(x => x.UserID == loggedID)
                                             .Select(x => x.ASPNetIdentityID)
