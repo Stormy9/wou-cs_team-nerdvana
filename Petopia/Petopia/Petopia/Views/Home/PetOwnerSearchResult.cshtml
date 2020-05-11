@@ -20,7 +20,7 @@
 
             <h2> @ViewBag.Title </h2>
 
-            @if (Model.PetCarerSearchList.Any())
+            @if (Model.PetOwnerSearchList.Count() > 0)
             {
                 foreach (var item in Model.PetOwnerSearchList)
                 {
