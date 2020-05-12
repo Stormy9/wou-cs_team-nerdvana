@@ -74,6 +74,7 @@ namespace Petopia.Controllers
                                                   CP_Profile_Pic = pu.ProfilePhoto,
                                                   ExperienceDetails = cp.ExperienceDetails,
                                                   ProviderAverageRating = cp.AverageRating,
+                                                  GeneralLocation = pu.GeneralLocation,
 
                                                   IsDogProvider = ub.DogProvider,
                                                   IsCatProvider = ub.CatProvider,
@@ -122,6 +123,7 @@ namespace Petopia.Controllers
                                                   PO_Profile_Pic = pu.ProfilePhoto,
                                                   GeneralNeeds = po.GeneralNeeds,
                                                   OwnerAverageRating = po.AverageRating,
+                                                  GeneralLocation = pu.GeneralLocation,
 
                                                   IsDogOwner = ub.DogOwner,
                                                   IsCatOwner = ub.CatOwner,

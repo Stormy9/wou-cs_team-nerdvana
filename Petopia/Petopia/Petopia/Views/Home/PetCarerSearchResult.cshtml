@@ -1,7 +1,7 @@
 ﻿@model Petopia.Models.ViewModels.SearchViewModel
 
 @{
-    ViewBag.Title = "Your Pet Care search results";
+    ViewBag.Title = "Your Pet Care Provider search results";
 }
 
 <div class="container-fluid">
@@ -26,26 +26,62 @@
                 {
                     <div class="splash_search_result_box">
                         
-                        <div class="search_result_test_proof_data">
+                        <!-- for early testing/proofing! -->
+                        @*<div class="search_result_test_proof_data">
                             @Html.DisplayNameFor(model => model.CP_ID)&nbsp;
                             @Html.DisplayFor(modelItem => item.CP_ID) &lt;=&gt;
                             @Html.DisplayNameFor(model => model.PU_ZipCode)&nbsp;
                             @Html.DisplayFor(modelItem => item.PU_Zipcode)<br />
                             later the name &amp; photo will be linked to the
                             care provider's profile page!   [=
-                        </div>
+                        </div>*@
+
+                        <!-------------------------------------------------------------->
                         <div class="search_result_cp_name">
-                            @Html.DisplayNameFor(model => model.CP_Name)&nbsp;
-                            @Html.DisplayFor(modelItem => item.CP_Name)
+                            <span>
+                                @Html.ActionLink(item.CP_Name, "VisitProfile",
+                                new { controller = "ProfilePage", loggedID = item.CP_PU_ID },
+                                new { @class = "", style = "float:left; color:#003399;" })
+                            </span>
+                            @*<span>
+                                @Html.ActionLink("my profile", "VisitProfile",
+                                new { controller = "ProfilePage", loggedID = item.CP_PU_ID },
+                                new { @class = "", style = "float:right; color:#003399;" })
+                            </span>*@
                         </div>
-                                                    
+
+                              
+                        @if (item.GeneralLocation != null)
+                        {
+                        <div style="clear:both;"><!-- break the floats above -->
+                            @Html.DisplayFor(modelItem => item.GeneralLocation)
+                        </div>
+                        }
+                        else 
+                        { 
+                            <div style="clear:both;"> <!-- break the floats above -->
+                                &nbsp; 
+                                <!-- so profile photos line up across cards, haha! -->
+                            </div>
+                        }
+
+
+                    @*<a href='@Url.Action("MyAction", "MyController")'>
+                        <img src='@Url.Content("~/Content/Images/MyLinkImage.png")' />
+                    </a>*@
+
+
                         <!-- MINI PROFILE PICTURE FOR CARE PROVIDER! -->
                         @if (Model.CP_Profile_Pic != null)
                         {
                             <div class="search_result_profile_pic_box_box">
                                 <div class="search_result_profile_pic_box">
-                                    <img src=@Url.Action("Show", "Image", new { id = Model.CP_PU_ID }) 
+                                    <a href='@Url.Action("VisitProfile", "ProfilePage", 
+                                                    new { loggedID = item.CP_PU_ID })'>
+                                        <img src=@Url.Action("Show", "Image", 
+                                                    new { id = Model.CP_PU_ID }) 
                                             class="search_result_profile_img" />
+                                    </a>
                                 </div>
                             </div>
                         }
@@ -53,64 +89,69 @@
                         { 
                             <div class="search_result_profile_pic_box_box">
                                 <div class="search_result_profile_pic_box">
-                                    <img src="https://stormy9.github.io/nerdvana/cute_smiley.png" 
-                                            class="search_result_profile_img" />
+                                    <a href='@Url.Action("VisitProfile", "ProfilePage", 
+                                                    new { loggedID = item.CP_PU_ID })'>
+                                        <img src="https://stormy9.github.io/nerdvana/cute_smiley.png"
+                                             class="search_result_profile_img" />
+                                    </a>
                                 </div>
                             </div>
                         }
                         <br />
 
+
                         <!-- PET BADGES! -->
                         <div class="search_result_pc_badge_box">
-                        @if (item.IsDogProvider is true)
-                        {
-                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_provider.png" class="pet_badge">
-                        }
+                            <div style="margin-bottom:3px;">My pet care badges!</div>
+                            @if (item.IsDogProvider is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_provider.png" class="pet_badge">
+                            }
 
-                        @if (item.IsCatProvider is true)
-                        {
-                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_provider.png" class="pet_badge">
-                        }
+                            @if (item.IsCatProvider is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_provider.png" class="pet_badge">
+                            }
 
-                        @if (item.IsBirdProvider is true)
-                        {
-                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_provider.png" class="pet_badge">
-                        }
+                            @if (item.IsBirdProvider is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_provider.png" class="pet_badge">
+                            }
 
-                        @if (item.IsFishProvider is true)
-                        {
-                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_provider.png" class="pet_badge">
-                        }
+                            @if (item.IsFishProvider is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_provider.png" class="pet_badge">
+                            }
 
-                        @if (item.IsRabbitProvider is true)
-                        {
-                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_provider.png" class="pet_badge">
-                        }
+                            @if (item.IsRabbitProvider is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_provider.png" class="pet_badge">
+                            }
 
-                        @if (item.IsRodentProvider is true)
-                        {
-                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_provider.png" class="pet_badge">
-                        }
+                            @if (item.IsRodentProvider is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_provider.png" class="pet_badge">
+                            }
 
-                        @if (item.IsReptileProvider is true)
-                        {
-                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_provider.png" class="pet_badge">
-                        }
+                            @if (item.IsReptileProvider is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_provider.png" class="pet_badge">
+                            }
 
-                        @if (item.IsHorseProvider is true)
-                        {
-                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_provider.png" class="pet_badge">
-                        }
+                            @if (item.IsHorseProvider is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_provider.png" class="pet_badge">
+                            }
 
-                        @if (item.IsLivestockProvider is true)
-                        {
-                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_provider.png" class="pet_badge">
-                        }
+                            @if (item.IsLivestockProvider is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_provider.png" class="pet_badge">
+                            }
 
-                        @if (item.IsOtherProvider is true)
-                        {
-                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_provider.png" class="pet_badge">
-                        }
+                            @if (item.IsOtherProvider is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_provider.png" class="pet_badge">
+                            }
                         </div>
                     </div><!-- end div 'splash_search_result_box' -->
                     } <!-- end the 'foreach' loop -->

@@ -139,7 +139,7 @@ textarea {
     /* for testing */
     /*border: 1px solid green;*/
 }
-/*======== SEARCH RESULT PAGE STUFF ===================================================*/
+/*======================================== SEARCH RESULT PAGE STUFF ===================*/
 .splash_search_result_box {
     border: 1px solid #4d3319;
     border-radius: 11px;
@@ -159,8 +159,10 @@ textarea {
     font-style: italic;
 }
 .search_result_cp_name {
+    font-size: 120%;
     font-weight: bold;
-    color: #392613;
+    /*color: #392613;*/
+    color: blue;
     margin-bottom: 5px;
 }
 .search_result_profile_pic_box_box {
@@ -183,8 +185,8 @@ textarea {
 .search_result_pc_badge_box {
     display: inline-block;
     float: left;
-    margin-left: 3px;
-    padding-top: 30px;
+    margin-left: 9px;
+    padding-top: 9px;
     /* for testing */
     /*border: 1px solid green;*/
 }

@@ -29,9 +29,12 @@ namespace Petopia.Models.ViewModels
 
         public string CP_LastName { get; set; }
 
-        // this is the same as for pet owner search
+        //-------------------------------------------------------------
+        // these are the same as for pet owner search
         [DisplayName("Zip:")]
         public string PU_ZipCode { get; set; }
+
+        public string GeneralLocation { get; set; }
 
         //-------------------------------------------------------------
         [DisplayName("user profile picture:")]
@@ -93,6 +96,8 @@ namespace Petopia.Models.ViewModels
 
             [DisplayName("PU_Zip:")]
             public string PU_Zipcode { get; set; }
+
+            public string GeneralLocation { get; set; }
 
             //---------------------------------------------------------
             [DisplayName("profile picture:")]
@@ -230,6 +235,8 @@ namespace Petopia.Models.ViewModels
 
             [DisplayName("PU_Zip:")]
             public string PU_Zipcode { get; set; }
+
+            public string GeneralLocation { get; set; }
 
             //---------------------------------------------------------
             [DisplayName("My profile picture:")]

@@ -204,8 +204,13 @@
                 </div>
                 <!----------------------- BOOK PET CARE APPOINTMENT!  ------------------>
                 <div class="form-group" style="padding-top: 18px;">
-                    <input type="submit" value="Book Appointment!", tabindex="7",
+                    @Html.ActionLink("Cancel!", "Index", new { Controller = "ProfilePage"}, 
+                        new { @class="btn our_buttons", 
+                            style = "float: right; color: #f2e6d9; font-weight: normal;margin-left: 9px;"})
+
+                    <input type="submit" value="Book!", tabindex="7",
                             class="btn our_buttons" style="float:right;"/>
+                    
                 </div>
                 <!---------------------------------------------------------------------->
             </div>
