@@ -360,7 +360,9 @@ namespace Petopia.Models.ViewModels
             //---------------------------------------------------------
             public int CareTransactionID { get; set; }
         }
-        public List<ApptInfo> ApptInfoList { get; set; }
+        public List<ApptInfo> ApptInfoListUpcoming { get; set; }
+
+        public List<ApptInfo> ApptInfoListPast { get; set; }
 
         //===============================================================================
         //===============================================================================

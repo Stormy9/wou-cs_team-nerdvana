@@ -104,8 +104,6 @@ namespace Petopia.Controllers
             ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
             ViewBag.loggedInUser = loggedInUser;
 
-
-
             //---------------------------------------------------------------------------
 
             return View(pet);
