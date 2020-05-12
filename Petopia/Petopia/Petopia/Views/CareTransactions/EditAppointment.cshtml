@@ -16,6 +16,7 @@
         logged-in user: @loggedInUser  <br />
         this pet's owner: @thisPetsOwner <br />
     </div>
+
 @if (loggedInUser == thisPetsOwner)
 {
     using (Html.BeginForm("EditAppointment", "CareTransactions", FormMethod.Post,

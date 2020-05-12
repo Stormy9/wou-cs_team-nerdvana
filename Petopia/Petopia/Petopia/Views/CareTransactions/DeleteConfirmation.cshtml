@@ -2,13 +2,13 @@
 
 @{
     ViewBag.Title = "Cancel Pet Care Confirmation!";
-    ViewBag.Title01 = "'s Pet Care appointment has been canceled!";
+    ViewBag.Title01 = "Your Pet's Care appointment has been canceled!";
     ViewBag.Title02 = "an email has been sent to you & your Pet Care Provider!";
 }
 
 <div class="container-fluid">
 
-    <h2> @ViewBag.PetName@ViewBag.Title01 </h2>
+    <h2> @ViewBag.Title01 </h2>
     <h4> @ViewBag.Title02 </h4>
 
     <div class="container-fluid my_appt_box" style="padding: 15px;">
@@ -27,17 +27,13 @@
         <!--=============================== ROW TWO ==============================-->
         <div class="row our_row_three" style="margin-top: 5px;">
 
-            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                @Html.ActionLink("My Profile", "Index",
-                                    new { controller = "ProfilePage" }, 
-                                    new { style = "color: #f2e6d9;" } )
-            </span>
-
-            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+            <!-- so why the fuck did this stop working?? i thought it was..... -->
+            <!-- although now i see why it would not.....     =]               -->
+            @*<span style="float: right; margin-right: 5px;" class="btn our_buttons">
                 @Html.ActionLink("Pet's Profile", "PetProfile",
                                     new { controller = "Pets", id = Model.PetID },
                                     new { style = "color:#f2e6d9" })
-            </span>
+            </span>*@
 
             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                 @Html.ActionLink("All my Pet care appointments", "MyAppointments", 

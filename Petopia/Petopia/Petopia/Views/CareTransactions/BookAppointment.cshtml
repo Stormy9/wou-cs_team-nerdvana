@@ -5,6 +5,8 @@
     ViewBag.Title01 = "Book a Pet Care appointment";
     //this works!!!!!
     var today = DateTime.Now.ToString("yyyy-MM-dd");
+    var loggedInUser = ViewBag.loggedInUser;
+    var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
 }
 <!-- originally the 'Create' one that was scaffolded!-->
 <!-- but yet the params for 'Html.BeginForm' were missing..... ??? i put 'em back.... -->
@@ -12,7 +14,9 @@
 <!--================================= WHOLE DAMNED FORM HERE =========================-->
 <div class="container-fluid" style="padding-bottom:45px;">
 
-    @using (Html.BeginForm("BookAppointment", "CareTransactions", FormMethod.Post,
+@if (loggedInUser == thisPetsOwner)
+{ 
+    using (Html.BeginForm("BookAppointment", "CareTransactions", FormMethod.Post,
             new { @class = "form", role = "form", enctype = "multipart/form-data" } ))
     {
         @Html.AntiForgeryToken()
@@ -46,7 +50,7 @@
 
                     @Html.EditorFor(model => model.StartDate,
                         new { htmlAttributes = 
-                          new { @class = "form-control", @tabindex = "1", min=@today, 
+                            new { @class = "form-control", @tabindex = "1", min=@today, 
                                                         @autofocus="autofocus" } })
 
                     @Html.ValidationMessageFor(model => model.StartDate, "",
@@ -79,7 +83,7 @@
 
                     @Html.EditorFor(model => model.EndDate,
                         new { htmlAttributes = 
-                          new { @class = "form-control", @tabindex = "2", min=@today } })
+                            new { @class = "form-control", @tabindex = "2", min=@today } })
 
                     @Html.ValidationMessageFor(model => model.EndDate, "",
                                                 new { @class = "text-danger" })
@@ -113,7 +117,7 @@
                     <br />
                     @Html.TextAreaFor(model => model.NeededThisVisit,
                         new {htmlAttributes =
-                          new { @class = "form-control our_text_area" }, @tabindex = "5",
+                            new { @class = "form-control our_text_area" }, @tabindex = "5",
                             rows = 5, id = "text19", name = "text19",
                             style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
                         <!-- so tabindex thing apparently doesn't work for text area? --->
@@ -122,7 +126,7 @@
                     <div>
                         <!-- do a character counter here! -->
                         <span class="pull-left label label-default"
-                              id="count_message_19">
+                                id="count_message_19">
                         </span>
                     </div>
 
@@ -168,12 +172,12 @@
                             htmlAttributes: new { @class="form-control"})*@
 
                     <!-- this works perfectly -- 
-                           but is obviously NOT practical nor userFriendly by itself! -->
+                            but is obviously NOT practical nor userFriendly by itself! -->
                     @Html.TextBoxFor(model => model.CareProviderID,
                         new { htmlAttributes = 
                             new { @class = "form-control" }, @tabindex = "6", 
                                     placeholder="enter Pet Carer ID",
-                                  style="width: 45px; color: black; border-radius: 5px; padding: 3px;" } )
+                                    style="width: 45px; color: black; border-radius: 5px; padding: 3px;" } )
 
                     <!-- pet carer list by proximity -->
                     <div style="color: #271a0c; margin-top: 18px;">
@@ -224,7 +228,11 @@
         <!-------------------------------------------------------------------------->
     </div><!-- END FORM DIV! -->
     }
-
+}
+    else
+{ 
+    <h5> you are not this pet's owner! </h5>
+}
 </div><!-- END CONTAINER-FLUID DIV! -->
 <!--==================================================================================-->
 @section Scripts {

@@ -139,7 +139,7 @@ namespace Petopia.Controllers
             return View(careTransaction);
         }
         //===============================================================================
-        // GET: CareTransactions/Create
+        // GET: CareTransactions/BookAppointment/5
         public ActionResult BookAppointment(int? id)
         {
             //---------------------------------------------------------------------------
@@ -154,7 +154,7 @@ namespace Petopia.Controllers
             ViewBag.thisPetName = thisPetName;
 
             //---------------------------------------------------------------------------
-            // get logged-in user's PetOwnerID, into the 'PetOwnerID' field:
+            // get logged-in user's PetOwnerID, to put into the 'PetOwnerID' field:
             var identityID = User.Identity.GetUserId();
 
             var thisPetopiaUserID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
@@ -171,6 +171,19 @@ namespace Petopia.Controllers
             var thisPetOwnerZip = db.PetopiaUsers.Where(poz => poz.UserID == thisPetopiaUserID)
                                              .Select(poz => poz.ResZipcode)
                                              .FirstOrDefault();
+
+            //                                                         still in Book[GET]
+            //---------------------------------------------------------------------------
+            // to make sure only the pet's owner can see this page!
+            var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetopiaUserID)
+                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                                .FirstOrDefault();
+
+            var loggedInUser = User.Identity.GetUserId();
+
+
+            ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
+            ViewBag.loggedInUser = loggedInUser;
 
             //---------------------------------------------------------------------------
             // see 'test_crap' at the end here for notes..... 
@@ -225,23 +238,7 @@ namespace Petopia.Controllers
             //ViewData.PetCarerSelectList = PetCarerSelectList;
             // ^-- this makes red squiggly w/error message.....
 
-            //---------------------------------------------------------------------------
-            // a "for now" thing.....
-            //var PetCarerList = (from pu in db.PetopiaUsers
-            //                    join cp in db.CareProviders on pu.UserID equals cp.UserID
-            //                    where pu.ResZipcode == thisPetOwnerZip
-            //                    select new
-            //                    {
-            //                        ID = cp.CareProviderID,
-            //                        Name = pu.FirstName + " " + pu.LastName
-
-            //                    }).ToList();
-
-            //ViewBag.PetCarerList = PetCarerList;
-            // 
-            // displays weird, so [DUH!] pull in f'ing ViewModel like in 'test_crap()'
-            //          as in returning full object, with the { ... } and all
-
+            //                                                         still in Book[GET]
             //---------------------------------------------------------------------------
             CareTransactionViewModel MatchingPetCarers = new CareTransactionViewModel();
 
@@ -296,6 +293,19 @@ namespace Petopia.Controllers
                 careTransaction.PetOwnerID = thisPetOwnerID;
 
                 //---------------------------------------------------------------------------
+                // to make sure only the pet's owner can see this page!
+
+                var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers
+                                                       .Where(pu => pu.UserID == thisPetopiaUserID)
+                                                       .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                       .FirstOrDefault();
+
+                var loggedInUser = User.Identity.GetUserId();
+
+                ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
+                ViewBag.loggedInUser = loggedInUser;
+
+                //---------------------------------------------------------------------------
                 // see 'test_crap' at the end here for notes..... 
                 // --> SELECT LIST OF THIS LOGGED-IN PET OWNER'S PETS <--
                 List<SelectListItem> ThisOwnersPetsSelectList = (from pn in db.Pets
@@ -308,21 +318,10 @@ namespace Petopia.Controllers
                                                                  }).ToList();
 
                 //ViewBag.ThisOwnersPetsSelectList = new SelectList(ThisOwnersPetsSelectList);
-                // ^^^ for one thing, the drop-down says 'System.Web.Mvc.SelectListItem'
-                // error returned:  System.InvalidOperationException: 
-                //                  There is no ViewData item of type 'IEnumerable<SelectListItem>' 
-                //                  that has the key 'ThisOwnersPetsSelectList'.
-                //
-                // there's also the:  `new SelectList(PetCarerSelectList, "value", "text")`
-                // similar to how we did for HW8 in 460 -- but wtf to put for those, w/query?
-                //      page won't even load w/the things i tried for "value" & "text"
-                //
+                //   
+                //          see notes in the [GET] method
                 //   --> comment one or the other out to see what it does <--
-                //
-                // this one actually shows the matching pet names!  but returns error:
-                //          System.InvalidOperationException: 
-                //          There is no ViewData item of type 'IEnumerable<SelectListItem>' 
-                //          that has the key 'ThisOwnersPetsSelectList'. 
+                // 
                 ViewBag.ThisOwnersPetsSelectList = ThisOwnersPetsSelectList;
 
                 //---------------------------------------------------------------------------
@@ -486,7 +485,7 @@ namespace Petopia.Controllers
 
             ViewBag.PetsName = thisPetsName;
 
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
 
             return View(careTransaction);
         }
@@ -503,7 +502,7 @@ namespace Petopia.Controllers
 
             return RedirectToAction("DeleteConfirmation");
         }
-        //-------------------------------------------------------------------------------
+        //===============================================================================
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -871,7 +870,7 @@ namespace Petopia.Controllers
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
 
             Vmodel.ApptInfoListUpcoming = (from ct in db.CareTransactions
-                    where ct.PetOwnerID == thisPetOwner
+                    where ct.PetOwnerID == thisPetOwner & ct.EndDate > DateTime.Now
                     orderby ct.StartDate
 
                     join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
@@ -902,7 +901,7 @@ namespace Petopia.Controllers
 
             //---------------------------------------------------------
             Vmodel.ApptInfoListPast = (from ct in db.CareTransactions
-                    where ct.PetOwnerID == thisPetOwner
+                    where ct.PetOwnerID == thisPetOwner & ct.EndDate < DateTime.Now
                     orderby ct.StartDate
 
                     join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
@@ -942,6 +941,12 @@ namespace Petopia.Controllers
                                              .Select(pID => pID.PetID)
                                              .FirstOrDefault();
 
+            var thisPetsName = db.Pets.Where(pn => pn.PetID == thisPet)
+                                      .Select(pn => pn.PetName)
+                                      .FirstOrDefault();
+
+            ViewBag.thisPetsName = thisPetsName;
+
             //---------------------------------------------------------------------------
             // to make sure only the pet's owner can see this page!
             var thisPetsOwnersID = db.CareTransactions.Where(ct => ct.PetID == id)
@@ -967,7 +972,7 @@ namespace Petopia.Controllers
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
 
             Vmodel.ApptInfoListUpcoming = (from ct in db.CareTransactions 
-                    where ct.PetID == thisPet 
+                    where ct.PetID == thisPet & ct.EndDate > DateTime.Now
                     orderby ct.StartDate
 
                     join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
@@ -998,7 +1003,7 @@ namespace Petopia.Controllers
 
             //---------------------------------------------------------
             Vmodel.ApptInfoListPast = (from ct in db.CareTransactions
-                    where ct.PetID == thisPet
+                    where ct.PetID == thisPet& ct.EndDate < DateTime.Now
                     orderby ct.StartDate
 
                     join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID

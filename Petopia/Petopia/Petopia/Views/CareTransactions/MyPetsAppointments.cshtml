@@ -2,11 +2,13 @@
 
 @{
     ViewBag.Title = "My Pet's Care Appointments";
+    ViewBag.Title01 = "'s Pet Care Appointments";
     //this works!!!!!
     var today = DateTime.Now.ToString("yyyy-MM-dd");
     var todaysDate = DateTime.Now;
     var loggedInUser = ViewBag.loggedInUser;
     var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
+    var thisPetsName = ViewBag.thisPetsName;
 }
 
 <div class="container-fluid" style="margin-bottom: 45px;"><!-- outer container -->
@@ -26,7 +28,7 @@
                                               new { style = "color: #f2e6d9;" })
         </span>
 
-        <h2>@ViewBag.Title:</h2>
+        <h2>@thisPetsName@ViewBag.Title01:</h2>
 
         <!--=================== TABS! 'UPCOMING' & 'PAST' APPTS!======================-->
         <!---->
@@ -52,10 +54,9 @@
             <!-------------------------- 1st TAB => Upcoming Appts --------------------->
             <div id="home" class="tab-pane fade in active">
 
-                @foreach (var item in Model.ApptInfoList)
+                @if (Model.ApptInfoListUpcoming.Count() > 0)
                 {
-                    //hey! don't need another (at) sign in here
-                    if (item.EndDate > todaysDate)
+                    foreach (var item in Model.ApptInfoListUpcoming)
                     {
                         <div class="container-fluid my_appt_box" style="padding: 15px;">
 
@@ -246,26 +247,26 @@
 
                                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                     @Html.ActionLink("Cancel Appointment", "Delete",
-                                          new { id = item.CareTransactionID },
-                                          new { style = "color: #f2e6d9;" })
+                                    new { id = item.CareTransactionID },
+                                    new { style = "color: #f2e6d9;" })
                                 </span>
 
                                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                     @Html.ActionLink("Edit Appointment", "EditAppointment",
-                                              new { id = item.CareTransactionID },
-                                              new { style = "color: #f2e6d9;" })
+                                    new { id = item.CareTransactionID },
+                                    new { style = "color: #f2e6d9;" })
                                 </span>
 
                                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                     @Html.ActionLink("Complete Appointment", "CompleteAppointment",
-                                              new { id = item.CareTransactionID },
-                                              new { style = "color: #f2e6d9;" })
+                                    new { id = item.CareTransactionID },
+                                    new { style = "color: #f2e6d9;" })
                                 </span>
 
                                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                     @Html.ActionLink("Pet's Profile", "PetProfile",
-                      new { controller = "Pets", id = item.PetID },
-                              new { style = "color: #f2e6d9;" })
+                                new { controller = "Pets", id = item.PetID },
+                                        new { style = "color: #f2e6d9;" })
                                 </span>
 
                             </div><!-- END ROW THREE-->
@@ -273,7 +274,13 @@
                         </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
                     }
                 }
-            </div><!-- END DIV WHERE ID==HOME --><!-- aka UPCOMING APPTS! -->
+                else 
+                { 
+                    <p style="text-align: center;"> 
+                        you don't have any upcoming appointments at this time! </p>
+                }
+            </div><!-- END DIV WHERE ID==HOME & class="tab-pane fade in active" -->
+                  <!-- aka UPCOMING APPTS! -->
             <!---->
             <!---->
             <!--                            PAST!!!                                   -->
@@ -282,10 +289,9 @@
             <div id="menu1" class="tab-pane fade">
                 <div id="home" class="tab-pane fade in active">
 
-                    @foreach (var item in Model.ApptInfoList)
+                    @if (Model.ApptInfoListPast.Count() > 0)
                     {
-                        //hey! don't need another (at) sign in here
-                        if (item.EndDate < todaysDate)
+                        foreach (var item in Model.ApptInfoListPast)
                         {
                             <div class="container-fluid my_appt_box" style="padding: 15px;">
 
@@ -486,17 +492,17 @@
 
                                     <span style="float: right; margin-right: 5px;" 
                                           class="btn our_buttons">
-                                        @Html.ActionLink("Complete Appointment", 
-                                                         "CompleteAppointment",
-                                                  new { id = item.CareTransactionID },
-                                                  new { style = "color: #f2e6d9;" })
+                                        @Html.ActionLink("Complete Appointment",
+                                           "CompleteAppointment",
+                                                new { id = item.CareTransactionID },
+                                                new { style = "color: #f2e6d9;" })
                                     </span>
 
                                     <span style="float: right; margin-right: 5px;" 
                                           class="btn our_buttons">
                                         @Html.ActionLink("Pet's Profile", "PetProfile",
-                                          new { controller = "Pets", id = item.PetID },
-                                                  new { style = "color: #f2e6d9;" })
+                                            new { controller = "Pets", id = item.PetID },
+                                                    new { style = "color: #f2e6d9;" })
                                     </span>
 
                                 </div><!-- END ROW THREE-->
@@ -504,6 +510,11 @@
 
                             </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
                         }
+                    }
+                    else
+                    { 
+                        <p style="text-align: center;"> 
+                            you don't have any past appointments yet! </p>
                     }
                 </div><!-- end div where id==home -->
             </div><!-- end div where id=Menu1 -->
