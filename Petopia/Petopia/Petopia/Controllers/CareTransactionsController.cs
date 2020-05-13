@@ -843,9 +843,15 @@ namespace Petopia.Controllers
                                          .FirstOrDefault();
 
             // this is ONLY for double-checking crap   [=
-            var petOwner_UserID = db.PetOwners.Where(u => u.UserID == petopiaUserID)
-                                              .Select(po => po.UserID)
-                                              .FirstOrDefault();
+            //var petOwner_UserID = db.PetOwners.Where(u => u.UserID == petopiaUserID)
+            //                                  .Select(po => po.UserID)
+            //                                  .FirstOrDefault();
+
+            // getting the FK column 'UserID' in the 'CareProviders' table
+            var careProviderID = db.CareProviders.Where(u => u.UserID == petopiaUserID)
+                                                 .Select(cp => cp.CareProviderID)
+                                                 .FirstOrDefault();
+
             // still just checking
             var user_Email = db.ASPNetUsers.Where(u => u.Id == identityID)
                                            .Select(ue => ue.Email)
@@ -856,11 +862,16 @@ namespace Petopia.Controllers
                                                   .Select(tpo => tpo.PetOwnerID)
                                                   .FirstOrDefault();
 
+            // this Care Provider (like this Pet Owner)
+            var thisCareProvider = db.CareTransactions.Where(ct => ct.CareProviderID == careProviderID)
+                                                      .Select(tcp => tcp.CareProviderID)
+                                                      .FirstOrDefault();
+
             // for testing/proofing stuff!
             ViewBag.identityID = identityID;
             ViewBag.petopiaUserID = petopiaUserID;
             ViewBag.petOwnerID = petOwnerID;
-            ViewBag.petOwner_UserID = petOwner_UserID;
+            //ViewBag.petOwner_UserID = petOwner_UserID;
             ViewBag.user_Email = user_Email;
             ViewBag.thisPetOwner = thisPetOwner;
 
@@ -870,7 +881,7 @@ namespace Petopia.Controllers
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
 
             Vmodel.ApptInfoListUpcoming = (from ct in db.CareTransactions
-                    where ct.PetOwnerID == thisPetOwner & ct.EndDate > DateTime.Now
+                    where ct.PetOwnerID == thisPetOwner || ct.CareProviderID == thisCareProvider  & ct.EndDate > DateTime.Now
                     orderby ct.StartDate
 
                     join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
@@ -901,7 +912,7 @@ namespace Petopia.Controllers
 
             //---------------------------------------------------------
             Vmodel.ApptInfoListPast = (from ct in db.CareTransactions
-                    where ct.PetOwnerID == thisPetOwner & ct.EndDate < DateTime.Now
+                    where ct.PetOwnerID == thisPetOwner || ct.CareProviderID == thisCareProvider & ct.EndDate < DateTime.Now
                     orderby ct.StartDate
 
                     join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID

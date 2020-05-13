@@ -1,7 +1,8 @@
 ﻿@model Petopia.Models.ViewModels.CareTransactionViewModel
 
 @{
-    ViewBag.Title = "Appointments for my Pets";
+    ViewBag.TitleOwner = "Appointments for my Pets";
+    ViewBag.TitleProvider = "My Appointment Listings";
     //this works!!!!!
     var today = DateTime.Now.ToString("yyyy-MM-dd");
     var todaysDate = DateTime.Now;
@@ -17,7 +18,10 @@
                                         new { style = "color: #f2e6d9;" })
     </span>
 
-    <h2>@ViewBag.Title:</h2>
+    @if (Model.IsOwner)
+    { <h2>@ViewBag.TitleOwner:</h2> }
+    else    { <h2>@ViewBag.TitleProvider:</h2>}
+
 
     <!--======================= TABS! 'UPCOMING' & 'PAST' APPTS!======================-->
     <!---->
@@ -253,12 +257,6 @@
 
                             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                 @Html.ActionLink("Edit Appointment", "EditAppointment",
-                                              new { id = item.CareTransactionID },
-                                              new { style = "color: #f2e6d9;" })
-                            </span>
-
-                            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                                @Html.ActionLink("Complete Appointment", "CompleteAppointment",
                                               new { id = item.CareTransactionID },
                                               new { style = "color: #f2e6d9;" })
                             </span>
