@@ -12,62 +12,67 @@
         <!--==========================================================================-->
         @using reCAPTCHA.MVC
         @using (Html.BeginForm("Register", "Account", FormMethod.Post,
-                                new { @class = "form-horizontal", role = "form" }))
+                                new { @class = "form", role = "form" }))
         {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <!--========================== ROW ONE ===================================-->
+            <div class="row">
+                <div class="form col-sm-5 col-md-5">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control",
+                                                    @placeholder="your email address" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control",
+                                                    @placeholder = "enter a password" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", 
+                                                        @placeholder = "confirm password" })
+                    </div>
+
+                </div><!-- end five-column part -->
+            </div><!-- end row one -->
 
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <!--============================ ROW TWO =================================-->
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group our_recaptcha">
+                        @Html.ValidationMessage("ReCaptcha")
+                        @Html.Recaptcha()
+                    </div>
+                </div><!-- end col one -->
 
-                <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        <input type="submit" class="btn our_buttons" value="Register!" />
+                    </div>
+                </div><!-- end col two -->
+            </div><!-- end row two -->
+
+
+            <!--=============================== ROW FOUR =============================-->
+            <div class="row">
+                <div class="col-sm-5 col-md-5">
+                    <div class="password_rules">
+                        <strong>passwords must:</strong>
+                        <br />* be at least 6 characters long
+                        <br />* have at least one upper-case letter (A-Z)
+                        <br />* have at least one digit (0-9)
+                        <br />* have at least one non-letter/digit character
+                    </div>
                 </div>
-            </div>
-
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.Password,
-                                    new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.Password,
-                                                new { @class = "form-control" })
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.ConfirmPassword,
-                                    new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.ConfirmPassword,
-                                    new { @class = "form-control" })
-                </div>
-            </div>
-
-
-            <div class="form-group our_recaptcha">
-                <div class="col-md-2"></div>
-
-                <div class="col-md-10">
-                    @Html.ValidationMessage("ReCaptcha")
-                    @Html.Recaptcha()
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" class="btn btn-default our_buttons" value="Register!" />
-                </div>
-            </div>
-           
-            <div class="container-fluid password_rules">
-                <strong>passwords must:</strong>
-                <br />* be at least 6 characters long
-                <br />* have at least one upper-case letter (A-Z)
-                <br />* have at least one digit (0-9)
-                <br />* have at least one non-letter/digit character
             </div>
             <!--======================================================================-->
         }

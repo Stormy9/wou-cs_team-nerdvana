@@ -68,6 +68,17 @@ namespace Petopia.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+
+            // the logged-in user
+            var identityID = User.Identity.GetUserId();
+
+            // the logged-in user's PetopiaUser record -- pull 1st name
+            var petopiaFirstName = pdb.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
+                                                   .Select(u => u.FirstName)
+                                                   .FirstOrDefault();
+
+            ViewBag.UserFirstName = petopiaFirstName;
+
             return View();
 
         }
@@ -436,6 +447,7 @@ namespace Petopia.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
             return RedirectToAction("Index", "Home");
         }
 

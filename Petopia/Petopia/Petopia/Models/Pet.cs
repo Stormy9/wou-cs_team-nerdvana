@@ -97,8 +97,6 @@ namespace Petopia.Models
         // Pull from other tables:  (or is it?)
         public virtual PetOwner PetOwner { get; set; }
 
-        // how the hell do we pull in Pet Owner first/last name??
-        //public virtual PetopiaUser petopiaUser { get; set; }
         //===============================================================================
     }
 }

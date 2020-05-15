@@ -1,5 +1,9 @@
 ﻿@using Microsoft.AspNet.Identity
 
+@{ 
+//string userFirstName = ViewBag.UserFirstName.ToString();
+}
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, 
@@ -8,10 +12,19 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
+
+        <!-- was trying to display 1st name instead of email, but, nope.....         -->
+        <!--   just noticed we have no model   =]   -->
+        @*<li>
+            @Html.ActionLink("Hello " + (string) userFirstName + "!", "Index", "Manage",
+                            routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>*@
+
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", 
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage",
                             routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
+
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
     }

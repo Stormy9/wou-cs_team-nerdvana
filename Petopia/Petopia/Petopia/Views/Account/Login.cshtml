@@ -11,76 +11,98 @@
 <body class="container-fluid login_hero">
     <h2>@ViewBag.Title</h2>
 
-
     <!--==============================================================================-->
-    <div class="row">
-        <div class="col-md-8">
+    <section id="loginForm">
+        @using (Html.BeginForm("Login", "Account",
+                    new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
+                    new { @class = "form", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <section id="loginForm">
-                @using (Html.BeginForm("Login", "Account",
-                            new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post,
-                            new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <h4>Welcome, please sign in to use all the features on Petopia!</h4>
+            <!--========================= ROW ONE ============================-->
+            <div class="row">
 
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <h4 style="margin-left: 18px;">
+                    Welcome, please sign in to use all the features on Petopia!
+                </h4>
+            
+                <div class="col-sm-4 col-md-4">
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                        </div>
+                        @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", 
+                                                    @placeholder="your email address" })
+
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
 
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", 
+                                                        @placeholder="your password" })
+
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div><!-- end col one -->
+
+                <div class="col-sm-4 col-md-4"></div>
+            
+                <!------------------------------- COLUMN THREE ------------------------>
+                <div class="col-md-4" style="text-align: right;">
+                    <section id="socialLoginForm">
+                        @Html.Partial("_ExternalLoginsListPartial", 
+                        new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                    </section>
+                </div>
+
+            </div><!-- END ROW ONE -->
+
+            <!--================================= ROW TWO ====================-->
+            <div class="row">
+
+                <div class="col-sm-2 col-md-2">
+
+                    <div class="form-group" style="margin-left: 18px;">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
                         </div>
                     </div>
 
+                </div>
 
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div class="checkbox">
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                @Html.LabelFor(m => m.RememberMe)
-                            </div>
-                        </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2 col-md-2">
+                        <input type="submit" value="Login to Petopia!" 
+                               class="btn our_buttons" />
                     </div>
+                </div>
+
+            </div><!-- END ROW TWO -->
 
 
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Login to Petopia!" class="btn btn-default our_buttons" />
-                        </div>
-                    </div>
-
-
-                    <p>
+            <!-- ============================== ROW THREE ============================-->
+            <div class="row">
+                <div class="col-sm-4 col-md-4">
+                    <p style="margin-bottom: 5px;">
                         @Html.ActionLink("Register as a new user", "Register")
                     </p>
 
                     <p>
                         @Html.ActionLink("Forgot Password?", "ForgotPassword")
                     </p>
-                }
-            </section>
-        </div><!-- end column w/login form div -->
+                </div>
+            </div><!-- END ROW THREE -->
 
 
-        <div class="col-md-4">
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
-        </div>
+        }
+    </section>
 
-
-    </div><!-- end row div -->
 </body><!-- end login_hero div -->
 
 @section Scripts {

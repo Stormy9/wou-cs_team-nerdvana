@@ -830,9 +830,10 @@ namespace Petopia.Controllers
         // GET: CareTransactions
         public ActionResult MyAppointments()
         {
+            // the logged-in user
             var identityID = User.Identity.GetUserId();
 
-            // the logged-in user
+            // the logged-in user's PetopiaUserID
             var petopiaUserID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
                                                .Select(u => u.UserID)
                                                .FirstOrDefault();
@@ -842,7 +843,7 @@ namespace Petopia.Controllers
                                          .Select(po => po.PetOwnerID)
                                          .FirstOrDefault();
 
-            // this is ONLY for double-checking crap   [=
+            // ONLY for double-checking crap   [=   (including db)
             //var petOwner_UserID = db.PetOwners.Where(u => u.UserID == petopiaUserID)
             //                                  .Select(po => po.UserID)
             //                                  .FirstOrDefault();
