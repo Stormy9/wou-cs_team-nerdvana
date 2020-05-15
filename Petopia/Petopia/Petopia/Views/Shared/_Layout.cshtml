@@ -42,18 +42,30 @@
 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("What We Do", "About", new { controller = "Home" }, 
-                                                new { @class = "our_nav_links" })</li>
+                        <li>
+                            @Html.ActionLink("What We Do", "About", new { controller = "Home" },
+                                            new { @class = "our_nav_links" })
+                    </li>
 
-                        <li>@Html.ActionLink("Have Questions or Concerns?", "Contact", 
-                                                    new { controller = "Home" }, 
-                                                    new { @class = "our_nav_links" })</li>
+                    <li>
+                        @Html.ActionLink("Have Questions or Concerns?", "Contact",
+                                            new { controller = "Home" },
+                                            new { @class = "our_nav_links" })
+                    </li>
 
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                        <li>@Html.ActionLink("My Profile", "Index", new { controller = "ProfilePage" },
-                                                         new { @class = "our_nav_links" })</li>
-                        }
+                    <li>
+                        @Html.ActionLink("How to use Petopia", "UsingPetopia",
+                                            new { controller = "Home" },
+                                            new { @class = "our_nav_links" })
+                    </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li style="margin-left: 23px;">
+                            @Html.ActionLink("My Profile", "Index", new { controller = "ProfilePage" },
+                                                     new { @class = "our_nav_links" })
+                    </li>
+                }
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>

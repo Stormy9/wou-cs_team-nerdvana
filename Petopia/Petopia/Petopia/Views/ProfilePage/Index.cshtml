@@ -216,6 +216,12 @@
                         </div>
                     </a>
                 </div>   
+                <div>
+                    @Html.ActionLink("All my appointments", "MyAppointments",
+                                new { controller = "CareTransactions" },
+                                new { id = Model.UserID, @class = "our_buttons", 
+                                        style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
+                    </div>
                 <!---------------------------------------------->
 
             </div><!-- END 1st/LEFT COLUMN **OF** 2nd/MIDDLE ROW -->
@@ -534,13 +540,7 @@
             <!-------------------------------------------------------------------------->
             <div class="col-sm-3 col-md-3 our_col_five">
                 <div class="button_box_03">
-                    
-                    <div>
-                    @Html.ActionLink("All my appointments", "MyAppointments",
-                                new { controller = "CareTransactions" },
-                                new { id = Model.UserID, @class = "our_other_buttons", 
-                                        style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
-                    </div>
+ 
                     <div>
                         @Html.ActionLink("My Account Info", "MyAccountDetails",
                                 new { controller = "PetopiaUsers" },
