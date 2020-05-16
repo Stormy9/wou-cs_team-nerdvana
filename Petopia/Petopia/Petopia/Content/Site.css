@@ -504,6 +504,7 @@ hr {
         background-color: #392613;
         color: #f2e6d9;
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+        transform: translateY(3px);
     }
     .our_buttons a:active {
         background-color: #392613;

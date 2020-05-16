@@ -1049,6 +1049,112 @@ namespace Petopia.Controllers
             return View(Vmodel);
         }
         //===============================================================================
+        public ActionResult PetCarer_JobDetails(int? ct_id)
+        {
+            // CURRENTLY LOGGED-IN USER STUFF -- for privacy issues
+            //
+            // the currently logged-in user
+            var identityID = User.Identity.GetUserId();
+
+            // the currently logged-in user's PetopiaUserID
+            var thisPetopiaUserID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
+                                                   .Select(u => u.UserID)
+                                                   .FirstOrDefault();
+
+            ViewBag.LoggedInPetopiaUserID = thisPetopiaUserID;
+            //---------------------------------------------------------------------------
+            // CARE PROVIDER ON *THIS* CareTransaction:
+            //
+            // get CP_ID outta the CareTransactionID passed in
+            var thisPetCarerID = db.CareTransactions.Where(ct => ct.TransactionID == ct_id)
+                                                  .Select(cp => cp.CareProviderID)
+                                                  .FirstOrDefault();
+
+            // get THIS CP's PetopiaUserID
+            var thisPetCarerPetopiaID = db.CareProviders.Where(cp => cp.CareProviderID == thisPetCarerID)
+                                                        .Select(pu => pu.UserID)
+                                                        .FirstOrDefault();
+
+            ViewBag.ThisPetCarerPetopiaID = thisPetCarerPetopiaID;
+            //---------------------------------------------------------------------------
+            // PET OWNER ON *THIS* CareTransaction:
+            //
+            // get the PO_ID outta the CareTransactionID passed in
+            var thisPetOwnerID = db.CareTransactions.Where(ct => ct.TransactionID == ct_id)
+                                                  .Select(po => po.PetOwnerID)
+                                                  .FirstOrDefault();
+
+            // get THIS PO's PetopiaUserID
+            var thisPetOwnerPetopiaID = db.PetOwners.Where(po => po.PetOwnerID == thisPetOwnerID)
+                                                    .Select(pu => pu.UserID)
+                                                    .FirstOrDefault();
+
+            //---------------------------------------------------------------------------
+            // get the PetID outta the CareTransactionID passed in
+            var thisPetID = db.CareTransactions.Where(ct => ct.TransactionID == ct_id)
+                                               .Select(pet => pet.PetID)
+                                               .FirstOrDefault();
+
+            //---------------------------------------------------------------------------
+
+            CareTransactionViewModel Vmodel = new CareTransactionViewModel();
+
+            // i **think** i did this right???
+            Vmodel.PetCarer_JobDetailList = (from ct in db.CareTransactions
+                                             where ct.TransactionID == ct_id
+
+                                             join po in db.PetOwners on ct.PetOwnerID equals thisPetOwnerID
+                                             join pu in db.PetopiaUsers on po.UserID equals thisPetOwnerPetopiaID
+                                             join pet in db.Pets on ct.PetID equals thisPetID
+
+                                             select new CareTransactionViewModel.PetCarer_JobDetail
+                                             {
+                                                 // pet stuff first:
+                                                 PetName = pet.PetName,
+                                                 Species = pet.Species,
+                                                 Breed = pet.Breed,
+                                                 Gender = pet.Gender,
+                                                 Birthday = pet.Birthdate,
+                                                 Weight = pet.Weight,
+                                                 PetAccess = pet.PetAccess,
+                                                 NeedsDetails = pet.NeedsDetails,
+                                                 NeededThisVisit = ct.NeededThisVisit,
+                                                 HealthConcerns = pet.HealthConcerns,
+                                                 BehaviorConcerns = pet.BehaviorConcerns,
+                                                 EmergencyContactName = pet.EmergencyContactName,
+                                                 EmergencyContactPhone = pet.EmergencyContactPhone,
+
+                                                 // now owner stuff:
+                                                 PetOwnerName = pu.FirstName + " " + pu.LastName,
+                                                 MainPhone = pu.MainPhone,
+                                                 AltPhone = pu.AltPhone,
+                                                 ResAddress01 = pu.ResAddress01,
+                                                 ResAddress02 = pu.ResAddress02,
+                                                 ResCity = pu.ResCity,
+                                                 ResState = pu.ResState,
+                                                 ResZipcode = pu.ResZipcode,
+                                                 HomeAccess = po.HomeAccess,
+
+                                                 // 'this appt' stuff:
+                                                 StartDate = ct.StartDate,
+                                                 StartTime = ct.StartTime,
+                                                 EndDate = ct.EndDate,
+                                                 EndTime = ct.EndTime
+
+                                             }).ToList();
+
+            // not sure if this is the correct\best way to go about this.....
+            //   or if i should be doing it like 'AppointmentDetails(int? id)' up higher
+            //
+            // i mean, what i've got here, the 'ToList()' will always just be a list of 
+            //    one -- or it'd better be..... i suppose that's okay?
+            // if i did like 'AppointmentDetails(int? id)', there would be a LOT of small
+            //   individual queries (see how many is up there!) ..... 
+            //      so this might be okay & even better???  will test it out anyway.....
+
+            return View(Vmodel);
+        }
+        //===============================================================================
         //===============================================================================
         //===============================================================================
         //===============================================================================

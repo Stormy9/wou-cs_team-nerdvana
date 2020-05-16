@@ -64,7 +64,7 @@ namespace Petopia.Models.ViewModels
 
         [DisplayName("Pet's name:")]
         public string PetName { get; set; }
-        
+
         //===============================================================================
         // the public/profile details from                                     Pet table:
         [DisplayName("Pet's species:")]
@@ -117,7 +117,7 @@ namespace Petopia.Models.ViewModels
         }
         //-------------------------------------------------------------------------------
         public List<PetNames> PetNameList { get; set; }
-        
+
         //===============================================================================
         //===============================================================================
         //                                                                PetOwner Table
@@ -183,7 +183,7 @@ namespace Petopia.Models.ViewModels
         //   i looked at and tried *SO* many examples!!!   [=
         //    okay just found stuff that says specifically to NOT do SelectLists here
         public List<CareProviderInfo> PetCarerSelectList { get; set; }
-        
+
 
         //===============================================================================
         //===============================================================================
@@ -266,7 +266,7 @@ namespace Petopia.Models.ViewModels
 
         //===============================================================================
         // FOREIGN KEYS FROM CareTransactions TABLE                   // CareTransactions
-        
+
         [DisplayName("Pet's Owner:")]
         public int CT_PetOwnerID { get; set; }
 
@@ -382,6 +382,100 @@ namespace Petopia.Models.ViewModels
         public List<IndexInfo> IndexInfoList { get; set; }
 
         //===============================================================================
+        //                        for PetCarer_JobDetails \ once pet carer confirms appt.
+        //===============================================================================
+        public class PetCarer_JobDetail
+        {
+            // stuff about Pet Owner:
+            [DisplayName("Pet's Owner:")]
+            public string PetOwnerName { get; set; }
+
+            [DisplayName("Main Phone #:")]
+            public string MainPhone { get; set; }
+
+            [DisplayName("Alternate Phone #:")]
+            public string AltPhone { get; set; }
+
+            [DisplayName("Residential Street Address:")]
+            public string ResAddress01 { get; set; }
+
+            [DisplayName("Address, 2nd line:")]
+            public string ResAddress02 { get; set; }
+
+            [DisplayName("City:")]
+            public string ResCity { get; set; }
+
+            [DisplayName("State:")]
+            public string ResState { get; set; }
+
+            [DisplayName("ZipCode:")]
+            public string ResZipcode { get; set; }
+
+            [DisplayName("How to access our Home:")]
+            public string HomeAccess { get; set; }
+
+            // stuff about Pet:
+            [DisplayName("Pet's name:")]
+            public string PetName { get; set; }
+
+            [DisplayName("Pet's species:")]
+            public string Species { get; set; }
+
+            [DisplayName("Pet's breed:")]
+            public string Breed { get; set; }
+
+            [DisplayName("Pet's gender:")]
+            public string Gender { get; set; }
+
+            [Column(TypeName = "date")]
+            [DisplayName("Pet's Birthday:")]
+            public DateTime Birthday { get; set; }
+
+            [DisplayName("Pet's weight:")]
+            public string Weight { get; set; }
+
+            [DisplayName("Where & how to access pet:")]
+            public string PetAccess { get; set; }
+
+            [DisplayName("Pet's general care needs:")]
+            public string NeedsDetails { get; set; }
+
+            [DisplayName("Pet Care instructions for this visit:")]
+            public string NeededThisVisit { get; set; }
+
+            [DisplayName("Pet's health notes:")]
+            public string HealthConcerns { get; set; }
+
+            [DisplayName("Pet's behavior notes:")]
+            public string BehaviorConcerns { get; set; }
+
+            [DisplayName("Pet's emergency contact person:")]
+            public string EmergencyContactName { get; set; }
+
+            [DisplayName("Pet's emergency contact #:")]
+            public string EmergencyContactPhone { get; set; }
+
+            // stuff about THIS job:
+            [Column(TypeName = "date")]
+            [DataType(DataType.Date)]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMMM dd, yyyy}")]
+            public DateTime StartDate { get; set; }
+
+            [Column(TypeName = "date")]
+            [DataType(DataType.Date)]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMMM dd, yyyy}")]
+            public DateTime EndDate { get; set; }
+
+            //---------------------------------------------------------
+            [Column(TypeName = "time")]
+            [DataType(DataType.Time)]
+            public TimeSpan StartTime { get; set; }
+
+            [Column(TypeName = "time")]
+            [DataType(DataType.Time)]
+            public TimeSpan EndTime { get; set; }
+        }
+        public List<PetCarer_JobDetail> PetCarer_JobDetailList { get; set; }
         //===============================================================================
     }
 }

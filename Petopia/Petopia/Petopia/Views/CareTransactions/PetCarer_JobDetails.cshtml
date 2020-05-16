@@ -1,0 +1,28 @@
+﻿@model Petopia.Models.ViewModels.CareTransactionViewModel
+
+@{
+    ViewBag.Title = "Care Provider Job Details";
+    var loggedInUser = ViewBag.LoggedInPetopiaUserID;
+    var thisCareProviderPetopiaID = ViewBag.ThisPetCarerPetopiaID;
+}
+
+<div class="outer_container">
+
+    <div class="container-fluid" style="padding-bottom: 45px;">
+
+        <h2> @ViewBag.Title: </h2>
+
+        <!-- we want ONLY the CP on this transaction to see this! -->
+        @if (loggedInUser == thisCareProviderPetopiaID)
+        {
+            foreach (var item in Model.PetCarer_JobDetailList)
+            { 
+
+            }
+        }
+        else
+        {
+            <h5> you are not the care provider for this pet! </h5>
+        }
+    </div><!-- END CONTAINER-FLUID -->
+</div><!-- END OUTER CONTAINER \ MAIN CONTAINER INSIDE BODY -->
