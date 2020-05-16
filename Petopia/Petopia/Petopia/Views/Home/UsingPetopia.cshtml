@@ -115,10 +115,23 @@
                 <!---->
                 <div class="tab-content">
                     <!------------------------------ 1st TAB => Welcome! --------------->
-                    <div id="home" class="tab-pane fade in active our_tab_panels" 
-                         style="">
+                    <div id="home" class="tab-pane fade in active our_tab_panels">
 
-                        welcome!
+                        <h3 style="margin-top:0px;"> welcome! </h3>
+
+                        <p>
+                            Welcome to Petopia!  Page through the tabs to learn your
+                            way around.....
+                        </p>
+                        <p>
+                            We hope this will answer any questions you might think of!
+                        </p>
+                        <p></p>
+
+                        <div class="any_questions">
+                            @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                                null, "petopia_service_question-comment", null, null)
+                        </div>
 
                     </div><!-- END DIV WHERE ID==HOME --><!-- aka WELCOME! -->
                     <!---->
@@ -127,10 +140,10 @@
                     <div id="menu1" class="tab-pane fade our_tab_panels">
                         <div id="home" class="tab-pane fade in active">
 
-                            How Petopia works for Pet Owners
+                            <h3 style="margin-top:0px;"> 
+                                How Petopia works for Pet Owners </h3>
 
                             <ul>
-                                <!-- FOR PET OWNERS! -->
                                 <li>
                                     <b>Register:</b> <br />
                                     Register for an account with us, and designate yourself
@@ -178,151 +191,44 @@
                                     pets you have!
                                     <br /><br /><br />
                                 </li>
-                                <li>
-                                    <b>Finding a Pet Carer &amp; Arranging for Care:</b>
-                                    <br />
-                                    Once you have your profile and account details filled
-                                    out, you'll be taken to your profile page.
-                                    <br /><br />
-                                    On the right-hand side, you'll see a listing of all Pet
-                                    Care Providers in your area who are experienced caring
-                                    for your type of pet!
-                                    <br /><br />
-                                    Each one will have a card, with their name, photo, and
-                                    badges for the kinds of pets they're experienced with.
-                                    <br /><br />
-                                    Click on their card to check out their full profile!
-                                    There you can see more details about their experience
-                                    and they types of care they provide.  Use our Private
-                                    Messaging system to get to know each other!
-                                    <br /><br /><br />
-                                </li>
-                                <li>
-                                    <b>Scheduling &amp; Calendars:</b> <br />
-                                    From a Pet Care Provider's profile, you can view their
-                                    schedule information, to see if their availability
-                                    matches with your needs.
-                                    <br /><br />
-                                    You can request to schedule them from the open times
-                                    on their schedule/calendar.
-                                    <br /><br /><br />
-                                </li>
-                                <li>
-                                    <b>Check-Ins &amp; End-of-Visit Notes:</b> <br />
-                                    Your Pet Care Provider can do "Check-Ins" so you know
-                                    what is going on with your pet!
-                                    <br /><br />
-                                    You can get check-ins when they arrive, when they leave,
-                                    and for other points as arranged between you -- that
-                                    your pet got it's meds, dinner, walk or play-time,
-                                    let in/out, picked up or dropped off -- whatever care
-                                    you have arranged -- and Petopia can send you Check-In
-                                    alerts in real time!
-                                    <br /><br />
-                                    Also, at the end of each Pet Care visit, your Pet Care
-                                    Provider will fill in notes about the visit -- how things
-                                    went and anything you may need or want to know about
-                                    your Pet(s) to know they were happy &amp; well-cared-for.
-                                    <br /><br />
-                                    Check-Ins &amp; End-of-Visit Notes will become part of
-                                    your Pet's "Permanent Care Record" with Petopia that
-                                    you (or they) can review at any time.
-                                    <br /><br />
-                                    This way -- whether your pet care alternates between
-                                    Providers or is always with the same one -- they will
-                                    always have access to helpful notes so they can take
-                                    the best care of your Pet.
-                                    <br /><br /><br />
-                                </li>
-                                <li>
-                                    <b>Private Messaging:</b> <br />
-                                    You can Private Message with any other user at any
-                                    time..... <br />
-                                    but we recommend that all communication between you and
-                                    your Pet's Care Provider(s), regarding the care of your
-                                    Pet(s), be done via Petopia's in-app Private Messaging
-                                    system.
-                                    <br /><br />
-                                    This way you'll be able to quickly &amp; easily find any
-                                    communications, if need be, about the care of your Pet(s)
-                                    -- all in one secure place!
-                                    <br /><br />
-                                    The difference between Private Messaging and Check-Ins,
-                                    is that Private Messaging is just that -- private.....
-                                    while Check-Ins will become part of a Pet's "Permanent
-                                    Record" along with end-of-visit care notes.
-                                    <br /><br /><br />
-                                </li>
-                                <li>
-                                    <b>Ratings:</b> <br />
-                                    You're highly encouraged to rate your Pet Care Provider
-                                    each time they provide care for your Pet(s) -- add to
-                                    their overall rating that shows on their profile!
-                                    <br /><br />
-                                    Remember that these ratings help other Pet Owners like
-                                    you know they can trust this provider with their own
-                                    beloved Pet -- and help good Pet Carers get more work!
-                                    <br /><br />
-                                    Be sure to mention if your Pet Care Provider went "the
-                                    extra mile" for you and your Pet!
-                                    <br /><br />
-                                    Pet Care Providers can rate you, too..... ensure good
-                                    ratings for yourself by being sure to inform your Pet
-                                    Care Provider of everything they may need to know to
-                                    care for your Pet, and paying on time.
-                                    <br /><br /><br />
-                                </li>
-                                <li>
-                                    <b>Paying for your Pet Care:</b> <br />
-                                    Each Pet Care Provider lists their rates on their
-                                    profile, so you know right up-front what things will
-                                    cost.  You are free to add a tip for above-and-beyond
-                                    service to say thanks!
-                                    <br /><br />
-                                    The actual payment process is handled from inside the
-                                    Petopia app, and you will be emailed an invoice to to
-                                    facilitate payment, and then a receipt for your records
-                                    -- which are also available from your
-                                    Petopia account.
-                                    <br /><br /><br />
-                                </li>
-                                <li>
-                                    <b>Social\Forum:</b> <br />
-                                    While you're here, have some fun and participate in
-                                    Petopia's social side!  Our forum and private messaging,
-                                    plus notices of pet-related events and meet-ups, can
-                                    help you find a friend for yourself and your furry best
-                                    friend!
-                                    <br /><br />
-                                    You can add other users as friends, and easily contact
-                                    them from your Friends List on your profile!
-                                    <br /><br /><br />
-                                </li>
+
                                 <!--======================================================-->
                             </ul>
 
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                                    null, "petopia_service_question-comment", null, null)
+                            </div>
+
                         </div>
-                    </div><!-- end div where id=Menu1 -->
+                    </div><!-- end div where id=menu1 -->
                     <!---->
                     <!---->
                     <!------------------------------- 3rd TAB => Pet Setup ------------->
                     <div id="menu2" class="tab-pane fade our_tab_panels">
                         <div id="home" class="tab-pane fade in active">
 
-                            pet setup
+                            <h3 style="margin-top:0px;"> pet setup </h3>
+
+
+
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                                    null, "petopia_service_question-comment", null, null)
+                            </div>
 
                         </div>
-                    </div><!-- end div where id=Menu2 -->
+                    </div><!-- end div where id=menu2 -->
                     <!---->
                     <!---->
                     <!------------------------- 4th TAB => Pet Owner Setup ------------->
                     <div id="menu3" class="tab-pane fade our_tab_panels">
                         <div id="home" class="tab-pane fade in active">
 
-                            How Petopia works for Pet Owners
+                            <h3 style="margin-top:0px;"> 
+                                How Petopia works for Pet Care Providers </h3>
 
                             <ul>
-                                <!-- FOR PET CARERS! -->
                                 <li>
                                     <b>Register:</b><br />
                                     Register for an account with us, and designate yourself
@@ -441,26 +347,7 @@
                                     likely to get more Pet Care work!
                                     <br /><br /><br />
                                 </li>
-                                <li>
-                                    <b>Private Messaging:</b> <br />
-                                    You can Private Message with any other user at any
-                                    time.....<br />
-                                    but we recommend that all communication between you and
-                                    your Pet Owners, regarding the care of their Pet(s), be
-                                    done via Petopia's in-app Private Messaging system.
-                                    <br /><br />
-                                    This way you'll be able to quickly &amp; easily find any
-                                    communications, if need be, about the care you do for
-                                    Pets -- all in one secure place!
-                                    <br /><br />
-                                    The difference between Private Messaging and Check-Ins,
-                                    is that Private Messaging is just that -- private.....
-                                    while Check-Ins will become part of a Pet's "Permanent
-                                    Record" along with any end-of-visit care notes,
-                                    accessible to you and any other Pet Care Providers plus
-                                    the Pet's Owner.
-                                    <br /><br /><br />
-                                </li>
+                                
                                 <li>
                                     <b>Ratings:</b><br />
                                     Just as Pet Owners can rate you and your service, you
@@ -496,14 +383,7 @@
                                     Petopia account.
                                     <br /><br /><br />
                                 </li>
-                                <li>
-                                    <b>Social\Forum:</b> <br />
-                                    While you're here, have some fun and participate in
-                                    Petopia's social side!  Our forum and private messaging,
-                                    plus notices of pet-related events meet-ups, can help you
-                                    find a friend for you and your furry best friends!
-                                    <br /><br /><br />
-                                </li>
+                                
                                 <!--======================================================-->
                             </ul>
 
@@ -520,7 +400,74 @@
                     <div id="menu4" class="tab-pane fade our_tab_panels">
                         <div id="home" class="tab-pane fade in active">
 
-                            making appointments
+                            <h3 style="margin-top:0px;"> making appointments </h3>
+
+                            <ul>
+                                <li>
+                                    <b>Finding a Pet Carer &amp; Arranging for Care:</b>
+                                    <br />
+                                    Once you have your profile and account details filled
+                                    out, you'll be taken to your profile page.
+                                    <br /><br />
+                                    On the right-hand side, you'll see a listing of all Pet
+                                    Care Providers in your area who are experienced caring
+                                    for your type of pet!
+                                    <br /><br />
+                                    Each one will have a card, with their name, photo, and
+                                    badges for the kinds of pets they're experienced with.
+                                    <br /><br />
+                                    Click on their card to check out their full profile!
+                                    There you can see more details about their experience
+                                    and they types of care they provide.  Use our Private
+                                    Messaging system to get to know each other!
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Scheduling &amp; Calendars:</b> <br />
+                                    From a Pet Care Provider's profile, you can view their
+                                    schedule information, to see if their availability
+                                    matches with your needs.
+                                    <br /><br />
+                                    You can request to schedule them from the open times
+                                    on their schedule/calendar.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Check-Ins &amp; End-of-Visit Notes:</b> <br />
+                                    Your Pet Care Provider can do "Check-Ins" so you know
+                                    what is going on with your pet!
+                                    <br /><br />
+                                    You can get check-ins when they arrive, when they leave,
+                                    and for other points as arranged between you -- that
+                                    your pet got it's meds, dinner, walk or play-time,
+                                    let in/out, picked up or dropped off -- whatever care
+                                    you have arranged -- and Petopia can send you Check-In
+                                    alerts in real time!
+                                    <br /><br />
+                                    Also, at the end of each Pet Care visit, your Pet Care
+                                    Provider will fill in notes about the visit -- how things
+                                    went and anything you may need or want to know about
+                                    your Pet(s) to know they were happy &amp; well-cared-for.
+                                    <br /><br />
+                                    Check-Ins &amp; End-of-Visit Notes will become part of
+                                    your Pet's "Permanent Care Record" with Petopia that
+                                    you (or they) can review at any time.
+                                    <br /><br />
+                                    This way -- whether your pet care alternates between
+                                    Providers or is always with the same one -- they will
+                                    always have access to helpful notes so they can take
+                                    the best care of your Pet.
+                                    <br /><br /><br />
+                                </li>
+                            </ul>
+                            <hr />
+                            <ul>
+                            </ul>
+
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                                    null, "petopia_service_question-comment", null, null)
+                            </div>
 
                         </div>
                     </div><!-- end div where id=Menu4 -->
@@ -530,7 +477,48 @@
                     <div id="menu5" class="tab-pane fade our_tab_panels">
                         <div id="home" class="tab-pane fade in active">
 
-                            completing appointments
+                            <h3 style="margin-top:0px;"> completing appointments </h3>
+
+                            <ul>
+                                <li>
+                                    <b>Ratings:</b> <br />
+                                    You're highly encouraged to rate your Pet Care Provider
+                                    each time they provide care for your Pet(s) -- add to
+                                    their overall rating that shows on their profile!
+                                    <br /><br />
+                                    Remember that these ratings help other Pet Owners like
+                                    you know they can trust this provider with their own
+                                    beloved Pet -- and help good Pet Carers get more work!
+                                    <br /><br />
+                                    Be sure to mention if your Pet Care Provider went "the
+                                    extra mile" for you and your Pet!
+                                    <br /><br />
+                                    Pet Care Providers can rate you, too..... ensure good
+                                    ratings for yourself by being sure to inform your Pet
+                                    Care Provider of everything they may need to know to
+                                    care for your Pet, and paying on time.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Paying for your Pet Care:</b> <br />
+                                    Each Pet Care Provider lists their rates on their
+                                    profile, so you know right up-front what things will
+                                    cost.  You are free to add a tip for above-and-beyond
+                                    service to say thanks!
+                                    <br /><br />
+                                    The actual payment process is handled from inside the
+                                    Petopia app, and you will be emailed an invoice to to
+                                    facilitate payment, and then a receipt for your records
+                                    -- which are also available from your
+                                    Petopia account.
+                                    <br /><br /><br />
+                                </li>
+                            </ul>
+
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                                    null, "petopia_service_question-comment", null, null)
+                            </div>
 
                         </div>
                     </div><!-- end div where id=Menu5 -->
@@ -540,8 +528,8 @@
                     <div id="menu6" class="tab-pane fade our_tab_panels">
                         <div id="home" class="tab-pane fade in active">
 
-                            pet owner/carer communication<br />
-                            Communication between Pet Owners and Care Providers<br />
+                            <h3 style="margin-top:0px;">pet owner/carer communication</h3>
+                            <h4> Communication between Pet Owners and Care Providers </h4>
 
                             <p>
                                 We recommend keeping communications between Pet Owners and
@@ -565,6 +553,50 @@
                                 Provider or different ones!<br />
                             </p>
 
+
+                            <ul>
+                                <li>
+                                    <b>Private Messaging:</b> <br />
+                                    You can Private Message with any other user at any
+                                    time.....<br />
+                                    but we recommend that all communication between you and
+                                    your Pet Owners, regarding the care of their Pet(s), be
+                                    done via Petopia's in-app Private Messaging system.
+                                    <br /><br />
+                                    This way you'll be able to quickly &amp; easily find any
+                                    communications, if need be, about the care you do for
+                                    Pets -- all in one secure place!
+                                    <br /><br />
+                                    The difference between Private Messaging and Check-Ins,
+                                    is that Private Messaging is just that -- private.....
+                                    while Check-Ins will become part of a Pet's "Permanent
+                                    Record" along with any end-of-visit care notes,
+                                    accessible to you and any other Pet Care Providers plus
+                                    the Pet's Owner.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Private Messaging:</b> <br />
+                                    You can Private Message with any other user at any
+                                    time..... <br />
+                                    but we recommend that all communication between you and
+                                    your Pet's Care Provider(s), regarding the care of your
+                                    Pet(s), be done via Petopia's in-app Private Messaging
+                                    system.
+                                    <br /><br />
+                                    This way you'll be able to quickly &amp; easily find any
+                                    communications, if need be, about the care of your Pet(s)
+                                    -- all in one secure place!
+                                    <br /><br />
+                                    The difference between Private Messaging and Check-Ins,
+                                    is that Private Messaging is just that -- private.....
+                                    while Check-Ins will become part of a Pet's "Permanent
+                                    Record" along with end-of-visit care notes.
+                                    <br /><br /><br />
+                                </li>
+                            </ul>
+
+
                             <div class="any_questions">
                                 @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
                                     null, "petopia_service_question-comment", null, null)
@@ -580,9 +612,10 @@
                     <div id="menu7" class="tab-pane fade our_tab_panels">
                         <div id="home" class="tab-pane fade in active">
 
-                            What we do with your info + why we need it<br />
+                            <h3 style="margin-top:0px;"> 
+                                What we do with your info + why we need it </h3>
 
-                            Your profile information<br />
+                            <h4> Your profile information </h4>
                             <p>
                                 The profile information you fill out at Petopia is what
                                 will actually be shown on your public profile with us.
@@ -599,7 +632,7 @@
 
                             <hr />
 
-                            Your account information<br />
+                            <h4> Your account information </h4>
                             <p>
                                 The account information you fill out at Petopia will
                                 <b>not</b> appear on your profile -- it is confidential
@@ -634,7 +667,7 @@
                     <div id="menu8" class="tab-pane fade our_tab_panels">
                         <div id="home" class="tab-pane fade in active">
 
-                            user disputes
+                            <h3 style="margin-top:0px;"> user disputes </h3>
 
                             <p>
                                 While people who love pets are often the greatest of people,
@@ -679,8 +712,9 @@
                     <div id="menu9" class="tab-pane fade our_tab_panels">
                         <div id="home" class="tab-pane fade in active">
 
-                            what is appropriate on Petopia<br />
-                            Most-important thing: We love Pets!
+                            <h3 style="margin-top:0px;"> 
+                                what is appropriate on Petopia </h3>
+                            <h4> Most-important thing: We love Pets! </h4>
 
                             <ul>
                                 <li>
@@ -739,7 +773,35 @@
                     <div id="menu10" class="tab-pane fade our_tab_panels">
                         <div id="home" class="tab-pane fade in active">
 
-                            have fun on Petopia!
+                            <h3 style="margin-top:0px;"> have fun on Petopia! </h3>
+
+                            <ul>
+                                <li>
+                                    <b>Social\Forum:</b> <br />
+                                    While you're here, have some fun and participate in
+                                    Petopia's social side!  Our forum and private messaging,
+                                    plus notices of pet-related events meet-ups, can help you
+                                    find a friend for you and your furry best friends!
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Social\Forum:</b> <br />
+                                    While you're here, have some fun and participate in
+                                    Petopia's social side!  Our forum and private messaging,
+                                    plus notices of pet-related events and meet-ups, can
+                                    help you find a friend for yourself and your furry best
+                                    friend!
+                                    <br /><br />
+                                    You can add other users as friends, and easily contact
+                                    them from your Friends List on your profile!
+                                    <br /><br /><br />
+                                </li>
+                            </ul>
+
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", "https",
+                                    null, "petopia_service_question-comment", null, null)
+                            </div>
 
                         </div>
                     </div><!-- end div where id=Menu10 -->

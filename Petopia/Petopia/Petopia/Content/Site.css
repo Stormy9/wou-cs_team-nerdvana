@@ -257,12 +257,13 @@ textarea {
 /* ======== ^^^ none of that ^^^ works, haha ============================*/
 .our_tab_panels {
     /* top right bottom left */ /* like clock-wise */
-    border: 0px 1px 1px 1px; /* why is it so thick? */
-    border-style: none solid solid solid;
+    border: 1px 1px 1px 1px; /* why is it so thick? */
+    border-style: solid solid solid solid;
     border-color: #392613;
-    border-radius: 0px 0px 11px 11px;
-    padding: 9px;
+    border-radius: 11px 11px 11px 11px;
+    padding: 9px 9px 18px 9px;
     background-color: #86592d;
+    font-size: 16px;
 }
 /*=============================== CONTACT PAGE ========================================*/
 .contact_hero {
@@ -412,13 +413,35 @@ li {
     /*height: 42px;*/
     color: #f2e6d9;
 }
+.nav {
+    color: #f2e6d9;
+}
 .navbar-brand {
     font-size: 18px;
+    color: #f2e6d9;
+}
+.navbar-nav {
+    color: #f2e6d9;
+}
+.navbar-nav li {
     color: #f2e6d9;
 }
 .our_nav_links {
     color: #f2e6d9;
 }
+    .our_nav_links:link {
+        color: #f2e6d9;
+    }
+    .our_nav_links:visited {
+        color: #f2e6d9;
+    }
+    .our_nav_links:hover {
+        color: #f2e6d9;
+    }
+    .our_nav_links:active {
+        color: #f2e6d9;
+    }
+
 .nav li a {
     color: #f2e6d9;
 }
@@ -498,6 +521,7 @@ hr {
     font-weight: normal;
     text-align: center;
     width: 135px;
+    margin-left: 9px;
 }
     .any_questions a {
         color: #f2e6d9;
@@ -515,6 +539,7 @@ hr {
     }
     .any_questions:hover {
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+        transform: translateY(3px);
     }
     .any_questions a:active {
         transform: translateY(3px);
@@ -533,6 +558,7 @@ hr {
     .email_button:hover {
         color: #f2e6d9;
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+        transform: translateY(3px);
     }
     .email_button:active {
         transform: translateY(3px);
@@ -549,6 +575,7 @@ hr {
     .pick_buttons:hover {
         color: #f2e6d9;
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+        transform: translateY(3px);
     }
     .pick_buttons:active {
         transform: translateY(3px);
