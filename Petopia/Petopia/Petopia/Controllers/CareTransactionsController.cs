@@ -947,23 +947,23 @@ namespace Petopia.Controllers
         }
         //===============================================================================
         // GET: CareTransactions/MyPetsAppointments/5
-        public ActionResult MyPetsAppointments(int? id)
+        public ActionResult MyPetsAppointments(int? pet_id)
         {
-            var thisPet = db.CareTransactions.Where(ct => ct.PetID == id)
-                                             .Select(pID => pID.PetID)
-                                             .FirstOrDefault();
+            var thisPetID = db.Pets.Where(ct => ct.PetID == pet_id)
+                                   .Select(pID => pID.PetID)
+                                   .FirstOrDefault();
 
-            var thisPetsName = db.Pets.Where(pn => pn.PetID == thisPet)
+            var thisPetsName = db.Pets.Where(pn => pn.PetID == thisPetID)
                                       .Select(pn => pn.PetName)
                                       .FirstOrDefault();
 
+            ViewBag.thisPetID = thisPetID;
             ViewBag.thisPetsName = thisPetsName;
-
             //---------------------------------------------------------------------------
             // to make sure only the pet's owner can see this page!
-            var thisPetsOwnersID = db.CareTransactions.Where(ct => ct.PetID == id)
-                                                      .Select(poID => poID.PetOwnerID)
-                                                      .FirstOrDefault();
+            var thisPetsOwnersID = db.Pets.Where(ct => ct.PetID == pet_id)
+                                          .Select(poID => poID.PetOwnerID)
+                                          .FirstOrDefault();
 
             var thisPetsOwnersPetopiaUserID = db.PetOwners.Where(po => po.PetOwnerID == thisPetsOwnersID)
                                                           .Select(pUID => pUID.UserID)
@@ -975,6 +975,8 @@ namespace Petopia.Controllers
 
             var loggedInUser = User.Identity.GetUserId();
 
+            ViewBag.thisPetsOwnersID = thisPetsOwnersID;
+            ViewBag.thisPetsOwnersPetopiaUserID = thisPetsOwnersPetopiaUserID;
             ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
             ViewBag.loggedInUser = loggedInUser;
 
@@ -984,7 +986,7 @@ namespace Petopia.Controllers
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
 
             Vmodel.ApptInfoListUpcoming = (from ct in db.CareTransactions 
-                    where ct.PetID == thisPet & ct.EndDate > DateTime.Now
+                    where ct.PetID == thisPetID & ct.EndDate > DateTime.Now
                     orderby ct.StartDate
 
                     join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
@@ -1015,7 +1017,7 @@ namespace Petopia.Controllers
 
             //---------------------------------------------------------
             Vmodel.ApptInfoListPast = (from ct in db.CareTransactions
-                    where ct.PetID == thisPet& ct.EndDate < DateTime.Now
+                    where ct.PetID == thisPetID & ct.EndDate < DateTime.Now
                     orderby ct.StartDate
 
                     join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID

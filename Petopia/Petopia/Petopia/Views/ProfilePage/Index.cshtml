@@ -516,9 +516,9 @@
                                 
                                 <div class="button_box_pet_card">
                                     @Html.ActionLink("Pet's Appts", "MyPetsAppointments",
-                                        new { controller = "CareTransactions", id = item.PetID },
+                                        new { controller = "CareTransactions", pet_id = item.PetID },
                                         new { @class = "our_pet_card_buttons", 
-                                            style = "color: #f2e6d9; font-weight: normal;" })
+                                            style = "color: #f2e6d9; font-weight: normal;"  } )
 
                                     @Html.ActionLink("Book care for Me!", "BookAppointment",
                                         new { controller = "CareTransactions", id = item.PetID },

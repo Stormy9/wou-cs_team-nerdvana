@@ -3,22 +3,40 @@
 @{
     ViewBag.Title = "My Pet's Care Appointments";
     ViewBag.Title01 = "'s Pet Care Appointments";
+    var thisPetsName = ViewBag.thisPetsName;
+
     //this works!!!!!
     var today = DateTime.Now.ToString("yyyy-MM-dd");
     var todaysDate = DateTime.Now;
+
+    // debugging
+    var thisPetID = ViewBag.thisPetID;
+    var thisPetsOwnersID = ViewBag.thisPetsOwnersID;
+    var thisPetsOwnersPetopiaUserID = ViewBag.thisPetsOwnersPetopiaUserID ;
+    var thisPetsOwnersASPNetIdentityID = ViewBag.thisPetsOwnersASPNetIdentityID;
+    var thisLoggedInUser = ViewBag.loggedInUser;
+
+    // making sure user is pet's owner 
     var loggedInUser = ViewBag.loggedInUser;
-    var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
-    var thisPetsName = ViewBag.thisPetsName;
+    var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;    
 }
 
 <div class="container-fluid" style="margin-bottom: 45px;"><!-- outer container -->
-
+    <!--==============================================================================-->
     <!-- testing purposes -->
     <div style="display:none;"> 
         @loggedInUser  <br />
         @thisPetsOwner
     </div>
-
+    <!-- debugging: Possum\Zoey\Lacey come in fine -- Sawyer does not! -->
+    <div class="debugging_shit" style="display:none;">
+        <p> thisPetID = @thisPetID </p>
+        <p> thisPetsOwnersID = @thisPetsOwnersID </p>
+        <p> thisPetsOWnersPetopiaUserID = @thisPetsOwnersPetopiaUserID </p>
+        <p> thisPetsOwnersASPNetIdentityID = @thisPetsOwnersASPNetIdentityID </p>
+        <p> thisLoggedInUser = @thisLoggedInUser </p>
+    </div>
+    <!--==============================================================================-->
     @if (loggedInUser == thisPetsOwner)
     {
         <span style="float:right; margin-right:5px; margin-top:15px;"
@@ -518,6 +536,14 @@
     else
     { 
         <h5> you are not this pet's owner! </h5>
+
+        <div class="debugging_shit" style="display:none;">
+            <p> thisPetID = @thisPetID </p>
+            <p> thisPetsOwnersID = @thisPetsOwnersID </p>
+            <p> thisPetsOWnersPetopiaUserID = @thisPetsOwnersPetopiaUserID </p>
+            <p> thisPetsOwnersASPNetIdentityID = @thisPetsOwnersASPNetIdentityID </p>
+            <p> thisLoggedInUser = @thisLoggedInUser </p>
+        </div>
     }
     <!--==============================================================================-->
 </div><!-- END CONTAINER-FLUID -->
