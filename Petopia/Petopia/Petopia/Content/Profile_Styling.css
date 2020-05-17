@@ -417,7 +417,6 @@
     transition: 0.3s;
     margin: 9px;
 }
-
 .my_appt_box {
     padding: 9px;
     border: 1px solid #4d3319;
@@ -462,6 +461,42 @@
     margin: 9px;
     float: right;
 }
+.job_details_box_box {
+    border: 1px solid #4d3319;
+    border-radius: 11px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    padding: 11px;
+    margin-bottom: 11px;
+}
+    .job_details_box_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+.job_details_box_left {
+    margin-bottom: 5px;
+    margin-left: 0px;
+    padding-left: 0px;
+    /* for testing */
+    /*border: 1px dotted red;*/
+}
+.job_details_box_others {
+    margin-bottom: 5px;
+    margin-left: 23px;
+    padding-left: 0px;
+    /* for testing */
+    /*border: 1px dotted red;*/
+}
+.test_proof_stuff {
+    border: 1px solid #4d3319;
+    border-radius: 11px;
+    padding: 9px;
+    height: 63px;
+    margin-bottom: 11px;
+}
+    .test_proof_stuff span {
+        float: left;
+        margin-right: 45px;
+    }
 /*============================ LINKS! ===============================*/
 /* unvisited link */
 a:link, .our_a:link {

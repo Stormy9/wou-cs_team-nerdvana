@@ -1051,108 +1051,186 @@ namespace Petopia.Controllers
         //===============================================================================
         public ActionResult PetCarer_JobDetails(int? ct_id)
         {
-            // CURRENTLY LOGGED-IN USER STUFF -- for privacy issues
+            // pull up the full requested CareTransaction:
+            if (ct_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            CareTransaction thisJob = db.CareTransactions.Find(ct_id);
+
+            if (thisJob == null)
+            {
+                return HttpNotFound();
+            }
+            //---------------------------------------------------------------------------
+            // GET CURRENTLY LOGGED-IN USER STUFF -- for privacy issues
             //
-            // the currently logged-in user
+            // the currently logged-in user:
             var identityID = User.Identity.GetUserId();
 
-            // the currently logged-in user's PetopiaUserID
+            // the currently logged-in user's PetopiaUserID:
             var thisPetopiaUserID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
-                                                   .Select(u => u.UserID)
-                                                   .FirstOrDefault();
+                                                   .Select(u => u.UserID).FirstOrDefault();
 
             ViewBag.LoggedInPetopiaUserID = thisPetopiaUserID;
             //---------------------------------------------------------------------------
-            // CARE PROVIDER ON *THIS* CareTransaction:
+            // GET THIS TRANSACTION ID -- for proofing
+            //
+            var thisJobID = thisJob.TransactionID;
+
+            ViewBag.ThisJobID = thisJobID;
+            //---------------------------------------------------------------------------
+            // GET THS CARE PROVIDER ON *THIS* CareTransaction:
             //
             // get CP_ID outta the CareTransactionID passed in
-            var thisPetCarerID = db.CareTransactions.Where(ct => ct.TransactionID == ct_id)
-                                                  .Select(cp => cp.CareProviderID)
-                                                  .FirstOrDefault();
+            var thisPetCarerID = thisJob.CareProviderID;
 
             // get THIS CP's PetopiaUserID
             var thisPetCarerPetopiaID = db.CareProviders.Where(cp => cp.CareProviderID == thisPetCarerID)
-                                                        .Select(pu => pu.UserID)
-                                                        .FirstOrDefault();
+                                                        .Select(pu => pu.UserID).FirstOrDefault();
 
+            ViewBag.ThisPetCarerID = thisPetCarerID;
             ViewBag.ThisPetCarerPetopiaID = thisPetCarerPetopiaID;
             //---------------------------------------------------------------------------
             // PET OWNER ON *THIS* CareTransaction:
             //
             // get the PO_ID outta the CareTransactionID passed in
-            var thisPetOwnerID = db.CareTransactions.Where(ct => ct.TransactionID == ct_id)
-                                                  .Select(po => po.PetOwnerID)
-                                                  .FirstOrDefault();
+            var thisPetOwnerID = thisJob.PetOwnerID;
 
             // get THIS PO's PetopiaUserID
             var thisPetOwnerPetopiaID = db.PetOwners.Where(po => po.PetOwnerID == thisPetOwnerID)
-                                                    .Select(pu => pu.UserID)
-                                                    .FirstOrDefault();
+                                                    .Select(pu => pu.UserID).FirstOrDefault();
 
+            ViewBag.ThisPetOwnerID = thisPetOwnerID;
+            ViewBag.ThisPetOwnerPetopiaID = thisPetOwnerPetopiaID;
             //---------------------------------------------------------------------------
             // get the PetID outta the CareTransactionID passed in
-            var thisPetID = db.CareTransactions.Where(ct => ct.TransactionID == ct_id)
-                                               .Select(pet => pet.PetID)
-                                               .FirstOrDefault();
+            var thisPetID = thisJob.PetID;
+
+            ViewBag.ThisPetID = thisPetID;
+            //---------------------------------------------------------------------------
+            // the appointment stuff:
+            // format the times once you change the db data-types.....
+            //
+            var thisStartDate = thisJob.StartDate.ToString("MM/dd/yyyy");
+            var thisStartTime = thisJob.StartTime;
+
+            var thisEndDate = thisJob.EndDate.ToString("MM/dd/yyyy");
+            var thisEndTime = thisJob.EndTime;
+
+            var neededThisVisit = thisJob.NeededThisVisit;
+
+            ViewBag.ThisStartDate = thisStartDate;
+            ViewBag.ThisStartTime = thisStartTime;
+
+            ViewBag.ThisEndDate = thisEndDate;
+            ViewBag.ThisEndTime = thisEndTime;
+
+            ViewBag.NeededThisVisit = neededThisVisit;
+            //---------------------------------------------------------------------------
+            // the pet owner stuff:
+            //
+            var thisPetOwnerFirstName = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                       .Select(poFN => poFN.FirstName).FirstOrDefault();
+
+            var thisPetOwnerLastName = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                      .Select(poLN => poLN.LastName).FirstOrDefault();
+
+            ViewBag.ThisPetOwnerName = thisPetOwnerFirstName + " " + thisPetOwnerLastName;
+
+
+            var thisPetOwnerAdd01 = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                   .Select(poRAdd01 => poRAdd01.ResAddress01).FirstOrDefault();
+
+            var thisPetOwnerAdd02 = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                   .Select(poRAdd02 => poRAdd02.ResAddress02).FirstOrDefault();
+
+            var thisPetOwnerCity = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                  .Select(poRC => poRC.ResCity).FirstOrDefault();
+
+            var thisPetOwnerState = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                   .Select(poRS => poRS.ResState).FirstOrDefault();
+
+            var thisPetOwnerZip = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                 .Select(poRZ => poRZ.ResZipcode).FirstOrDefault();
+
+            ViewBag.ThisPetOwnerResAdd01 = thisPetOwnerAdd01;
+            ViewBag.ThisPetOwnerResAdd02 = thisPetOwnerAdd02;
+            ViewBag.ThisPetOwnerCity = thisPetOwnerCity;
+            ViewBag.ThisPetOwnerState = thisPetOwnerState;
+            ViewBag.ThisPetOwnerZip = thisPetOwnerZip;
+
+
+            var thisPetOwnerMainPhone = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                       .Select(poMP => poMP.MainPhone).FirstOrDefault();
+
+            var thisPetOwnerAltPhone = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                      .Select(poAP => poAP.AltPhone).FirstOrDefault();
+
+            ViewBag.ThisPetOwnerMainPhone = thisPetOwnerMainPhone;
+            ViewBag.ThisPetOwnerAltPhone = thisPetOwnerAltPhone;
+
+
+            var thisPetOwnerHomeAccess = db.PetOwners.Where(puID => puID.PetOwnerID == thisPetOwnerID)
+                                                     .Select(poHA => poHA.HomeAccess).FirstOrDefault();
+
+            ViewBag.ThisPetOwnerHomeAccess = thisPetOwnerHomeAccess;
+
+            //---------------------------------------------------------------------------
+            // the pet stuff:
+            var thisPetName = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                     .Select(petN => petN.PetName).FirstOrDefault();
+
+            var thisPetSpecies = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                        .Select(petS => petS.Species).FirstOrDefault();
+
+            var thisPetBreed = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                      .Select(petB => petB.Breed).FirstOrDefault();
+
+            var thisPetGender = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                       .Select(petG => petG.Gender).FirstOrDefault();
+
+            var thisPetBday = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                     .Select(petBday => petBday.Birthdate).FirstOrDefault();
+
+            var thisPetWeight = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                       .Select(petW => petW.Weight).FirstOrDefault();
+
+            ViewBag.ThisPetName = thisPetName;
+            ViewBag.ThisPetSpecies = thisPetSpecies;
+            ViewBag.ThisPetBreed = thisPetBreed;
+            ViewBag.ThisPetGender = thisPetGender;
+            ViewBag.ThisPetBday = thisPetBday.ToString("MMMM/dd/yyyy");
+            ViewBag.ThisPetWeight = thisPetWeight + " lbs.";
+
+
+            var thisPetHealth = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                       .Select(petHC => petHC.HealthConcerns).FirstOrDefault();
+
+            var thisPetBehavior = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                         .Select(petBC => petBC.BehaviorConcerns).FirstOrDefault();
+
+            var thisPetAccess = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                       .Select(petA => petA.PetAccess).FirstOrDefault();
+
+            ViewBag.ThisPetHealth = thisPetHealth;
+            ViewBag.ThisPetBehavior = thisPetBehavior;
+            ViewBag.ThisPetAccess = thisPetAccess;
+
+
+            var thisPetECName = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                       .Select(petECN => petECN.EmergencyContactName).FirstOrDefault();
+
+            var thisPetECPhone = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                        .Select(petECP => petECP.EmergencyContactPhone).FirstOrDefault();
+
+            ViewBag.ThisPetECName = thisPetECName;
+            ViewBag.ThisPetECPhone = thisPetECPhone;
 
             //---------------------------------------------------------------------------
 
-            CareTransactionViewModel Vmodel = new CareTransactionViewModel();
-
-            // i **think** i did this right???
-            Vmodel.PetCarer_JobDetailList = (from ct in db.CareTransactions
-                                             where ct.TransactionID == ct_id
-
-                                             join po in db.PetOwners on ct.PetOwnerID equals thisPetOwnerID
-                                             join pu in db.PetopiaUsers on po.UserID equals thisPetOwnerPetopiaID
-                                             join pet in db.Pets on ct.PetID equals thisPetID
-
-                                             select new CareTransactionViewModel.PetCarer_JobDetail
-                                             {
-                                                 // pet stuff first:
-                                                 PetName = pet.PetName,
-                                                 Species = pet.Species,
-                                                 Breed = pet.Breed,
-                                                 Gender = pet.Gender,
-                                                 Birthday = pet.Birthdate,
-                                                 Weight = pet.Weight,
-                                                 PetAccess = pet.PetAccess,
-                                                 NeedsDetails = pet.NeedsDetails,
-                                                 NeededThisVisit = ct.NeededThisVisit,
-                                                 HealthConcerns = pet.HealthConcerns,
-                                                 BehaviorConcerns = pet.BehaviorConcerns,
-                                                 EmergencyContactName = pet.EmergencyContactName,
-                                                 EmergencyContactPhone = pet.EmergencyContactPhone,
-
-                                                 // now owner stuff:
-                                                 PetOwnerName = pu.FirstName + " " + pu.LastName,
-                                                 MainPhone = pu.MainPhone,
-                                                 AltPhone = pu.AltPhone,
-                                                 ResAddress01 = pu.ResAddress01,
-                                                 ResAddress02 = pu.ResAddress02,
-                                                 ResCity = pu.ResCity,
-                                                 ResState = pu.ResState,
-                                                 ResZipcode = pu.ResZipcode,
-                                                 HomeAccess = po.HomeAccess,
-
-                                                 // 'this appt' stuff:
-                                                 StartDate = ct.StartDate,
-                                                 StartTime = ct.StartTime,
-                                                 EndDate = ct.EndDate,
-                                                 EndTime = ct.EndTime
-
-                                             }).ToList();
-
-            // not sure if this is the correct\best way to go about this.....
-            //   or if i should be doing it like 'AppointmentDetails(int? id)' up higher
-            //
-            // i mean, what i've got here, the 'ToList()' will always just be a list of 
-            //    one -- or it'd better be..... i suppose that's okay?
-            // if i did like 'AppointmentDetails(int? id)', there would be a LOT of small
-            //   individual queries (see how many is up there!) ..... 
-            //      so this might be okay & even better???  will test it out anyway.....
-
-            return View(Vmodel);
+            return View(thisJob);
         }
         //===============================================================================
         //===============================================================================

@@ -268,6 +268,13 @@
                                               new { style = "color: #f2e6d9; font-weight: normal;" })
                             </span>
 
+                            <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
+                            <span style="float:right; margin-right:5px;" class="btn our_buttons">
+                                @Html.ActionLink("Job Details", "PetCarer_JobDetails",
+                                        new { ct_id = item.CareTransactionID },
+                                        new { style = "color: #f2e6d9; font-weight: normal;" })
+                            </span>
+
                         </div><!-- END ROW THREE-->
                         <!--==========================================================-->
                     </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
@@ -495,6 +502,13 @@
                                     @Html.ActionLink("Pet's Profile", "PetProfile",
                                      new { controller = "Pets", id = item.PetID },
                                              new { style = "color: #f2e6d9; font-weight: normal;" })
+                                </span>
+
+                                <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
+                                <span style="float:right; margin-right:5px;" class="btn our_buttons">
+                                    @Html.ActionLink("Job Details", "PetCarer_JobDetails",
+                                            new { ct_id = item.CareTransactionID },
+                                            new { style = "color: #f2e6d9; font-weight: normal;" })
                                 </span>
 
                             </div><!-- END ROW THREE-->
