@@ -155,6 +155,8 @@ namespace Petopia.Models.ViewModels
 
             public string GeneralLocation { get; set; }
 
+            public byte[] ProfilePic { get; set; }
+
             public int UserBadgeID { get; set; }
 
             public bool DogProvider { get; set; }
