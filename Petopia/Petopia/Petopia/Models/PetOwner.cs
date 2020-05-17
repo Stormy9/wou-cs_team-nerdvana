@@ -13,10 +13,11 @@ namespace Petopia.Models
     {
         //===============================================================================
         [Required]
+        [DisplayName("PetOwnerID")]
         public int PetOwnerID { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Average Rating")]
+        [DisplayName("Owner Avg Rating")]
         [StringLength(120)]
         public string AverageRating { get; set; }
 
@@ -32,6 +33,7 @@ namespace Petopia.Models
 
         //===============================================================================
         // FOREIGN KEY
+        [DisplayName("PetopiaUserID")]
         public int? UserID { get; set; }
 
         //===============================================================================

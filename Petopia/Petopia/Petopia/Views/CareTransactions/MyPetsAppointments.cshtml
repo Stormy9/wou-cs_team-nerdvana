@@ -28,7 +28,7 @@
         @loggedInUser  <br />
         @thisPetsOwner
     </div>
-    <!-- debugging: Possum\Zoey\Lacey come in fine -- Sawyer does not! -->
+    <!-- debugging: Possum\Zoey\Lacey come in fine -- Sawyer did not! -->
     <div class="debugging_shit" style="display:none;">
         <p> thisPetID = @thisPetID </p>
         <p> thisPetsOwnersID = @thisPetsOwnersID </p>
@@ -96,16 +96,14 @@
                                         <span class="our_appt_label">
                                             @Html.DisplayNameFor(model => item.PetOwnerName)&nbsp;&nbsp;
                                         </span>
-                                        @Html.DisplayFor(model => item.PetOwnerFirstName)&nbsp;
-                                        @Html.DisplayFor(model => item.PetOwnerLastName)
+                                        @Html.DisplayFor(model => item.PetOwnerName)
                                     </span>
                                     <!------------------------------------------------------>
                                     <span style="float:left; margin-left: 25px;">
                                         <span class="our_appt_label">
                                             @Html.DisplayNameFor(model => item.PetCarerName)&nbsp;
                                         </span>
-                                        @Html.DisplayFor(model => item.PetCarerFirstName)&nbsp;&nbsp;
-                                        @Html.DisplayFor(model => item.PetCarerLastName)
+                                        @Html.DisplayFor(model => item.PetCarerName)
                                     </span>
                                     <!------------------------------------------------------>
                                 </div>
@@ -120,15 +118,13 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            <b>From:</b><br />
-                                        </span>
+                                           From:<br /></span>
                                         @Html.DisplayFor(modelItem => item.StartDate)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            at:<br />
-                                        </span>
+                                            at:<br /></span>
                                         @Html.DisplayFor(modelItem => item.StartTime)
                                     </div>
 
@@ -140,15 +136,13 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            <b>To:</b><br />
-                                        </span>
+                                            To:<br /></span>
                                         @Html.DisplayFor(modelItem => item.EndDate)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            at:<br />
-                                        </span>
+                                            at:<br /> </span>
                                         @Html.DisplayFor(modelItem => item.EndTime)
                                     </div>
 
@@ -324,16 +318,14 @@
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => item.PetOwnerName)&nbsp;&nbsp;
                                     </span>
-                                    @Html.DisplayFor(model => item.PetOwnerFirstName)&nbsp;
-                                    @Html.DisplayFor(model => item.PetOwnerLastName)
+                                    @Html.DisplayFor(model => item.PetOwnerName)
                                 </span>
                                 <!------------------------------------------------------>
                                 <span style="float:left; margin-left: 25px;">
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => item.PetCarerName)&nbsp;
                                     </span>
-                                    @Html.DisplayFor(model => item.PetCarerFirstName)&nbsp;&nbsp;
-                                    @Html.DisplayFor(model => item.PetCarerLastName)
+                                    @Html.DisplayFor(model => item.PetCarerName)
                                 </span>
                                 <!------------------------------------------------------>
                             </div>
@@ -348,15 +340,13 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            <b>From:</b><br />
-                                        </span>
+                                            From:<br /></span>
                                         @Html.DisplayFor(modelItem => item.StartDate)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            at:<br />
-                                        </span>
+                                            at:<br /></span>
                                         @Html.DisplayFor(modelItem => item.StartTime)
                                     </div>
 
@@ -368,15 +358,13 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            <b>To:</b><br />
-                                        </span>
+                                            To:<br /></span>
                                         @Html.DisplayFor(modelItem => item.EndDate)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            at:<br />
-                                        </span>
+                                            at:<br /></span>
                                         @Html.DisplayFor(modelItem => item.EndTime)
                                     </div>
 
@@ -399,7 +387,6 @@
                                 <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
 
                                     <div>
-
                                         <span class="our_appt_label">
                                             @Html.DisplayNameFor(model => model.CareProvided)<br />
                                         </span>

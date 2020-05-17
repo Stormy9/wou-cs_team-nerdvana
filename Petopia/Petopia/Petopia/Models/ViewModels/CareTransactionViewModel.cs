@@ -286,8 +286,6 @@ namespace Petopia.Models.ViewModels
 
             [DisplayName("Pet's Owner:")]
             public string PetOwnerName { get; set; }
-            public string PetOwnerFirstName { get; set; }
-            public string PetOwnerLastName { get; set; }
 
             //---------------------------------------------------------
             [DisplayName("PetCarerID:")]
@@ -295,8 +293,6 @@ namespace Petopia.Models.ViewModels
 
             [DisplayName("Pet Carer:")]
             public string PetCarerName { get; set; }
-            public string PetCarerFirstName { get; set; }
-            public string PetCarerLastName { get; set; }
 
             //---------------------------------------------------------
             [Column(TypeName = "date")]
@@ -364,11 +360,13 @@ namespace Petopia.Models.ViewModels
         //===============================================================================
         public class IndexInfo
         {
+            public int PetID { get; set; }
             public string PetName { get; set; }
-            public string PetOwnerFirstName { get; set; }
-            public string PetOwnerLastName { get; set; }
-            public string PetProviderFirstName { get; set; }
-            public string PetProviderLastName { get; set; }
+            public int PetOwnerID { get; set; }
+            public string PetOwnerName { get; set; }
+            public int PetProviderID { get; set; }
+            public string PetProviderName { get; set; }
+
 
             [Column(TypeName = "date")]
             [DataType(DataType.Date)]

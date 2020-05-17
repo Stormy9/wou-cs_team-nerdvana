@@ -8,6 +8,9 @@
     //this works!!!!!
     var today = DateTime.Now.ToString("yyyy-MM-dd");
     var todaysDate = DateTime.Now;
+
+    var isPetOwner = ViewBag.isPetOwner;
+    var isPetCarer = ViewBag.isPetCarer;
 }
 
 <div class="container-fluid" style="margin-bottom: 45px;">
@@ -20,10 +23,10 @@
                             new { style = "color: #f2e6d9; font-weight:normal;" })
     </span>
 
-    @if (Model.IsOwner)
+    @if (isPetOwner)
     { <h2>@ViewBag.TitleOwner:</h2> }
-    else    { <h2>@ViewBag.TitleProvider:</h2>}
-
+    @if (isPetCarer)
+    { <h2>@ViewBag.TitleProvider:</h2> }
 
     <!--======================= TABS! 'UPCOMING' & 'PAST' APPTS!======================-->
     <!---->
@@ -71,16 +74,14 @@
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => item.PetOwnerName)&nbsp;&nbsp;
                                     </span>
-                                    @Html.DisplayFor(model => item.PetOwnerFirstName)&nbsp;
-                                    @Html.DisplayFor(model => item.PetOwnerLastName)
+                                    @Html.DisplayFor(model => item.PetOwnerName)
                                 </span>
                                 <!------------------------------------------------------>
                                 <span style="float:left; margin-left: 25px;">
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => item.PetCarerName)&nbsp;
                                     </span>
-                                    @Html.DisplayFor(model => item.PetCarerFirstName)&nbsp;&nbsp;
-                                    @Html.DisplayFor(model => item.PetCarerLastName)
+                                    @Html.DisplayFor(model => item.PetCarerName)
                                 </span>
                                 <!------------------------------------------------------>
                             </div>
@@ -125,15 +126,13 @@
 
                                 <div style="margin-bottom: 5px;">
                                     <span class="our_appt_label">
-                                        To:<br />
-                                    </span>
+                                        To:<br /></span>
                                     @Html.DisplayFor(model => item.EndDate)
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
-                                        at:<br />
-                                    </span>
+                                        at:<br /></span>
                                     @Html.DisplayFor(model => item.EndTime)
                                 </div>
 
@@ -265,14 +264,16 @@
                                       new { controller = "Pets", id = item.PetID },
                                               new { style = "color: #f2e6d9; font-weight: normal;" })
                             </span>
-
-                            <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
-                            <span style="float:right; margin-right:5px;" class="btn our_buttons">
-                                @Html.ActionLink("Job Details", "PetCarer_JobDetails",
-                                        new { ct_id = item.CareTransactionID },
-                                        new { style = "color: #f2e6d9; font-weight: normal;" })
-                            </span>
-
+                            
+                            @if(isPetCarer)
+                            { 
+                                <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
+                                <span style="float:right; margin-right:5px;" class="btn our_buttons">
+                                    @Html.ActionLink("Job Details", "PetCarer_JobDetails",
+                                            new { ct_id = item.CareTransactionID },
+                                            new { style = "color: #f2e6d9; font-weight: normal;" })
+                                </span>
+                            }
                         </div><!-- END ROW THREE-->
                         <!--==========================================================-->
                     </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
@@ -317,8 +318,7 @@
                                         <span class="our_appt_label">
                                             @Html.DisplayNameFor(model => item.PetOwnerName)&nbsp;&nbsp;
                                         </span>
-                                        @Html.DisplayFor(model => item.PetOwnerFirstName)&nbsp;
-                                        @Html.DisplayFor(model => item.PetOwnerLastName)
+                                        @Html.DisplayFor(model => item.PetOwnerName)
                                     </span>
                                     <!-------------------------------------------------->
 
@@ -326,8 +326,7 @@
                                         <span class="our_appt_label">
                                             @Html.DisplayNameFor(model => item.PetCarerName)&nbsp;&nbsp;
                                         </span>
-                                        @Html.DisplayFor(model => item.PetCarerFirstName)&nbsp;
-                                        @Html.DisplayFor(model => item.PetCarerLastName)
+                                        @Html.DisplayFor(model => item.PetCarerName)
                                     </span>
                                     <!-------------------------------------------------->
                                 </div>
@@ -341,15 +340,13 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            From:<br />
-                                        </span>
+                                            From:<br /></span>
                                         @Html.DisplayFor(model => item.StartDate)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            at:<br />
-                                        </span>
+                                            at:<br /></span>
                                         @Html.DisplayFor(model => item.StartTime)
                                     </div>
 
@@ -361,15 +358,13 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            To:<br />
-                                        </span>
+                                            To:<br /></span>
                                         @Html.DisplayFor(model => item.EndDate)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            at:<br />
-                                        </span>
+                                            at:<br /></span>
                                         @Html.DisplayFor(model => item.EndTime)
                                     </div>
 
@@ -502,12 +497,15 @@
                                              new { style = "color: #f2e6d9; font-weight: normal;" })
                                 </span>
 
-                                <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
-                                <span style="float:right; margin-right:5px;" class="btn our_buttons">
-                                    @Html.ActionLink("Job Details", "PetCarer_JobDetails",
-                                            new { ct_id = item.CareTransactionID },
-                                            new { style = "color: #f2e6d9; font-weight: normal;" })
-                                </span>
+                                @if(isPetCarer)
+                                { 
+                                    <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
+                                    <span style="float:right; margin-right:5px;" class="btn our_buttons">
+                                        @Html.ActionLink("Job Details", "PetCarer_JobDetails",
+                                                new { ct_id = item.CareTransactionID },
+                                                new { style = "color: #f2e6d9; font-weight: normal;" })
+                                    </span>
+                                }
 
                             </div><!-- END ROW THREE-->
                             <!--======================================================-->

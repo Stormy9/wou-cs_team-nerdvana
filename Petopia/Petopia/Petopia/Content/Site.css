@@ -20,10 +20,14 @@ select,
 textarea {
     max-width: 90%;
 }
+.text-danger {
+    color: #cc0000;
+    font-weight: bold;
+    font-size: 90%;
+}
 /*=====================================================================================*/
 /*                                our custom classes                                  */
 /*===================================================================================*/
-
 /*============================= front/splash/home VIDEO ===============================*/
 /* trying out the video 'hero' video+image thing -- courtesy coverr */
 .homepage-hero-module {
@@ -664,6 +668,37 @@ a:active {
     max-width: 900px;
     margin: 20px auto;
 }
+/*=================================== TABLES - now only for admin views ===============*/
+.admin_table {
+    width: 100%;
+    border: 1px solid #392613;
+    border-radius: 5px;
+    border-collapse: collapse;
+}
+.admin_table th, admin_table td {
+    border: 1px solid #392613;
+}
+.admin_table th {
+    background-color: #392613;
+    color: #f2e6d9;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 9px;
+}
+.admin_table td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 9px;
+}
+.admin_table tr:nth-child(even) {
+    background-color: #734d26;
+}
+.admin_table tr:hover {
+    background-color: rgba(153, 0, 0, .45);
+}
+/*=====================================================================================*/
+/**/
+/**/
 /*=====================================================================================*/
 /*                                 MEDIA QUERIES!                                      */
 /*=====================================================================================*/

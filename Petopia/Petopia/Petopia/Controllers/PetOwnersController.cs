@@ -20,7 +20,7 @@ namespace Petopia.Controllers
         private PetopiaContext pdb = new PetopiaContext();
 
         // GET: PetOwners
-        public ActionResult AdminIndex()
+        public ActionResult Owner_AdminIndex()
         {
             return View(db.PetOwners.ToList());
         }

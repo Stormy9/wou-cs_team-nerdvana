@@ -21,7 +21,7 @@ namespace Petopia.Controllers
         //===============================================================================
         // GET: CareTransactions
         [Authorize(Roles = "Admin")]
-        public ActionResult AdminIndex()
+        public ActionResult Appts_AdminIndex()
         {
             //---------------------------------------------------------------------------
             // thank you Corrin!   [=
@@ -36,11 +36,11 @@ namespace Petopia.Controllers
                                     join p in db.Pets on ct.PetID equals p.PetID
                                     select new CareTransactionViewModel.IndexInfo
                                     {
-                                        PetName = p.PetName,
-                                        PetProviderFirstName = puP.FirstName,
-                                        PetProviderLastName = puP.LastName,
-                                        PetOwnerFirstName = puO.FirstName,
-                                        PetOwnerLastName = puO.LastName,
+                                        PetID = p.PetID, PetName = p.PetName,
+                                        PetOwnerID = po.PetOwnerID, 
+                                        PetOwnerName = puO.FirstName + " " + puO.LastName,
+                                        PetProviderID = cp.CareProviderID,
+                                        PetProviderName = puP.FirstName + " " + puP.LastName,
                                         StartDate = ct.StartDate,
                                         EndDate = ct.EndDate,
                                         TransactionID = ct.TransactionID
@@ -709,35 +709,47 @@ namespace Petopia.Controllers
             var petOwnerID = db.PetOwners.Where(u => u.UserID == petopiaUserID)
                                          .Select(po => po.PetOwnerID).FirstOrDefault();
 
-            // ONLY for double-checking crap   [=   (including db)
-            //var petOwner_UserID = db.PetOwners.Where(u => u.UserID == petopiaUserID)
-            //                                  .Select(po => po.UserID)
-            //                                  .FirstOrDefault();
+            // determining 'IsOwner' or 'IsProvivder' status of this PetopiaUser
+            var isPetOwner = db.PetopiaUsers.Where(pu => pu.UserID == petopiaUserID)
+                                            .Select(isp => isp.IsOwner).FirstOrDefault();
 
             // getting the FK column 'UserID' in the 'CareProviders' table
             var careProviderID = db.CareProviders.Where(u => u.UserID == petopiaUserID)
                                                  .Select(cp => cp.CareProviderID).FirstOrDefault();
 
-            // still just checking
-            var user_Email = db.ASPNetUsers.Where(u => u.Id == identityID)
-                                           .Select(ue => ue.Email)
-                                           .FirstOrDefault();
+            var isPetCarer = db.PetopiaUsers.Where(pu => pu.UserID == petopiaUserID)
+                                            .Select(ipc => ipc.IsProvider).FirstOrDefault();
 
-            // this Pet Owner (instead of 'userAppts' like in 'MyAppointments')(and not a list)
+            // still just checking\proofing
+            var user_Email = db.ASPNetUsers.Where(u => u.Id == identityID)
+                                           .Select(ue => ue.Email).FirstOrDefault();
+
+            //---------------------------------------------------------
+            // proofing stuff
+            // this Pet Owner (from the CareTransactions table)
             var thisPetOwner = db.CareTransactions.Where(ct => ct.PetOwnerID == petOwnerID)
                                                   .Select(tpo => tpo.PetOwnerID).FirstOrDefault();
 
-            // this Care Provider (like this Pet Owner)
+            // this Care Provider (from the CareTransactions table) (proofing)
             var thisCareProvider = db.CareTransactions.Where(ct => ct.CareProviderID == careProviderID)
                                                       .Select(tcp => tcp.CareProviderID).FirstOrDefault();
 
-            // for testing/proofing stuff!
+            // ONLY for double-checking crap   [=   (including db)
+            //var petOwner_UserID = db.PetOwners.Where(u => u.UserID == petopiaUserID)
+            //                                  .Select(po => po.UserID).FirstOrDefault();
+            //---------------------------------------------------------
+
+            // for checking stuff in the view + proofing
+            ViewBag.isPetOwner = isPetOwner;
+            ViewBag.isPetCarer = isPetCarer;
+            // mostly (or only) for proofing stuff   [=
             ViewBag.identityID = identityID;
             ViewBag.petopiaUserID = petopiaUserID;
             ViewBag.petOwnerID = petOwnerID;
-            //ViewBag.petOwner_UserID = petOwner_UserID;
+            ViewBag.petCarerID = careProviderID;
             ViewBag.user_Email = user_Email;
             ViewBag.thisPetOwner = thisPetOwner;
+            ViewBag.thisCareProvider = thisCareProvider;
 
             //---------------------------------------------------------
             // still inside 'MyAppointments()'
@@ -745,36 +757,37 @@ namespace Petopia.Controllers
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
 
             Vmodel.ApptInfoListUpcoming = (from ct in db.CareTransactions
-                    where ct.PetOwnerID == thisPetOwner || 
-                          ct.CareProviderID == thisCareProvider  & 
-                          ct.EndDate > DateTime.Now
-                    orderby ct.StartDate
+                where ct.PetOwnerID == thisPetOwner ||
+                        ct.CareProviderID == thisCareProvider &
+                        ct.EndDate >= DateTime.Now
+                orderby ct.StartDate
 
-                    join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
-                    join po in db.PetOwners on ct.PetOwnerID equals po.PetOwnerID
-                    join puO in db.PetopiaUsers on po.UserID equals puO.UserID
-                    join puP in db.PetopiaUsers on cp.UserID equals puP.UserID
-                    join p in db.Pets on ct.PetID equals p.PetID
+                join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
+                join po in db.PetOwners on ct.PetOwnerID equals po.PetOwnerID
+                join puO in db.PetopiaUsers on po.UserID equals puO.UserID
+                join puP in db.PetopiaUsers on cp.UserID equals puP.UserID
+                join p in db.Pets on ct.PetID equals p.PetID
 
-                    select new CareTransactionViewModel.ApptInfo
-                    {
-                        PetName = p.PetName,
-                        PetOwnerFirstName = puO.FirstName, PetOwnerLastName = puO.LastName,
-                        PetCarerFirstName = puP.FirstName, PetCarerLastName = puP.LastName,
+                select new CareTransactionViewModel.ApptInfo
+                {
+                    PetName = p.PetName,
+                    PetOwnerName = puO.FirstName + " " + puO.LastName,
+                    PetCarerName = puP.FirstName + " " + puP.LastName,
 
-                        StartDate = ct.StartDate, EndDate = ct.EndDate,
-                        StartTime = ct.StartTime, EndTime = ct.EndTime,
+                    StartDate = ct.StartDate, EndDate = ct.EndDate,
+                    StartTime = ct.StartTime, EndTime = ct.EndTime,
 
-                        NeededThisVisit = ct.NeededThisVisit,
-                        CareProvided = ct.CareProvided, CareReport = ct.CareReport,
-                        Charge = ct.Charge, Tip = ct.Tip,
+                    NeededThisVisit = ct.NeededThisVisit,
+                    CareProvided = ct.CareProvided, CareReport = ct.CareReport,
+                    Charge = ct.Charge, Tip = ct.Tip,
 
-                        PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
-                        PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
+                    PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
+                    PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
 
-                        PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, PetCarerID = ct.CareProviderID,
-                        CareTransactionID = ct.TransactionID
-                    }).ToList();
+                    PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, 
+                    PetCarerID = ct.CareProviderID,
+                    CareTransactionID = ct.TransactionID
+                }).ToList();
 
             //---------------------------------------------------------
             Vmodel.ApptInfoListPast = (from ct in db.CareTransactions
@@ -792,8 +805,8 @@ namespace Petopia.Controllers
                     select new CareTransactionViewModel.ApptInfo
                     {
                         PetName = p.PetName,
-                        PetOwnerFirstName = puO.FirstName, PetOwnerLastName = puO.LastName,
-                        PetCarerFirstName = puP.FirstName, PetCarerLastName = puP.LastName,
+                        PetOwnerName = puO.FirstName + " " + puO.LastName,
+                        PetCarerName = puP.FirstName + " " + puP.LastName,
 
                         StartDate = ct.StartDate, EndDate = ct.EndDate,
                         StartTime = ct.StartTime, EndTime = ct.EndTime,
@@ -849,69 +862,70 @@ namespace Petopia.Controllers
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
 
             Vmodel.ApptInfoListUpcoming = (from ct in db.CareTransactions 
-                    where ct.PetID == thisPetID & 
-                          ct.EndDate > DateTime.Now
-                    orderby ct.StartDate
+                where ct.PetID == thisPetID & 
+                      ct.EndDate >= DateTime.Now
+                orderby ct.StartDate
 
-                    join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
-                    join po in db.PetOwners on ct.PetOwnerID equals po.PetOwnerID
-                    join puO in db.PetopiaUsers on po.UserID equals puO.UserID
-                    join puP in db.PetopiaUsers on cp.UserID equals puP.UserID
-                    join p in db.Pets on ct.PetID equals p.PetID
+                join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
+                join po in db.PetOwners on ct.PetOwnerID equals po.PetOwnerID
+                join puO in db.PetopiaUsers on po.UserID equals puO.UserID
+                join puP in db.PetopiaUsers on cp.UserID equals puP.UserID
+                join p in db.Pets on ct.PetID equals p.PetID
 
-                    select new CareTransactionViewModel.ApptInfo
-                    {
-                        PetName = p.PetName,
-                        PetOwnerFirstName = puO.FirstName, PetOwnerLastName = puO.LastName,
-                        PetCarerFirstName = puP.FirstName, PetCarerLastName = puP.LastName,
+                select new CareTransactionViewModel.ApptInfo
+                {
+                    PetName = p.PetName,
+                    PetOwnerName = puO.FirstName + " " + puO.LastName,
+                    PetCarerName = puP.FirstName + puP.LastName,
 
-                        StartDate = ct.StartDate, EndDate = ct.EndDate,
-                        StartTime = ct.StartTime, EndTime = ct.EndTime,
+                    StartDate = ct.StartDate, EndDate = ct.EndDate,
+                    StartTime = ct.StartTime, EndTime = ct.EndTime,
 
-                        NeededThisVisit = ct.NeededThisVisit,
-                        CareProvided = ct.CareProvided, CareReport = ct.CareReport,
-                        Charge = ct.Charge, Tip = ct.Tip,
+                    NeededThisVisit = ct.NeededThisVisit,
+                    CareProvided = ct.CareProvided, CareReport = ct.CareReport,
+                    Charge = ct.Charge, Tip = ct.Tip,
 
-                        PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
-                        PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
+                    PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
+                    PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
 
-                        PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, PetCarerID = ct.CareProviderID,
-                        CareTransactionID = ct.TransactionID
-                    }).ToList();
+                    PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, 
+                    PetCarerID = ct.CareProviderID,
+                    CareTransactionID = ct.TransactionID
+                }).ToList();
 
             //---------------------------------------------------------
             Vmodel.ApptInfoListPast = (from ct in db.CareTransactions
-                    where ct.PetID == thisPetID & 
-                          ct.EndDate < DateTime.Now
-                    orderby ct.StartDate
+                where ct.PetID == thisPetID & 
+                      ct.EndDate < DateTime.Now
+                orderby ct.StartDate
 
-                    join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
-                    join po in db.PetOwners on ct.PetOwnerID equals po.PetOwnerID
-                    join puO in db.PetopiaUsers on po.UserID equals puO.UserID
-                    join puP in db.PetopiaUsers on cp.UserID equals puP.UserID
-                    join p in db.Pets on ct.PetID equals p.PetID
+                join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
+                join po in db.PetOwners on ct.PetOwnerID equals po.PetOwnerID
+                join puO in db.PetopiaUsers on po.UserID equals puO.UserID
+                join puP in db.PetopiaUsers on cp.UserID equals puP.UserID
+                join p in db.Pets on ct.PetID equals p.PetID
 
-                    select new CareTransactionViewModel.ApptInfo
-                    {
-                        PetName = p.PetName,
-                        PetOwnerFirstName = puO.FirstName, PetOwnerLastName = puO.LastName,
-                        PetCarerFirstName = puP.FirstName, PetCarerLastName = puP.LastName,
+                select new CareTransactionViewModel.ApptInfo
+                {
+                    PetName = p.PetName,
+                    PetOwnerName = puO.FirstName + " " + puO.LastName,
+                    PetCarerName = puP.FirstName + " " + puP.LastName,
 
-                        StartDate = ct.StartDate, EndDate = ct.EndDate,
-                        StartTime = ct.StartTime, EndTime = ct.EndTime,
+                    StartDate = ct.StartDate, EndDate = ct.EndDate,
+                    StartTime = ct.StartTime, EndTime = ct.EndTime,
 
-                        NeededThisVisit = ct.NeededThisVisit,
-                        CareProvided = ct.CareProvided,
-                        CareReport = ct.CareReport,
-                        Charge = ct.Charge, Tip = ct.Tip,
+                    NeededThisVisit = ct.NeededThisVisit,
+                    CareProvided = ct.CareProvided,
+                    CareReport = ct.CareReport,
+                    Charge = ct.Charge, Tip = ct.Tip,
 
-                        PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
-                        PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
+                    PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
+                    PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
 
-                        PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, PetCarerID = ct.CareProviderID,
-                        CareTransactionID = ct.TransactionID
-                    }).ToList();
-
+                    PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, 
+                    PetCarerID = ct.CareProviderID,
+                    CareTransactionID = ct.TransactionID
+                }).ToList();
 
             return View(Vmodel);
         }

@@ -11,9 +11,11 @@ namespace Petopia.Models
     public partial class CareProvider
     {
         //===============================================================================
+        [DisplayName("ProviderID")]
         public int CareProviderID { get; set; }
 
         //===============================================================================
+        [DisplayName("Provider Avg Rating")]
         [StringLength(120)]
         public string AverageRating { get; set; }
 
@@ -24,6 +26,7 @@ namespace Petopia.Models
 
         //===============================================================================
         // FOREIGN KEY
+        [DisplayName("PetopiaUserID")]
         public int? UserID { get; set; }
 
         //===============================================================================
