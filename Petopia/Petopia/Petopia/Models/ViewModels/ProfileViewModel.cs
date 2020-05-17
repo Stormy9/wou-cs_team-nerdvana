@@ -154,34 +154,56 @@ namespace Petopia.Models.ViewModels
             public string LastName { get; set; }
 
             public string GeneralLocation { get; set; }
+
+            public int UserBadgeID { get; set; }
+
+            public bool DogProvider { get; set; }
+
+            public bool CatProvider { get; set; }
+
+            public bool BirdProvider { get; set; }
+
+            public bool FishProvider { get; set; }
+
+            public bool HorseProvider { get; set; }
+
+            public bool LivestockProvider { get; set; }
+
+            public bool RabbitProvider { get; set; }
+
+            public bool ReptileProvider { get; set; }
+
+            public bool RodentProvider { get; set; }
+
+            public bool OtherProvider { get; set; }
+
+            public bool DogOwner { get; set; }
+
+            public bool CatOwner { get; set; }
+
+            public bool BirdOwner { get; set; }
+
+            public bool FishOwner { get; set; }
+
+            public bool HorseOwner { get; set; }
+
+            public bool LivestockOwner { get; set; }
+
+            public bool RabbitOwner { get; set; }
+
+            public bool ReptileOwner { get; set; }
+
+            public bool RodentOwner { get; set; }
+
+            public bool OtherOwner { get; set; }
         }
         //-------------------------------------------------------------------------------
         public List<petopiaUsersInfo> PetopiaUsersList { get; set; }
 
-        //===============================================================================
-        // i think we'll need this, too, for the search result cards in the profiles?
-        //                               or something like it, for UserBadges??
-        public class userBadgesInfo
-        { 
-            public int UserBadgeID { get; set; }
+        //id's for both roles to make my life easier
+        public int PetOwnerID { get; set; }
+        public int CareProviderID { get; set; }
 
-            public bool DogOwner { get; set; }
-
-            public bool DogProvider { get; set; }
-
-            public bool CatOwner { get; set; }
-
-            public bool CatProvider { get; set; }
-
-            public bool BirdOwner { get; set; }
-
-            public bool BirdProvider { get; set; }
-
-            // foreign key
-            public int UserID { get; set; }
-        }
-        //-------------------------------------------------------------------------------
-        public List<userBadgesInfo> UserBadgesList { get; set; }
 
         //===============================================================================
         //===============================================================================
