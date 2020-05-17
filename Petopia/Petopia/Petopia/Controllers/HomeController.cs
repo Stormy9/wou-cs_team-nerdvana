@@ -103,6 +103,21 @@ namespace Petopia.Controllers
 
                                               });
 
+            var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
+
+            var OwnerLocation = ZipCodes.Get(searchZip);
+            var ZipCodesNearOwner = ZipCodes.RadiusSearch(OwnerLocation, 10);
+
+            List<String> zipsList = new List<String>();
+
+            foreach (ZipCode zip in ZipCodesNearOwner)
+            {
+                zipsList.Add(zip.PostalCode);
+            }
+
+            ViewBag.ZipList = String.Join(",", zipsList.ToArray());
+
+
             return View(carerSearch);
         }
         //===============================================================================

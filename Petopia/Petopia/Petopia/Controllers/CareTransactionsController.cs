@@ -282,6 +282,7 @@ namespace Petopia.Controllers
                 //          There is no ViewData item of type 'IEnumerable<SelectListItem>' 
                 //          that has the key 'ThisOwnersPetsSelectList'. 
                 ViewBag.ThisOwnersPetsSelectList = ThisOwnersPetsSelectList;
+                ViewData["ownersPets"] = ThisOwnersPetsSelectList;
 
                 //---------------------------------------------------------------------------
                 // see 'test_crap' at the end here for notes..... this was working there   =]
