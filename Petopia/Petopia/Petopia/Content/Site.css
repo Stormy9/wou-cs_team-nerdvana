@@ -196,7 +196,9 @@ textarea {
 }
 /*=================================== ABOUT PAGE ======================================*/
 .about_hero {
-    background-image: linear-gradient(rgba(57, 38, 19, 0.63), rgba(57, 38, 19, 0.63)), url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
+    background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
+                      rgba(57, 38, 19, 0.63)), 
+                      url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -220,14 +222,54 @@ textarea {
 .about_content {
     color: #261a0d;
     font-size: 18px;
-    padding: 27px;
+    padding: 9px 27px 27px 27px;
     padding-bottom: 45px;
+    /* for testing */
+    /*border: 1px solid green;*/
+}
+.about_for {
+    padding: 9px;
+    /* for testing */
+    /*border: 1px solid blue;*/
+}
+.about_box {
+    border: 1px solid #392613;
+    border-radius: 11px;
+    padding: 9px;
+    margin-bottom: 11px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.6);
+    transition: 0.3s;
+}
+    .about_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+/*============================= HOW TO USE PETOPIA ====================================*/
+ .our_tabs {
+    background-color: #392613;
+    color: #f2e6d9;
+}
+    .our_tabs:hover {
+        background-color: red;
+    }
+    .our_tabs:active {
+        background-color: blue;
+    }
+/* ======== ^^^ none of that ^^^ works, haha ============================*/
+.our_tab_panels {
+    /* top right bottom left */ /* like clock-wise */
+    border: 1px 1px 1px 1px; /* why is it so thick? */
+    border-style: solid solid solid solid;
+    border-color: #392613;
+    border-radius: 11px 11px 11px 11px;
+    padding: 9px 9px 18px 9px;
+    background-color: #86592d;
+    font-size: 16px;
 }
 /*=============================== CONTACT PAGE ========================================*/
 .contact_hero {
     background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
-                    rgba(57, 38, 19, 0.63)), 
-                    url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
+                      rgba(57, 38, 19, 0.63)), 
+                      url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -269,24 +311,19 @@ textarea {
     position: relative;
     color: #f2f2f2;
     height: 100%;
-}
-.register_title {
-    position: absolute;
-    display: inline-block;
-    bottom: 45px;
-    text-align: left;
+    padding-bottom: 30px;
 }
 .password_rules {
-    width: 35%;
+    width: 80%;
     border: 1px solid black;
     border-radius: 11px;
-    font-size: 18px;
+    font-size: 15px;
     padding: 18px;
-    margin-top: 36px;
-    margin-left: 45px;
+    margin-left: 18px;
 }
 .our_recaptcha {
-    margin-bottom: 9px;
+    /* testing\setting */
+    /*border: 1px solid blue;*/
 }
 /*================================= LOGIN PAGE ========================================*/
 .login_hero {
@@ -326,7 +363,7 @@ textarea {
 /*============================== CHOOSE ROLE PAGE =====================================*/
 .chooseRole_hero {
     background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
-                        rgba(57, 38, 19, 0.63)), 
+                      rgba(57, 38, 19, 0.63)), 
                       url("https://stormy9.github.io/nerdvana/happy_doggie_choose.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -376,14 +413,36 @@ li {
     /*height: 42px;*/
     color: #f2e6d9;
 }
+.nav {
+    color: #f2e6d9;
+}
 .navbar-brand {
     font-size: 18px;
+    color: #f2e6d9;
+}
+.navbar-nav {
+    color: #f2e6d9;
+}
+.navbar-nav li {
     color: #f2e6d9;
 }
 .our_nav_links {
     color: #f2e6d9;
 }
-.nav.li.a {
+    .our_nav_links:link {
+        color: #f2e6d9;
+    }
+    .our_nav_links:visited {
+        color: #f2e6d9;
+    }
+    .our_nav_links:hover {
+        color: #f2e6d9;
+    }
+    .our_nav_links:active {
+        color: #f2e6d9;
+    }
+
+.nav li a {
     color: #f2e6d9;
 }
 /* NOTHING WILL CHANGE THE TEXT/LINK COLORS!!!!! */
@@ -427,7 +486,16 @@ hr {
     font-weight: normal;
     text-align: center;
 }
-    .our_buttons:link {
+    .our_buttons a {
+        /* this is why they weren't working before!!! */
+        /* i forgot the thing about all four things! */
+    }
+    .our_buttons a:link {
+        background-color: #392613;
+        color: #f2e6d9;
+        font-weight: normal;
+    }
+    .our_buttons a:visited {
         background-color: #392613;
         color: #f2e6d9;
         font-weight: normal;
@@ -436,6 +504,7 @@ hr {
         background-color: #392613;
         color: #f2e6d9;
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+        transform: translateY(3px);
     }
     .our_buttons a:active {
         background-color: #392613;
@@ -444,15 +513,38 @@ hr {
 /*-------- MOVE IN THE OTHER PSEUDO-BUTTONS -------------------------*/
 /*--------------------------- OUR_BUTTONS => ABOUT PAGE? ------------*/
 .any_questions {
-    background-color: #604020;   /* notice different b/c panels */
-    border: 1px solid #4d3319;
+    background-color: #392613;
+    color: #f2e6d9;
+    border: 1px solid #392613;
     border-radius: 9px;
     padding: 9px;
-    color: #f2e6d9;
-    font-size: 18px;
+    font-size: 15px;
+    font-weight: normal;
     text-align: center;
-    width: 180px;
+    width: 135px;
+    margin-left: 9px;
 }
+    .any_questions a {
+        color: #f2e6d9;
+        font-weight: normal;
+    }
+    .any_questions a:link {
+        /* doesn't work */
+        color: #f2e6d9;
+        font-weight: normal;
+    }
+    .any_questions a:visited {
+        /* doesn't work */
+        color: #f2e6d9;
+        font-weight: normal;
+    }
+    .any_questions:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+        transform: translateY(3px);
+    }
+    .any_questions a:active {
+        transform: translateY(3px);
+    }
 /*-------------------------- OUR_BUTTONS => CONTACT PAGE ------------*/
 .email_button {
     background-color: #392613;
@@ -467,6 +559,7 @@ hr {
     .email_button:hover {
         color: #f2e6d9;
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+        transform: translateY(3px);
     }
     .email_button:active {
         transform: translateY(3px);
@@ -483,6 +576,7 @@ hr {
     .pick_buttons:hover {
         color: #f2e6d9;
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+        transform: translateY(3px);
     }
     .pick_buttons:active {
         transform: translateY(3px);
@@ -609,6 +703,7 @@ a:active {
     .password_rules {
         width: 90%;
         font-size: 14px;
+        margin-top: 5px;
         margin-left: 18px;
     }
 }
@@ -647,7 +742,7 @@ a:active {
     .password_rules {
         width: 90%;
         font-size: 13px;
-        margin-top: 18px;
+        margin-top: 5px;
         margin-left: 18px;
     }
 }

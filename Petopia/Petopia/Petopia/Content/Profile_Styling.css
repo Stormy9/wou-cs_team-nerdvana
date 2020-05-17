@@ -111,30 +111,6 @@
         transform: translateY(3px);
     }
 /*----------------------------------------*/
-.our_create-edit_buttons {
-    border: 1px solid #4d3319;
-    border-radius: 9px;
-    padding: 9px;
-    background-color: #392613;
-    color: #f2e6d9;
-    /*float: right;*/
-    margin-left: 3px;
-    margin-top: 3px;
-    width: 90px;
-    text-align: center;
-}
-    .our_create-edit_buttons a:link {
-        color: #f2e6d9;
-        font-weight: normal;
-    }
-    .our_create-edit_buttons:hover {
-        color: #f2e6d9;
-        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
-    }
-    .our_create-edit_buttons:active {
-        transform: translateY(3px);
-    }
-/*----------------------------------------*/
 .button_box_pet_card {
     margin-top: 23px;
     margin-bottom: 9px;
@@ -415,43 +391,6 @@
     .pet_gallery_button:active {
         transform: translateY(3px);
     }
-/*====================== TABLE for PET CARE =========================*/
-.pet_care_table {
-    width: 100%;
-    border: 1px solid #392613;
-    border-radius: 5px;
-    border-collapse: collapse;
-}
-th,td {
-    border: 1px solid #392613;
-}
-th {
-    background-color: #392613;
-    color: #f2e6d9;
-    padding-top: 9px;
-    padding-bottom: 9px;
-    padding-left: 9px;
-}
-td {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 9px;
-}
-tr:nth-child(even) {
-    background-color: #734d26;
-}
-tr:hover {
-    background-color: rgba(153, 0, 0, .45);
-}
-.table_col_one {
-    width: 12.5%;
-}
-.table_col_two {
-    width: 18%;
-}
-.table_col_three {
-    /*width: 50%;*/
-}
 /*========================== ACCOUNT ITEMS ==========================*/
 /* for the 'private petopia user account details' page */
 .account_item {
@@ -478,7 +417,6 @@ tr:hover {
     transition: 0.3s;
     margin: 9px;
 }
-
 .my_appt_box {
     padding: 9px;
     border: 1px solid #4d3319;
@@ -523,6 +461,42 @@ tr:hover {
     margin: 9px;
     float: right;
 }
+.job_details_box_box {
+    border: 1px solid #4d3319;
+    border-radius: 11px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    padding: 11px;
+    margin-bottom: 11px;
+}
+    .job_details_box_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+.job_details_box_left {
+    margin-bottom: 5px;
+    margin-left: 0px;
+    padding-left: 0px;
+    /* for testing */
+    /*border: 1px dotted red;*/
+}
+.job_details_box_others {
+    margin-bottom: 5px;
+    margin-left: 23px;
+    padding-left: 0px;
+    /* for testing */
+    /*border: 1px dotted red;*/
+}
+.test_proof_stuff {
+    border: 1px solid #4d3319;
+    border-radius: 11px;
+    padding: 9px;
+    height: 63px;
+    margin-bottom: 11px;
+}
+    .test_proof_stuff span {
+        float: left;
+        margin-right: 45px;
+    }
 /*============================ LINKS! ===============================*/
 /* unvisited link */
 a:link, .our_a:link {

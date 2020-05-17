@@ -20,12 +20,14 @@ namespace AdminLteMvc.Controllers
         /// The home page of the AdminLTE demo dashboard, recreated in this new system
         /// </summary>
         /// <returns></returns>
+        /// 
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var identityID = User.Identity.GetUserId();
 
-            var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+            var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                          .Select(x => x.UserID).First();
 
             AdminPanelViewModel adminPetopiaUser = new AdminPanelViewModel();
 

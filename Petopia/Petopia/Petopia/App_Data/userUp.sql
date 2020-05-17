@@ -7,6 +7,7 @@ CREATE TABLE [dbo].[PetopiaUsers] (
 	[Password] NVARCHAR(50),
 	[FirstName] NVARCHAR(50) NOT NULL,
 	[LastName] NVARCHAR(50) NOT NULL,
+	/*------------------------------------*/
 	/* these added later with alter table */
 	[UserCaption] NVARCHAR(72),
 	[GeneralLocation] NVARCHAR(72),
@@ -138,6 +139,7 @@ CREATE TABLE [dbo].[CareTransaction] (
 	/*------------------------------------*/
 	[StartTime] TIME NOT NULL,
 	[EndTime] TIME NOT NULL,
+	/*------------------------------------*/
 	/* added later w/Alter Table */
 	[NeededThisVisit] NVARCXHAR(MAX),
 	/*------------------------------------*/

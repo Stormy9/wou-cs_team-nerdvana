@@ -203,6 +203,9 @@
                     @Html.LabelFor(m => m.ProfilePhoto, new { @class = "control-label" })
 
                     @Html.TextBoxFor(m => m.ProfilePhoto, new { type = "file" })
+                    <div style="font-size: 90%; color: #cc0000;">
+                        <i>your photo needs to be a .jpg &amp; under 4MB.</i>
+                    </div>
 
                     @Html.ValidationSummary(true,
                                     "Picture MUST be in JPG format and under 4 MB.",

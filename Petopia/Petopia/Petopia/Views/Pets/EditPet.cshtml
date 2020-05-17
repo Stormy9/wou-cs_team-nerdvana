@@ -130,10 +130,13 @@
                         </div>
                         <!------------------------- PET PROFILE PIC -------------------->
                         <div class="form-group" style="padding-top:13px;">
-                            @Html.LabelFor(m => m.PetPhoto, 
+                            @Html.LabelFor(m => m.PetPhoto,
                                                     new { @class = "control-label" })
 
                             @Html.TextBoxFor(m => m.PetPhoto, new { type = "file" })
+                            <div style="font-size: 90%; color: #cc0000;">
+                                <i>your pet's photo needs to be a .jpg &amp; under 4MB.</i>
+                            </div>
 
                             @Html.ValidationSummary(true,
                                         "Picture MUST be in JPG format and under 4 MB.",

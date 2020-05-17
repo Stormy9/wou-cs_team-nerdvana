@@ -218,7 +218,13 @@
                             all my friends
                         </div>
                     </a>
-                </div>
+                </div>   
+                <div>
+                    @Html.ActionLink("All my appointments", "MyAppointments",
+                                new { controller = "CareTransactions" },
+                                new { id = Model.UserID, @class = "our_buttons", 
+                                        style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
+                    </div>
                 <!---------------------------------------------->
 
             </div><!-- END 1st/LEFT COLUMN **OF** 2nd/MIDDLE ROW -->
@@ -662,12 +668,9 @@
 
                                 <div class="button_box_pet_card">
                                     @Html.ActionLink("Pet's Appts", "MyPetsAppointments",
-                                        new { controller = "CareTransactions", id = item.PetID },
-                                        new
-                                             {
-                                                 @class = "our_pet_card_buttons",
-                                            style = "color: #f2e6d9; font-weight: normal;"
-                                             })
+                                        new { controller = "CareTransactions", pet_id = item.PetID },
+                                        new { @class = "our_pet_card_buttons", 
+                                            style = "color: #f2e6d9; font-weight: normal;"  } )
 
                                     @Html.ActionLink("Book care for Me!", "BookAppointment",
                                         new { controller = "CareTransactions", id = item.PetID },
@@ -706,6 +709,7 @@
                                             style = "margin-bottom:5px; color: #f2e6d9; font-weight: normal;"
                                          })
                     </div>
+ 
                     <div>
                         @Html.ActionLink("My Account Info", "MyAccountDetails",
                                 new { controller = "PetopiaUsers" },

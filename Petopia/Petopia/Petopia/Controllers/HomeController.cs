@@ -34,6 +34,11 @@ namespace Petopia.Controllers
 
             return View();
         }
+        //-------------------------------------------------------------------------------
+        public ActionResult UsingPetopia()
+        {
+            return View();
+        }
         //===============================================================================
         public ActionResult Contact()
         {

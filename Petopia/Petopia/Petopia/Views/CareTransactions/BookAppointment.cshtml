@@ -20,217 +20,216 @@
             new { @class = "form", role = "form", enctype = "multipart/form-data" } ))
     {
         @Html.AntiForgeryToken()
-
-    <div class="form">
-
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.Hidden("PetOwnerID", (object)ViewBag.thisPetOwnerID)
-        @Html.Hidden("PetID", (object)ViewBag.thisPetID)
 
-        <span style="float: right; padding-right: 5px;">
-            @Html.ActionLink("See all my Pet Care appointments", "MyAppointments",
-                new { controller = "CareTransactions" },
-                new { @class = "btn our_buttons", 
-                style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
-        </span>
+        <div class="form">
 
-        <h2>@ViewBag.Title01 for  @ViewBag.thisPetName!</h2>
-        <!---->
-        <!-- =============================== FIRST\TOP ROW! ==========================-->
-        <div class="row make_appt_box">
+            @Html.Hidden("PetOwnerID", (object)ViewBag.thisPetOwnerID)
+            @Html.Hidden("PetID", (object)ViewBag.thisPetID)
 
-            <!-- ====================== FIRST ROW -- FIRST COLUMN ====================-->
-            <div class="col-sm-2 col-md-2 col-lg-2">
-                <!---->
-                <!----- INITIATE APPOINTMENT ------------------------------------------->
-                <!-----------------------------START DATE ------------------------------>
-                <div class="form-group" style="padding-top: 5px;">
-                    @Html.LabelFor(model => model.StartDate,
-                                htmlAttributes: new { @class = "control-label" })
+            <span style="float: right; padding-right: 5px;">
+                @Html.ActionLink("See all my Pet Care appointments", "MyAppointments",
+                    new { controller = "CareTransactions" },
+                    new { @class = "btn our_buttons", 
+                    style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
+            </span>
 
-                    @Html.EditorFor(model => model.StartDate,
-                        new { htmlAttributes = 
-                            new { @class = "form-control", @tabindex = "1", min=@today, 
-                                                        @autofocus="autofocus" } })
-
-                    @Html.ValidationMessageFor(model => model.StartDate, "",
-                                                new { @class = "text-danger" })
-                </div>
-                <!----------------------------- START TIME------------------------------>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.StartTime,
-                                htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.StartTime,
-                        new { htmlAttributes = 
-                            new { @class = "form-control", @tabindex = "3" } })
-
-                    @Html.ValidationMessageFor(model => model.StartTime, "",
-                                                new { @class = "text-danger" })
-                </div>
-                <!---------------------------------------------------------------------->
-            </div><!-- END ROW 1 \ COL 1 -->
-            <!--======================================================================-->
+            <h2>@ViewBag.Title01 for  @ViewBag.thisPetName!</h2>
             <!---->
-            <!--===================== FIRST ROW - SECOND COLUMN ======================-->
-            <div class="col-sm-2 col-md-2 col-lg-2">
-                <!---->
-                <!----- STILL INITIATE APPOINTMENT ------------------------------------->
-                <!-----------------------------END DATE -------------------------------->
-                <div class="form-group" style="padding-top: 5px;">
-                    @Html.LabelFor(model => model.EndDate,
-                                htmlAttributes: new { @class = "control-label" })
+            <!-- =============================== FIRST\TOP ROW! ======================-->
+            <div class="row make_appt_box">
 
-                    @Html.EditorFor(model => model.EndDate,
-                        new { htmlAttributes = 
-                            new { @class = "form-control", @tabindex = "2", min=@today } })
-
-                    @Html.ValidationMessageFor(model => model.EndDate, "",
-                                                new { @class = "text-danger" })
-                </div>
-                <!---------------------------- END TIME -------------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.EndTime,
-                                htmlAttributes: new { @class = "control-label" })
-
-                    @Html.EditorFor(model => model.EndTime,
-                        new { htmlAttributes = 
-                            new { @class = "form-control", @tabindex = "4" }})
-
-                    @Html.ValidationMessageFor(model => model.EndTime, "",
-                                                new { @class = "text-danger" })
-                </div>
-                <!---------------------------------------------------------------------->
-                <h6> <i> can span multiple days, <br /> i.e. pet-sitting! </i></h6>
-                <!---------------------------------------------------------------------->
-            </div><!-- END ROW 1 \ COL 2 -->
-            <!--======================================================================-->
-            <!---->
-            <!--=============================== FIRST ROW - THIRD COLUMN =============-->
-            <div class="col-sm-4 col-md-4 col-lg-4" style="margin-left: 13px; ">
-                
-                <!----------------------- NEEDED THIS VISIT ---------------------------->
-                <div class="form-group">
-
-                    @Html.LabelFor(model => model.NeededThisVisit,
+                <!-- ====================== FIRST ROW -- FIRST COLUMN ================-->
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                    <!---->
+                    <!----- INITIATE APPOINTMENT ------------------------------------------->
+                    <!-----------------------------START DATE ------------------------------>
+                    <div class="form-group" style="padding-top: 5px;">
+                        @Html.LabelFor(model => model.StartDate,
                                     htmlAttributes: new { @class = "control-label" })
-                    <br />
-                    @Html.TextAreaFor(model => model.NeededThisVisit,
-                        new {htmlAttributes =
-                            new { @class = "form-control our_text_area" }, @tabindex = "5",
-                            rows = 5, id = "text19", name = "text19",
-                            style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
-                        <!-- so tabindex thing apparently doesn't work for text area? --->
-                        <!-- with or without the (at) since i saw both online --->
-                        <!-- okay it's some weird syntactical crap ^^^ that works -->
-                    <div>
-                        <!-- do a character counter here! -->
-                        <span class="pull-left label label-default"
-                                id="count_message_19">
-                        </span>
-                    </div>
 
-                    @Html.ValidationMessageFor(model => model.NeededThisVisit, "",
+                        @Html.EditorFor(model => model.StartDate,
+                            new { htmlAttributes = 
+                                new { @class = "form-control", @tabindex = "1", min=@today, 
+                                                            @autofocus="autofocus" } })
+
+                        @Html.ValidationMessageFor(model => model.StartDate, "",
                                                     new { @class = "text-danger" })
-                </div>
-                <!-------------------------------------------------------------------->
-            </div><!-- END ROW 1 \ COL 3 -->
-            <!--======================================================================-->
-            <!---->
-            <!--=============================== FIRST ROW - FOURTH COLUMN ============-->
-            <div class="col-sm-3 col-md-3 col-lg-3">
-
-                <!---------------------------------- WHICH PET? ------------------------>
-                <div class="form-group">
-                    @*@Html.LabelFor(model => model.PetID,
-                                    htmlAttributes: new { @class = "control-label" })*@
-
-                    @*<span class="control-label" style="font-weight: bold; color: navy;">
-                        For:&nbsp; @ViewBag.thisPetName
-                    </span>*@
-                    
-
-                    @*@Html.DropDownList("ThisOwnersPetsSelectList", 
-                    (IEnumerable<SelectListItem>)ViewBag.ThisOwnersPetsSelectList, "my pets", 
-                            htmlAttributes: new { @class="form-control"})*@
-
-                    <!-- this works perfectly -- but is obviously NOT practical nor userFriendly! -->
-                    @*@Html.EditorFor(model => model.PetID,
-                        new { htmlAttributes = 
-                            new { @class = "form-control", @tabindex = "6", min="1" } })*@
-
-                    @*@Html.ValidationMessageFor(model => model.PetID, "",
-                                                    new { @class = "text-danger" })*@
-                </div>
-                <!---------------------------- WHICH PET CARER? ------------------------>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CareProviderID,
+                    </div>
+                    <!----------------------------- START TIME------------------------------>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StartTime,
                                     htmlAttributes: new { @class = "control-label" })
 
-                    @*@Html.DropDownList("PetCarerSelectList", 
-                    (IEnumerable<SelectListItem>)ViewBag.PetCarerSelectList, "pet carer name", 
-                            htmlAttributes: new { @class="form-control"})*@
+                        @Html.EditorFor(model => model.StartTime,
+                            new { htmlAttributes = 
+                                new { @class = "form-control", @tabindex = "3" } })
 
-                    <!-- this works perfectly -- 
-                            but is obviously NOT practical nor userFriendly by itself! -->
-                    @Html.TextBoxFor(model => model.CareProviderID,
-                        new { htmlAttributes = 
-                            new { @class = "form-control" }, @tabindex = "6", 
-                                    placeholder="enter Pet Carer ID",
-                                    style="width: 45px; color: black; border-radius: 5px; padding: 3px;" } )
-
-                    <!-- pet carer list by proximity -->
-                    <div style="color: #271a0c; margin-top: 18px;">
-                        <h5 style="margin-bottom: 3px;"> Pet Care Providers in your area: </h5>
-                    
-                        @foreach (var item in Model.PetCarerList)
-                        {
-                            <b>ID:&nbsp;</b>
-                            @Html.DisplayFor(model => item.CareProviderID)
-                            <b>&nbsp;&nbsp; Name:&nbsp </b>;
-                            @Html.DisplayFor(model => item.CP_Name) <br />
-                        }
+                        @Html.ValidationMessageFor(model => model.StartTime, "",
+                                                    new { @class = "text-danger" })
                     </div>
+                    <!---------------------------------------------------------------------->
+                </div><!-- END ROW 1 \ COL 1 -->
+                <!--======================================================================-->
+                <!---->
+                <!--===================== FIRST ROW - SECOND COLUMN ======================-->
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                    <!---->
+                    <!----- STILL INITIATE APPOINTMENT ------------------------------------->
+                    <!-----------------------------END DATE -------------------------------->
+                    <div class="form-group" style="padding-top: 5px;">
+                        @Html.LabelFor(model => model.EndDate,
+                                    htmlAttributes: new { @class = "control-label" })
 
-                    @*@foreach (var cp in ViewBag.PetCarerList)
-                    {
-                        <p> @cp  </p>
-                    }*@
-                    <!-- going '(at)cp.CP_ID' and '(at)cp.CP_Name' doesn't work   [= -->
-                    <!-- and that-^ returns full object, with the { ... } and all -->
+                        @Html.EditorFor(model => model.EndDate,
+                            new { htmlAttributes = 
+                                new { @class = "form-control", @tabindex = "2", min=@today } })
 
-                    @Html.ValidationMessageFor(model => model.CareProviderID,
-                                            "", new { @class = "text-danger" })
-                </div>
-                <!----------------------- BOOK PET CARE APPOINTMENT!  ------------------>
-                <div class="form-group" style="padding-top: 18px;">
-                    @Html.ActionLink("Cancel!", "Index", new { Controller = "ProfilePage"}, 
-                        new { @class="btn our_buttons", 
-                            style = "float: right; color: #f2e6d9; font-weight: normal;margin-left: 9px;"})
+                        @Html.ValidationMessageFor(model => model.EndDate, "",
+                                                    new { @class = "text-danger" })
+                    </div>
+                    <!---------------------------- END TIME -------------------------------->
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EndTime,
+                                    htmlAttributes: new { @class = "control-label" })
 
-                    <input type="submit" value="Book!", tabindex="7",
-                            class="btn our_buttons" style="float:right;"/>
+                        @Html.EditorFor(model => model.EndTime,
+                            new { htmlAttributes = 
+                                new { @class = "form-control", @tabindex = "4" }})
+
+                        @Html.ValidationMessageFor(model => model.EndTime, "",
+                                                    new { @class = "text-danger" })
+                    </div>
+                    <!---------------------------------------------------------------------->
+                    <h6> <i> can span multiple days, <br /> i.e. pet-sitting! </i></h6>
+                    <!---------------------------------------------------------------------->
+                </div><!-- END ROW 1 \ COL 2 -->
+                <!--======================================================================-->
+                <!---->
+                <!--=============================== FIRST ROW - THIRD COLUMN =============-->
+                <div class="col-sm-4 col-md-4 col-lg-4" style="margin-left: 13px; ">
+                
+                    <!----------------------- NEEDED THIS VISIT ---------------------------->
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.NeededThisVisit,
+                                        htmlAttributes: new { @class = "control-label" })
+                        <br />
+                        @Html.TextAreaFor(model => model.NeededThisVisit,
+                            new {htmlAttributes =
+                                new { @class = "form-control our_text_area" }, @tabindex = "5",
+                                rows = 5, id = "text19", name = "text19",
+                                style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
+                            <!-- so tabindex thing apparently doesn't work for text area? --->
+                            <!-- with or without the (at) since i saw both online --->
+                            <!-- okay it's some weird syntactical crap ^^^ that works -->
+                        <div>
+                            <!-- do a character counter here! -->
+                            <span class="pull-left label label-default"
+                                    id="count_message_19">
+                            </span>
+                        </div>
+
+                        @Html.ValidationMessageFor(model => model.NeededThisVisit, "",
+                                                        new { @class = "text-danger" })
+                    </div>
+                    <!-------------------------------------------------------------------->
+                </div><!-- END ROW 1 \ COL 3 -->
+                <!--======================================================================-->
+                <!---->
+                <!--=============================== FIRST ROW - FOURTH COLUMN ============-->
+                <div class="col-sm-3 col-md-3 col-lg-3">
+
+                    <!---------------------------------- WHICH PET? ------------------------>
+                    <div class="form-group">
+                        @*@Html.LabelFor(model => model.PetID,
+                                        htmlAttributes: new { @class = "control-label" })*@
+
+                        @*<span class="control-label" style="font-weight: bold; color: navy;">
+                            For:&nbsp; @ViewBag.thisPetName
+                        </span>*@
                     
-                </div>
-                <!---------------------------------------------------------------------->
-            </div>
-            <!--======================================================================-->
-        </div><!-- END ROW 1 -->
-        <!---->
-        <!---->
-        <br />
-        <!------------------------------------------------------------------------------>
-                                                    <!--  HERE FOR PROVING STUFF OUT! -->
-        @*<div class="form-group" style="float: right;">
 
-            IdentityID = @ViewBag.identityID <br />
-            PetopiaUserID = @ViewBag.petopiaUserID <br />
-            PetOwnerID = @ViewBag.petOwnerID <br />
-            PetOwner_UserID = @ViewBag.petOwner_UserID <br />
-            User_Email = @ViewBag.user_Email
-        </div>*@
-        <!---------------------------------------------------------------------->
-        <!-------------------------------------------------------------------------->
+                        @*@Html.DropDownList("ThisOwnersPetsSelectList", 
+                        (IEnumerable<SelectListItem>)ViewBag.ThisOwnersPetsSelectList, "my pets", 
+                                htmlAttributes: new { @class="form-control"})*@
+
+                        <!-- this works perfectly -- but is obviously NOT practical nor userFriendly! -->
+                        @*@Html.EditorFor(model => model.PetID,
+                            new { htmlAttributes = 
+                                new { @class = "form-control", @tabindex = "6", min="1" } })*@
+
+                        @*@Html.ValidationMessageFor(model => model.PetID, "",
+                                                        new { @class = "text-danger" })*@
+                    </div>
+                    <!---------------------------- WHICH PET CARER? ------------------------>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CareProviderID,
+                                        htmlAttributes: new { @class = "control-label" })
+
+                        @*@Html.DropDownList("PetCarerSelectList", 
+                        (IEnumerable<SelectListItem>)ViewBag.PetCarerSelectList, "pet carer name", 
+                                htmlAttributes: new { @class="form-control"})*@
+
+                        <!-- this works perfectly -- 
+                                but is obviously NOT practical nor userFriendly by itself! -->
+                        @Html.TextBoxFor(model => model.CareProviderID,
+                            new { htmlAttributes = 
+                                new { @class = "form-control" }, @tabindex = "6", 
+                                        placeholder="enter Pet Carer ID",
+                                        style="width: 45px; color: black; border-radius: 5px; padding: 3px;" } )
+
+                        <!-- pet carer list by proximity -->
+                        <div style="color: #271a0c; margin-top: 18px;">
+                            <h5 style="margin-bottom: 3px;"> Pet Care Providers in your area: </h5>
+                    
+                            @foreach (var item in Model.PetCarerList)
+                            {
+                                <b>ID:&nbsp;</b>
+                                @Html.DisplayFor(model => item.CareProviderID)
+                                <b>&nbsp;&nbsp; Name:&nbsp </b>;
+                                @Html.DisplayFor(model => item.CP_Name) <br />
+                            }
+                        </div>
+
+                        @*@foreach (var cp in ViewBag.PetCarerList)
+                        {
+                            <p> @cp  </p>
+                        }*@
+                        <!-- going '(at)cp.CP_ID' and '(at)cp.CP_Name' doesn't work   [= -->
+                        <!-- and that-^ returns full object, with the { ... } and all -->
+
+                        @Html.ValidationMessageFor(model => model.CareProviderID,
+                                                "", new { @class = "text-danger" })
+                    </div>
+                    <!----------------------- BOOK PET CARE APPOINTMENT!  ------------------>
+                    <div class="form-group" style="padding-top: 18px;">
+                        @Html.ActionLink("Cancel!", "Index", new { Controller = "ProfilePage"}, 
+                            new { @class="btn our_buttons", 
+                                style = "float: right; color: #f2e6d9; font-weight: normal;margin-left: 9px;"})
+
+                        <input type="submit" value="Book!" tabindex="7"
+                                class="btn our_buttons" style="float:right;"/>
+                    
+                    </div>
+                    <!---------------------------------------------------------------------->
+                </div>
+                <!--======================================================================-->
+            </div><!-- END ROW 1 -->
+            <!---->
+            <!---->
+            <br />
+            <!------------------------------------------------------------------------------>
+                                                        <!--  HERE FOR PROVING STUFF OUT! -->
+            @*<div class="form-group" style="float: right;">
+
+                IdentityID = @ViewBag.identityID <br />
+                PetopiaUserID = @ViewBag.petopiaUserID <br />
+                PetOwnerID = @ViewBag.petOwnerID <br />
+                PetOwner_UserID = @ViewBag.petOwner_UserID <br />
+                User_Email = @ViewBag.user_Email
+            </div>*@
+            <!-------------------------------------------------------------------------->
     </div><!-- END FORM DIV! -->
     }
 }

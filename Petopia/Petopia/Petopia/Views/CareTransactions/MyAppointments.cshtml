@@ -1,7 +1,10 @@
 ﻿@model Petopia.Models.ViewModels.CareTransactionViewModel
 
 @{
-    ViewBag.Title = "Appointments for my Pets";
+    ViewBag.Title = "My Appointments";
+    ViewBag.TitleOwner = "Appointments for my Pets";
+    ViewBag.TitleProvider = "My Appointment Listings";
+
     //this works!!!!!
     var today = DateTime.Now.ToString("yyyy-MM-dd");
     var todaysDate = DateTime.Now;
@@ -13,11 +16,14 @@
     <span style="float:right; margin-right:5px; margin-top:15px;"
           class="btn our_buttons">
         @Html.ActionLink("Back to my Profile", "Index",
-                                        new { Controller = "ProfilePage" },
-                                        new { style = "color: #f2e6d9;" })
+                            new { Controller = "ProfilePage" },
+                            new { style = "color: #f2e6d9; font-weight:normal;" })
     </span>
 
-    <h2>@ViewBag.Title:</h2>
+    @if (Model.IsOwner)
+    { <h2>@ViewBag.TitleOwner:</h2> }
+    else    { <h2>@ViewBag.TitleProvider:</h2>}
+
 
     <!--======================= TABS! 'UPCOMING' & 'PAST' APPTS!======================-->
     <!---->
@@ -99,18 +105,16 @@
 
                                 <div style="margin-bottom: 5px;">
                                     <span class="our_appt_label">
-                                        <b>From:</b><br />
+                                        From:<br />
                                     </span>
                                     @Html.DisplayFor(model => item.StartDate)
-                                    @ViewBag.ApptStartDate
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
-                                        at:
+                                        at:<br />
                                     </span>
                                     @Html.DisplayFor(model => item.StartTime)
-
                                 </div>
 
                             </div><!-- END ROW 1 \ COL 1 -->
@@ -121,15 +125,14 @@
 
                                 <div style="margin-bottom: 5px;">
                                     <span class="our_appt_label">
-                                        <b>To:</b><br />
+                                        To:<br />
                                     </span>
                                     @Html.DisplayFor(model => item.EndDate)
-                                    @ViewBag.ApptStartDate
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
-                                        at:
+                                        at:<br />
                                     </span>
                                     @Html.DisplayFor(model => item.EndTime)
                                 </div>
@@ -248,25 +251,26 @@
                             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                 @Html.ActionLink("Cancel Appointment", "Delete",
                                           new { id = item.CareTransactionID },
-                                          new { style = "color: #f2e6d9;" })
+                                          new { style = "color: #f2e6d9; font-weight: normal;" })
                             </span>
 
                             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                 @Html.ActionLink("Edit Appointment", "EditAppointment",
                                               new { id = item.CareTransactionID },
-                                              new { style = "color: #f2e6d9;" })
-                            </span>
-
-                            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                                @Html.ActionLink("Complete Appointment", "CompleteAppointment",
-                                              new { id = item.CareTransactionID },
-                                              new { style = "color: #f2e6d9;" })
+                                              new { style = "color: #f2e6d9; font-weight: normal;" })
                             </span>
 
                             <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                 @Html.ActionLink("Pet's Profile", "PetProfile",
-                      new { controller = "Pets", id = item.PetID },
-                              new { style = "color: #f2e6d9;" })
+                                      new { controller = "Pets", id = item.PetID },
+                                              new { style = "color: #f2e6d9; font-weight: normal;" })
+                            </span>
+
+                            <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
+                            <span style="float:right; margin-right:5px;" class="btn our_buttons">
+                                @Html.ActionLink("Job Details", "PetCarer_JobDetails",
+                                        new { ct_id = item.CareTransactionID },
+                                        new { style = "color: #f2e6d9; font-weight: normal;" })
                             </span>
 
                         </div><!-- END ROW THREE-->
@@ -488,14 +492,21 @@
 
                                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                     @Html.ActionLink("Complete Appointment", "CompleteAppointment",
-                                                             new { id = item.CareTransactionID },
-                                                             new { style = "color: #f2e6d9;" })
+                                            new { id = item.CareTransactionID },
+                                            new { style = "color: #f2e6d9; font-weight: normal;" })
                                 </span>
 
                                 <span style="float: right; margin-right: 5px;" class="btn our_buttons">
                                     @Html.ActionLink("Pet's Profile", "PetProfile",
                                      new { controller = "Pets", id = item.PetID },
-                                             new { style = "color: #f2e6d9;" })
+                                             new { style = "color: #f2e6d9; font-weight: normal;" })
+                                </span>
+
+                                <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
+                                <span style="float:right; margin-right:5px;" class="btn our_buttons">
+                                    @Html.ActionLink("Job Details", "PetCarer_JobDetails",
+                                            new { ct_id = item.CareTransactionID },
+                                            new { style = "color: #f2e6d9; font-weight: normal;" })
                                 </span>
 
                             </div><!-- END ROW THREE-->
