@@ -25,7 +25,7 @@ namespace Petopia.Controllers
             var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
                                           .Select(x => x.UserID)
                                           .First();
-            
+
 
             ProfileViewModel petopiaUser = new ProfileViewModel();
 
@@ -35,21 +35,21 @@ namespace Petopia.Controllers
                                                 po => po.UserID,
                                                 (pu, po) => new {PetUse = pu, PetOwn = po }) */
             //linq isnt populating correctly right now so we're doing it manually (TEMP FIX)
-            
+
             petopiaUser.UserID = loggedID;
 
             petopiaUser.FirstName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
                                                    .Select(x => x.FirstName).First();
             petopiaUser.LastName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
                                                   .Select(x => x.LastName).First();
-            
+
             // user role
             petopiaUser.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
                                                  .Select(x => x.IsOwner).First();
             petopiaUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
                                                     .Select(x => x.IsProvider).First();
-            
-            
+
+
             // This stuff probably won't be displayed in the profile 
             //    but will be put into the model just in case
             petopiaUser.MainPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
@@ -90,16 +90,19 @@ namespace Petopia.Controllers
             //---------------------------------------------------------------------------
             //We might not have these so we want to see if we get a result back before populating...
             if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
-            { 
+            {
                 //If we get 1, then we know this user is a CareProvider
                 petopiaUser.ProviderAverageRating = db.CareProviders.Where(x => x.UserID == loggedID)
                                                                     .Select(x => x.AverageRating).First();
 
                 petopiaUser.ExperienceDetails = db.CareProviders.Where(x => x.UserID == loggedID)
                                                                 .Select(x => x.ExperienceDetails).First();
+
+                petopiaUser.CareProviderID = db.CareProviders.Where(x => x.UserID == loggedID)
+                                                                .Select(x => x.CareProviderID).First();
             }
 
-            if(db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
+            if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
             {
                 petopiaUser.OwnerAverageRating = db.PetOwners.Where(x => x.UserID == loggedID)
                                                              .Select(x => x.AverageRating).First();
@@ -109,6 +112,9 @@ namespace Petopia.Controllers
 
                 petopiaUser.HomeAccess = db.PetOwners.Where(x => x.UserID == loggedID)
                                                      .Select(x => x.HomeAccess).First();
+
+                petopiaUser.PetOwnerID = db.PetOwners.Where(x => x.UserID == loggedID)
+                                                     .Select(x => x.PetOwnerID).First();
             }
 
             //---------------------------------------------------------------------------
@@ -120,15 +126,15 @@ namespace Petopia.Controllers
 
                 petopiaUser.PetList = db.Pets.Where(x => x.PetOwnerID == ownerID)
                                              .Select(n => new PetInfo
-                    {
-                        PetName = n.PetName,
-                        Species = n.Species,
-                        Breed = n.Breed,
-                        Gender = n.Gender,
-                        Birthdate = n.Birthdate,
-                        PetID = n.PetID,
-                        PetPhoto = n.PetPhoto
-                    }).ToList();
+                                             {
+                                                 PetName = n.PetName,
+                                                 Species = n.Species,
+                                                 Breed = n.Breed,
+                                                 Gender = n.Gender,
+                                                 Birthdate = n.Birthdate,
+                                                 PetID = n.PetID,
+                                                 PetPhoto = n.PetPhoto
+                                             }).ToList();
             }
 
             //---------------------------------------------------------------------------
@@ -139,7 +145,7 @@ namespace Petopia.Controllers
             if (UserBadges == null)
             {
                 ViewBag.Badges = false;
-            } 
+            }
             else
             {
                 ViewBag.Badges = true;
@@ -164,6 +170,105 @@ namespace Petopia.Controllers
                 ViewBag.OtherOwner = UserBadges.OtherOwner;
                 ViewBag.OtherProvider = UserBadges.OtherProvider;
             }
+
+
+
+            //IF IM BOTH THEN SHOW LIST OF BOTH OWNERS AND PROVIDERS I'VE WORKED WITH IN PAST
+            if (petopiaUser.IsOwner == true && petopiaUser.IsProvider == true)
+            {
+                petopiaUser.PetopiaUsersList = (from ct in db.CareTransactions
+                                                where ct.CareProviderID == petopiaUser.CareProviderID
+                                                join co in db.CareProviders on ct.PetOwnerID equals co.CareProviderID
+                                                join pu in db.PetopiaUsers on co.UserID equals pu.UserID
+                                                join ub in db.UserBadges on pu.UserID equals ub.UserID
+                                                select new ProfileViewModel.petopiaUsersInfo
+                                                {
+                                                    UserID = pu.UserID,
+                                                    FirstName = pu.FirstName,
+                                                    LastName = pu.LastName,
+                                                    GeneralLocation = pu.GeneralLocation,
+                                                    ProfilePic = pu.ProfilePhoto,
+                                                    UserBadgeID = ub.UserBadgeID,
+                                                    DogOwner = ub.DogOwner,
+                                                    CatOwner = ub.CatOwner,
+                                                    BirdOwner = ub.BirdOwner,
+                                                    FishOwner = ub.FishOwner,
+                                                    HorseOwner = ub.HorseOwner,
+                                                    LivestockOwner = ub.LivestockOwner,
+                                                    RabbitOwner = ub.RabbitOwner,
+                                                    ReptileOwner = ub.ReptileOwner,
+                                                    RodentOwner = ub.RodentOwner,
+                                                    OtherOwner = ub.OtherOwner
+                                                }).ToList();
+            }
+            //IF IM ONLY A PET OWNER, SHOW LIST OF PROVIDERS
+            else if (petopiaUser.IsOwner == true)
+            {
+                petopiaUser.PetopiaUsersList = (from ct in db.CareTransactions
+                                                where ct.CareProviderID == petopiaUser.CareProviderID
+                                                join co in db.CareProviders on ct.PetOwnerID equals co.CareProviderID
+                                                join pu in db.PetopiaUsers on co.UserID equals pu.UserID
+                                                join ub in db.UserBadges on pu.UserID equals ub.UserID
+                                                select new ProfileViewModel.petopiaUsersInfo
+                                                {
+                                                    UserID = pu.UserID,
+                                                    FirstName = pu.FirstName,
+                                                    LastName = pu.LastName,
+                                                    GeneralLocation = pu.GeneralLocation,
+                                                    ProfilePic = pu.ProfilePhoto,
+                                                    UserBadgeID = ub.UserBadgeID,
+                                                    DogOwner = ub.DogOwner,
+                                                    CatOwner = ub.CatOwner,
+                                                    BirdOwner = ub.BirdOwner,
+                                                    FishOwner = ub.FishOwner,
+                                                    HorseOwner = ub.HorseOwner,
+                                                    LivestockOwner = ub.LivestockOwner,
+                                                    RabbitOwner = ub.RabbitOwner,
+                                                    ReptileOwner = ub.ReptileOwner,
+                                                    RodentOwner = ub.RodentOwner,
+                                                    OtherOwner = ub.OtherOwner
+                                                }).ToList();
+            }
+            //IF IM ONLY CARE PROVIDER, SHOW LIST OF PET OWNERS
+            else if (petopiaUser.IsProvider == true)
+            {
+                petopiaUser.PetopiaUsersList = (from ct in db.CareTransactions
+                                                where ct.CareProviderID == petopiaUser.CareProviderID
+                                                join co in db.PetOwners on ct.PetOwnerID equals co.PetOwnerID
+                                                join pu in db.PetopiaUsers on co.UserID equals pu.UserID
+                                                join ub in db.UserBadges on pu.UserID equals ub.UserID
+                                                select new ProfileViewModel.petopiaUsersInfo
+                                                {
+                                                    UserID = pu.UserID,
+                                                    FirstName = pu.FirstName,
+                                                    LastName = pu.LastName,
+                                                    GeneralLocation = pu.GeneralLocation,
+                                                    ProfilePic = pu.ProfilePhoto,
+                                                    UserBadgeID = ub.UserBadgeID,
+                                                    DogOwner = ub.DogOwner,
+                                                    CatOwner = ub.CatOwner,
+                                                    BirdOwner = ub.BirdOwner,
+                                                    FishOwner = ub.FishOwner,
+                                                    HorseOwner = ub.HorseOwner,
+                                                    LivestockOwner = ub.LivestockOwner,
+                                                    RabbitOwner = ub.RabbitOwner,
+                                                    ReptileOwner = ub.ReptileOwner,
+                                                    RodentOwner = ub.RodentOwner,
+                                                    OtherOwner = ub.OtherOwner,
+                                                    DogProvider = ub.DogProvider,
+                                                    CatProvider = ub.CatProvider,
+                                                    BirdProvider = ub.BirdProvider,
+                                                    FishProvider = ub.FishProvider,
+                                                    HorseProvider = ub.HorseProvider,
+                                                    LivestockProvider = ub.LivestockProvider,
+                                                    RabbitProvider = ub.RabbitProvider,
+                                                    ReptileProvider = ub.ReptileProvider,
+                                                    RodentProvider = ub.RodentProvider,
+                                                    OtherProvider = ub.OtherProvider
+                                                }).ToList();
+
+            }
+
             return View(petopiaUser);
         }
 
@@ -191,7 +296,7 @@ namespace Petopia.Controllers
             petopiaUser.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
                                                     .Select(x => x.IsProvider).First();
 
-            
+
             // user account\private info
             petopiaUser.MainPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
                                                    .Select(x => x.MainPhone).First();
@@ -227,7 +332,7 @@ namespace Petopia.Controllers
             //We might not have these so we want to see if we get a result back 
             //     before populating...
             if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
-            { 
+            {
                 //If we get 1, then we know this user is a CareProvider
                 petopiaUser.ExperienceDetails = db.CareProviders.Where(x => x.UserID == loggedID)
                                                                 .Select(x => x.ExperienceDetails).First();
@@ -302,7 +407,7 @@ namespace Petopia.Controllers
 
                 model.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
                                                   .Select(x => x.IsProvider).First();
-               
+
                 //-----------------------------------------------------------------------
                 // Profile Pic stuff!
                 if (model.UserProfilePicture != null)
@@ -320,7 +425,7 @@ namespace Petopia.Controllers
                     }
 
                     byte[] data = new byte[model.UserProfilePicture.ContentLength];
-                    
+
                     model.UserProfilePicture.InputStream.Read(data, 0, model.UserProfilePicture.ContentLength);
 
                     currentUser.ProfilePhoto = data;
@@ -341,10 +446,10 @@ namespace Petopia.Controllers
                 //-----------------------------------------------------------------------
                 //Care Provider
                 if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
-                { 
+                {
                     //If we get 1, then we know this user is a CareProvider
                     DAL.CareProvider currentProvider = new DAL.CareProvider();
-                    
+
                     currentProvider.CareProviderID = db.CareProviders.Where(x => x.UserID == loggedID)
                                                                      .Select(x => x.CareProviderID).First();
 
@@ -355,7 +460,7 @@ namespace Petopia.Controllers
                     currentProvider.ExperienceDetails = model.ExperienceDetails;
 
                     currentProvider.UserID = loggedID;
-                    
+
                     //Save CareProvider into db
                     db.Entry(currentProvider).State = EntityState.Modified;
                     db.SaveChanges();
@@ -363,10 +468,10 @@ namespace Petopia.Controllers
                 //-----------------------------------------------------------------------
                 //Pet Owner
                 if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
-                { 
+                {
                     //If we get 1, then we know this user is a PetOwner
                     DAL.PetOwner currentOwner = new DAL.PetOwner();
-                    
+
                     currentOwner.PetOwnerID = db.PetOwners.Where(x => x.UserID == loggedID)
                                                           .Select(x => x.PetOwnerID).First();
 
@@ -379,7 +484,7 @@ namespace Petopia.Controllers
                     currentOwner.HomeAccess = model.HomeAccess;
 
                     currentOwner.UserID = loggedID;
-                    
+
                     //Save PetOwner into db
                     db.Entry(currentOwner).State = EntityState.Modified;
                     db.SaveChanges();
@@ -388,7 +493,7 @@ namespace Petopia.Controllers
                 //db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            
+
             //If we got here something bad happened, return model
             return View(model);
 
@@ -406,7 +511,7 @@ namespace Petopia.Controllers
             //  make sure, wherever we link to `VisitProfile(id)`, that we are passing
             //  in the `PetopiaUserID` and not `PetOwnerID` or `CareProviderID`
             //     -- that can be done via ViewBag like i did in the Pet Profile Page
-            
+
 
             var identityID = db.PetopiaUsers.Where(x => x.UserID == loggedID)
                                             .Select(x => x.ASPNetIdentityID)
