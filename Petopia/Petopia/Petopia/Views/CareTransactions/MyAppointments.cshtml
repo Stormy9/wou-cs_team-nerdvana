@@ -4,6 +4,7 @@
     ViewBag.Title = "My Appointments";
     ViewBag.TitleOwner = "Appointments for my Pets";
     ViewBag.TitleProvider = "My Appointment Listings";
+
     //this works!!!!!
     var today = DateTime.Now.ToString("yyyy-MM-dd");
     var todaysDate = DateTime.Now;
@@ -104,18 +105,16 @@
 
                                 <div style="margin-bottom: 5px;">
                                     <span class="our_appt_label">
-                                        <b>From:</b><br />
+                                        From:<br />
                                     </span>
                                     @Html.DisplayFor(model => item.StartDate)
-                                    @ViewBag.ApptStartDate
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
-                                        at:
+                                        at:<br />
                                     </span>
                                     @Html.DisplayFor(model => item.StartTime)
-
                                 </div>
 
                             </div><!-- END ROW 1 \ COL 1 -->
@@ -126,15 +125,14 @@
 
                                 <div style="margin-bottom: 5px;">
                                     <span class="our_appt_label">
-                                        <b>To:</b><br />
+                                        To:<br />
                                     </span>
                                     @Html.DisplayFor(model => item.EndDate)
-                                    @ViewBag.ApptStartDate
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
-                                        at:
+                                        at:<br />
                                     </span>
                                     @Html.DisplayFor(model => item.EndTime)
                                 </div>

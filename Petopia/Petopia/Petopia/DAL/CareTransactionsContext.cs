@@ -12,15 +12,10 @@ namespace Petopia.Models
         {
         }
 
-        //===============================================================================
         public virtual DbSet<CareTransaction> CareTransactions { get; set; }
 
-        //-------------------------------------------------------------------------------
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // once i changed datatype in db for 'charge' and 'tip' 
-            // there is nothing here   [=
         }
-        //===============================================================================
     }
 }

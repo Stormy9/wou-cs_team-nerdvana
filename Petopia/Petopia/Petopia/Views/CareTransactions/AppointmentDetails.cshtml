@@ -33,7 +33,7 @@
                         @Html.DisplayNameFor(model => model.CareProviderID): &nbsp;
                     </span>
                     @*@Html.DisplayFor(model => model.CareProviderID)*@
-                    @ViewBag.CarerFirstName&nbsp;@ViewBag.CarerLastName
+                    @ViewBag.PetCarerName
                 </span>
 
                 <span style="float: left; margin-right: 25px;">
@@ -41,7 +41,7 @@
                         @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
                     </span>
                     @*@Html.DisplayFor(model => model.PetOwnerID)*@
-                    @ViewBag.PetOwnerFirstName&nbsp;@ViewBag.PetOwnerLastName
+                    @ViewBag.PetOwnerName
                 </span>
 
             </div><!-- END ROW ZERO -->
@@ -64,8 +64,7 @@
                         <span class="our_appt_label">
                             @Html.DisplayNameFor(model => model.StartTime)<br />
                         </span>
-                        @*@Html.DisplayFor(model => model.StartTime)*@
-                        @ViewBag.ApptStartTime
+                        @Html.DisplayFor(model => model.StartTime)
                     </div>
 
                 </div><!-- END ROW 1 \ COL 1 -->
@@ -86,8 +85,7 @@
                         <span class="our_appt_label">
                             @Html.DisplayNameFor(model => model.EndTime)<br />
                         </span>
-                        @*@Html.DisplayFor(model => model.EndTime)*@
-                        @ViewBag.ApptEndTime
+                        @Html.DisplayFor(model => model.EndTime)
                     </div>
 
                 </div><!-- END ROW 1 \ COL 2 -->

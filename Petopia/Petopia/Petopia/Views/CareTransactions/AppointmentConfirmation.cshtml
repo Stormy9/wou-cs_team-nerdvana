@@ -1,7 +1,7 @@
 ﻿@model Petopia.Models.CareTransaction
 
 @{
-    ViewBag.Title = "Book Pet Care Appointment Confirmation!";
+    ViewBag.Title = "Booking Confirmed!";
     ViewBag.Title01 = "Your Pet Care Appointment for";
     ViewBag.Title02 = "is Confirmed!";
     ViewBag.Title03 = "an email has been sent to you & your Pet Care Provider!";
@@ -26,7 +26,7 @@
                     @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
                 </span>
                 @*@Html.DisplayFor(model => model.PetOwnerID)*@
-                @ViewBag.OwnerFirstName&nbsp;@ViewBag.OwnerLastName
+                @ViewBag.PetOwnerName
 
             </div>
             <!-------------------------- ROW 0 \ COL 2 --------------------------------->
@@ -36,7 +36,7 @@
                     @Html.DisplayNameFor(model => model.CareProviderID) &nbsp;
                 </span>
                 @*@Html.DisplayFor(model => model.CareProviderID)*@
-                @ViewBag.CarerFirstName&nbsp;@ViewBag.CarerLastName
+                @ViewBag.PetCarerName
                 @*&nbsp;+&nbsp;@ViewBag.CarerEmail*@
 
             </div>
@@ -45,7 +45,7 @@
 
                 <div style="margin:5px; float:right;">
                     @Html.ActionLink("Pet's appointments", "MyPetsAppointments",
-                            new { controller = "CareTransactions", id = Model.PetID },
+                            new { controller = "CareTransactions", pet_id = Model.PetID },
                                 new { @class = "btn our_buttons",
                                     style = "color:#f2e6d9; font-weight:normal;" })
                 </div>

@@ -211,23 +211,15 @@ namespace Petopia.Models.ViewModels
         public DateTime EndDate { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Column(TypeName = "time")]                                   // CareTransactions
-        [DataType(DataType.Time)]
         [DisplayName("Start Time:")]
-        //[DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
-        public TimeSpan StartTime { get; set; }
-
-        //-------------------------------------------------------------------------------
-        //SERIOUSLY! DISPLAYING TIME IN 12-HOUR FORMAT SHOULsDN'T BE THIS F'ING DIFFICULT!
-        // YES I TRIED CHANGING FROM 'TimeSpan' to 'DateTime'
-        // I remember this shit being unconscionably difficult in 460 as well.
-        // can't even do it with a 'ToString("hh:mm tt")' in the Controller!!
-        //-------------------------------------------------------------------------------
-        [Column(TypeName = "time")]
+        [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Time)]
+        public DateTime StartTime { get; set; }
+
         [DisplayName("End Time:")]
-        //[DisplayFormat(DataFormatString = "{0:hh:mm tt}", ApplyFormatInEditMode = true)]
-        public TimeSpan EndTime { get; set; }
+        [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Time)]
+        public DateTime EndTime { get; set; }
 
         //===============================================================================
         //                                                            // CareTransactions
@@ -318,13 +310,15 @@ namespace Petopia.Models.ViewModels
             public DateTime EndDate { get; set; }
 
             //---------------------------------------------------------
-            [Column(TypeName = "time")]
+            [DisplayName("Start Time:")]
+            [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
             [DataType(DataType.Time)]
-            public TimeSpan StartTime { get; set; }
+            public DateTime StartTime { get; set; }
 
-            [Column(TypeName = "time")]
+            [DisplayName("End Time:")]
+            [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
             [DataType(DataType.Time)]
-            public TimeSpan EndTime { get; set; }
+            public DateTime EndTime { get; set; }
 
             //---------------------------------------------------------
             [DisplayName("Pet Care instructions this visit:")]
@@ -375,7 +369,15 @@ namespace Petopia.Models.ViewModels
             public string PetOwnerLastName { get; set; }
             public string PetProviderFirstName { get; set; }
             public string PetProviderLastName { get; set; }
+
+            [Column(TypeName = "date")]
+            [DataType(DataType.Date)]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
             public DateTime StartDate { get; set; }
+
+            [Column(TypeName = "date")]
+            [DataType(DataType.Date)]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
             public DateTime EndDate { get; set; }
             public int TransactionID { get; set; }
         }
