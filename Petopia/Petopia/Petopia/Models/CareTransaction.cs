@@ -81,6 +81,20 @@ namespace Petopia.Models
         public string PO_Comments { get; set; }
 
         //===============================================================================
+        // booleans for status of appointments
+        [DisplayName("Pending")]
+        public bool Pending { get; set; }
+
+        [DisplayName("Confirmed")]
+        public bool Confirmed { get; set; }
+
+        [DisplayName("Completed - Pet Owner")]
+        public bool Completed_PO { get; set; }
+
+        [DisplayName("Completed - Pet Carer")]
+        public bool Completed_CP { get; set; }
+
+        //===============================================================================
         // FOREIGN KEYS
         //
         [DisplayName("Pet's Owner:")]

@@ -78,11 +78,8 @@
                     {
                         @Html.ActionLink("Edit Badges", "Edit",
                                 new { controller = "Badges" },
-                                new
-                                     {
-                                         @class = "btn our_profile_buttons",
-                        style = "margin-left: 9px; color: #f2e6d9; font-weight: normal; float: right;"
-                                     })
+                                new { @class = "btn our_profile_buttons",
+                        style = "margin-left: 9px; color: #f2e6d9; font-weight: normal; float: right;" })
                     }
                     else
                     {
@@ -384,10 +381,10 @@
                                     <span>
                                         @Html.ActionLink(item.FirstName, "VisitProfile",
                                         new { controller = "ProfilePage", loggedID = item.UserID },
-                                        new { @class = "", style = "float:left; color:#003399;" })
+                                        new { @class = "", style = "float:left; color:#000099;" })
                                         @Html.ActionLink(item.LastName, "VisitProfile",
                                         new { controller = "ProfilePage", loggedID = item.UserID },
-                                        new { @class = "", style = "float:left; color:#003399;" })
+                                        new { @class = "", style = "float:left; color:#000099;" })
                                     </span>
                                     @if (item.GeneralLocation != null)
                                     {
@@ -396,52 +393,43 @@
                                             @Html.DisplayFor(modelItem => item.GeneralLocation)
                                         </div>
                                     }
-                                    <div style="margin-bottom:3px;">My pet care badges!</div>
+                                    @*<div style="margin-bottom:3px;">My pet care badges!</div>*@
                                     @if (item.DogProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_provider.png" class="pet_badge">
                                     }
-
                                     @if (item.CatProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_provider.png" class="pet_badge">
                                     }
-
                                     @if (item.BirdProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_provider.png" class="pet_badge">
                                     }
-
                                     @if (item.FishProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_provider.png" class="pet_badge">
                                     }
-
                                     @if (item.RabbitProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_provider.png" class="pet_badge">
                                     }
-
                                     @if (item.RodentProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_provider.png" class="pet_badge">
                                     }
-
                                     @if (item.ReptileProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_provider.png" class="pet_badge">
                                     }
-
                                     @if (item.HorseProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_provider.png" class="pet_badge">
                                     }
-
                                     @if (item.LivestockProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_provider.png" class="pet_badge">
                                     }
-
                                     @if (item.OtherProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_provider.png" class="pet_badge">
@@ -450,63 +438,53 @@
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_owner.png" class="pet_badge">
                                     }
-
                                     @if (item.CatOwner is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_owner.png" class="pet_badge">
                                     }
-
                                     @if (item.BirdOwner is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_owner.png" class="pet_badge">
                                     }
-
                                     @if (item.FishOwner is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_owner.png" class="pet_badge">
                                     }
-
                                     @if (item.RabbitOwner is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_owner.png" class="pet_badge">
                                     }
-
                                     @if (item.RodentOwner is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_owner.png" class="pet_badge">
                                     }
-
                                     @if (item.ReptileOwner is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_owner.png" class="pet_badge">
                                     }
-
                                     @if (item.HorseOwner is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_owner.png" class="pet_badge">
                                     }
-
                                     @if (item.LivestockOwner is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_owner.png" class="pet_badge">
                                     }
-
                                     @if (item.OtherOwner is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_owner.png" class="pet_badge">
                                     }
-                                </div>
-                                <div> ratings here </div>
-                            </div>
+
+                                    <div style="clear: both;"> ratings here </div>
+                                </div><!-- END class="search_result_card_info" -->
+                            </div><!-- END class="search_result_card" -->
                         }
-
+                        <!-- ***PLACEHOLDER*** SCROLLY-WINDOW STUFF -->
                         <div class="search_result_card">
-
                             <a href="#" class="our_a">
                                 <!-- to carer's profile -->
                                 <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
-                                     alt="profile picture"
-                                     class="search_result_card_img">
+                                     alt="profile picture" class="search_result_card_img">
                             </a>
                             <div class="search_result_card_info">
                                 <a href="#" class="our_a">
@@ -525,8 +503,7 @@
                             <a href="#" class="our_a">
                                 <!-- to carer's profile -->
                                 <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
-                                     alt="profile picture"
-                                     class="search_result_card_img">
+                                     alt="profile picture" class="search_result_card_img">
                             </a>
                             <div class="search_result_card_info">
                                 <a href="#" class="our_a">
@@ -545,8 +522,7 @@
                             <a href="#" class="our_a">
                                 <!-- to carer's profile -->
                                 <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
-                                     alt="profile picture"
-                                     class="search_result_card_img">
+                                     alt="profile picture" class="search_result_card_img">
                             </a>
                             <div class="search_result_card_info">
                                 <a href="#" class="our_a">
@@ -565,8 +541,7 @@
                             <a href="#" class="our_a">
                                 <!-- to carer's profile -->
                                 <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
-                                     alt="profile picture"
-                                     class="search_result_card_img">
+                                     alt="profile picture" class="search_result_card_img">
                             </a>
                             <div class="search_result_card_info">
                                 <a href="#" class="our_a">
@@ -585,8 +560,7 @@
                             <a href="#" class="our_a">
                                 <!-- to carer's profile -->
                                 <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
-                                     alt="profile picture"
-                                     class="search_result_card_img">
+                                     alt="profile picture" class="search_result_card_img">
                             </a>
                             <div class="search_result_card_info">
                                 <a href="#" class="our_a">
@@ -674,19 +648,13 @@
 
                                     @Html.ActionLink("Book care for Me!", "BookAppointment",
                                         new { controller = "CareTransactions", id = item.PetID },
-                                        new
-                                             {
-                                                 @class = "our_pet_card_buttons",
-                                              style = "color: #f2e6d9; font-weight: normal;"
-                                             })
+                                        new { @class = "our_pet_card_buttons",
+                                              style = "color: #f2e6d9; font-weight: normal;" })
 
                                     @Html.ActionLink("Pet's Profile", "PetProfile",
                                             new { controller = "Pets", id = item.PetID },
-                                            new
-                                                 {
-                                                     @class = "our_pet_card_buttons",
-                                                style = "color: #f2e6d9;  font-weight: normal;"
-                                                 })
+                                            new { @class = "our_pet_card_buttons",
+                                                style = "color: #f2e6d9;  font-weight: normal;" })
 
                                 </div>
 
@@ -698,36 +666,19 @@
             <!-------------------------------------------------------------------------->
             <div class="col-sm-3 col-md-3 our_col_five">
                 <div class="button_box_03">
-
-                    <div>
-                        @Html.ActionLink("All my Pets' Care appointments", "MyAppointments",
-                                    new { controller = "CareTransactions" },
-                                    new
-                                         {
-                                             id = Model.UserID,
-                                             @class = "our_other_buttons",
-                                            style = "margin-bottom:5px; color: #f2e6d9; font-weight: normal;"
-                                         })
-                    </div>
  
                     <div>
                         @Html.ActionLink("My Account Info", "MyAccountDetails",
                                 new { controller = "PetopiaUsers" },
-                                new
-                                     {
-                                         id = Model.UserID,
+                                new { id = Model.UserID,
                                          @class = "our_other_buttons",
-                                        style = "color: #f2e6d9; font-weight: normal;"
-                                     })
+                                        style = "color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <div>
                         @Html.ActionLink("Edit My Profile", "EditMyStuff",
                                         new { controller = "ProfilePage" },
-                                        new
-                                             {
-                                                 @class = "our_other_buttons",
-                                        style = "color: #f2e6d9; font-weight: normal;"
-                                             })
+                                        new { @class = "our_other_buttons",
+                                        style = "color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <br /><br /><!-- WHY do we need this all of a sudden?? -->
                     <div>
@@ -736,11 +687,8 @@
                         {
                             @Html.ActionLink("Add a pet!", "AddPet",
                                     new { controller = "Pets" },
-                                    new
-                                         {
-                                             @class = "our_other_buttons",
-                                    style = "color: #f2e6d9; font-weight: normal;"
-                                         })
+                                    new { @class = "our_other_buttons",
+                                    style = "color: #f2e6d9; font-weight: normal;" })
                         }
                         <!-- but it's not working right now   =]   -->
                     </div>

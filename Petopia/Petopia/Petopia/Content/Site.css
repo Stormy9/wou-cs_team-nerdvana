@@ -664,9 +664,16 @@ a:active {
 }
 /*================================ OUR CALENDAR! ======================================*/
 /* Calendar styling configuration */
+.calendar_box {
+    max-width: 90%;
+    text-align: center;
+}
 #calendar {
-    max-width: 900px;
+    /*max-width: 900px;*/
+    max-width: 100%;
     margin: 20px auto;
+    /* testing */
+    /*border: 1px solid blue;*/
 }
 /*=================================== TABLES - now only for admin views ===============*/
 .admin_table {

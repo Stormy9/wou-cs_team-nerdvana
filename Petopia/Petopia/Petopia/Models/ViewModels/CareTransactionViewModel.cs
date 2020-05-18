@@ -269,6 +269,20 @@ namespace Petopia.Models.ViewModels
         public int CT_PetID { get; set; }
 
         //===============================================================================
+        // booleans for status of appointments                      // Care Transactions
+        [DisplayName("Pending")]
+        public bool Pending { get; set; }
+
+        [DisplayName("Confirmed")]
+        public bool Confirmed { get; set; }
+
+        [DisplayName("Completed - Pet Owner")]
+        public bool Completed_PO { get; set; }
+
+        [DisplayName("Completed - Pet Carer")]
+        public bool Completed_CP { get; set; }
+
+        //===============================================================================
         //===============================================================================
         //                              for 'MyAppointments' + 'MyPetsAppointments' views
         //===============================================================================
@@ -348,11 +362,30 @@ namespace Petopia.Models.ViewModels
             public string PO_Comments { get; set; }
 
             //---------------------------------------------------------
+            // booleans for status of appointments                      
+            [DisplayName("Pending")]
+            public bool Pending { get; set; }
+
+            [DisplayName("Confirmed")]
+            public bool Confirmed { get; set; }
+
+            [DisplayName("Completed - Pet Owner")]
+            public bool Completed_PO { get; set; }
+
+            [DisplayName("Completed - Pet Carer")]
+            public bool Completed_CP { get; set; }
+            //---------------------------------------------------------
+            [DisplayName("This Appt ID")]
             public int CareTransactionID { get; set; }
         }
         public List<ApptInfo> ApptInfoListUpcoming { get; set; }
 
+        public List<ApptInfo> ApptInfoListPending { get; set; }
+
+        public List<ApptInfo> ApptInfoListConfirmed { get; set; }
+
         public List<ApptInfo> ApptInfoListPast { get; set; }
+
 
         //===============================================================================
         //===============================================================================
