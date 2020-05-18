@@ -1100,6 +1100,7 @@
     <Content Include="Views\ProfilePage\VisitProfile.cshtml" />
     <Content Include="Views\Home\UsingPetopia.cshtml" />
     <Content Include="Views\CareTransactions\PetCarer_JobDetails.cshtml" />
+    <Content Include="Views\CareTransactions\ConfirmAppointment.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>

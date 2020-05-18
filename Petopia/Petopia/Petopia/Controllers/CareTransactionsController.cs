@@ -289,6 +289,49 @@ namespace Petopia.Controllers
             return View(careTransaction);
         }
         //===============================================================================
+        //-------------------------------------------------------------------------------
+        // GET: CareTransactions/ConfirmAppointment/5
+        public ActionResult ConfirmAppointment(int? id)
+        {
+            // so first we gotta find it & pull it up -- like in 'Edit()'
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            CareTransaction careTransaction = db.CareTransactions.Find(id);
+
+            if (careTransaction == null)
+            {
+                return HttpNotFound();
+            }
+            //---------------------------------------------------------------------------
+
+            //---------------------------------------------------------------------------
+
+            return View();
+        }
+        //===============================================================================
+        // POST: CareTransactions/ConfirmAppointment/5
+        // To protect from overposting attacks, please enable the specific properties you
+        // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
+          "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
+          "CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
+        {
+            // so why do some of these have all that ^^^ and others don't?
+
+            if (ModelState.IsValid)
+            { 
+
+            }
+
+                return View();
+        }
+        //-------------------------------------------------------------------------------
+        //===============================================================================
         // GET: CareTransactions/EditAppointment/5
         public ActionResult EditAppointment(int? id)
         {
