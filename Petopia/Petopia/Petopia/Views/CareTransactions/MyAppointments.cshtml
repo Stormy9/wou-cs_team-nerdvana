@@ -264,9 +264,9 @@
                                       new { controller = "Pets", id = item.PetID },
                                               new { style = "color: #f2e6d9; font-weight: normal;" })
                             </span>
-                            
-                            @if(isPetCarer)
-                            { 
+
+                            @if (isPetCarer)
+                            {
                                 <span style="float:right; margin-right:5px;" class="btn our_buttons">
                                     @Html.ActionLink("Job Details", "PetCarer_JobDetails",
                                             new { ct_id = item.CareTransactionID },
@@ -277,6 +277,8 @@
                                             new { ct_id = item.CareTransactionID },
                                             new { style = "color: #f2e6d9; font-weight: normal;" })
                                 </span>
+
+                                <span> @Html.DisplayFor(model => item.CareTransactionID) </span>
                             }
                         </div><!-- END ROW THREE-->
                         <!--==========================================================-->

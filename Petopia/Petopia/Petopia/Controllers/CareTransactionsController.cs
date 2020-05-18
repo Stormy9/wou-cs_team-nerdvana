@@ -301,10 +301,9 @@ namespace Petopia.Controllers
         // GET: CareTransactions/ConfirmAppointment/5                   base off 'Edit()'
         public ActionResult ConfirmAppointment(int? ct_id)
         {
+            ViewBag.thisApptID = ct_id;
+
             // so first we gotta find the apppointment & pull it up -- like in 'Edit()'
-
-            var thisApptID = ct_id; 
-
             if (ct_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -331,7 +330,7 @@ namespace Petopia.Controllers
             ViewBag.loggedInPetopiaUserID = loggedInPetopiaUserID;
             ViewBag.loggedInPetCarerID = loggedInPetCarerID;
             //---------------------------------------------------------
-            var reqPetCarerID = db.CareTransactions.Where(cp => cp.TransactionID == thisApptID)
+            var reqPetCarerID = db.CareTransactions.Where(cp => cp.TransactionID == ct_id)
                                                    .Select(cpID => cpID.CareProviderID).FirstOrDefault();
             // just proofing
             var reqPetCarerCP_ID = db.CareProviders.Where(cp => cp.CareProviderID == reqPetCarerID)
@@ -348,8 +347,8 @@ namespace Petopia.Controllers
             ViewBag.reqPetCarerPU_ID = reqPetCarerPU_ID;
             ViewBag.reqPetCarerASPNetID = reqPetCarerASPNetID;
             //---------------------------------------------------------------------------
-
-            return View();
+            // the (careTransaction) is super-important, haha
+            return View(careTransaction);
         }
         //===============================================================================
         // POST: CareTransactions/ConfirmAppointment/5
@@ -376,7 +375,7 @@ namespace Petopia.Controllers
                                         new { id = careTransaction.TransactionID });
             }
 
-                return View();
+                return View(careTransaction);
         }
         //-------------------------------------------------------------------------------
         //===============================================================================
