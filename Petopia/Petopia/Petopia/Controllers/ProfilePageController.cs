@@ -23,8 +23,7 @@ namespace Petopia.Controllers
         {
             var identityID = User.Identity.GetUserId();
             var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
-                                          .Select(x => x.UserID)
-                                          .First();
+                                          .Select(x => x.UserID).First();
 
 
             ProfileViewModel petopiaUser = new ProfileViewModel();
@@ -490,6 +489,7 @@ namespace Petopia.Controllers
                     db.SaveChanges();
                 }
                 //-----------------------------------------------------------------------
+
                 //db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -514,8 +514,7 @@ namespace Petopia.Controllers
 
 
             var identityID = db.PetopiaUsers.Where(x => x.UserID == loggedID)
-                                            .Select(x => x.ASPNetIdentityID)
-                                            .First();
+                                            .Select(x => x.ASPNetIdentityID).First();
 
 
             ProfileViewModel petopiaUser = new ProfileViewModel();

@@ -244,7 +244,8 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult BookAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
           "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
-          "CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
+          "CareProviderID,PetID,NeededThisVisit,Pending,Confirmed,Complete_PO,Complete_CP")]
+                                                            CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
@@ -265,24 +266,31 @@ namespace Petopia.Controllers
                 // this seems to be really important, haha
                 careTransaction.PetOwnerID = thisPetOwnerID;
 
-                //---------------------------------------------------------------------------
+                // and let's add this:
+                careTransaction.Pending = true;
+                // do we need to set these? will they be null if we don't?
+                // cuz it does NOT like these being null (even though they're nullable)
+                careTransaction.Confirmed = false;
+                careTransaction.Completed_PO = false;       // good for testing for now
+                careTransaction.Completed_CP = false;
+
+                //-----------------------------------------------------------------------
                 // to make sure only the pet's owner can see this page!
 
                 var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers
-                                                       .Where(pu => pu.UserID == thisPetopiaUserID)
-                                                       .Select(aspnetID => aspnetID.ASPNetIdentityID)
-                                                       .FirstOrDefault();
+                        .Where(pu => pu.UserID == thisPetopiaUserID)
+                        .Select(aspnetID => aspnetID.ASPNetIdentityID).FirstOrDefault();
 
                 var loggedInUser = User.Identity.GetUserId();
 
                 ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
-                ViewBag.loggedInUser = loggedInUser;                
+                ViewBag.loggedInUser = loggedInUser;
                 //-----------------------------------------------------------------------
 
                 db.CareTransactions.Add(careTransaction);
                 db.SaveChanges();
 
-                return RedirectToAction("AppointmentConfirmation", 
+                return RedirectToAction("BookConfirmation", 
                                          new { id = careTransaction.TransactionID });
             }
 
@@ -290,23 +298,55 @@ namespace Petopia.Controllers
         }
         //===============================================================================
         //-------------------------------------------------------------------------------
-        // GET: CareTransactions/ConfirmAppointment/5
-        public ActionResult ConfirmAppointment(int? id)
+        // GET: CareTransactions/ConfirmAppointment/5                   base off 'Edit()'
+        public ActionResult ConfirmAppointment(int? ct_id)
         {
-            // so first we gotta find it & pull it up -- like in 'Edit()'
-            if (id == null)
+            // so first we gotta find the apppointment & pull it up -- like in 'Edit()'
+
+            var thisApptID = ct_id; 
+
+            if (ct_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            CareTransaction careTransaction = db.CareTransactions.Find(id);
+            CareTransaction careTransaction = db.CareTransactions.Find(ct_id);
 
             if (careTransaction == null)
             {
                 return HttpNotFound();
-            }
+            }                                                                      // GET
             //---------------------------------------------------------------------------
+            // make sure that only the requested care provider can access this page
+            // get logged-in user's PetOwnerID, into the 'PetOwnerID' field,
+            var loggedInUser = User.Identity.GetUserId();
 
+            var loggedInPetopiaUserID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == loggedInUser)
+                                                       .Select(u => u.UserID).FirstOrDefault();
+
+            var loggedInPetCarerID = db.CareProviders.Where(po => po.UserID == loggedInPetopiaUserID)
+                                                     .Select(po => po.CareProviderID).FirstOrDefault();
+
+            ViewBag.loggedInUser = loggedInUser;
+            ViewBag.loggedInPetopiaUserID = loggedInPetopiaUserID;
+            ViewBag.loggedInPetCarerID = loggedInPetCarerID;
+            //---------------------------------------------------------
+            var reqPetCarerID = db.CareTransactions.Where(cp => cp.TransactionID == thisApptID)
+                                                   .Select(cpID => cpID.CareProviderID).FirstOrDefault();
+            // just proofing
+            var reqPetCarerCP_ID = db.CareProviders.Where(cp => cp.CareProviderID == reqPetCarerID)
+                                                   .Select(cp => cp.CareProviderID).FirstOrDefault();
+            // proofing.....
+            var reqPetCarerPU_ID = db.CareProviders.Where(pu => pu.CareProviderID == reqPetCarerCP_ID)
+                                                   .Select(puID => puID.UserID).FirstOrDefault();
+            // proofing.....
+            var reqPetCarerASPNetID = db.PetopiaUsers.Where(pu => pu.UserID == reqPetCarerPU_ID)
+                                                     .Select(aID => aID.ASPNetIdentityID).FirstOrDefault();
+
+            ViewBag.reqPetCarerID = reqPetCarerID;
+            ViewBag.reqPetCarerCP_ID = reqPetCarerCP_ID;
+            ViewBag.reqPetCarerPU_ID = reqPetCarerPU_ID;
+            ViewBag.reqPetCarerASPNetID = reqPetCarerASPNetID;
             //---------------------------------------------------------------------------
 
             return View();
@@ -321,11 +361,19 @@ namespace Petopia.Controllers
           "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
           "CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
         {
-            // so why do some of these have all that ^^^ and others don't?
+            // so why *do* some of these have all that ^^^ and others don't?
 
             if (ModelState.IsValid)
-            { 
+            {
+                db.Entry(careTransaction).State = EntityState.Modified;
 
+                careTransaction.Pending = false;
+                careTransaction.Confirmed = true;
+
+                db.SaveChanges();
+
+                return RedirectToAction("EditConfirmation",
+                                        new { id = careTransaction.TransactionID });
             }
 
                 return View();
@@ -405,6 +453,7 @@ namespace Petopia.Controllers
             }
 
             CareTransaction careTransaction = db.CareTransactions.Find(id);
+
             if (careTransaction == null)
             {
                 return HttpNotFound();
@@ -463,6 +512,7 @@ namespace Petopia.Controllers
             CareTransaction careTransaction = db.CareTransactions.Find(id);
 
             db.CareTransactions.Remove(careTransaction);
+
             db.SaveChanges();
 
             return RedirectToAction("DeleteConfirmation");
@@ -480,7 +530,7 @@ namespace Petopia.Controllers
         // our added 'ActionResult' methods.....
         //===============================================================================
         // GET: CareTransactions/AppointmentConfirmation/5
-        public ActionResult AppointmentConfirmation(int? id)
+        public ActionResult BookConfirmation(int? id)
         {
             if (id == null)
             {

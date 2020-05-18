@@ -21,12 +21,10 @@ namespace Petopia.Controllers
             string id = User.Identity.GetUserId();
             
             ViewBag.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id)
-                                             .Select(x => x.IsOwner)
-                                             .First();
+                                             .Select(x => x.IsOwner).First();
 
             ViewBag.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id)
-                                                .Select(x => x.IsProvider)
-                                                .First();
+                                                .Select(x => x.IsProvider).First();
 
             return View();
         }
@@ -41,8 +39,7 @@ namespace Petopia.Controllers
                 string id = User.Identity.GetUserId();
 
                 int currentUserID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id)
-                                                   .Select(x => x.UserID)
-                                                   .First();
+                                                   .Select(x => x.UserID).First();
 
                 UserBadge.UserID = currentUserID;
 
@@ -59,23 +56,21 @@ namespace Petopia.Controllers
         public ActionResult Edit()
         {
             string id = User.Identity.GetUserId();
+
             int currentUserID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id)
-                                               .Select(x => x.UserID)
-                                               .First();
+                                               .Select(x => x.UserID).First();
 
             int badgeUserID = db.UserBadges.Where(x => x.UserID == currentUserID)
-                                           .Select(x => x.UserBadgeID)
-                                           .First();
+                                           .Select(x => x.UserBadgeID).First();
 
             ViewBag.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id)
-                                             .Select(x => x.IsOwner)
-                                             .First();
+                                             .Select(x => x.IsOwner).First();
 
             ViewBag.IsProvider = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id)
-                                                .Select(x => x.IsProvider)
-                                                .First();
+                                                .Select(x => x.IsProvider).First();
 
             DAL.UserBadge UserBadges = db.UserBadges.Find(badgeUserID);
+
             if (UserBadges == null)
             {
                 return HttpNotFound();
@@ -90,17 +85,17 @@ namespace Petopia.Controllers
         public ActionResult Edit(DAL.UserBadge userBadges)
         {
             string id = User.Identity.GetUserId();
+
             userBadges.UserID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == id)
-                                               .Select(x => x.UserID)
-                                               .First();
+                                               .Select(x => x.UserID).First();
 
             userBadges.UserBadgeID = db.UserBadges.Where(x => x.UserID == userBadges.UserID)
-                                                  .Select(x => x.UserBadgeID)
-                                                  .First();
+                                                  .Select(x => x.UserBadgeID).First();
 
             if (ModelState.IsValid)
             {
                 db.Entry(userBadges).State = EntityState.Modified;
+
                 db.SaveChanges();
 
                 return RedirectToAction("Index", "ProfilePage");

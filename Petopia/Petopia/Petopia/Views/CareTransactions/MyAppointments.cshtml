@@ -267,9 +267,13 @@
                             
                             @if(isPetCarer)
                             { 
-                                <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
                                 <span style="float:right; margin-right:5px;" class="btn our_buttons">
                                     @Html.ActionLink("Job Details", "PetCarer_JobDetails",
+                                            new { ct_id = item.CareTransactionID },
+                                            new { style = "color: #f2e6d9; font-weight: normal;" })
+                                </span>
+                                <span style="float:right; margin-right:5px;" class="btn our_buttons">
+                                    @Html.ActionLink("Confirm Appt!", "ConfirmAppointment",
                                             new { ct_id = item.CareTransactionID },
                                             new { style = "color: #f2e6d9; font-weight: normal;" })
                                 </span>

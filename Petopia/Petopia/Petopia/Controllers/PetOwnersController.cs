@@ -35,6 +35,7 @@ namespace Petopia.Controllers
             }
 
             Models.PetOwner petOwner = db.PetOwners.Find(id);
+
             if (petOwner == null)
             {
                 return HttpNotFound();
@@ -65,6 +66,7 @@ namespace Petopia.Controllers
                 DAL.PetopiaUser currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();
 
                 currentUser.IsOwner = true;
+
                 pdb.Entry(currentUser).State = EntityState.Modified;
                 
 
