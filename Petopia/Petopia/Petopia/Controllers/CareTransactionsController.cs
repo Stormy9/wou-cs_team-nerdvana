@@ -1192,7 +1192,7 @@ namespace Petopia.Controllers
             Vmodel.ApptInfoListPending = (from ct in db.CareTransactions
                 where (ct.PetOwnerID == thisPetOwner || ct.CareProviderID == thisCareProvider)
                         && (ct.Pending)
-                        && (ct.EndDate >= DateTime.Now)
+                        && (ct.EndDate >= DateTime.Today)
                 orderby ct.StartDate
 
                 join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
@@ -1232,7 +1232,7 @@ namespace Petopia.Controllers
             Vmodel.ApptInfoListConfirmed = (from ct in db.CareTransactions
                 where (ct.PetOwnerID == thisPetOwner || ct.CareProviderID == thisCareProvider)
                         && (ct.Confirmed)
-                        && (ct.EndDate >= DateTime.Now)
+                        && (ct.EndDate >= DateTime.Today)
                 orderby ct.StartDate
 
                 join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
@@ -1271,7 +1271,7 @@ namespace Petopia.Controllers
             //---------------------------------------------------------------------------
             Vmodel.ApptInfoListFinished = (from ct in db.CareTransactions
                 where (ct.PetOwnerID == thisPetOwner || ct.CareProviderID == thisCareProvider)
-                        &&  (ct.EndDate < DateTime.Now)
+                        &&  (ct.EndDate < DateTime.Today)
                 orderby ct.StartDate
 
                 join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
@@ -1348,7 +1348,7 @@ namespace Petopia.Controllers
             Vmodel.ApptInfoListPending = (from ct in db.CareTransactions
                 where (ct.PetID == thisPetID)
                         && (ct.Pending)
-                        && (ct.EndDate >= DateTime.Now)
+                        && (ct.EndDate >= DateTime.Today)
                 orderby ct.StartDate
 
                 join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
@@ -1388,7 +1388,7 @@ namespace Petopia.Controllers
             Vmodel.ApptInfoListConfirmed = (from ct in db.CareTransactions
                 where (ct.PetID == thisPetID)
                         && (ct.Confirmed)
-                        && (ct.EndDate >= DateTime.Now)
+                        && (ct.EndDate >= DateTime.Today)
                 orderby ct.StartDate
 
                 join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
@@ -1427,7 +1427,7 @@ namespace Petopia.Controllers
             //---------------------------------------------------------------------------
             Vmodel.ApptInfoListFinished = (from ct in db.CareTransactions
                 where (ct.PetID == thisPetID)
-                        && (ct.EndDate < DateTime.Now)
+                        && (ct.EndDate < DateTime.Today)
                 orderby ct.StartDate
 
                 join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID

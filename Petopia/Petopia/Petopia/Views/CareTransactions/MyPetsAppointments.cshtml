@@ -280,6 +280,16 @@
                                         new { style = "color: #f2e6d9; font-weight: normal" })
                                 </span>
 
+                                <span style="margin-right: 15px;">
+                                    ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                                </span>
+                                <span style="margin-right: 15px;">
+                                    Pending? @Html.DisplayFor(model => item.Pending)
+                                </span>
+                                <span style="margin-right: 15px;">
+                                    Confirmed? @Html.DisplayFor(model => item.Confirmed)
+                                </span>
+
                             </div><!-- END ROW THREE-->
                             <!--======================================================-->
                         </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
@@ -515,6 +525,15 @@
                                                     new { style = "color: #f2e6d9; font-weight: normal" })
                                     </span>
 
+                                    <span style="margin-right: 15px;">
+                                        ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                                    </span>
+                                    <span style="margin-right: 15px;">
+                                        Pending? @Html.DisplayFor(model => item.Pending)
+                                    </span>
+                                    <span style="margin-right: 15px;">
+                                        Confirmed? @Html.DisplayFor(model => item.Confirmed)
+                                    </span>
                                 </div><!-- END ROW THREE-->
                                 <!--==================================================-->
 
@@ -749,6 +768,16 @@
                                         @Html.ActionLink("Pet's Profile", "PetProfile",
                                             new { controller = "Pets", id = item.PetID },
                                                     new { style = "color: #f2e6d9; font-weight: normal" })
+                                    </span>
+
+                                    <span style="margin-right: 15px;">
+                                        ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                                    </span>
+                                    <span style="margin-right: 15px;">
+                                        Pending? @Html.DisplayFor(model => item.Pending)
+                                    </span>
+                                    <span style="margin-right: 15px;">
+                                        Confirmed? @Html.DisplayFor(model => item.Confirmed)
                                     </span>
 
                                 </div><!-- END ROW THREE-->

@@ -540,6 +540,7 @@
                                                 new { style = "color: #f2e6d9; font-weight: normal;" })
                                     </span>
                                 }
+
                                 <span style="margin-right: 15px;">
                                     ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                                 </span>
@@ -549,6 +550,7 @@
                                 <span style="margin-right: 15px;">
                                     Confirmed? @Html.DisplayFor(model => item.Confirmed)
                                 </span>
+
                             </div><!-- END ROW THREE-->
                             <!--======================================================-->
 
@@ -808,7 +810,7 @@
                 else
                 {
                     <p style="text-align: center;">
-                        you don't have any confirmed appointments yet!
+                        you don't have any finished appointments yet!
                     </p>
                 }
                 <!--==================================================================-->
