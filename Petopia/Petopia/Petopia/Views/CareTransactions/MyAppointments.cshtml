@@ -264,16 +264,31 @@
                                       new { controller = "Pets", id = item.PetID },
                                               new { style = "color: #f2e6d9; font-weight: normal;" })
                             </span>
-                            
-                            @if(isPetCarer)
-                            { 
+
+                            @if (isPetCarer)
+                            {
                                 <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
                                 <span style="float:right; margin-right:5px;" class="btn our_buttons">
                                     @Html.ActionLink("Job Details", "PetCarer_JobDetails",
                                             new { ct_id = item.CareTransactionID },
                                             new { style = "color: #f2e6d9; font-weight: normal;" })
                                 </span>
+
+                                <span style="float:right; margin-right:5px;" class="btn our_buttons">
+                                    @Html.ActionLink("Confirm Appt!", "ConfirmAppointment",
+                                            new { ct_id = item.CareTransactionID },
+                                            new { style = "color: #f2e6d9; font-weight: normal;" })
+                                </span>
                             }
+                            <span style="margin-right: 15px;">
+                                ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                            </span>
+                            <span style="margin-right: 15px;">
+                                Pending? @Html.DisplayFor(model => item.Pending)
+                            </span>
+                            <span style="margin-right: 15px;">
+                                Confirmed? @Html.DisplayFor(model => item.Confirmed)
+                            </span>
                         </div><!-- END ROW THREE-->
                         <!--==========================================================-->
                     </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
@@ -390,12 +405,7 @@
                                         <span class="our_appt_label">
                                             @Html.DisplayNameFor(model => model.CareProvided)<br />
                                         </span>
-
-                                        @*@if (String.IsNullOrEmpty())
-                                    {
-                                        test for null/empty
-                                        to change background color if true!
-                                    }*@
+                                        
                                         @Html.DisplayFor(model => item.CareProvided)
                                     </div>
 
@@ -497,16 +507,30 @@
                                              new { style = "color: #f2e6d9; font-weight: normal;" })
                                 </span>
 
-                                @if(isPetCarer)
-                                { 
+                                @if (isPetCarer)
+                                {
                                     <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
                                     <span style="float:right; margin-right:5px;" class="btn our_buttons">
                                         @Html.ActionLink("Job Details", "PetCarer_JobDetails",
                                                 new { ct_id = item.CareTransactionID },
                                                 new { style = "color: #f2e6d9; font-weight: normal;" })
                                     </span>
-                                }
 
+                                    <span style="float:right; margin-right:5px;" class="btn our_buttons">
+                                        @Html.ActionLink("Confirm Appt!", "ConfirmAppointment",
+                                                new { ct_id = item.CareTransactionID },
+                                                new { style = "color: #f2e6d9; font-weight: normal;" })
+                                    </span>
+                                }
+                                <span style="margin-right: 15px;">
+                                    ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                                </span>
+                                <span style="margin-right: 15px;">
+                                    Pending? @Html.DisplayFor(model => item.Pending)
+                                </span>
+                                <span style="margin-right: 15px;">
+                                    Confirmed? @Html.DisplayFor(model => item.Confirmed)
+                                </span>
                             </div><!-- END ROW THREE-->
                             <!--======================================================-->
 

@@ -395,8 +395,235 @@ namespace Petopia.Controllers
             return View(careTransaction);
         }
         //===============================================================================
+        //===============================================================================
+        //                                                         Appointment CONFIRMING
+        //===============================================================================
+        // GET: CareTransactions/ConfirmAppointment/5                   base off 'Edit()'
+        public ActionResult ConfirmAppointment(int? ct_id)
+        {
+            // for initial proofing in the view
+            ViewBag.thisApptID = ct_id;
 
+            // so first we gotta find the apppointment & pull it up -- like in 'Edit()'
+            if (ct_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
+            CareTransaction careTransaction = db.CareTransactions.Find(ct_id);
+
+            if (careTransaction == null)
+            {
+                return HttpNotFound();
+            }                                                                      // GET
+            //---------------------------------------------------------------------------
+            // make sure that only the requested care provider can access this page
+            // get logged-in user's PetOwnerID, into the 'PetOwnerID' field,
+            var loggedInUser = User.Identity.GetUserId();
+
+            var loggedInPetopiaUserID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == loggedInUser)
+                                                       .Select(u => u.UserID).FirstOrDefault();
+
+            var loggedInPetCarerID = db.CareProviders.Where(po => po.UserID == loggedInPetopiaUserID)
+                                                     .Select(po => po.CareProviderID).FirstOrDefault();
+
+            ViewBag.loggedInUser = loggedInUser;
+            ViewBag.loggedInPetopiaUserID = loggedInPetopiaUserID;
+            ViewBag.loggedInPetCarerID = loggedInPetCarerID;
+            //---------------------------------------------------------
+            var reqPetCarerID = db.CareTransactions.Where(cp => cp.TransactionID == ct_id)
+                                                   .Select(cpID => cpID.CareProviderID).FirstOrDefault();
+            // just proofing
+            var reqPetCarerCP_ID = db.CareProviders.Where(cp => cp.CareProviderID == reqPetCarerID)
+                                                   .Select(cp => cp.CareProviderID).FirstOrDefault();
+            // proofing.....
+            var reqPetCarerPU_ID = db.CareProviders.Where(pu => pu.CareProviderID == reqPetCarerCP_ID)
+                                                   .Select(puID => puID.UserID).FirstOrDefault();
+            // proofing.....
+            var reqPetCarerASPNetID = db.PetopiaUsers.Where(pu => pu.UserID == reqPetCarerPU_ID)
+                                                     .Select(aID => aID.ASPNetIdentityID).FirstOrDefault();
+
+            ViewBag.reqPetCarerID = reqPetCarerID;
+            ViewBag.reqPetCarerCP_ID = reqPetCarerCP_ID;
+            ViewBag.reqPetCarerPU_ID = reqPetCarerPU_ID;
+            ViewBag.reqPetCarerASPNetID = reqPetCarerASPNetID;
+            //---------------------------------------------------------------------------
+            // pull in Pet & Pet Owner names & format the date better
+            var thisPetID = db.CareTransactions.Where(ct => ct.TransactionID == ct_id)
+                                               .Select(pID => pID.PetID)
+                                               .FirstOrDefault();
+
+            var petName = db.Pets.Where(pID => pID.PetID == thisPetID)
+                                 .Select(pn => pn.PetName).FirstOrDefault();
+
+            ViewBag.PetName = petName;
+
+            //---------------------------------------------------------
+            var thisPetOwnerID = db.CareTransactions.Where(ct => ct.TransactionID == ct_id)
+                                                    .Select(poID => poID.PetOwnerID).FirstOrDefault();
+
+            var thisPetOwnerPetopiaID = db.PetOwners.Where(po => po.PetOwnerID == thisPetOwnerID)
+                                                    .Select(poID => poID.UserID).FirstOrDefault();
+
+            var thisPetOwnerFirstName = db.PetopiaUsers.Where(pu => pu.UserID == thisPetOwnerPetopiaID)
+                                                       .Select(poFN => poFN.FirstName).FirstOrDefault();
+
+            var thisPetOwnerLastName = db.PetopiaUsers.Where(pu => pu.UserID == thisPetOwnerPetopiaID)
+                                                      .Select(poLN => poLN.LastName).FirstOrDefault();
+
+            ViewBag.PetOwnerName = thisPetOwnerFirstName + " " + thisPetOwnerLastName;
+
+            //---------------------------------------------------------
+            var thisStartDate = db.CareTransactions.Where(ct => ct.TransactionID == ct_id)
+                                                   .Select(ct => ct.StartDate)
+                                                   .FirstOrDefault().ToString("MMMM dd, yyyy");
+
+            var thisEndDate = db.CareTransactions.Where(ct => ct.TransactionID == ct_id)
+                                                 .Select(ct => ct.EndDate)
+                                                 .FirstOrDefault().ToString("MMMM dd, yyyy");
+
+            ViewBag.StartDate = thisStartDate;
+            ViewBag.EndDate = thisEndDate;
+
+            //---------------------------------------------------------------------------
+            // the (careTransaction) is super-important, haha
+            return View(careTransaction);
+        }
+        //-------------------------------------------------------------------------------
+        //                                                still in Appointment-Confirming
+        //-------------------------------------------------------------------------------
+        // POST: CareTransactions/ConfirmAppointment/5
+        // To protect from overposting attacks, please enable the specific properties you
+        // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ConfirmAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
+          "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
+          "CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
+        {
+            // so why *do* some of these have all that ^^^ and others don't?
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(careTransaction).State = EntityState.Modified;
+
+                careTransaction.Pending = false;
+                careTransaction.Confirmed = true;
+
+                db.SaveChanges();
+
+                return RedirectToAction("ConfirmConfirmation",
+                                        new { ct_id = careTransaction.TransactionID });
+            }
+            //---------------------------------------------------------
+            return View(careTransaction);
+        }
+        //-------------------------------------------------------------------------------
+        //                                                still in Appointment-Confirming
+        //-------------------------------------------------------------------------------
+        public ActionResult ConfirmConfirmation(int? ct_id)    // do like booking confirm
+        {
+            // pull in PetOwner/PetCarer name + email, PetName, appt request recap
+            if (ct_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            CareTransaction careTransaction = db.CareTransactions.Find(ct_id);
+
+            if (careTransaction == null)
+            {
+                return HttpNotFound();
+            }
+            //---------------------------------------------------------------------------
+            // get logged-in user identity:
+            var loggedInUser = User.Identity.GetUserId();
+            var thisApptID = ct_id;
+
+            ViewBag.LoggedInUser = loggedInUser;
+            ViewBag.thisApptID = thisApptID;
+            //---------------------------------------------------------------------------
+            // trying to pull the Pet's Name for display!   
+            var thisPetID = careTransaction.PetID;
+
+            var thisPetName = db.Pets.Where(p => p.PetID == thisPetID)
+                                     .Select(pn => pn.PetName).FirstOrDefault();
+
+            ViewBag.PetName = thisPetName;
+            //---------------------------------------------------------------------------
+            // getting the Pet Owner name & email & main phone for display!    
+            var thisOwnerID = careTransaction.PetOwnerID;
+
+            var thisOwnerPetopiaID = db.PetOwners.Where(cp => cp.PetOwnerID == thisOwnerID)
+                                                 .Select(cpID => cpID.UserID).FirstOrDefault();
+
+            var thisOwnerFirstName = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerPetopiaID)
+                                                    .Select(cpn => cpn.FirstName).FirstOrDefault();
+
+            var thisOwnerLastName = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerPetopiaID)
+                                                   .Select(cpn => cpn.LastName).FirstOrDefault();
+
+            var thisOwnerAspIdentity = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerPetopiaID)
+                                                      .Select(asp => asp.ASPNetIdentityID).FirstOrDefault();
+
+            var thisOwnerEmail = db.ASPNetUsers.Where(pu => pu.Id == thisOwnerAspIdentity)
+                                               .Select(ce => ce.Email).FirstOrDefault();
+
+            var thisOwnerMainPhone = db.PetopiaUsers.Where(pu => pu.UserID == thisOwnerPetopiaID)
+                                                    .Select(mp => mp.MainPhone).FirstOrDefault();
+
+            var thisIsOwner = db.PetopiaUsers.Where(pu => pu.UserID == thisOwnerPetopiaID)
+                                             .Select(io => io.IsOwner).FirstOrDefault();
+
+            ViewBag.PetOwnerName = thisOwnerFirstName + " " + thisOwnerLastName;
+            ViewBag.PetOwnerEmail = thisOwnerEmail;
+            ViewBag.PetOwnerMainPhone = thisOwnerMainPhone;
+            ViewBag.PetOwnerPetopiaID = thisOwnerPetopiaID;
+            ViewBag.thisOwnerAspIdentity = thisOwnerAspIdentity;
+            ViewBag.thisIsOwner = thisIsOwner;
+            //---------------------------------------------------------------------------
+            // getting the Pet Carer name & email & main phone for display!           
+            var thisCarerID = careTransaction.CareProviderID;
+
+            var thisCarerPetopiaID = db.CareProviders.Where(cp => cp.CareProviderID == thisCarerID)
+                                                  .Select(cpID => cpID.UserID).FirstOrDefault();
+
+            var thisCarerFirstName = db.PetopiaUsers.Where(cp => cp.UserID == thisCarerPetopiaID)
+                                                    .Select(cpn => cpn.FirstName).FirstOrDefault();
+
+            var thisCarerLastName = db.PetopiaUsers.Where(cp => cp.UserID == thisCarerPetopiaID)
+                                                   .Select(cpn => cpn.LastName).FirstOrDefault();
+
+            var thisCarerAspIdentity = db.PetopiaUsers.Where(cp => cp.UserID == thisCarerPetopiaID)
+                                                      .Select(asp => asp.ASPNetIdentityID).FirstOrDefault();
+
+            var thisCarerEmail = db.ASPNetUsers.Where(pu => pu.Id == thisCarerAspIdentity)
+                                               .Select(ce => ce.Email).FirstOrDefault();
+
+            var thisCarerMainPhone = db.PetopiaUsers.Where(pu => pu.UserID == thisCarerPetopiaID)
+                                                    .Select(mp => mp.MainPhone).FirstOrDefault();
+
+            var thisIsCarer = db.PetopiaUsers.Where(pu => pu.UserID == thisOwnerPetopiaID)
+                                             .Select(ip => ip.IsProvider).FirstOrDefault();
+
+            ViewBag.PetCarerName = thisCarerFirstName + " " + thisCarerLastName;
+            ViewBag.PetCarerEmail = thisCarerEmail;
+            ViewBag.PetCarerMainPhone = thisCarerMainPhone;
+            ViewBag.PetCarerPetopiaID = thisCarerPetopiaID;
+            ViewBag.ThisCarerAspIdentity = thisCarerAspIdentity;
+            ViewBag.thisIsCarer = thisIsCarer;
+            //---------------------------------------------------------------------------
+            // getting start & end dates -- to format the display          
+            var thisStartDate = careTransaction.StartDate.ToString("MMMM dd, yyyy");
+            var thisEndDate = careTransaction.EndDate.ToString("MMMM dd, yyyy");
+
+            ViewBag.ApptStartDate = thisStartDate;
+            ViewBag.ApptEndDate = thisEndDate;
+            //---------------------------------------------------------
+
+            return View(careTransaction);
+        }
+        //===============================================================================
 
 
 
@@ -813,7 +1040,9 @@ namespace Petopia.Controllers
 
                     PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, 
                     PetCarerID = ct.CareProviderID,
-                    CareTransactionID = ct.TransactionID
+                    CareTransactionID = ct.TransactionID,
+
+                    Pending = ct.Pending, Confirmed = ct.Confirmed
                 }).ToList();
 
             //---------------------------------------------------------
@@ -846,7 +1075,9 @@ namespace Petopia.Controllers
                         PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
 
                         PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, PetCarerID = ct.CareProviderID,
-                        CareTransactionID = ct.TransactionID
+                        CareTransactionID = ct.TransactionID,
+
+                        Pending = ct.Pending, Confirmed = ct.Confirmed
                     }).ToList();
 
 

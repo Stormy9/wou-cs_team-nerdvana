@@ -1,0 +1,230 @@
+﻿@model Petopia.Models.CareTransaction
+
+@{
+    ViewBag.Title = "You've confirmed this Appointment!";
+    ViewBag.Title03 = "an email has been sent to you & the Pet Owner!";
+
+    var loggedInUser = ViewBag.LoggedInUser;
+    var thisOwnerAspIdentity = ViewBag.thisOwnerAspIdentity;
+    var thisOwnerPetopiaID = ViewBag.PetOwnerPetopiaID;
+    var thisCarerAspIdentity = ViewBag.ThisCarerAspIdentity;
+    var thisCarerPetopiaID = ViewBag.PetCarerPetopiaID;
+    var thisApptID = ViewBag.thisApptID;
+    var isOwner = ViewBag.thisIsOwner;
+    var isCarer = ViewBag.thisIsCarer;
+}
+<!-- only the pet carer gets this page --
+      but pet owner info is up there for proof & in case we do ever want them to see it
+        or something like it -->
+<div class="container-fluid">
+
+    <div style="margin-left: 9px;">
+        <h2> @ViewBag.Title </h2>
+        <h4> @ViewBag.Title03 </h4>
+    </div>
+
+    <div class="container-fluid my_appt_box" style="padding: 15px 15px 23px 15px;">
+
+        <!--================================= ROW ZERO! ==============================-->
+        <div class="row">
+
+            <!-------------------------- ROW 0 \ COL 1 --------------------------------->
+            <div class="col-sm-2 col-md-2">
+
+                <div class="our_appt_label">
+                    Pet & Owner Info: &nbsp;
+                </div>
+                @*@Html.DisplayFor(model => model.PetOwnerID)*@
+                <div> @ViewBag.PetName </div>
+                <div> @ViewBag.PetOwnerName </div>
+                <div> @ViewBag.PetOwnerEmail </div>
+                <div> @ViewBag.PetOwnerMainPhone </div>
+
+            </div>
+            <!-------------------------- ROW 0 \ COL 2 --------------------------------->
+            <div class="col-sm-2 col-md-2">
+
+                <div class="our_appt_label">
+                    Pet Carer Info: &nbsp;
+                </div>
+                @*@Html.DisplayFor(model => model.CareProviderID)*@
+                <div> @ViewBag.PetCarerName </div>
+                <div> @ViewBag.PetCarerEmail </div>
+                <div> @ViewBag.PetCarerMainPhone </div>
+
+            </div>
+            <!---------------------------- ROW 0 \ COL 3 ------------------------------->
+            <div class="col-sm-2 col-md-2">
+
+                <div style="margin: 0px 0px 13px 0px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.StartDate)<br />
+                    </span>
+                    @*@Html.DisplayFor(model => model.StartDate)*@
+                    @ViewBag.ApptStartDate
+                </div>
+
+                <div style="margin: 0px 0px 13px 0px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.StartTime)<br />
+                    </span>
+                    @Html.DisplayFor(model => model.StartTime) &nbsp;
+                    @*<i>[@ViewBag.ApptStartTime]</i>*@
+                </div>
+
+            </div>
+            <!------------------------------ ROW 0 \ COL 4 ----------------------------->
+            <div class="col-sm-2 col-md-2">
+
+                <div style="margin: 0px 0px 13px 0px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.EndDate)<br />
+                    </span>
+                    @*@Html.DisplayFor(model => model.EndDate)*@
+                    @ViewBag.ApptEndDate
+                </div>
+
+                <div style="margin: 0px 0px 13px 0px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.EndTime)<br />
+                    </span>
+                    @Html.DisplayFor(model => model.EndTime) &nbsp;
+                    @*<i>[@ViewBag.ApptEndTime]</i>*@
+                </div>
+
+            </div>
+            <!-------------------------- ROW 0 \ COL 5 --------------------------------->
+            <div class="col-sm-4 col-md-4" style="text-align:right;">
+
+                <div style="float:right;" class="top_button_boxs">
+                    @if (loggedInUser == thisOwnerAspIdentity)
+                    {
+                        <div style="margin:5px; float:right;">
+                            @Html.ActionLink("Pet's appointments", "MyPetsAppointments",
+                                    new { controller = "CareTransactions", pet_id = Model.PetID },
+                                        new
+                                             {
+                                                 @class = "btn our_buttons",
+                                            style = "color:#f2e6d9; font-weight:normal;"
+                                             })
+                        </div>
+                    }
+
+                    <div style="margin:5px; float:right;">
+                        @Html.ActionLink("My appointments", "MyAppointments",
+                                    new { id = Model.PetOwnerID },
+                                    new
+                                         {
+                                             @class = "btn our_buttons",
+                                        style = "color:#f2e6d9; font-weight:normal;"
+                                         })
+                    </div>
+                </div>
+                <!---->
+                <div style="clear:both;"> </div>
+                <!---->
+                <div style="float:right" class="bottom_button_box">
+                    @if (loggedInUser == thisCarerAspIdentity)
+                    {
+                        <div style="margin:5px; float:right;">
+                            @Html.ActionLink("Pet's profile", "PetProfile",
+                                    new { controller = "Pets", id = Model.PetID },
+                                        new
+                                             {
+                                                 @class = "btn our_buttons",
+                                            style = "color:#f2e6d9; font-weight:normal;"
+                                             })
+                        </div>
+                        <div style="margin:5px; float:right;">
+                            @Html.ActionLink("Pet Owner Profile", "VisitProfile",
+                                new { controller = "ProfilePage", loggedID = thisOwnerPetopiaID },
+                                    new
+                                         {
+                                             @class = "btn our_buttons",
+                                            style = "color:#f2e6d9; font-weight:normal;"
+                                         })
+                        </div>
+                    }
+                    @if (loggedInUser == thisOwnerAspIdentity)
+                    {
+                        <div style="margin:5px; float:right;">
+                            @Html.ActionLink("Pet Carer Profile", "VisitProfile",
+                                new { controller = "ProfilePage", loggedID = thisCarerPetopiaID },
+                                    new
+                                         {
+                                             @class = "btn our_buttons",
+                                            style = "color:#f2e6d9;font-weight:normal;"
+                                         })
+                        </div>
+                    }
+                </div><!-- END bottom_button_box -->
+            </div><!-- END ROW 1 \ COL 3 -->
+            <!-------------------------------------------------------------------------->
+        </div><!-- END ROW ZERO -->
+        <!---->
+        <!--======================================= ROW ONE ==========================-->
+        <div class="row our_row_one">
+            <!------------------------------- ROW 1 \ COL 1 ---------------------------->
+            <div class="col-md-8" style="margin-top:9px;">
+
+                <div>
+                    <div class="our_appt_label">
+                        @*@Html.DisplayNameFor(model => model.NeededThisVisit)<br />*@
+                        Instructions for this Visit:
+                    </div>
+                    @Html.DisplayFor(model => model.NeededThisVisit)
+                </div>
+
+            </div><!-- END ROW 1 \ COL 1 -->
+            <!-------------------------------------------------------------------------->
+            <!---->
+            <!--------------------------- ROW 1 \ COL 2 -------------------------------->
+            <div class="col-sm-4 col-md-4">
+
+
+
+            </div><!-- END ROW 1 \ COL 4 -->
+            <!-------------------------------------------------------------------------->
+            <!---->
+        </div><!-- END ROW 1 -->
+        <!---->
+        <!--==========================================================================-->
+    </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
+    <!---->
+    <!---->
+    <!--============================ ROW TWO \ CHEKCING CRAP OUT =====================-->
+    <!---->
+    <div class="row" style="margin:18px; border:1px solid blue;">
+
+        <div>
+            <span style="float: left; margin-right: 30px;">
+                Pending? @Html.DisplayFor(model => model.Pending)
+            </span>
+            <span style="float: left; margin-right: 30px;">
+                Confirmed? @Html.DisplayFor(model => model.Confirmed)
+            </span>
+            <span style="float: left; margin-right: 30px;">
+                Completed_PO? @Html.DisplayFor(model => model.Completed_PO)
+            </span>
+            <span style="float: left; margin-right: 30px;">
+                Completed_CP? @Html.DisplayFor(model => model.Completed_CP)
+            </span>
+        </div>
+        <br /><br />
+        <!-- testing purposes! -->
+        <div style="clear:both;">
+            logged-in user: @loggedInUser  <br />
+            this carer: @thisCarerAspIdentity <br />
+            this owner: @thisOwnerAspIdentity <br />
+            this appt ID: @thisApptID
+        </div>
+
+    </div>
+    <!---->
+    <!--==============================================================================-->
+</div><!-- END CONTAINER-FLUID (outer-most container) -->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<!--==================================================================================-->
