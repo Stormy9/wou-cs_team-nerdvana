@@ -5,10 +5,6 @@
     ViewBag.TitleOwner = "Appointments for my Pets";
     ViewBag.TitleProvider = "My Appointment Listings";
 
-    //this works!!!!!
-    var today = DateTime.Now.ToString("yyyy-MM-dd");
-    var todaysDate = DateTime.Now;
-
     var isPetOwner = ViewBag.isPetOwner;
     var isPetCarer = ViewBag.isPetCarer;
 }
@@ -35,13 +31,13 @@
         <li class="active">
             <a data-toggle="tab" href="#home" 
                style="background-color: #392613; color: #f2e6d9;">
-                your upcoming appointments
+                pending appointments
             </a>
         </li>
         <li>
             <a data-toggle="tab" href="#menu1" 
                style="background-color: #604020; color: #f2e6d9;">
-                your past appointments
+                confirmed\upcoming appointments
             </a>
         </li>
     </ul>
@@ -106,15 +102,13 @@
 
                                 <div style="margin-bottom: 5px;">
                                     <span class="our_appt_label">
-                                        From:<br />
-                                    </span>
+                                        From:<br /> </span>
                                     @Html.DisplayFor(model => item.StartDate)
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
-                                        at:<br />
-                                    </span>
+                                        at:<br /> </span>
                                     @Html.DisplayFor(model => item.StartTime)
                                 </div>
 
@@ -169,14 +163,16 @@
 
                                 <div style="margin-bottom: 13px;">
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.Charge) &nbsp; $ <br />
+                                        @Html.DisplayNameFor(model => model.Charge) 
+                                            &nbsp; $ <br />
                                     </span>
                                     @Html.DisplayFor(model => item.Charge)
                                 </div>
 
                                 <div style="margin-top: 13px;">
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.Tip) &nbsp; $ <br />
+                                        @Html.DisplayNameFor(model => model.Tip) 
+                                            &nbsp; $ <br />
                                     </span>
                                     @Html.DisplayFor(model => item.Tip)
                                 </div>
@@ -194,8 +190,8 @@
 
                                 <div>
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.CareReport)<br />
-                                    </span>
+                                        @Html.DisplayNameFor(model => model.CareReport)
+                                        <br /> </span>
                                     @Html.DisplayFor(model => item.CareReport)
                                 </div>
 
@@ -207,15 +203,15 @@
 
                                 <div>
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.PC_Rating) &nbsp;
-                                    </span>
+                                        @Html.DisplayNameFor(model => model.PC_Rating) 
+                                            &nbsp; </span>
                                     @Html.DisplayFor(model => item.PC_Rating)
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.PC_Comments)<br />
-                                    </span>
+                                        @Html.DisplayNameFor(model => model.PC_Comments)
+                                            <br /> </span>
                                     @Html.DisplayFor(model => item.PC_Comments)
                                 </div>
 
@@ -227,15 +223,15 @@
 
                                 <div>
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.PO_Rating) &nbsp;
-                                    </span>
+                                        @Html.DisplayNameFor(model => model.PO_Rating) 
+                                            &nbsp; </span>
                                     @Html.DisplayFor(model => item.PO_Rating)
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.PO_Comments)<br />
-                                    </span>
+                                        @Html.DisplayNameFor(model => model.PO_Comments)
+                                            <br /> </span>
                                     @Html.DisplayFor(model => item.PO_Comments)
                                 </div>
 
@@ -280,6 +276,7 @@
                                             new { style = "color: #f2e6d9; font-weight: normal;" })
                                 </span>
                             }
+
                             <span style="margin-right: 15px;">
                                 ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                             </span>
@@ -289,6 +286,7 @@
                             <span style="margin-right: 15px;">
                                 Confirmed? @Html.DisplayFor(model => item.Confirmed)
                             </span>
+
                         </div><!-- END ROW THREE-->
                         <!--==========================================================-->
                     </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
@@ -297,21 +295,21 @@
             else 
             {
                 <p style="text-align: center;"> 
-                    you don't have any upcoming appointments at this time! </p>
+                    you don't have any pending appointments at this time! </p>
             }
-        <!--============================================================================-->
-        </div><!-- END DIV WHERE ID==HOME --><!-- aka UPCOMING APPTS! -->
-        <!---->
-        <!---->
-        <!--                                 PAST                                     -->
         <!--==========================================================================-->
-        <!------------------------- 2nd TAB => Past Appts ------------------------------>
+        </div><!-- END DIV WHERE ID==HOME --><!-- aka PENDING APPTS! -->
+        <!---->
+        <!---->
+        <!--                                 CONFIRMED                                -->
+        <!--==========================================================================-->
+        <!------------------------- 2nd TAB => Confirmed Appts ------------------------->
         <div id="menu1" class="tab-pane fade">
             <div id="home" class="tab-pane fade in active">
 
-                @if (Model.ApptInfoListFinished.Count() > 0)
+                @if (Model.ApptInfoListConfirmed.Count() > 0)
                 {
-                    foreach (var item in Model.ApptInfoListFinished)
+                    foreach (var item in Model.ApptInfoListConfirmed)
                     {
                         <div class="container-fluid my_appt_box" style="padding: 15px;">
 
@@ -540,7 +538,7 @@
                 else
                 {
                     <p style="text-align: center;"> 
-                        you don't have any past appointments yet!</p>
+                        you don't have any confirmed appointments yet!</p>
                 }
                 <!--==================================================================-->
             </div><!-- end div where id==home & class==tab-pane fade in active -->

@@ -1229,14 +1229,42 @@ namespace Petopia.Controllers
             //---------------------------------------------------------
             // still inside 'MyAppointments()'                                  CONFIRMED
             //---------------------------------------------------------------------------
+            Vmodel.ApptInfoListConfirmed = (from ct in db.CareTransactions
+                where (ct.PetOwnerID == thisPetOwner || ct.CareProviderID == thisCareProvider)
+                        && (ct.Confirmed)
+                        && (ct.EndDate >= DateTime.Now)
+                orderby ct.StartDate
 
+                join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
+                join po in db.PetOwners on ct.PetOwnerID equals po.PetOwnerID
+                join puO in db.PetopiaUsers on po.UserID equals puO.UserID
+                join puP in db.PetopiaUsers on cp.UserID equals puP.UserID
+                join p in db.Pets on ct.PetID equals p.PetID
 
+                select new CareTransactionViewModel.ApptInfo
+                {
+                    PetName = p.PetName,
+                    PetOwnerName = puO.FirstName + " " + puO.LastName,
+                    PetCarerName = puP.FirstName + " " + puP.LastName,
 
+                    StartDate = ct.StartDate, EndDate = ct.EndDate,
+                    StartTime = ct.StartTime, EndTime = ct.EndTime,
 
+                    NeededThisVisit = ct.NeededThisVisit,
+                    CareProvided = ct.CareProvided,
+                    CareReport = ct.CareReport,
+                    Charge = ct.Charge, Tip = ct.Tip,
 
+                    PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
+                    PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
 
+                    PetID = ct.PetID, PetOwnerID = ct.PetOwnerID,
+                    PetCarerID = ct.CareProviderID,
+                    CareTransactionID = ct.TransactionID,
 
+                    Pending = ct.Pending, Confirmed = ct.Confirmed
 
+                }).ToList();
 
             //---------------------------------------------------------
             // still inside 'MyAppointments()'                                   FINISHED
