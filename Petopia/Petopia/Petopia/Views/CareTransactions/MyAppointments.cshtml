@@ -40,10 +40,16 @@
                 confirmed\upcoming appointments
             </a>
         </li>
+        <li>
+            <a data-toggle="tab" href="#menu2" 
+               style="background-color: #604020; color: #f2e6d9;">
+                finished appointments
+            </a>
+        </li>
     </ul>
     <!------------------------- THE TAB CONTENT PART! ---------------------------------->
     <!---->
-    <div class="tab-content" >
+    <div class="tab-content">
         <!------------------------------ 1st TAB => Upcoming Appts --------------------->
         <div id="home" class="tab-pane fade in active">
 
@@ -102,13 +108,15 @@
 
                                 <div style="margin-bottom: 5px;">
                                     <span class="our_appt_label">
-                                        From:<br /> </span>
+                                        From:<br />
+                                    </span>
                                     @Html.DisplayFor(model => item.StartDate)
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
-                                        at:<br /> </span>
+                                        at:<br />
+                                    </span>
                                     @Html.DisplayFor(model => item.StartTime)
                                 </div>
 
@@ -120,13 +128,15 @@
 
                                 <div style="margin-bottom: 5px;">
                                     <span class="our_appt_label">
-                                        To:<br /></span>
+                                        To:<br />
+                                    </span>
                                     @Html.DisplayFor(model => item.EndDate)
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
-                                        at:<br /></span>
+                                        at:<br />
+                                    </span>
                                     @Html.DisplayFor(model => item.EndTime)
                                 </div>
 
@@ -163,16 +173,16 @@
 
                                 <div style="margin-bottom: 13px;">
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.Charge) 
-                                            &nbsp; $ <br />
+                                        @Html.DisplayNameFor(model => model.Charge)
+                                        &nbsp; $ <br />
                                     </span>
                                     @Html.DisplayFor(model => item.Charge)
                                 </div>
 
                                 <div style="margin-top: 13px;">
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.Tip) 
-                                            &nbsp; $ <br />
+                                        @Html.DisplayNameFor(model => model.Tip)
+                                        &nbsp; $ <br />
                                     </span>
                                     @Html.DisplayFor(model => item.Tip)
                                 </div>
@@ -191,7 +201,8 @@
                                 <div>
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => model.CareReport)
-                                        <br /> </span>
+                                        <br />
+                                    </span>
                                     @Html.DisplayFor(model => item.CareReport)
                                 </div>
 
@@ -203,15 +214,17 @@
 
                                 <div>
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.PC_Rating) 
-                                            &nbsp; </span>
+                                        @Html.DisplayNameFor(model => model.PC_Rating)
+                                        &nbsp;
+                                    </span>
                                     @Html.DisplayFor(model => item.PC_Rating)
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => model.PC_Comments)
-                                            <br /> </span>
+                                        <br />
+                                    </span>
                                     @Html.DisplayFor(model => item.PC_Comments)
                                 </div>
 
@@ -223,15 +236,17 @@
 
                                 <div>
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.PO_Rating) 
-                                            &nbsp; </span>
+                                        @Html.DisplayNameFor(model => model.PO_Rating)
+                                        &nbsp;
+                                    </span>
                                     @Html.DisplayFor(model => item.PO_Rating)
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => model.PO_Comments)
-                                            <br /> </span>
+                                        <br />
+                                    </span>
                                     @Html.DisplayFor(model => item.PO_Comments)
                                 </div>
 
@@ -292,12 +307,13 @@
                     </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
                 }
             }
-            else 
+            else
             {
-                <p style="text-align: center;"> 
-                    you don't have any pending appointments at this time! </p>
+                <p style="text-align: center;">
+                    you don't have any pending appointments at this time!
+                </p>
             }
-        <!--==========================================================================-->
+            <!--==========================================================================-->
         </div><!-- END DIV WHERE ID==HOME --><!-- aka PENDING APPTS! -->
         <!---->
         <!---->
@@ -353,13 +369,15 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            From:<br /></span>
+                                            From:<br />
+                                        </span>
                                         @Html.DisplayFor(model => item.StartDate)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            at:<br /></span>
+                                            at:<br />
+                                        </span>
                                         @Html.DisplayFor(model => item.StartTime)
                                     </div>
 
@@ -371,13 +389,15 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            To:<br /></span>
+                                            To:<br />
+                                        </span>
                                         @Html.DisplayFor(model => item.EndDate)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            at:<br /></span>
+                                            at:<br />
+                                        </span>
                                         @Html.DisplayFor(model => item.EndTime)
                                     </div>
 
@@ -403,7 +423,7 @@
                                         <span class="our_appt_label">
                                             @Html.DisplayNameFor(model => model.CareProvided)<br />
                                         </span>
-                                        
+
                                         @Html.DisplayFor(model => item.CareProvided)
                                     </div>
 
@@ -537,13 +557,274 @@
                 }
                 else
                 {
-                    <p style="text-align: center;"> 
-                        you don't have any confirmed appointments yet!</p>
+                    <p style="text-align: center;">
+                        you don't have any confirmed appointments yet!
+                    </p>
                 }
                 <!--==================================================================-->
             </div><!-- end div where id==home & class==tab-pane fade in active -->
-        </div><!-- end div where id=Menu1 -->
+        </div><!-- end div where id=Menu1 --><!-- end confirmed -->
         <!------------------------------------------------------------------------------>
+        <!---->
+        <!---->
+        <!--                                 FINISHED                                 -->
+        <!--==========================================================================-->
+        <!------------------------- 3rd TAB => Finished Appts -------------------------->
+        <div id="menu2" class="tab-pane fade">
+            <div id="home" class="tab-pane fade in active">
+
+                @if (Model.ApptInfoListFinished.Count() > 0)
+                {
+                    foreach (var item in Model.ApptInfoListFinished)
+                    {
+                        <div class="container-fluid my_appt_box" style="padding: 15px;">
+
+                            <!--============================= ROW ZERO! ==============-->
+                            <div class="row our_row_one" style="margin-bottom: 18px;">
+
+                                <div class="col-sm-12 col-md-12">
+
+                                    <!-------------------------------------------------->
+                                    <span style="float:left;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.PetName)&nbsp;&nbsp;
+                                        </span>
+                                        @Html.DisplayFor(model => item.PetName)
+                                    </span>
+                                    <!-------------------------------------------------->
+
+                                    <span style="float:left; margin-left: 25px;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => item.PetOwnerName)&nbsp;&nbsp;
+                                        </span>
+                                        @Html.DisplayFor(model => item.PetOwnerName)
+                                    </span>
+                                    <!-------------------------------------------------->
+
+                                    <span style="float:left; margin-left: 25px;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => item.PetCarerName)&nbsp;&nbsp;
+                                        </span>
+                                        @Html.DisplayFor(model => item.PetCarerName)
+                                    </span>
+                                    <!-------------------------------------------------->
+                                </div>
+                            </div><!-- END ROW ZERO -->
+                            <!---->
+                            <!---->
+                            <!--=================================== ROW ONE ==========-->
+                            <div class="row our_row_one" style="margin-bottom: 18px;">
+                                <!------------------------------- ROW 1 \ COL 1 -------->
+                                <div class="col-sm-1 col-md-1">
+
+                                    <div style="margin-bottom: 5px;">
+                                        <span class="our_appt_label">
+                                            From:<br />
+                                        </span>
+                                        @Html.DisplayFor(model => item.StartDate)
+                                    </div>
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            at:<br />
+                                        </span>
+                                        @Html.DisplayFor(model => item.StartTime)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 1 -->
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!--------------------------- ROW 1 \ COL 2 ------------>
+                                <div class="col-sm-1 col-md-1">
+
+                                    <div style="margin-bottom: 5px;">
+                                        <span class="our_appt_label">
+                                            To:<br />
+                                        </span>
+                                        @Html.DisplayFor(model => item.EndDate)
+                                    </div>
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            at:<br />
+                                        </span>
+                                        @Html.DisplayFor(model => item.EndTime)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 2 -->
+                                <!---->
+                                <!--------------------------- ROW 1 \ COL 3 ------------>
+                                <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.NeededThisVisit)<br />
+                                        </span>
+                                        @Html.DisplayFor(model => item.NeededThisVisit)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 3 -->
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!--------------------------- ROW 1 \ COL 4 ------------>
+                                <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.CareProvided)<br />
+                                        </span>
+
+                                        @Html.DisplayFor(model => item.CareProvided)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 4 -->
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!----------------------------- ROW 1 \ COL 5 ---------->
+                                <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+
+                                    <div style="margin-bottom: 13px;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.Charge) &nbsp; $ <br />
+                                        </span>
+                                        @Html.DisplayFor(model => item.Charge)
+                                    </div>
+
+                                    <div style="margin-top: 13px;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.Tip) &nbsp; $ <br />
+                                        </span>
+                                        @Html.DisplayFor(model => item.Tip)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 5 -->
+                                <!------------------------------------------------------>
+                            </div><!-- END ROW 1 -->
+                            <!---->
+                            <!---->
+                            <!--=============================== ROW TWO ==============-->
+                            <div class="row our_row_two" style="margin-bottom: 18px;">
+
+                                <!--------------------------------- ROW 2 \ COL 1 ------>
+                                <div class="col-sm-3 col-md-3">
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.CareReport)<br />
+                                        </span>
+                                        @Html.DisplayFor(model => item.CareReport)
+                                    </div>
+
+                                </div><!-- END ROW 2 \ COL 1-->
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!--------------------------- ROW 2 \ COL 2 ------------>
+                                <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.PC_Rating) &nbsp;
+                                        </span>
+                                        @Html.DisplayFor(model => item.PC_Rating)
+                                    </div>
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.PC_Comments)<br />
+                                        </span>
+                                        @Html.DisplayFor(model => item.PC_Comments)
+                                    </div>
+
+                                </div>
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!---------------------------- ROW 2 \ COL 3 ----------->
+                                <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.PO_Rating) &nbsp;
+                                        </span>
+                                        @Html.DisplayFor(model => item.PO_Rating)
+                                    </div>
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.PO_Comments)<br />
+                                        </span>
+                                        @Html.DisplayFor(model => item.PO_Comments)
+                                    </div>
+
+                                </div><!-- END ROW 2 \ COL 3 -->
+                                <!------------------------------------------------------>
+                            </div><!-- END ROW 2 -->
+                            <!---->
+                            <!---->
+                            <!--============================== ROW THREE =============-->
+                            <div class="row our_row_three">
+
+                                <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                                    @Html.ActionLink("Complete Appointment", "CompleteAppointment",
+                                            new { id = item.CareTransactionID },
+                                            new { style = "color: #f2e6d9; font-weight: normal;" })
+                                </span>
+
+                                <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                                    @Html.ActionLink("Pet's Profile", "PetProfile",
+                                     new { controller = "Pets", id = item.PetID },
+                                             new { style = "color: #f2e6d9; font-weight: normal;" })
+                                </span>
+
+                                @if (isPetCarer)
+                                {
+                                    <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
+                                    <span style="float:right; margin-right:5px;" class="btn our_buttons">
+                                        @Html.ActionLink("Job Details", "PetCarer_JobDetails",
+                                                new { ct_id = item.CareTransactionID },
+                                                new { style = "color: #f2e6d9; font-weight: normal;" })
+                                    </span>
+
+                                    <span style="float:right; margin-right:5px;" class="btn our_buttons">
+                                        @Html.ActionLink("Confirm Appt!", "ConfirmAppointment",
+                                                new { ct_id = item.CareTransactionID },
+                                                new { style = "color: #f2e6d9; font-weight: normal;" })
+                                    </span>
+                                }
+                                <span style="margin-right: 15px;">
+                                    ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                                </span>
+                                <span style="margin-right: 15px;">
+                                    Pending? @Html.DisplayFor(model => item.Pending)
+                                </span>
+                                <span style="margin-right: 15px;">
+                                    Confirmed? @Html.DisplayFor(model => item.Confirmed)
+                                </span>
+                            </div><!-- END ROW THREE-->
+                            <!--======================================================-->
+
+                        </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
+                    }
+                }
+                else
+                {
+                    <p style="text-align: center;">
+                        you don't have any confirmed appointments yet!
+                    </p>
+                }
+                <!--==================================================================-->
+            </div><!-- end div where id==home & class==tab-pane fade in active -->
+        </div><!-- end div where id=Menu1 --><!-- end confirmed -->
+        <!------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+
+
+
     </div><!-- END OF TAB CONTENT THING -->
     <!--==============================================================================-->
     <!---->
