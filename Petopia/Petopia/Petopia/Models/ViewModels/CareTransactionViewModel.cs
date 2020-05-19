@@ -384,7 +384,7 @@ namespace Petopia.Models.ViewModels
 
         public List<ApptInfo> ApptInfoListConfirmed { get; set; }
 
-        public List<ApptInfo> ApptInfoListPast { get; set; }
+        public List<ApptInfo> ApptInfoListFinished { get; set; }
 
 
         //===============================================================================
