@@ -69,7 +69,7 @@ namespace Petopia.Controllers
                 return HttpNotFound();
             }
 
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // trying to pull the Pet's Name for display!
             var thisPetID = careTransaction.PetID;
 
@@ -78,7 +78,7 @@ namespace Petopia.Controllers
 
             ViewBag.PetName = thisPetName;
 
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // getting the Pet Carer name for display!
             var thisCarerID = careTransaction.CareProviderID;
 
@@ -93,7 +93,7 @@ namespace Petopia.Controllers
 
             ViewBag.PetCarerName = thisCarerFirstName + " " + thisCarerLastName;
 
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // getting the Pet Owner name for display
             var thisPetOwnerID = careTransaction.PetOwnerID;
 
@@ -108,7 +108,7 @@ namespace Petopia.Controllers
 
             ViewBag.PetOwnerName = thisPetOwnerFirstName + " " + thisPetOwnerLastName;
 
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // getting start & end dates -- to format the display
             var thisStartDate = careTransaction.StartDate.ToString("MM/dd/yyyy");
             var thisEndDate = careTransaction.EndDate.ToString("MM/dd/yyyy");
@@ -116,7 +116,7 @@ namespace Petopia.Controllers
             ViewBag.ApptStartDate = thisStartDate;
             ViewBag.ApptEndDate = thisEndDate;
 
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
 
             return View(careTransaction);
         }
@@ -126,7 +126,7 @@ namespace Petopia.Controllers
         // GET: CareTransactions/BookAppointment/5
         public ActionResult BookAppointment(int? id)
         {
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // get the pet that was passed in:
             var thisPetID = id;
             ViewBag.thisPetId = thisPetID;
@@ -135,7 +135,7 @@ namespace Petopia.Controllers
                                      .Select(pn => pn.PetName).FirstOrDefault();
 
             ViewBag.thisPetName = thisPetName;
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // get logged-in user's PetOwnerID, to put into the 'PetOwnerID' field:
             var identityID = User.Identity.GetUserId();
 
@@ -164,17 +164,17 @@ namespace Petopia.Controllers
             ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
             ViewBag.loggedInUser = loggedInUser;
 
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // see 'test_crap' at the end here for notes..... 
             // --> SELECT LIST OF THIS LOGGED-IN PET OWNER'S PETS <--
             List<SelectListItem> ThisOwnersPetsSelectList = (from pn in db.Pets
-                                                             where pn.PetOwnerID == thisPetOwnerID
-                                                             select new SelectListItem
-                                                             {
-                                                                 Value = pn.PetID.ToString(),
-                                                                 Text = pn.PetName
+                                                    where pn.PetOwnerID == thisPetOwnerID
+                                                    select new SelectListItem
+                                                    {
+                                                        Value = pn.PetID.ToString(),
+                                                        Text = pn.PetName
 
-                                                             }).ToList();
+                                                    }).ToList();
 
             //ViewBag.ThisOwnersPetsSelectList = new SelectList(ThisOwnersPetsSelectList);
             // ^^^ for one thing, the drop-down says 'System.Web.Mvc.SelectListItem'
@@ -197,14 +197,14 @@ namespace Petopia.Controllers
             //---------------------------------------------------------------------------
             // --> SELECT LIST OF PET CARERS w/ZIPCODE MATCHING THIS LOGGED-IN PET OWNER
             List<SelectListItem> PetCarerSelectList = (from pu in db.PetopiaUsers
-                                                       where pu.ResZipcode == thisPetOwnerZip
-                                                       join cp in db.CareProviders on pu.UserID equals cp.UserID
-                                                       select new SelectListItem
-                                                       {
-                                                           Value = cp.CareProviderID.ToString(),
-                                                           Text = pu.FirstName + " " + pu.LastName
+                                where pu.ResZipcode == thisPetOwnerZip
+                                join cp in db.CareProviders on pu.UserID equals cp.UserID
+                                select new SelectListItem
+                                {
+                                    Value = cp.CareProviderID.ToString(),
+                                    Text = pu.FirstName + " " + pu.LastName
 
-                                                       }).ToList();
+                                }).ToList();
 
             //ViewBag.PetCarerSelectList = new SelectList(PetCarerSelectList);
             //
@@ -225,16 +225,16 @@ namespace Petopia.Controllers
             //  where CareProvider Zipcode == currentlyLogged - inUser Zipcode-- it works!
             //    --> THIS IS WHAT MAKES THE BLUE CARDS ON THE 'test_crap' VIEW < --
             MatchingPetCarers.PetCarerList = (from pu in db.PetopiaUsers
-                                              where pu.ResZipcode == thisPetOwnerZip
-                                              join cp in db.CareProviders on pu.UserID equals cp.UserID
-                                              select new CareTransactionViewModel.CareProviderInfo
-                                              {
-                                                  CareProviderID = cp.CareProviderID,
-                                                  CP_Name = pu.FirstName + " " + pu.LastName,
+                                where pu.ResZipcode == thisPetOwnerZip
+                                join cp in db.CareProviders on pu.UserID equals cp.UserID
+                                select new CareTransactionViewModel.CareProviderInfo
+                                {
+                                    CareProviderID = cp.CareProviderID,
+                                    CP_Name = pu.FirstName + " " + pu.LastName,
 
-                                              }).ToList();
+                                }).ToList();
 
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
 
             return View(MatchingPetCarers);
         }
@@ -264,7 +264,7 @@ namespace Petopia.Controllers
                 // this logged-in PetopiaUser(PetOwner)'s Zipcode
                 var thisPetOwnerZip = db.PetopiaUsers.Where(poz => poz.UserID == thisPetopiaUserID)
                                                      .Select(poz => poz.ResZipcode).FirstOrDefault();
-                //-----------------------------------------------------------------------
+                //-----------------------------------------------------
 
                 // this seems to be really important, haha
                 careTransaction.PetOwnerID = thisPetOwnerID;
@@ -275,7 +275,7 @@ namespace Petopia.Controllers
                 careTransaction.Completed_PO = false;
                 careTransaction.Completed_CP = false;
 
-                //---------------------------------------------------------------------------
+                //-----------------------------------------------------
                 // to make sure only the pet's owner can see this page!
 
                 var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers
@@ -286,7 +286,7 @@ namespace Petopia.Controllers
 
                 ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
                 ViewBag.loggedInUser = loggedInUser;                
-                //-----------------------------------------------------------------------
+                //-----------------------------------------------------
 
                 db.CareTransactions.Add(careTransaction);
 
@@ -315,7 +315,7 @@ namespace Petopia.Controllers
             {
                 return HttpNotFound();
             }
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // trying to pull the Pet's Name for display!
             var thisPetID = careTransaction.PetID;
 
@@ -323,7 +323,7 @@ namespace Petopia.Controllers
                                      .Select(pn => pn.PetName).FirstOrDefault();
 
             ViewBag.PetName = thisPetName;
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // getting the Pet Owner name for display!
             var thisOwnerID = careTransaction.PetOwnerID;
 
@@ -337,7 +337,8 @@ namespace Petopia.Controllers
                                                    .Select(cpn => cpn.LastName).FirstOrDefault();
 
             ViewBag.PetOwnerName = thisOwnerFirstName + " " + thisOwnerLastName;
-            //---------------------------------------------------------------------------
+
+            //---------------------------------------------------------
             // getting the Pet Carer name for display!
             var thisCarerID = careTransaction.CareProviderID;
 
@@ -355,10 +356,12 @@ namespace Petopia.Controllers
 
             var thisCarerEmail = db.ASPNetUsers.Where(pu => pu.Id == thisCarerAspIdentity)
                                                .Select(ce => ce.Email).FirstOrDefault();
+
             ViewBag.PetcarerName = thisCarerFirstName + " " + thisCarerLastName;
             ViewBag.CarerEmail = thisCarerEmail;
-            //---------------------------------------------------------------------------
-            // getting start & end dates -- to format the display           it worked!
+
+            //---------------------------------------------------------
+            // getting start & end dates -- to format the display
             var thisStartDate = careTransaction.StartDate.ToString("MM/dd/yyyy");
             var thisEndDate = careTransaction.EndDate.ToString("MM/dd/yyyy");
 
@@ -447,7 +450,7 @@ namespace Petopia.Controllers
             ViewBag.reqPetCarerCP_ID = reqPetCarerCP_ID;
             ViewBag.reqPetCarerPU_ID = reqPetCarerPU_ID;
             ViewBag.reqPetCarerASPNetID = reqPetCarerASPNetID;
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // pull in Pet & Pet Owner names & format the date better
             var thisPetID = db.CareTransactions.Where(ct => ct.TransactionID == ct_id)
                                                .Select(pID => pID.PetID)
@@ -485,7 +488,7 @@ namespace Petopia.Controllers
             ViewBag.StartDate = thisStartDate;
             ViewBag.EndDate = thisEndDate;
 
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // the (careTransaction) is super-important, haha
             return View(careTransaction);
         }
@@ -535,14 +538,14 @@ namespace Petopia.Controllers
             {
                 return HttpNotFound();
             }
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // get logged-in user identity:
             var loggedInUser = User.Identity.GetUserId();
             var thisApptID = ct_id;
 
             ViewBag.LoggedInUser = loggedInUser;
             ViewBag.thisApptID = thisApptID;
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // trying to pull the Pet's Name for display!   
             var thisPetID = careTransaction.PetID;
 
@@ -550,7 +553,7 @@ namespace Petopia.Controllers
                                      .Select(pn => pn.PetName).FirstOrDefault();
 
             ViewBag.PetName = thisPetName;
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // getting the Pet Owner name & email & main phone for display!    
             var thisOwnerID = careTransaction.PetOwnerID;
 
@@ -581,7 +584,7 @@ namespace Petopia.Controllers
             ViewBag.PetOwnerPetopiaID = thisOwnerPetopiaID;
             ViewBag.thisOwnerAspIdentity = thisOwnerAspIdentity;
             ViewBag.thisIsOwner = thisIsOwner;
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // getting the Pet Carer name & email & main phone for display!           
             var thisCarerID = careTransaction.CareProviderID;
 
@@ -612,7 +615,7 @@ namespace Petopia.Controllers
             ViewBag.PetCarerPetopiaID = thisCarerPetopiaID;
             ViewBag.ThisCarerAspIdentity = thisCarerAspIdentity;
             ViewBag.thisIsCarer = thisIsCarer;
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // getting start & end dates -- to format the display          
             var thisStartDate = careTransaction.StartDate.ToString("MMMM dd, yyyy");
             var thisEndDate = careTransaction.EndDate.ToString("MMMM dd, yyyy");
@@ -624,19 +627,193 @@ namespace Petopia.Controllers
             return View(careTransaction);
         }
         //===============================================================================
+        //                      once Appt is Confirmed -- this 'JobDetails' for Pet Carer
+        //===============================================================================
+        public ActionResult PetCarer_JobDetails(int? ct_id)
+        {
+            // pull up the full requested CareTransaction:
+            if (ct_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            CareTransaction thisJob = db.CareTransactions.Find(ct_id);
+
+            if (thisJob == null)
+            {
+                return HttpNotFound();
+            }
+            //---------------------------------------------------------
+            // GET CURRENTLY LOGGED-IN USER STUFF -- for privacy issues
+            //
+            // the currently logged-in user:
+            var identityID = User.Identity.GetUserId();
+
+            // the currently logged-in user's PetopiaUserID:
+            var thisPetopiaUserID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
+                                                   .Select(u => u.UserID).FirstOrDefault();
+
+            ViewBag.LoggedInPetopiaUserID = thisPetopiaUserID;
+            //---------------------------------------------------------
+            // GET THIS TRANSACTION ID -- for proofing
+            //
+            var thisJobID = thisJob.TransactionID;
+
+            ViewBag.ThisJobID = thisJobID;
+            //---------------------------------------------------------
+            // GET THS CARE PROVIDER ON *THIS* CareTransaction:
+            //
+            // get CP_ID outta the CareTransactionID passed in
+            var thisPetCarerID = thisJob.CareProviderID;
+
+            // get THIS CP's PetopiaUserID
+            var thisPetCarerPetopiaID = db.CareProviders.Where(cp => cp.CareProviderID == thisPetCarerID)
+                                                        .Select(pu => pu.UserID).FirstOrDefault();
+
+            ViewBag.ThisPetCarerID = thisPetCarerID;
+            ViewBag.ThisPetCarerPetopiaID = thisPetCarerPetopiaID;
+            //---------------------------------------------------------
+            // PET OWNER ON *THIS* CareTransaction:
+            //
+            // get the PO_ID outta the CareTransactionID passed in
+            var thisPetOwnerID = thisJob.PetOwnerID;
+
+            // get THIS PO's PetopiaUserID
+            var thisPetOwnerPetopiaID = db.PetOwners.Where(po => po.PetOwnerID == thisPetOwnerID)
+                                                    .Select(pu => pu.UserID).FirstOrDefault();
+
+            ViewBag.ThisPetOwnerID = thisPetOwnerID;
+            ViewBag.ThisPetOwnerPetopiaID = thisPetOwnerPetopiaID;
+            //---------------------------------------------------------
+            // get the PetID outta the CareTransactionID passed in
+            var thisPetID = thisJob.PetID;
+
+            ViewBag.ThisPetID = thisPetID;
+            //---------------------------------------------------------
+            // the appointment stuff:
+            // format the times once you change the db data-types.....
+            //
+            var thisStartDate = thisJob.StartDate.ToString("MM/dd/yyyy");
+            var thisStartTime = thisJob.StartTime.ToString("h:mm tt");
+
+            var thisEndDate = thisJob.EndDate.ToString("MM/dd/yyyy");
+            var thisEndTime = thisJob.EndTime.ToString("h:mm tt");
+
+            var neededThisVisit = thisJob.NeededThisVisit;
+
+            ViewBag.ThisStartDate = thisStartDate;
+            ViewBag.ThisStartTime = thisStartTime;
+
+            ViewBag.ThisEndDate = thisEndDate;
+            ViewBag.ThisEndTime = thisEndTime;
+
+            ViewBag.NeededThisVisit = neededThisVisit;
+            //---------------------------------------------------------
+            // the pet owner stuff:
+            //
+            var thisPetOwnerFirstName = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                       .Select(poFN => poFN.FirstName).FirstOrDefault();
+
+            var thisPetOwnerLastName = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                      .Select(poLN => poLN.LastName).FirstOrDefault();
+
+            ViewBag.ThisPetOwnerName = thisPetOwnerFirstName + " " + thisPetOwnerLastName;
 
 
+            var thisPetOwnerAdd01 = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                   .Select(poRAdd01 => poRAdd01.ResAddress01).FirstOrDefault();
+
+            var thisPetOwnerAdd02 = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                   .Select(poRAdd02 => poRAdd02.ResAddress02).FirstOrDefault();
+
+            var thisPetOwnerCity = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                  .Select(poRC => poRC.ResCity).FirstOrDefault();
+
+            var thisPetOwnerState = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                   .Select(poRS => poRS.ResState).FirstOrDefault();
+
+            var thisPetOwnerZip = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                 .Select(poRZ => poRZ.ResZipcode).FirstOrDefault();
+
+            ViewBag.ThisPetOwnerResAdd01 = thisPetOwnerAdd01;
+            ViewBag.ThisPetOwnerResAdd02 = thisPetOwnerAdd02;
+            ViewBag.ThisPetOwnerCity = thisPetOwnerCity;
+            ViewBag.ThisPetOwnerState = thisPetOwnerState;
+            ViewBag.ThisPetOwnerZip = thisPetOwnerZip;
 
 
+            var thisPetOwnerMainPhone = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                       .Select(poMP => poMP.MainPhone).FirstOrDefault();
+
+            var thisPetOwnerAltPhone = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                      .Select(poAP => poAP.AltPhone).FirstOrDefault();
+
+            ViewBag.ThisPetOwnerMainPhone = thisPetOwnerMainPhone;
+            ViewBag.ThisPetOwnerAltPhone = thisPetOwnerAltPhone;
 
 
+            var thisPetOwnerHomeAccess = db.PetOwners.Where(puID => puID.PetOwnerID == thisPetOwnerID)
+                                                     .Select(poHA => poHA.HomeAccess).FirstOrDefault();
+
+            ViewBag.ThisPetOwnerHomeAccess = thisPetOwnerHomeAccess;
+
+            //---------------------------------------------------------
+            // the pet stuff:
+            var thisPetName = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                     .Select(petN => petN.PetName).FirstOrDefault();
+
+            var thisPetSpecies = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                        .Select(petS => petS.Species).FirstOrDefault();
+
+            var thisPetBreed = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                      .Select(petB => petB.Breed).FirstOrDefault();
+
+            var thisPetGender = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                       .Select(petG => petG.Gender).FirstOrDefault();
+
+            var thisPetBday = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                     .Select(petBday => petBday.Birthdate).FirstOrDefault();
+
+            var thisPetWeight = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                       .Select(petW => petW.Weight).FirstOrDefault();
+
+            ViewBag.ThisPetName = thisPetName;
+            ViewBag.ThisPetSpecies = thisPetSpecies;
+            ViewBag.ThisPetBreed = thisPetBreed;
+            ViewBag.ThisPetGender = thisPetGender;
+            ViewBag.ThisPetBday = thisPetBday.ToString("MMMM dd, yyyy");
+            ViewBag.ThisPetWeight = thisPetWeight + " lbs.";
 
 
+            var thisPetHealth = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                       .Select(petHC => petHC.HealthConcerns).FirstOrDefault();
+
+            var thisPetBehavior = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                         .Select(petBC => petBC.BehaviorConcerns).FirstOrDefault();
+
+            var thisPetAccess = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                       .Select(petA => petA.PetAccess).FirstOrDefault();
+
+            ViewBag.ThisPetHealth = thisPetHealth;
+            ViewBag.ThisPetBehavior = thisPetBehavior;
+            ViewBag.ThisPetAccess = thisPetAccess;
 
 
+            var thisPetECName = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                       .Select(petECN => petECN.EmergencyContactName).FirstOrDefault();
 
+            var thisPetECPhone = db.Pets.Where(petID => petID.PetID == thisPetID)
+                                        .Select(petECP => petECP.EmergencyContactPhone).FirstOrDefault();
 
+            ViewBag.ThisPetECName = thisPetECName;
+            ViewBag.ThisPetECPhone = thisPetECPhone;
 
+            //---------------------------------------------------------
+
+            return View(thisJob);
+        }
+        //===============================================================================
+        //                                                            Appointment EDITING
         //===============================================================================
         // GET: CareTransactions/EditAppointment/5
         public ActionResult EditAppointment(int? id)
@@ -652,7 +829,7 @@ namespace Petopia.Controllers
             {
                 return HttpNotFound();
             }
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // to make sure only the pet's owner can see this page!
             var thisPetsID = careTransaction.PetID;
 
@@ -676,9 +853,11 @@ namespace Petopia.Controllers
             ViewBag.loggedInUser = loggedInUser;
             ViewBag.PetName = petName;
 
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             return View(careTransaction);
         }
+        //-------------------------------------------------------------------------------
+        //                                                   still in Appointment-Editing
         //-------------------------------------------------------------------------------
         // POST: CareTransactions/EditAppointment/5
         // To protect from overposting attacks, please enable the specific properties you
@@ -698,94 +877,12 @@ namespace Petopia.Controllers
                                         new { id = careTransaction.TransactionID });
             }
 
-            return View(careTransaction);
-        }
-
-        //===============================================================================
-        // GET: CareTransactions/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            CareTransaction careTransaction = db.CareTransactions.Find(id);
-            if (careTransaction == null)
-            {
-                return HttpNotFound();
-            }
-
-            //---------------------------------------------------------------------------
-            // to make sure only the pet's owner can see this page!
-            var thisPetsID = db.CareTransactions.Where(p => p.TransactionID == id)
-                                                .Select(pID => pID.PetID).FirstOrDefault();
-
-            var thisPetsOwnersID = db.CareTransactions.Where(ct => ct.TransactionID == id)
-                                                      .Select(poID => poID.PetOwnerID).FirstOrDefault();
-
-            var thisPetsOwnersPetopiaUserID = db.PetOwners.Where(po => po.PetOwnerID == thisPetsOwnersID)
-                                                          .Select(pUID => pUID.UserID).FirstOrDefault();
-
-            var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsOwnersPetopiaUserID)
-                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
-                                                                .FirstOrDefault();
-
             //---------------------------------------------------------
-            var thisPetsCarersID = db.CareTransactions.Where(ct => ct.TransactionID == id)
-                                                      .Select(cpID => cpID.CareProviderID).FirstOrDefault();
-
-            var thisPetsCarersPetopiaUserID = db.CareProviders.Where(cp => cp.CareProviderID == thisPetsCarersID)
-                                                              .Select(cpID => cpID.UserID).FirstOrDefault();
-
-            var thisPetsCarersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsCarersPetopiaUserID)
-                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
-                                                                .FirstOrDefault();
-
-            //---------------------------------------------------------
-            var loggedInUser = User.Identity.GetUserId();
-
-            ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
-            ViewBag.thisPetsCarersASPNetIdentityID = thisPetsCarersASPNetIdentityID;
-            ViewBag.loggedInUser = loggedInUser;
-            ViewBag.thisPetsCarersID = thisPetsCarersID;
-
-            //---------------------------------------------------------
-            var thisPetsName = db.Pets.Where(p => p.PetID == thisPetsID)
-                                      .Select(pn => pn.PetName).FirstOrDefault();
-
-            ViewBag.PetsName = thisPetsName;
-
-            //---------------------------------------------------------
-
             return View(careTransaction);
         }
         //-------------------------------------------------------------------------------
-        // POST: CareTransactions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CareTransaction careTransaction = db.CareTransactions.Find(id);
-
-            db.CareTransactions.Remove(careTransaction);
-            db.SaveChanges();
-
-            return RedirectToAction("DeleteConfirmation");
-        }
-        //===============================================================================
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-        //===============================================================================
-        // our added 'ActionResult' methods.....
-        //===============================================================================
-        
+        //                                                   still in Appointment-Editing
+        //-------------------------------------------------------------------------------
         // GET: CareTransaction/EditConfirmation/5
         public ActionResult EditConfirmation(int? id)
         {
@@ -800,8 +897,8 @@ namespace Petopia.Controllers
             {
                 return HttpNotFound();
             }
-            //---------------------------------------------------------------------------
-            // pulling the Pet's Name for display!                          it worked!
+            //---------------------------------------------------------
+            // pulling the Pet's Name for display! 
             var thisPetID = careTransaction.PetID;
 
             var thisPetName = db.Pets.Where(p => p.PetID == thisPetID)
@@ -809,8 +906,8 @@ namespace Petopia.Controllers
 
             ViewBag.PetName = thisPetName;
 
-            //---------------------------------------------------------------------------
-            // getting the Pet Owner name for display!                  it worked!   =]
+            //---------------------------------------------------------
+            // getting the Pet Owner name for display! 
             var thisOwnerID = careTransaction.PetOwnerID;
 
             var thisOwnerUserID = db.PetOwners.Where(cp => cp.PetOwnerID == thisOwnerID)
@@ -824,8 +921,8 @@ namespace Petopia.Controllers
 
             ViewBag.PetOwnerName = thisOwnerFirstName + " " + thisOwnerLastName;
 
-            //---------------------------------------------------------------------------
-            // getting the Pet Carer name for display!                      it worked!
+            //---------------------------------------------------------
+            // getting the Pet Carer name for display! 
             var thisCarerID = careTransaction.CareProviderID;
 
             var thisCarerUserID = db.CareProviders.Where(cp => cp.CareProviderID == thisCarerID)
@@ -838,27 +935,20 @@ namespace Petopia.Controllers
                                                     .Select(cpn => cpn.LastName).FirstOrDefault();
 
             ViewBag.PetCarerName = thisCarerFirstName + " " + thisCarerLastName;
-
-            ViewBag.PetCarers = new SelectList(db.PetopiaUsers.OrderBy(c => c.LastName),
-                                                "CarerID", "CarerName", careTransaction.CareProviderID);
-
-            //---------------------------------------------------------------------------
-            // getting start & end dates -- to format the display            it worked!
+          
+            //---------------------------------------------------------
+            // getting start & end dates -- to format the display
             var thisStartDate = careTransaction.StartDate.ToString("MM/dd/yyyy");
             var thisEndDate = careTransaction.EndDate.ToString("MM/dd/yyyy");
 
             ViewBag.ApptStartDate = thisStartDate;
             ViewBag.ApptEndDate = thisEndDate;
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
 
             return View(careTransaction);
         }
         //===============================================================================
-        // GET: CareTransactions/DeleteConfirmation
-        public ActionResult DeleteConfirmation()
-        {
-            return View();
-        }
+        //                                                         Appointment COMPLETION
         //===============================================================================
         // GET: CareTransactions/CompleteAppointment/5
         public ActionResult CompleteAppointment(int? id)
@@ -874,7 +964,7 @@ namespace Petopia.Controllers
             {
                 return HttpNotFound();
             }
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // to make sure only the pet's owner & carer can see this page!
             var thisCareTransactionPetID = db.CareTransactions.Where(ct => ct.TransactionID == id)
                                                               .Select(ctPID => ctPID.PetID).FirstOrDefault();
@@ -923,10 +1013,12 @@ namespace Petopia.Controllers
             ViewBag.loggedInUser = loggedInUser;
             ViewBag.thisPetsCarersID = thisPetsCarersID;
 
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
 
             return View(careTransaction);
         }
+        //-------------------------------------------------------------------------------
+        //                                                still in Appointment Completion
         //-------------------------------------------------------------------------------
         // POST: CareTransactions/CompleteAppointment/5
         // To protect from overposting attacks, please enable the specific properties you
@@ -945,10 +1037,98 @@ namespace Petopia.Controllers
                 return RedirectToAction("MyAppointments");
             }
 
+            //---------------------------------------------------------
             return View(careTransaction);
         }
         //===============================================================================
+        //                                                    Appointment CANCEL \ DELETE
         //===============================================================================
+        // GET: CareTransactions/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            CareTransaction careTransaction = db.CareTransactions.Find(id);
+
+            if (careTransaction == null)
+            {
+                return HttpNotFound();
+            }
+            //---------------------------------------------------------
+            // to make sure only the pet's owner can see this page!
+            var thisPetsID = db.CareTransactions.Where(p => p.TransactionID == id)
+                                                .Select(pID => pID.PetID).FirstOrDefault();
+
+            var thisPetsOwnersID = db.CareTransactions.Where(ct => ct.TransactionID == id)
+                                                      .Select(poID => poID.PetOwnerID).FirstOrDefault();
+
+            var thisPetsOwnersPetopiaUserID = db.PetOwners.Where(po => po.PetOwnerID == thisPetsOwnersID)
+                                                          .Select(pUID => pUID.UserID).FirstOrDefault();
+
+            var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsOwnersPetopiaUserID)
+                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                                .FirstOrDefault();
+
+            //---------------------------------------------------------
+            var thisPetsCarersID = db.CareTransactions.Where(ct => ct.TransactionID == id)
+                                                      .Select(cpID => cpID.CareProviderID).FirstOrDefault();
+
+            var thisPetsCarersPetopiaUserID = db.CareProviders.Where(cp => cp.CareProviderID == thisPetsCarersID)
+                                                              .Select(cpID => cpID.UserID).FirstOrDefault();
+
+            var thisPetsCarersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsCarersPetopiaUserID)
+                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                                .FirstOrDefault();
+
+            //---------------------------------------------------------
+            var loggedInUser = User.Identity.GetUserId();
+
+            ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
+            ViewBag.thisPetsCarersASPNetIdentityID = thisPetsCarersASPNetIdentityID;
+            ViewBag.loggedInUser = loggedInUser;
+            ViewBag.thisPetsCarersID = thisPetsCarersID;
+
+            //---------------------------------------------------------
+            var thisPetsName = db.Pets.Where(p => p.PetID == thisPetsID)
+                                      .Select(pn => pn.PetName).FirstOrDefault();
+
+            ViewBag.PetsName = thisPetsName;
+
+            //---------------------------------------------------------
+
+            return View(careTransaction);
+        }
+        //-------------------------------------------------------------------------------
+        //                                           still in Appointment Cancel \ Delete
+        //-------------------------------------------------------------------------------
+        // POST: CareTransactions/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            CareTransaction careTransaction = db.CareTransactions.Find(id);
+
+            db.CareTransactions.Remove(careTransaction);
+            db.SaveChanges();
+
+            return RedirectToAction("DeleteConfirmation");
+        }
+        //-------------------------------------------------------------------------------
+        //                                           still in Appointment Cancel \ Delete
+        //-------------------------------------------------------------------------------
+        // GET: CareTransactions/DeleteConfirmation
+        public ActionResult DeleteConfirmation()
+        {
+            return View();
+        }
+        //===============================================================================
+        //                                                           APPOINTMENT LISTINGS
+        //===============================================================================
+        //                                      'MyAppointments' -- Pet Owner & Pet Carer
+        //-------------------------------------------------------------------------------
         // GET: CareTransactions
         public ActionResult MyAppointments()
         {
@@ -1005,15 +1185,13 @@ namespace Petopia.Controllers
             ViewBag.thisPetOwner = thisPetOwner;
             ViewBag.thisCareProvider = thisCareProvider;
 
-            //---------------------------------------------------------
-            // still inside 'MyAppointments()'
-            //---------------------------------------------------------------------------
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
-
+            //---------------------------------------------------------
+            // still inside 'MyAppointments()'                                   UPCOMING
+            //---------------------------------------------------------------------------
             Vmodel.ApptInfoListUpcoming = (from ct in db.CareTransactions
-                where ct.PetOwnerID == thisPetOwner ||
-                        ct.CareProviderID == thisCareProvider &&
-                        ct.EndDate >= DateTime.Now
+                where (ct.PetOwnerID == thisPetOwner || ct.CareProviderID == thisCareProvider)
+                        && (ct.EndDate >= DateTime.Now)
                 orderby ct.StartDate
 
                 join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
@@ -1032,58 +1210,66 @@ namespace Petopia.Controllers
                     StartTime = ct.StartTime, EndTime = ct.EndTime,
 
                     NeededThisVisit = ct.NeededThisVisit,
-                    CareProvided = ct.CareProvided, CareReport = ct.CareReport,
+                    CareProvided = ct.CareProvided,
+                    CareReport = ct.CareReport,
                     Charge = ct.Charge, Tip = ct.Tip,
 
                     PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
                     PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
 
-                    PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, 
+                    PetID = ct.PetID, PetOwnerID = ct.PetOwnerID,
                     PetCarerID = ct.CareProviderID,
                     CareTransactionID = ct.TransactionID,
 
                     Pending = ct.Pending, Confirmed = ct.Confirmed
+
                 }).ToList();
 
             //---------------------------------------------------------
+            // still inside 'MyAppointments()'                                   FINISHED
+            //---------------------------------------------------------------------------
             Vmodel.ApptInfoListFinished = (from ct in db.CareTransactions
-                    where ct.PetOwnerID == thisPetOwner || 
-                          ct.CareProviderID == thisCareProvider && 
-                          ct.EndDate < DateTime.Now
-                    orderby ct.StartDate
+                where (ct.PetOwnerID == thisPetOwner || ct.CareProviderID == thisCareProvider)
+                        &&  (ct.EndDate < DateTime.Now)
+                orderby ct.StartDate
 
-                    join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
-                    join po in db.PetOwners on ct.PetOwnerID equals po.PetOwnerID
-                    join puO in db.PetopiaUsers on po.UserID equals puO.UserID
-                    join puP in db.PetopiaUsers on cp.UserID equals puP.UserID
-                    join p in db.Pets on ct.PetID equals p.PetID
+                join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
+                join po in db.PetOwners on ct.PetOwnerID equals po.PetOwnerID
+                join puO in db.PetopiaUsers on po.UserID equals puO.UserID
+                join puP in db.PetopiaUsers on cp.UserID equals puP.UserID
+                join p in db.Pets on ct.PetID equals p.PetID
 
-                    select new CareTransactionViewModel.ApptInfo
-                    {
-                        PetName = p.PetName,
-                        PetOwnerName = puO.FirstName + " " + puO.LastName,
-                        PetCarerName = puP.FirstName + " " + puP.LastName,
+                select new CareTransactionViewModel.ApptInfo
+                {
+                    PetName = p.PetName,
+                    PetOwnerName = puO.FirstName + " " + puO.LastName,
+                    PetCarerName = puP.FirstName + " " + puP.LastName,
 
-                        StartDate = ct.StartDate, EndDate = ct.EndDate,
-                        StartTime = ct.StartTime, EndTime = ct.EndTime,
+                    StartDate = ct.StartDate, EndDate = ct.EndDate,
+                    StartTime = ct.StartTime, EndTime = ct.EndTime,
 
-                        NeededThisVisit = ct.NeededThisVisit,
-                        CareProvided = ct.CareProvided, CareReport = ct.CareReport,
-                        Charge = ct.Charge, Tip = ct.Tip,
+                    NeededThisVisit = ct.NeededThisVisit,
+                    CareProvided = ct.CareProvided,
+                    CareReport = ct.CareReport,
+                    Charge = ct.Charge, Tip = ct.Tip,
 
-                        PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
-                        PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
+                    PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
+                    PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
 
-                        PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, PetCarerID = ct.CareProviderID,
-                        CareTransactionID = ct.TransactionID,
+                    PetID = ct.PetID, PetOwnerID = ct.PetOwnerID,
+                    PetCarerID = ct.CareProviderID,
+                    CareTransactionID = ct.TransactionID,
 
-                        Pending = ct.Pending, Confirmed = ct.Confirmed
-                    }).ToList();
+                    Pending = ct.Pending, Confirmed = ct.Confirmed
 
+                }).ToList();
 
+            //---------------------------------------------------------
             return View(Vmodel);
         }
-        //===============================================================================
+        //-------------------------------------------------------------------------------
+        //                                             'MyPetsAppointments' -- Pet Owners
+        //-------------------------------------------------------------------------------
         // GET: CareTransactions/MyPetsAppointments/5
         public ActionResult MyPetsAppointments(int? pet_id)
         {
@@ -1114,14 +1300,13 @@ namespace Petopia.Controllers
             ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
             ViewBag.loggedInUser = loggedInUser;
 
-            //---------------------------------------------------------
-            // still inside 'MyPetsAppointments()'
-            //---------------------------------------------------------------------------
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
-
-            Vmodel.ApptInfoListUpcoming = (from ct in db.CareTransactions 
-                where ct.PetID == thisPetID && 
-                      ct.EndDate >= DateTime.Now
+            //---------------------------------------------------------
+            // still inside 'MyPetsAppointments()'                               UPCOMING
+            //---------------------------------------------------------------------------
+            Vmodel.ApptInfoListUpcoming = (from ct in db.CareTransactions
+                where (ct.PetID == thisPetID)
+                        && (ct.EndDate >= DateTime.Now)
                 orderby ct.StartDate
 
                 join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
@@ -1140,21 +1325,26 @@ namespace Petopia.Controllers
                     StartTime = ct.StartTime, EndTime = ct.EndTime,
 
                     NeededThisVisit = ct.NeededThisVisit,
-                    CareProvided = ct.CareProvided, CareReport = ct.CareReport,
+                    CareProvided = ct.CareProvided,
+                    CareReport = ct.CareReport,
                     Charge = ct.Charge, Tip = ct.Tip,
 
                     PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
                     PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
 
-                    PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, 
+                    PetID = ct.PetID, PetOwnerID = ct.PetOwnerID,
                     PetCarerID = ct.CareProviderID,
-                    CareTransactionID = ct.TransactionID
+                    CareTransactionID = ct.TransactionID,
+
+                    Pending = ct.Pending, Confirmed = ct.Confirmed
                 }).ToList();
 
             //---------------------------------------------------------
+            // still inside 'MyPetsAppointments()'                               FINISHED
+            //---------------------------------------------------------------------------
             Vmodel.ApptInfoListFinished = (from ct in db.CareTransactions
-                where ct.PetID == thisPetID && 
-                      ct.EndDate < DateTime.Now
+                where (ct.PetID == thisPetID)
+                        && (ct.EndDate < DateTime.Now)
                 orderby ct.StartDate
 
                 join cp in db.CareProviders on ct.CareProviderID equals cp.CareProviderID
@@ -1180,197 +1370,29 @@ namespace Petopia.Controllers
                     PC_Rating = ct.PC_Rating, PC_Comments = ct.PC_Comments,
                     PO_Rating = ct.PO_Rating, PO_Comments = ct.PO_Comments,
 
-                    PetID = ct.PetID, PetOwnerID = ct.PetOwnerID, 
+                    PetID = ct.PetID, PetOwnerID = ct.PetOwnerID,
                     PetCarerID = ct.CareProviderID,
-                    CareTransactionID = ct.TransactionID
+                    CareTransactionID = ct.TransactionID,
+
+                    Pending = ct.Pending, Confirmed = ct.Confirmed
+
                 }).ToList();
 
+            //---------------------------------------------------------
             return View(Vmodel);
         }
         //===============================================================================
-        public ActionResult PetCarer_JobDetails(int? ct_id)
+        //===============================================================================
+        //                                                                This Stuff.....
+        //===============================================================================
+        protected override void Dispose(bool disposing)
         {
-            // pull up the full requested CareTransaction:
-            if (ct_id == null)
+            if (disposing)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                db.Dispose();
             }
-
-            CareTransaction thisJob = db.CareTransactions.Find(ct_id);
-
-            if (thisJob == null)
-            {
-                return HttpNotFound();
-            }
-            //---------------------------------------------------------------------------
-            // GET CURRENTLY LOGGED-IN USER STUFF -- for privacy issues
-            //
-            // the currently logged-in user:
-            var identityID = User.Identity.GetUserId();
-
-            // the currently logged-in user's PetopiaUserID:
-            var thisPetopiaUserID = db.PetopiaUsers.Where(u => u.ASPNetIdentityID == identityID)
-                                                   .Select(u => u.UserID).FirstOrDefault();
-
-            ViewBag.LoggedInPetopiaUserID = thisPetopiaUserID;
-            //---------------------------------------------------------------------------
-            // GET THIS TRANSACTION ID -- for proofing
-            //
-            var thisJobID = thisJob.TransactionID;
-
-            ViewBag.ThisJobID = thisJobID;
-            //---------------------------------------------------------------------------
-            // GET THS CARE PROVIDER ON *THIS* CareTransaction:
-            //
-            // get CP_ID outta the CareTransactionID passed in
-            var thisPetCarerID = thisJob.CareProviderID;
-
-            // get THIS CP's PetopiaUserID
-            var thisPetCarerPetopiaID = db.CareProviders.Where(cp => cp.CareProviderID == thisPetCarerID)
-                                                        .Select(pu => pu.UserID).FirstOrDefault();
-
-            ViewBag.ThisPetCarerID = thisPetCarerID;
-            ViewBag.ThisPetCarerPetopiaID = thisPetCarerPetopiaID;
-            //---------------------------------------------------------------------------
-            // PET OWNER ON *THIS* CareTransaction:
-            //
-            // get the PO_ID outta the CareTransactionID passed in
-            var thisPetOwnerID = thisJob.PetOwnerID;
-
-            // get THIS PO's PetopiaUserID
-            var thisPetOwnerPetopiaID = db.PetOwners.Where(po => po.PetOwnerID == thisPetOwnerID)
-                                                    .Select(pu => pu.UserID).FirstOrDefault();
-
-            ViewBag.ThisPetOwnerID = thisPetOwnerID;
-            ViewBag.ThisPetOwnerPetopiaID = thisPetOwnerPetopiaID;
-            //---------------------------------------------------------------------------
-            // get the PetID outta the CareTransactionID passed in
-            var thisPetID = thisJob.PetID;
-
-            ViewBag.ThisPetID = thisPetID;
-            //---------------------------------------------------------------------------
-            // the appointment stuff:
-            // format the times once you change the db data-types.....
-            //
-            var thisStartDate = thisJob.StartDate.ToString("MM/dd/yyyy");
-            var thisStartTime = thisJob.StartTime.ToString("h:mm tt");
-
-            var thisEndDate = thisJob.EndDate.ToString("MM/dd/yyyy");
-            var thisEndTime = thisJob.EndTime.ToString("h:mm tt");
-
-            var neededThisVisit = thisJob.NeededThisVisit;
-
-            ViewBag.ThisStartDate = thisStartDate;
-            ViewBag.ThisStartTime = thisStartTime;
-
-            ViewBag.ThisEndDate = thisEndDate;
-            ViewBag.ThisEndTime = thisEndTime;
-
-            ViewBag.NeededThisVisit = neededThisVisit;
-            //---------------------------------------------------------------------------
-            // the pet owner stuff:
-            //
-            var thisPetOwnerFirstName = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
-                                                       .Select(poFN => poFN.FirstName).FirstOrDefault();
-
-            var thisPetOwnerLastName = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
-                                                      .Select(poLN => poLN.LastName).FirstOrDefault();
-
-            ViewBag.ThisPetOwnerName = thisPetOwnerFirstName + " " + thisPetOwnerLastName;
-
-
-            var thisPetOwnerAdd01 = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
-                                                   .Select(poRAdd01 => poRAdd01.ResAddress01).FirstOrDefault();
-
-            var thisPetOwnerAdd02 = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
-                                                   .Select(poRAdd02 => poRAdd02.ResAddress02).FirstOrDefault();
-
-            var thisPetOwnerCity = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
-                                                  .Select(poRC => poRC.ResCity).FirstOrDefault();
-
-            var thisPetOwnerState = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
-                                                   .Select(poRS => poRS.ResState).FirstOrDefault();
-
-            var thisPetOwnerZip = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
-                                                 .Select(poRZ => poRZ.ResZipcode).FirstOrDefault();
-
-            ViewBag.ThisPetOwnerResAdd01 = thisPetOwnerAdd01;
-            ViewBag.ThisPetOwnerResAdd02 = thisPetOwnerAdd02;
-            ViewBag.ThisPetOwnerCity = thisPetOwnerCity;
-            ViewBag.ThisPetOwnerState = thisPetOwnerState;
-            ViewBag.ThisPetOwnerZip = thisPetOwnerZip;
-
-
-            var thisPetOwnerMainPhone = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
-                                                       .Select(poMP => poMP.MainPhone).FirstOrDefault();
-
-            var thisPetOwnerAltPhone = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
-                                                      .Select(poAP => poAP.AltPhone).FirstOrDefault();
-
-            ViewBag.ThisPetOwnerMainPhone = thisPetOwnerMainPhone;
-            ViewBag.ThisPetOwnerAltPhone = thisPetOwnerAltPhone;
-
-
-            var thisPetOwnerHomeAccess = db.PetOwners.Where(puID => puID.PetOwnerID == thisPetOwnerID)
-                                                     .Select(poHA => poHA.HomeAccess).FirstOrDefault();
-
-            ViewBag.ThisPetOwnerHomeAccess = thisPetOwnerHomeAccess;
-
-            //---------------------------------------------------------------------------
-            // the pet stuff:
-            var thisPetName = db.Pets.Where(petID => petID.PetID == thisPetID)
-                                     .Select(petN => petN.PetName).FirstOrDefault();
-
-            var thisPetSpecies = db.Pets.Where(petID => petID.PetID == thisPetID)
-                                        .Select(petS => petS.Species).FirstOrDefault();
-
-            var thisPetBreed = db.Pets.Where(petID => petID.PetID == thisPetID)
-                                      .Select(petB => petB.Breed).FirstOrDefault();
-
-            var thisPetGender = db.Pets.Where(petID => petID.PetID == thisPetID)
-                                       .Select(petG => petG.Gender).FirstOrDefault();
-
-            var thisPetBday = db.Pets.Where(petID => petID.PetID == thisPetID)
-                                     .Select(petBday => petBday.Birthdate).FirstOrDefault();
-
-            var thisPetWeight = db.Pets.Where(petID => petID.PetID == thisPetID)
-                                       .Select(petW => petW.Weight).FirstOrDefault();
-
-            ViewBag.ThisPetName = thisPetName;
-            ViewBag.ThisPetSpecies = thisPetSpecies;
-            ViewBag.ThisPetBreed = thisPetBreed;
-            ViewBag.ThisPetGender = thisPetGender;
-            ViewBag.ThisPetBday = thisPetBday.ToString("MMMM dd, yyyy");
-            ViewBag.ThisPetWeight = thisPetWeight + " lbs.";
-
-
-            var thisPetHealth = db.Pets.Where(petID => petID.PetID == thisPetID)
-                                       .Select(petHC => petHC.HealthConcerns).FirstOrDefault();
-
-            var thisPetBehavior = db.Pets.Where(petID => petID.PetID == thisPetID)
-                                         .Select(petBC => petBC.BehaviorConcerns).FirstOrDefault();
-
-            var thisPetAccess = db.Pets.Where(petID => petID.PetID == thisPetID)
-                                       .Select(petA => petA.PetAccess).FirstOrDefault();
-
-            ViewBag.ThisPetHealth = thisPetHealth;
-            ViewBag.ThisPetBehavior = thisPetBehavior;
-            ViewBag.ThisPetAccess = thisPetAccess;
-
-
-            var thisPetECName = db.Pets.Where(petID => petID.PetID == thisPetID)
-                                       .Select(petECN => petECN.EmergencyContactName).FirstOrDefault();
-
-            var thisPetECPhone = db.Pets.Where(petID => petID.PetID == thisPetID)
-                                        .Select(petECP => petECP.EmergencyContactPhone).FirstOrDefault();
-
-            ViewBag.ThisPetECName = thisPetECName;
-            ViewBag.ThisPetECPhone = thisPetECPhone;
-
-            //---------------------------------------------------------------------------
-
-            return View(thisJob);
-        }
+            base.Dispose(disposing);
+        }        
         //===============================================================================
         //===============================================================================
         //===============================================================================
