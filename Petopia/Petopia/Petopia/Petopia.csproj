@@ -1073,7 +1073,7 @@
     <Content Include="Views\Badges\Create.cshtml" />
     <Content Include="Views\Badges\Edit.cshtml" />
     <Content Include="Views\CareTransactions\Delete.cshtml" />
-    <Content Include="Views\CareTransactions\AppointmentConfirmation.cshtml" />
+    <Content Include="Views\CareTransactions\BookingConfirmation.cshtml" />
     <Content Include="Views\CareTransactions\EditAppointment.cshtml" />
     <Content Include="Views\CareTransactions\Appts_AdminIndex.cshtml" />
     <Content Include="Views\Shared\_AdminLteTopMenu.cshtml" />

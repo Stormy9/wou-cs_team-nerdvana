@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Booking Confirmed!";
     ViewBag.Title01 = "Your Pet Care Appointment for";
-    ViewBag.Title02 = "is Confirmed!";
+    ViewBag.Title02 = "is Booked & Pending!";
     ViewBag.Title03 = "an email has been sent to you & your Pet Care Provider!";
 }
 
@@ -132,7 +132,28 @@
             <!---->
         </div><!-- END ROW 1 -->
         <!---->
+        <!--==========================================================================-->
     </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
+    <!---->
+    <!---->
+    <!--============================ ROW TWO \ CHEKCING CRAP OUT =====================-->
+    <!---->
+        <div class="row" style="margin:18px; border:1px solid blue;">
+
+            <div>
+                <span style="float: left; margin-right: 30px;">
+                    Pending? @Html.DisplayFor(model => model.Pending)</span>
+                <span style="float: left; margin-right: 30px;">
+                    Confirmed? @Html.DisplayFor(model => model.Confirmed)</span>
+                <span style="float: left; margin-right: 30px;">
+                    Completed_PO? @Html.DisplayFor(model => model.Completed_PO)</span>
+                <span style="float: left; margin-right: 30px;">
+                    Completed_CP? @Html.DisplayFor(model => model.Completed_CP)</span>
+            </div>
+
+        </div>
+        <!---->
+    <!--==============================================================================-->
 </div><!-- END CONTAINER-FLUID (outer-most container) -->
 <!--==================================================================================-->
 @section Scripts {
