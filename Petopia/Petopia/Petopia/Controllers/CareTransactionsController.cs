@@ -1187,10 +1187,11 @@ namespace Petopia.Controllers
 
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
             //---------------------------------------------------------
-            // still inside 'MyAppointments()'                                   UPCOMING
+            // still inside 'MyAppointments()'                                    PENDING
             //---------------------------------------------------------------------------
-            Vmodel.ApptInfoListUpcoming = (from ct in db.CareTransactions
+            Vmodel.ApptInfoListPending = (from ct in db.CareTransactions
                 where (ct.PetOwnerID == thisPetOwner || ct.CareProviderID == thisCareProvider)
+                        && (ct.Pending)
                         && (ct.EndDate >= DateTime.Now)
                 orderby ct.StartDate
 
@@ -1224,6 +1225,18 @@ namespace Petopia.Controllers
                     Pending = ct.Pending, Confirmed = ct.Confirmed
 
                 }).ToList();
+
+            //---------------------------------------------------------
+            // still inside 'MyAppointments()'                                  CONFIRMED
+            //---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
             //---------------------------------------------------------
             // still inside 'MyAppointments()'                                   FINISHED
@@ -1281,7 +1294,7 @@ namespace Petopia.Controllers
 
             ViewBag.thisPetID = thisPetID;
             ViewBag.thisPetsName = thisPetsName;
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // to make sure only the pet's owner can see this page!
             var thisPetsOwnersID = db.Pets.Where(ct => ct.PetID == pet_id)
                                           .Select(poID => poID.PetOwnerID).FirstOrDefault();
@@ -1302,10 +1315,11 @@ namespace Petopia.Controllers
 
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
             //---------------------------------------------------------
-            // still inside 'MyPetsAppointments()'                               UPCOMING
+            // still inside 'MyPetsAppointments()'                                PENDING
             //---------------------------------------------------------------------------
-            Vmodel.ApptInfoListUpcoming = (from ct in db.CareTransactions
+            Vmodel.ApptInfoListPending = (from ct in db.CareTransactions
                 where (ct.PetID == thisPetID)
+                        && (ct.Pending)
                         && (ct.EndDate >= DateTime.Now)
                 orderby ct.StartDate
 
@@ -1337,7 +1351,16 @@ namespace Petopia.Controllers
                     CareTransactionID = ct.TransactionID,
 
                     Pending = ct.Pending, Confirmed = ct.Confirmed
+
                 }).ToList();
+
+            //---------------------------------------------------------
+            // still inside 'MyAppointments()'                                  CONFIRMED
+            //---------------------------------------------------------------------------
+
+
+
+
 
             //---------------------------------------------------------
             // still inside 'MyPetsAppointments()'                               FINISHED

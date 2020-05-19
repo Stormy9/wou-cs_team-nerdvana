@@ -51,9 +51,9 @@
         <!------------------------------ 1st TAB => Upcoming Appts --------------------->
         <div id="home" class="tab-pane fade in active">
 
-            @if (Model.ApptInfoListUpcoming.Count() > 0)
+            @if (Model.ApptInfoListPending.Count() > 0)
             {
-                foreach (var item in Model.ApptInfoListUpcoming)
+                foreach (var item in Model.ApptInfoListPending)
                 {
                     <div class="container-fluid my_appt_box" style="padding: 15px;">
 
