@@ -67,22 +67,22 @@
                                 <!------------------------------------------------------>
                                 <span style="float:left;">
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.PetName)&nbsp;&nbsp;
-                                    </span>
+                                        @Html.DisplayNameFor(model => model.PetName)
+                                            &nbsp;&nbsp; </span>
                                     @Html.DisplayFor(model => item.PetName)
                                 </span>
                                 <!------------------------------------------------------>
                                 <span style="float:left; margin-left: 25px;">
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => item.PetOwnerName)&nbsp;&nbsp;
-                                    </span>
+                                        @Html.DisplayNameFor(model => item.PetOwnerName)
+                                            &nbsp;&nbsp; </span>
                                     @Html.DisplayFor(model => item.PetOwnerName)
                                 </span>
                                 <!------------------------------------------------------>
                                 <span style="float:left; margin-left: 25px;">
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => item.PetCarerName)&nbsp;
-                                    </span>
+                                        @Html.DisplayNameFor(model => item.PetCarerName)
+                                            &nbsp; </span>
                                     @Html.DisplayFor(model => item.PetCarerName)
                                 </span>
                                 <!------------------------------------------------------>
@@ -108,15 +108,13 @@
 
                                 <div style="margin-bottom: 5px;">
                                     <span class="our_appt_label">
-                                        From:<br />
-                                    </span>
+                                        From:<br /> </span>
                                     @Html.DisplayFor(model => item.StartDate)
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
-                                        at:<br />
-                                    </span>
+                                        at:<br /> </span>
                                     @Html.DisplayFor(model => item.StartTime)
                                 </div>
 
@@ -128,15 +126,13 @@
 
                                 <div style="margin-bottom: 5px;">
                                     <span class="our_appt_label">
-                                        To:<br />
-                                    </span>
+                                        To:<br /> </span>
                                     @Html.DisplayFor(model => item.EndDate)
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
-                                        at:<br />
-                                    </span>
+                                        at:<br /> </span>
                                     @Html.DisplayFor(model => item.EndTime)
                                 </div>
 
@@ -147,8 +143,8 @@
 
                                 <div>
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.NeededThisVisit)<br />
-                                    </span>
+                                        @Html.DisplayNameFor(model => model.NeededThisVisit)
+                                            <br /> </span>
                                     @Html.DisplayFor(model => item.NeededThisVisit)
                                 </div>
 
@@ -160,8 +156,8 @@
 
                                 <div>
                                     <span class="our_appt_label">
-                                        @Html.DisplayNameFor(model => model.CareProvided)<br />
-                                    </span>
+                                        @Html.DisplayNameFor(model => model.CareProvided)
+                                            <br /> </span>
                                     @Html.DisplayFor(model => item.CareProvided)
                                 </div>
 
@@ -215,16 +211,14 @@
                                 <div>
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => model.PC_Rating)
-                                        &nbsp;
-                                    </span>
+                                        &nbsp; </span>
                                     @Html.DisplayFor(model => item.PC_Rating)
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => model.PC_Comments)
-                                        <br />
-                                    </span>
+                                        <br /> </span>
                                     @Html.DisplayFor(model => item.PC_Comments)
                                 </div>
 
@@ -237,16 +231,14 @@
                                 <div>
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => model.PO_Rating)
-                                        &nbsp;
-                                    </span>
+                                            &nbsp; </span>
                                     @Html.DisplayFor(model => item.PO_Rating)
                                 </div>
 
                                 <div>
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => model.PO_Comments)
-                                        <br />
-                                    </span>
+                                            <br /> </span>
                                     @Html.DisplayFor(model => item.PO_Comments)
                                 </div>
 
@@ -278,13 +270,6 @@
 
                             @if (isPetCarer)
                             {
-                                <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
-                                <span style="float:right; margin-right:5px;" class="btn our_buttons">
-                                    @Html.ActionLink("Job Details", "PetCarer_JobDetails",
-                                            new { ct_id = item.CareTransactionID },
-                                            new { style = "color: #f2e6d9; font-weight: normal;" })
-                                </span>
-
                                 <span style="float:right; margin-right:5px;" class="btn our_buttons">
                                     @Html.ActionLink("Confirm Appt!", "ConfirmAppointment",
                                             new { ct_id = item.CareTransactionID },
@@ -292,15 +277,17 @@
                                 </span>
                             }
 
-                            <span style="margin-right: 15px;">
-                                ct_id? @Html.DisplayFor(model => item.CareTransactionID)
-                            </span>
-                            <span style="margin-right: 15px;">
-                                Pending? @Html.DisplayFor(model => item.Pending)
-                            </span>
-                            <span style="margin-right: 15px;">
-                                Confirmed? @Html.DisplayFor(model => item.Confirmed)
-                            </span>
+                            <div>
+                                <span style="margin-right: 15px;">
+                                    ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                                </span>
+                                <span style="margin-right: 15px;">
+                                    Pending? @Html.DisplayFor(model => item.Pending)
+                                </span>
+                                <span style="margin-right: 15px;">
+                                    Confirmed? @Html.DisplayFor(model => item.Confirmed)
+                                </span>
+                            </div>
 
                         </div><!-- END ROW THREE-->
                         <!--==========================================================-->
@@ -337,24 +324,24 @@
                                     <!-------------------------------------------------->
                                     <span style="float:left;">
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PetName)&nbsp;&nbsp;
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.PetName)
+                                                &nbsp;&nbsp; </span>
                                         @Html.DisplayFor(model => item.PetName)
                                     </span>
                                     <!-------------------------------------------------->
 
                                     <span style="float:left; margin-left: 25px;">
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => item.PetOwnerName)&nbsp;&nbsp;
-                                        </span>
+                                            @Html.DisplayNameFor(model => item.PetOwnerName)
+                                                &nbsp;&nbsp; </span>
                                         @Html.DisplayFor(model => item.PetOwnerName)
                                     </span>
                                     <!-------------------------------------------------->
 
                                     <span style="float:left; margin-left: 25px;">
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => item.PetCarerName)&nbsp;&nbsp;
-                                        </span>
+                                            @Html.DisplayNameFor(model => item.PetCarerName)
+                                                &nbsp;&nbsp; </span>
                                         @Html.DisplayFor(model => item.PetCarerName)
                                     </span>
                                     <!-------------------------------------------------->
@@ -369,15 +356,13 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            From:<br />
-                                        </span>
+                                            From:<br /> </span>
                                         @Html.DisplayFor(model => item.StartDate)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            at:<br />
-                                        </span>
+                                            at:<br /> </span>
                                         @Html.DisplayFor(model => item.StartTime)
                                     </div>
 
@@ -389,15 +374,13 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            To:<br />
-                                        </span>
+                                            To:<br /> </span>
                                         @Html.DisplayFor(model => item.EndDate)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            at:<br />
-                                        </span>
+                                            at:<br /> </span>
                                         @Html.DisplayFor(model => item.EndTime)
                                     </div>
 
@@ -408,8 +391,8 @@
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.NeededThisVisit)<br />
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.NeededThisVisit)
+                                                <br /> </span>
                                         @Html.DisplayFor(model => item.NeededThisVisit)
                                     </div>
 
@@ -421,8 +404,8 @@
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.CareProvided)<br />
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.CareProvided)
+                                                <br /> </span>
 
                                         @Html.DisplayFor(model => item.CareProvided)
                                     </div>
@@ -435,15 +418,15 @@
 
                                     <div style="margin-bottom: 13px;">
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.Charge) &nbsp; $ <br />
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.Charge) 
+                                                &nbsp; $ <br /> </span>
                                         @Html.DisplayFor(model => item.Charge)
                                     </div>
 
                                     <div style="margin-top: 13px;">
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.Tip) &nbsp; $ <br />
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.Tip) 
+                                                &nbsp; $ <br /> </span>
                                         @Html.DisplayFor(model => item.Tip)
                                     </div>
 
@@ -460,8 +443,8 @@
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.CareReport)<br />
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.CareReport)
+                                                <br /> </span>
                                         @Html.DisplayFor(model => item.CareReport)
                                     </div>
 
@@ -473,15 +456,15 @@
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PC_Rating) &nbsp;
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.PC_Rating) 
+                                                &nbsp; </span>
                                         @Html.DisplayFor(model => item.PC_Rating)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PC_Comments)<br />
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.PC_Comments)
+                                                <br /> </span>
                                         @Html.DisplayFor(model => item.PC_Comments)
                                     </div>
 
@@ -493,15 +476,15 @@
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PO_Rating) &nbsp;
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.PO_Rating) 
+                                                &nbsp; </span>
                                         @Html.DisplayFor(model => item.PO_Rating)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PO_Comments)<br />
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.PO_Comments)
+                                                <br /> </span>
                                         @Html.DisplayFor(model => item.PO_Comments)
                                     </div>
 
@@ -527,40 +510,35 @@
 
                                 @if (isPetCarer)
                                 {
-                                    <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
+                                    <!-- MOVE THIS TO CONFIRMED ONLY!!!!! -->
                                     <span style="float:right; margin-right:5px;" class="btn our_buttons">
                                         @Html.ActionLink("Job Details", "PetCarer_JobDetails",
                                                 new { ct_id = item.CareTransactionID },
                                                 new { style = "color: #f2e6d9; font-weight: normal;" })
                                     </span>
-
-                                    <span style="float:right; margin-right:5px;" class="btn our_buttons">
-                                        @Html.ActionLink("Confirm Appt!", "ConfirmAppointment",
-                                                new { ct_id = item.CareTransactionID },
-                                                new { style = "color: #f2e6d9; font-weight: normal;" })
-                                    </span>
                                 }
 
-                                <span style="margin-right: 15px;">
-                                    ct_id? @Html.DisplayFor(model => item.CareTransactionID)
-                                </span>
-                                <span style="margin-right: 15px;">
-                                    Pending? @Html.DisplayFor(model => item.Pending)
-                                </span>
-                                <span style="margin-right: 15px;">
-                                    Confirmed? @Html.DisplayFor(model => item.Confirmed)
-                                </span>
+                                <div>
+                                    <span style="margin-right: 15px;">
+                                        ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                                    </span>
+                                    <span style="margin-right: 15px;">
+                                        Pending? @Html.DisplayFor(model => item.Pending)
+                                    </span>
+                                    <span style="margin-right: 15px;">
+                                        Confirmed? @Html.DisplayFor(model => item.Confirmed)
+                                    </span>
+                                </div>
 
                             </div><!-- END ROW THREE-->
                             <!--======================================================-->
-
                         </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
                     }
                 }
                 else
                 {
                     <p style="text-align: center;">
-                        you don't have any confirmed appointments yet!
+                        you don't have any confirmed appointments at this time!
                     </p>
                 }
                 <!--==================================================================-->
@@ -589,24 +567,24 @@
                                     <!-------------------------------------------------->
                                     <span style="float:left;">
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PetName)&nbsp;&nbsp;
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.PetName)
+                                                &nbsp;&nbsp; </span>
                                         @Html.DisplayFor(model => item.PetName)
                                     </span>
                                     <!-------------------------------------------------->
 
                                     <span style="float:left; margin-left: 25px;">
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => item.PetOwnerName)&nbsp;&nbsp;
-                                        </span>
+                                            @Html.DisplayNameFor(model => item.PetOwnerName)
+                                                &nbsp;&nbsp; </span>
                                         @Html.DisplayFor(model => item.PetOwnerName)
                                     </span>
                                     <!-------------------------------------------------->
 
                                     <span style="float:left; margin-left: 25px;">
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => item.PetCarerName)&nbsp;&nbsp;
-                                        </span>
+                                            @Html.DisplayNameFor(model => item.PetCarerName)
+                                                &nbsp;&nbsp; </span>
                                         @Html.DisplayFor(model => item.PetCarerName)
                                     </span>
                                     <!-------------------------------------------------->
@@ -621,15 +599,13 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            From:<br />
-                                        </span>
+                                            From:<br /> </span>
                                         @Html.DisplayFor(model => item.StartDate)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            at:<br />
-                                        </span>
+                                            at:<br /> </span>
                                         @Html.DisplayFor(model => item.StartTime)
                                     </div>
 
@@ -641,15 +617,13 @@
 
                                     <div style="margin-bottom: 5px;">
                                         <span class="our_appt_label">
-                                            To:<br />
-                                        </span>
+                                            To:<br /> </span>
                                         @Html.DisplayFor(model => item.EndDate)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            at:<br />
-                                        </span>
+                                            at:<br /> </span>
                                         @Html.DisplayFor(model => item.EndTime)
                                     </div>
 
@@ -660,8 +634,8 @@
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.NeededThisVisit)<br />
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.NeededThisVisit)
+                                                <br /> </span>
                                         @Html.DisplayFor(model => item.NeededThisVisit)
                                     </div>
 
@@ -673,9 +647,8 @@
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.CareProvided)<br />
-                                        </span>
-
+                                            @Html.DisplayNameFor(model => model.CareProvided)
+                                                <br /> </span>
                                         @Html.DisplayFor(model => item.CareProvided)
                                     </div>
 
@@ -687,15 +660,15 @@
 
                                     <div style="margin-bottom: 13px;">
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.Charge) &nbsp; $ <br />
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.Charge)
+                                                &nbsp; $ <br /> </span>
                                         @Html.DisplayFor(model => item.Charge)
                                     </div>
 
                                     <div style="margin-top: 13px;">
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.Tip) &nbsp; $ <br />
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.Tip) 
+                                                &nbsp; $ <br /> </span>
                                         @Html.DisplayFor(model => item.Tip)
                                     </div>
 
@@ -712,8 +685,8 @@
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.CareReport)<br />
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.CareReport)
+                                                <br /> </span>
                                         @Html.DisplayFor(model => item.CareReport)
                                     </div>
 
@@ -725,15 +698,15 @@
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PC_Rating) &nbsp;
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.PC_Rating) 
+                                                &nbsp; </span>
                                         @Html.DisplayFor(model => item.PC_Rating)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PC_Comments)<br />
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.PC_Comments)
+                                                <br /> </span>
                                         @Html.DisplayFor(model => item.PC_Comments)
                                     </div>
 
@@ -745,15 +718,15 @@
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PO_Rating) &nbsp;
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.PO_Rating) 
+                                                &nbsp; </span>
                                         @Html.DisplayFor(model => item.PO_Rating)
                                     </div>
 
                                     <div>
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PO_Comments)<br />
-                                        </span>
+                                            @Html.DisplayNameFor(model => model.PO_Comments)
+                                                <br /> </span>
                                         @Html.DisplayFor(model => item.PO_Comments)
                                     </div>
 
@@ -777,56 +750,33 @@
                                              new { style = "color: #f2e6d9; font-weight: normal;" })
                                 </span>
 
-                                @if (isPetCarer)
-                                {
-                                    <!-- MOVE THIS TO UPCOMING ONLY!!!!! -->
-                                    <span style="float:right; margin-right:5px;" class="btn our_buttons">
-                                        @Html.ActionLink("Job Details", "PetCarer_JobDetails",
-                                                new { ct_id = item.CareTransactionID },
-                                                new { style = "color: #f2e6d9; font-weight: normal;" })
+                                <div>
+                                    <span style="margin-right: 15px;">
+                                        ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                                     </span>
+                                    <span style="margin-right: 15px;">
+                                        Pending? @Html.DisplayFor(model => item.Pending)
+                                    </span>
+                                    <span style="margin-right: 15px;">
+                                        Confirmed? @Html.DisplayFor(model => item.Confirmed)
+                                    </span>
+                                </div>
 
-                                    <span style="float:right; margin-right:5px;" class="btn our_buttons">
-                                        @Html.ActionLink("Confirm Appt!", "ConfirmAppointment",
-                                                new { ct_id = item.CareTransactionID },
-                                                new { style = "color: #f2e6d9; font-weight: normal;" })
-                                    </span>
-                                }
-                                <span style="margin-right: 15px;">
-                                    ct_id? @Html.DisplayFor(model => item.CareTransactionID)
-                                </span>
-                                <span style="margin-right: 15px;">
-                                    Pending? @Html.DisplayFor(model => item.Pending)
-                                </span>
-                                <span style="margin-right: 15px;">
-                                    Confirmed? @Html.DisplayFor(model => item.Confirmed)
-                                </span>
                             </div><!-- END ROW THREE-->
                             <!--======================================================-->
-
                         </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
                     }
                 }
                 else
                 {
                     <p style="text-align: center;">
-                        you don't have any finished appointments yet!
+                        you don't have any finished appointments at this time!
                     </p>
                 }
                 <!--==================================================================-->
             </div><!-- end div where id==home & class==tab-pane fade in active -->
-        </div><!-- end div where id=Menu1 --><!-- end confirmed -->
+        </div><!-- end div where id=Menu1 --><!-- end finished -->
         <!------------------------------------------------------------------------------>
-
-
-
-
-
-
-
-
-
-
     </div><!-- END OF TAB CONTENT THING -->
     <!--==============================================================================-->
     <!---->

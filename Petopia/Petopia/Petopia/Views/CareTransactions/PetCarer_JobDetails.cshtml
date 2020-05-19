@@ -13,103 +13,130 @@
     var thisCareProviderPetopiaID = ViewBag.ThisPetCarerPetopiaID;
 }
 
-<div class="outer_container">
+    <div class="outer_container">
 
-    <div class="container-fluid" style="padding-bottom: 45px;">
+        <span style="float:right; margin-right:5px; margin-top:15px;"
+              class="btn our_buttons">
+            @Html.ActionLink("My Appointments", "MyAppointments",
+                                new { Controller = "CareTransactions" },
+                                new { style = "color: #f2e6d9; font-weight:normal;" })
+        </span>
 
-        <h2> @ViewBag.Title: </h2>
+        <div class="container-fluid" style="padding-bottom: 45px;">
 
-        <!-- we want ONLY the CP on this transaction to see this! -->
-        @if (loggedInUserPetopiaUserID == thisCareProviderPetopiaID)
-        {
-            <!--------------------------- TEST\PROOF STUFF ----------------------------->
-            <div class="row" style="display:none;">
-                <div class="test_proof_stuff">
-                    <span> this logged-in user PetopiaID: @loggedInUserPetopiaUserID </span>
-                    <span> this job ID: @thisJobID </span>
-                    <span> this pet carer ID: @thisCareProviderID <br />
-                        this pet carer PetopiaID: @thisCareProviderPetopiaID </span>
-                    <span> this pet owner ID: @thisPetOwnerID  <br />
-                        this pet owner PetopiaID: @thisPetOwnerPetopiaID </span>
-                    <span> this pet ID: @thisPetID </span>
+            <h2> @ViewBag.Title: </h2>
+
+            <!-- we want ONLY the CP on this transaction to see this! -->
+            @if (loggedInUserPetopiaUserID == thisCareProviderPetopiaID)
+            {
+                <!--------------------------- TEST\PROOF STUFF ----------------------------->
+                <div class="row" style="display:none;">
+                    <div class="test_proof_stuff">
+                        <span> this logged-in user PetopiaID: @loggedInUserPetopiaUserID </span>
+                        <span> this job ID: @thisJobID </span>
+                        <span>
+                            this pet carer ID: @thisCareProviderID <br />
+                            this pet carer PetopiaID: @thisCareProviderPetopiaID
+                        </span>
+                        <span>
+                            this pet owner ID: @thisPetOwnerID  <br />
+                            this pet owner PetopiaID: @thisPetOwnerPetopiaID
+                        </span>
+                        <span> this pet ID: @thisPetID </span>
+                    </div>
                 </div>
-            </div>
-            <!--=================================== THIS APPT STUFF ==================-->
-            <div class="row job_details_box_box">
-                <h4 style="margin-top:0px; padding-top:0px;">This Appointment:</h4>
+                <!--=================================== THIS APPT STUFF ==================-->
+                <div class="row job_details_box_box">
+                    <h4 style="margin-top:0px; padding-top:0px;">This Appointment:</h4>
 
-                <!---------------------------------------------------------------------->
-                <div class="col-md-2 job_details_box_left">
+                    <!---------------------------------------------------------------------->
+                    <div class="col-md-2 job_details_box_left">
+
+                        <span class="our_appt_label">
+                            <b>From:&nbsp; </b>
+                        </span>@ViewBag.ThisStartDate <br />
+
+                        <span class="our_appt_label">
+                            <b>At:&nbsp; </b>
+                        </span>@ViewBag.ThisStartTime
+
+                    </div>
+                    <!---------------------------------------------------------------------->
+                    <div class="col-md-2 job_details_box_left">
+
+                        <span class="our_appt_label">
+                            <b>To:&nbsp; </b>
+                        </span>@ViewBag.ThisEndDate <br />
+
+                        <span class="our_appt_label">
+                            <b>At:&nbsp; </b>
+                        </span>@ViewBag.ThisEndTime
+
+                    </div>
+                    <!---------------------------------------------------------------------->
+                    <div class="col-md-3 job_details_box_left">
+
+                        <span class="our_appt_label">
+                            <b>Pet:&nbsp; </b>
+                        </span>@ViewBag.ThisPetName <br />
+
+                        <span class="our_appt_label">
+                            <b>Pet Owner:&nbsp; </b>
+                        </span>@ViewBag.ThisPetOwnerName
+
+                    </div>
+                    <!---------------------------------------------------------------------->
+                    <div class="col-md-4 job_details_box_others">
+
+                        <span class="our_appt_label">
+                            <b>To Do:&nbsp; </b>
+                        </span>@ViewBag.NeededThisVisit <br />
+
+                    </div>
+                    <!---------------------------------------------------------------------->
+                </div><!-- end 'job_details_box' for THIS APPT STUFF -->
+                <!---->
+                <!---->
+                <!--=================================== THIS PET OWNER STUFF =============-->
+                <div class="row job_details_box_box">
+                    <h4 style="margin-top:0px; padding-top:0px;">Pet Owner Info:</h4>
+
+                    <!---------------------------------------------------------------------->
+                    <div class="col-md-3 job_details_box_left">
+
+                        <span class="our_appt_label">
+                            <b>Address:&nbsp; </b>
+                        </span>@ViewBag.ThisPetOwnerResAdd01 <br />
+
+                        <span style="margin-left:70px;">@ViewBag.ThisPetOwnerResAdd02 </span><br />
+
+                        <span style="margin-left:70px;">@ViewBag.ThisPetOwnerCity</span>,&nbsp;
+                        <span>@ViewBag.ThisPetOwnerState</span>,&nbsp;
+                        <span>@ViewBag.ThisPetOwnerZip</span>
+
+                    </div>
+                    <!---------------------------------------------------------------------->
+                    <div class="col-md-2 job_details_box_others">
+
+                        <span class="our_appt_label">
+                            <b>Phone #'s:&nbsp; </b>
+                        </span>@ViewBag.ThisPetOwnerMainPhone <br />
+
+                        <span style="margin-left:70px;">
+                            @ViewBag.ThisPetOwnerAltPhone
+                    </span><br /><br />
 
                     <span class="our_appt_label">
-                        <b>From:&nbsp; </b></span>@ViewBag.ThisStartDate <br />
-
-                    <span class="our_appt_label">
-                        <b>At:&nbsp; </b></span>@ViewBag.ThisStartTime
-
-                </div>
-                <!---------------------------------------------------------------------->
-                <div class="col-md-2 job_details_box_left">
-
-                    <span class="our_appt_label">
-                        <b>To:&nbsp; </b></span>@ViewBag.ThisEndDate <br />
-
-                    <span class="our_appt_label">
-                        <b>At:&nbsp; </b></span>@ViewBag.ThisEndTime
-
-                </div>
-                <!---------------------------------------------------------------------->
-                <div class="col-md-3 job_details_box_left">
-
-                    <span class="our_appt_label">
-                        <b>Pet:&nbsp; </b></span>@ViewBag.ThisPetName <br />
-
-                    <span class="our_appt_label">
-                        <b>Pet Owner:&nbsp; </b></span>@ViewBag.ThisPetOwnerName 
-
-                </div>
-                <!---------------------------------------------------------------------->
-                <div class="col-md-4 job_details_box_others">
-
-                    <span class="our_appt_label">
-                        <b>To Do:&nbsp; </b></span>@ViewBag.NeededThisVisit <br />
-
-                </div>
-                <!---------------------------------------------------------------------->
-            </div><!-- end 'job_details_box' for THIS APPT STUFF -->
-            <!---->
-            <!---->
-            <!--=================================== THIS PET OWNER STUFF =============-->
-            <div class="row job_details_box_box">
-                <h4 style="margin-top:0px; padding-top:0px;">Pet Owner Info:</h4>
-
-                <!---------------------------------------------------------------------->
-                <div class="col-md-3 job_details_box_left">
-
-                    <span class="our_appt_label">
-                        <b>Address:&nbsp; </b></span>@ViewBag.ThisPetOwnerResAdd01 <br />
-
-                    <span style="margin-left:70px;">@ViewBag.ThisPetOwnerResAdd02 </span><br />
-
-                    <span style="margin-left:70px;">@ViewBag.ThisPetOwnerCity</span>,&nbsp;
-                    <span>@ViewBag.ThisPetOwnerState</span>,&nbsp;
-                    <span>@ViewBag.ThisPetOwnerZip</span>
-
-                </div>
-                <!---------------------------------------------------------------------->
-                <div class="col-md-2 job_details_box_others">
-
-                    <span class="our_appt_label">
-                        <b>Phone #'s:&nbsp; </b></span>@ViewBag.ThisPetOwnerMainPhone <br />
-
-                    <span style="margin-left:70px;">@ViewBag.ThisPetOwnerAltPhone </span><br />
+                        <b>Email:&nbsp; </b>
+                    </span>@ViewBag.petOwnerEmail
 
                 </div>
                 <!---------------------------------------------------------------------->
                 <div class="col-md-5 job_details_box_others">
 
                     <span class="our_appt_label">
-                        <b>Home Access:&nbsp; </b></span>@ViewBag.ThisPetOwnerHomeAccess<br />
+                        <b>Home Access:&nbsp; </b>
+                    </span>@ViewBag.ThisPetOwnerHomeAccess<br />
 
                 </div>
                 <!---------------------------------------------------------------------->
@@ -124,42 +151,52 @@
                 <div class="col-md-3 job_details_box_left">
 
                     <span class="our_appt_label">
-                        <b>What kind of Pet?&nbsp; </b></span>@ViewBag.ThisPetSpecies<br />
+                        <b>What kind of Pet?&nbsp; </b>
+                    </span>@ViewBag.ThisPetSpecies<br />
 
                     <span class="our_appt_label">
-                        <b>Breed:&nbsp; </b></span>@ViewBag.ThisPetBreed <br />
+                        <b>Breed:&nbsp; </b>
+                    </span>@ViewBag.ThisPetBreed <br />
 
                     <span class="our_appt_label">
-                        <b>Gender:&nbsp; </b></span>@ViewBag.ThisPetGender <br />
+                        <b>Gender:&nbsp; </b>
+                    </span>@ViewBag.ThisPetGender <br />
 
                     <span class="our_appt_label">
-                        <b>Birthday:&nbsp; </b></span>@ViewBag.ThisPetBday <br />
+                        <b>Birthday:&nbsp; </b>
+                    </span>@ViewBag.ThisPetBday <br />
 
                     <span class="our_appt_label">
-                        <b>Weight:&nbsp; </b></span>@ViewBag.ThisPetWeight <br />
+                        <b>Weight:&nbsp; </b>
+                    </span>@ViewBag.ThisPetWeight <br />
 
                 </div>
                 <!---------------------------------------------------------------------->
                 <div class="col-md-5 job_details_box_left">
 
                     <span class="our_appt_label">
-                        <b>Health Concerns?&nbsp; </b></span>@ViewBag.ThisPetHealth<br /><br />
+                        <b>Health Concerns?&nbsp; </b>
+                    </span>@ViewBag.ThisPetHealth<br /><br />
 
                     <span class="our_appt_label">
-                        <b>Behavior Concerns?&nbsp; </b></span>@ViewBag.ThisPetBehavior<br /><br />
+                        <b>Behavior Concerns?&nbsp; </b>
+                    </span>@ViewBag.ThisPetBehavior<br /><br />
 
                     <span class="our_appt_label">
-                        <b>How to get my Pet:&nbsp; </b></span>@ViewBag.ThisPetAccess<br /><br />
+                        <b>How to get my Pet:&nbsp; </b>
+                    </span>@ViewBag.ThisPetAccess<br /><br />
 
                 </div>
                 <!---------------------------------------------------------------------->
                 <div class="col-md-3 job_details_box_others">
 
                     <span class="our_appt_label">
-                        <b>Pet's Emergency Contact:&nbsp; </b></span>@ViewBag.ThisPetECName<br />
+                        <b>Pet's Emergency Contact:&nbsp; </b>
+                    </span>@ViewBag.ThisPetECName<br />
 
                     <span class="our_appt_label" style="margin-left:120px;">
-                        <b>Phone #:&nbsp; </b></span>@ViewBag.ThisPetECPhone<br /><br />
+                        <b>Phone #:&nbsp; </b>
+                    </span>@ViewBag.ThisPetECPhone<br /><br />
 
                 </div>
                 <!---------------------------------------------------------------------->
@@ -184,5 +221,5 @@
                 this CareProvider's PetopiaUserID: &nbsp; @thisCareProviderPetopiaID
             </p>
         }
-    </div><!-- END CONTAINER-FLUID -->
-</div><!-- END OUTER CONTAINER \ MAIN CONTAINER INSIDE BODY -->
+        </div><!-- END CONTAINER-FLUID -->
+    </div><!-- END OUTER CONTAINER \ MAIN CONTAINER INSIDE BODY -->

@@ -682,6 +682,9 @@ namespace Petopia.Controllers
             var thisPetOwnerPetopiaID = db.PetOwners.Where(po => po.PetOwnerID == thisPetOwnerID)
                                                     .Select(pu => pu.UserID).FirstOrDefault();
 
+            var thisPetOwnerAspNetID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetOwnerPetopiaID)
+                                                      .Select(aspID => aspID.ASPNetIdentityID).FirstOrDefault();
+
             ViewBag.ThisPetOwnerID = thisPetOwnerID;
             ViewBag.ThisPetOwnerPetopiaID = thisPetOwnerPetopiaID;
             //---------------------------------------------------------
@@ -751,6 +754,10 @@ namespace Petopia.Controllers
             ViewBag.ThisPetOwnerMainPhone = thisPetOwnerMainPhone;
             ViewBag.ThisPetOwnerAltPhone = thisPetOwnerAltPhone;
 
+            var petOwnerEmail = db.ASPNetUsers.Where(aspID => aspID.Id == thisPetOwnerAspNetID)
+                                              .Select(poE => poE.Email).FirstOrDefault();
+
+            ViewBag.petOwnerEmail = petOwnerEmail;
 
             var thisPetOwnerHomeAccess = db.PetOwners.Where(puID => puID.PetOwnerID == thisPetOwnerID)
                                                      .Select(poHA => poHA.HomeAccess).FirstOrDefault();
@@ -1112,6 +1119,7 @@ namespace Petopia.Controllers
             CareTransaction careTransaction = db.CareTransactions.Find(id);
 
             db.CareTransactions.Remove(careTransaction);
+
             db.SaveChanges();
 
             return RedirectToAction("DeleteConfirmation");
@@ -1143,13 +1151,13 @@ namespace Petopia.Controllers
             var petOwnerID = db.PetOwners.Where(u => u.UserID == petopiaUserID)
                                          .Select(po => po.PetOwnerID).FirstOrDefault();
 
-            // determining 'IsOwner' or 'IsProvivder' status of this PetopiaUser
-            var isPetOwner = db.PetopiaUsers.Where(pu => pu.UserID == petopiaUserID)
-                                            .Select(isp => isp.IsOwner).FirstOrDefault();
-
             // getting the FK column 'UserID' in the 'CareProviders' table
             var careProviderID = db.CareProviders.Where(u => u.UserID == petopiaUserID)
                                                  .Select(cp => cp.CareProviderID).FirstOrDefault();
+
+            // determining 'IsOwner' or 'IsProvivder' status of this PetopiaUser
+            var isPetOwner = db.PetopiaUsers.Where(pu => pu.UserID == petopiaUserID)
+                                            .Select(isp => isp.IsOwner).FirstOrDefault();
 
             var isPetCarer = db.PetopiaUsers.Where(pu => pu.UserID == petopiaUserID)
                                             .Select(ipc => ipc.IsProvider).FirstOrDefault();
