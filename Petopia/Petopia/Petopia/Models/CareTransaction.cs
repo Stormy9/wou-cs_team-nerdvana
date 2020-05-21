@@ -15,6 +15,7 @@ namespace Petopia.Models
         public int TransactionID { get; set; }
 
         //===============================================================================
+        [Required(ErrorMessage = "please enter a start date")]
         [Column(TypeName = "date")]     // gets rid of '12:00:00 AM' appendage
         [DisplayName("Start Date:")]
         //
@@ -26,6 +27,7 @@ namespace Petopia.Models
         public DateTime StartDate { get; set; }
 
         //-------------------------------------------------------------
+        [Required(ErrorMessage = "please enter an end date")]
         [Column(TypeName = "date")]
         [DisplayName("End Date:")]
         //
@@ -36,30 +38,36 @@ namespace Petopia.Models
         public DateTime EndDate { get; set; }
 
         //-------------------------------------------------------------------------------
+        [Required(ErrorMessage = "please enter a start time")]
         [DisplayName("Start Time:")]
         [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Time)]
         public DateTime StartTime { get; set; }
 
         //-------------------------------------------------------------
+        [Required(ErrorMessage = "please enter an end time")]
         [DisplayName("End Time:")]
         [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Time)]
         public DateTime EndTime { get; set; }
 
         //===============================================================================
+        [Required(ErrorMessage = "please give instructions for your pet carer")]
         [DisplayName("Pet Care instructions for this visit:")]
         public string NeededThisVisit { get; set; }
 
         //-------------------------------------------------------------
+        [Required(ErrorMessage = "please give brief summary of pet care")]
         [DisplayName("Pet Care recap:")]
         public string CareProvided { get; set; }
 
         //-------------------------------------------------------------
+        [Required(ErrorMessage = "please enter a report on your pet care experience")]
         [DisplayName("Full Pet Care Report -- Details:")]
         public string CareReport { get; set; }
 
         //-------------------------------------------------------------------------------
+        [Required(ErrorMessage = "please enter your fee")]
         [DisplayName("Pet Carer's fee for this visit:")]
         public float? Charge { get; set; }
 
