@@ -382,10 +382,10 @@
                                     <span>
                                         @Html.ActionLink(item.FirstName, "VisitProfile",
                                         new { controller = "ProfilePage", loggedID = item.UserID },
-                                        new { @class = "", style = "float:left; color:#003399;" })
+                                        new { @class = "", style = "float:left; color:#002266;" })
                                         @Html.ActionLink(item.LastName, "VisitProfile",
                                         new { controller = "ProfilePage", loggedID = item.UserID },
-                                        new { @class = "", style = "float:left; color:#003399;" })
+                                        new { @class = "", style = "float:left; color:#002266;" })
                                     </span>
                                     @if (item.GeneralLocation != null)
                                     {
@@ -494,10 +494,15 @@
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_owner.png" class="pet_badge">
                                     }
                                 </div>
-                                <div> ratings here </div>
+                                <!------------------------------------------>
+                                <!-- 'margin-top' doesn't do anything, but padding does! -->
+                                <!-- but yet 'margin-left' works..... -->
+                                <div style="clear:both; padding-top: 5px; padding-bottom: 5px; margin-left:13px;"> 
+                                    ratings here </div>
                             </div>
                         }
 
+                        <!-- ORIGINAL PLACEHOLDER STUFF FOR SCROLLY-WINDOW ON RIGHT SIDE -->
                         <div class="search_result_card">
 
                             <a href="#" class="our_a">

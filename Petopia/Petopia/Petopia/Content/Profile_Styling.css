@@ -249,7 +249,7 @@
 }
 
 .auto_search_results_box {
-    border: 1px solid #4d3319;
+    border: 2px solid #4d3319;
     border-radius: 5px;
     padding: 3px;
     /* this will add scrollbars only if\when necessary */
@@ -262,8 +262,11 @@
     box-shadow: 0 5px 9px 0 rgba(0,0,0,0.6);
     transition: 0.3s;
     width: 99%;
+    max-height: 320px;
     border-radius: 5px;
     margin-bottom: 18px;
+    /* for testing */
+    /*border:2px solid red;*/
 }
     .search_result_card:hover {
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
@@ -277,11 +280,12 @@
     border-radius: 5px;
     margin-left: 5px;
 }
-
 .search_result_card_info {
     padding: 3px 15px;
+    margin-bottom:9px;
+    /* for testing */
+    /*border:2px solid blue;*/
 }
-
     .search_result_card_info p {
         margin-bottom: 1px;
     }

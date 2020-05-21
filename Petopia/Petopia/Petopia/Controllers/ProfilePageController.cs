@@ -171,7 +171,9 @@ namespace Petopia.Controllers
             }
 
 
-
+            //---------------------------------------------------------------------------
+            // scrolly-windows to the right of the profile pages
+            //
             //IF IM BOTH THEN SHOW LIST OF BOTH OWNERS AND PROVIDERS I'VE WORKED WITH IN PAST
             if (petopiaUser.IsOwner == true && petopiaUser.IsProvider == true)
             {
@@ -198,7 +200,7 @@ namespace Petopia.Controllers
                                                     ReptileOwner = ub.ReptileOwner,
                                                     RodentOwner = ub.RodentOwner,
                                                     OtherOwner = ub.OtherOwner
-                                                }).ToList();
+                                                }).Distinct().ToList();
             }
             //IF IM ONLY A PET OWNER, SHOW LIST OF PROVIDERS
             else if (petopiaUser.IsOwner == true)
@@ -226,7 +228,7 @@ namespace Petopia.Controllers
                                                     ReptileOwner = ub.ReptileOwner,
                                                     RodentOwner = ub.RodentOwner,
                                                     OtherOwner = ub.OtherOwner
-                                                }).ToList();
+                                                }).Distinct().ToList();
             }
             //IF IM ONLY CARE PROVIDER, SHOW LIST OF PET OWNERS
             else if (petopiaUser.IsProvider == true)
@@ -265,9 +267,8 @@ namespace Petopia.Controllers
                                                     RodentProvider = ub.RodentProvider,
                                                     OtherProvider = ub.OtherProvider
                                                 }).ToList();
-
             }
-
+            //---------------------------------------------------------
             return View(petopiaUser);
         }
 
