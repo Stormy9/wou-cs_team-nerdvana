@@ -23,8 +23,7 @@ namespace Petopia.Controllers
         {
             var identityID = User.Identity.GetUserId();
             var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
-                                          .Select(x => x.UserID)
-                                          .First();
+                                          .Select(x => x.UserID).FirstOrDefault();
 
 
             ProfileViewModel petopiaUser = new ProfileViewModel();

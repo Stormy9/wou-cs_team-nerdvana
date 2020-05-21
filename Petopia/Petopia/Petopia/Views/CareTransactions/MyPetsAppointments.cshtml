@@ -262,25 +262,29 @@
                             <!--============================== ROW THREE =============-->
                             <div class="row our_row_three">
 
-                                <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                                <div style="float: right; margin-right: 5px;">
                                     @Html.ActionLink("Cancel Appointment", "Delete",
                                     new { id = item.CareTransactionID },
-                                    new { style = "color: #f2e6d9; font-weight: normal" })
-                                </span>
+                                    new { @class="our_buttons",
+                                        style = "color: #f2e6d9; font-weight: normal" })
+                                </div>
 
-                                <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                                <div style="float: right; margin-right: 5px;">
                                     @Html.ActionLink("Edit Appointment", "EditAppointment",
                                     new { id = item.CareTransactionID },
-                                    new { style = "color: #f2e6d9; font-weight: normal" })
-                                </span>
+                                    new { @class="our_buttons",
+                                        style = "color: #f2e6d9; font-weight: normal" })
+                                </div>
 
-                                <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                                <div style="float: right; margin-right: 5px;">
                                     @Html.ActionLink("Pet's Profile", "PetProfile",
                                         new { controller = "Pets", id = item.PetID },
-                                        new { style = "color: #f2e6d9; font-weight: normal" })
-                                </span>
+                                        new { @class="our_buttons",
+                                            style = "color: #f2e6d9; font-weight: normal" })
+                                </div>
 
-                                <span style="margin-right: 15px;">
+                                <!-- for testing during initial setup -->
+                                <span style="margin-right: 15px; display:none;">
                                     ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                                 </span>
                                 <span style="margin-right: 15px;">
@@ -364,8 +368,7 @@
 
                                         <div>
                                             <span class="our_appt_label">
-                                                at:<br />
-                                            </span>
+                                                at:<br /> </span>
                                             @Html.DisplayFor(modelItem => item.StartTime)
                                         </div>
 
@@ -377,15 +380,13 @@
 
                                         <div style="margin-bottom: 5px;">
                                             <span class="our_appt_label">
-                                                To:<br />
-                                            </span>
+                                                To:<br /> </span>
                                             @Html.DisplayFor(modelItem => item.EndDate)
                                         </div>
 
                                         <div>
                                             <span class="our_appt_label">
-                                                at:<br />
-                                            </span>
+                                                at:<br /> </span>
                                             @Html.DisplayFor(modelItem => item.EndTime)
                                         </div>
 
@@ -510,22 +511,23 @@
                                 <!--============================== ROW THREE =========-->
                                 <div class="row our_row_three">
 
-                                    <span style="float: right; margin-right: 5px;"
-                                          class="btn our_buttons">
+                                    <div style="float: right; margin-right: 5px;">
                                         @Html.ActionLink("Complete Appointment",
                                             "CompleteAppointment",
-                                                new { id = item.CareTransactionID },
-                                                new { style = "color: #f2e6d9; font-weight: normal" })
-                                    </span>
+                                            new { id = item.CareTransactionID },
+                                                new { @class="our_buttons",
+                                                    style = "color: #f2e6d9; font-weight: normal" })
+                                    </div>
 
-                                    <span style="float: right; margin-right: 5px;"
-                                          class="btn our_buttons">
+                                    <div style="float: right; margin-right: 5px;" >
                                         @Html.ActionLink("Pet's Profile", "PetProfile",
                                             new { controller = "Pets", id = item.PetID },
-                                                    new { style = "color: #f2e6d9; font-weight: normal" })
-                                    </span>
+                                                new { @class="our_buttons",
+                                                    style = "color: #f2e6d9; font-weight: normal" })
+                                    </div>
 
-                                    <span style="margin-right: 15px;">
+                                    <!-- for testing during initial setup -->
+                                    <span style="margin-right: 15px; display:none;">
                                         ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                                     </span>
                                     <span style="margin-right: 15px;">
@@ -755,22 +757,23 @@
                                 <!--============================== ROW THREE =========-->
                                 <div class="row our_row_three">
 
-                                    <span style="float: right; margin-right: 5px;"
-                                          class="btn our_buttons">
+                                    <div style="float: right; margin-right: 5px;" >
                                         @Html.ActionLink("Complete Appointment",
                                             "CompleteAppointment",
-                                                new { id = item.CareTransactionID },
-                                                new { style = "color: #f2e6d9; font-weight: normal" })
-                                    </span>
+                                            new { id = item.CareTransactionID },
+                                                new { @class="our_buttons",
+                                                    style = "color: #f2e6d9; font-weight: normal" })
+                                    </div>
 
-                                    <span style="float: right; margin-right: 5px;"
-                                          class="btn our_buttons">
+                                    <div style="float: right; margin-right: 5px;" >
                                         @Html.ActionLink("Pet's Profile", "PetProfile",
                                             new { controller = "Pets", id = item.PetID },
-                                                    new { style = "color: #f2e6d9; font-weight: normal" })
-                                    </span>
+                                                new { @class="our_buttons",
+                                                    style = "color: #f2e6d9; font-weight: normal" })
+                                    </div>
 
-                                    <span style="margin-right: 15px;">
+                                    <!-- for testing during initial setup -->
+                                    <span style="margin-right: 15px; display:none;">
                                         ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                                     </span>
                                     <span style="margin-right: 15px;">

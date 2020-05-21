@@ -239,6 +239,7 @@
 
                     @Html.EditorFor(model => model.MainPhone,
                         new { htmlAttributes = new { @class = "form-control", 
+                                @type="phone", @pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}",
                                                     @placeholder="000-000-0000" } })
 
                     @Html.ValidationMessageFor(model => model.MainPhone, "",
@@ -251,6 +252,7 @@
 
                     @Html.EditorFor(model => model.AltPhone,
                             new { htmlAttributes = new { @class = "form-control", 
+                                   @type="phone", @pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}",
                                                         @placeholder="000-000-0000" } })
 
                     @Html.ValidationMessageFor(model => model.AltPhone, "",

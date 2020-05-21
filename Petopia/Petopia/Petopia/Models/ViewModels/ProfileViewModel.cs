@@ -16,10 +16,12 @@ namespace Petopia.Models.ViewModels
         public int UserID { get; set; }
 
         //-------------------------------------------------------------
-        [DisplayName("First name:")]
+        [Required(ErrorMessage = "please enter your first name")]
+        [DisplayName("* First name:")]
         public string FirstName { get; set; }
 
-        [DisplayName("Last name:")]
+        [Required(ErrorMessage = "please enter your last name")]
+        [DisplayName("* Last name:")]
         public string LastName { get; set; }
 
         //-------------------------------------------------------------------------------
@@ -94,28 +96,39 @@ namespace Petopia.Models.ViewModels
         // and it's gotta be here because it does -- to save things correctly.
         // and because it's part of creating a PetopiaUser record!   [=
         //
-        [DisplayName("Main Phone #")]
+        [Required]
+        [DisplayName("* Main Phone #")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "please enter phone number in requested format")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", 
+                            ErrorMessage = "please enter your phone number as requested")]
         [StringLength(12)]
         public string MainPhone { get; set; }
 
         [DisplayName("Alternate Phone #")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "please enter phone number in requested format")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", 
+                            ErrorMessage = "please enter your phone number as requested")]
         [StringLength(12)]
         public string AltPhone { get; set; }
 
-        [DisplayName("Residential Address:")]
+        [Required(ErrorMessage = "please enter your residential street address")]
+        [DisplayName("* Residential Address:")]
         public string ResAddress01 { get; set; }
 
         [DisplayName("Address, 2nd line (if necessary):")]
         public string ResAddress02 { get; set; }
 
-        [DisplayName("City:")]
+        [Required(ErrorMessage = "please enter your residential city")]
+        [DisplayName("* City:")]
         public string ResCity { get; set; }
 
-        [DisplayName("State:")]
+        [Required(ErrorMessage = "please enter your residential state")]
+        [DisplayName("* State:")]
         [StringLength(2)]
         public string ResState { get; set; }
 
-        [DisplayName("ZipCode:")]
+        [Required(ErrorMessage = "please enter your residential zipcode")]
+        [DisplayName("* ZipCode:")]
         [StringLength(5)]
         public string ResZipcode { get; set; }
 
@@ -205,7 +218,6 @@ namespace Petopia.Models.ViewModels
         //id's for both roles to make my life easier
         public int PetOwnerID { get; set; }
         public int CareProviderID { get; set; }
-
 
         //===============================================================================
         //===============================================================================

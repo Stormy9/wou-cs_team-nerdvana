@@ -909,6 +909,7 @@
     <Content Include="Views\Templates\PetOwner_Profile_Template.html" />
     <Content Include="Views\Templates\Pet_Profile_Template.html" />
     <Content Include="Web_deploy.config" />
+    <None Include="Properties\PublishProfiles\petopia - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\petopia-dev - Web Deploy.pubxml" />
     <Content Include="Scripts\AdminLTE\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="Scripts\AdminLTE\plugins\input-mask\phone-codes\phone-be.json" />

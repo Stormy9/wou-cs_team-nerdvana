@@ -504,7 +504,7 @@ hr {
         color: #f2e6d9;
         font-weight: normal;
     }
-    .our_buttons:hover {
+    .our_buttons a:hover {
         background-color: #392613;
         color: #f2e6d9;
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);

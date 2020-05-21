@@ -78,11 +78,8 @@
                     {
                         @Html.ActionLink("Edit Badges", "Edit",
                                 new { controller = "Badges" },
-                                new
-                                     {
-                                         @class = "btn our_profile_buttons",
-                        style = "margin-left: 9px; color: #f2e6d9; font-weight: normal; float: right;"
-                                     })
+                                new { @class = "btn our_profile_buttons",
+                        style = "margin-left: 9px; color: #f2e6d9; font-weight: normal; float: right;" })
                     }
                     else
                     {
@@ -201,8 +198,8 @@
                 <!---->
                 <!-- private msg + friend buttons -->
                 <!-- *****STILL PLACEHOLDER***** -->
-
-                <div class="button_box" style="margin-top:42px;">
+                <!-- set display to "none" for now -- but leaving here for future development   =] -->
+                <div class="button_box" style="margin-top:42px; display:none;">
                     <a href="#" class="our_a">
                         <div class="our_profile_buttons">
                             PM me!
@@ -219,7 +216,8 @@
                         </div>
                     </a>
                 </div>   
-                <div>
+                <!---------------------------------------------------------------------->
+                <div class="button_box" style="margin-top:42px;">
                     @Html.ActionLink("All my appointments", "MyAppointments",
                                 new { controller = "CareTransactions" },
                                 new { id = Model.UserID, @class = "our_buttons", 
