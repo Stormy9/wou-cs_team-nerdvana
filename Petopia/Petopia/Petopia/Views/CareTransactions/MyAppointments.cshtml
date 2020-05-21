@@ -273,6 +273,13 @@
 
                             @if (isPetCarer)
                             {
+                                <div style="float: right; margin-right: 5px">
+                                        @Html.ActionLink("Owner's Profile", "VisitProfile",
+                                            new { controller = "ProfilePage", 
+                                                  loggedID = item.PetOwnerPetopiaID },
+                                            new { @class = "our_buttons", 
+                                                style = "color:#f2e6d9; font-weight:normal;" })
+                                    </div>
                                 <div style="float:right; margin-right:5px;">
                                     @Html.ActionLink("Confirm Appt!", "ConfirmAppointment",
                                         new { ct_id = item.CareTransactionID },
@@ -281,15 +288,26 @@
                                 </div>
                             }
 
+                            @if (isPetOwner)
+                                { 
+                                    <div style="float: right; margin-right: 5px">
+                                            @Html.ActionLink("Carer's Profile", "VisitProfile",
+                                                new { controller = "ProfilePage", 
+                                                      loggedID = item.PetCarerPetopiaID },
+                                                new { @class = "our_buttons", 
+                                                    style = "color:#f2e6d9; font-weight:normal;" })
+                                    </div>
+                                }
+
                             <!-- for testing during initial setup -->
                             <div>
                                 <span style="margin-right: 15px; display:none;">
                                     ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                                 </span>
-                                <span style="margin-right: 15px;">
+                                <span style="margin-left: 13px;">
                                     Pending? @Html.DisplayFor(model => item.Pending)
                                 </span>
-                                <span style="margin-right: 15px;">
+                                <span style="margin-left: 13px;">
                                     Confirmed? @Html.DisplayFor(model => item.Confirmed)
                                 </span>
                             </div>
@@ -339,7 +357,9 @@
                                         <span class="our_appt_label">
                                             @Html.DisplayNameFor(model => item.PetOwnerName)
                                                 &nbsp;&nbsp; </span>
-                                        @Html.DisplayFor(model => item.PetOwnerName)
+                                        @Html.DisplayFor(model => item.PetOwnerName) 
+                                        &nbsp; | &nbsp; @Html.DisplayFor(model => item.PetOwner_MainPhone)
+                                        &nbsp; | &nbsp; @Html.DisplayFor(model => item.PetOwner_Email)
                                     </span>
                                     <!-------------------------------------------------->
 
@@ -348,6 +368,8 @@
                                             @Html.DisplayNameFor(model => item.PetCarerName)
                                                 &nbsp;&nbsp; </span>
                                         @Html.DisplayFor(model => item.PetCarerName)
+                                        &nbsp; | &nbsp; @Html.DisplayFor(model => item.PetCarer_MainPhone)
+                                        &nbsp; | &nbsp; @Html.DisplayFor(model => item.PetCarer_Email)
                                     </span>
                                     <!-------------------------------------------------->
                                 </div>
@@ -517,26 +539,73 @@
 
                                 @if (isPetCarer)
                                 {
-                                    <!-- MOVE THIS TO CONFIRMED ONLY!!!!! -->
+                                    <div style="float: right; margin-right: 5px">
+                                        @Html.ActionLink("Owner's Profile", "VisitProfile",
+                                            new { controller = "ProfilePage", 
+                                                  loggedID = item.PetOwnerPetopiaID },
+                                            new { @class = "our_buttons", 
+                                                style = "color:#f2e6d9; font-weight:normal;" })
+                                    </div>
                                     <div style="float:right; margin-right:5px;">
                                         @Html.ActionLink("Job Details", "PetCarer_JobDetails",
                                             new { ct_id = item.CareTransactionID },
                                                 new { @class="our_buttons",
-                                                    style = "color: #f2e6d9; font-weight: normal;" })
+                                                    style = "color:#f2e6d9; font-weight:normal;" })
+                                    </div>
+                                }
+
+                                @if (isPetOwner)
+                                { 
+                                    <div style="float: right; margin-right: 5px">
+                                            @Html.ActionLink("Carer's Profile", "VisitProfile",
+                                                new { controller = "ProfilePage", 
+                                                      loggedID = item.PetCarerPetopiaID },
+                                                new { @class = "our_buttons", 
+                                                    style = "color:#f2e6d9; font-weight:normal;" })
                                     </div>
                                 }
 
                                 <!-- for testing during initial setup -->
                                 <div>
-                                    <span style="margin-right: 15px; display:none;">
-                                        ct_id? @Html.DisplayFor(model => item.CareTransactionID)
-                                    </span>
-                                    <span style="margin-right: 15px;">
-                                        Pending? @Html.DisplayFor(model => item.Pending)
-                                    </span>
-                                    <span style="margin-right: 15px;">
-                                        Confirmed? @Html.DisplayFor(model => item.Confirmed)
-                                    </span>
+                                    <div>
+                                        <span style="margin-right: 15px; display:none;">
+                                            ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                                        </span>
+                                        <span style="margin-left: 13px;">
+                                            Pending? @Html.DisplayFor(model => item.Pending)
+                                        </span>
+                                        <span style="margin-left: 13px;">
+                                            Confirmed? @Html.DisplayFor(model => item.Confirmed)
+                                        </span>
+                                    </div>
+                                    <div style="display:none;">
+                                        <span style="margin-left: 9px;">
+                                            petOwnerID: @ViewBag.petOwnerID
+                                        </span>
+                                        <span style="margin-left: 9px;">
+                                            thisPetOwner: @ViewBag.thisPetOwner
+                                        </span>
+                                        <span style="margin-left: 9px;">
+                                            petOwnerEmail: @ViewBag.thisPetOwnerEmail
+                                        </span>
+                                        <span style="margin-left: 9px;">
+                                            petOwnerMainPhone: @ViewBag.thisPetOwnerMainPhone
+                                        </span>
+                                    </div>
+                                    <div style="display:none;">
+                                        <span style="margin-left: 9px;">
+                                            careProviderID: @ViewBag.careProviderID
+                                        </span>
+                                        <span style="margin-left: 9px;">
+                                            thisCareProvider: @ViewBag.thisCareProvider
+                                        </span>
+                                        <span style="margin-left: 9px;">
+                                            thisPetCarerEmail: @ViewBag.thisPetCarerEmail
+                                        </span>
+                                        <span style="margin-left:9px;">
+                                            thisPetCarerMainPhone: @ViewBag.thisPetCarerMainPhone
+                                        </span>
+                                    </div>
                                 </div>
 
                             </div><!-- END ROW THREE-->
@@ -761,15 +830,37 @@
                                                  style = "color: #f2e6d9; font-weight: normal;" })
                                 </div>
 
+                                @if (isPetCarer)
+                                { 
+                                    <div style="float: right; margin-right: 5px">
+                                        @Html.ActionLink("Owner's Profile", "VisitProfile",
+                                            new { controller = "ProfilePage", 
+                                                  loggedID = item.PetOwnerPetopiaID },
+                                            new { @class = "our_buttons", 
+                                                style = "color:#f2e6d9; font-weight:normal;" })
+                                    </div>
+                                }
+
+                                @if (isPetOwner)
+                                { 
+                                    <div style="float: right; margin-right: 5px">
+                                            @Html.ActionLink("Carer's Profile", "VisitProfile",
+                                                new { controller = "ProfilePage", 
+                                                      loggedID = item.PetCarerPetopiaID },
+                                                new { @class = "our_buttons", 
+                                                    style = "color:#f2e6d9; font-weight:normal;" })
+                                    </div>
+                                }
+
                                 <!-- for testing during initial setup -->
                                 <div>
                                     <span style="margin-right: 15px; display:none;">
                                         ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                                     </span>
-                                    <span style="margin-right: 15px;">
+                                    <span style="margin-left: 13px;">
                                         Pending? @Html.DisplayFor(model => item.Pending)
                                     </span>
-                                    <span style="margin-right: 15px;">
+                                    <span style="margin-left: 13px;">
                                         Confirmed? @Html.DisplayFor(model => item.Confirmed)
                                     </span>
                                 </div>

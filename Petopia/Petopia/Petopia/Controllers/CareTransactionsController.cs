@@ -25,9 +25,9 @@ namespace Petopia.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Appts_AdminIndex()
         {
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             // thank you Corrin!   [=
-            //---------------------------------------------------------------------------
+            //---------------------------------------------------------
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
 
             Vmodel.IndexInfoList = (from ct in db.CareTransactions
@@ -328,13 +328,19 @@ namespace Petopia.Controllers
             var thisOwnerID = careTransaction.PetOwnerID;
 
             var thisOwnerUserID = db.PetOwners.Where(cp => cp.PetOwnerID == thisOwnerID)
-                                                  .Select(cpID => cpID.UserID).FirstOrDefault();
+                                              .Select(cpID => cpID.UserID).FirstOrDefault();
 
             var thisOwnerFirstName = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerUserID)
                                                     .Select(cpn => cpn.FirstName).FirstOrDefault();
 
             var thisOwnerLastName = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerUserID)
                                                    .Select(cpn => cpn.LastName).FirstOrDefault();
+
+            var thisOwnerAspIdentity = db.PetopiaUsers.Where(po => po.UserID == thisOwnerUserID)
+                                                      .Select(asp => asp.ASPNetIdentityID).FirstOrDefault();
+
+            var thisOwnerEmail = db.ASPNetUsers.Where(pu => pu.Id == thisOwnerAspIdentity)
+                                               .Select(pe => pe.Email).FirstOrDefault();
 
             ViewBag.PetOwnerName = thisOwnerFirstName + " " + thisOwnerLastName;
 
@@ -367,34 +373,45 @@ namespace Petopia.Controllers
 
             ViewBag.ApptStartDate = thisStartDate;
             ViewBag.ApptEndDate = thisEndDate;
-
+            //                                      THE EMAIL STUFF GOES IN CONFIRMATIONS
             //---------------------------------------------------------------------------
-            // SEND EMAILS TO OWNER & CARER                           BookingConfirmation
+            // SEND EMAILS TO (OWNER &) CARER                         BookingConfirmation
             try
             {
-                var EmailSubject = "[Petopia] Pet Owner has scheduled an appointment with you";
-                var EmailBody = "Hi someone has scheduled an appointment for your services, please navigate over to http://petopia-dev.azurewebsites.net to confirm the information on the request.";
+                var EmailSubject_to_Carer = "[Petopia] Pet Owner has scheduled an appointment with you";
+                var EmailBody_to_Carer = "Hi! A Petopia User has scheduled an appointment for your services, " +
+                    "please navigate over to http://petopia.azurewebsites.net to confirm the pet care request. ";
+
+                var EmailSubject_to_Owner = "[Petopia] Your Pet Care Appointment Booking Confirmation";
+                var EmailBody_to_Owner = "Thank you for booking a pet care appointment through Petopia!" +
+                    "Your requested Pet Care Provider has been notified.  You will receive another email " +
+                    "when they confirm your request.";
 
                 MailAddress FromEmail = new MailAddress(ConfigurationManager.AppSettings["gmailAccount"]);
-                MailAddress ToEmail = new MailAddress(thisCarerEmail);
+                MailAddress ToEmail_Carer = new MailAddress(thisCarerEmail);
+                MailAddress ToEmail_Owner = new MailAddress(thisOwnerEmail);
 
-                MailMessage mail = new MailMessage(FromEmail, ToEmail);
+                MailMessage mail_to_carer = new MailMessage(FromEmail, ToEmail_Carer);
+                MailMessage mail_to_owner = new MailMessage(FromEmail, ToEmail_Owner);
 
-                mail.Subject = EmailSubject;
-                mail.Body = EmailBody;
+                mail_to_carer.Subject = EmailSubject_to_Carer;
+                mail_to_carer.Body = EmailBody_to_Carer;
+
+                mail_to_owner.Subject = EmailSubject_to_Owner;
+                mail_to_owner.Body = EmailBody_to_Owner;
 
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
                 smtp.Port = 587;
                 smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
                 smtp.EnableSsl = true;
-                smtp.Send(mail);
+                smtp.Send(mail_to_carer);
             }
             catch (Exception e)
             {
-
             }
 
+            //---------------------------------------------------------
             return View(careTransaction);
         }
         //===============================================================================
@@ -622,6 +639,45 @@ namespace Petopia.Controllers
 
             ViewBag.ApptStartDate = thisStartDate;
             ViewBag.ApptEndDate = thisEndDate;
+            //                                      THE EMAIL STUFF GOES IN CONFIRMATIONS
+            //---------------------------------------------------------------------------
+            // SEND EMAILS TO (OWNER &) CARER                         ConfirmConfirmation
+            try
+            {
+                var EmailSubject_to_Carer = "[Petopia] You have confirmed your Pet Care Appointment!";
+                var EmailBody_to_Carer = "Hi! You confirmed your Pet Care Appointment.  Be sure to " +
+                    "mark your calendar so you don't forget -- the Pet Owner is counting on you!  " + 
+                    "Please navigate over to http://petopia.azurewebsites.net to keep track of all of" +
+                    "your appointments! ";
+
+                var EmailSubject_to_Owner = "[Petopia] Your Pet Care Provider has confirmed your Appointment Request!";
+                var EmailBody_to_Owner = "Hi! Your selected Pet Care Provider has confirmed your Pet " +
+                    "Care Appointment request.  Please navigate over to http://petopia.azurewebsites.net " +
+                    "to keep track of all of your appointments!";
+
+                MailAddress FromEmail = new MailAddress(ConfigurationManager.AppSettings["gmailAccount"]);
+                MailAddress ToEmail_Carer = new MailAddress(thisCarerEmail);
+                MailAddress ToEmail_Owner = new MailAddress(thisOwnerEmail);
+
+                MailMessage mail_to_carer = new MailMessage(FromEmail, ToEmail_Carer);
+                MailMessage mail_to_owner = new MailMessage(FromEmail, ToEmail_Owner);
+
+                mail_to_carer.Subject = EmailSubject_to_Carer;
+                mail_to_carer.Body = EmailBody_to_Carer;
+
+                mail_to_owner.Subject = EmailSubject_to_Owner;
+                mail_to_owner.Body = EmailBody_to_Owner;
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
+                smtp.EnableSsl = true;
+                smtp.Send(mail_to_carer);
+            }
+            catch (Exception e)
+            {
+            }
             //---------------------------------------------------------
 
             return View(careTransaction);
@@ -842,10 +898,10 @@ namespace Petopia.Controllers
 
             var thisPetsOwnersID = careTransaction.PetOwnerID;
 
-            var thisPetsOwnersPetopiaUserID = db.PetOwners.Where(po => po.PetOwnerID == thisPetsOwnersID)
+            var thisPetsOwnersPetopiaID = db.PetOwners.Where(po => po.PetOwnerID == thisPetsOwnersID)
                                                           .Select(pUID => pUID.UserID).FirstOrDefault();
 
-            var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsOwnersPetopiaUserID)
+            var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsOwnersPetopiaID)
                                                                 .Select(aspnetID => aspnetID.ASPNetIdentityID)
                                                                 .FirstOrDefault();
             var loggedInUser = User.Identity.GetUserId();
@@ -853,7 +909,7 @@ namespace Petopia.Controllers
             var petName = db.Pets.Where(p => p.PetID == thisPetsID)
                                  .Select(pn => pn.PetName).FirstOrDefault();
 
-            var thisPetOwnerZip = db.PetopiaUsers.Where(poz => poz.UserID == thisPetsOwnersPetopiaUserID)
+            var thisPetOwnerZip = db.PetopiaUsers.Where(poz => poz.UserID == thisPetsOwnersPetopiaID)
                                                      .Select(poz => poz.ResZipcode).FirstOrDefault();
 
             ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
@@ -878,6 +934,7 @@ namespace Petopia.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(careTransaction).State = EntityState.Modified;
+
                 db.SaveChanges();
 
                 return RedirectToAction("EditConfirmation", 
@@ -917,32 +974,44 @@ namespace Petopia.Controllers
             // getting the Pet Owner name for display! 
             var thisOwnerID = careTransaction.PetOwnerID;
 
-            var thisOwnerUserID = db.PetOwners.Where(cp => cp.PetOwnerID == thisOwnerID)
+            var thisOwnerPetopiaID = db.PetOwners.Where(cp => cp.PetOwnerID == thisOwnerID)
                                                   .Select(cpID => cpID.UserID).FirstOrDefault();
 
-            var thisOwnerFirstName = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerUserID)
+            var thisOwnerFirstName = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerPetopiaID)
                                                     .Select(cpn => cpn.FirstName).FirstOrDefault();
 
-            var thisOwnerLastName = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerUserID)
+            var thisOwnerLastName = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerPetopiaID)
                                                    .Select(cpn => cpn.LastName).FirstOrDefault();
 
-            ViewBag.PetOwnerName = thisOwnerFirstName + " " + thisOwnerLastName;
+            var thisOwnerAspIdentity = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerPetopiaID)
+                                                      .Select(asp => asp.ASPNetIdentityID).FirstOrDefault();
 
+            var thisOwnerEmail = db.ASPNetUsers.Where(pu => pu.Id == thisOwnerAspIdentity)
+                                               .Select(ce => ce.Email).FirstOrDefault();
+
+
+            ViewBag.PetOwnerName = thisOwnerFirstName + " " + thisOwnerLastName;
             //---------------------------------------------------------
             // getting the Pet Carer name for display! 
             var thisCarerID = careTransaction.CareProviderID;
 
-            var thisCarerUserID = db.CareProviders.Where(cp => cp.CareProviderID == thisCarerID)
+            var thisCarerPetopiaID = db.CareProviders.Where(cp => cp.CareProviderID == thisCarerID)
                                                   .Select(cpID => cpID.UserID).FirstOrDefault();
 
-            var thisCarerFirstName = db.PetopiaUsers.Where(cp => cp.UserID == thisCarerUserID)
+            var thisCarerFirstName = db.PetopiaUsers.Where(cp => cp.UserID == thisCarerPetopiaID)
                                                     .Select(cpn => cpn.FirstName).FirstOrDefault();
 
-            var thisCarerLastName = db.PetopiaUsers.Where(cp => cp.UserID == thisCarerUserID)
+            var thisCarerLastName = db.PetopiaUsers.Where(cp => cp.UserID == thisCarerPetopiaID)
                                                     .Select(cpn => cpn.LastName).FirstOrDefault();
 
+            var thisCarerAspIdentity = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerPetopiaID)
+                                                      .Select(asp => asp.ASPNetIdentityID).FirstOrDefault();
+
+            var thisCarerEmail = db.ASPNetUsers.Where(pu => pu.Id == thisOwnerAspIdentity)
+                                               .Select(ce => ce.Email).FirstOrDefault();
+
+
             ViewBag.PetCarerName = thisCarerFirstName + " " + thisCarerLastName;
-          
             //---------------------------------------------------------
             // getting start & end dates -- to format the display
             var thisStartDate = careTransaction.StartDate.ToString("MM/dd/yyyy");
@@ -950,6 +1019,45 @@ namespace Petopia.Controllers
 
             ViewBag.ApptStartDate = thisStartDate;
             ViewBag.ApptEndDate = thisEndDate;
+
+            //                                      THE EMAIL STUFF GOES IN CONFIRMATIONS
+            //---------------------------------------------------------------------------
+            // SEND EMAILS TO (OWNER &) CARER                            EditConfirmation
+            try
+            {
+                var EmailSubject_to_Carer = "[Petopia] Pet Owner has edited their appointment with you";
+                var EmailBody_to_Carer = "Hi! A Petopia User has edited one of their " +
+                    "appointments with you,please navigate over to http://petopia.azurewebsites.net " +
+                    "to track all of yourappointments.";
+
+                var EmailSubject_to_Owner = "[Petopia] Your Pet Care Appointment Edit Confirmation";
+                var EmailBody_to_Owner = "You requested to edit your scheduled Pet Care Appointment." +
+                    "Your selected Pet Care Provider has been notified.  You will receive another " +
+                    "email when they confirm your edit request.";
+
+                MailAddress FromEmail = new MailAddress(ConfigurationManager.AppSettings["gmailAccount"]);
+                MailAddress ToEmail_Carer = new MailAddress(thisCarerEmail);
+                MailAddress ToEmail_Owner = new MailAddress(thisOwnerEmail);
+
+                MailMessage mail_to_carer = new MailMessage(FromEmail, ToEmail_Carer);
+                MailMessage mail_to_owner = new MailMessage(FromEmail, ToEmail_Owner);
+
+                mail_to_carer.Subject = EmailSubject_to_Carer;
+                mail_to_carer.Body = EmailBody_to_Carer;
+
+                mail_to_owner.Subject = EmailSubject_to_Owner;
+                mail_to_owner.Body = EmailBody_to_Owner;
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
+                smtp.EnableSsl = true;
+                smtp.Send(mail_to_carer);
+            }
+            catch (Exception e)
+            {
+            }
             //---------------------------------------------------------
 
             return View(careTransaction);
@@ -1072,29 +1180,29 @@ namespace Petopia.Controllers
             var thisPetsOwnersID = db.CareTransactions.Where(ct => ct.TransactionID == id)
                                                       .Select(poID => poID.PetOwnerID).FirstOrDefault();
 
-            var thisPetsOwnersPetopiaUserID = db.PetOwners.Where(po => po.PetOwnerID == thisPetsOwnersID)
-                                                          .Select(pUID => pUID.UserID).FirstOrDefault();
+            var thisPetsOwnersPetopiaID = db.PetOwners.Where(po => po.PetOwnerID == thisPetsOwnersID)
+                                                      .Select(pUID => pUID.UserID).FirstOrDefault();
 
-            var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsOwnersPetopiaUserID)
-                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
-                                                                .FirstOrDefault();
+            var thisPetsOwnersASPNetID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsOwnersPetopiaID)
+                                                        .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                        .FirstOrDefault();
 
             //---------------------------------------------------------
             var thisPetsCarersID = db.CareTransactions.Where(ct => ct.TransactionID == id)
                                                       .Select(cpID => cpID.CareProviderID).FirstOrDefault();
 
-            var thisPetsCarersPetopiaUserID = db.CareProviders.Where(cp => cp.CareProviderID == thisPetsCarersID)
-                                                              .Select(cpID => cpID.UserID).FirstOrDefault();
+            var thisPetsCarersPetopiaID = db.CareProviders.Where(cp => cp.CareProviderID == thisPetsCarersID)
+                                                          .Select(cpID => cpID.UserID).FirstOrDefault();
 
-            var thisPetsCarersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsCarersPetopiaUserID)
-                                                                .Select(aspnetID => aspnetID.ASPNetIdentityID)
-                                                                .FirstOrDefault();
+            var thisPetsCarersASPNetID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsCarersPetopiaID)
+                                                        .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                        .FirstOrDefault();
 
             //---------------------------------------------------------
             var loggedInUser = User.Identity.GetUserId();
 
-            ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
-            ViewBag.thisPetsCarersASPNetIdentityID = thisPetsCarersASPNetIdentityID;
+            ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetID;
+            ViewBag.thisPetsCarersASPNetIdentityID = thisPetsCarersASPNetID;
             ViewBag.loggedInUser = loggedInUser;
             ViewBag.thisPetsCarersID = thisPetsCarersID;
 
@@ -1130,6 +1238,49 @@ namespace Petopia.Controllers
         // GET: CareTransactions/DeleteConfirmation
         public ActionResult DeleteConfirmation()
         {
+            // PULL IN THE OWNER & CARER EMAILS SOMEHOW HERE -- but how, since the appt 
+            // is deleted???
+
+            //                                      THE EMAIL STUFF GOES IN CONFIRMATIONS
+            //---------------------------------------------------------------------------
+            // SEND EMAILS TO (OWNER &) CARER                Cancel_[Delete]_Confirmation
+            try
+            {
+                var EmailSubject_to_Carer = "[Petopia] Pet Owner has canceled their appointment with you";
+                var EmailBody_to_Carer = "Hi! A Petopia User has canceled one of their " +
+                    "appointments with you, please navigate over to http://petopia.azurewebsites.net " +
+                    "to track all of yourappointments.";
+
+                var EmailSubject_to_Owner = "[Petopia] Your Pet Care Appointment Cancel Confirmation";
+                var EmailBody_to_Owner = "You requested to cancel your scheduled Pet Care Appointment." +
+                    "Your selected Pet Care Provider has been notified.  Thank you for using Petopia," +
+                    "please visit when you need Pet Care next time!";
+
+                MailAddress FromEmail = new MailAddress(ConfigurationManager.AppSettings["gmailAccount"]);
+                //MailAddress ToEmail_Carer = new MailAddress(thisCarerEmail);
+                //MailAddress ToEmail_Owner = new MailAddress(thisOwnerEmail);
+
+                //MailMessage mail_to_carer = new MailMessage(FromEmail, ToEmail_Carer);
+                //MailMessage mail_to_owner = new MailMessage(FromEmail, ToEmail_Owner);
+
+                //mail_to_carer.Subject = EmailSubject_to_Carer;
+                //mail_to_carer.Body = EmailBody_to_Carer;
+
+                //mail_to_owner.Subject = EmailSubject_to_Owner;
+                //mail_to_owner.Body = EmailBody_to_Owner;
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
+                smtp.EnableSsl = true;
+                //smtp.Send(mail_to_carer);
+            }
+            catch (Exception e)
+            {
+            }
+            //---------------------------------------------------------
+            //---------------------------------------------------------
             return View();
         }
         //===============================================================================
@@ -1162,36 +1313,36 @@ namespace Petopia.Controllers
             var isPetCarer = db.PetopiaUsers.Where(pu => pu.UserID == petopiaUserID)
                                             .Select(ipc => ipc.IsProvider).FirstOrDefault();
 
-            // still just checking\proofing
-            var user_Email = db.ASPNetUsers.Where(u => u.Id == identityID)
-                                           .Select(ue => ue.Email).FirstOrDefault();
-
+            ViewBag.identityID = identityID;
+            ViewBag.petopiaUserID = petopiaUserID;
+            ViewBag.isPetOwner = isPetOwner;
+            ViewBag.isPetCarer = isPetCarer;
             //---------------------------------------------------------
-            // proofing stuff
             // this Pet Owner (from the CareTransactions table)
             var thisPetOwner = db.CareTransactions.Where(ct => ct.PetOwnerID == petOwnerID)
                                                   .Select(tpo => tpo.PetOwnerID).FirstOrDefault();
 
-            // this Care Provider (from the CareTransactions table) (proofing)
+            var thisPetOwnerPetopiaID = db.PetOwners.Where(po => po.PetOwnerID == thisPetOwner)
+                                                    .Select(puID => puID.UserID).FirstOrDefault();
+
+            ViewBag.petOwnerID = petOwnerID;
+            ViewBag.thisPetOwner = thisPetOwner;
+
+            //---------------------------------------------------------
+            // this Care Provider (from the CareTransactions table)
             var thisCareProvider = db.CareTransactions.Where(ct => ct.CareProviderID == careProviderID)
                                                       .Select(tcp => tcp.CareProviderID).FirstOrDefault();
+
+            var thisPetCarerPetopiaID = db.PetOwners.Where(po => po.PetOwnerID == thisCareProvider)
+                                                    .Select(puID => puID.UserID).FirstOrDefault();
+
+            ViewBag.careProviderID = careProviderID;
+            ViewBag.thisCareProvider = thisCareProvider;
 
             // ONLY for double-checking crap   [=   (including db)
             //var petOwner_UserID = db.PetOwners.Where(u => u.UserID == petopiaUserID)
             //                                  .Select(po => po.UserID).FirstOrDefault();
-            //---------------------------------------------------------
-
-            // for checking stuff in the view + proofing
-            ViewBag.isPetOwner = isPetOwner;
-            ViewBag.isPetCarer = isPetCarer;
-            // mostly (or only) for proofing stuff   [=
-            ViewBag.identityID = identityID;
-            ViewBag.petopiaUserID = petopiaUserID;
-            ViewBag.petOwnerID = petOwnerID;
-            ViewBag.petCarerID = careProviderID;
-            ViewBag.user_Email = user_Email;
-            ViewBag.thisPetOwner = thisPetOwner;
-            ViewBag.thisCareProvider = thisCareProvider;
+            //---------------------------------------------------------          
 
             CareTransactionViewModel Vmodel = new CareTransactionViewModel();
             //---------------------------------------------------------
@@ -1213,6 +1364,7 @@ namespace Petopia.Controllers
                 {
                     PetName = p.PetName,
                     PetOwnerName = puO.FirstName + " " + puO.LastName,
+                    PetOwnerPetopiaID = puO.UserID, PetCarerPetopiaID = puP.UserID,
                     PetCarerName = puP.FirstName + " " + puP.LastName,
 
                     StartDate = ct.StartDate, EndDate = ct.EndDate,
@@ -1247,13 +1399,21 @@ namespace Petopia.Controllers
                 join po in db.PetOwners on ct.PetOwnerID equals po.PetOwnerID
                 join puO in db.PetopiaUsers on po.UserID equals puO.UserID
                 join puP in db.PetopiaUsers on cp.UserID equals puP.UserID
+                join aspO in db.ASPNetUsers on puO.ASPNetIdentityID equals aspO.Id
+                join aspP in db.ASPNetUsers on puP.ASPNetIdentityID equals aspP.Id
                 join p in db.Pets on ct.PetID equals p.PetID
 
+                // 'MyAppointments()' CONFIRMED TAB
                 select new CareTransactionViewModel.ApptInfo
                 {
                     PetName = p.PetName,
                     PetOwnerName = puO.FirstName + " " + puO.LastName,
+                    PetOwner_Email = aspO.Email, PetOwner_MainPhone = puO.MainPhone,
+
+                    PetOwnerPetopiaID = puO.UserID, PetCarerPetopiaID = puP.UserID,
+
                     PetCarerName = puP.FirstName + " " + puP.LastName,
+                    PetCarer_Email = aspP.Email, PetCarer_MainPhone = puP.MainPhone,
 
                     StartDate = ct.StartDate, EndDate = ct.EndDate,
                     StartTime = ct.StartTime, EndTime = ct.EndTime,
@@ -1292,6 +1452,7 @@ namespace Petopia.Controllers
                 {
                     PetName = p.PetName,
                     PetOwnerName = puO.FirstName + " " + puO.LastName,
+                    PetOwnerPetopiaID = puO.UserID, PetCarerPetopiaID = puP.UserID,
                     PetCarerName = puP.FirstName + " " + puP.LastName,
 
                     StartDate = ct.StartDate, EndDate = ct.EndDate,
@@ -1369,6 +1530,7 @@ namespace Petopia.Controllers
                 {
                     PetName = p.PetName,
                     PetOwnerName = puO.FirstName + " " + puO.LastName,
+                    PetOwnerPetopiaID = puO.UserID, PetCarerPetopiaID = puP.UserID,
                     PetCarerName = puP.FirstName + puP.LastName,
 
                     StartDate = ct.StartDate, EndDate = ct.EndDate,
@@ -1403,13 +1565,20 @@ namespace Petopia.Controllers
                 join po in db.PetOwners on ct.PetOwnerID equals po.PetOwnerID
                 join puO in db.PetopiaUsers on po.UserID equals puO.UserID
                 join puP in db.PetopiaUsers on cp.UserID equals puP.UserID
+                join aspO in db.ASPNetUsers on puO.ASPNetIdentityID equals aspO.Id
+                join aspP in db.ASPNetUsers on puP.ASPNetIdentityID equals aspP.Id
                 join p in db.Pets on ct.PetID equals p.PetID
 
                 select new CareTransactionViewModel.ApptInfo
                 {
                     PetName = p.PetName,
                     PetOwnerName = puO.FirstName + " " + puO.LastName,
+                    PetOwner_Email = aspO.Email, PetOwner_MainPhone = puO.MainPhone,
+
                     PetCarerName = puP.FirstName + puP.LastName,
+                    PetCarer_Email = aspP.Email, PetCarer_MainPhone = puP.MainPhone,
+
+                    PetOwnerPetopiaID = puO.UserID, PetCarerPetopiaID = puP.UserID,
 
                     StartDate = ct.StartDate, EndDate = ct.EndDate,
                     StartTime = ct.StartTime, EndTime = ct.EndTime,
@@ -1448,6 +1617,7 @@ namespace Petopia.Controllers
                 {
                     PetName = p.PetName,
                     PetOwnerName = puO.FirstName + " " + puO.LastName,
+                    PetOwnerPetopiaID = puO.UserID, PetCarerPetopiaID = puP.UserID,
                     PetCarerName = puP.FirstName + " " + puP.LastName,
 
                     StartDate = ct.StartDate, EndDate = ct.EndDate,

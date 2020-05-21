@@ -305,12 +305,16 @@ namespace Petopia.Models.ViewModels
             [DisplayName("PetOwnerID:")]
             public int PetOwnerID { get; set; }
 
+            public int PetOwnerPetopiaID { get; set; }
+
             [DisplayName("Pet's Owner:")]
             public string PetOwnerName { get; set; }
 
             //---------------------------------------------------------
             [DisplayName("PetCarerID:")]
             public int PetCarerID { get; set; }
+
+            public int PetCarerPetopiaID { get; set; }
 
             [DisplayName("Pet Carer:")]
             public string PetCarerName { get; set; }
@@ -367,6 +371,14 @@ namespace Petopia.Models.ViewModels
 
             [DisplayName("Pet Owner Comments:  (from Pet Carer!)")]
             public string PO_Comments { get; set; }
+
+            //---------------------------------------------------------
+            // ONLY FOR **CONFIRMED** APPOINTMENTS!
+            public string PetOwner_Email { get; set; }
+            public string PetOwner_MainPhone { get; set; }
+
+            public string PetCarer_Email { get; set; }
+            public string PetCarer_MainPhone { get; set; }
 
             //---------------------------------------------------------
             // booleans for status of appointments                      

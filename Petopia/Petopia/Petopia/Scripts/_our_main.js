@@ -90,7 +90,7 @@ $(window).on('load', function(){
 
                 if (date.isValid()) { // valid?
                     $('#calendar').fullCalendar('renderEvent', {
-                        title: 'TEST DYNAMIC EVENT',
+                        title: 'woof!',
                         start: date,
                         allDay: true
                     });
