@@ -664,12 +664,39 @@ a:active {
 }
 /*================================ OUR CALENDAR! ======================================*/
 /* Calendar styling configuration */
+.calendar_box {
+    width: 94%;
+    /* for testing */
+    /*border:2px solid purple;*/
+}
 #calendar {
-    max-width: 90%;
+    max-width: 100%;
     margin: 20px auto;
     /* for testing */
     /*border: 1px solid blue;*/
 }
+/* for our calendar, which is in a table, but not in html   =] */
+    #calendar th {
+        background-color: #604020;
+    }
+    .fc-head {
+        margin-top: 0px;
+    }
+    /* this was hard to find! (in ctrl+shft+I) *//* and then it doesn't do anything! */
+    /* well it does, for color -- just not for background-color */
+    /* yet if you change if in the inspector window, it changes..... */
+    .fc-unthemed td.fc-today {
+        /**/
+        /* changed this in 'fullcalendar.css ... line 615-618' - works there */
+        /**/
+        /*background: aquamarine;*/   /* changing to 'background' doesn't do it, either! */
+        /*color: #392613;*/   /* but THIS works!!!  wtf??? */
+    }
+    /* this one works though!  and it's cool! */
+    .fc-sun:hover, .fc-mon:hover, .fc-tue:hover, .fc-wed:hover, 
+    .fc-thu:hover, .fc-fri:hover, .fc-sat:hover, .fc-today:hover {
+        background-color: rgba(153, 0, 0, .45);
+    }
 /*=================================== TABLES - now only for admin views ===============*/
 .admin_table {
     width: 100%;

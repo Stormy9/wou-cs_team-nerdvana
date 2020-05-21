@@ -613,7 +613,9 @@ TODO: more distinction between this file and common.css
   color: #666; }
 
 .fc-unthemed td.fc-today {
-  background: #fcf8e3; }
+    /*background: #fcf8e3;*/
+    background: #604020;
+}
 
 .fc-unthemed .fc-disabled-day {
   background: #d7d7d7;
@@ -823,7 +825,7 @@ NOTE: use percentage font sizes or else old IE chokes
 
 /* title text */
 .fc-toolbar h2 {
-  margin: 0; }
+  margin: 13px 0px 0px 0px; }
 
 /* button layering (for border precedence) */
 .fc-toolbar button {
