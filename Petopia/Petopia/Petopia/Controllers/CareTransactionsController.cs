@@ -1157,6 +1157,7 @@ namespace Petopia.Controllers
         }
         //===============================================================================
         //                                                    Appointment CANCEL \ DELETE
+        //                                             for when PET OWNER cancel\deletes!
         //===============================================================================
         // GET: CareTransactions/Delete/5
         public ActionResult Delete(int? id)
@@ -1218,36 +1219,51 @@ namespace Petopia.Controllers
         }
         //-------------------------------------------------------------------------------
         //                                           still in Appointment Cancel \ Delete
+        //                                             for when PET OWNER cancel\deletes!
         //-------------------------------------------------------------------------------
         // POST: CareTransactions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            // that ^^^ is the name it comes with (since i'm using 'confirm'-type names)
+
             CareTransaction careTransaction = db.CareTransactions.Find(id);
 
-            db.CareTransactions.Remove(careTransaction);
+            // PULL IN THE OWNER & CARER EMAILS SOMEHOW HERE -- 
+            // will putting it here work, to send the email before the ID's are deleted?
 
-            db.SaveChanges();
-
-            return RedirectToAction("DeleteConfirmation");
-        }
-        //-------------------------------------------------------------------------------
-        //                                           still in Appointment Cancel \ Delete
-        //-------------------------------------------------------------------------------
-        // GET: CareTransactions/DeleteConfirmation
-        public ActionResult DeleteConfirmation()
-        {
-            // PULL IN THE OWNER & CARER EMAILS SOMEHOW HERE -- but how, since the appt 
-            // is deleted???
-
-            //                                      THE EMAIL STUFF GOES IN CONFIRMATIONS
+            // THE EMAIL STUFF GOES IN CONFIRMATIONS -- except for cancel\delete, i imagine.....
             //---------------------------------------------------------------------------
             // SEND EMAILS TO (OWNER &) CARER                Cancel_[Delete]_Confirmation
+            //
+            // try to pull Owner & Carer email addresses:
+            var thisPetOwnerID = careTransaction.PetOwnerID;
+
+            var thisPetOwnerPetopiaID = db.PetOwners.Where(poID => poID.PetOwnerID == thisPetOwnerID)
+                                                    .Select(puID => puID.UserID).FirstOrDefault();
+
+            var thisPetOwnerAspID = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                   .Select(aspID => aspID.ASPNetIdentityID).FirstOrDefault();
+
+            var thisOwnerEmail = db.ASPNetUsers.Where(aspID => aspID.Id == thisPetOwnerAspID)
+                                               .Select(poEm => poEm.Email).FirstOrDefault();
+            //---------------------------------------------------------
+            var thisPetCarerID = careTransaction.CareProviderID;
+
+            var thisPetCarerPetopiaID = db.PetOwners.Where(poID => poID.PetOwnerID == thisPetCarerID)
+                                                    .Select(puID => puID.UserID).FirstOrDefault();
+
+            var thisPetCarerAspID = db.PetopiaUsers.Where(puID => puID.UserID == thisPetCarerPetopiaID)
+                                                   .Select(aspID => aspID.ASPNetIdentityID).FirstOrDefault();
+
+            var thisCarerEmail = db.ASPNetUsers.Where(aspID => aspID.Id == thisPetCarerAspID)
+                                               .Select(poEm => poEm.Email).FirstOrDefault();
+            //---------------------------------------------------------
             try
             {
                 var EmailSubject_to_Carer = "[Petopia] Pet Owner has canceled their appointment with you";
-                var EmailBody_to_Carer = "Hi! A Petopia User has canceled one of their " +
+                var EmailBody_to_Carer = "Hi! A Petopia User has canceled one of their pet care " +
                     "appointments with you, please navigate over to http://petopia.azurewebsites.net " +
                     "to track all of yourappointments.";
 
@@ -1257,30 +1273,43 @@ namespace Petopia.Controllers
                     "please visit when you need Pet Care next time!";
 
                 MailAddress FromEmail = new MailAddress(ConfigurationManager.AppSettings["gmailAccount"]);
-                //MailAddress ToEmail_Carer = new MailAddress(thisCarerEmail);
-                //MailAddress ToEmail_Owner = new MailAddress(thisOwnerEmail);
+                MailAddress ToEmail_Carer = new MailAddress(thisCarerEmail);
+                MailAddress ToEmail_Owner = new MailAddress(thisOwnerEmail);
 
-                //MailMessage mail_to_carer = new MailMessage(FromEmail, ToEmail_Carer);
-                //MailMessage mail_to_owner = new MailMessage(FromEmail, ToEmail_Owner);
+                MailMessage mail_to_carer = new MailMessage(FromEmail, ToEmail_Carer);
+                MailMessage mail_to_owner = new MailMessage(FromEmail, ToEmail_Owner);
 
-                //mail_to_carer.Subject = EmailSubject_to_Carer;
-                //mail_to_carer.Body = EmailBody_to_Carer;
+                mail_to_carer.Subject = EmailSubject_to_Carer;
+                mail_to_carer.Body = EmailBody_to_Carer;
 
-                //mail_to_owner.Subject = EmailSubject_to_Owner;
-                //mail_to_owner.Body = EmailBody_to_Owner;
+                mail_to_owner.Subject = EmailSubject_to_Owner;
+                mail_to_owner.Body = EmailBody_to_Owner;
 
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
                 smtp.Port = 587;
                 smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
                 smtp.EnableSsl = true;
-                //smtp.Send(mail_to_carer);
+                smtp.Send(mail_to_carer);
             }
             catch (Exception e)
             {
             }
-
             //---------------------------------------------------------
+
+            db.CareTransactions.Remove(careTransaction);
+
+            db.SaveChanges();
+
+            return RedirectToAction("DeleteConfirmation");
+        }
+        //-------------------------------------------------------------------------------
+        //                                           still in Appointment Cancel \ Delete
+        //                                             for when PET OWNER cancel\deletes!
+        //-------------------------------------------------------------------------------
+        // GET: CareTransactions/DeleteConfirmation
+        public ActionResult DeleteConfirmation()
+        {
             return View();
         }
         //===============================================================================
