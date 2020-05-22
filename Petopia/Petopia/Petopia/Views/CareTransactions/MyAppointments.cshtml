@@ -37,7 +37,7 @@
         <li>
             <a data-toggle="tab" href="#menu1" 
                style="background-color: #604020; color: #f2e6d9;">
-                confirmed\upcoming appointments
+                confirmed \ upcoming \ current appointments
             </a>
         </li>
         <li>
@@ -481,19 +481,43 @@
                                 <!--------------------------- ROW 2 \ COL 2 ------------>
                                 <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
 
-                                    <div>
-                                        <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PC_Rating) 
-                                                &nbsp; </span>
-                                        @Html.DisplayFor(model => item.PC_Rating)
-                                    </div>
+                                    @if (item.Completed_PO)
+                                    { 
+                                        <div>
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PC_Rating) 
+                                                    &nbsp; </span>
+                                            @Html.DisplayFor(model => item.PC_Rating)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_PO)
+                                    { 
+                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PC_Rating) 
+                                                    &nbsp; </span>
+                                            @Html.DisplayFor(model => item.PC_Rating)
+                                        </div>
+                                    }
 
-                                    <div>
-                                        <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PC_Comments)
-                                                <br /> </span>
-                                        @Html.DisplayFor(model => item.PC_Comments)
-                                    </div>
+                                    @if (item.Completed_PO)
+                                    { 
+                                        <div>
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PC_Comments)
+                                                    <br /> </span>
+                                            @Html.DisplayFor(model => item.PC_Comments)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_PO)
+                                    { 
+                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PC_Comments)
+                                                    <br /> </span>
+                                            @Html.DisplayFor(model => item.PC_Comments)
+                                        </div>
+                                    }
 
                                 </div>
                                 <!------------------------------------------------------>
@@ -501,19 +525,47 @@
                                 <!---------------------------- ROW 2 \ COL 3 ----------->
                                 <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
 
-                                    <div>
-                                        <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PO_Rating) 
-                                                &nbsp; </span>
-                                        @Html.DisplayFor(model => item.PO_Rating)
-                                    </div>
+                                    @if (item.Completed_CP)
+                                    {
+                                        <div>
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PO_Rating)
+                                                &nbsp;
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Rating)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_CP)
+                                    {
+                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PO_Rating)
+                                                &nbsp;
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Rating)
+                                        </div>
+                                    }
 
-                                    <div>
-                                        <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PO_Comments)
-                                                <br /> </span>
-                                        @Html.DisplayFor(model => item.PO_Comments)
-                                    </div>
+                                    @if (item.Completed_CP)
+                                    {
+                                        <div>
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PO_Comments)
+                                                <br />
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Comments)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_CP)
+                                    {
+                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PO_Comments)
+                                                <br />
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Comments)
+                                        </div>
+                                    }
 
                                 </div><!-- END ROW 2 \ COL 3 -->
                                 <!------------------------------------------------------>
@@ -523,12 +575,26 @@
                             <!--============================== ROW THREE =============-->
                             <div class="row our_row_three">
 
-                                <div style="float: right; margin-right: 5px;">
-                                    @Html.ActionLink("Complete Appointment", "CompleteAppointment",
-                                        new { id = item.CareTransactionID },
-                                        new { @class="our_buttons",
-                                            style = "color: #f2e6d9; font-weight: normal;" })
-                                </div>
+                                @if(isPetOwner)
+                                { 
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Complete Appointment", 
+                                            "CompleteAppointment_PetOwner",
+                                                new { id = item.CareTransactionID },
+                                                    new { @class="our_buttons",
+                                                style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+                                }
+                                @if(isPetCarer)
+                                {
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Complete Appointment", 
+                                            "CompleteAppointment_PetCarer",
+                                                new { id = item.CareTransactionID },
+                                                    new { @class="our_buttons",
+                                                style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+                                }
 
                                 <div style="float: right; margin-right: 5px;">
                                     @Html.ActionLink("Pet's Profile", "PetProfile",
@@ -557,14 +623,14 @@
                                 @if (isPetOwner)
                                 { 
                                     <div style="float: right; margin-right: 5px">
-                                            @Html.ActionLink("Carer's Profile", "VisitProfile",
-                                                new { controller = "ProfilePage", 
-                                                      loggedID = item.PetCarerPetopiaID },
-                                                new { @class = "our_buttons", 
-                                                    style = "color:#f2e6d9; font-weight:normal;" })
+                                        @Html.ActionLink("Carer's Profile", "VisitProfile",
+                                            new { controller = "ProfilePage", 
+                                                    loggedID = item.PetCarerPetopiaID },
+                                            new { @class = "our_buttons", 
+                                                style = "color:#f2e6d9; font-weight:normal;" })
                                     </div>
                                 }
-
+                                <!------------------------------------------------------>
                                 <!-- for testing during initial setup -->
                                 <div>
                                     <div>
@@ -577,8 +643,14 @@
                                         <span style="margin-left: 13px;">
                                             Confirmed? @Html.DisplayFor(model => item.Confirmed)
                                         </span>
+                                        <span style="margin-left: 13px;">
+                                            Completed_PO? @Html.DisplayFor(model => item.Completed_PO)
+                                        </span>
+                                        <span style="margin-left: 13px;">
+                                            Completed_CP? @Html.DisplayFor(model => item.Completed_CP)
+                                        </span>
                                     </div>
-                                    <div style="display:none;">
+                                    @*<div style="display:none;">
                                         <span style="margin-left: 9px;">
                                             petOwnerID: @ViewBag.petOwnerID
                                         </span>
@@ -591,8 +663,8 @@
                                         <span style="margin-left: 9px;">
                                             petOwnerMainPhone: @ViewBag.thisPetOwnerMainPhone
                                         </span>
-                                    </div>
-                                    <div style="display:none;">
+                                    </div>*@
+                                    @*<div style="display:none;">
                                         <span style="margin-left: 9px;">
                                             careProviderID: @ViewBag.careProviderID
                                         </span>
@@ -605,7 +677,7 @@
                                         <span style="margin-left:9px;">
                                             thisPetCarerMainPhone: @ViewBag.thisPetCarerMainPhone
                                         </span>
-                                    </div>
+                                    </div>*@
                                 </div>
 
                             </div><!-- END ROW THREE-->
@@ -774,39 +846,90 @@
                                 <!--------------------------- ROW 2 \ COL 2 ------------>
                                 <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
 
-                                    <div>
-                                        <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PC_Rating) 
-                                                &nbsp; </span>
-                                        @Html.DisplayFor(model => item.PC_Rating)
-                                    </div>
-
-                                    <div>
-                                        <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PC_Comments)
-                                                <br /> </span>
-                                        @Html.DisplayFor(model => item.PC_Comments)
-                                    </div>
-
+                                    @if (item.Completed_PO)
+                                    { 
+                                        <div>
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PC_Rating) 
+                                                    &nbsp; </span>
+                                            @Html.DisplayFor(model => item.PC_Rating)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_PO)
+                                    { 
+                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                            <span class="our_appt_label" style="color:#f2e6d9">
+                                                @Html.DisplayNameFor(model => model.PC_Rating) 
+                                                    &nbsp; </span>
+                                            @Html.DisplayFor(model => item.PC_Rating)
+                                        </div>
+                                    }
+                                    
+                                    @if (item.Completed_PO)
+                                    { 
+                                        <div>
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PC_Comments)
+                                                    <br /> </span>
+                                            @Html.DisplayFor(model => item.PC_Comments)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_PO)
+                                    { 
+                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PC_Comments)
+                                                    <br /> </span>
+                                            @Html.DisplayFor(model => item.PC_Comments)
+                                        </div>
+                                    }                                    
                                 </div>
                                 <!------------------------------------------------------>
                                 <!---->
                                 <!---------------------------- ROW 2 \ COL 3 ----------->
                                 <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
 
-                                    <div>
-                                        <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PO_Rating) 
-                                                &nbsp; </span>
-                                        @Html.DisplayFor(model => item.PO_Rating)
-                                    </div>
-
-                                    <div>
-                                        <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.PO_Comments)
-                                                <br /> </span>
-                                        @Html.DisplayFor(model => item.PO_Comments)
-                                    </div>
+                                    @if (item.Completed_CP)
+                                    { 
+                                        <div>
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PO_Rating)
+                                                &nbsp;
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Rating)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_CP)
+                                    { 
+                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PO_Rating)
+                                                &nbsp;
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Rating)
+                                        </div>
+                                    }
+                                    
+                                    @if (item.Completed_CP)
+                                    { 
+                                        <div>
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PO_Comments)
+                                                <br />
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Comments)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_CP)
+                                    { 
+                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PO_Comments)
+                                                <br />
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Comments)
+                                        </div>
+                                    }
 
                                 </div><!-- END ROW 2 \ COL 3 -->
                                 <!------------------------------------------------------>
@@ -816,18 +939,32 @@
                             <!--============================== ROW THREE =============-->
                             <div class="row our_row_three">
 
-                                <div style="float: right; margin-right: 5px;">
-                                    @Html.ActionLink("Complete Appointment", "CompleteAppointment",
-                                        new { id = item.CareTransactionID },
-                                            new { @class="our_buttons",
-                                                style = "color: #f2e6d9; font-weight: normal;" })
-                                </div>
-
+                                @if (isPetOwner)
+                                { 
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Complete Appointment", 
+                                            "CompleteAppointment_PetOwner",
+                                                new { id = item.CareTransactionID },
+                                                    new { @class="our_buttons",
+                                            style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+                                }
+                                @if (isPetCarer)
+                                { 
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Complete Appointment", 
+                                            "CompleteAppointment_PetCarer",
+                                                new { id = item.CareTransactionID },
+                                                    new { @class="our_buttons",
+                                            style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+                                }
+                                
                                 <div style="float: right; margin-right: 5px;">
                                     @Html.ActionLink("Pet's Profile", "PetProfile",
                                      new { controller = "Pets", id = item.PetID },
                                              new { @class="our_buttons",
-                                                 style = "color: #f2e6d9; font-weight: normal;" })
+                                        style = "color: #f2e6d9; font-weight: normal;" })
                                 </div>
 
                                 @if (isPetCarer)
@@ -844,11 +981,11 @@
                                 @if (isPetOwner)
                                 { 
                                     <div style="float: right; margin-right: 5px">
-                                            @Html.ActionLink("Carer's Profile", "VisitProfile",
-                                                new { controller = "ProfilePage", 
-                                                      loggedID = item.PetCarerPetopiaID },
-                                                new { @class = "our_buttons", 
-                                                    style = "color:#f2e6d9; font-weight:normal;" })
+                                        @Html.ActionLink("Carer's Profile", "VisitProfile",
+                                            new { controller = "ProfilePage", 
+                                                    loggedID = item.PetCarerPetopiaID },
+                                            new { @class = "our_buttons", 
+                                                style = "color:#f2e6d9; font-weight:normal;" })
                                     </div>
                                 }
 
@@ -863,6 +1000,12 @@
                                     <span style="margin-left: 13px;">
                                         Confirmed? @Html.DisplayFor(model => item.Confirmed)
                                     </span>
+                                    <span style="margin-left: 13px;">
+                                            Completed_PO? @Html.DisplayFor(model => item.Completed_PO)
+                                        </span>
+                                        <span style="margin-left: 13px;">
+                                            Completed_CP? @Html.DisplayFor(model => item.Completed_CP)
+                                        </span>
                                 </div>
 
                             </div><!-- END ROW THREE-->

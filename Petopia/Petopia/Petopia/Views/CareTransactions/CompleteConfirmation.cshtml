@@ -1,0 +1,46 @@
+﻿@model Petopia.Models.CareTransaction
+
+@{
+    ViewBag.Title = "Pet Care Appointment Completed!";
+    ViewBag.Title01 = "You've completed your part of this Appontment!";
+}
+
+<div class="container-fluid" style="padding-top:15px;">
+
+    <div class="container-fluid my_appt_box" style="padding: 15px;">
+
+        <!--=============================== ROW ONE ==============================-->
+        <div class="row our_row_three" style="margin-top: 36px;">
+
+            <h3>
+                You completed your part of @ViewBag.PetName's Appointment!
+            </h3>
+            <div>
+                Thank you!  Rating &amp; leaving comments for your Pet Care Provider
+                &amp; Pet Owner helps other Petopia users in bookng Pet Care.   [=
+            </div>
+
+        </div><!-- END ROW ONE -->
+        <!--======================================================================-->
+        <!---->
+        <!---->
+        <!--=============================== ROW TWO ==============================-->
+        <div class="row our_row_three" style="margin-top: 5px;">
+
+            <span style="float: right; margin-right: 5px;">
+                @Html.ActionLink("All my Pet care appointments", "MyAppointments", 
+                    new { controller = "CareTransactions" },
+                    new { @class="our_buttons", 
+                          style="color:#f2e6d9; font-weight:normal;"})
+            </span>
+
+        </div><!-- END ROW TWO -->
+        <!--======================================================================-->
+    </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
+
+</div><!-- END CONTAINER-FLUID (outer-most container) -->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<!--==================================================================================-->

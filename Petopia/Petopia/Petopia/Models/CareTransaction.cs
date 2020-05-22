@@ -57,17 +57,14 @@ namespace Petopia.Models
         public string NeededThisVisit { get; set; }
 
         //-------------------------------------------------------------
-        [Required(ErrorMessage = "please give brief summary of pet care")]
         [DisplayName("Pet Care recap:")]
         public string CareProvided { get; set; }
 
         //-------------------------------------------------------------
-        [Required(ErrorMessage = "please enter a report on your pet care experience")]
         [DisplayName("Full Pet Care Report -- Details:")]
         public string CareReport { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required(ErrorMessage = "please enter your fee")]
         [DisplayName("Pet Carer's fee for this visit:")]
         public float? Charge { get; set; }
 

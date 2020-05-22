@@ -1086,7 +1086,7 @@
     <Content Include="Views\CareTransactions\BookAppointment.cshtml" />
     <Content Include="Views\PetopiaUsers\MyAccountDetails.cshtml" />
     <Content Include="Views\Pets\MyPetDetails.cshtml" />
-    <Content Include="Views\CareTransactions\CompleteAppointment.cshtml" />
+    <Content Include="Views\CareTransactions\CompleteAppointment_PetOwner.cshtml" />
     <Content Include="Views\CareTransactions\MyAppointments.cshtml" />
     <Content Include="Views\CareTransactions\MyPetsAppointments.cshtml" />
     <Content Include="Views\CareTransactions\AppointmentDetails.cshtml" />
@@ -1103,6 +1103,8 @@
     <Content Include="Views\CareTransactions\PetCarer_JobDetails.cshtml" />
     <Content Include="Views\CareTransactions\ConfirmAppointment.cshtml" />
     <Content Include="Views\CareTransactions\ConfirmConfirmation.cshtml" />
+    <Content Include="Views\CareTransactions\CompleteAppointment_PetCarer.cshtml" />
+    <Content Include="Views\CareTransactions\CompleteConfirmation.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>

@@ -230,17 +230,14 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Pet Care instructions for this visit:")]
         public string NeededThisVisit { get; set; }
 
-        [Required(ErrorMessage = "please give brief summary of pet care")]
         [DisplayName("Pet Care recap:")]
         public string CareProvided { get; set; }
 
-        [Required(ErrorMessage = "please enter a report on your pet care experience")]
         [DisplayName("Full Pet Care Report -- Details:")]
         public string CareReport { get; set; }
 
         //-------------------------------------------------------------------------------
         //                                                            // CareTransactions
-        [Required(ErrorMessage = "please enter your fee")]
         [DisplayName("Pet Carer's fee for this visit:")]
         public float? Charge { get; set; }
 
@@ -310,6 +307,7 @@ namespace Petopia.Models.ViewModels
             [DisplayName("Pet's Owner:")]
             public string PetOwnerName { get; set; }
 
+            public bool isPetOwner { get; set; }
             //---------------------------------------------------------
             [DisplayName("PetCarerID:")]
             public int PetCarerID { get; set; }
@@ -319,6 +317,7 @@ namespace Petopia.Models.ViewModels
             [DisplayName("Pet Carer:")]
             public string PetCarerName { get; set; }
 
+            public bool isPetCarer { get; set; }
             //---------------------------------------------------------
             [Column(TypeName = "date")]
             [DataType(DataType.Date)]
