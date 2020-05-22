@@ -12,6 +12,31 @@
         <div class="row our_row_one">
             <!-- empty/placeholder for now-->
             <!-- here in case we decide we want it later! -->
+            <!-- so what does this do, and if it does something, how does it look here? -->
+            @if (Model.IsProvider == true)
+            {
+                <!-- TESTING THIS OUT! -->
+                <div style="border:3px dashed crimson; display:none;">
+                    <h5> does the 'IsProvider' check work?  apparently, it does. </h5>
+                    <span style="margin-right: 25px;"> 
+                        this user's cp_ID: @ViewBag.cp_ID </span>
+                    <span style="margin-right: 25px;"> 
+                        a sample ct_ID for this cp_ID: @ViewBag.test_ct_ID </span>
+                    <span style="margin-right: 25px;"> 
+                        anyPending: @ViewBag.anyPending </span>
+                </div>
+
+                if (ViewBag.anyPending == true)
+                { 
+                    <div style="text-align:center; color:#990000;">
+                        <h3 style="text-align:center; color:#990000;">
+                            @Html.ActionLink("you have pending appointments -- click here to confirm them",
+                               "MyAppointments", new { controller = "CareTransactions" },
+                                    new {style = "color:#990000;" })
+                        </h3>
+                    </div>
+                }
+            }
         </div>
         <!--==========================================================================-->
         <!------------------------------ SECOND/MIDDLE ROW ----------------------------->
@@ -32,7 +57,7 @@
                 else if (Model.IsProvider == true)
                 {
                     <div class="owner_provider_box">
-                        Pet Carer
+                        Pet Care Provider
                     </div>
                 }
                 else
@@ -221,8 +246,8 @@
                 <!--==================================================================-->
                 <div class="button_box" style="margin-top:42px;">
                     @Html.ActionLink("All my appointments", "MyAppointments",
-                       new { controller = "CareTransactions" },
-                            new { id = Model.UserID, @class = "our_buttons", 
+                       new { controller = "CareTransactions" }, 
+                            new { @class = "our_buttons",
                        style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
                     </div>
                 <!---------------------------------------------->

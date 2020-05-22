@@ -17,11 +17,15 @@ namespace Petopia.Controllers
         private PetopiaContext db = new PetopiaContext();
 
         //===============================================================================
+        //                                      DISPLAY PROFILE PAGE -- PRIVATE\USER VIEW
         //===============================================================================
-        // GET: ProfilePage                                          DISPLAY PROFILE PAGE
+        // GET: ProfilePage                                          
         public ActionResult Index()
         {
+            // this is the user's ASPNetIdentityID:
             var identityID = User.Identity.GetUserId();
+
+            // this is FINDS that user within our Petopia table & pulls their PetopiaUserID
             var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
                                           .Select(x => x.UserID).FirstOrDefault();
 
@@ -140,7 +144,6 @@ namespace Petopia.Controllers
             //Check if badges exist and put in ViewBag.
             DAL.UserBadge UserBadges = db.UserBadges.Where(x => x.UserID == loggedID)
                                                     .FirstOrDefault();
-
             if (UserBadges == null)
             {
                 ViewBag.Badges = false;
@@ -169,7 +172,6 @@ namespace Petopia.Controllers
                 ViewBag.OtherOwner = UserBadges.OtherOwner;
                 ViewBag.OtherProvider = UserBadges.OtherProvider;
             }
-
 
             //---------------------------------------------------------------------------
             // scrolly-windows to the right of the profile pages
@@ -267,6 +269,32 @@ namespace Petopia.Controllers
                                                     RodentProvider = ub.RodentProvider,
                                                     OtherProvider = ub.OtherProvider
                                                 }).ToList();
+            }
+            //---------------------------------------------------------
+            // LIKE UP ABOVE.....
+            // We might not have these so we want to see if we get a result back before populating
+            // IFF => we get 1, then we know this logged-in user is a CareProvider
+            if (db.CareProviders.Where(cp => cp.UserID == loggedID).Count() == 1)
+            {
+                // then get this user's CareProviderID.....
+                int cp_ID = db.CareProviders.Where(cp => cp.UserID == loggedID)
+                                            .Select(cpID => cpID.CareProviderID).FirstOrDefault();
+                // so THIS works.....
+                ViewBag.cp_ID = cp_ID;
+                    
+                // then try to pull a test ct_ID:
+                var test_ct_ID = db.CareTransactions.Where(ct => ct.CareProviderID == cp_ID)
+                                                    .Select(ct => ct.TransactionID).FirstOrDefault();
+                // and THIS works.....
+                ViewBag.test_ct_ID = test_ct_ID;
+
+                // does this care provider have any pending appointments??  will/does this work???
+                if (db.CareTransactions.Where(ct => (ct.CareProviderID == cp_ID) && (ct.Pending)).Count() >= 1)
+                {
+                    // and this works!
+                    bool anyPending = true;
+                    ViewBag.anyPending = anyPending;
+                }
             }
             //---------------------------------------------------------
             return View(petopiaUser);
