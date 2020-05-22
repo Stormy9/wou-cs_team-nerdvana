@@ -163,14 +163,10 @@
                                        htmlAttributes: new { @class = "our_appt_label" })
 
                                 @Html.HiddenFor(model => model.CareProvided)
-                                @*@Html.EditorFor(model => model.CareProvided,
-                                     new { htmlAttributes =
-                                         new { @class = "form-control",
-                                        @placeholder = "just a quick recap....." } })*@
+                                
+
                                 @Html.DisplayFor(model => model.CareProvided)
 
-                                @*@Html.ValidationMessageFor(model => model.CareProvided, 
-                                                    "", new { @class = "text-danger" })*@
                             </div>
                             <!---------------------------------------------------------->
                         </div><!-- END ROW 2 \ COL 1 -->
@@ -185,21 +181,8 @@
                                     htmlAttributes: new { @class = "our_appt_label" })
                                 <br />
                                 @Html.HiddenFor(model => model.CareReport)
-                                @*@Html.TextAreaFor(model => model.CareReport,
-                                    new { htmlAttributes =
-                                    new { @class = "form-control our_text_area" },
-                                        rows = 5, id = "text21", name = "text21",
-                                    style = "color:#2e2e1f; border-radius:5px; 
-                                             padding:5px; width:90%" })*@
+                                
                                 @Html.DisplayFor(model => model.CareReport)
-                                @*<div>
-                                    <span class="pull-left label label-default"
-                                        id="count_message_21">
-                                    </span>
-                                </div>*@
-
-                                @*@Html.ValidationMessageFor(model => model.CareReport, 
-                                                "", new { @class = "text-danger" })*@
                             </div>
                             <!---------------------------------------------------------->
                         </div><!-- END ROW 2 \ COL 2 -->
@@ -214,14 +197,8 @@
                                        htmlAttributes: new { @class = "our_appt_label" })
 
                                 @Html.HiddenFor(model => model.Charge)
-                                @*@Html.EditorFor(model => model.Charge,
-                                     new { htmlAttributes =
-                                        new { @class = "form-control",
-                                    @placeholder = "base fee for your pet care" } })*@
+                                
                                 @Html.DisplayFor(model => model.Charge)
-
-                                @Html.ValidationMessageFor(model => model.Charge, "",
-                                                        new { @class = "text-danger" })
                             </div>
                             <!---->
                             <!---->
@@ -303,16 +280,8 @@
                                        htmlAttributes: new { @class = "our_appt_label" })
 
                                 @Html.HiddenFor(model => model.PO_Rating)
-                                @*@Html.EditorFor(model => model.PO_Rating,
-                                    new { htmlAttributes =
-                                        new { @class = "form-control",
-                                              min = 1, max = 5,
-                                              @placeholder = "rate pet owner 1 - 5",
-                                              style="width:35%" } })*@
-                                @Html.DisplayFor(model => model.PO_Rating)
 
-                                @Html.ValidationMessageFor(model => model.PO_Rating, 
-                                                    "", new { @class = "text-danger" })
+                                @Html.DisplayFor(model => model.PO_Rating)
                             </div>
                             <!-------------- PET OWNER COMMENTS (from pet carer) ------->
                             <div class="form-group">
@@ -320,21 +289,8 @@
                                     htmlAttributes: new { @class = "our_appt_label" })
                                 <br />
                                 @Html.HiddenFor(model => model.PO_Comments)
-                                @*@Html.TextAreaFor(model => model.PO_Comments,
-                                    new { htmlAttributes =
-                                    new { @class = "form-control our_text_area" },
-                                        rows = 5, id = "text23", name = "text23",
-                                        style = "color:#2e2e1f; border-radius:5px; 
-                                                 padding:5px; width:90%;" })*@
-                                @Html.DisplayFor(model => model.PO_Comments)
-                                @*<div>
-                                    <span class="pull-left label label-default"
-                                        id="count_message_23">
-                                    </span>
-                                </div>*@
 
-                                @*@Html.ValidationMessageFor(model => model.PO_Comments, 
-                                                "", new { @class = "text-danger" })*@
+                                @Html.DisplayFor(model => model.PO_Comments)
                             </div>
                             <!---------------------------------------------------------->
                         </div><!-- END ROW 3 \ COL 1 -->

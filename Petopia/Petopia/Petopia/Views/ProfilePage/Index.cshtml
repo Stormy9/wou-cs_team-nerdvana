@@ -13,29 +13,26 @@
             <!-- empty/placeholder for now-->
             <!-- here in case we decide we want it later! -->
             <!-- so what does this do, and if it does something, how does it look here? -->
-            @if (Model.IsProvider == true)
-            {
-                <!-- TESTING THIS OUT! -->
-                <div style="border:3px dashed crimson; display:none;">
-                    <h5> does the 'IsProvider' check work?  apparently, it does. </h5>
-                    <span style="margin-right: 25px;"> 
-                        this user's cp_ID: @ViewBag.cp_ID </span>
-                    <span style="margin-right: 25px;"> 
-                        a sample ct_ID for this cp_ID: @ViewBag.test_ct_ID </span>
-                    <span style="margin-right: 25px;"> 
-                        anyPending: @ViewBag.anyPending </span>
+           
+            @if (ViewBag.anyPending == true)
+            { 
+                <div style="text-align:center; color:#990000;">
+                    <h4 style="text-align:center; color:#990000;">
+                        @Html.ActionLink("you have pending appointments -- click here to confirm them",
+                            "MyAppointments", new { controller = "CareTransactions" },
+                                new {style = "color:#990000;" })
+                    </h4>
                 </div>
-
-                if (ViewBag.anyPending == true)
-                { 
-                    <div style="text-align:center; color:#990000;">
-                        <h3 style="text-align:center; color:#990000;">
-                            @Html.ActionLink("you have pending appointments -- click here to confirm them",
-                               "MyAppointments", new { controller = "CareTransactions" },
-                                    new {style = "color:#990000;" })
-                        </h3>
-                    </div>
-                }
+            }
+            @if ((@ViewBag.incompleteAppts_CP == true) || (@ViewBag.incompleteAppts_PO == true))
+            { 
+                <div style="text-align:center; color:#990000;">
+                    <h4 style="text-align:center; color:#990000;">
+                        @Html.ActionLink("you have appointments to complete -- click here to finish!",
+                            "MyAppointments", new { controller = "CareTransactions" },
+                                new { style = "color:#990000;" })
+                    </h4>
+                </div>
             }
         </div>
         <!--==========================================================================-->

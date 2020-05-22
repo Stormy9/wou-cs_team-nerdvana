@@ -289,11 +289,42 @@ namespace Petopia.Controllers
                 ViewBag.test_ct_ID = test_ct_ID;
 
                 // does this care provider have any pending appointments??  will/does this work???
-                if (db.CareTransactions.Where(ct => (ct.CareProviderID == cp_ID) && (ct.Pending)).Count() >= 1)
+                if (db.CareTransactions.Where(ct => (ct.CareProviderID == cp_ID) && (ct.Pending)).Count() > 0)
                 {
                     // and this works!
                     bool anyPending = true;
                     ViewBag.anyPending = anyPending;
+                }
+
+                // does this care provider have any un-completed appointments (ratings\comments)?
+                if (db.CareTransactions.Where(ct => (ct.CareProviderID == cp_ID) && (!ct.Completed_PO)).Count() > 0)
+                {
+                    bool incompleteAppts_CP = true;
+                    ViewBag.incompleteAppts_CP = incompleteAppts_CP;
+                }
+            }
+            //---------------------------------------------------------
+            // Pet Owner side to check for incomplete appointments.....
+            if (db.PetOwners.Where(po => po.UserID == loggedID).Count() == 1)
+            {
+                // then get this user's PetOwnerID.....
+                int po_ID = db.PetOwners.Where(po => po.UserID == loggedID)
+                                        .Select(poID => poID.PetOwnerID).FirstOrDefault();
+
+                // so THIS works.....
+                ViewBag.po_ID = po_ID;
+
+                // then try to pull a test ct_ID:
+                var test_ct_ID = db.CareTransactions.Where(ct => ct.CareProviderID == po_ID)
+                                                    .Select(ct => ct.TransactionID).FirstOrDefault();
+                // and THIS works.....
+                ViewBag.test_ct_ID = test_ct_ID;
+
+                // does this pet owner have any un-completed appointments (ratings\comments)?
+                if (db.CareTransactions.Where(ct => (ct.PetOwnerID == po_ID) && (!ct.Completed_CP)).Count() > 0)
+                {
+                    bool incompleteAppts_PO = true;
+                    ViewBag.incompleteAppts_PO = incompleteAppts_PO;
                 }
             }
             //---------------------------------------------------------
