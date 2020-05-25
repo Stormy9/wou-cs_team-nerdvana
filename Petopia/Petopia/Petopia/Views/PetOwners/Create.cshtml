@@ -96,9 +96,10 @@
                     <br />
                     @Html.TextAreaFor(model => model.GeneralNeeds,
                          new { htmlAttributes =
-                         new { @class = "form-control our_text_area"}, 
-                             cols=90, rows=5, id = "text01", name = "text01",
-                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"})
+                         new { @class = "form-control our_text_area"}, autofocus="autofocus",
+                               rows=5, id = "text01", name = "text01",
+                               @placeholder="i.e., dinner, walks, clean-up after",
+                         style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;"})
 
                     <div>
                         <span class="pull-left label label-default" id="count_message_01"></span>
@@ -127,8 +128,9 @@
                     @Html.TextAreaFor(model => model.HomeAccess,
                          new { htmlAttributes =
                          new { @class = "form-control our_text_area"}, 
-                             cols=90, rows=5, id = "text02", name = "text02",
-                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;"})
+                             rows=5, id = "text02", name = "text02",
+                             @placeholder="i.e., use the side door...",
+                         style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%"})
 
                     <div>
                         <span class="pull-left label label-default" id="count_message_02"></span>

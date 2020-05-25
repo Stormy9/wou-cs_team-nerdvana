@@ -1,0 +1,322 @@
+﻿@model Petopia.Models.CareTransaction
+
+@{
+    ViewBag.Title = "Pet Owner: Complete your Pet Care appointment!";
+    ViewBag.Title00 = "Complete ";
+    ViewBag.Title01 = "'s Pet Care Appointment";
+    ViewBag.Title02 = "From your Pet Carer";
+    ViewBag.Title03 = "Pet Owner & Pet Carer => please rate your Pet Care transaction";
+    var loggedInUser = ViewBag.loggedInUser;
+    var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
+    var thisPetsCarer = ViewBag.thisPetsCarersASPNetIdentityID;
+}
+
+<div class="container-fluid"  style="padding-bottom:45px;">
+
+    <!-- testing purposes! -->
+    <div style="display:none;"> 
+        logged-in user: @loggedInUser  <br />
+        this pet's owner: @thisPetsOwner <br />
+        this pet's carer: @thisPetsCarer <br />
+        this pet's carerID: @ViewBag.thisPetsCarersID
+    </div>
+
+    @if (loggedInUser == thisPetsOwner)
+    {
+        using (Html.BeginForm("CompleteAppointment_PetOwner", "CareTransactions", FormMethod.Post,
+                new { @class = "form", role = "form", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <!-- THIS IS ***VERY*** IMPORTANT!!!!! -->
+                @Html.HiddenFor(model => model.TransactionID)
+                @Html.HiddenFor(model => model.PetOwnerID)
+                @Html.HiddenFor(model => model.PetID)
+                @Html.HiddenFor(model => model.CareProviderID)
+                <!---->
+                <!---->
+                <!------- change to the user's list (of pet care appointments)! ------->
+                <span style="float: right; padding-right: 5px;">
+                    @Html.ActionLink("See all my Pet Care appointments", "MyAppointments",
+                      new { controller = "CareTransactions" },
+                      new{ @class = "btn our_buttons",
+                           style = "margin-bottom:5px; color: #f2e6d9; font-weight: normal;"})
+                </span>
+                <!---->
+                <!------------------------------------------>
+                <!---->
+                <h2>@ViewBag.Title00@ViewBag.PetName@ViewBag.Title01:</h2>
+                <!---->
+                <!---->
+                <!-- =============================== FIRST\TOP ROW! ======================-->
+                <div class="row make_appt_box">
+                
+                    <!-- SUMMARY OF VISIT BEING COMPLETED -- ALL DISPLAY-ONLY!!!!! -->
+                    <!-- this stuff is important! -->
+                    @Html.HiddenFor(model => model.StartDate)
+                    @Html.HiddenFor(model => model.StartTime)
+                    @Html.HiddenFor(model => model.EndDate)
+                    @Html.HiddenFor(model => model.EndTime)
+                    @Html.HiddenFor(model => model.NeededThisVisit)
+                    <!--==============================================================-->
+                    
+                    <!-- ====================== FIRST ROW -- FIRST COLUMN ============-->
+                    <div class="col-sm-3 col-md-3">
+
+                        <!-----------------------------START DATE ---------------------->
+                        <div class="form-group" style="padding-top: 5px;">
+                            @Html.LabelFor(model => model.StartDate,
+                                    htmlAttributes: new { @class = "our_appt_label" })
+                            &nbsp;&nbsp;
+                            @ViewBag.formatStartDate
+                        </div>
+                        <!----------------------------- START TIME---------------------->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StartTime,
+                                htmlAttributes: new { @class = "our_appt_label" })
+                            &nbsp;&nbsp;
+                            @Html.DisplayFor(model => model.StartTime)
+                        </div>
+                        <!-------------------------------------------------------------->
+                    </div><!-- END ROW 1 \ COL 1 -->
+                    <!--==============================================================-->
+                    <!---->
+                    <!--===================== FIRST ROW - SECOND COLUMN ==============-->
+                    <div class="col-sm-3 col-md-3">
+
+                        <!-----------------------------END DATE ------------------------>
+                        <div class="form-group" style="padding-top: 5px;">
+                            @Html.LabelFor(model => model.EndDate,
+                                    htmlAttributes: new { @class = "our_appt_label" })
+                            &nbsp;&nbsp;
+                            @ViewBag.formatEndDate
+                        </div>
+                        <!---------------------------- END TIME ------------------------>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EndTime,
+                                    htmlAttributes: new { @class = "our_appt_label" })
+                            &nbsp;&nbsp;
+                            @Html.DisplayFor(model => model.EndTime)
+                        </div>
+                        <!-------------------------------------------------------------->
+                    </div><!-- END ROW 1 \ COL 2 -->
+                    <!--==============================================================-->
+                    <!---->
+                    <!--=============================== FIRST ROW - THIRD COLUMN =====-->
+                    <div class="col-sm-4 col-md-4">
+
+                        <!----------------------- NEEDED THIS VISIT ------------------->
+                        @Html.LabelFor(model => model.NeededThisVisit,
+                              htmlAttributes: new { @class = "our_appt_label" })
+                        <br />
+                        @Html.DisplayFor(model => model.NeededThisVisit)
+
+                        <div><!-- can't remove this or } error..... -->
+                            <!-- do a character counter here! -->
+                        </div><!-- obviously we don't need one here -->
+                        <!------------------------------------------------------------->
+                    </div><!-- END ROW 1 \ COL 3 -->
+                    <!--==============================================================-->
+                    <!---->
+                    <!--=============================== FIRST ROW - FOURTH COLUMN ====-->
+                    <div class="col-sm-2 col-md-2">
+
+                        <!------------------------------ PET OWNER - PET CARER -------->
+                        <div class="form-group">
+                            <span class="our_appt_label">
+                                Pet Owner:
+                            </span><br />
+                            @ViewBag.PetOwnerName &nbsp;
+                            [@Html.DisplayFor(model => model.PetOwnerID)]
+                        </div>
+                        <div class="form-group">
+                            <span class="our_appt_label">
+                                Pet Care Provider:
+                            </span><br />
+                            @ViewBag.PetCarerName &nbsp;
+                            [@Html.DisplayFor(model => model.CareProviderID)]
+                        </div>
+                    </div>
+                <!--==================================================================-->
+                </div><!-- END ROW 1 -->
+                <!---->
+                <!---->
+                <br />
+                <h2>@ViewBag.Title02.....</h2>
+                <!---->
+                <!-- =============================== SECOND\MIDDLE ROW! ==============-->
+                <div class="row make_appt_box">
+                    <!---->
+                    <!---->
+                    <!--======== THE ACTUAL STUFF TO COMPLETE THE APPOINTMENT!!!!! ===-->
+                    <!---->
+                    <!---->
+                    <!--============================== SECOND ROW \ FIRST COLUMN =====-->
+                        <div class="col-sm-4 col-md-4">
+                        
+                            <!----------------- CARE PROVIDED SUMMARY ------------------>
+                            <div class="form-group" style="padding-top:5px;">
+                                <h4>Quick Summary -- </h4>
+                                @Html.LabelFor(model => model.CareProvided,
+                                       htmlAttributes: new { @class = "our_appt_label" })
+
+                                @Html.HiddenFor(model => model.CareProvided)
+                                
+
+                                @Html.DisplayFor(model => model.CareProvided)
+
+                            </div>
+                            <!---------------------------------------------------------->
+                        </div><!-- END ROW 2 \ COL 1 -->
+                        <!--==========================================================-->
+                        <!---->
+                        <!-- ========================== SECOND ROW \ SECOND COLUMN ===-->
+                        <div class="col-sm-5 col-md-5">
+
+                            <!-------------------- FULL PET CARE REPORT ---------------->
+                            <div class="form-group" style="padding-top:5px;">
+                                @Html.LabelFor(model => model.CareReport,
+                                    htmlAttributes: new { @class = "our_appt_label" })
+                                <br />
+                                @Html.HiddenFor(model => model.CareReport)
+                                
+                                @Html.DisplayFor(model => model.CareReport)
+                            </div>
+                            <!---------------------------------------------------------->
+                        </div><!-- END ROW 2 \ COL 2 -->
+                        <!--==========================================================-->
+                        <!---->
+                        <!-- ========================== SECOND ROW \ THIRD COLUMN ====-->
+                        <div class="col-sm-3 col-md-3 carer_fee_box">
+
+                            <!-------------- FEE FOR YOUR PET CARE APPT  --------------->
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Charge,
+                                       htmlAttributes: new { @class = "our_appt_label" })
+
+                                @Html.HiddenFor(model => model.Charge)
+                                
+                                @Html.DisplayFor(model => model.Charge)
+                            </div>
+                            <!---->
+                            <!---->
+                            <!------------------- TIP FOR YOUR PET CARER? -------------->
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Tip,
+                                    htmlAttributes: new { @class = "control-label" })
+
+                                @Html.EditorFor(model => model.Tip,
+                                     new { htmlAttributes =
+                                         new { @class = "form-control",
+                                               @placeholder = "a tip is nice!   (:" } })
+
+                                @Html.ValidationMessageFor(model => model.Tip, "",
+                                                new { @class = "text-danger" })
+                            </div>
+                            <!-------------------------------------------------------------->
+                        </div><!-- END ROW 2 \ COL 3 -->
+                    <!--==================================================================-->
+                    </div><!-- END ROW 2-->
+                    <!---->
+                    <!---->
+                        <br />
+                        <h2>@ViewBag.Title03:</h2>
+                    <!---->
+                    <!-- =============================== THIRD\BOTTOM ROW! ===========-->
+                    <div class="row make_appt_box">
+
+                        <!--========================== THIRD ROW \ COL ONE ===========-->
+                        <div class="col-sm-6 col-md-6 carer_rating_comment_box" >
+                            
+                            <!------------------ PET CARER RATING (from pet owner) ----->
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PC_Rating,
+                                    htmlAttributes: new { @class = "control-label" })
+
+                                @Html.EditorFor(model => model.PC_Rating,
+                                     new { htmlAttributes =
+                                         new { @class = "form-control",
+                                               min = 1, max = 5,
+                                               @placeholder = "rate pet carer 1 - 5",
+                                               style="width:35%" } })
+
+                                @Html.ValidationMessageFor(model => model.PC_Rating,
+                                                    "", new { @class = "text-danger" })
+                            </div>
+                            <!--------------- PET CARER COMMENTS (from pet owner) ------>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PC_Comments,
+                                    htmlAttributes: new { @class = "control-label" })
+                                <br />
+                                @Html.TextAreaFor(model => model.PC_Comments,
+                                    new { htmlAttributes =
+                                    new { @class = "form-control our_text_area" },
+                                        rows = 5, id = "text22", name = "text22",
+                                        style = "color:#2e2e1f; border-radius:5px; " +
+                                                "padding:5px; width:90%;" })
+
+                                <div>
+                                    <!-- do a character counter here! -->
+                                    <span class="pull-left label label-default"
+                                        id="count_message_22">
+                                    </span>
+                                </div>
+
+                                @Html.ValidationMessageFor(model => model.PC_Comments, 
+                                                    "", new { @class = "text-danger" })
+                            </div>
+                            <!---------------------------------------------------------->
+                        </div><!-- END ROW 3 \ COL 1 -->
+                        <!--==========================================================-->
+                        <!---->
+                        <!-- ====================== THIRD ROW \ SECOND COLUMN ========-->
+                        <div class="col-sm-6 col-md-6 owner_rating_comment_box">
+
+                            <!------------------ PET ONWER RATING (from pet carer) ----->
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PO_Rating,
+                                       htmlAttributes: new { @class = "our_appt_label" })
+
+                                @Html.HiddenFor(model => model.PO_Rating)
+
+                                @Html.DisplayFor(model => model.PO_Rating)
+                            </div>
+                            <!-------------- PET OWNER COMMENTS (from pet carer) ------->
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PO_Comments,
+                                    htmlAttributes: new { @class = "our_appt_label" })
+                                <br />
+                                @Html.HiddenFor(model => model.PO_Comments)
+
+                                @Html.DisplayFor(model => model.PO_Comments)
+                            </div>
+                            <!---------------------------------------------------------->
+                        </div><!-- END ROW 3 \ COL 1 -->
+                    <!--==============================================================-->
+                    </div><!-- END ROW THREE -->
+                    <!---->
+                    <!---->
+                    <!--============ ROW JUST FOR 'COMPLETE APPOINTMENT' BUTTON ======-->
+                    <div class="row" style="margin-top:23px;">
+                        <span style="padding-right: 5px;">
+                            <input type="submit" value="Complete Appointment!"
+                           class="our_buttons", style="float:right; margin-right:18px;"/>
+                        </span>
+                    </div>
+                <!---------------------------------------------------------------------->
+            </div><!-- END FORM DIV! -->
+        }
+    }
+    else
+    { 
+        <h5> you are not this pet's owner! </h5>
+    }
+</div><!-- END CONTAINER-FLUID DIV! -->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/_our_main.js")
+}
+<!--==================================================================================-->

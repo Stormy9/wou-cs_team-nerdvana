@@ -23,15 +23,14 @@ namespace Petopia.Models.ViewModels
         public string Password { get; set; }
 
         //===============================================================================
-
-        [Required]
-        [DisplayName("First name*")]
+        [Required(ErrorMessage = "please enter your first name")]
+        [DisplayName("* First name:")]
         [StringLength(50)]
         public string FirstName { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
-        [DisplayName("Last name*")]
+        [Required(ErrorMessage = "please enter your last name")]
+        [DisplayName("* Last name:")]
         [StringLength(50)]
         public string LastName { get; set; }
 
@@ -47,19 +46,24 @@ namespace Petopia.Models.ViewModels
 
         //===============================================================================
         [Required]
-        [DisplayName("Main Phone #*")]
+        [DisplayName("* Main Phone #")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "please enter phone number in requested format")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+                            ErrorMessage = "please enter your phone number as requested")]
         [StringLength(12)]
         public string MainPhone { get; set; }
 
         //-------------------------------------------------------------------------------
         [StringLength(12)]
         [DisplayName("Alternate Phone #")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "please enter phone number in requested format")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+                            ErrorMessage = "please enter your phone number as requested")]
         public string AltPhone { get; set; }
 
         //===============================================================================
-
-        [Required]
-        [DisplayName("Residential Street Address*")]
+        [Required(ErrorMessage = "please enter your residential street address")]
+        [DisplayName("* Residential Address:")]
         [StringLength(50)]
         public string ResAddress01 { get; set; }
 
@@ -69,20 +73,20 @@ namespace Petopia.Models.ViewModels
         public string ResAddress02 { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
-        [DisplayName("City*")]
+        [Required(ErrorMessage = "please enter your residential city")]
+        [DisplayName("* City:")]
         [StringLength(50)]
         public string ResCity { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
-        [DisplayName("State*")]
+        [Required(ErrorMessage = "please enter your residential state")]
+        [DisplayName("* State:")]
         [StringLength(50)]
         public string ResState { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
-        [DisplayName("ZipCode*")]
+        [Required(ErrorMessage = "please enter your residential zipcode")]
+        [DisplayName("* ZipCode:")]
         [StringLength(5)]
         public string ResZipcode { get; set; }
 

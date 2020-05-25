@@ -13,7 +13,7 @@ namespace Petopia.Models.ViewModels
     public class SearchViewModel
     {
         //===============================================================================
-        //                                pet care provivder search
+        // care provider search: all the pieces we need -- ids, names, zips, pics, badges
         //===============================================================================
         public int CP_ID { get; set; }
 
@@ -29,12 +29,15 @@ namespace Petopia.Models.ViewModels
 
         public string CP_LastName { get; set; }
 
-        // this is the same as for pet owner search
-        [DisplayName("CP_Zip:")]
+        //-------------------------------------------------------------
+        // these are the same as for pet owner search
+        [DisplayName("Zip:")]
         public string PU_ZipCode { get; set; }
 
+        public string GeneralLocation { get; set; }
+
         //-------------------------------------------------------------
-        [DisplayName("My profile picture:")]
+        [DisplayName("user profile picture:")]
         public byte[] CP_Profile_Pic { get; set; } // this is the one
 
         public HttpPostedFileBase CP_Profile_Photo { get; set; }
@@ -43,11 +46,11 @@ namespace Petopia.Models.ViewModels
         [DisplayName("My Pet Care Experience:")]
         public string ExperienceDetails { get; set; }
 
-        [DisplayName("My average rating:")]
+        [DisplayName("Average rating:")]
         public string ProviderAverageRating { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Dog?")]
+        [DisplayName("Dog?")]                              // care provider badges stuff
         public bool IsDogProvider { get; set; }
 
         [DisplayName("Cat?")]
@@ -78,7 +81,9 @@ namespace Petopia.Models.ViewModels
         public bool IsOtherProvider { get; set; }
 
         //===============================================================================
-        public class CareProviderSearch
+        //                                                     care provider search class
+        //===============================================================================
+        public class CareProviderSearch                     
         {
             [DisplayName("CP_ID")]
             public int CP_ID { get; set; }
@@ -92,8 +97,10 @@ namespace Petopia.Models.ViewModels
             [DisplayName("PU_Zip:")]
             public string PU_Zipcode { get; set; }
 
+            public string GeneralLocation { get; set; }
+
             //---------------------------------------------------------
-            [DisplayName("My profile picture:")]
+            [DisplayName("profile picture:")]
             public byte[] CP_Profile_Pic { get; set; } // this is the one
 
             public HttpPostedFileBase CP_Profile_Photo { get; set; }
@@ -102,11 +109,11 @@ namespace Petopia.Models.ViewModels
             [DisplayName("My Pet Care Experience:")]
             public string ExperienceDetails { get; set; }
 
-            [DisplayName("My average rating:")]
+            [DisplayName("Average rating:")]
             public string ProviderAverageRating { get; set; }
 
             //---------------------------------------------------------
-            // add badge status!
+            //                                       add badge status!
             [DisplayName("Dog?")]
             public bool IsDogProvider { get; set; }
 
@@ -138,10 +145,18 @@ namespace Petopia.Models.ViewModels
             public bool IsOtherProvider { get; set; }
         }
         //-------------------------------------------------------------------------------
-        public IQueryable<CareProviderSearch> PetCarerSearchList { get; set; }
+        // okay so i thought an `IQueryable` might be called for -- 
+        //   however, for some reason, it wouldn't go `ToList()`.....
+        //   it returned search results fine on the `if` -- but wouldn't do the `else`!
+        //public IQueryable<CareProviderSearch> PetCarerSearchList { get; set; }
+
+        // making this just a `List` like in the `CareTransactions` ViewModel.....
+        //   this works, returns search results on the `if` & does the `else`, too
+        public List<CareProviderSearch> PetCarerSearchList { get; set; }
 
         //===============================================================================
-        //                                   Pet Owner Search
+        //===============================================================================
+        //     pet owner search: all the pieces we need -- ids, names, zips, pics, badges
         //===============================================================================
         public int PO_ID { get; set; }
 
@@ -170,11 +185,11 @@ namespace Petopia.Models.ViewModels
         [DisplayName("My Pet Care Needs:")]
         public string GeneralNeeds { get; set; }
 
-        [DisplayName("My average rating:")]
+        [DisplayName("Average rating:")]
         public string OwnerAverageRating { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Dog?")]
+        [DisplayName("Dog?")]                                   // pet owner bages stuff
         public bool IsDogOwner { get; set; }
 
         [DisplayName("Cat?")]
@@ -205,6 +220,8 @@ namespace Petopia.Models.ViewModels
         public bool IsOtherOwner { get; set; }
 
         //===============================================================================
+        //                                                        pet owner search class
+        //===============================================================================
         public class PetOwnerSearch
         {
             [DisplayName("CP_ID")]
@@ -218,6 +235,8 @@ namespace Petopia.Models.ViewModels
 
             [DisplayName("PU_Zip:")]
             public string PU_Zipcode { get; set; }
+
+            public string GeneralLocation { get; set; }
 
             //---------------------------------------------------------
             [DisplayName("My profile picture:")]
@@ -233,7 +252,7 @@ namespace Petopia.Models.ViewModels
             public string OwnerAverageRating { get; set; }
 
             //---------------------------------------------------------
-            // add badge status!
+            //                                        add badge status!
             [DisplayName("Dog?")]
             public bool IsDogOwner { get; set; }
 
@@ -265,6 +284,11 @@ namespace Petopia.Models.ViewModels
             public bool IsOtherOwner { get; set; }
         }
         //-------------------------------------------------------------------------------
-        public IQueryable<PetOwnerSearch> PetOwnerSearchList { get; set; }
+        //                    see notes about this up in the Care Provivder Search Class
+        // public IQueryable<PetOwnerSearch> PetOwnerSearchList { get; set; }
+
+        public List<PetOwnerSearch> PetOwnerSearchList { get; set; }
+        //===============================================================================
+        //===============================================================================
     }
 }

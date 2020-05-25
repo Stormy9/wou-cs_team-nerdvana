@@ -12,6 +12,28 @@
         <div class="row our_row_one">
             <!-- empty/placeholder for now-->
             <!-- here in case we decide we want it later! -->
+            <!-- so what does this do, and if it does something, how does it look here? -->
+           
+            @if (ViewBag.anyPending == true)
+            { 
+                <div style="text-align:center; color:#990000;">
+                    <h4 style="text-align:center; color:#990000;">
+                        @Html.ActionLink("you have pending appointments -- click here to confirm them",
+                            "MyAppointments", new { controller = "CareTransactions" },
+                                new {style = "color:#990000;" })
+                    </h4>
+                </div>
+            }
+            @if ((@ViewBag.incompleteAppts_CP == true) || (@ViewBag.incompleteAppts_PO == true))
+            { 
+                <div style="text-align:center; color:#990000;">
+                    <h4 style="text-align:center; color:#990000;">
+                        @Html.ActionLink("you have appointments to complete -- click here to finish!",
+                            "MyAppointments", new { controller = "CareTransactions" },
+                                new { style = "color:#990000;" })
+                    </h4>
+                </div>
+            }
         </div>
         <!--==========================================================================-->
         <!------------------------------ SECOND/MIDDLE ROW ----------------------------->
@@ -32,7 +54,7 @@
                 else if (Model.IsProvider == true)
                 {
                     <div class="owner_provider_box">
-                        Pet Carer
+                        Pet Care Provider
                     </div>
                 }
                 else
@@ -48,7 +70,7 @@
                 {
                     <div class="profile_pic_box_box">
                         <div class="profile_pic_box">
-                            <img src=@Url.Action("Show", "Image", new { id = Model.UserID }) 
+                            <img src=@Url.Action("Show", "Image", new { id = Model.UserID })
                                  class="profile_img" />
                         </div>
                     </div>
@@ -196,10 +218,12 @@
                 </div><!-- end pet badge box div -->
                 <!---->
                 <!---->
+                <!--==================================================================-->
                 <!-- private msg + friend buttons -->
                 <!-- *****STILL PLACEHOLDER***** -->
-
-                <div class="button_box" style="margin-top:23px;">
+                <!-- set display to "none" for now -- 
+                                        but leaving here for future development   =] -->
+                <div class="button_box" style="margin-top:42px; display:none;">
                     <a href="#" class="our_a">
                         <div class="our_profile_buttons">
                             PM me!
@@ -215,20 +239,14 @@
                             all my friends
                         </div>
                     </a>
-                </div>
-                <!---->
-                <!---->
-                <!-- Book & View Pet Care Appointment Buttons -->
-                @Html.ActionLink("Book a Pet Care appointment!", "BookAppointment",
-                                new { controller = "CareTransactions" },
-                                new { id = Model.UserID, @class = "btn our_profile_buttons", 
-                                        style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
-                <br />
-                @Html.ActionLink("See all my Pet Care appointments", "MyAppointments",
-                                new { controller = "CareTransactions" },
-                                new { id = Model.UserID, @class = "btn our_profile_buttons", 
-                                        style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
-
+                </div>   
+                <!--==================================================================-->
+                <div class="button_box" style="margin-top:42px;">
+                    @Html.ActionLink("All my appointments", "MyAppointments",
+                       new { controller = "CareTransactions" }, 
+                            new { @class = "our_buttons",
+                       style="margin-bottom:5px; color: #f2e6d9; font-weight: normal;" })
+                    </div>
                 <!---------------------------------------------->
 
             </div><!-- END 1st/LEFT COLUMN **OF** 2nd/MIDDLE ROW -->
@@ -311,14 +329,14 @@
                 <!---->
                 <!-- calendar to show up for Pet Carers to post availability -->
                 @if (Model.IsProvider == true)
-                { 
-                    <div class="calendar_box" style="width:100%;">
-                    
-                    <div id="calendar" style="width:100%;">
+                {
+                    <div class="calendar_box">
 
-                    </div>
+                        <div id="calendar">
 
-                </div><!-- end calendar_box div -->
+                        </div>
+
+                    </div><!-- end calendar_box div -->
                 }
                 <!----------------------------------------------------------->
                 <!---->
@@ -355,6 +373,160 @@
 
                     <div class="auto_search_results_box">
                         <!-------------------------------------------------------------->
+                        @foreach (var item in Model.PetopiaUsersList)
+                        {
+                            <div class="search_result_card">
+
+                                @if (item.ProfilePic != null)
+                                {
+                                    <div class="search_result_profile_pic_box_box">
+                                        <div class="search_result_profile_pic_box">
+                                            <a href='@Url.Action("VisitProfile", "ProfilePage",
+                                                    new { loggedID = item.UserID })'>
+                                                <img src=@Url.Action("Show", "Image",
+                                                    new { id = item.UserID })
+                                                     class="search_result_profile_img" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="search_result_profile_pic_box_box">
+                                        <div class="search_result_profile_pic_box">
+                                            <a href='@Url.Action("VisitProfile", "ProfilePage",
+                                                    new { loggedID = item.UserID })'>
+                                                <img src="https://stormy9.github.io/nerdvana/cute_smiley.png"
+                                                     class="search_result_profile_img" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="search_result_card_info">
+                                    <span>
+                                        @Html.ActionLink(item.FirstName, "VisitProfile",
+                                        new { controller = "ProfilePage", loggedID = item.UserID },
+                                        new { @class = "", style = "float:left; color:#002266;" })
+                                        @Html.ActionLink(item.LastName, "VisitProfile",
+                                        new { controller = "ProfilePage", loggedID = item.UserID },
+                                        new { @class = "", style = "float:left; color:#002266;" })
+                                    </span>
+                                    @if (item.GeneralLocation != null)
+                                    {
+                                        <div style="clear:both;">
+                                            <!-- break the floats above -->
+                                            @Html.DisplayFor(modelItem => item.GeneralLocation)
+                                        </div>
+                                    }
+                                    <div style="margin-bottom:3px;">My pet care badges!</div>
+                                    @if (item.DogProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.CatProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.BirdProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.FishProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.RabbitProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.RodentProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.ReptileProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.HorseProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.LivestockProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.OtherProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_provider.png" class="pet_badge">
+                                    }
+                                    @if (item.DogOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.CatOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.BirdOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.FishOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.RabbitOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.RodentOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.ReptileOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.HorseOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.LivestockOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.OtherOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_owner.png" class="pet_badge">
+                                    }
+                                </div>
+                                <!------------------------------------------>
+                                <!-- 'margin-top' doesn't do anything, but padding does! -->
+                                <!-- but yet 'margin-left' works..... -->
+                                <div style="clear:both; padding-top: 5px; padding-bottom: 5px; margin-left:13px;"> 
+                                    ratings here </div>
+                            </div>
+                        }
+
+                        <!-- ORIGINAL PLACEHOLDER STUFF FOR SCROLLY-WINDOW ON RIGHT SIDE -->
                         <div class="search_result_card">
 
                             <a href="#" class="our_a">
@@ -472,7 +644,7 @@
             <!---->
             <!-- 9-col wide span inside 3rd row & that's it -->
             <!-- trying (maybe?) to get 3rd colum of 2nd row to span two row's height -->
-            <div class="col-sm-8 col-md-8 our_col_four">
+            <div class="col-sm-9 col-md-9 our_col_four">
                 <!---->
                 <!---->
                 <!-- pet profile preview box header -->
@@ -493,13 +665,14 @@
                                 <!-- link to pet's profile -->
                                 @if (item.PetPhoto != null)
                                 {
-                                    <img src=@Url.Action("ShowPet", "Image", new { id = item.PetID }) class="pet_profile_preview_img"/>
+                                    <img src=@Url.Action("ShowPet", "Image", new { id = item.PetID })
+                                         class="pet_profile_preview_img" />
                                 }
                                 else
                                 {
                                     <img class="pet_profile_preview_img"
                                          alt="pet profile pic"
-                                         src="https://stormy9.github.io/images_doggies/Possum_profile_Pic.jpg">
+                                         src="https://stormy9.github.io/nerdvana/pointyEaredSilhouette.png">
                                 }
 
                                 <div class="pet_preview_name">
@@ -519,27 +692,28 @@
                                     @Html.DisplayFor(model => item.Birthdate)
                                 </div>
 
-                                
+
                                 <div class="button_box_pet_card">
-                                    @Html.ActionLink("This Pet's Care Appts", "MyPetsAppointments",
+                                    @Html.ActionLink("Pet's Appts", "MyPetsAppointments",
+                                        new { controller = "CareTransactions", pet_id = item.PetID },
+                                        new { @class = "our_pet_card_buttons", 
+                                            style = "color: #f2e6d9; font-weight: normal;"  } )
+
+                                    @Html.ActionLink("Book care for Me!", "BookAppointment",
                                         new { controller = "CareTransactions", id = item.PetID },
-                                        new { @class = "our_pet_card_buttons", 
-                                            style = "color: #f2e6d9; font-weight: normal;" })
+                                        new
+                                             {
+                                                 @class = "our_pet_card_buttons",
+                                              style = "color: #f2e6d9; font-weight: normal;"
+                                             })
 
-                                    @Html.ActionLink("My Pet Details", "MyPetDetails",
-                                        new { controller = "Pets", id = item.PetID },
-                                        new { @class = "our_pet_card_buttons", 
-                                            style="color: #f2e6d9; font-weight: normal;" })
-
-                                    @Html.ActionLink("Edit This Pet", "EditPet",
+                                    @Html.ActionLink("Pet's Profile", "PetProfile",
                                             new { controller = "Pets", id = item.PetID },
-                                            new { @class = "our_pet_card_buttons", 
-                                                style="color: #f2e6d9; font-weight: normal;" })
-
-                                    @Html.ActionLink("This Pet's Profile", "PetProfile",
-                                            new { controller = "Pets", id = item.PetID },
-                                            new { @class = "our_pet_card_buttons", 
-                                                style="color: #f2e6d9;  font-weight: normal;" })
+                                            new
+                                                 {
+                                                     @class = "our_pet_card_buttons",
+                                                style = "color: #f2e6d9;  font-weight: normal;"
+                                                 })
 
                                 </div>
 
@@ -549,29 +723,51 @@
                 }
             </div><!-- END 4th Column -> one inside 3rd/bottom row -->
             <!-------------------------------------------------------------------------->
-            <div class="col-sm-4 col-md-4 our_col_five">
-                <div class="button_box_03" style="text-align: center;">
+            <div class="col-sm-3 col-md-3 our_col_five">
+                <div class="button_box_03">
+
+                    <div>
+                        @Html.ActionLink("All my Pets' Care appointments", "MyAppointments",
+                                    new { controller = "CareTransactions" },
+                                    new
+                                         {
+                                             id = Model.UserID,
+                                             @class = "our_other_buttons",
+                                            style = "margin-bottom:5px; color: #f2e6d9; font-weight: normal;"
+                                         })
+                    </div>
+ 
                     <div>
                         @Html.ActionLink("My Account Info", "MyAccountDetails",
                                 new { controller = "PetopiaUsers" },
-                                new { id = Model.UserID,
+                                new
+                                     {
+                                         id = Model.UserID,
                                          @class = "our_other_buttons",
-                                        style = "color: #f2e6d9; font-weight: normal;" })
+                                        style = "color: #f2e6d9; font-weight: normal;"
+                                     })
                     </div>
                     <div>
                         @Html.ActionLink("Edit My Profile", "EditMyStuff",
                                         new { controller = "ProfilePage" },
-                                        new { @class = "our_other_buttons",
-                                        style = "color: #f2e6d9; font-weight: normal;" })
+                                        new
+                                             {
+                                                 @class = "our_other_buttons",
+                                        style = "color: #f2e6d9; font-weight: normal;"
+                                             })
                     </div>
+                    <br /><br /><!-- WHY do we need this all of a sudden?? -->
                     <div>
                         <!-- we want carers to be able to have pets too   =]   -->
                         @if (Model.IsOwner == true || Model.IsProvider == true)
                         {
                             @Html.ActionLink("Add a pet!", "AddPet",
-                                        new { controller = "Pets" },
-                                        new { @class = "our_other_buttons",
-                                        style = "color: #f2e6d9; font-weight: normal;" })
+                                    new { controller = "Pets" },
+                                    new
+                                         {
+                                             @class = "our_other_buttons",
+                                    style = "color: #f2e6d9; font-weight: normal;"
+                                         })
                         }
                         <!-- but it's not working right now   =]   -->
                     </div>

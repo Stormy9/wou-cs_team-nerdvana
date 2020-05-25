@@ -20,7 +20,7 @@ namespace Petopia.Controllers
 
         //===============================================================================
         // GET: Pets
-        public ActionResult Index()
+        public ActionResult Pets_AdminIndex()
         {
             var pets = db.Pets.Include(p => p.PetOwner);
 
@@ -52,24 +52,25 @@ namespace Petopia.Controllers
             // trying to pull in pet's owner's name.....                    it worked!
             var petsOwnerID = pet.PetOwnerID;
 
-            var petOwnerID = db.PetOwners.Where(po => po.PetOwnerID == petsOwnerID)
+            var petOwnerPetopiaID = db.PetOwners.Where(po => po.PetOwnerID == petsOwnerID)
                                          .Select(po => po.UserID)
                                          .FirstOrDefault();
 
-            var petOwnerFirstName = db.PetopiaUsers.Where(poID => poID.UserID == petOwnerID)
+            var petOwnerFirstName = db.PetopiaUsers.Where(poID => poID.UserID == petOwnerPetopiaID)
                                                    .Select(pon => pon.FirstName)
                                                    .FirstOrDefault();
 
-            var petOwnerLastName = db.PetopiaUsers.Where(poID => poID.UserID == petOwnerID)
+            var petOwnerLastName = db.PetopiaUsers.Where(poID => poID.UserID == petOwnerPetopiaID)
                                                   .Select(pon => pon.LastName)
                                                   .FirstOrDefault();
 
+            ViewBag.PetOwnerPetopiaID = petOwnerPetopiaID;
             ViewBag.PetsOwnersFirstName = petOwnerFirstName;
             ViewBag.PetOwnersLastName = petOwnerLastName;
 
             //---------------------------------------------------------------------------
             // trying to pull in pet's general location (which is same as owners, duh!
-            var petsGeneralLocation = db.PetopiaUsers.Where(poID => poID.UserID == petOwnerID)
+            var petsGeneralLocation = db.PetopiaUsers.Where(poID => poID.UserID == petOwnerPetopiaID)
                                                      .Select(pgl => pgl.GeneralLocation)
                                                      .FirstOrDefault();
 

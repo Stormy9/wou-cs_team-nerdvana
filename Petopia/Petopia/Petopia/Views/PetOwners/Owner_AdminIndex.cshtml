@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Petopia.Models.PetOwner>
+
+@{
+    ViewBag.Title = "Pet Owner - Admin Index";
+}
+
+    <div class="container-fluid">
+        <h2> @ViewBag.Title </h2>
+
+        <p> @Html.ActionLink("Add Pet Owner", "Create") </p>
+
+        <table class="table admin_table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AverageRating)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GeneralNeeds)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HomeAccess)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserID)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AverageRating)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GeneralNeeds)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HomeAccess)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserID)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PetOwnerID }) 
+                            <hr style="margin-top:0px;" />
+                        @Html.ActionLink("Details", "Details", new { id = item.PetOwnerID }) 
+                            <hr style="margin-top:0px;" />
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PetOwnerID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>

@@ -68,6 +68,7 @@ namespace Petopia.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+
             return View();
 
         }
@@ -436,6 +437,7 @@ namespace Petopia.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
             return RedirectToAction("Index", "Home");
         }
 

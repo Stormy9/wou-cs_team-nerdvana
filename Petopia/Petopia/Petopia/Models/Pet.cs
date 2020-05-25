@@ -11,28 +11,30 @@ namespace Petopia.Models
     public partial class Pet
     {
         //===============================================================================
+        [DisplayName("PetID")]
         public int PetID { get; set; }
 
         //===============================================================================
-        [Required]
-        [DisplayName("Pet's Name:")]
+        [Required(ErrorMessage = "please enter your pet's name")]
+        [DisplayName("* Pet's Name:")]
         [StringLength(24)]
         public string PetName { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
-        [DisplayName("What Species?")]
+        [Required(ErrorMessage = "please enter your pet's species")]
+        [DisplayName("* What Species?")]
         [StringLength(24)]
         public string Species { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("And Breed?")]
+        [Required(ErrorMessage = "please enter your pet's breed or mix")]
+        [DisplayName("* And Breed?")]
         [StringLength(24)]
         public string Breed { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
-        [DisplayName("Pet's Gender:")]
+        [Required(ErrorMessage = "please enter your pet's gender")]
+        [DisplayName("* Pet's Gender:")]
         [StringLength(18)]
         public string Gender { get; set; }
 
@@ -41,6 +43,7 @@ namespace Petopia.Models
         //-------------------------------------------------------------------------------
         //
         //-------------------------------------------------------------------------------
+        [Required(ErrorMessage = "please enter your pet's birthday (or best guess)")]
         [Column(TypeName = "date")]     // gets rid of '12:00:00 AM' appendage
         //
         // adding this to the data definition gives us a date-picker in the view
@@ -48,7 +51,7 @@ namespace Petopia.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         // it also formats things correctly for going into our db..... yay!
         //
-        [DisplayName("Pet's Birthday:")]
+        [DisplayName("* Pet's Birthday:")]
         public DateTime Birthdate { get; set; }
 
         //-------------------------------------------------------------------------------
@@ -68,12 +71,17 @@ namespace Petopia.Models
         public string PetAccess { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Pet's Emergency Contact Name:")]
+        [Required(ErrorMessage = "please give an emergency contact for your pet")]
+        [DisplayName("* Pet's Emergency Contact Name:")]
         [StringLength(45)]
         public string EmergencyContactName { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Pet's Emergency Contact Number:")]
+        [Required(ErrorMessage = "please give an emergency contact for your pet")]
+        [DisplayName("* Pet's Emergency Contact Number:")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "please enter phone number in requested format")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+                            ErrorMessage = "please enter your phone number as requested")]
         [StringLength(12)]
         public string EmergencyContactPhone { get; set; }
 
@@ -91,14 +99,13 @@ namespace Petopia.Models
 
         //===============================================================================
         // FOREIGN KEY
+        [DisplayName("OwnerID")]
         public int? PetOwnerID { get; set; }
 
         //===============================================================================
         // Pull from other tables:  (or is it?)
         public virtual PetOwner PetOwner { get; set; }
 
-        // how the hell do we pull in Pet Owner first/last name??
-        //public virtual PetopiaUser petopiaUser { get; set; }
         //===============================================================================
     }
 }

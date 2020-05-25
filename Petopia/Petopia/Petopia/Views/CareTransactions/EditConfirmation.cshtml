@@ -1,53 +1,70 @@
 ﻿@model Petopia.Models.CareTransaction
 
 @{
-    ViewBag.Title = "You have successfully edited your Pet Care Appointment!";
-    ViewBag.Title02 = "an email has been sent to your Pet Care Provider!";
+    ViewBag.Title = "Edit Pet Care Confirmation!";
+    ViewBag.Title00 = "You have successfully edited ";
+    ViewBag.Title01 = "'s Pet Care Appointment!";
+    ViewBag.Title02 = "an email has been sent to you & your Pet Care Provider!";
 }
 
 <div class="container-fluid">
 
-    <h2>@ViewBag.Title</h2>
-    <h4>@ViewBag.Title02</h4>
+    <div style="margin-left: 9px;">
+        <h2> @ViewBag.Title00@ViewBag.PetName@ViewBag.Title01 </h2>
+        <h4> @ViewBag.Title02 </h4>
+    </div>
 
     <div class="container-fluid my_appt_box" style="padding: 15px;">
 
-        <!--============================= ROW ZERO! ==========================-->
-        <div class="row" style="margin-bottom: 35px;">
+        <!--================================= ROW ZERO! ==============================-->
+        <div class="row">
 
-            <span style="float:left; margin-left: 25px; margin-right: 25px;">
-                <span class="our_appt_label">
-                    @Html.DisplayNameFor(model => model.PetID) &nbsp;
-                </span>
-                @*@Html.DisplayFor(model => model.PetID)*@
-                @ViewBag.PetName
-            </span>
+            <!-------------------------- ROW 0 \ COL 1 --------------------------------->
+            <div class="col-sm-3 col-md-3">
 
-            <span style="float:left; margin-right: 25px;">
                 <span class="our_appt_label">
                     @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
                 </span>
                 @*@Html.DisplayFor(model => model.PetOwnerID)*@
-                @ViewBag.OwnerFirstName&nbsp;@ViewBag.OwnerLastName
-            </span>
+                @ViewBag.PetOwnerName
 
-            <span style="float:left; margin-right: 25px;">
+            </div>
+            <!-------------------------- ROW 0 \ COL 2 --------------------------------->
+            <div class="col-sm-4 col-md-4">
+
                 <span class="our_appt_label">
                     @Html.DisplayNameFor(model => model.CareProviderID) &nbsp;
                 </span>
-                @Html.DisplayFor(model => model.CareProviderID)
-                @ViewBag.CarerFirstName&nbsp;@ViewBag.CarerLastName
-            </span>
+                @*@Html.DisplayFor(model => model.CareProviderID)*@
+                @ViewBag.PetCarerName
 
+            </div>
+            <!-------------------------- ROW 0 \ COL 3 --------------------------------->
+            <div class="col-sm-5 col-md-5" style="text-align:right;">
+
+                <div style="margin:5px; float:right;">
+                    @Html.ActionLink("Pet's appointments", "MyPetsAppointments",
+                            new { controller = "CareTransactions", pet_id = Model.PetID },
+                                new { @class = "btn our_buttons",
+                                    style = "color:#f2e6d9; font-weight:normal;" })
+                </div>
+                <div style="margin:5px; float:right;">
+                    @Html.ActionLink("My appointments", "MyAppointments",
+                                new { id = Model.PetOwnerID },
+                                new { @class = "btn our_buttons",
+                                    style = "color:#f2e6d9; font-weight:normal;" })
+                </div>
+
+            </div><!-- END ROW 1 \ COL 3 -->
+            <!-------------------------------------------------------------------------->
         </div><!-- END ROW ZERO -->
         <!---->
-        <!---->
-        <!--=================================== ROW ONE ======================-->
+        <!--======================================= ROW ONE ==========================-->
         <div class="row our_row_one">
-            <!------------------------------- ROW 1 \ COL 1 -------------------->
-            <div class="col-sm-1 col-md-1">
+            <!----------------------------------- ROW 1 \ COL 1 ------------------------>
+            <div class="col-md-2">
 
-                <div style="margin-bottom: 13px;">
+                <div style="margin: 0px 0px 13px 0px;">
                     <span class="our_appt_label">
                         @Html.DisplayNameFor(model => model.StartDate)<br />
                     </span>
@@ -55,21 +72,20 @@
                     @ViewBag.ApptStartDate
                 </div>
 
-                <div style="margin-top: 13px;">
+                <div style="margin: 0px 0px 13px 0px;">
                     <span class="our_appt_label">
                         @Html.DisplayNameFor(model => model.StartTime)<br />
                     </span>
-                    @Html.DisplayFor(model => model.StartTime)
-                    @ViewBag.ApptStartTime
+                    @Html.DisplayFor(model => model.StartTime) &nbsp;
                 </div>
 
             </div><!-- END ROW 1 \ COL 1 -->
             <!------------------------------------------------------------------>
             <!---->
             <!--------------------------- ROW 1 \ COL 2 ------------------------>
-            <div class="col-sm-1 col-md-1">
+            <div class="col-md-2">
 
-                <div style="margin-bottom: 13px;">
+                <div style="margin: 0px 0px 13px 0px;">
                     <span class="our_appt_label">
                         @Html.DisplayNameFor(model => model.EndDate)<br />
                     </span>
@@ -77,18 +93,17 @@
                     @ViewBag.ApptEndDate
                 </div>
 
-                <div style="margin-top: 13px;">
+                <div style="margin: 0px 0px 13px 0px;">
                     <span class="our_appt_label">
                         @Html.DisplayNameFor(model => model.EndTime)<br />
                     </span>
-                    @Html.DisplayFor(model => model.EndTime)
-                    @ViewBag.ApptEndTime
+                    @Html.DisplayFor(model => model.EndTime) &nbsp;
                 </div>
 
             </div><!-- END ROW 1 \ COL 2 -->
             <!---->
             <!--------------------------- ROW 1 \ COL 3 ------------------------>
-            <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+            <div class="col-sm-4 col-md-4">
 
                 <div>
                     <span class="our_appt_label">
@@ -98,49 +113,23 @@
                 </div>
 
             </div><!-- END ROW 1 \ COL 3 -->
-            <!------------------------------------------------------------------>
+            <!---->
+            <!--------------------------- ROW 1 \ COL 4 -------------------------------->
+            <div class="col-sm-4 col-md-4">
+
+                <div style="margin:5px; float:right;">
+                    @Html.ActionLink("Pet's profile", "PetProfile",
+                            new { controller = "Pets", id = Model.PetID },
+                                new { @class = "btn our_buttons",
+                                    style = "color:#f2e6d9; font-weight:normal;" })
+                </div>
+
+            </div><!-- END ROW 1 \ COL 4 -->
+            <!-------------------------------------------------------------------------->
             <!---->
         </div><!-- END ROW 1 -->
-        <!---->
-        <!---->
-        <!--=============================== ROW TWO ==============================-->
-        <div class="row our_row_two">
-
-            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                @Html.ActionLink("This Pet's Profile", "PetProfile",
-                                    new { controller = "Pets", id = Model.PetID }, 
-                                    new { style="color:#f2e6d9"})
-            </span>
-
-            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                @Html.ActionLink("All this Pet's care appointments",
-                                    "MyPetsAppointments", new { id = Model.PetID },
-                                    new { style="color:#f2e6d9"})
-            </span>
-
-        </div><!-- END ROW TWO -->
-        <!--==========================================================================-->
-        <!---->
-        <!---->
-        <!--================================= ROW THREE ==============================-->
-        <div class="row our_row_three" style="margin-top: 5px;">
-
-            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                @Html.ActionLink("My Profile", "Index",
-                                        new { controller = "ProfilePage" }, 
-                                        new { style="color: #f2e6d9;"} )
-            </span>
-
-            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
-                @Html.ActionLink("All my Pet care appointments", "MyAppointments",
-                        new { id = Model.PetOwnerID }, new { style="color: #f2e6d9;"})
-            </span>
-
-        </div><!-- END ROW THREE -->
-        <!--======================================================================-->
-
+        <!------------------------------------------------------------------------------>
     </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
-
 </div><!-- END CONTAINER-FLUID (outer-most container) -->
 <!--==================================================================================-->
 @section Scripts {

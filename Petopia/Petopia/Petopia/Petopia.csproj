@@ -912,6 +912,7 @@
     <Content Include="Views\Templates\PetOwner_Profile_Template.html" />
     <Content Include="Views\Templates\Pet_Profile_Template.html" />
     <Content Include="Web_deploy.config" />
+    <None Include="Properties\PublishProfiles\petopia - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\petopia-dev - Web Deploy.pubxml" />
     <Content Include="Scripts\AdminLTE\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="Scripts\AdminLTE\plugins\input-mask\phone-codes\phone-be.json" />
@@ -1055,30 +1056,30 @@
     <Content Include="Views\PetopiaUsers\Delete.cshtml" />
     <Content Include="Views\PetopiaUsers\Details.cshtml" />
     <Content Include="Views\PetopiaUsers\Edit.cshtml" />
-    <Content Include="Views\PetopiaUsers\Index.cshtml" />
+    <Content Include="Views\PetopiaUsers\AdminIndex.cshtml" />
     <Content Include="Views\PetOwners\Create.cshtml" />
     <Content Include="Views\PetOwners\Delete.cshtml" />
     <Content Include="Views\PetOwners\Details.cshtml" />
     <Content Include="Views\PetOwners\Edit.cshtml" />
-    <Content Include="Views\PetOwners\Index.cshtml" />
+    <Content Include="Views\PetOwners\Owner_AdminIndex.cshtml" />
     <Content Include="Views\CareProviders\Create.cshtml" />
     <Content Include="Views\CareProviders\Delete.cshtml" />
     <Content Include="Views\CareProviders\Details.cshtml" />
     <Content Include="Views\CareProviders\Edit.cshtml" />
-    <Content Include="Views\CareProviders\Index.cshtml" />
+    <Content Include="Views\CareProviders\Provider_AdminIndex.cshtml" />
     <Content Include="Views\ProfilePage\Index.cshtml" />
     <Content Include="Views\ProfilePage\EditMyStuff.cshtml" />
     <Content Include="Views\Pets\AddPet.cshtml" />
     <Content Include="Views\Pets\Delete.cshtml" />
     <Content Include="Views\Pets\PetProfile.cshtml" />
     <Content Include="Views\Pets\EditPet.cshtml" />
-    <Content Include="Views\Pets\Index.cshtml" />
+    <Content Include="Views\Pets\Pets_AdminIndex.cshtml" />
     <Content Include="Views\Badges\Create.cshtml" />
     <Content Include="Views\Badges\Edit.cshtml" />
     <Content Include="Views\CareTransactions\Delete.cshtml" />
-    <Content Include="Views\CareTransactions\AppointmentConfirmation.cshtml" />
+    <Content Include="Views\CareTransactions\BookingConfirmation.cshtml" />
     <Content Include="Views\CareTransactions\EditAppointment.cshtml" />
-    <Content Include="Views\CareTransactions\Index.cshtml" />
+    <Content Include="Views\CareTransactions\Appts_AdminIndex.cshtml" />
     <Content Include="Views\Shared\_AdminLteTopMenu.cshtml" />
     <Content Include="Views\Shared\_AdminLteLeftMenu.cshtml" />
     <Content Include="Views\Shared\_AdminLteLayout.cshtml" />
@@ -1088,7 +1089,7 @@
     <Content Include="Views\CareTransactions\BookAppointment.cshtml" />
     <Content Include="Views\PetopiaUsers\MyAccountDetails.cshtml" />
     <Content Include="Views\Pets\MyPetDetails.cshtml" />
-    <Content Include="Views\CareTransactions\CompleteAppointment.cshtml" />
+    <Content Include="Views\CareTransactions\CompleteAppointment_PetOwner.cshtml" />
     <Content Include="Views\CareTransactions\MyAppointments.cshtml" />
     <Content Include="Views\CareTransactions\MyPetsAppointments.cshtml" />
     <Content Include="Views\CareTransactions\AppointmentDetails.cshtml" />
@@ -1100,6 +1101,13 @@
     <Content Include="Views\CareTransactions\test_crap_return.cshtml" />
     <Content Include="Views\Home\PetCarerSearchResult.cshtml" />
     <Content Include="Views\Home\PetOwnerSearchResult.cshtml" />
+    <Content Include="Views\ProfilePage\VisitProfile.cshtml" />
+    <Content Include="Views\Home\UsingPetopia.cshtml" />
+    <Content Include="Views\CareTransactions\PetCarer_JobDetails.cshtml" />
+    <Content Include="Views\CareTransactions\ConfirmAppointment.cshtml" />
+    <Content Include="Views\CareTransactions\ConfirmConfirmation.cshtml" />
+    <Content Include="Views\CareTransactions\CompleteAppointment_PetCarer.cshtml" />
+    <Content Include="Views\CareTransactions\CompleteConfirmation.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>

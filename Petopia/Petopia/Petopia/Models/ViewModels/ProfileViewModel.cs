@@ -16,10 +16,12 @@ namespace Petopia.Models.ViewModels
         public int UserID { get; set; }
 
         //-------------------------------------------------------------
-        [DisplayName("First name:")]
+        [Required(ErrorMessage = "please enter your first name")]
+        [DisplayName("* First name:")]
         public string FirstName { get; set; }
 
-        [DisplayName("Last name:")]
+        [Required(ErrorMessage = "please enter your last name")]
+        [DisplayName("* Last name:")]
         public string LastName { get; set; }
 
         //-------------------------------------------------------------------------------
@@ -94,28 +96,39 @@ namespace Petopia.Models.ViewModels
         // and it's gotta be here because it does -- to save things correctly.
         // and because it's part of creating a PetopiaUser record!   [=
         //
-        [DisplayName("Main Phone #")]
+        [Required]
+        [DisplayName("* Main Phone #")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "please enter phone number in requested format")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", 
+                            ErrorMessage = "please enter your phone number as requested")]
         [StringLength(12)]
         public string MainPhone { get; set; }
 
         [DisplayName("Alternate Phone #")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "please enter phone number in requested format")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", 
+                            ErrorMessage = "please enter your phone number as requested")]
         [StringLength(12)]
         public string AltPhone { get; set; }
 
-        [DisplayName("Residential Address:")]
+        [Required(ErrorMessage = "please enter your residential street address")]
+        [DisplayName("* Residential Address:")]
         public string ResAddress01 { get; set; }
 
         [DisplayName("Address, 2nd line (if necessary):")]
         public string ResAddress02 { get; set; }
 
-        [DisplayName("City:")]
+        [Required(ErrorMessage = "please enter your residential city")]
+        [DisplayName("* City:")]
         public string ResCity { get; set; }
 
-        [DisplayName("State:")]
+        [Required(ErrorMessage = "please enter your residential state")]
+        [DisplayName("* State:")]
         [StringLength(2)]
         public string ResState { get; set; }
 
-        [DisplayName("ZipCode:")]
+        [Required(ErrorMessage = "please enter your residential zipcode")]
+        [DisplayName("* ZipCode:")]
         [StringLength(5)]
         public string ResZipcode { get; set; }
 
@@ -129,12 +142,13 @@ namespace Petopia.Models.ViewModels
             public string Breed { get; set; }
             public string Gender { get; set; }
             public byte[] PetPhoto { get; set; }
+            public int? PetOwnersID { get; set; }
 
             [Column(TypeName = "date")]
             // that ^ is supposed to get rid of the time appendage on the Pet b-days on
             // the 'Pet Cards' on Owner profiles..... but, it isn't for some dumb reason
             [DataType(DataType.Date)]
-            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMMM dd, yyyy}")]
             public DateTime Birthdate { get; set; }
         }
         //-------------------------------------------------------------------------------
@@ -153,34 +167,57 @@ namespace Petopia.Models.ViewModels
             public string LastName { get; set; }
 
             public string GeneralLocation { get; set; }
+
+            public byte[] ProfilePic { get; set; }
+
+            public int UserBadgeID { get; set; }
+
+            public bool DogProvider { get; set; }
+
+            public bool CatProvider { get; set; }
+
+            public bool BirdProvider { get; set; }
+
+            public bool FishProvider { get; set; }
+
+            public bool HorseProvider { get; set; }
+
+            public bool LivestockProvider { get; set; }
+
+            public bool RabbitProvider { get; set; }
+
+            public bool ReptileProvider { get; set; }
+
+            public bool RodentProvider { get; set; }
+
+            public bool OtherProvider { get; set; }
+
+            public bool DogOwner { get; set; }
+
+            public bool CatOwner { get; set; }
+
+            public bool BirdOwner { get; set; }
+
+            public bool FishOwner { get; set; }
+
+            public bool HorseOwner { get; set; }
+
+            public bool LivestockOwner { get; set; }
+
+            public bool RabbitOwner { get; set; }
+
+            public bool ReptileOwner { get; set; }
+
+            public bool RodentOwner { get; set; }
+
+            public bool OtherOwner { get; set; }
         }
         //-------------------------------------------------------------------------------
         public List<petopiaUsersInfo> PetopiaUsersList { get; set; }
 
-        //===============================================================================
-        // i think we'll need this, too, for the search result cards in the profiles?
-        //                               or something like it, for UserBadges??
-        public class userBadgesInfo
-        { 
-            public int UserBadgeID { get; set; }
-
-            public bool DogOwner { get; set; }
-
-            public bool DogProvider { get; set; }
-
-            public bool CatOwner { get; set; }
-
-            public bool CatProvider { get; set; }
-
-            public bool BirdOwner { get; set; }
-
-            public bool BirdProvider { get; set; }
-
-            // foreign key
-            public int UserID { get; set; }
-        }
-        //-------------------------------------------------------------------------------
-        public List<userBadgesInfo> UserBadgesList { get; set; }
+        //id's for both roles to make my life easier
+        public int PetOwnerID { get; set; }
+        public int CareProviderID { get; set; }
 
         //===============================================================================
         //===============================================================================

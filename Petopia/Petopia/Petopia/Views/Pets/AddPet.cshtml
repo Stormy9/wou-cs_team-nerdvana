@@ -41,7 +41,8 @@
                                                         new { @class = "control-label" })
 
                         @Html.EditorFor(model => model.PetName,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                                new { htmlAttributes = new { @class = "form-control", 
+                                                             @autofocus = "autofocus" }})
 
                         @Html.ValidationMessageFor(model => model.PetName, "",
                                                         new { @class = "text-danger" })
@@ -65,7 +66,7 @@
 
                         @Html.EditorFor(model => model.Breed, new
                         { htmlAttributes = new { @class = "form-control", 
-                             @placeholder="best guess -- enter mixes if applicable!" } })
+                              @placeholder="best guess -- enter mixes if applicable!" }})
 
                         @Html.ValidationMessageFor(model => model.Breed, "",
                                                         new { @class = "text-danger" })
@@ -102,10 +103,11 @@
                         <br /><!-- WTF DO I GOTTA HAVE THIS HERE??? BUT YET I DO..... -->
 
                         @Html.TextAreaFor(model => model.PetBio,
-                            new { htmlAttributes =
-                            new { @class = "form-control our_text_area" },
-                            cols = 180, rows = 5, id = "text12", name = "text12",
-                            style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
+                          new { htmlAttributes =
+                          new { @class = "form-control our_text_area" }, 
+                                rows = 5, id = "text12", name = "text12",
+                                @placeholder="fun things about your pet's personality!",
+                                style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
 
                         <div>
                             <span class="pull-left label label-default"
@@ -121,6 +123,9 @@
                         @Html.LabelFor(m => m.PetPhoto, new { @class = "control-label" })
 
                         @Html.TextBoxFor(m => m.PetPhoto, new { type = "file" })
+                        <div style="font-size: 90%; color: #cc0000;">
+                            <i>your pet's photo needs to be a .jpg &amp; under 4MB.</i>
+                        </div>
 
                         @Html.ValidationSummary(true,
                                         "Picture MUST be in JPG format and under 4 MB.",
@@ -133,7 +138,7 @@
 
                         @Html.EditorFor(model => model.PetCaption, new
                         { htmlAttributes = new { @class = "form-control", 
-                            @placeholder="what is your pet doing in this picture?  (:" } })
+                           @placeholder="what is your pet doing in this picture?  (:" }})
 
                         @Html.ValidationMessageFor(model => model.PetCaption, "",
                                                         new { @class = "text-danger" })
@@ -179,7 +184,7 @@
 
                         @Html.EditorFor(model => model.EmergencyContactPhone,
                                 new { htmlAttributes = new { @class = "form-control",
-                                                        @placeholder="000-000-0000"} })
+                                                         @placeholder="000-000-0000"} })
 
                         @Html.ValidationMessageFor(model => model.EmergencyContactPhone, 
                                                     "", new { @class = "text-danger" })
@@ -190,11 +195,18 @@
                         @Html.LabelFor(model => model.PetAccess,
                                         htmlAttributes: new { @class = "control-label" })
 
+                        <br /><i style="font-size: 75%;"> 
+                                is your pet in a crate, pen, or certain room?  
+                                <br />where is it's leash, food, dish, medicine, supplies?
+                                <br />and things like that.
+                            </i><br />
+
                         @Html.TextAreaFor(model => model.PetAccess,
                             new { htmlAttributes =
-                            new { @class = "form-control our_text_area" },
-                            cols = 180, rows = 3, id = "text07", name = "text07",
-                            style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
+                            new { @class = "form-control our_text_area" }, 
+                                  rows = 3, id = "text07", name = "text07",
+                                  @placeholder="i.e., he sleeps in a big crate in the living room",
+                            style = "color: #2e2e1f; border-radius:5px; padding: 5px; width:90%;" })
 
                         <div>
                             <span class="pull-left label label-default"
@@ -213,15 +225,21 @@
                 <div class="col-sm-4 col-md-4">
 
                     <!------------------------ WHAT MY PET NEEDS DONE ------------------>
-                    <div class="form-group" style="padding-top: 13px;">
+                    <div class="form-group" style="padding-top: 33px;">
                         @Html.LabelFor(model => model.NeedsDetails,
                                         htmlAttributes: new { @class = "control-label" })
+
+                        <br /><i style="font-size: 75%;"> 
+                                just in general... you can give specifics for each pet 
+                                care appointment!  
+                            </i><br />
 
                         @Html.TextAreaFor(model => model.NeedsDetails,
                             new { htmlAttributes =
                             new { @class = "form-control our_text_area" },
-                            cols = 180, rows = 5, id = "text06", name = "text06",
-                            style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
+                                  rows = 5, id = "text06", name = "text06",
+                                  @placeholder="i.e., meds, special food, help up the stairs",
+                            style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%" })
 
                         <div>
                             <span class="pull-left label label-default"
@@ -240,8 +258,9 @@
                         @Html.TextAreaFor(model => model.HealthConcerns,
                             new { htmlAttributes =
                             new { @class = "form-control our_text_area" },
-                            cols = 180, rows = 5, id = "text04", name = "text04",
-                            style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
+                                  rows = 5, id = "text04", name = "text04",
+                                  @placeholder="i.e., arthritis, hard-of-hearing, allergies",
+                            style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
 
                         <div>
                             <span class="pull-left label label-default" 
@@ -258,10 +277,12 @@
                                         htmlAttributes: new { @class = "control-label" })
 
                         @Html.TextAreaFor(model => model.BehaviorConcerns,
-                            new { htmlAttributes =
-                            new { @class = "form-control our_text_area" },
-                            cols = 180, rows = 5, id = "text05", name = "text05",
-                            style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
+                          new { htmlAttributes =
+                          new { @class = "form-control our_text_area" },
+                                rows = 5, id = "text05", name = "text05",
+                            @placeholder="i.e., fears & phobias, any aggression triggers, " +
+                                  "stand to the right of the door when you let him out",
+                            style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
 
                         <div>
                             <span class="pull-left label label-default"

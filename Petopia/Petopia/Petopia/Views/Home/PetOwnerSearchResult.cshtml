@@ -20,32 +20,63 @@
 
             <h2> @ViewBag.Title </h2>
 
-            @if (Model != null)
+            @if (Model.PetOwnerSearchList.Count() > 0)
             {
                 foreach (var item in Model.PetOwnerSearchList)
                 {
                     <div class="splash_search_result_box">
 
-                        <div class="search_result_test_proof_data">
+                        <!-- for early testing/proofing! -->
+                        @*<div class="search_result_test_proof_data">
                             @Html.DisplayNameFor(model => model.PO_ID)&nbsp;
                             @Html.DisplayFor(modelItem => item.PO_ID) &lt;=&gt;
                             @Html.DisplayNameFor(model => model.PU_ZipCode)&nbsp;
                             @Html.DisplayFor(modelItem => item.PU_Zipcode)<br />
                             later the name &amp; photo will be linked to the
                             care provider's profile page!   [=
-                        </div>
+                        </div>*@
+                        <!-------------------------------------------------------------->
+
                         <div class="search_result_cp_name">
-                            @Html.DisplayNameFor(model => model.PO_Name)&nbsp;
-                            @Html.DisplayFor(modelItem => item.PO_Name)
+                            <span>
+                                @Html.ActionLink(item.PO_Name, "VisitProfile",
+                                new { controller = "ProfilePage", loggedID = item.PO_PU_ID },
+                                new { @class = "", style = "float:left; color:#003399;" })
+                            </span>
+                            @*<span>
+                                @Html.ActionLink("my profile", "VisitProfile",
+                                new { controller = "ProfilePage", loggedID = item.PO_PU_ID },
+                                new { @class = "", style = "float:right; color:#003399;" })
+                            </span>*@
                         </div>
+
+
+                        @if (item.GeneralLocation != null)
+                        {
+                        <div style="clear:both;"><!-- break the floats above -->
+                            @Html.DisplayFor(modelItem => item.GeneralLocation)
+                        </div>
+                        }
+                        else 
+                        { 
+                            <div style="clear:both;"> <!-- break the floats above -->
+                                &nbsp; 
+                                <!-- so profile photos line up across cards, haha! -->
+                            </div>
+                        }
+
 
                         <!-- MINI PROFILE PICTURE FOR PET OWNER! -->
                         @if (Model.PO_Profile_Pic != null)
                         {
                             <div class="search_result_profile_pic_box_box">
                                 <div class="search_result_profile_pic_box">
-                                    <img src=@Url.Action("Show", "Image", new { id = Model.PO_PU_ID })
-                                         class="search_result_profile_img" />
+                                    <a href='@Url.Action("VisitProfile", "ProfilePage",
+                                                    new { loggedID = item.PO_PU_ID })'>
+                                        <img src=@Url.Action("Show", "Image", 
+                                                    new { id = Model.PO_PU_ID })
+                                             class="search_result_profile_img" />
+                                    </a>
                                 </div>
                             </div>
                         }
@@ -53,8 +84,11 @@
                         {
                             <div class="search_result_profile_pic_box_box">
                                 <div class="search_result_profile_pic_box">
-                                    <img src="https://stormy9.github.io/nerdvana/cute_smiley.png"
-                                         class="search_result_profile_img" />
+                                    <a href='@Url.Action("VisitProfile", "ProfilePage",
+                                                    new { loggedID = item.PO_PU_ID })'>
+                                        <img src="https://stormy9.github.io/nerdvana/cute_smiley.png"
+                                             class="search_result_profile_img" />
+                                    </a>
                                 </div>
                             </div>
                         }
@@ -62,6 +96,7 @@
 
                         <!-- PET BADGES! -->
                         <div class="search_result_pc_badge_box">
+                            <div style="margin-bottom:3px;">My pet owner badges!</div>
                             @if (item.IsDogOwner is true)
                             {
                                 <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_owner.png" class="pet_badge">
@@ -118,7 +153,7 @@
             else
             {
                 <h3>
-                    there aren't any pet carers registered in your area yet!
+                    there aren't any pet owners registered in your area yet!
                 </h3>
             }
 

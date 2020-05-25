@@ -20,7 +20,7 @@ namespace Petopia.Controllers
         //===============================================================================
         // GET: PetopiaUsers
         [Authorize(Roles = "Admin")]
-        public ActionResult Index()
+        public ActionResult AdminIndex()
         {
             return View(db.PetopiaUsers.ToList());
         }
@@ -30,7 +30,8 @@ namespace Petopia.Controllers
         public ActionResult Details(int? id)
         {
             var identityID = User.Identity.GetUserId();
-            var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
+            var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
+                                          .Select(x => x.UserID).First();
 
             if (loggedID == null)
             {

@@ -1,9 +1,13 @@
 ﻿@model Petopia.Models.CareTransaction
 
 @{
-    ViewBag.Title = "Edit/Update This Pet Care Appointment";
+    ViewBag.Title = "Edit Booking Confirmed!";
+    ViewBag.Title01 = "Edit/Update ";
+    ViewBag.Title02 = "'s Pet Care Appointment";
+
     //this works!!!!!
     var today = DateTime.Now.ToString("yyyy-MM-dd");
+
     var loggedInUser = ViewBag.loggedInUser;
     var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
 }
@@ -15,6 +19,7 @@
         logged-in user: @loggedInUser  <br />
         this pet's owner: @thisPetsOwner <br />
     </div>
+
 @if (loggedInUser == thisPetsOwner)
 {
     using (Html.BeginForm("EditAppointment", "CareTransactions", FormMethod.Post,
@@ -27,6 +32,8 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.TransactionID)
             @Html.HiddenFor(model => model.PetOwnerID)
+            @Html.HiddenFor(model => model.PetID)
+            @Html.HiddenFor(model => model.CareProviderID)
 
             <span style="float: right; padding-right: 5px;">
                 @Html.ActionLink("See all my Pet Care appointments", "MyAppointments",
@@ -35,7 +42,7 @@
                            style = "margin-bottom:5px; color: #f2e6d9; font-weight: normal;"})
             </span>
 
-            <h2>@ViewBag.Title:</h2>
+            <h2>@ViewBag.Title01 @ViewBag.PetName@ViewBag.Title02:</h2>
 
             <!-- =============================== FIRST\TOP ROW! ==========================-->
                 <div class="row make_appt_box">
@@ -51,9 +58,9 @@
                                 htmlAttributes: new { @class = "control-label" })
 
                             @Html.EditorFor(model => model.StartDate,
-                                  new { htmlAttributes =
-                                      new { @class = "form-control", 
-                                            @tabindex = "1", min = @today }})
+                                new { htmlAttributes =
+                                    new { @class = "form-control", 
+                                    @tabindex = "1", min = @today, @autofocus="autofocus" }})
 
                             @Html.ValidationMessageFor(model => model.StartDate, "",
                                                         new { @class = "text-danger" })
@@ -119,9 +126,9 @@
                         <br />
                         @Html.TextAreaFor(model => model.NeededThisVisit,
                             new { htmlAttributes =
-                              new { @class = "form-control our_text_area", @tabindex = "5" },
-                                  cols = 180, rows = 5, id = "text20", name = "text20",
-                                  style = "color: #2e2e1f; border-radius:5px; padding: 5px;" })
+                              new { @class = "form-control our_text_area" }, @tabindex = "5",
+                                  rows = 5, id = "text20", name = "text20",
+                                  style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
 
                         <div>
                             <!-- do a character counter here! -->
@@ -140,7 +147,7 @@
                     <div class="col-sm-2 col-md-2">
 
                         <!---------------------------------- WHICH PET? -------------------->
-                        <div class="form-group">
+                        @*<div class="form-group">
                             @Html.LabelFor(model => model.PetID,
                                     htmlAttributes: new { @class = "control-label" })
 
@@ -150,31 +157,26 @@
 
                             @Html.ValidationMessageFor(model => model.PetID, "",
                                                     new { @class = "text-danger" })
-                        </div>
+                        </div>*@
                         <!---------------------------- WHICH PET CARER? -------------------->
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.CareProviderID,
-                                    htmlAttributes: new { @class = "control-label" })
+                        
+                        <!-- if you wanna change to a different pet carer, just cancel!! -->
+                        <div> if you'd like a different pet care provider, please cancel 
+                              this appointment and make a new one. </div>
 
-                            @Html.EditorFor(model => model.CareProviderID,
-                                  new { htmlAttributes =
-                                      new { @class = "form-control", @tabindex = "7", min = "1" }})
-
-                            @Html.ValidationMessageFor(model => model.CareProviderID,
-                                                    "", new { @class = "text-danger" })
-                        </div>
                         <!----------------------- EDIT PET CARE APPOINTMENT!  -------------->
                         <div class="form-group" style="padding-top: 18px;">
 
-                            <span style="float: right; margin-right: 5px; margin-bottom: 5px;">
-                                <input type="submit" value="Update this Appointment!"
-                                       class="btn our_buttons" />
+                            <span style="margin-right: 5px; margin-bottom: 5px;">
+                                <input type="submit" value="Update Appointment!"
+                                       class="our_buttons", tabindex="7"
+                                       style="float: right; margin-bottom: 5px;"/>
                             </span>
-                            <span style="float: right; margin-right: 5px;" 
-                                  class="btn our_buttons">
+                            <span style="float: right; margin-right: 5px;" >
                                 @Html.ActionLink("Cancel", "MyAppointments",
                                           new { Controller = "CareTransactions" },
-                                          new { style = "color: #f2e6d9;" })
+                                          new { @class="our_buttons",
+                                              style = "color: #f2e6d9;" })
                             </span>
                         </div>
                         <!------------------------------------------------------------------>

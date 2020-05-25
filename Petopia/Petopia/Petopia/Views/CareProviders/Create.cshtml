@@ -30,7 +30,8 @@
                         
                         <div class="panel-heading our_panel_heading">
                             <div class="panel-title our_panel_title">
-                                <a data-toggle="collapse" data-parent="#accordion_02" href="#collapse_PC">
+                                <a data-toggle="collapse" data-parent="#accordion_02" 
+                                   href="#collapse_PC">
                                     <p class="our_panel_p">
                                         What we do with your info + why we ask for it:
                                     </p>
@@ -42,17 +43,18 @@
                             <div class="panel-body"> <!-- CREATE PET CARER FORM -->
                                 <p>
                                     This is for you to desribe your Pet Care Experience 
-                                    -- like a mini resume.   
+                                    -- like a mini resume!
                                 </p>
                                 <p>
                                     Tell about the types of Pets you're experienced in 
-                                    caring for -- species, breeds, ages, sizes ... along 
-                                    with the types of care you can do.
+                                    caring for -- species, breeds, ages, sizes -- along 
+                                    with the types of care you can do, and how you 
+                                    gained your experience.
                                 </p>
                                 <p>
                                     This will show on your profile page so that Pet 
-                                    Owners who are considering hiring you can see just 
-                                    where your expertise is!
+                                    Owners who are considering hiring you can have 
+                                    confidence in your skills!
                                 </p>
                             </div><!-- end 'panel-body' div -->
                         </div><!-- end 'panel'\'panel-collapse' div + '#collapse_PI' id -->
@@ -67,7 +69,7 @@
         <!--=========================== SECOND \ MIDDLE ROW ==========================-->
         <!--============================ FIRST\LEFT COLUMN ===========================-->
         <div class="row">
-            <div class="col-sm-4 col-md-4">
+            <div class="col-sm-6 col-md-6">
 
                 <!------------------------- PET CARER EXPERIENCE  ---------------------->
                 <div class="form-group">
@@ -75,17 +77,19 @@
                                         htmlAttributes: new { @class = "control-label" })
 
                     @Html.TextAreaFor(model => model.ExperienceDetails,
-                         new { htmlAttributes =
-                         new { @class = "form-control our_text_area" }, cols=90, rows=9,
-                         id = "text03", name = "text03",
-                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                         new { htmlAttributes = 
+                            new { @class = "form-control our_text_area" }, 
+                                  rows=5, id = "text03", name = "text03", 
+                                    @placeholder="all about my experience...",
+                         style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
 
                     <div>
                         <span class="pull-left label label-default" id="count_message_03"></span>
                     </div>
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
-                    @Html.ValidationMessageFor(model => model.ExperienceDetails, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.ExperienceDetails, "", 
+                                                            new { @class = "text-danger" })
                 </div>
                 <!-------------------------------------------------------------------------->
             </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
@@ -103,7 +107,7 @@
             <div class="col-sm-4 col-md-4">
 
                 <!--============================= BUTTON =============================-->
-                <div class="form-group" style="margin-top: 90px;">
+                <div class="form-group" style="margin-top: 72px;">
                     <div>
                         <input type="submit" value="Sign me up as a Pet Carer!"
                                class="btn our_buttons" />

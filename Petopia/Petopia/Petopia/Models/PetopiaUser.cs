@@ -23,14 +23,14 @@ namespace Petopia.Models
 
         //===============================================================================
 
-        [Required]
-        [DisplayName("First Name*")]
+        [Required(ErrorMessage = "please enter your first name")]
+        [DisplayName("* First Name")]
         [StringLength(50)]
         public string FirstName { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
-        [DisplayName("Last Name*")]
+        [Required(ErrorMessage = "please enter your last name")]
+        [DisplayName("* Last Name")]
         [StringLength(50)]
         public string LastName { get; set; }
 
@@ -46,19 +46,22 @@ namespace Petopia.Models
 
         //===============================================================================
         [Required]
-        [DisplayName("Main Phone #*")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "please enter a valid phone number")]
+        [DisplayName("* Main Phone #")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$")]
         [StringLength(12)]
         public string MainPhone { get; set; }
 
         //-------------------------------------------------------------------------------
         [StringLength(12)]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "please enter a valid phone number")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$")]
         [DisplayName("Alternate Phone #")]
         public string AltPhone { get; set; }
 
         //===============================================================================
-
-        [Required]
-        [DisplayName("Residential Street Address*")]
+        [Required(ErrorMessage = "please enter your residential street address")]
+        [DisplayName("* Residential Street Address")]
         [StringLength(50)]
         public string ResAddress01 { get; set; }
 
@@ -68,20 +71,20 @@ namespace Petopia.Models
         public string ResAddress02 { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
-        [DisplayName("City*")]
-        [StringLength(50)]
+        [Required(ErrorMessage = "please enter your residential city")]
+        [DisplayName("* City")]
+        [StringLength(20)]
         public string ResCity { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
-        [DisplayName("State*")]
+        [Required(ErrorMessage = "please enter your residential state")]
+        [DisplayName("* State")]
         [StringLength(2)]
         public string ResState { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
-        [DisplayName("ZipCode*")]
+        [Required(ErrorMessage = "please enter your residential zipcode")]
+        [DisplayName("* ZipCode")]
         [StringLength(5)]
         public string ResZipcode { get; set; }
 

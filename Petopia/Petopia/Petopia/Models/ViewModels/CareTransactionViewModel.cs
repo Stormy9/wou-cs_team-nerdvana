@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel;
 
 namespace Petopia.Models.ViewModels
 {
@@ -64,7 +64,7 @@ namespace Petopia.Models.ViewModels
 
         [DisplayName("Pet's name:")]
         public string PetName { get; set; }
-        
+
         //===============================================================================
         // the public/profile details from                                     Pet table:
         [DisplayName("Pet's species:")]
@@ -117,7 +117,7 @@ namespace Petopia.Models.ViewModels
         }
         //-------------------------------------------------------------------------------
         public List<PetNames> PetNameList { get; set; }
-        
+
         //===============================================================================
         //===============================================================================
         //                                                                PetOwner Table
@@ -144,15 +144,16 @@ namespace Petopia.Models.ViewModels
         //===============================================================================
         //                                                          CareProvider table
         //===============================================================================
-        // the "background info" from the CareProvider table:
+        // the "main info" from the CareProvider table:
 
+        [DisplayName("Which Pet Carer?")]
         public int CareProviderID { get; set; }
 
         // is there anything we can do with this?
         [DisplayName("Pet Carer:")]
         public string PetCarerName { get; set; }
 
-        // don't think we need any for this part of things?     well, maybe?
+        // don't think we need any for this part of things?     well, maybe, later?
         [DisplayName("My Pet Care Experience:")]
         public string ExperienceDetails { get; set; }
 
@@ -171,8 +172,6 @@ namespace Petopia.Models.ViewModels
         {
             public int CareProviderID { get; set; }
 
-            public string CP_FirstName { get; set; }
-            public string CP_LastName { get; set; }
             public string CP_Name { get; set; }
             public string CP_Zipcode { get; set; }
         }
@@ -184,16 +183,17 @@ namespace Petopia.Models.ViewModels
         //   i looked at and tried *SO* many examples!!!   [=
         //    okay just found stuff that says specifically to NOT do SelectLists here
         public List<CareProviderInfo> PetCarerSelectList { get; set; }
-        
+
 
         //===============================================================================
         //===============================================================================
-        //                                                      CareTransactions table
+        //                                                         CareTransactions table
         //===============================================================================
         // now the stuff from the actual CareTransactions table!
         public int TransactionID { get; set; }
 
         //===============================================================================
+        [Required(ErrorMessage = "please enter a start date")]
         [Column(TypeName = "date")]     // gets rid of '12:00:00 AM' appendage
         //
         // adding this to the data definition gives us a date-picker in the view
@@ -204,7 +204,7 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Start Date:")]
         public DateTime StartDate { get; set; }
 
-
+        [Required(ErrorMessage = "please enter an end date")]
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM-dd-yyyy}")]
@@ -212,25 +212,22 @@ namespace Petopia.Models.ViewModels
         public DateTime EndDate { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Column(TypeName ="time")]                                    // CareTransactions
-        [DataType(DataType.Time)]
-        //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "please enter a start time")]
         [DisplayName("Start Time:")]
-        public TimeSpan StartTime { get; set; }
-
-        //SERIOUSLY! DISPLAYING TIME IN 12-HOUR FORMAT SHOULsDN'T BE THIS F'ING DIFFICULT!
-        // YES I TRIED CHANGING FROM 'TimeSpan' to 'DateTime'
-        // I remember this shit being unconscionably difficult in 460 as well.
-
-        [Column(TypeName = "time")]
+        [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Time)]
-        //[DisplayFormat(DataFormatString = "{0:hh\\:mm tt}", ApplyFormatInEditMode = true)]
+        public DateTime StartTime { get; set; }
+
+        [Required(ErrorMessage = "please enter an end time")]
         [DisplayName("End Time:")]
-        public TimeSpan EndTime { get; set; }
+        [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Time)]
+        public DateTime EndTime { get; set; }
 
         //===============================================================================
         //                                                            // CareTransactions
-        [DisplayName("Pet Care instructions this visit:")]
+        [Required(ErrorMessage = "please give instructions for your pet carer")]
+        [DisplayName("Pet Care instructions for this visit:")]
         public string NeededThisVisit { get; set; }
 
         [DisplayName("Pet Care recap:")]
@@ -265,7 +262,7 @@ namespace Petopia.Models.ViewModels
 
         //===============================================================================
         // FOREIGN KEYS FROM CareTransactions TABLE                   // CareTransactions
-        
+
         [DisplayName("Pet's Owner:")]
         public int CT_PetOwnerID { get; set; }
 
@@ -274,6 +271,20 @@ namespace Petopia.Models.ViewModels
 
         [DisplayName("Which Pet?")]
         public int CT_PetID { get; set; }
+
+        //===============================================================================
+        // booleans for status of appointments                      // Care Transactions
+        [DisplayName("Pending")]
+        public bool Pending { get; set; }
+
+        [DisplayName("Confirmed")]
+        public bool Confirmed { get; set; }
+
+        [DisplayName("Completed - Pet Owner")]
+        public bool Completed_PO { get; set; }
+
+        [DisplayName("Completed - Pet Carer")]
+        public bool Completed_CP { get; set; }
 
         //===============================================================================
         //===============================================================================
@@ -291,20 +302,22 @@ namespace Petopia.Models.ViewModels
             [DisplayName("PetOwnerID:")]
             public int PetOwnerID { get; set; }
 
+            public int PetOwnerPetopiaID { get; set; }
+
             [DisplayName("Pet's Owner:")]
             public string PetOwnerName { get; set; }
-            public string PetOwnerFirstName { get; set; }
-            public string PetOwnerLastName { get; set; }
 
+            public bool isPetOwner { get; set; }
             //---------------------------------------------------------
             [DisplayName("PetCarerID:")]
             public int PetCarerID { get; set; }
 
+            public int PetCarerPetopiaID { get; set; }
+
             [DisplayName("Pet Carer:")]
             public string PetCarerName { get; set; }
-            public string PetCarerFirstName { get; set; }
-            public string PetCarerLastName { get; set; }
 
+            public bool isPetCarer { get; set; }
             //---------------------------------------------------------
             [Column(TypeName = "date")]
             [DataType(DataType.Date)]
@@ -317,13 +330,15 @@ namespace Petopia.Models.ViewModels
             public DateTime EndDate { get; set; }
 
             //---------------------------------------------------------
-            [Column(TypeName = "time")]
+            [DisplayName("Start Time:")]
+            [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
             [DataType(DataType.Time)]
-            public TimeSpan StartTime { get; set; }
+            public DateTime StartTime { get; set; }
 
-            [Column(TypeName = "time")]
+            [DisplayName("End Time:")]
+            [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
             [DataType(DataType.Time)]
-            public TimeSpan EndTime { get; set; }
+            public DateTime EndTime { get; set; }
 
             //---------------------------------------------------------
             [DisplayName("Pet Care instructions this visit:")]
@@ -357,9 +372,37 @@ namespace Petopia.Models.ViewModels
             public string PO_Comments { get; set; }
 
             //---------------------------------------------------------
+            // ONLY FOR **CONFIRMED** APPOINTMENTS!
+            public string PetOwner_Email { get; set; }
+            public string PetOwner_MainPhone { get; set; }
+
+            public string PetCarer_Email { get; set; }
+            public string PetCarer_MainPhone { get; set; }
+
+            //---------------------------------------------------------
+            // booleans for status of appointments                      
+            [DisplayName("Pending")]
+            public bool Pending { get; set; }
+
+            [DisplayName("Confirmed")]
+            public bool Confirmed { get; set; }
+
+            [DisplayName("Completed - Pet Owner")]
+            public bool Completed_PO { get; set; }
+
+            [DisplayName("Completed - Pet Carer")]
+            public bool Completed_CP { get; set; }
+
+            //---------------------------------------------------------
             public int CareTransactionID { get; set; }
         }
-        public List<ApptInfo> ApptInfoList { get; set; }
+        public List<ApptInfo> ApptInfoListPending { get; set; }
+
+        public List<ApptInfo> ApptInfoListConfirmed { get; set; }
+
+        public List<ApptInfo> ApptInfoListUpcoming { get; set; }
+
+        public List<ApptInfo> ApptInfoListFinished { get; set; }
 
         //===============================================================================
         //===============================================================================
@@ -367,12 +410,22 @@ namespace Petopia.Models.ViewModels
         //===============================================================================
         public class IndexInfo
         {
+            public int PetID { get; set; }
             public string PetName { get; set; }
-            public string PetOwnerFirstName { get; set; }
-            public string PetOwnerLastName { get; set; }
-            public string PetProviderFirstName { get; set; }
-            public string PetProviderLastName { get; set; }
+            public int PetOwnerID { get; set; }
+            public string PetOwnerName { get; set; }
+            public int PetProviderID { get; set; }
+            public string PetProviderName { get; set; }
+
+
+            [Column(TypeName = "date")]
+            [DataType(DataType.Date)]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
             public DateTime StartDate { get; set; }
+
+            [Column(TypeName = "date")]
+            [DataType(DataType.Date)]
+            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
             public DateTime EndDate { get; set; }
             public int TransactionID { get; set; }
         }

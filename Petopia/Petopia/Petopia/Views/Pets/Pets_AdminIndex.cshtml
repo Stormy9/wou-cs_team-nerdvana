@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Petopia.DAL.Pet>
+
+@{
+    ViewBag.Title = "Pets Index - Admin View";
+}
+
+<div class="container-fluid">
+    <h2>@ViewBag.Title</h2>
+
+    <p> @Html.ActionLink("Add a Pet", "AddPet") </p>
+
+    <table class="table admin_table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Species)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Breed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birthdate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PetOwner.AverageRating)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PetName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Species)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Breed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Birthdate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PetOwner.AverageRating)
+                </td>
+                <!--==================================================================-->
+                <td>
+                    @Html.ActionLink("Edit Pet", "EditPet", new { id = item.PetID })
+                    <hr style="margin-top:0px;" />
+                    @Html.ActionLink("Pet Details", "MyPetDetails", new { id = item.PetID })
+                    <hr style="margin-top:0px;" />
+                    @Html.ActionLink("Delete Pet", "Delete", new { id = item.PetID })
+                </td>
+                <!--==================================================================-->
+            </tr>
+        }
+    </table>
+</div>

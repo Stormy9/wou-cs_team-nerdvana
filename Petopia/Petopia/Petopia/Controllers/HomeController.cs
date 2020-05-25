@@ -49,6 +49,11 @@ namespace Petopia.Controllers
 
             return View();
         }
+        //-------------------------------------------------------------------------------
+        public ActionResult UsingPetopia()
+        {
+            return View();
+        }
         //===============================================================================
         public ActionResult Contact()
         {
@@ -89,6 +94,7 @@ namespace Petopia.Controllers
                                                   CP_Profile_Pic = pu.ProfilePhoto,
                                                   ExperienceDetails = cp.ExperienceDetails,
                                                   ProviderAverageRating = cp.AverageRating,
+                                                  GeneralLocation = pu.GeneralLocation,
 
                                                   IsDogProvider = ub.DogProvider,
                                                   IsCatProvider = ub.CatProvider,
@@ -101,7 +107,11 @@ namespace Petopia.Controllers
                                                   IsRodentProvider = ub.RodentProvider,
                                                   IsOtherProvider = ub.OtherProvider
 
-                                              });
+                                              }).ToList();
+
+            // it did not like assigning `carerSearch.PetCarerSearchList` to var !
+            //var Q_List = Q.ToList();
+            //ViewBag.Q_List = Q_List;
 
             var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
 
@@ -148,6 +158,7 @@ namespace Petopia.Controllers
                                                   PO_Profile_Pic = pu.ProfilePhoto,
                                                   GeneralNeeds = po.GeneralNeeds,
                                                   OwnerAverageRating = po.AverageRating,
+                                                  GeneralLocation = pu.GeneralLocation,
 
                                                   IsDogOwner = ub.DogOwner,
                                                   IsCatOwner = ub.CatOwner,
@@ -160,7 +171,7 @@ namespace Petopia.Controllers
                                                   IsRodentOwner = ub.RodentOwner,
                                                   IsOtherOwner = ub.OtherOwner
 
-                                              });
+                                              }).ToList();
 
             return View(ownerSearch);
         }

@@ -13,11 +13,12 @@ namespace Petopia.DAL
     {
         //===============================================================================
         [Required]
+        [DisplayName("PetOwnerID")]
         public int PetOwnerID { get; set; }
 
         //-------------------------------------------------------------------------------
         [StringLength(120)]
-        [DisplayName("Average Rating")]
+        [DisplayName("Owner Avg Rating")]
         public string AverageRating { get; set; }
 
         //-------------------------------------------------------------------------------
@@ -32,6 +33,7 @@ namespace Petopia.DAL
 
         //===============================================================================
         // FOREIGN KEY
+        [DisplayName("PetopiaUserID")]
         public int? UserID { get; set; }
 
         //===============================================================================
