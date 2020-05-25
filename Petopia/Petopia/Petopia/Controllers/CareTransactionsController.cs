@@ -248,7 +248,8 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult BookAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
           "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
-          "CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
+          "CareProviderID,PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")] 
+                                                            CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
@@ -519,7 +520,8 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
           "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
-          "CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
+          "CareProviderID,PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")] 
+                                                        CareTransaction careTransaction)
         {
             // so why *do* some of these have all that ^^^ and others don't?
 
@@ -929,7 +931,8 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport,Charge," +
           "Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID," +
-            "NeededThisVisit")] CareTransaction careTransaction)
+            "NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")] 
+                                                        CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
@@ -1150,7 +1153,8 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CompleteAppointment_PetOwner([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
             " Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
-            "CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
+            "CareProviderID,PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")] 
+                                                                CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
@@ -1158,6 +1162,11 @@ namespace Petopia.Controllers
 
                 // the key part here!   [=
                 careTransaction.Completed_PO = true;
+
+                // so why isn't 'Completed_CP' binding???  everything else is!!
+                // the check-marks in the boxes go away and everything!!  WHY?!
+                var CP_Complete = careTransaction.Completed_CP;
+                careTransaction.Completed_CP = CP_Complete;
 
                 db.SaveChanges();
 
@@ -1210,7 +1219,7 @@ namespace Petopia.Controllers
             //---------------------------------------------------------
             var loggedInUser = User.Identity.GetUserId();
 
-            //---------------------------------------------------------
+            //---------------------------------------------------------------------------
             var petName = db.Pets.Where(p => p.PetID == careTransaction.PetID)
                                  .Select(pn => pn.PetName).FirstOrDefault();
 
@@ -1255,14 +1264,22 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CompleteAppointment_PetCarer([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
             " Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
-            "CareProviderID,PetID,NeededThisVisit")] CareTransaction careTransaction)
+            "CareProviderID,PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")]CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
+                // this did nothing being *under* 'db.Entry(careTransaction)'
+                bool PO_Complete = careTransaction.Completed_PO;
+                ViewBag.PO_Complete = PO_Complete;
+
                 db.Entry(careTransaction).State = EntityState.Modified;
 
                 // the key element here!   [=
                 careTransaction.Completed_CP = true;
+
+                // so why isn't 'Completed_PO' binding???  everything else is!!
+                // the check-marks in the boxes go away and everything!!  WHY?!
+                careTransaction.Completed_PO = PO_Complete;
 
                 db.SaveChanges();
 

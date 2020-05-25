@@ -492,7 +492,7 @@
                                     }
                                     @if (!item.Completed_PO)
                                     { 
-                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                        <div style="background-color:rgba(153, 0, 0, .45); padding:5px;">
                                             <span class="our_appt_label" style="color:#f2e6d9;">
                                                 @Html.DisplayNameFor(model => model.PC_Rating) 
                                                     &nbsp; </span>
@@ -511,7 +511,7 @@
                                     }
                                     @if (!item.Completed_PO)
                                     { 
-                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                        <div style="background-color:rgba(153, 0, 0, .45); padding:5px;">
                                             <span class="our_appt_label" style="color:#f2e6d9;">
                                                 @Html.DisplayNameFor(model => model.PC_Comments)
                                                     <br /> </span>
@@ -537,7 +537,8 @@
                                     }
                                     @if (!item.Completed_CP)
                                     {
-                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                        <div style="background-color:rgba(153, 0, 0, .45); padding:5px;
+                                                        border-radius: 5px 5px 0px 0px">
                                             <span class="our_appt_label" style="color:#f2e6d9;">
                                                 @Html.DisplayNameFor(model => model.PO_Rating)
                                                 &nbsp;
@@ -558,7 +559,8 @@
                                     }
                                     @if (!item.Completed_CP)
                                     {
-                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                        <div style="background-color:rgba(153, 0, 0, .45); padding:5px;
+                                                        border-radius: 0px 0px 5px 5px">
                                             <span class="our_appt_label" style="color:#f2e6d9;">
                                                 @Html.DisplayNameFor(model => model.PO_Comments)
                                                 <br />
@@ -857,7 +859,8 @@
                                     }
                                     @if (!item.Completed_PO)
                                     { 
-                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                        <div style="background-color:rgba(153, 0, 0, .45); 
+                                                    padding:5px; border-radius:5px 5px 0px 0px;">
                                             <span class="our_appt_label" style="color:#f2e6d9">
                                                 @Html.DisplayNameFor(model => model.PC_Rating) 
                                                     &nbsp; </span>
@@ -876,7 +879,8 @@
                                     }
                                     @if (!item.Completed_PO)
                                     { 
-                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                        <div style="background-color:rgba(153, 0, 0, .45); 
+                                                    padding:5px; border-radius:0px 0px 5px 5px;">
                                             <span class="our_appt_label" style="color:#f2e6d9;">
                                                 @Html.DisplayNameFor(model => model.PC_Comments)
                                                     <br /> </span>
@@ -901,7 +905,8 @@
                                     }
                                     @if (!item.Completed_CP)
                                     { 
-                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                        <div style="background-color:rgba(153, 0, 0, .45); 
+                                                    padding:5px;  border-radius:5px 5px 0px 0px;">
                                             <span class="our_appt_label" style="color:#f2e6d9;">
                                                 @Html.DisplayNameFor(model => model.PO_Rating)
                                                 &nbsp;
@@ -922,7 +927,8 @@
                                     }
                                     @if (!item.Completed_CP)
                                     { 
-                                        <div style="background-color:rgba(153, 0, 0, .45);">
+                                        <div style="background-color:rgba(153, 0, 0, .45); 
+                                                    padding:5px;  border-radius:0px 0px 5px 5px;">
                                             <span class="our_appt_label" style="color:#f2e6d9;">
                                                 @Html.DisplayNameFor(model => model.PO_Comments)
                                                 <br />
@@ -1002,10 +1008,13 @@
                                     </span>
                                     <span style="margin-left: 13px;">
                                             Completed_PO? @Html.DisplayFor(model => item.Completed_PO)
-                                        </span>
-                                        <span style="margin-left: 13px;">
-                                            Completed_CP? @Html.DisplayFor(model => item.Completed_CP)
-                                        </span>
+                                    </span>
+                                    <span style="margin-left: 13px;">
+                                        Completed_CP? @Html.DisplayFor(model => item.Completed_CP)
+                                    </span>
+                                    <span style="margin-left:13px;">
+                                        PO_Complete(from ViewBag): @ViewBag.PO_Complete
+                                    </span>
                                 </div>
 
                             </div><!-- END ROW THREE-->
