@@ -285,15 +285,21 @@
                     @if (Model.IsProvider == true)
                     {
                         @Html.DisplayNameFor(model => model.ProviderAverageRating)
-
-                        @Html.DisplayFor(model => model.ProviderAverageRating)
+                        
+                         <b>&nbsp;
+                            @Html.DisplayFor(model => model.ProviderAverageRating)
+                        </b>
+                            <span>&nbsp;out of 5 </span>
                     }
                     <!------------------------------------------------------------------>
                     @if (Model.IsOwner == true)
                     {
                         @Html.DisplayNameFor(model => model.OwnerAverageRating)
 
-                        @Html.DisplayFor(model => model.OwnerAverageRating)
+                        <b>&nbsp;
+                            @Html.DisplayFor(model => model.OwnerAverageRating)
+                        </b>
+                        <span>&nbsp;out of 5 </span>
                     }
 
                     <br />

@@ -454,7 +454,7 @@ namespace Petopia.Controllers
             //---------------------------------------------------------
             var reqPetCarerID = db.CareTransactions.Where(cp => cp.TransactionID == ct_id)
                                                    .Select(cpID => cpID.CareProviderID).FirstOrDefault();
-            // just proofing
+            // proofing
             var reqPetCarerCP_ID = db.CareProviders.Where(cp => cp.CareProviderID == reqPetCarerID)
                                                    .Select(cp => cp.CareProviderID).FirstOrDefault();
             // proofing.....
