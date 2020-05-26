@@ -1,0 +1,147 @@
+﻿@model Petopia.Models.CareTransaction
+
+@{
+    ViewBag.Title = "Decline Pet Care Appointment Request";
+    ViewBag.Title01 = "Decline ";
+    ViewBag.Title02 = "'s Pet Care Appointment";
+
+    //this works!!!!!
+    var today = DateTime.Now.ToString("yyyy-MM-dd");
+
+    var loggedInUser = ViewBag.loggedInUser;
+    var thisPetsCarer = ViewBag.thisPetsCarersASPNetIdentityID;
+}
+
+<div class="container-fluid" style="padding-bottom:72px;">
+
+    <!-- testing purposes! -->
+    <div style="display:none;"> 
+        this ct_id: @ViewBag.this_CT_ID <br />
+        logged-in user: @loggedInUser  <br />
+        this pet's carer: @thisPetsCarer <br />
+    </div>
+
+@if (loggedInUser == thisPetsCarer)
+{
+    using (Html.BeginForm("DeclineAppointment", "CareTransactions", FormMethod.Post,
+                new { @class = "form", role = "form", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row">
+                <div class"col-sm-12 col-md-12">
+
+                    <div style="float:right; margin-right:25px;">
+                       @Html.ActionLink("See all my Pet Care appointments", 
+                            "MyAppointments", new { controller = "CareTransactions" },
+                                new{ @class = "btn our_buttons",
+                                    style = "color:#f2e6d9; font-weight:normal;"})
+                    </div>
+
+                    <h2 style="margin-left: 18px;">
+                        @ViewBag.Title01 @ViewBag.PetsName@ViewBag.Title02? </h2>
+
+                </div>
+            </div>
+            <!-- =============================== FIRST\TOP ROW! ======================-->
+                <div class="row make_appt_box" style="margin-top:5px; 
+                                                        padding-bottom:35px;">
+
+                    <!-- ====================== FIRST ROW -- FIRST COLUMN ============-->
+                    <div class="col-sm-3 col-md-3">
+                        <!---->
+                        <!-----------------------------START DATE ---------------------->
+                        <div class="form-group" style="padding-top: 5px;">
+                            @Html.LabelFor(model => model.StartDate,
+                                htmlAttributes: new { @class = "control-label" })
+
+                            @Html.DisplayFor(model => model.StartDate)
+                        </div>
+                        <!--------------------------------- START TIME------------------>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StartTime,
+                                    htmlAttributes: new { @class = "control-label" })
+
+                            @Html.DisplayFor(model => model.StartTime)
+                        </div>
+                        <!-------------------------------------------------------------->
+                    </div><!-- END ROW 1 \ COL 1 -->
+                    <!--==============================================================-->
+                    <!---->
+                    <!--========================= FIRST ROW - SECOND COLUMN ==========-->
+                    <div class="col-sm-3 col-md-3">
+                        <!---->
+                        <!-----------------------------END DATE ------------------------>
+                        <div class="form-group" style="padding-top: 5px;">
+                            @Html.LabelFor(model => model.EndDate,
+                                htmlAttributes: new { @class = "control-label" })
+
+                            @Html.DisplayFor(model => model.EndDate)
+                        </div>
+                        <!---------------------------- END TIME ------------------------>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EndTime,
+                                    htmlAttributes: new { @class = "control-label" })
+
+                            @Html.DisplayFor(model => model.EndTime)
+                        </div>
+                        <!-------------------------------------------------------------->
+                    </div><!-- END ROW 1 \ COL 2 -->
+                    <!--==============================================================-->
+                    <!---->
+                    <!--=============================== FIRST ROW - THIRD COLUMN =====-->
+                    <div class="col-sm-4 col-md-4">
+                        <!---->
+                        <!----------------------- NEEDED THIS VISIT ------------------->
+                        @Html.LabelFor(model => model.NeededThisVisit,
+                                htmlAttributes: new { @class = "control-label" })
+                        <br />
+                        @Html.DisplayFor(model => model.NeededThisVisit)
+                        <!------------------------------------------------------------>
+                    </div><!-- END ROW 1 \ COL 3 -->
+                    <!--==============================================================-->
+                    <!---->
+                    <!--=============================== FIRST ROW - FOURTH COLUMN ====-->
+                    <div class="col-sm-2 col-md-2">
+                        <!----------------------- EDIT PET CARE APPOINTMENT!  ---------->
+                        <div class="form-group" style="padding-top: 18px;">
+
+                            <div style="margin-right: 5px; margin-bottom: 5px;">
+                                <input type="submit" value="Decline Appointment"
+                                       class="our_buttons", tabindex="7"
+                                       style="float: right; margin-bottom: 5px;"/>
+                            </div>
+
+                            <div style="float:right; margin-right:5px; margin-top:15px;">
+                                @Html.ActionLink("Cancel", "MyAppointments",
+                                    new { Controller = "CareTransactions" },
+                                    new { @class="our_buttons",
+                                        style = "color: #f2e6d9; font-weight:normal;" })
+                            </div>
+                        </div>
+                        <!-------------------------------------------------------------->
+                    </div>
+                <!--==================================================================-->
+                </div><!-- END ROW 1 -->
+                <!---->
+                <!---->
+                <!---------------------------------------------------------------------->
+            </div><!-- END FORM DIV! -->
+    }
+}
+else
+{ 
+    <h5> you are not this pet's requested pet carer! </h5>
+}
+<!--==================================================================================-->
+</div><!-- END CONTAINER-FLUID DIV! -->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/_our_main.js")
+}
+<!--==================================================================================-->

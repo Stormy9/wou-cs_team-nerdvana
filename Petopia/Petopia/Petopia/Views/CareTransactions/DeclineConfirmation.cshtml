@@ -1,0 +1,54 @@
+﻿@model Petopia.Models.CareTransaction
+
+@{
+    ViewBag.Title = "Decline Pet Care Appointment Confirmation";
+    ViewBag.Title01 = "You've sucessfully declined this Pet Care Appointment request,";
+    ViewBag.Title02 = "an email has been sent to you & the requesting Pet Owner!";
+}
+
+<div class="container-fluid">
+
+    <h2> @ViewBag.Title01 </h2>
+    <h4> @ViewBag.Title02 </h4>
+
+    <div class="container-fluid my_appt_box" style="padding: 15px;">
+
+        <!--=============================== ROW ONE ==============================-->
+        <div class="row our_row_three" style="margin-top: 36px;">
+
+            <div>
+                Where do you want to go?
+            </div>
+
+        </div><!-- END ROW ONE -->
+        <!--======================================================================-->
+        <!---->
+        <!---->
+        <!--=============================== ROW TWO ==============================-->
+        <div class="row our_row_three" style="margin-top: 5px;">
+
+            <!-- so why the fuck did this stop working?? i thought it was..... -->
+            <!-- although now i see why it would not.....     =]               -->
+            @*<span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                @Html.ActionLink("Pet's Profile", "PetProfile",
+                                    new { controller = "Pets", id = Model.PetID },
+                                    new { style = "color:#f2e6d9" })
+            </span>*@
+
+            <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                @Html.ActionLink("All my Pet care appointments", "MyAppointments", 
+                                new { controller = "CareTransactions" },
+                                new { style="color: #f2e6d9;"})
+            </span>
+
+        </div><!-- END ROW TWO -->
+        <!--======================================================================-->
+
+    </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
+
+</div><!-- END CONTAINER-FLUID (outer-most container) -->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<!--==================================================================================-->

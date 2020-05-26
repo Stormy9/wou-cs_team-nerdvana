@@ -5,7 +5,6 @@
     ViewBag.Title02 = "Are you sure you want to cancel?";
     var loggedInUser = ViewBag.loggedInUser;
     var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
-    var thisPetsCarer = ViewBag.thisPetsCarersASPNetIdentityID;
 }
 
 <div class="container-fluid">
@@ -14,11 +13,9 @@
     <div style="display:none;"> 
         logged-in user: @loggedInUser  <br />
         this pet's owner: @thisPetsOwner <br />
-        this pet's carer: @thisPetsCarer <br />
-        this pet's carerID: @ViewBag.thisPetsCarersID
     </div>
 
-    @if(loggedInUser == thisPetsOwner || loggedInUser == thisPetsCarer)
+    @if(loggedInUser == thisPetsOwner)
     { 
         <h2>@ViewBag.Title:</h2>
         <h3>@ViewBag.Title02</h3>

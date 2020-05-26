@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Petopia.DAL;
+using Petopia.Models;
+using Petopia.Models.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Petopia.DAL;
-using Petopia.Models;
-using Petopia.Models.ViewModels;
-using System.Configuration;
 
 namespace Petopia.Controllers
 {
@@ -1362,23 +1362,10 @@ namespace Petopia.Controllers
                                                         .FirstOrDefault();
 
             //---------------------------------------------------------
-            var thisPetsCarersID = db.CareTransactions.Where(ct => ct.TransactionID == id)
-                                                      .Select(cpID => cpID.CareProviderID).FirstOrDefault();
-
-            var thisPetsCarersPetopiaID = db.CareProviders.Where(cp => cp.CareProviderID == thisPetsCarersID)
-                                                          .Select(cpID => cpID.UserID).FirstOrDefault();
-
-            var thisPetsCarersASPNetID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsCarersPetopiaID)
-                                                        .Select(aspnetID => aspnetID.ASPNetIdentityID)
-                                                        .FirstOrDefault();
-
-            //---------------------------------------------------------
             var loggedInUser = User.Identity.GetUserId();
 
             ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetID;
-            ViewBag.thisPetsCarersASPNetIdentityID = thisPetsCarersASPNetID;
             ViewBag.loggedInUser = loggedInUser;
-            ViewBag.thisPetsCarersID = thisPetsCarersID;
 
             //---------------------------------------------------------
             var thisPetsName = db.Pets.Where(p => p.PetID == thisPetsID)
@@ -1403,10 +1390,10 @@ namespace Petopia.Controllers
 
             CareTransaction careTransaction = db.CareTransactions.Find(id);
 
-            // PULL IN THE OWNER & CARER EMAILS SOMEHOW HERE -- 
+            // PULL IN THE OWNER & CARER EMAILS HERE -- 
             // will putting it here work, to send the email before the ID's are deleted?
 
-            // THE EMAIL STUFF GOES IN CONFIRMATIONS -- except for cancel\delete, i imagine.....
+            // THE EMAIL STUFF GOES IN CONFIRMATIONS 
             //---------------------------------------------------------------------------
             // SEND EMAILS TO (OWNER &) CARER                Cancel_[Delete]_Confirmation
             //
@@ -1438,7 +1425,7 @@ namespace Petopia.Controllers
                 var EmailSubject_to_Carer = "[Petopia] Pet Owner has canceled their appointment with you";
                 var EmailBody_to_Carer = "Hi! A Petopia User has canceled one of their pet care " +
                     "appointments with you, please navigate over to http://petopia.azurewebsites.net " +
-                    "to track all of yourappointments.";
+                    "to track all of your appointments.";
 
                 var EmailSubject_to_Owner = "[Petopia] Your Pet Care Appointment Cancel Confirmation";
                 var EmailBody_to_Owner = "You requested to cancel your scheduled Pet Care Appointment." +
@@ -1487,22 +1474,153 @@ namespace Petopia.Controllers
             return View();
         }
         //===============================================================================
-        //                                               Appointment **DECLINE** \ DELETE
+        //===============================================================================
+        //                                        Appointment **DECLINE** \ DELETE -- GET
         //                                   for when PET CARE PROVIDER declines\deletes!
         //===============================================================================
+        // GET: CareTransactions/DeclineAppointment/5
+        public ActionResult DeclineAppointment(int? ct_id)
+        {
+            if (ct_id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
+            CareTransaction careTransaction = db.CareTransactions.Find(ct_id);
 
+            if (careTransaction == null)
+            {
+                return HttpNotFound();
+            }
+            //---------------------------------------------------------
+            // to make sure only the pet's requested carer can see this page!
+            var thisPetsCarersID = db.CareTransactions.Where(ct => ct.TransactionID == ct_id)
+                                                      .Select(poID => poID.CareProviderID).FirstOrDefault();
 
+            var thisPetsCarersPetopiaID = db.CareProviders.Where(po => po.CareProviderID == thisPetsCarersID)
+                                                      .Select(pUID => pUID.UserID).FirstOrDefault();
 
+            var thisPetsCarersASPNetID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsCarersPetopiaID)
+                                                        .Select(aspnetID => aspnetID.ASPNetIdentityID)
+                                                        .FirstOrDefault();
 
+            //---------------------------------------------------------
+            var loggedInUser = User.Identity.GetUserId();
 
+            ViewBag.thisPetsCarersASPNetIdentityID = thisPetsCarersASPNetID;
+            ViewBag.loggedInUser = loggedInUser;
 
+            //---------------------------------------------------------
+            var thisPetsName = db.Pets.Where(p => p.PetID == careTransaction.PetID)
+                                      .Select(pn => pn.PetName).FirstOrDefault();
 
+            ViewBag.PetsName = thisPetsName;
 
+            //---------------------------------------------------------
+            // just for testing:
+            ViewBag.this_CT_ID = careTransaction.TransactionID;
+            //---------------------------------------------------------
 
+            return View(careTransaction);
+        }
+        //-------------------------------------------------------------------------------
+        //                                           still in Appointment DECLINE -- POST
+        //                                      for when PET CARER declines appt request!
+        //-------------------------------------------------------------------------------
+        // POST: CareTransactions/DeclineAppointment/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeclineAppointment(int ct_id)
+        {
+            // hope to God these modifications work like think..... nope -- not yet.....
 
+            CareTransaction careTransaction = db.CareTransactions.Find(ct_id);
 
+            // PULL IN THE OWNER & CARER EMAILS HERE -- 
+            // will putting it here work, to send the email before the ID's are deleted?
 
+            // THE EMAIL STUFF GOES IN CONFIRMATIONS 
+            //---------------------------------------------------------------------------
+            // SEND EMAILS TO (OWNER &) CARER               Decline_[Delete]_Confirmation
+            //
+            // try to pull Owner & Carer email addresses:
+            var thisPetOwnerID = careTransaction.PetOwnerID;
+
+            var thisPetOwnerPetopiaID = db.PetOwners.Where(poID => poID.PetOwnerID == thisPetOwnerID)
+                                                    .Select(puID => puID.UserID).FirstOrDefault();
+
+            var thisPetOwnerAspID = db.PetopiaUsers.Where(puID => puID.UserID == thisPetOwnerPetopiaID)
+                                                   .Select(aspID => aspID.ASPNetIdentityID).FirstOrDefault();
+
+            var thisOwnerEmail = db.ASPNetUsers.Where(aspID => aspID.Id == thisPetOwnerAspID)
+                                               .Select(poEm => poEm.Email).FirstOrDefault();
+            //---------------------------------------------------------
+            var thisPetCarerID = careTransaction.CareProviderID;
+
+            var thisPetCarerPetopiaID = db.PetOwners.Where(poID => poID.PetOwnerID == thisPetCarerID)
+                                                    .Select(puID => puID.UserID).FirstOrDefault();
+
+            var thisPetCarerAspID = db.PetopiaUsers.Where(puID => puID.UserID == thisPetCarerPetopiaID)
+                                                   .Select(aspID => aspID.ASPNetIdentityID).FirstOrDefault();
+
+            var thisCarerEmail = db.ASPNetUsers.Where(aspID => aspID.Id == thisPetCarerAspID)
+                                               .Select(poEm => poEm.Email).FirstOrDefault();
+            //---------------------------------------------------------
+            try
+            {
+                var EmailSubject_to_Owner = "[Petopia] Pet Carer has declined your appointment request";
+                var EmailBody_to_Owner = "Hi! The Petopia Care Provider you requested " +
+                    "was unable to fulfill your Pet Care Appointment request, and has " +
+                    "declined.  Thank you for using Petopia, please visit us again the " +
+                    "next time you need pet care!";
+
+                var EmailSubject_to_Carer = "[Petopia] Your Pet Care Appointment Decline Confirmation";
+                var EmailBody_to_Carer = "You declined one of your Pet Care Appointment" +
+                    "requets.  The Pet Owner has been notified.  Thank you for using" +
+                    "Petopia, please check in with us regularly at http://petopia.azurewebsites.net";
+
+                MailAddress FromEmail = new MailAddress(ConfigurationManager.AppSettings["gmailAccount"]);
+                MailAddress ToEmail_Carer = new MailAddress(thisCarerEmail);
+                MailAddress ToEmail_Owner = new MailAddress(thisOwnerEmail);
+
+                MailMessage mail_to_carer = new MailMessage(FromEmail, ToEmail_Carer);
+                MailMessage mail_to_owner = new MailMessage(FromEmail, ToEmail_Owner);
+
+                mail_to_carer.Subject = EmailSubject_to_Carer;
+                mail_to_carer.Body = EmailBody_to_Carer;
+
+                mail_to_owner.Subject = EmailSubject_to_Owner;
+                mail_to_owner.Body = EmailBody_to_Owner;
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager
+                    .AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
+                smtp.EnableSsl = true;
+                smtp.Send(mail_to_carer);
+            }
+            catch (Exception e)
+            {
+            }
+            //---------------------------------------------------------
+
+            db.CareTransactions.Remove(careTransaction);
+
+            db.SaveChanges();
+
+            return RedirectToAction("DeclineConfirmation");
+        }
+        //-------------------------------------------------------------------------------
+        //                                                   still in Appointment DECLINE
+        //                                         for when PET CARER declines a request!
+        //-------------------------------------------------------------------------------
+        // GET: CareTransactions/DeleteConfirmation
+        public ActionResult DeclineConfirmation()
+        {
+            return View();
+        }
+        //===============================================================================
         //===============================================================================
         //                                                           APPOINTMENT LISTINGS
         //===============================================================================
