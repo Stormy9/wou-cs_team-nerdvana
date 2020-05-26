@@ -249,7 +249,7 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Pet Carer Rating:")]
         public int? PC_Rating { get; set; }
 
-        [DisplayName("Pet Carer Comments:  (from Pet Owner!)")]
+        [DisplayName("Pet Carer Comments:")]
         public string PC_Comments { get; set; }
 
         //-------------------------------------------------------------------------------
@@ -257,7 +257,7 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Pet Owner Rating:")]
         public int? PO_Rating { get; set; }
 
-        [DisplayName("Pet Owner Comments:  (from Pet Carer!)")]
+        [DisplayName("Pet Owner Comments:")]
         public string PO_Comments { get; set; }
 
         //===============================================================================
@@ -361,14 +361,14 @@ namespace Petopia.Models.ViewModels
             [DisplayName("Pet Carer Rating:")]
             public int? PC_Rating { get; set; }
 
-            [DisplayName("Pet Carer Comments:  (from Pet Owner!)")]
+            [DisplayName("Pet Carer Comments:")]
             public string PC_Comments { get; set; }
 
             //---------------------------------------------------------
             [DisplayName("Pet Owner Rating:")]
             public int? PO_Rating { get; set; }
 
-            [DisplayName("Pet Owner Comments:  (from Pet Carer!)")]
+            [DisplayName("Pet Owner Comments:")]
             public string PO_Comments { get; set; }
 
             //---------------------------------------------------------

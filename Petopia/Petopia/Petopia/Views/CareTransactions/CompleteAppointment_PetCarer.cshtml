@@ -35,6 +35,7 @@
                 @Html.HiddenFor(model => model.PetOwnerID)
                 @Html.HiddenFor(model => model.PetID)
                 @Html.HiddenFor(model => model.CareProviderID)
+                @Html.HiddenFor(model => model.NeededThisVisit)
                 <!---->
                 <!---->
                 <!------- change to the user's list (of pet care appointments)! ------->
@@ -59,7 +60,7 @@
                     @Html.HiddenFor(model => model.StartTime)
                     @Html.HiddenFor(model => model.EndDate)
                     @Html.HiddenFor(model => model.EndTime)
-                    @Html.HiddenFor(model => model.NeededThisVisit)
+                    @Html.HiddenFor(model => model.Completed_PO)
                     <!--==============================================================-->
                     
                     <!-- ====================== FIRST ROW -- FIRST COLUMN ============-->
@@ -346,6 +347,10 @@
                             <input type="submit" value="Complete Appointment!"
                            class="our_buttons", style="float:right; margin-right:18px;"/>
                         </span>
+                    </div>
+                    
+                    <div style="float:right">
+                        what does 'Completed_PO' say? @ViewBag.PO_Complete
                     </div>
                 <!---------------------------------------------------------------------->
             </div><!-- END FORM DIV! -->

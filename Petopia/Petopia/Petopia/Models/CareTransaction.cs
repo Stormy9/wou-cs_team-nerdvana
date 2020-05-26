@@ -75,14 +75,14 @@ namespace Petopia.Models
         [DisplayName("Pet Carer Rating:")]
         public int? PC_Rating { get; set; }
 
-        [DisplayName("Comments on Pet Carer:  (from Pet Owner!)")]
+        [DisplayName("Comments on Pet Carer:")]
         public string PC_Comments { get; set; }
 
         //-------------------------------------------------------------------------------
         [DisplayName("Pet Owner Rating:")]
         public int? PO_Rating { get; set; }
 
-        [DisplayName("Comments on Pet Owner:  (from Pet Carer!)")]
+        [DisplayName("Comments on Pet Owner:")]
         public string PO_Comments { get; set; }
 
         //===============================================================================

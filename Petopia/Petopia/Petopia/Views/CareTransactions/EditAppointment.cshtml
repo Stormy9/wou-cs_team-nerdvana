@@ -1,7 +1,7 @@
 ﻿@model Petopia.Models.CareTransaction
 
 @{
-    ViewBag.Title = "Edit Booking Confirmed!";
+    ViewBag.Title = "Edit Your Pet Care Booking";
     ViewBag.Title01 = "Edit/Update ";
     ViewBag.Title02 = "'s Pet Care Appointment";
 
@@ -35,58 +35,72 @@
             @Html.HiddenFor(model => model.PetID)
             @Html.HiddenFor(model => model.CareProviderID)
 
-            <span style="float: right; padding-right: 5px;">
-                @Html.ActionLink("See all my Pet Care appointments", "MyAppointments",
-                      new { controller = "CareTransactions" },
-                      new{ @class = "btn our_buttons",
-                           style = "margin-bottom:5px; color: #f2e6d9; font-weight: normal;"})
-            </span>
+            <div class="row">
+                <div class"col-sm-12 col-md-12">
 
-            <h2>@ViewBag.Title01 @ViewBag.PetName@ViewBag.Title02:</h2>
+                    <div style="float:right; margin-right:25px;">
+                       @Html.ActionLink("See all my Pet Care appointments", 
+                            "MyAppointments", new { controller = "CareTransactions" },
+                                new{ @class = "btn our_buttons",
+                                    style = "color:#f2e6d9; font-weight:normal;"})
+                    </div>
 
-            <!-- =============================== FIRST\TOP ROW! ==========================-->
-                <div class="row make_appt_box">
+                    <h2 style="margin-left: 18px;">
+                        @ViewBag.Title01 @ViewBag.PetName@ViewBag.Title02:</h2>
 
-                    <!-- ====================== FIRST ROW -- FIRST COLUMN ================-->
+                </div>
+            </div>
+
+            <!-- =============================== FIRST\TOP ROW! ======================-->
+                <div class="row make_appt_box" style="margin-top:5px;">
+
+                    <!-- ====================== FIRST ROW -- FIRST COLUMN ============-->
                     <div class="col-sm-3 col-md-3">
 
                         <h4> select start date &amp; time: </h4>
                         <!---->
-                        <!-----------------------------START DATE -------------------------->
+                        <!-----------------------------START DATE ---------------------->
                         <div class="form-group" style="padding-top: 5px;">
                             @Html.LabelFor(model => model.StartDate,
                                 htmlAttributes: new { @class = "control-label" })
 
                             @Html.EditorFor(model => model.StartDate,
-                                new { htmlAttributes =
-                                    new { @class = "form-control", 
-                                    @tabindex = "1", min = @today, @autofocus="autofocus" }})
+                                new { htmlAttributes = new { @class = "form-control",
+                                @tabindex = "1", min = @today, @autofocus="autofocus" }})
 
                             @Html.ValidationMessageFor(model => model.StartDate, "",
                                                         new { @class = "text-danger" })
                         </div>
-                        <!--------------------------------- START TIME---------------------->
+                        <!--------------------------------- START TIME------------------>
                         <div class="form-group">
                             @Html.LabelFor(model => model.StartTime,
                                     htmlAttributes: new { @class = "control-label" })
 
                             @Html.EditorFor(model => model.StartTime,
-                                  new { htmlAttributes =
-                                      new { @class = "form-control", @tabindex = "3" } })
+                                new { htmlAttributes =
+                                    new { @class = "form-control", @tabindex = "3" } })
+
+                            <span style="font-size:90%; font-style:italic;">
+                                original start time:
+                            </span>
+                            @Html.DisplayFor(model => model.StartTime)
+                            <br /> <span style="font-size:90%; font-style:italic;">
+                                    (why is this not in the editor?)
+                                  </span> 
 
                             @Html.ValidationMessageFor(model => model.StartTime, "",
-                          new { @class = "text-danger" })
+                                                        new { @class = "text-danger" })
                         </div>
-                        <!------------------------------------------------------------------>
+                        <!-------------------------------------------------------------->
                     </div><!-- END ROW 1 \ COL 1 -->
-                    <!--==================================================================-->
+                    <!--==============================================================-->
                     <!---->
-                    <!--========================= FIRST ROW - SECOND COLUMN ==============-->
+                    <!--========================= FIRST ROW - SECOND COLUMN ==========-->
                     <div class="col-sm-3 col-md-3">
 
                         <h4> select end date &amp; time: </h4>
                         <!---->
-                        <!-----------------------------END DATE ---------------------------->
+                        <!-----------------------------END DATE ------------------------>
                         <div class="form-group" style="padding-top: 5px;">
                             @Html.LabelFor(model => model.EndDate,
                                 htmlAttributes: new { @class = "control-label" })
@@ -99,7 +113,7 @@
                             @Html.ValidationMessageFor(model => model.EndDate, "",
                                                         new { @class = "text-danger" })
                         </div>
-                        <!---------------------------- END TIME ---------------------------->
+                        <!---------------------------- END TIME ------------------------>
                         <div class="form-group">
                             @Html.LabelFor(model => model.EndTime,
                                     htmlAttributes: new { @class = "control-label" })
@@ -108,27 +122,35 @@
                                   new { htmlAttributes =
                                       new { @class = "form-control", @tabindex = "4" }})
 
+                            <span style="font-size:90%; font-style:italic;">
+                                original end time:
+                            </span>
+                            @Html.DisplayFor(model => model.EndTime)
+                            <br /> <span style="font-size:90%; font-style:italic;">
+                                (why is this not in the editor?)
+                            </span>
+
                             @Html.ValidationMessageFor(model => model.EndTime, "",
                                     new { @class = "text-danger" })
                         </div>
-                        <!------------------------------------------------------------------>
+                        <!-------------------------------------------------------------->
                         <h6> <i> can span multiple days, i.e. pet-sitting! </i></h6>
-                        <!------------------------------------------------------------------>
+                        <!-------------------------------------------------------------->
                     </div><!-- END ROW 1 \ COL 2 -->
-                    <!--==================================================================-->
+                    <!--==============================================================-->
                     <!---->
-                    <!--=============================== FIRST ROW - THIRD COLUMN =========-->
+                    <!--=============================== FIRST ROW - THIRD COLUMN =====-->
                     <div class="col-sm-4 col-md-4">
                         <h4> Instructions for this visit: </h4>
-                        <!----------------------- NEEDED THIS VISIT ----------------------->
+                        <!----------------------- NEEDED THIS VISIT ------------------->
                         @Html.LabelFor(model => model.NeededThisVisit,
                                 htmlAttributes: new { @class = "control-label" })
                         <br />
                         @Html.TextAreaFor(model => model.NeededThisVisit,
                             new { htmlAttributes =
-                              new { @class = "form-control our_text_area" }, @tabindex = "5",
-                                  rows = 5, id = "text20", name = "text20",
-                                  style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
+                                new { @class = "form-control our_text_area" }, 
+                                @tabindex="5", rows=5, id="text20", name="text20",
+                                style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
 
                         <div>
                             <!-- do a character counter here! -->
@@ -139,73 +161,73 @@
 
                         @Html.ValidationMessageFor(model => model.NeededThisVisit, "",
                                                     new { @class = "text-danger" })
-                        <!----------------------------------------------------------------->
+                        <!------------------------------------------------------------->
                     </div><!-- END ROW 1 \ COL 3 -->
-                    <!--==================================================================-->
+                    <!--==============================================================-->
                     <!---->
-                    <!--=============================== FIRST ROW - FOURTH COLUMN ========-->
+                    <!--=============================== FIRST ROW - FOURTH COLUMN ====-->
                     <div class="col-sm-2 col-md-2">
 
-                        <!---------------------------------- WHICH PET? -------------------->
+                        <!---------------------------------- WHICH PET? ---------------->
                         @*<div class="form-group">
                             @Html.LabelFor(model => model.PetID,
                                     htmlAttributes: new { @class = "control-label" })
 
                             @Html.EditorFor(model => model.PetID,
-                                new { htmlAttributes =
-                                  new { @class = "form-control", @tabindex = "6", min = "1" } })
+                                new { htmlAttributes = new { @class = "form-control", 
+                                    @tabindex = "6", min = "1" } })
 
                             @Html.ValidationMessageFor(model => model.PetID, "",
                                                     new { @class = "text-danger" })
                         </div>*@
-                        <!---------------------------- WHICH PET CARER? -------------------->
-                        
-                        <!-- if you wanna change to a different pet carer, just cancel!! -->
+                        <!---------------------------- WHICH PET CARER? ---------------->
                         <div> if you'd like a different pet care provider, please cancel 
                               this appointment and make a new one. </div>
 
-                        <!----------------------- EDIT PET CARE APPOINTMENT!  -------------->
+                        <!----------------------- EDIT PET CARE APPOINTMENT!  ---------->
                         <div class="form-group" style="padding-top: 18px;">
 
-                            <span style="margin-right: 5px; margin-bottom: 5px;">
+                            <div style="margin-right: 5px; margin-bottom: 5px;">
                                 <input type="submit" value="Update Appointment!"
                                        class="our_buttons", tabindex="7"
                                        style="float: right; margin-bottom: 5px;"/>
-                            </span>
-                            <span style="float: right; margin-right: 5px;" >
+                            </div>
+
+                            <div style="float:right; margin-right:5px; margin-top:15px;">
                                 @Html.ActionLink("Cancel", "MyAppointments",
-                                          new { Controller = "CareTransactions" },
-                                          new { @class="our_buttons",
-                                              style = "color: #f2e6d9;" })
-                            </span>
+                                    new { Controller = "CareTransactions" },
+                                    new { @class="our_buttons",
+                                        style = "color: #f2e6d9; font-weight:normal;" })
+                            </div>
                         </div>
-                        <!------------------------------------------------------------------>
+                        <!-------------------------------------------------------------->
                     </div>
-                <!--======================================================================-->
+                <!--==================================================================-->
                 </div><!-- END ROW 1 -->
                 <!---->
                 <!---->
                     <br />      
                     @*@Html.DropDownList("CareProviderID", null, "carer name", htmlAttributes: 
-                    new { @class = "form-control", placeholder = "carer name", required = "required" })
+                    new { @class = "form-control", placeholder = "carer name", 
+                                                   required = "required" })
                 
                     @ViewBag.PetCarers*@
-                    <!---------------------------------------------------------------------->
+                    <!------------------------------------------------------------------>
                     <!-- here for initial testing til i hooked in the PetOwnerID! -->
                     @*<div class="form-group" style="float: right;">
                         @Html.LabelFor(model => model.PetOwnerID,
-                                            htmlAttributes: new { @class = "control-label" })
+                                        htmlAttributes: new { @class = "control-label" })
 
-                            @Html.EditorFor(model => model.PetOwnerID, 
-                                    new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.PetOwnerID, 
+                                new { htmlAttributes = new { @class = "form-control" } })
 
-                            @Html.ValidationMessageFor(model => model.PetOwnerID, "", 
-                                                            new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.PetOwnerID, "", 
+                                                        new { @class = "text-danger" })
                     </div>*@
-                    <!---------------------------------------------------------------------->
+                    <!------------------------------------------------------------------>
             
 
-                <!-------------------------------------------------------------------------->
+                <!---------------------------------------------------------------------->
             </div><!-- END FORM DIV! -->
     }
 }

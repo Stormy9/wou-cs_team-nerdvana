@@ -1108,6 +1108,8 @@
     <Content Include="Views\CareTransactions\ConfirmConfirmation.cshtml" />
     <Content Include="Views\CareTransactions\CompleteAppointment_PetCarer.cshtml" />
     <Content Include="Views\CareTransactions\CompleteConfirmation.cshtml" />
+    <Content Include="Views\CareTransactions\DeclineAppointment.cshtml" />
+    <Content Include="Views\CareTransactions\DeclineConfirmation.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>
