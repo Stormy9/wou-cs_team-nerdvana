@@ -208,14 +208,17 @@
                             <!----------------------------------- ROW 2 \ COL 2 -------->
                             <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
 
-                                <div>
+                                <span class="our_appt_label" style="font-size:110%;">
+                                    from pet owner:</span>
+
+                                <div style="margin-left:15px;">
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => model.PC_Rating)
                                         &nbsp; </span>
                                     @Html.DisplayFor(model => item.PC_Rating)
                                 </div>
 
-                                <div>
+                                <div style="margin-left:15px;">
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => model.PC_Comments)
                                         <br /> </span>
@@ -228,14 +231,17 @@
                             <!--------------------------- ROW 2 \ COL 3 ---------------->
                             <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
 
-                                <div>
+                                <span class="our_appt_label" style="font-size:110%;">
+                                    from pet carer:</span>
+
+                                <div style="margin-left:15px;">
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => model.PO_Rating)
                                             &nbsp; </span>
                                     @Html.DisplayFor(model => item.PO_Rating)
                                 </div>
 
-                                <div>
+                                <div style="margin-left:15px;">
                                     <span class="our_appt_label">
                                         @Html.DisplayNameFor(model => model.PO_Comments)
                                             <br /> </span>
@@ -293,7 +299,7 @@
                             @if (isPetOwner)
                             { 
                                 <div style="float: right; margin-right: 5px;">
-                                    @Html.ActionLink("Reschedule Appointment", "EditAppointment",
+                                    @Html.ActionLink("Reschedule/Edit Appointment", "EditAppointment",
                                         new { id = item.CareTransactionID },
                                         new { @class="our_buttons",
                                             style = "color: #f2e6d9; font-weight: normal;" })
@@ -495,39 +501,57 @@
                                 <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
 
                                     @if (item.Completed_PO)
-                                    { 
-                                        <div>
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet owner:
+                                        </span>
+
+                                        <div style="margin-left:15px;">
                                             <span class="our_appt_label">
-                                                @Html.DisplayNameFor(model => model.PC_Rating) 
-                                                    &nbsp; </span>
+                                                @Html.DisplayNameFor(model => model.PC_Rating)
+                                                &nbsp;
+                                            </span>
                                             @Html.DisplayFor(model => item.PC_Rating)
                                         </div>
                                     }
                                     @if (!item.Completed_PO)
-                                    { 
-                                        <div style="background-color:rgba(153, 0, 0, .45); padding:5px;">
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet owner:
+                                        </span>
+
+                                        <div style="background-color:rgba(153, 0, 0, .45); padding:5px;
+                                                        border-radius: 5px 5px 0px 0px">
                                             <span class="our_appt_label" style="color:#f2e6d9;">
-                                                @Html.DisplayNameFor(model => model.PC_Rating) 
-                                                    &nbsp; </span>
+                                                @Html.DisplayNameFor(model => model.PC_Rating)
+                                                &nbsp;
+                                            </span>
                                             @Html.DisplayFor(model => item.PC_Rating)
                                         </div>
                                     }
 
                                     @if (item.Completed_PO)
-                                    { 
-                                        <div>
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet owner:
+                                        </span>
+
+                                        <div style="margin-left:15px;">
                                             <span class="our_appt_label">
                                                 @Html.DisplayNameFor(model => model.PC_Comments)
-                                                    <br /> </span>
+                                                <br />
+                                            </span>
                                             @Html.DisplayFor(model => item.PC_Comments)
                                         </div>
                                     }
                                     @if (!item.Completed_PO)
-                                    { 
-                                        <div style="background-color:rgba(153, 0, 0, .45); padding:5px;">
+                                    {
+                                        <div style="background-color:rgba(153, 0, 0, .45); padding:5px;
+                                                        border-radius: 0px 0px 5px 5px">
                                             <span class="our_appt_label" style="color:#f2e6d9;">
                                                 @Html.DisplayNameFor(model => model.PC_Comments)
-                                                    <br /> </span>
+                                                <br />
+                                            </span>
                                             @Html.DisplayFor(model => item.PC_Comments)
                                         </div>
                                     }
@@ -540,7 +564,11 @@
 
                                     @if (item.Completed_CP)
                                     {
-                                        <div>
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet carer:
+                                        </span>
+
+                                        <div style="margin-left:15px;">
                                             <span class="our_appt_label">
                                                 @Html.DisplayNameFor(model => model.PO_Rating)
                                                 &nbsp;
@@ -550,6 +578,10 @@
                                     }
                                     @if (!item.Completed_CP)
                                     {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet carer:
+                                        </span>
+
                                         <div style="background-color:rgba(153, 0, 0, .45); padding:5px;
                                                         border-radius: 5px 5px 0px 0px">
                                             <span class="our_appt_label" style="color:#f2e6d9;">
@@ -562,7 +594,11 @@
 
                                     @if (item.Completed_CP)
                                     {
-                                        <div>
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet carer:
+                                        </span>
+
+                                        <div style="margin-left:15px;">
                                             <span class="our_appt_label">
                                                 @Html.DisplayNameFor(model => model.PO_Comments)
                                                 <br />
@@ -638,7 +674,7 @@
                                 @if (isPetOwner)
                                 { 
                                     <div style="float: right; margin-right: 5px;">
-                                        @Html.ActionLink("Reschedule Appointment", "EditAppointment",
+                                        @Html.ActionLink("Reschedule/Edit Appointment", "EditAppointment",
                                             new { id = item.CareTransactionID },
                                             new { @class="our_buttons",
                                                 style = "color: #f2e6d9; font-weight: normal;" })
@@ -841,44 +877,56 @@
                                 <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
 
                                     @if (item.Completed_PO)
-                                    { 
-                                        <div>
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet owner:
+                                        </span>
+
+                                        <div style="margin-left:15px;">
                                             <span class="our_appt_label">
-                                                @Html.DisplayNameFor(model => model.PC_Rating) 
-                                                    &nbsp; </span>
+                                                @Html.DisplayNameFor(model => model.PC_Rating)
+                                                &nbsp;
+                                            </span>
                                             @Html.DisplayFor(model => item.PC_Rating)
                                         </div>
                                     }
                                     @if (!item.Completed_PO)
-                                    { 
-                                        <div style="background-color:rgba(153, 0, 0, .45); 
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet owner:
+                                        </span>
+
+                                        <div style="background-color:rgba(153, 0, 0, .45);
                                                     padding:5px; border-radius:5px 5px 0px 0px;">
                                             <span class="our_appt_label" style="color:#f2e6d9">
-                                                @Html.DisplayNameFor(model => model.PC_Rating) 
-                                                    &nbsp; </span>
+                                                @Html.DisplayNameFor(model => model.PC_Rating)
+                                                &nbsp;
+                                            </span>
                                             @Html.DisplayFor(model => item.PC_Rating)
                                         </div>
                                     }
-                                    
+
                                     @if (item.Completed_PO)
-                                    { 
-                                        <div>
+                                    {
+                                        <div style="margin-left:15px;">
                                             <span class="our_appt_label">
                                                 @Html.DisplayNameFor(model => model.PC_Comments)
-                                                    <br /> </span>
+                                                <br />
+                                            </span>
                                             @Html.DisplayFor(model => item.PC_Comments)
                                         </div>
                                     }
                                     @if (!item.Completed_PO)
-                                    { 
-                                        <div style="background-color:rgba(153, 0, 0, .45); 
+                                    {
+                                        <div style="background-color:rgba(153, 0, 0, .45);
                                                     padding:5px; border-radius:0px 0px 5px 5px;">
                                             <span class="our_appt_label" style="color:#f2e6d9;">
                                                 @Html.DisplayNameFor(model => model.PC_Comments)
-                                                    <br /> </span>
+                                                <br />
+                                            </span>
                                             @Html.DisplayFor(model => item.PC_Comments)
                                         </div>
-                                    }                                    
+                                    }
                                 </div>
                                 <!------------------------------------------------------>
                                 <!---->
@@ -886,8 +934,12 @@
                                 <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
 
                                     @if (item.Completed_CP)
-                                    { 
-                                        <div>
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet carer:
+                                        </span>
+
+                                        <div style="margin-left:15px;">
                                             <span class="our_appt_label">
                                                 @Html.DisplayNameFor(model => model.PO_Rating)
                                                 &nbsp;
@@ -896,8 +948,12 @@
                                         </div>
                                     }
                                     @if (!item.Completed_CP)
-                                    { 
-                                        <div style="background-color:rgba(153, 0, 0, .45); 
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet carer:
+                                        </span>
+
+                                        <div style="background-color:rgba(153, 0, 0, .45);
                                                     padding:5px;  border-radius:5px 5px 0px 0px;">
                                             <span class="our_appt_label" style="color:#f2e6d9;">
                                                 @Html.DisplayNameFor(model => model.PO_Rating)
@@ -906,10 +962,10 @@
                                             @Html.DisplayFor(model => item.PO_Rating)
                                         </div>
                                     }
-                                    
+
                                     @if (item.Completed_CP)
-                                    { 
-                                        <div>
+                                    {
+                                        <div style="margin-left:15px;">
                                             <span class="our_appt_label">
                                                 @Html.DisplayNameFor(model => model.PO_Comments)
                                                 <br />
@@ -918,8 +974,8 @@
                                         </div>
                                     }
                                     @if (!item.Completed_CP)
-                                    { 
-                                        <div style="background-color:rgba(153, 0, 0, .45); 
+                                    {
+                                        <div style="background-color:rgba(153, 0, 0, .45);
                                                     padding:5px;  border-radius:0px 0px 5px 5px;">
                                             <span class="our_appt_label" style="color:#f2e6d9;">
                                                 @Html.DisplayNameFor(model => model.PO_Comments)
