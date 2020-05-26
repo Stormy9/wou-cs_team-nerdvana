@@ -258,13 +258,6 @@
                             </div>
 
                             <div style="float: right; margin-right: 5px;">
-                                @Html.ActionLink("Edit Appointment", "EditAppointment",
-                                    new { id = item.CareTransactionID },
-                                    new { @class="our_buttons",
-                                        style = "color: #f2e6d9; font-weight: normal;" })
-                            </div>
-
-                            <div style="float: right; margin-right: 5px;">
                                 @Html.ActionLink("Pet's Profile", "PetProfile",
                                     new { controller = "Pets", id = item.PetID },
                                         new { @class="our_buttons",
@@ -273,23 +266,39 @@
 
                             @if (isPetCarer)
                             {
-                                <div style="float: right; margin-right: 5px">
-                                        @Html.ActionLink("Owner's Profile", "VisitProfile",
-                                            new { controller = "ProfilePage", 
-                                                  loggedID = item.PetOwnerPetopiaID },
-                                            new { @class = "our_buttons", 
-                                                style = "color:#f2e6d9; font-weight:normal;" })
-                                    </div>
+                                <div style="float:right; margin-right:5px">
+                                    @Html.ActionLink("Owner's Profile", "VisitProfile",
+                                        new { controller = "ProfilePage", 
+                                                loggedID = item.PetOwnerPetopiaID },
+                                        new { @class = "our_buttons", 
+                                          style = "color:#f2e6d9; font-weight:normal;" })
+                                </div>
+
+                                <div style="float:right; margin-right:5px">
+                                    @Html.ActionLink("Decline Appointment", "DeclineAppointment",
+                                        new { controller="CareTransaction", 
+                                                ct_id=item.CareTransactionID },
+                                        new { @class="our_buttons", 
+                                            style="color:#f2e6d9; font-weight:normal;"})
+                                </div>
+
                                 <div style="float:right; margin-right:5px;">
-                                    @Html.ActionLink("Confirm Appt!", "ConfirmAppointment",
-                                        new { ct_id = item.CareTransactionID },
-                                        new { @class="our_buttons",
-                                            style = "color: #f2e6d9; font-weight: normal;" })
+                                  @Html.ActionLink("Confirm Appointment!", "ConfirmAppointment",
+                                    new { ct_id = item.CareTransactionID },
+                                    new { @class="our_buttons",
+                                        style = "color: #f2e6d9; font-weight: normal;" })
                                 </div>
                             }
 
                             @if (isPetOwner)
                                 { 
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Reschedule Appointment", "EditAppointment",
+                                            new { id = item.CareTransactionID },
+                                            new { @class="our_buttons",
+                                                style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+                                    
                                     <div style="float: right; margin-right: 5px">
                                             @Html.ActionLink("Carer's Profile", "VisitProfile",
                                                 new { controller = "ProfilePage", 
@@ -301,7 +310,7 @@
 
                             <!-- for testing during initial setup -->
                             <div>
-                                <span style="margin-right: 15px; display:none;">
+                                <span style="margin-right: 15px;">
                                     ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                                 </span>
                                 <span style="margin-left: 13px;">
@@ -624,6 +633,13 @@
 
                                 @if (isPetOwner)
                                 { 
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Reschedule Appointment", "EditAppointment",
+                                            new { id = item.CareTransactionID },
+                                            new { @class="our_buttons",
+                                                style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+
                                     <div style="float: right; margin-right: 5px">
                                         @Html.ActionLink("Carer's Profile", "VisitProfile",
                                             new { controller = "ProfilePage", 
@@ -636,7 +652,7 @@
                                 <!-- for testing during initial setup -->
                                 <div>
                                     <div>
-                                        <span style="margin-right: 15px; display:none;">
+                                        <span style="margin-right: 15px;">
                                             ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                                         </span>
                                         <span style="margin-left: 13px;">
@@ -997,7 +1013,7 @@
 
                                 <!-- for testing during initial setup -->
                                 <div>
-                                    <span style="margin-right: 15px; display:none;">
+                                    <span style="margin-right: 15px;">
                                         ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                                     </span>
                                     <span style="margin-left: 13px;">
@@ -1011,9 +1027,6 @@
                                     </span>
                                     <span style="margin-left: 13px;">
                                         Completed_CP? @Html.DisplayFor(model => item.Completed_CP)
-                                    </span>
-                                    <span style="margin-left:13px;">
-                                        PO_Complete(from ViewBag): @ViewBag.PO_Complete
                                     </span>
                                 </div>
 

@@ -282,31 +282,32 @@
                                 </div>
 
                                 <div style="float: right; margin-right: 5px;">
-                                    @Html.ActionLink("Edit Appointment", "EditAppointment",
-                                    new { id = item.CareTransactionID },
-                                    new { @class="our_buttons",
-                                        style = "color: #f2e6d9; font-weight: normal" })
+                                    @Html.ActionLink("Reschedule Appointment", 
+                                    "EditAppointment", new {id = item.CareTransactionID},
+                                        new { @class="our_buttons",
+                                        style = "color: #f2e6d9; font-weight: normal;" })
                                 </div>
 
                                 <div style="float: right; margin-right: 5px;">
                                     @Html.ActionLink("Pet's Profile", "PetProfile",
                                         new { controller = "Pets", id = item.PetID },
                                         new { @class="our_buttons",
-                                            style = "color: #f2e6d9; font-weight: normal" })
+                                        style = "color: #f2e6d9; font-weight: normal" })
                                 </div>
                                 
                                 <div style="float: right; margin-right: 5px">
-                                            @Html.ActionLink("Carer's Profile", "VisitProfile",
-                                                new { controller = "ProfilePage", 
-                                                      loggedID = item.PetCarerPetopiaID },
-                                                new { @class = "our_buttons", 
-                                                    style = "color:#f2e6d9; font-weight:normal;" })
+                                    @Html.ActionLink("Carer's Profile", "VisitProfile",
+                                        new { controller = "ProfilePage", 
+                                                loggedID = item.PetCarerPetopiaID },
+                                        new { @class = "our_buttons", 
+                                          style = "color:#f2e6d9; font-weight:normal;" })
                                     </div>
 
                                 <!------------------------------------------------------>
                                 <!-- for testing during initial setup -->
                                 <span style="margin-right: 15px; display:none;">
-                                    ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                                    ct_id? 
+                                    @Html.DisplayFor(model => item.CareTransactionID)
                                 </span>
                                 <span style="margin-right: 15px;">
                                     Pending? @Html.DisplayFor(model => item.Pending)
@@ -341,7 +342,8 @@
                     {
                         foreach (var item in Model.ApptInfoListConfirmed)
                         {
-                            <div class="container-fluid my_appt_box" style="padding: 15px;">
+                            <div class="container-fluid my_appt_box" 
+                                 style="padding:15px;">
 
                                 <!--============================= ROW ZERO! ==========-->
                                 <div class="row" style="margin-bottom: 18px;">
@@ -351,7 +353,7 @@
                                         <span style="float:left;">
                                             <!------------------------------------------>
                                             <span class="our_appt_label">
-                                                @Html.DisplayNameFor(model => model.PetName)
+                                             @Html.DisplayNameFor(model => model.PetName)
                                                 &nbsp;&nbsp;
                                             </span>
                                             @Html.DisplayFor(model => item.PetName)
@@ -363,8 +365,10 @@
                                                 &nbsp;&nbsp;
                                             </span>
                                             @Html.DisplayFor(model => item.PetOwnerName)
-                                            &nbsp; | &nbsp; @Html.DisplayFor(model => item.PetOwner_MainPhone)
-                                            &nbsp; | &nbsp; @Html.DisplayFor(model => item.PetOwner_Email)
+                                            &nbsp; | &nbsp; 
+                                            @Html.DisplayFor(model => item.PetOwner_MainPhone)
+                                            &nbsp; | &nbsp; 
+                                            @Html.DisplayFor(model => item.PetOwner_Email)
                                         </span>
                                         <!------------------------------------------------------>
                                         <span style="float:left; margin-left: 25px;">
@@ -373,8 +377,10 @@
                                                 &nbsp;
                                             </span>
                                             @Html.DisplayFor(model => item.PetCarerName)
-                                            &nbsp; | &nbsp; @Html.DisplayFor(model => item.PetCarer_MainPhone)
-                                            &nbsp; | &nbsp; @Html.DisplayFor(model => item.PetCarer_Email)
+                                            &nbsp; | &nbsp; 
+                                            @Html.DisplayFor(model => item.PetCarer_MainPhone)
+                                            &nbsp; | &nbsp; 
+                                            @Html.DisplayFor(model => item.PetCarer_Email)
                                         </span>
                                         <!------------------------------------------------------>
                                     </div>
@@ -383,7 +389,7 @@
                                 <!---->
                                 <!---->
                                 <!--=================================== ROW ONE ======-->
-                                <div class="row our_row_one" style="margin-bottom: 18px;">
+                                <div class="row our_row_one" style="margin-bottom:18px;">
                                     <!------------------------------- ROW 1 \ COL 1 ---->
                                     <div class="col-sm-1 col-md-1">
 
@@ -421,7 +427,8 @@
                                     </div><!-- END ROW 1 \ COL 2 -->
                                     <!---->
                                     <!--------------------------- ROW 1 \ COL 3 -------->
-                                    <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+                                    <div class="col-sm-3 col-md-3" 
+                                         style="margin-left:23px;">
 
                                         <div>
                                             <span class="our_appt_label">
@@ -435,7 +442,8 @@
                                     <!-------------------------------------------------->
                                     <!---->
                                     <!--------------------------- ROW 1 \ COL 4 -------->
-                                    <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+                                    <div class="col-sm-3 col-md-3" 
+                                         style="margin-left:23px;">
 
                                         <div>
                                             <span class="our_appt_label">
@@ -459,7 +467,8 @@
                                     <!-------------------------------------------------->
                                     <!---->
                                     <!----------------------------- ROW 1 \ COL 5 ------>
-                                    <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+                                    <div class="col-sm-3 col-md-3" 
+                                         style="margin-left: 23px;">
 
                                         <div style="margin-bottom: 13px;">
                                             <span class="our_appt_label">
@@ -483,7 +492,7 @@
                                 <!---->
                                 <!---->
                                 <!--=============================== ROW TWO ==========-->
-                                <div class="row our_row_two" style="margin-bottom: 18px;">
+                                <div class="row our_row_two" style="margin-bottom:18px;">
 
                                     <!--------------------------------- ROW 2 \ COL 1 -->
                                     <div class="col-sm-3 col-md-3">
@@ -605,6 +614,14 @@
                                 <div class="row our_row_three">
 
                                     <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Reschedule Appointment", 
+                                            "EditAppointment",
+                                            new { id = item.CareTransactionID },
+                                            new { @class="our_buttons",
+                                        style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+
+                                    <div style="float: right; margin-right: 5px;">
                                     @Html.ActionLink("Complete Appointment",
                                         "CompleteAppointment_PetOwner",
                                         new { id = item.CareTransactionID },
@@ -627,6 +644,7 @@
                                                 style = "color:#f2e6d9; font-weight:normal;" })
                                     </div>
                                     <!-------------------------------------------------->
+
                                     <!-- for testing during initial setup -->
                                     <span style="margin-right: 15px; display:none;">
                                         ct_id? @Html.DisplayFor(model => item.CareTransactionID)

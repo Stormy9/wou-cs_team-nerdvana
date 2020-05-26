@@ -762,6 +762,7 @@ namespace Petopia.Controllers
 
             var neededThisVisit = thisJob.NeededThisVisit;
 
+
             ViewBag.ThisStartDate = thisStartDate;
             ViewBag.ThisStartTime = thisStartTime;
 
@@ -931,12 +932,14 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport,Charge," +
           "Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID," +
-            "NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")] 
-                                                        CareTransaction careTransaction)
+            "NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")]CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(careTransaction).State = EntityState.Modified;
+
+                careTransaction.Pending = true;
+                careTransaction.Confirmed = false;
 
                 db.SaveChanges();
 
@@ -986,6 +989,7 @@ namespace Petopia.Controllers
             var thisOwnerLastName = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerPetopiaID)
                                                    .Select(cpn => cpn.LastName).FirstOrDefault();
 
+            // get Pet Owner's email address:
             var thisOwnerAspIdentity = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerPetopiaID)
                                                       .Select(asp => asp.ASPNetIdentityID).FirstOrDefault();
 
@@ -1007,6 +1011,7 @@ namespace Petopia.Controllers
             var thisCarerLastName = db.PetopiaUsers.Where(cp => cp.UserID == thisCarerPetopiaID)
                                                     .Select(cpn => cpn.LastName).FirstOrDefault();
 
+            // get Pet Carer's email address:
             var thisCarerAspIdentity = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerPetopiaID)
                                                       .Select(asp => asp.ASPNetIdentityID).FirstOrDefault();
 
@@ -1030,13 +1035,13 @@ namespace Petopia.Controllers
             {
                 var EmailSubject_to_Carer = "[Petopia] Pet Owner has edited their appointment with you";
                 var EmailBody_to_Carer = "Hi! A Petopia User has edited one of their " +
-                    "appointments with you,please navigate over to http://petopia.azurewebsites.net " +
-                    "to track all of yourappointments.";
+                    "appointments with you, please navigate over to " +
+                    "http://petopia.azurewebsites.net  to track all of yourappointments.";
 
                 var EmailSubject_to_Owner = "[Petopia] Your Pet Care Appointment Edit Confirmation";
-                var EmailBody_to_Owner = "You requested to edit your scheduled Pet Care Appointment." +
+                var EmailBody_to_Owner = "You requested to reschedule your Pet Care Appointment." +
                     "Your selected Pet Care Provider has been notified.  You will receive another " +
-                    "email when they confirm your edit request.";
+                    "email when they confirm your reschedule request.";
 
                 MailAddress FromEmail = new MailAddress(ConfigurationManager.AppSettings["gmailAccount"]);
                 MailAddress ToEmail_Carer = new MailAddress(thisCarerEmail);
@@ -1152,21 +1157,17 @@ namespace Petopia.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CompleteAppointment_PetOwner([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
-            " Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
+            "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
             "CareProviderID,PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")] 
                                                                 CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(careTransaction).State = EntityState.Modified;
-
                 // the key part here!   [=
                 careTransaction.Completed_PO = true;
-
-                // so why isn't 'Completed_CP' binding???  everything else is!!
-                // the check-marks in the boxes go away and everything!!  WHY?!
-                var CP_Complete = careTransaction.Completed_CP;
-                careTransaction.Completed_CP = CP_Complete;
+                
+                //-----------------------------------------------------
+                db.Entry(careTransaction).State = EntityState.Modified;
 
                 db.SaveChanges();
 
@@ -1248,8 +1249,10 @@ namespace Petopia.Controllers
             ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetID;
             ViewBag.thisPetsCarersASPNetIdentityID = thisPetsCarersASPNetID;
             ViewBag.loggedInUser = loggedInUser;
-            // this was here for double-checking stuff
-            ViewBag.thisPetsCarersID = thisPetsCarersID;
+            //---------------------------------------------------------
+            // trying to find out WTF?! (this is CompleteAppointment_PetCarer() GET)
+            ViewBag.PO_Complete = careTransaction.Completed_PO;
+            // so this ^^^ is showing true ..... I KNOW WHAT IT IS!!!!!
             //---------------------------------------------------------
 
             return View(careTransaction);
@@ -1263,23 +1266,16 @@ namespace Petopia.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CompleteAppointment_PetCarer([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
-            " Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
-            "CareProviderID,PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")]CareTransaction careTransaction)
+            "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
+            "CareProviderID,PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")]
+                                                        CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
-                // this did nothing being *under* 'db.Entry(careTransaction)'
-                bool PO_Complete = careTransaction.Completed_PO;
-                ViewBag.PO_Complete = PO_Complete;
-
-                db.Entry(careTransaction).State = EntityState.Modified;
-
                 // the key element here!   [=
                 careTransaction.Completed_CP = true;
 
-                // so why isn't 'Completed_PO' binding???  everything else is!!
-                // the check-marks in the boxes go away and everything!!  WHY?!
-                careTransaction.Completed_PO = PO_Complete;
+                db.Entry(careTransaction).State = EntityState.Modified;
 
                 db.SaveChanges();
 

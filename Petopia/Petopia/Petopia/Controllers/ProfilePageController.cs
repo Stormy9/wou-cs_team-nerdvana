@@ -271,8 +271,7 @@ namespace Petopia.Controllers
                                                 }).ToList();
             }
             //---------------------------------------------------------
-            // LIKE UP ABOVE.....
-            // We might not have these so we want to see if we get a result back before populating
+            // CHECK FOR PENDING APPOINTMENTS
             // IFF => we get 1, then we know this logged-in user is a CareProvider
             if (db.CareProviders.Where(cp => cp.UserID == loggedID).Count() == 1)
             {
@@ -288,7 +287,7 @@ namespace Petopia.Controllers
                 // and THIS works.....
                 ViewBag.test_ct_ID = test_ct_ID;
 
-                // does this care provider have any pending appointments??  will/does this work???
+                // does this care provider have any pending appointments?? 
                 if (db.CareTransactions.Where(ct => (ct.CareProviderID == cp_ID) && (ct.Pending)).Count() > 0)
                 {
                     // and this works!
@@ -297,7 +296,9 @@ namespace Petopia.Controllers
                 }
 
                 // does this care provider have any un-completed appointments (ratings\comments)?
-                if (db.CareTransactions.Where(ct => (ct.CareProviderID == cp_ID) && (!ct.Completed_PO)).Count() > 0)
+                if (db.CareTransactions.Where(ct => (ct.CareProviderID == cp_ID) 
+                                              && (!ct.Completed_PO)
+                                              && (ct.EndDate < DateTime.Today)).Count() > 0)
                 {
                     bool incompleteAppts_CP = true;
                     ViewBag.incompleteAppts_CP = incompleteAppts_CP;
@@ -307,10 +308,9 @@ namespace Petopia.Controllers
             // Pet Owner side to check for incomplete appointments.....
             if (db.PetOwners.Where(po => po.UserID == loggedID).Count() == 1)
             {
-                // then get this user's PetOwnerID.....
+                // get this user's PetOwnerID.....
                 int po_ID = db.PetOwners.Where(po => po.UserID == loggedID)
                                         .Select(poID => poID.PetOwnerID).FirstOrDefault();
-
                 // so THIS works.....
                 ViewBag.po_ID = po_ID;
 
@@ -321,7 +321,9 @@ namespace Petopia.Controllers
                 ViewBag.test_ct_ID = test_ct_ID;
 
                 // does this pet owner have any un-completed appointments (ratings\comments)?
-                if (db.CareTransactions.Where(ct => (ct.PetOwnerID == po_ID) && (!ct.Completed_CP)).Count() > 0)
+                if (db.CareTransactions.Where(ct => (ct.PetOwnerID == po_ID) 
+                                              && (ct.EndDate < DateTime.Today) 
+                                              && (!ct.Completed_CP)).Count() > 0)
                 {
                     bool incompleteAppts_PO = true;
                     ViewBag.incompleteAppts_PO = incompleteAppts_PO;
