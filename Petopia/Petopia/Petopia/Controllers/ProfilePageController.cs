@@ -187,7 +187,7 @@ namespace Petopia.Controllers
                 NearbyZipsList.Add(zip.PostalCode);
             }
 
-            List<String> SharedZips = new List<String>(NearbyZipsList.FindAll());
+            List<String> SharedZips = new List<String>();
 
             foreach (var i in SharedZips)
             {

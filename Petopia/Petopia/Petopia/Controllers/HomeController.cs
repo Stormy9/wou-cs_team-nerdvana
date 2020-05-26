@@ -37,6 +37,9 @@ namespace Petopia.Controllers
             bool loggedIn = User.Identity.IsAuthenticated;
             ViewBag.loggedIn = loggedIn;
 
+
+
+
             return View();
            
         }
@@ -75,44 +78,6 @@ namespace Petopia.Controllers
 
             // in case we want it.....
             ViewBag.SearchZip = searchZip;
-
-            SearchViewModel carerSearch = new SearchViewModel();
-
-            carerSearch.PetCarerSearchList = (from pu in pdb.PetopiaUsers
-                                              where pu.ResZipcode.Contains(searchZip) && pu.IsProvider
-
-                                              join cp in pdb.CareProviders on pu.UserID equals cp.UserID
-                                              join ub in pdb.UserBadges on cp.UserID equals ub.UserID
-
-                                              select new SearchViewModel.CareProviderSearch
-                                              {
-                                                  CP_ID = cp.CareProviderID,
-                                                  CP_PU_ID = pu.UserID,
-                                                  CP_Name = pu.FirstName + " " + pu.LastName,
-                                                  PU_Zipcode = pu.ResZipcode,
-
-                                                  CP_Profile_Pic = pu.ProfilePhoto,
-                                                  ExperienceDetails = cp.ExperienceDetails,
-                                                  ProviderAverageRating = cp.AverageRating,
-                                                  GeneralLocation = pu.GeneralLocation,
-
-                                                  IsDogProvider = ub.DogProvider,
-                                                  IsCatProvider = ub.CatProvider,
-                                                  IsBirdProvider = ub.BirdProvider,
-                                                  IsFishProvider = ub.FishProvider,
-                                                  IsHorseProvider = ub.HorseProvider,
-                                                  IsLivestockProvider = ub.LivestockProvider,
-                                                  IsRabbitProvider = ub.RabbitProvider,
-                                                  IsReptileProvider = ub.ReptileProvider,
-                                                  IsRodentProvider = ub.RodentProvider,
-                                                  IsOtherProvider = ub.OtherProvider
-
-                                              }).ToList();
-
-            // it did not like assigning `carerSearch.PetCarerSearchList` to var !
-            //var Q_List = Q.ToList();
-            //ViewBag.Q_List = Q_List;
-
             var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
 
             var OwnerLocation = ZipCodes.Get(searchZip);
@@ -125,10 +90,54 @@ namespace Petopia.Controllers
                 zipsList.Add(zip.PostalCode);
             }
 
+
             ViewBag.ZipList = String.Join(",", zipsList.ToArray());
 
+            List<String> CareProviderZips = (from pu in pdb.PetopiaUsers where pu.IsProvider select pu.ResZipcode).ToList();
 
-            return View(carerSearch);
+            bool ZipInBothLists = zipsList.Any(x => x == searchZip);
+
+            SearchViewModel carerSearch = new SearchViewModel();
+
+                carerSearch.PetCarerSearchList = (from pu in pdb.PetopiaUsers
+                                                  where pu.ResZipcode.Contains(searchZip) && pu.IsProvider
+
+                                                  join cp in pdb.CareProviders on pu.UserID equals cp.UserID
+                                                  join ub in pdb.UserBadges on cp.UserID equals ub.UserID
+
+                                                  select new SearchViewModel.CareProviderSearch
+                                                  {
+                                                      CP_ID = cp.CareProviderID,
+                                                      CP_PU_ID = pu.UserID,
+                                                      CP_Name = pu.FirstName + " " + pu.LastName,
+                                                      PU_Zipcode = pu.ResZipcode,
+
+                                                      CP_Profile_Pic = pu.ProfilePhoto,
+                                                      ExperienceDetails = cp.ExperienceDetails,
+                                                      ProviderAverageRating = cp.AverageRating,
+                                                      GeneralLocation = pu.GeneralLocation,
+
+                                                      IsDogProvider = ub.DogProvider,
+                                                      IsCatProvider = ub.CatProvider,
+                                                      IsBirdProvider = ub.BirdProvider,
+                                                      IsFishProvider = ub.FishProvider,
+                                                      IsHorseProvider = ub.HorseProvider,
+                                                      IsLivestockProvider = ub.LivestockProvider,
+                                                      IsRabbitProvider = ub.RabbitProvider,
+                                                      IsReptileProvider = ub.ReptileProvider,
+                                                      IsRodentProvider = ub.RodentProvider,
+                                                      IsOtherProvider = ub.OtherProvider
+
+                                                  }).ToList();
+
+                // it did not like assigning `carerSearch.PetCarerSearchList` to var !
+                //var Q_List = Q.ToList();
+                //ViewBag.Q_List = Q_List;
+
+
+
+                return View(carerSearch);
+            
         }
         //===============================================================================
         public ActionResult PetOwnerSearchResult(string searchZip)   // string searchZip
