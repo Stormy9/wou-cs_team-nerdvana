@@ -46,7 +46,7 @@ namespace Petopia.Models.ViewModels
         [DisplayName("My Pet Care Experience:")]
         public string ExperienceDetails { get; set; }
 
-        [DisplayName("Average rating:")]
+        [DisplayName("Average rating:  ")]
         public string ProviderAverageRating { get; set; }
 
         //-------------------------------------------------------------------------------
@@ -109,7 +109,7 @@ namespace Petopia.Models.ViewModels
             [DisplayName("My Pet Care Experience:")]
             public string ExperienceDetails { get; set; }
 
-            [DisplayName("Average rating:")]
+            [DisplayName("Average rating:  ")]
             public string ProviderAverageRating { get; set; }
 
             //---------------------------------------------------------
@@ -185,7 +185,7 @@ namespace Petopia.Models.ViewModels
         [DisplayName("My Pet Care Needs:")]
         public string GeneralNeeds { get; set; }
 
-        [DisplayName("Average rating:")]
+        [DisplayName("Average rating:  ")]
         public string OwnerAverageRating { get; set; }
 
         //-------------------------------------------------------------------------------
@@ -248,7 +248,7 @@ namespace Petopia.Models.ViewModels
             [DisplayName("My Pet Care Needs:")]
             public string GeneralNeeds { get; set; }
 
-            [DisplayName("My average rating:")]
+            [DisplayName("My average rating:  ")]
             public string OwnerAverageRating { get; set; }
 
             //---------------------------------------------------------

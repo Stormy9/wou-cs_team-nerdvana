@@ -96,21 +96,15 @@ namespace Petopia.Controllers
             if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
             {
                 //If we get 1, then we know this user is a CareProvider
-                petopiaUser.ProviderAverageRating = db.CareProviders.Where(x => x.UserID == loggedID)
-                                                                    .Select(x => x.AverageRating).First();
-
                 petopiaUser.ExperienceDetails = db.CareProviders.Where(x => x.UserID == loggedID)
                                                                 .Select(x => x.ExperienceDetails).First();
 
                 petopiaUser.CareProviderID = db.CareProviders.Where(x => x.UserID == loggedID)
                                                                 .Select(x => x.CareProviderID).First();
             }
-
+            //---------------------------------------------------------
             if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
             {
-                petopiaUser.OwnerAverageRating = db.PetOwners.Where(x => x.UserID == loggedID)
-                                                             .Select(x => x.AverageRating).First();
-
                 petopiaUser.GeneralNeeds = db.PetOwners.Where(x => x.UserID == loggedID)
                                                        .Select(x => x.GeneralNeeds).First();
 
@@ -120,7 +114,38 @@ namespace Petopia.Controllers
                 petopiaUser.PetOwnerID = db.PetOwners.Where(x => x.UserID == loggedID)
                                                      .Select(x => x.PetOwnerID).First();
             }
+            //---------------------------------------------------------------------------
+            //---------------------------------------------------------------------------
+            // trying to get average rating for Pet Owners & Care Providers
+            if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
+            {
+                //If we get 1, then we know this user is a CareProvider
+                // 'loggedID' == that user's PetopiaUserID
+                //
+                // get PetopiaUser's CareProviderID:
+                var thisCP_ID = db.CareProviders.Where(x => x.UserID == loggedID)
+                                                .Select(x => x.CareProviderID).FirstOrDefault();
 
+                // try for this Care Provider's Ratings to Average:
+                var thisCP_Avg_Rating = db.CareTransactions.Where(x => x.CareProviderID == thisCP_ID)
+                                                           .Average(x => x.PC_Rating);
+
+                petopiaUser.ProviderAverageRating = thisCP_Avg_Rating.ToString();
+            }
+            //---------------------------------------------------------
+            if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
+            {
+                // get PetopiaUser's PetOwnerID:
+                var thisPO_ID = db.PetOwners.Where(x => x.UserID == loggedID)
+                                            .Select(x => x.PetOwnerID).FirstOrDefault();
+
+                // try for this Pet Owner's Ratings to Average:
+                var thisPO_Avg_Rating = db.CareTransactions.Where(x => x.PetOwnerID == thisPO_ID)
+                                                           .Average(x => x.PO_Rating);
+
+                petopiaUser.OwnerAverageRating = thisPO_Avg_Rating.ToString();
+            }
+            //---------------------------------------------------------------------------
             //---------------------------------------------------------------------------
             //Tests to make getting pets easier
             if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
@@ -205,95 +230,101 @@ namespace Petopia.Controllers
             if (petopiaUser.IsOwner == true && petopiaUser.IsProvider == true)
             {
                 petopiaUser.PetopiaUsersList = (from ct in db.CareTransactions
-                                                where ct.CareProviderID == petopiaUser.CareProviderID
-                                                join co in db.CareProviders on ct.PetOwnerID equals co.CareProviderID
-                                                join pu in db.PetopiaUsers on co.UserID equals pu.UserID
-                                                join ub in db.UserBadges on pu.UserID equals ub.UserID
-                                                select new ProfileViewModel.petopiaUsersInfo
-                                                {
-                                                    UserID = pu.UserID,
-                                                    FirstName = pu.FirstName,
-                                                    LastName = pu.LastName,
-                                                    GeneralLocation = pu.GeneralLocation,
-                                                    ProfilePic = pu.ProfilePhoto,
-                                                    UserBadgeID = ub.UserBadgeID,
-                                                    DogOwner = ub.DogOwner,
-                                                    CatOwner = ub.CatOwner,
-                                                    BirdOwner = ub.BirdOwner,
-                                                    FishOwner = ub.FishOwner,
-                                                    HorseOwner = ub.HorseOwner,
-                                                    LivestockOwner = ub.LivestockOwner,
-                                                    RabbitOwner = ub.RabbitOwner,
-                                                    ReptileOwner = ub.ReptileOwner,
-                                                    RodentOwner = ub.RodentOwner,
-                                                    OtherOwner = ub.OtherOwner
-                                                }).Distinct().ToList();
+                    where ct.CareProviderID == petopiaUser.CareProviderID
+
+                    join co in db.CareProviders on ct.PetOwnerID equals co.CareProviderID
+                    join pu in db.PetopiaUsers on co.UserID equals pu.UserID
+                    join ub in db.UserBadges on pu.UserID equals ub.UserID
+
+                    select new ProfileViewModel.petopiaUsersInfo
+                    {
+                        UserID = pu.UserID,
+                        FirstName = pu.FirstName,
+                        LastName = pu.LastName,
+                        GeneralLocation = pu.GeneralLocation,
+                        ProfilePic = pu.ProfilePhoto,
+                        UserBadgeID = ub.UserBadgeID,
+                        DogOwner = ub.DogOwner,
+                        CatOwner = ub.CatOwner,
+                        BirdOwner = ub.BirdOwner,
+                        FishOwner = ub.FishOwner,
+                        HorseOwner = ub.HorseOwner,
+                        LivestockOwner = ub.LivestockOwner,
+                        RabbitOwner = ub.RabbitOwner,
+                        ReptileOwner = ub.ReptileOwner,
+                        RodentOwner = ub.RodentOwner,
+                        OtherOwner = ub.OtherOwner
+                    }).Distinct().ToList();
             }
             //IF IM ONLY A PET OWNER, SHOW LIST OF PROVIDERS
             else if (petopiaUser.IsOwner == true)
             {
                 petopiaUser.PetopiaUsersList = (from ct in db.CareTransactions
-                                                where ct.CareProviderID == petopiaUser.CareProviderID
-                                                join co in db.CareProviders on ct.PetOwnerID equals co.CareProviderID
-                                                join pu in db.PetopiaUsers on co.UserID equals pu.UserID
-                                                join ub in db.UserBadges on pu.UserID equals ub.UserID
-                                                select new ProfileViewModel.petopiaUsersInfo
-                                                {
-                                                    UserID = pu.UserID,
-                                                    FirstName = pu.FirstName,
-                                                    LastName = pu.LastName,
-                                                    GeneralLocation = pu.GeneralLocation,
-                                                    ProfilePic = pu.ProfilePhoto,
-                                                    UserBadgeID = ub.UserBadgeID,
-                                                    DogOwner = ub.DogOwner,
-                                                    CatOwner = ub.CatOwner,
-                                                    BirdOwner = ub.BirdOwner,
-                                                    FishOwner = ub.FishOwner,
-                                                    HorseOwner = ub.HorseOwner,
-                                                    LivestockOwner = ub.LivestockOwner,
-                                                    RabbitOwner = ub.RabbitOwner,
-                                                    ReptileOwner = ub.ReptileOwner,
-                                                    RodentOwner = ub.RodentOwner,
-                                                    OtherOwner = ub.OtherOwner
-                                                }).Distinct().ToList();
+                    where ct.CareProviderID == petopiaUser.CareProviderID
+
+                    join co in db.CareProviders on ct.PetOwnerID equals co.CareProviderID
+                    join pu in db.PetopiaUsers on co.UserID equals pu.UserID
+                    join ub in db.UserBadges on pu.UserID equals ub.UserID
+
+                    select new ProfileViewModel.petopiaUsersInfo
+                    {
+                        UserID = pu.UserID,
+                        FirstName = pu.FirstName,
+                        LastName = pu.LastName,
+                        GeneralLocation = pu.GeneralLocation,
+                        ProfilePic = pu.ProfilePhoto,
+                        UserBadgeID = ub.UserBadgeID,
+                        DogOwner = ub.DogOwner,
+                        CatOwner = ub.CatOwner,
+                        BirdOwner = ub.BirdOwner,
+                        FishOwner = ub.FishOwner,
+                        HorseOwner = ub.HorseOwner,
+                        LivestockOwner = ub.LivestockOwner,
+                        RabbitOwner = ub.RabbitOwner,
+                        ReptileOwner = ub.ReptileOwner,
+                        RodentOwner = ub.RodentOwner,
+                        OtherOwner = ub.OtherOwner
+                    }).Distinct().ToList();
             }
             //IF IM ONLY CARE PROVIDER, SHOW LIST OF PET OWNERS
             else if (petopiaUser.IsProvider == true)
             {
                 petopiaUser.PetopiaUsersList = (from ct in db.CareTransactions
-                                                where ct.CareProviderID == petopiaUser.CareProviderID
-                                                join co in db.PetOwners on ct.PetOwnerID equals co.PetOwnerID
-                                                join pu in db.PetopiaUsers on co.UserID equals pu.UserID
-                                                join ub in db.UserBadges on pu.UserID equals ub.UserID
-                                                select new ProfileViewModel.petopiaUsersInfo
-                                                {
-                                                    UserID = pu.UserID,
-                                                    FirstName = pu.FirstName,
-                                                    LastName = pu.LastName,
-                                                    GeneralLocation = pu.GeneralLocation,
-                                                    ProfilePic = pu.ProfilePhoto,
-                                                    UserBadgeID = ub.UserBadgeID,
-                                                    DogOwner = ub.DogOwner,
-                                                    CatOwner = ub.CatOwner,
-                                                    BirdOwner = ub.BirdOwner,
-                                                    FishOwner = ub.FishOwner,
-                                                    HorseOwner = ub.HorseOwner,
-                                                    LivestockOwner = ub.LivestockOwner,
-                                                    RabbitOwner = ub.RabbitOwner,
-                                                    ReptileOwner = ub.ReptileOwner,
-                                                    RodentOwner = ub.RodentOwner,
-                                                    OtherOwner = ub.OtherOwner,
-                                                    DogProvider = ub.DogProvider,
-                                                    CatProvider = ub.CatProvider,
-                                                    BirdProvider = ub.BirdProvider,
-                                                    FishProvider = ub.FishProvider,
-                                                    HorseProvider = ub.HorseProvider,
-                                                    LivestockProvider = ub.LivestockProvider,
-                                                    RabbitProvider = ub.RabbitProvider,
-                                                    ReptileProvider = ub.ReptileProvider,
-                                                    RodentProvider = ub.RodentProvider,
-                                                    OtherProvider = ub.OtherProvider
-                                                }).ToList();
+                        where ct.CareProviderID == petopiaUser.CareProviderID
+
+                        join co in db.PetOwners on ct.PetOwnerID equals co.PetOwnerID
+                        join pu in db.PetopiaUsers on co.UserID equals pu.UserID
+                        join ub in db.UserBadges on pu.UserID equals ub.UserID
+
+                        select new ProfileViewModel.petopiaUsersInfo
+                        {
+                            UserID = pu.UserID,
+                            FirstName = pu.FirstName,
+                            LastName = pu.LastName,
+                            GeneralLocation = pu.GeneralLocation,
+                            ProfilePic = pu.ProfilePhoto,
+                            UserBadgeID = ub.UserBadgeID,
+                            DogOwner = ub.DogOwner,
+                            CatOwner = ub.CatOwner,
+                            BirdOwner = ub.BirdOwner,
+                            FishOwner = ub.FishOwner,
+                            HorseOwner = ub.HorseOwner,
+                            LivestockOwner = ub.LivestockOwner,
+                            RabbitOwner = ub.RabbitOwner,
+                            ReptileOwner = ub.ReptileOwner,
+                            RodentOwner = ub.RodentOwner,
+                            OtherOwner = ub.OtherOwner,
+                            DogProvider = ub.DogProvider,
+                            CatProvider = ub.CatProvider,
+                            BirdProvider = ub.BirdProvider,
+                            FishProvider = ub.FishProvider,
+                            HorseProvider = ub.HorseProvider,
+                            LivestockProvider = ub.LivestockProvider,
+                            RabbitProvider = ub.RabbitProvider,
+                            ReptileProvider = ub.ReptileProvider,
+                            RodentProvider = ub.RodentProvider,
+                            OtherProvider = ub.OtherProvider
+                        }).ToList();
             }
             //---------------------------------------------------------
             // CHECK FOR PENDING APPOINTMENTS

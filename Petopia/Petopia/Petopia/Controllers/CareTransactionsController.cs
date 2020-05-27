@@ -55,7 +55,7 @@ namespace Petopia.Controllers
         //                                                       also primarily for admin
         //-------------------------------------------------------------------------------
         // GET: CareTransactions/AppointmentDetails/5
-        public ActionResult AppointmentDetails(int? id)
+        public ActionResult Appts_AdminDetails(int? id)
         {
             if (id == null)
             {
@@ -513,7 +513,7 @@ namespace Petopia.Controllers
             //---------------------------------------------------------
             var reqPetCarerID = db.CareTransactions.Where(cp => cp.TransactionID == ct_id)
                                                    .Select(cpID => cpID.CareProviderID).FirstOrDefault();
-            // just proofing
+            // proofing
             var reqPetCarerCP_ID = db.CareProviders.Where(cp => cp.CareProviderID == reqPetCarerID)
                                                    .Select(cp => cp.CareProviderID).FirstOrDefault();
             // proofing.....

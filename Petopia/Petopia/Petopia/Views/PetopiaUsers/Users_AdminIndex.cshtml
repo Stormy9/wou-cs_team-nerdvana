@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Petopia.Models.PetopiaUser>
+
+@{
+    ViewBag.Title = "Petopia Users - Admin View";
+}
+
+<div class="container-fluid">
+    <h2> @ViewBag.Title </h2>
+
+    <p>
+        <span style="margin-right: 25px;">
+            @Html.ActionLink("Add Petopia User", "Create")
+        </span>
+
+        <span style="margin-right: 25px;">
+            @Html.ActionLink("Back to Dashboard", "Our_Dashboard",
+                        new { Controller = "AdminLte" })
+        </span>
+    </p>
+
+    <table class="table admin_table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ASPNetIdentityID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsOwner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsProvider)
+            </th>
+            
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ASPNetIdentityID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsOwner)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsProvider)
+                </td>
+                
+
+                <td>
+                    @Html.ActionLink("Profile", "VisitProfile",
+                        new { controller = "ProfilePage", loggedID = item.UserID })
+                    <hr style="margin-top:0px;" />
+                    @Html.ActionLink("Edit", "Edit", new { id = item.UserID })
+                    <hr style="margin-top:0px;" />
+                    @Html.ActionLink("Details", "Details", new { id = item.UserID })
+                    <hr style="margin-top:0px;" />
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

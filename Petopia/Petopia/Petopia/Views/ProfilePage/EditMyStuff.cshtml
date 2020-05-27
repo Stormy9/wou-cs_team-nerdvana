@@ -42,8 +42,8 @@
                                                        new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.FirstName,
-                                new { htmlAttributes = new { @class = "form-control", 
-                                                             @autofocus = "autofocus" } })
+                            new { htmlAttributes = new { @class = "form-control", 
+                                                            @autofocus = "autofocus" } })
 
                     @Html.ValidationMessageFor(model => model.FirstName, "",
                                                           new { @class = "text-danger" })
@@ -274,7 +274,7 @@
                     @Html.LabelFor(m => m.ProfilePhoto, new { @class = "control-label" })
 
                     @Html.TextBoxFor(m => m.UserProfilePicture, new { type = "file" })
-                    <div style="font-size: 90%; color: #cc0000;">
+                    <div style="font-size: 90%; color: #990000;">
                         <i>your photo needs to be a .jpg &amp; under 4MB.</i>
                     </div>
 

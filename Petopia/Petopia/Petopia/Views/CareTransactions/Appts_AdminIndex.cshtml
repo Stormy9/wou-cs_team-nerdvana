@@ -7,9 +7,13 @@
 
 <div class="container-fluid">
 
-    <span style="float:right; padding-right:5px; padding-top:15px;">
+    <span style="float:right; margin-right:25px; padding-top:15px;">
         @Html.ActionLink("Book a new Pet Care Appointment!", "BookAppointment")
     </span>
+    <span style="float:right; margin-right:25px; padding-top:15px;"> 
+            @Html.ActionLink("Back to Dashboard", "Our_Dashboard", 
+                new { Controller = "AdminLte" }) 
+        </span>
     <h2>@ViewBag.Title:</h2>
     <h4><i>@ViewBag.Title02</i></h4>
 
@@ -82,7 +86,7 @@
                 <td>
                     @Html.ActionLink("Edit Appt", "EditAppointment",
                           new { id = item.TransactionID }) <hr style="margin-top:0px;" />
-                    @Html.ActionLink("Appt Details", "AppointmentDetails", 
+                    @Html.ActionLink("Appt Details", "Appts_AdminDetails", 
                           new { id = item.TransactionID }) <hr style="margin-top:0px;" />
                     @Html.ActionLink("Cancel Appt", "Delete", 
                           new { id = item.TransactionID }) <hr style="margin-top:0px;" />

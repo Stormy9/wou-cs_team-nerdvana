@@ -25,25 +25,32 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="pick_buttons">
-                @Html.ActionLink("I am a pet owner!", "Create", "PetOwners")
+                @Html.ActionLink("I am a pet owner!", "Create", "PetOwners", 
+                            new { style="color: #f2e6d9; font-weight: normal;" })
             </div>
         </div>
 
         <div class="col-sm-3">
             <div class="pick_buttons">
-                @Html.ActionLink("I want to be a pet care provider!", "Create", "CareProviders")
+                @Html.ActionLink("I want to be a pet care provider!", "Create", "CareProviders", 
+                            new { style="color: #f2e6d9; font-weight: normal;" })
             </div>
         </div>
 
         <div class="col-sm-3">
             <div class="pick_buttons">      <!-- TODO: This form will be changed-->
-                @Html.ActionLink("I want to be both!", "Create", "PetOwners") 
+                @Html.ActionLink("I want to be both!", "Owner_Carer",
+                            new { Controller = "PetopiaUsers" },
+                            new { style="color: #f2e6d9; font-weight: normal;" }) 
             </div>
+            <div style="text-align:center; margin-top:5px;"> 
+                <i> still in progress! </i></div>
         </div>
 
         <div class="col-sm-3">
             <div class="pick_buttons">
-                @Html.ActionLink("I want to pick later...", "Index", "ProfilePage")
+                @Html.ActionLink("I want to pick later...", "Index", "ProfilePage", 
+                            new { style="color: #f2e6d9; font-weight: normal;" })
             </div>
         </div>
     </div><!-- end 2nd row -->

@@ -3,8 +3,10 @@
 @{
     ViewBag.Title = "Book a Pet Care appointment";
     ViewBag.Title01 = "Book a Pet Care appointment";
+
     //this works!!!!!
-    var today = DateTime.Now.ToString("yyyy-MM-dd");
+    var today = DateTime.Today.ToString("yyyy-MM-dd");
+
     var loggedInUser = ViewBag.loggedInUser;
     var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
 }
@@ -118,6 +120,7 @@
                         @Html.TextAreaFor(model => model.NeededThisVisit,
                             new {htmlAttributes =
                                 new { @class = "form-control our_text_area" }, @tabindex = "5",
+                                @placeholder="what do you need done for your pet this time?", 
                                 rows = 5, id = "text19", name = "text19",
                                 style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
                             <!-- so tabindex thing apparently doesn't work for text area? --->
@@ -142,25 +145,9 @@
 
                     <!---------------------------------- WHICH PET? ------------------------>
                     <div class="form-group">
-                        @*@Html.LabelFor(model => model.PetID,
-                                        htmlAttributes: new { @class = "control-label" })*@
+                        
+                        <!-- just attached Pet to the Booking Button -->
 
-                        @*<span class="control-label" style="font-weight: bold; color: navy;">
-                            For:&nbsp; @ViewBag.thisPetName
-                        </span>*@
-                    
-
-                        @*@Html.DropDownList("ThisOwnersPetsSelectList", 
-                        (IEnumerable<SelectListItem>)ViewBag.ThisOwnersPetsSelectList, "my pets", 
-                                htmlAttributes: new { @class="form-control"})*@
-
-                        <!-- this works perfectly -- but is obviously NOT practical nor userFriendly! -->
-                        @*@Html.EditorFor(model => model.PetID,
-                            new { htmlAttributes = 
-                                new { @class = "form-control", @tabindex = "6", min="1" } })*@
-
-                        @*@Html.ValidationMessageFor(model => model.PetID, "",
-                                                        new { @class = "text-danger" })*@
                     </div>
                     <!---------------------------- WHICH PET CARER? ------------------------>
                     <div class="form-group">
@@ -171,13 +158,13 @@
                         (IEnumerable<SelectListItem>)ViewBag.PetCarerSelectList, "pet carer name", 
                                 htmlAttributes: new { @class="form-control"})*@
 
-                        <!-- this works perfectly -- 
-                                but is obviously NOT practical nor userFriendly by itself! -->
+                        <!-- this works perfectly -- but is obviously NOT
+                                100% practical nor 100% userFriendly by itself! -->
                         @Html.TextBoxFor(model => model.CareProviderID,
-                            new { htmlAttributes = 
-                                new { @class = "form-control" }, @tabindex = "6", 
-                                        placeholder="enter Pet Carer ID",
-                                        style="width: 45px; color: black; border-radius: 5px; padding: 3px;" } )
+                            new { htmlAttributes = new { @class = "form-control" }, 
+                                  @tabindex = "6", Value="", 
+                                  placeholder="enter desired Pet Carer ID", 
+                                  style="width:180px; color:black; border-radius:5px; padding:3px;" } )
 
                         <!-- pet carer list by proximity -->
                         <div style="color: #271a0c; margin-top: 18px;">

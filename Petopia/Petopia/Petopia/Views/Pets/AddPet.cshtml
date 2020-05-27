@@ -2,6 +2,9 @@
 
 @{
     ViewBag.Title = "Add a Pet!";
+
+    var puppy = DateTime.Today.AddDays(-42).ToString("yyyy-MM-dd");
+    ViewBag.Puppy = puppy;
 }
 <!--============================= WHOLE DAMNED FORM HERE =============================-->
 <div class="container-fluid">
@@ -17,11 +20,11 @@
 
             <span style="float:right;">
                 <input type="submit" value="Add My Pet!"
-                       class="btn our_buttons" />
+                       class="our_buttons" />
 
                 @Html.ActionLink("Cancel!", "Index",
                         new { controller = "ProfilePage" },
-                        new { @class = "btn our_buttons", 
+                        new { @class = "our_buttons", 
                               style="color: #f2e6d9; font-weight: normal;" } )
                 <!-- WHY THE FUCK ARE CSS CLASSES NOT APPLYING HERE?!?!?! -->
             </span>
@@ -90,7 +93,9 @@
                                         htmlAttributes: new { @class = "control-label" })
 
                         @Html.EditorFor(model => model.Birthdate,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                            new { htmlAttributes = new { @class = "form-control",
+                                max=@puppy, 
+                                title = "your pet must be at least six weeks old" } })
 
                         @Html.ValidationMessageFor(model => model.Birthdate, "",
                                                         new { @class = "text-danger" })
@@ -123,7 +128,7 @@
                         @Html.LabelFor(m => m.PetPhoto, new { @class = "control-label" })
 
                         @Html.TextBoxFor(m => m.PetPhoto, new { type = "file" })
-                        <div style="font-size: 90%; color: #cc0000;">
+                        <div style="font-size: 90%; color: #990000;">
                             <i>your pet's photo needs to be a .jpg &amp; under 4MB.</i>
                         </div>
 

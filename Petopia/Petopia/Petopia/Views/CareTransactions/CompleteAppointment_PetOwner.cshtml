@@ -115,7 +115,6 @@
                         @Html.DisplayFor(model => model.NeededThisVisit)
 
                         <div><!-- can't remove this or } error..... -->
-                            <!-- do a character counter here! -->
                         </div><!-- obviously we don't need one here -->
                         <!------------------------------------------------------------->
                     </div><!-- END ROW 1 \ COL 3 -->
@@ -165,7 +164,6 @@
 
                                 @Html.HiddenFor(model => model.CareProvided)
                                 
-
                                 @Html.DisplayFor(model => model.CareProvided)
 
                             </div>
@@ -241,6 +239,8 @@
                                          new { @class = "form-control",
                                                min = 1, max = 5,
                                                @placeholder = "rate pet carer 1 - 5",
+                                               @required="required",
+                                               title="please rate your pet care provider",
                                                style="width:35%" } })
 
                                 @Html.ValidationMessageFor(model => model.PC_Rating,
@@ -255,6 +255,8 @@
                                     new { htmlAttributes =
                                     new { @class = "form-control our_text_area" },
                                         rows = 5, id = "text22", name = "text22",
+                                        @required="required", 
+                                        title="please leave a comment about your pet care provider",
                                         style = "color:#2e2e1f; border-radius:5px; " +
                                                 "padding:5px; width:90%;" })
 

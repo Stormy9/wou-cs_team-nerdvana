@@ -2,6 +2,9 @@
 
 @{
     ViewBag.Title = "Edit this Pet";
+
+    var puppy = DateTime.Today.AddDays(-42).ToString("yyyy-MM-dd");
+
     var loggedInUser = ViewBag.loggedInUser;
     var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
 }
@@ -100,7 +103,8 @@
 
                             @Html.EditorFor(model => model.Birthdate,
                                     new { htmlAttributes = 
-                                            new { @class = "form-control" } })
+                                            new { @class = "form-control", max=@puppy, 
+                                title = "your pet must be at least six weeks old" } })
 
                             @Html.ValidationMessageFor(model => model.Birthdate, "",
                                                         new { @class = "text-danger" })
@@ -134,7 +138,7 @@
                                                     new { @class = "control-label" })
 
                             @Html.TextBoxFor(m => m.PetPhoto, new { type = "file" })
-                            <div style="font-size: 90%; color: #cc0000;">
+                            <div style="font-size: 90%; color: #990000;">
                                 <i>your pet's photo needs to be a .jpg &amp; under 4MB.</i>
                             </div>
 

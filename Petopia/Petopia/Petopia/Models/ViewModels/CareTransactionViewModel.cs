@@ -145,7 +145,7 @@ namespace Petopia.Models.ViewModels
         //                                                          CareProvider table
         //===============================================================================
         // the "main info" from the CareProvider table:
-
+        [Required(ErrorMessage="enter ID for the Pet Carer you want")]
         [DisplayName("Which Pet Carer?")]
         public int CareProviderID { get; set; }
 

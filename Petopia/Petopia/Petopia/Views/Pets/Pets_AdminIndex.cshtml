@@ -7,7 +7,16 @@
 <div class="container-fluid">
     <h2>@ViewBag.Title</h2>
 
-    <p> @Html.ActionLink("Add a Pet", "AddPet") </p>
+    <p>
+        <span style="margin-right: 25px;">
+            @Html.ActionLink("Add a Pet", "AddPet")
+        </span>
+
+        <span style="margin-right: 25px;">
+            @Html.ActionLink("Back to Dashboard", "Our_Dashboard",
+                        new { Controller = "AdminLte" })
+        </span>
+    </p>
 
     <table class="table admin_table">
         <tr>
