@@ -68,6 +68,7 @@ namespace AdminLteMvc.Controllers
         }
         //===============================================================================
         //===============================================================================
+        [Authorize(Roles = "Admin")]
         public ActionResult Our_Dashboard()
         {
             return View();
