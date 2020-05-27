@@ -17,7 +17,8 @@ namespace Petopia.Controllers
         public ActionResult Index()
         {
             //var identityID = User.Identity.GetUserId();
-            //DAL.PetopiaUser currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();
+            //DAL.PetopiaUser currentUser = pdb.PetopiaUsers
+            //                    .Where(x => x.ASPNetIdentityID == identityID).First();
 
             bool loggedIn = User.Identity.IsAuthenticated;
             ViewBag.loggedIn = loggedIn;

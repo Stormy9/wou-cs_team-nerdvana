@@ -35,6 +35,7 @@
                 @Html.HiddenFor(model => model.PetOwnerID)
                 @Html.HiddenFor(model => model.PetID)
                 @Html.HiddenFor(model => model.CareProviderID)
+                @Html.HiddenFor(model => model.Completed_PO)
                 @Html.HiddenFor(model => model.NeededThisVisit)
                 <!---->
                 <!---->
@@ -42,11 +43,11 @@
                 <span style="float: right; padding-right: 5px;">
                     @Html.ActionLink("See all my Pet Care appointments", "MyAppointments",
                       new { controller = "CareTransactions" },
-                      new{ @class = "btn our_buttons",
+                      new{ @class = "our_buttons",
                            style = "margin-bottom:5px; color: #f2e6d9; font-weight: normal;"})
                 </span>
                 <!---->
-                <!------------------------------------------>
+                <!---------------------------------------------------------------------->
                 <!---->
                 <h2>@ViewBag.Title00@ViewBag.PetName@ViewBag.Title01:</h2>
                 <!---->
@@ -60,7 +61,6 @@
                     @Html.HiddenFor(model => model.StartTime)
                     @Html.HiddenFor(model => model.EndDate)
                     @Html.HiddenFor(model => model.EndTime)
-                    @Html.HiddenFor(model => model.Completed_PO)
                     <!--==============================================================-->
                     
                     <!-- ====================== FIRST ROW -- FIRST COLUMN ============-->
@@ -228,14 +228,9 @@
                                     htmlAttributes: new { @class = "our_appt_label" })
 
                                 @Html.HiddenFor(model => model.Tip)
-                                @*@Html.EditorFor(model => model.Tip,
-                                     new { htmlAttributes =
-                                         new { @class = "form-control",
-                                              @placeholder = "a tip is nice!   (:" } })*@
+
                                 @Html.DisplayFor(model => model.Tip)
 
-                                @*@Html.ValidationMessageFor(model => model.Tip, "",
-                                                new { @class = "text-danger" })*@
                             </div>
                             <!---------------------------------------------------------->
                         </div><!-- END ROW 2 \ COL 3 -->
@@ -257,17 +252,10 @@
                                 @Html.LabelFor(model => model.PC_Rating,
                                     htmlAttributes: new { @class = "our_appt_label" })
 
-                                @*@Html.HiddenFor(model => model.PC_Rating)
-                                @Html.EditorFor(model => model.PC_Rating,
-                                     new { htmlAttributes =
-                                         new { @class = "form-control",
-                                               min = 1, max = 5,
-                                               @placeholder = "rate pet carer 1 - 5",
-                                               style="width:35%" } })*@
+                                @Html.HiddenFor(model => model.PC_Rating)
+
                                 @Html.DisplayFor(model => model.PC_Rating)
 
-                                @*@Html.ValidationMessageFor(model => model.PC_Rating,
-                                                    "", new { @class = "text-danger" })*@
                             </div>
                             <!--------------- PET CARER COMMENTS (from pet owner) ------>
                             <div class="form-group">
@@ -275,22 +263,9 @@
                                     htmlAttributes: new { @class = "our_appt_label" })
                                 <br />
                                 @Html.HiddenFor(model => model.PC_Comments)
-                                @*@Html.TextAreaFor(model => model.PC_Comments,
-                                    new { htmlAttributes =
-                                    new { @class = "form-control our_text_area" },
-                                        rows = 5, id = "text22", name = "text22",
-                                        style = "color:#2e2e1f; border-radius:5px; 
-                                                padding:5px; width:90%;" })*@
+
                                 @Html.DisplayFor(model => model.PC_Comments)
 
-                                @*<div>
-                                    <span class="pull-left label label-default"
-                                        id="count_message_22">
-                                    </span>
-                                </div>*@
-
-                                @*@Html.ValidationMessageFor(model => model.PC_Comments, "",
-                                                    new { @class = "text-danger" })*@
                             </div>
                             <!---------------------------------------------------------->
                         </div><!-- END ROW 3 \ COL 1 -->
@@ -349,7 +324,7 @@
                         </span>
                     </div>
                     
-                    <div style="float:right">
+                    <div style="float:right;">
                         what does 'Completed_PO' say? @ViewBag.PO_Complete
                     </div>
                 <!---------------------------------------------------------------------->

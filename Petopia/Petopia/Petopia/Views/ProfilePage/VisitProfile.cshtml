@@ -452,7 +452,8 @@
                 <!---->
                 <!-- pet profile preview box header -->
                 <div class="pet_profile_header">
-                    <h3> My Pets! </h3>
+                    @if (Model.IsOwner == true)
+                    {     <h3> My Pets! </h3>  }
                 </div>
                 <!---------------------------------------------------------------------->
                 <!-- we want both owners & providers to be able to show off pets  =]  -->

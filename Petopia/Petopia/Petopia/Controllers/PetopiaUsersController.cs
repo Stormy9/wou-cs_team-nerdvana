@@ -123,7 +123,12 @@ namespace Petopia.Controllers
 
             return View(model);
         }
-
+        //===============================================================================
+        // GET: PetopiaUsers/Owner_Carer
+        public ActionResult Owner_Carer()
+        {
+            return View();
+        }
         //===============================================================================
         // GET: PetopiaUsers/Edit/5
         public ActionResult Edit(int? id)
