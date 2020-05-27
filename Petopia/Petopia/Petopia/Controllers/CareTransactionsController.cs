@@ -270,6 +270,65 @@ namespace Petopia.Controllers
                 // this seems to be really important, haha
                 careTransaction.PetOwnerID = thisPetOwnerID;
 
+                //---------------------------------------------------------------------------
+                // see 'test_crap' at the end here for notes..... 
+                // --> SELECT LIST OF THIS LOGGED-IN PET OWNER'S PETS <--
+                List<SelectListItem> ThisOwnersPetsSelectList = (from pn in db.Pets
+                                                                 where pn.PetOwnerID == thisPetOwnerID
+                                                                 select new SelectListItem
+                                                                 {
+                                                                     Value = pn.PetID.ToString(),
+                                                                     Text = pn.PetName
+
+                                                                 }).ToList();
+
+                //ViewBag.ThisOwnersPetsSelectList = new SelectList(ThisOwnersPetsSelectList);
+                // ^^^ for one thing, the drop-down says 'System.Web.Mvc.SelectListItem'
+                // error returned:  System.InvalidOperationException: 
+                //                  There is no ViewData item of type 'IEnumerable<SelectListItem>' 
+                //                  that has the key 'ThisOwnersPetsSelectList'.
+                //
+                // there's also the:  `new SelectList(PetCarerSelectList, "value", "text")`
+                // similar to how we did for HW8 in 460 -- but wtf to put for those, w/query?
+                //      page won't even load w/the things i tried for "value" & "text"
+                //
+                //   --> comment one or the other out to see what it does <--
+                //
+                // this one actually shows the matching pet names!  but returns error:
+                //          System.InvalidOperationException: 
+                //          There is no ViewData item of type 'IEnumerable<SelectListItem>' 
+                //          that has the key 'ThisOwnersPetsSelectList'. 
+                ViewBag.ThisOwnersPetsSelectList = ThisOwnersPetsSelectList;
+                ViewData["ownersPets"] = ThisOwnersPetsSelectList;
+
+                //---------------------------------------------------------------------------
+                // see 'test_crap' at the end here for notes..... this was working there   =]
+                // --> SELECT LIST OF PET CARERS w/ZIPCODE MATCHING THIS LOGGED-IN PET OWNER
+                List<SelectListItem> PetCarerSelectList = (from pu in db.PetopiaUsers
+                                                           where pu.ResZipcode == thisPetOwnerZip
+                                                           join cp in db.CareProviders on pu.UserID equals cp.UserID
+                                                           select new SelectListItem
+                                                           {
+                                                               Value = cp.CareProviderID.ToString(),
+                                                               Text = pu.FirstName + " " + pu.LastName
+
+                                                           }).ToList();
+
+                //ViewBag.PetCarerSelectList = new SelectList(PetCarerSelectList);
+                // ^^^ for one thing, the drop-down says 'System.Web.Mvc.SelectListItem'
+                // ^-- it doesn't get here, but i'm sure it would error like the pet one
+                //
+                // there's also the:  `new SelectList(PetCarerSelectList, "value", "text")`
+                // similar to how we did for HW8 in 460 -- but wtf to put for those, w/query?
+                //      page won't even load w/the things i tried for "value" & "text"
+                //
+                //   --> comment one or the other out to see what it does <--
+                //
+                // this one actually shows the matching pet carer names!  but returns error:
+                // ^-- it doesn't get here, but i'm sure it would error like the pet one
+                ViewBag.PetCarerSelectList = PetCarerSelectList;
+
+                //-----------------------------------------------------------------------
                 // and let's add this:
                 careTransaction.Pending = true;
                 careTransaction.Confirmed = false;

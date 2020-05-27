@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Petopia.DAL;
 using Petopia.Models;
 using Petopia.Models.ViewModels;
+using SimpleZipCode;
 using static Petopia.Models.ViewModels.ProfileViewModel;
 
 namespace Petopia.Controllers
@@ -197,6 +198,30 @@ namespace Petopia.Controllers
                 ViewBag.OtherOwner = UserBadges.OtherOwner;
                 ViewBag.OtherProvider = UserBadges.OtherProvider;
             }
+            
+            //Logic for populating scroll area on profiles based around zip code proximity.
+            var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
+
+            var OwnerLocation = ZipCodes.Get(petopiaUser.ResZipcode);
+            var ZipCodesNearOwner = ZipCodes.RadiusSearch(OwnerLocation, 10);
+
+            List<String> NearbyZipsList = new List<String>();
+
+            foreach (ZipCode zip in ZipCodesNearOwner)
+            {
+                NearbyZipsList.Add(zip.PostalCode);
+            }
+
+            List<String> SharedZips = new List<String>();
+
+            foreach (var i in SharedZips)
+            {
+
+            }
+
+            ViewBag.ZipList = String.Join(",", NearbyZipsList.ToArray());
+
+
 
             //---------------------------------------------------------------------------
             // scrolly-windows to the right of the profile pages
