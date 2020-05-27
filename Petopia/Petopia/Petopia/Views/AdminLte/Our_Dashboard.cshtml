@@ -1,0 +1,112 @@
+﻿@model Petopia.Models.ViewModels.AdminPanelViewModel
+@{
+    ViewBag.Title = "Petopia Admin Dashboard";
+}
+
+<div class="container-fluid outer_admin_container">
+    <div class="container-fluid inner_admin_container">
+
+        <h2> @ViewBag.Title </h2>
+        <!--==========================================================================-->
+        <div class="row our_row_one">
+            <div class="col-sm-1 col-md-1"></div>
+
+            <div class="col-sm-10 col-md-10">
+
+                <div class="admin_top_part">
+                    <p>
+                        access users, pets, appointments to assist petopia customers with
+                        their user experience if they have difficulties
+                    </p>
+
+                    <p>
+                        access profiles, posts, etc. to handle inappropriate content
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="col-sm-1 col-md-1"></div>
+        </div>
+        <!--==========================================================================-->
+        <div class="row our_row_two">
+            <!---->
+            <div class="col-sm-4 col-md-4 admin_col_one">
+                <!---->
+                <div class="admin_box">
+                    <!---->
+                    <div class="admin_box_heading">
+                        <h4> Petopia Users </h4>
+                    </div>
+                    <!---->
+                    <div class="admin_box_info">
+                        <div class="admin_box_info_statement">
+                            all the details for all of our Petopia Users <br />
+                            access account &amp; profile stuff for them here!
+                        </div> 
+
+                        @Html.ActionLink("Access Petopia Users", "Users_AdminIndex",
+                            new { controller = "PetopiaUsers" },
+                                new { @class = "admin_links", style = "color:#000066;" })
+
+                    </div><!-- end admin_box_info -->
+                    <!---->
+                </div><!-- end admin box -->
+                <!---->
+            </div><!-- end our col one -->
+            <!--======================================================================-->
+            <!---->
+            <div class="col-sm-4 col-md-4 admin_col_two">
+                <!---->
+                <div class="admin_box">
+                    <!------------------------------------------------>
+                    <div class="admin_box_heading">
+                        <h4> Petopia Pets </h4>
+                    </div>
+                    <!---->
+                    <div class="admin_box_info">
+                        <div class="admin_box_info_statement">
+                            all the details for all of our Petopia Pets <br />
+                            access their account &amp; profile stuff here!
+                        </div>
+
+                        @Html.ActionLink("Access Petopia Pets", "Pets_AdminIndex",
+                            new { controller = "Pets" },
+                                new { @class = "admin_links", style = "color:#000066;" })
+
+                    </div>
+                    <!------------------------------------------------>
+                </div><!-- end admin box -->
+                <!---->
+            </div><!-- end our col two -->
+            <!--======================================================================-->
+            <!---->
+            <div class="col-sm-4 col-md-4 admin_col_three">
+                <!---->
+                <div class="admin_box">
+                    <!------------------------------------------------>
+                    <div class="admin_box_heading">
+                        <h4> Petopia Appointments </h4>
+                    </div>
+                    <!---->
+                    <div class="admin_box_info">
+                        <div class="admin_box_info_statement">
+                            all the details for all Petopia Pet Care Appointments <br />
+                            access every appointment here!
+                        </div>
+
+                        @Html.ActionLink("Access Petopia Appointments", "Appts_AdminIndex",
+                            new { controller = "CareTransactions" },
+                                new { @class = "admin_links", style = "color:#000066;" })
+                    </div>
+                    <!------------------------------------------------>
+                </div><!-- end admin box -->
+                <!---->
+            </div><!-- end our col three -->
+            <!-------------------------------------------------------------------------->
+            <!---->
+        </div><!-- end our row one -->
+
+
+    </div><!-- end inner container-fluid -->
+</div><!-- end outer container-fluid -->

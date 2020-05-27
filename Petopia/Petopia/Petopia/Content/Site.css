@@ -725,6 +725,41 @@ a:active {
 .admin_table tr:hover {
     background-color: rgba(153, 0, 0, .45);
 }
+/*=================================== OUR ADMIN DASHBOARD STUFF =======================*/
+.admin_col_one, .admin_col_two, .admin_col_three {
+    padding: 9px;
+}
+.admin_top_part {
+    padding:13px;
+    border: 1px solid #392613;
+    border-radius: 18px;
+    text-align: center;
+    font-size: 110%;
+    color: #392613;
+}
+.admin_box {
+    padding: 18px;
+    border: 2px solid #392613;
+    border-radius: 18px;
+}
+.admin_box_heading {
+    color: #392613;
+}
+    .admin_box_heading h4 {
+        margin-top:0px; 
+        padding-top:0px;
+    }
+.admin_box_info {
+
+}
+.admin_box_info_statement {
+    margin-bottom: 9px;
+}
+.admin_links {
+    font-weight: bold;
+    font-size: 110%;
+    color: #000066;
+}
 /*=====================================================================================*/
 /**/
 /**/
@@ -737,7 +772,6 @@ a:active {
 /* on phone-sized screens... and the fix took away the normal BootStrap responsive     */
 /* crap.....  so here we go -- hopefully the best of both worlds here.....      [=     */
 /*=====================================================================================*/
-
 /*=====================================================================================*/
 /*================================= 'TYPICAL' PHONES ==================================*/
 @media only screen and (max-width: 500px) {

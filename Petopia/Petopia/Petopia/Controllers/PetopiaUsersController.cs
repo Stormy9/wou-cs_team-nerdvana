@@ -20,7 +20,7 @@ namespace Petopia.Controllers
         //===============================================================================
         // GET: PetopiaUsers
         [Authorize(Roles = "Admin")]
-        public ActionResult AdminIndex()
+        public ActionResult Users_AdminIndex()
         {
             return View(db.PetopiaUsers.ToList());
         }

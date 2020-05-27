@@ -1056,7 +1056,7 @@
     <Content Include="Views\PetopiaUsers\Delete.cshtml" />
     <Content Include="Views\PetopiaUsers\Details.cshtml" />
     <Content Include="Views\PetopiaUsers\Edit.cshtml" />
-    <Content Include="Views\PetopiaUsers\AdminIndex.cshtml" />
+    <Content Include="Views\PetopiaUsers\Users_AdminIndex.cshtml" />
     <Content Include="Views\PetOwners\Create.cshtml" />
     <Content Include="Views\PetOwners\Delete.cshtml" />
     <Content Include="Views\PetOwners\Details.cshtml" />
@@ -1092,7 +1092,7 @@
     <Content Include="Views\CareTransactions\CompleteAppointment_PetOwner.cshtml" />
     <Content Include="Views\CareTransactions\MyAppointments.cshtml" />
     <Content Include="Views\CareTransactions\MyPetsAppointments.cshtml" />
-    <Content Include="Views\CareTransactions\AppointmentDetails.cshtml" />
+    <Content Include="Views\CareTransactions\Appts_AdminDetails.cshtml" />
     <Content Include="Views\CareTransactions\DeleteConfirmation.cshtml" />
     <Content Include="Views\Pets\PetGallery.cshtml" />
     <Content Include="Views\Pets\PetGalleryCreate.cshtml" />
@@ -1111,6 +1111,7 @@
     <Content Include="Views\CareTransactions\DeclineAppointment.cshtml" />
     <Content Include="Views\CareTransactions\DeclineConfirmation.cshtml" />
     <Content Include="Views\PetopiaUsers\Owner_Carer.cshtml" />
+    <Content Include="Views\AdminLte\Our_Dashboard.cshtml" />
     <!--<Content Include="Web_deploy.config" />-->
   </ItemGroup>
   <ItemGroup>

@@ -55,7 +55,7 @@ namespace Petopia.Controllers
         //                                                       also primarily for admin
         //-------------------------------------------------------------------------------
         // GET: CareTransactions/AppointmentDetails/5
-        public ActionResult AppointmentDetails(int? id)
+        public ActionResult Appts_AdminDetails(int? id)
         {
             if (id == null)
             {
