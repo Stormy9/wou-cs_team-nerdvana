@@ -43,31 +43,39 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            @Html.ActionLink("What We Do", "About", 
+                            @Html.ActionLink("What We Do", "About",
                                 new { controller = "Home" },
-                                new { @class = "our_nav_links", style="color: #f2e6d9;" })
-                    </li>
+                                new { @class = "our_nav_links", style = "color: #f2e6d9;" })
+                        </li>
 
-                    <li>
-                        @Html.ActionLink("Have Questions or Concerns?", "Contact",
-                                new { controller = "Home" },
-                                new { @class = "our_nav_links", style="color:#f2e6d9;" })
-                    </li>
+                        <li>
+                            @Html.ActionLink("Have Questions or Concerns?", "Contact",
+                                    new { controller = "Home" },
+                                    new { @class = "our_nav_links", style = "color:#f2e6d9;" })
+                        </li>
 
-                    <li>
-                        @Html.ActionLink("How to use Petopia", "UsingPetopia",
-                                new { controller = "Home" },
-                                new { @class = "our_nav_links", style="color:#f2e6d9;" })
-                    </li>
+                        <li>
+                            @Html.ActionLink("How to use Petopia", "UsingPetopia",
+                                    new { controller = "Home" },
+                                    new { @class = "our_nav_links", style = "color:#f2e6d9;" })
+                        </li>
 
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li style="margin-left: 23px;">
-                            @Html.ActionLink("My Profile", "Index", 
-                                new { controller = "ProfilePage" },
-                                new { @class = "our_nav_links", style="color: #f2e6d9;" })
-                    </li>
-                }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li style="margin-left: 23px;">
+                                @Html.ActionLink("My Profile", "Index",
+                                    new { controller = "ProfilePage" },
+                                    new { @class = "our_nav_links", style = "color: #f2e6d9;" })
+                            </li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li style="margin-left: 23px;">
+                                @Html.ActionLink("Admin Panel", "Our_Dashboard",
+                                    new { controller = "AdminLte" },
+                                    new { @class = "our_nav_links", style = "color: #f2e6d9;" })
+                            </li>
+                        }
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
