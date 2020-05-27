@@ -6,7 +6,7 @@
     ViewBag.Title02 = "'s Pet Care Appointment";
 
     //this works!!!!!
-    var today = DateTime.Now.ToString("yyyy-MM-dd");
+    var today = DateTime.Today.ToString("yyyy-MM-dd");
 
     var loggedInUser = ViewBag.loggedInUser;
     var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
@@ -20,7 +20,7 @@
         this pet's owner: @thisPetsOwner <br />
     </div>
 
-@if (loggedInUser == thisPetsOwner)
+@if ((loggedInUser == thisPetsOwner) && (Model.StartDate >= DateTime.Today))
 {
     using (Html.BeginForm("EditAppointment", "CareTransactions", FormMethod.Post,
                 new { @class = "form", role = "form", enctype = "multipart/form-data" }))
@@ -234,6 +234,7 @@
 else
 { 
     <h5> you are not this pet's owner! </h5>
+    <h5> or you are trying to edit an appointment that has already happened. </h5>
 }
 <!--==================================================================================-->
 </div><!-- END CONTAINER-FLUID DIV! -->
