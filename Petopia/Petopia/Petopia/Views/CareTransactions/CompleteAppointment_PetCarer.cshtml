@@ -165,7 +165,8 @@
 
                                 @Html.EditorFor(model => model.CareProvided,
                                      new { htmlAttributes =
-                                         new { @class = "form-control",
+                                         new { @class = "form-control", @required = "required",
+                                            title="please give a pet care subject line",
                                             @placeholder = "just a quick recap....." } })
 
                                 @Html.ValidationMessageFor(model => model.CareProvided, 
@@ -187,6 +188,8 @@
                                     new { htmlAttributes =
                                     new { @class = "form-control our_text_area" },
                                         rows = 5, id = "text21", name = "text21",
+                                        @required="required", 
+                                        title="please enter a detailed pet care report",
                                         style = "color:#2e2e1f; border-radius:5px; " +
                                                 "padding:5px; width:90%" })
 
@@ -214,7 +217,8 @@
 
                                 @Html.EditorFor(model => model.Charge,
                                      new { htmlAttributes =
-                                         new { @class = "form-control",
+                                         new { @class = "form-control", @required = "required",
+                                         title="please enter your fee for this appointment",
                                         @placeholder = "base fee for your pet care" } })
 
                                 @Html.ValidationMessageFor(model => model.Charge, "",
@@ -282,7 +286,8 @@
                                 @Html.EditorFor(model => model.PO_Rating,
                                     new { htmlAttributes =
                                         new { @class = "form-control",
-                                              min = 1, max = 5,
+                                              min = 1, max = 5, @required="required",
+                                              title="please rate the pet owner",
                                               @placeholder = "rate pet owner 1 - 5",
                                               style="width:35%" } })
 
@@ -298,6 +303,8 @@
                                     new { htmlAttributes =
                                     new { @class = "form-control our_text_area" },
                                         rows = 5, id = "text23", name = "text23",
+                                        @required="required", 
+                                        title="please leave a comment about the pet owner",
                                         style = "color:#2e2e1f; border-radius:5px; " +
                                                 "padding:5px; width:90%;" })
 
@@ -324,7 +331,7 @@
                         </span>
                     </div>
                     
-                    <div style="float:right;">
+                    <div style="float:right; display:none;">
                         what does 'Completed_PO' say? @ViewBag.PO_Complete
                     </div>
                 <!---------------------------------------------------------------------->

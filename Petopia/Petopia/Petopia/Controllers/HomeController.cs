@@ -79,6 +79,8 @@ namespace Petopia.Controllers
 
             // in case we want it.....
             ViewBag.SearchZip = searchZip;
+
+            //---------------------------------------------------------
             var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
 
             var OwnerLocation = ZipCodes.Get(searchZip);
