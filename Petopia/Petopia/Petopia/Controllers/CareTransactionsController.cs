@@ -1073,10 +1073,10 @@ namespace Petopia.Controllers
                                                     .Select(cpn => cpn.LastName).FirstOrDefault();
 
             // get Pet Carer's email address:
-            var thisCarerAspIdentity = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerPetopiaID)
+            var thisCarerAspIdentity = db.PetopiaUsers.Where(cp => cp.UserID == thisCarerPetopiaID)
                                                       .Select(asp => asp.ASPNetIdentityID).FirstOrDefault();
 
-            var thisCarerEmail = db.ASPNetUsers.Where(pu => pu.Id == thisOwnerAspIdentity)
+            var thisCarerEmail = db.ASPNetUsers.Where(pu => pu.Id == thisCarerAspIdentity)
                                                .Select(ce => ce.Email).FirstOrDefault();
 
 
@@ -1097,7 +1097,7 @@ namespace Petopia.Controllers
                 var EmailSubject_to_Carer = "[Petopia] Pet Owner has edited their appointment with you";
                 var EmailBody_to_Carer = "Hi! A Petopia User has edited one of their " +
                     "appointments with you, please navigate over to " +
-                    "http://petopia.azurewebsites.net  to track all of yourappointments.";
+                    "http://petopia.azurewebsites.net  to track all of your appointments.";
 
                 var EmailSubject_to_Owner = "[Petopia] Your Pet Care Appointment Edit Confirmation";
                 var EmailBody_to_Owner = "You requested to reschedule your Pet Care Appointment." +
@@ -1591,7 +1591,8 @@ namespace Petopia.Controllers
         //                                      for when PET CARER declines appt request!
         //-------------------------------------------------------------------------------
         // POST: CareTransactions/DeclineAppointment/5
-        [HttpPost, ActionName("Delete")]
+        //[HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeclineAppointment(int ct_id)
         {

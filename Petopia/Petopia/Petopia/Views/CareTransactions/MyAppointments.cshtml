@@ -257,13 +257,6 @@
                         <div class="row our_row_three">
 
                             <div style="float: right; margin-right: 5px;">
-                                @Html.ActionLink("Cancel Appointment", "Delete",
-                                    new { id = item.CareTransactionID },
-                                    new { @class="our_buttons",
-                                        style = "color: #f2e6d9; font-weight: normal;" })
-                            </div>
-
-                            <div style="float: right; margin-right: 5px;">
                                 @Html.ActionLink("Pet's Profile", "PetProfile",
                                     new { controller = "Pets", id = item.PetID },
                                         new { @class="our_buttons",
@@ -298,19 +291,26 @@
 
                             @if (isPetOwner)
                             { 
+                                <div style="float: right; margin-right: 5px">
+                                    @Html.ActionLink("Carer's Profile", "VisitProfile",
+                                        new { controller = "ProfilePage", 
+                                                loggedID = item.PetCarerPetopiaID },
+                                        new { @class = "our_buttons", 
+                                            style = "color:#f2e6d9; font-weight:normal;" })
+                                </div>
+
+                                <div style="float: right; margin-right: 5px;">
+                                    @Html.ActionLink("Cancel Appointment", "Delete",
+                                        new { id = item.CareTransactionID },
+                                        new { @class="our_buttons",
+                                            style = "color: #f2e6d9; font-weight: normal;" })
+                                </div>
+
                                 <div style="float: right; margin-right: 5px;">
                                     @Html.ActionLink("Reschedule/Edit Appointment", "EditAppointment",
                                         new { id = item.CareTransactionID },
                                         new { @class="our_buttons",
                                             style = "color: #f2e6d9; font-weight: normal;" })
-                                </div>
-                                    
-                                <div style="float: right; margin-right: 5px">
-                                        @Html.ActionLink("Carer's Profile", "VisitProfile",
-                                            new { controller = "ProfilePage", 
-                                                    loggedID = item.PetCarerPetopiaID },
-                                            new { @class = "our_buttons", 
-                                                style = "color:#f2e6d9; font-weight:normal;" })
                                 </div>
                             }
 
@@ -626,27 +626,6 @@
                             <!--============================== ROW THREE =============-->
                             <div class="row our_row_three">
 
-                                @if(isPetOwner)
-                                { 
-                                    <div style="float: right; margin-right: 5px;">
-                                        @Html.ActionLink("Complete Appointment", 
-                                            "CompleteAppointment_PetOwner",
-                                                new { id = item.CareTransactionID },
-                                                    new { @class="our_buttons",
-                                                style = "color: #f2e6d9; font-weight: normal;" })
-                                    </div>
-                                }
-                                @if(isPetCarer)
-                                {
-                                    <div style="float: right; margin-right: 5px;">
-                                        @Html.ActionLink("Complete Appointment", 
-                                            "CompleteAppointment_PetCarer",
-                                                new { id = item.CareTransactionID },
-                                                    new { @class="our_buttons",
-                                                style = "color: #f2e6d9; font-weight: normal;" })
-                                    </div>
-                                }
-
                                 <div style="float: right; margin-right: 5px;">
                                     @Html.ActionLink("Pet's Profile", "PetProfile",
                                         new { controller = "Pets", id = item.PetID },
@@ -673,19 +652,46 @@
 
                                 @if (isPetOwner)
                                 { 
-                                    <div style="float: right; margin-right: 5px;">
-                                        @Html.ActionLink("Reschedule/Edit Appointment", "EditAppointment",
-                                            new { id = item.CareTransactionID },
-                                            new { @class="our_buttons",
-                                                style = "color: #f2e6d9; font-weight: normal;" })
-                                    </div>
-
                                     <div style="float: right; margin-right: 5px">
                                         @Html.ActionLink("Carer's Profile", "VisitProfile",
                                             new { controller = "ProfilePage", 
                                                     loggedID = item.PetCarerPetopiaID },
                                             new { @class = "our_buttons", 
                                                 style = "color:#f2e6d9; font-weight:normal;" })
+                                    </div>
+
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Cancel Appointment", "Delete",
+                                            new { id = item.CareTransactionID },
+                                            new { @class="our_buttons",
+                                                style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Reschedule/Edit Appointment", "EditAppointment",
+                                            new { id = item.CareTransactionID },
+                                            new { @class="our_buttons",
+                                                style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+                                }
+                                @if(isPetOwner)
+                                { 
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Complete Appointment", 
+                                            "CompleteAppointment_PetOwner",
+                                                new { id = item.CareTransactionID },
+                                                    new { @class="our_buttons",
+                                                style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+                                }
+                                @if(isPetCarer)
+                                {
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Complete Appointment", 
+                                            "CompleteAppointment_PetCarer",
+                                                new { id = item.CareTransactionID },
+                                                    new { @class="our_buttons",
+                                                style = "color: #f2e6d9; font-weight: normal;" })
                                     </div>
                                 }
                                 <!------------------------------------------------------>
