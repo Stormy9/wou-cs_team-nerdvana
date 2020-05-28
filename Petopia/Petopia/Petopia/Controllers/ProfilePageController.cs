@@ -130,7 +130,7 @@ namespace Petopia.Controllers
                 var thisCP_Avg_Rating = db.CareTransactions.Where(x => x.CareProviderID == thisCP_ID)
                                                            .Average(x => x.PC_Rating);
 
-                petopiaUser.ProviderAverageRating = thisCP_Avg_Rating.ToString();
+                //petopiaUser.ProviderAverageRating = thisCP_Avg_Rating;
             }
             //---------------------------------------------------------
             if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
@@ -143,7 +143,7 @@ namespace Petopia.Controllers
                 var thisPO_Avg_Rating = db.CareTransactions.Where(x => x.PetOwnerID == thisPO_ID)
                                                            .Average(x => x.PO_Rating);
 
-                petopiaUser.OwnerAverageRating = thisPO_Avg_Rating.ToString();
+                //petopiaUser.OwnerAverageRating = thisPO_Avg_Rating;
             }
             //---------------------------------------------------------------------------
             //---------------------------------------------------------------------------

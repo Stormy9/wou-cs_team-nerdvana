@@ -466,6 +466,7 @@ namespace Petopia.Controllers
                 smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
                 smtp.EnableSsl = true;
                 smtp.Send(mail_to_carer);
+                smtp.Send(mail_to_owner);
             }
             catch (Exception e)
             {
@@ -735,6 +736,7 @@ namespace Petopia.Controllers
                 smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
                 smtp.EnableSsl = true;
                 smtp.Send(mail_to_carer);
+                smtp.Send(mail_to_owner);
             }
             catch (Exception e)
             {
@@ -1122,6 +1124,7 @@ namespace Petopia.Controllers
                     .AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
                 smtp.EnableSsl = true;
                 smtp.Send(mail_to_carer);
+                smtp.Send(mail_to_owner);
             }
             catch (Exception e)
             {
@@ -1511,6 +1514,7 @@ namespace Petopia.Controllers
                     .AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
                 smtp.EnableSsl = true;
                 smtp.Send(mail_to_carer);
+                smtp.Send(mail_to_owner);
             }
             catch (Exception e)
             {
@@ -1658,9 +1662,12 @@ namespace Petopia.Controllers
                     .AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
                 smtp.EnableSsl = true;
                 smtp.Send(mail_to_carer);
+                smtp.Send(mail_to_owner);
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
+                Console.ReadKey();
             }
             //---------------------------------------------------------
 

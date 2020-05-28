@@ -38,6 +38,17 @@ namespace Petopia.Models
         public DateTime EndDate { get; set; }
 
         //-------------------------------------------------------------------------------
+        // TIME CRAP!!!!!
+        // when it's [DataType(DataType.DateTime)] 
+        //   ^-- in 'EditAppt': the time *DOES* populate to the form\input boxes
+        //       BUT -- when you 'submit' you get "field End Time: must be a date"
+        // 
+        // when it's [DataType(DataType.Time)]
+        //   ^-- in 'EditAppt': the time does *NOT* populate to the form\input boxes
+        //       BUT -- it all works just fine and everything
+        //              displays just fine w/'Html.DisplayFor', interacts w/db just fine
+        //              it just won't display w/'Html.EditorFor'
+        //
         [Required(ErrorMessage = "please enter a start time")]
         [DisplayName("Start Time:")]
         [DisplayFormat(DataFormatString = "{0:h:mm tt}", ApplyFormatInEditMode = true)]
@@ -66,10 +77,10 @@ namespace Petopia.Models
 
         //-------------------------------------------------------------------------------
         [DisplayName("Pet Carer's fee for this visit:")]
-        public float? Charge { get; set; }
+        public decimal? Charge { get; set; }
 
         [DisplayName("Tip? (optional)")]
-        public float? Tip { get; set; }
+        public decimal? Tip { get; set; }
 
         //===============================================================================
         [DisplayName("Pet Carer Rating:")]

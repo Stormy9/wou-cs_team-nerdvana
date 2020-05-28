@@ -47,7 +47,7 @@ namespace Petopia.Models.ViewModels
         public string ExperienceDetails { get; set; }
 
         [DisplayName("Average rating:  ")]
-        public string ProviderAverageRating { get; set; }
+        public decimal? ProviderAverageRating { get; set; }
 
         //-------------------------------------------------------------------------------
         [DisplayName("Dog?")]                              // care provider badges stuff
@@ -110,7 +110,7 @@ namespace Petopia.Models.ViewModels
             public string ExperienceDetails { get; set; }
 
             [DisplayName("Average rating:  ")]
-            public string ProviderAverageRating { get; set; }
+            public decimal? ProviderAverageRating { get; set; }
 
             //---------------------------------------------------------
             //                                       add badge status!
@@ -186,7 +186,7 @@ namespace Petopia.Models.ViewModels
         public string GeneralNeeds { get; set; }
 
         [DisplayName("Average rating:  ")]
-        public string OwnerAverageRating { get; set; }
+        public decimal? OwnerAverageRating { get; set; }
 
         //-------------------------------------------------------------------------------
         [DisplayName("Dog?")]                                   // pet owner bages stuff
@@ -249,7 +249,7 @@ namespace Petopia.Models.ViewModels
             public string GeneralNeeds { get; set; }
 
             [DisplayName("My average rating:  ")]
-            public string OwnerAverageRating { get; set; }
+            public decimal? OwnerAverageRating { get; set; }
 
             //---------------------------------------------------------
             //                                        add badge status!

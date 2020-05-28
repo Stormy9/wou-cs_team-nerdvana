@@ -15,9 +15,8 @@ namespace Petopia.DAL
         public int CareProviderID { get; set; }
 
         //===============================================================================
-        [DisplayName("Provider Avg Rating")]
-        [StringLength(120)]
-        public string AverageRating { get; set; }
+        [DisplayName("Pet carer Average Rating")]
+        public decimal? AverageRating { get; set; }
 
         //-------------------------------------------------------------------------------
         [DisplayName("Experience\\Resume")]

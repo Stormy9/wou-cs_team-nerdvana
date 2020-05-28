@@ -17,9 +17,8 @@ namespace Petopia.DAL
         public int PetOwnerID { get; set; }
 
         //-------------------------------------------------------------------------------
-        [StringLength(120)]
-        [DisplayName("Owner Avg Rating")]
-        public string AverageRating { get; set; }
+        [DisplayName("Pet Owner Average Rating")]
+        public decimal? AverageRating { get; set; }
 
         //-------------------------------------------------------------------------------
         [Required]

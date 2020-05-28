@@ -83,10 +83,7 @@
                             <span style="font-size:90%; font-style:italic;">
                                 original start time:
                             </span>
-                            @Html.DisplayFor(model => model.StartTime)
-                            <br /> <span style="font-size:90%; font-style:italic;">
-                                    (why is this not in the editor?)
-                                  </span> 
+                            @Html.DisplayFor(model => model.StartTime) <br />
 
                             @Html.ValidationMessageFor(model => model.StartTime, "",
                                                         new { @class = "text-danger" })
@@ -119,16 +116,16 @@
                                     htmlAttributes: new { @class = "control-label" })
 
                             @Html.EditorFor(model => model.EndTime,
-                                  new { htmlAttributes =
-                                      new { @class = "form-control", @tabindex = "4" }})
+                                  new
+                                       {
+                                           htmlAttributes =
+                                      new { @class = "form-control", @tabindex = "4" }
+                                       })
 
                             <span style="font-size:90%; font-style:italic;">
                                 original end time:
                             </span>
-                            @Html.DisplayFor(model => model.EndTime)
-                            <br /> <span style="font-size:90%; font-style:italic;">
-                                (why is this not in the editor?)
-                            </span>
+                            @Html.DisplayFor(model => model.EndTime) <br />
 
                             @Html.ValidationMessageFor(model => model.EndTime, "",
                                     new { @class = "text-danger" })

@@ -17,9 +17,8 @@ namespace Petopia.Models
         public int PetOwnerID { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Owner Avg Rating")]
-        [StringLength(120)]
-        public string AverageRating { get; set; }
+        [DisplayName("Pet Owner Average Rating")]
+        public decimal? AverageRating { get; set; }
 
         //-------------------------------------------------------------------------------
         [Required]
