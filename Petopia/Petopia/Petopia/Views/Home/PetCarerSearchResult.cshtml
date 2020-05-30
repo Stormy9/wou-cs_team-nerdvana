@@ -76,10 +76,12 @@
                         {
                             <div class="search_result_profile_pic_box_box">
                                 <div class="search_result_profile_pic_box">
+                        <!-- for some reason the profile image is not coming in - ??? -->
+                    <!-- but this exact thing works on the profile scrolly-windows... -->
                                     <a href='@Url.Action("VisitProfile", "ProfilePage", 
                                                     new { loggedID = item.CP_PU_ID })'>
                                         <img src=@Url.Action("Show", "Image", 
-                                                    new { id = Model.CP_PU_ID }) 
+                                                    new { id = item.CP_PU_ID }) 
                                             class="search_result_profile_img" />
                                     </a>
                                 </div>

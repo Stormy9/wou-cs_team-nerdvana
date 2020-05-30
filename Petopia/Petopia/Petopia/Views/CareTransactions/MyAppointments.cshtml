@@ -315,7 +315,7 @@
                             }
 
                             <!-- for testing during initial setup -->
-                            <div>
+                            <div style="display:none;">
                                 <span style="margin-right: 15px; display:none;">
                                     ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                                 </span>
@@ -696,24 +696,22 @@
                                 }
                                 <!------------------------------------------------------>
                                 <!-- for testing during initial setup -->
-                                <div>
-                                    <div>
-                                        <span style="margin-right: 15px; display:none;">
-                                            ct_id? @Html.DisplayFor(model => item.CareTransactionID)
-                                        </span>
-                                        <span style="margin-left: 13px;">
-                                            Pending? @Html.DisplayFor(model => item.Pending)
-                                        </span>
-                                        <span style="margin-left: 13px;">
-                                            Confirmed? @Html.DisplayFor(model => item.Confirmed)
-                                        </span>
-                                        <span style="margin-left: 13px;">
-                                            Completed_PO? @Html.DisplayFor(model => item.Completed_PO)
-                                        </span>
-                                        <span style="margin-left: 13px;">
-                                            Completed_CP? @Html.DisplayFor(model => item.Completed_CP)
-                                        </span>
-                                    </div>
+                                <div style="display:none;">
+                                    <span style="margin-right: 15px; display:none;">
+                                        ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                                    </span>
+                                    <span style="margin-left: 13px;">
+                                        Pending? @Html.DisplayFor(model => item.Pending)
+                                    </span>
+                                    <span style="margin-left: 13px;">
+                                        Confirmed? @Html.DisplayFor(model => item.Confirmed)
+                                    </span>
+                                    <span style="margin-left: 13px;">
+                                        Completed_PO? @Html.DisplayFor(model => item.Completed_PO)
+                                    </span>
+                                    <span style="margin-left: 13px;">
+                                        Completed_CP? @Html.DisplayFor(model => item.Completed_CP)
+                                    </span>
                                 </div>
 
                             </div><!-- END ROW THREE-->
@@ -842,7 +840,7 @@
                                 <!------------------------------------------------------>
                                 <!---->
                                 <!----------------------------- ROW 1 \ COL 5 ---------->
-                                <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+                                <div class="col-sm-3 col-md-3" style="margin-left:23px; border:1px dashed blue;">
 
                                     <div style="margin-bottom: 13px;">
                                         <span class="our_appt_label">
@@ -858,6 +856,15 @@
                                         @Html.DisplayFor(model => item.Tip)
                                     </div>
 
+                                    <div class="stripe_spot"
+                                         style="margin-top:9px;margin-bottom:9px;
+                                                padding:5px;text-align:center;
+                                                border:1px dotted orange;">
+
+                                        <a href="#" class="btn btn-success fake_button" 
+                                           role="button">stripe!</a>
+
+                                    </div>
                                 </div><!-- END ROW 1 \ COL 5 -->
                                 <!------------------------------------------------------>
                             </div><!-- END ROW 1 -->
@@ -1050,7 +1057,7 @@
                                 }
 
                                 <!-- for testing during initial setup -->
-                                <div>
+                                <div style="display:none;">
                                     <span style="margin-right: 15px; display:none;">
                                         ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                                     </span>
