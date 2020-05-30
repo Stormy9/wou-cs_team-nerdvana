@@ -1473,8 +1473,8 @@ namespace Petopia.Controllers
             //---------------------------------------------------------
             var thisPetCarerID = careTransaction.CareProviderID;
 
-            var thisPetCarerPetopiaID = db.PetOwners.Where(poID => poID.PetOwnerID == thisPetCarerID)
-                                                    .Select(puID => puID.UserID).FirstOrDefault();
+            var thisPetCarerPetopiaID = db.CareProviders.Where(poID => poID.CareProviderID == thisPetCarerID)
+                                                        .Select(puID => puID.UserID).FirstOrDefault();
 
             var thisPetCarerAspID = db.PetopiaUsers.Where(puID => puID.UserID == thisPetCarerPetopiaID)
                                                    .Select(aspID => aspID.ASPNetIdentityID).FirstOrDefault();
@@ -1491,7 +1491,7 @@ namespace Petopia.Controllers
 
                 var EmailSubject_to_Owner = "[Petopia] Your Pet Care Appointment Cancel Confirmation";
                 var EmailBody_to_Owner = "You requested to cancel your scheduled Pet Care Appointment." +
-                    "Your selected Pet Care Provider has been notified.  Thank you for using Petopia," +
+                    "Your selected Pet Care Provider has been notified.  Thank you for using Petopia, " +
                     "please visit when you need Pet Care next time!";
 
                 MailAddress FromEmail = new MailAddress(ConfigurationManager.AppSettings["gmailAccount"]);
