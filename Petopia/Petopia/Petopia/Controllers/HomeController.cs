@@ -23,7 +23,7 @@ namespace Petopia.Controllers
 
             var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
 
-            var OwnerLocation = ZipCodes.Get("97301");
+            var OwnerLocation = ZipCodes.Get("97526");
             var ZipCodesNearOwner = ZipCodes.RadiusSearch(OwnerLocation, 10);
             
             List<String> zipsList = new List<String>();
@@ -101,6 +101,8 @@ namespace Petopia.Controllers
             bool ZipInBothLists = zipsList.Any(x => x == searchZip);
 
             string ZipArray = String.Join(",", zipsList.ToArray());
+
+            var test = pdb.PetopiaUsers.Where(x => zipsList.Contains(x.ResZipcode)).ToList();
 
             SearchViewModel carerSearch = new SearchViewModel();
 
