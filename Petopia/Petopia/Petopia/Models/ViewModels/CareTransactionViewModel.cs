@@ -142,7 +142,7 @@ namespace Petopia.Models.ViewModels
 
         //===============================================================================
         //===============================================================================
-        //                                                          CareProvider table
+        //                                                             CareProvider table
         //===============================================================================
         // the "main info" from the CareProvider table:
         [Required(ErrorMessage="enter ID for the Pet Carer you want")]
@@ -297,6 +297,9 @@ namespace Petopia.Models.ViewModels
         [DisplayName("Completed - Pet Carer")]
         public bool Completed_CP { get; set; }
 
+        [DisplayName("IsPaid?")]
+        public bool IsPaid { get; set; }
+
         //===============================================================================
         //===============================================================================
         //                              for 'MyAppointments' + 'MyPetsAppointments' views
@@ -403,6 +406,9 @@ namespace Petopia.Models.ViewModels
 
             [DisplayName("Completed - Pet Carer")]
             public bool Completed_CP { get; set; }
+
+            [DisplayName("IsPaid?")]
+            public bool IsPaid { get; set; }
 
             //---------------------------------------------------------
             public int CareTransactionID { get; set; }

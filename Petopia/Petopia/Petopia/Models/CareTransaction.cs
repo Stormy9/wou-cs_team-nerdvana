@@ -110,6 +110,9 @@ namespace Petopia.Models
         [DisplayName("Completed - Pet Carer")]
         public bool Completed_CP { get; set; }
 
+        [DisplayName("IsPaid?")]
+        public bool IsPaid { get; set; }
+
         //===============================================================================
         // FOREIGN KEYS
         //

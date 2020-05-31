@@ -862,17 +862,15 @@
                                                 border:1px dotted orange;">
 
                                     <form action="/CareTransactions/Charge" method="POST">
-                                    <article>
-                                    <label>@Html.DisplayFor(model => model.Charge)</label>
-                                    </article>
-                                    <script src="//checkout.stripe.com/v2/checkout.js" class="stripe-button"
-                                            data-key="@ViewBag.StripePublishKey" data-locale="auto" data-description="Charge"
-                                            data-amount"500">
-                                    </script>
-                                    </form>
+                                        <article>
+                                        <label>@Html.DisplayFor(model => model.Charge)</label>
+                                        </article>
 
-                                        <a href="#" class="btn btn-success fake_button" 
-                                           role="button">stripe!</a>
+                                        <script src="//checkout.stripe.com/v2/checkout.js" 
+                                            class="stripe-button" data-key="@ViewBag.StripePublishKey" 
+                                            data-locale="auto" data-description="Charge" data-amount"500">
+                                        </script>
+                                    </form>
 
                                     </div>
                                 </div><!-- END ROW 1 \ COL 5 -->

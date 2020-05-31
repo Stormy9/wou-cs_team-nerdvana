@@ -1896,7 +1896,8 @@ namespace Petopia.Controllers
 
             var customer = customers.Create(new CustomerCreateOptions
             {
-                Email = stripeEmail               
+                Email = stripeEmail,
+                Source = stripeToken
             });
 
             var charge = charges.Create(new ChargeCreateOptions
@@ -1906,6 +1907,11 @@ namespace Petopia.Controllers
                 Currency = "usd",
                 Customer = customer.Id
             });
+
+            ViewBag.ChargeAmount = charge.Amount;
+            ViewBag.ChargeDesc = charge.Description;
+            ViewBag.Customer = charge.Customer;
+            ViewBag.Date = DateTime.Today;
 
             return View();
         }
