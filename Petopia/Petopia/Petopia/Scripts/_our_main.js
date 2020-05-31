@@ -64,7 +64,8 @@ function scaleBannerVideoSize(element) {
 
 var today = new Date();
 var todaysDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-$(window).on('load', function(){
+
+$(window).on('load', function () {
     // page is now ready, initialize the calendar...
 //var calendarEl = $('#calendar');
 //var calendarEl = document.getElementById('calendar');

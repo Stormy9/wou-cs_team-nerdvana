@@ -100,6 +100,8 @@ namespace Petopia.Controllers
 
             bool ZipInBothLists = zipsList.Any(x => x == searchZip);
 
+            string ZipArray = String.Join(",", zipsList.ToArray());
+
             SearchViewModel carerSearch = new SearchViewModel();
 
                 carerSearch.PetCarerSearchList = (from pu in pdb.PetopiaUsers
