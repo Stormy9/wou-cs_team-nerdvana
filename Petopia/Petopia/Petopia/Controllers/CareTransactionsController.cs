@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
+using Stripe;
 
 namespace Petopia.Controllers
 {
@@ -1696,6 +1697,8 @@ namespace Petopia.Controllers
         // GET: CareTransactions
         public ActionResult MyAppointments()
         {
+            var stripePublishKey = ConfigurationManager.AppSettings["stripePublishableKey"];
+            ViewBag.StripePublishKey = stripePublishKey;
             // the logged-in user
             var identityID = User.Identity.GetUserId();
 
@@ -1884,6 +1887,40 @@ namespace Petopia.Controllers
             //---------------------------------------------------------
             return View(Vmodel);
         }
+
+        public ActionResult Charge(string stripeEmail, string stripeToken)
+        {
+            var customers = new CustomerService();
+            var charges = new ChargeService();
+
+
+            var customer = customers.Create(new CustomerCreateOptions
+            {
+                Email = stripeEmail               
+            });
+
+            var charge = charges.Create(new ChargeCreateOptions
+            {
+                Amount = 500, //charge in cents
+                Description = "Sample Charge",
+                Currency = "usd",
+                Customer = customer.Id
+            });
+
+            return View();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         //-------------------------------------------------------------------------------
         //                                             'MyPetsAppointments' -- Pet Owners
         //-------------------------------------------------------------------------------
