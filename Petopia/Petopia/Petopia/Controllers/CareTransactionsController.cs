@@ -1888,12 +1888,11 @@ namespace Petopia.Controllers
             return View(Vmodel);
         }
 
-        public ActionResult Charge(string stripeEmail, string stripeToken)
+        public ActionResult Charge(string stripeEmail, string stripeToken, int? id)
         {
             var customers = new CustomerService();
             var charges = new ChargeService();
-
-
+            
             var customer = customers.Create(new CustomerCreateOptions
             {
                 Email = stripeEmail,
@@ -1903,15 +1902,41 @@ namespace Petopia.Controllers
             var charge = charges.Create(new ChargeCreateOptions
             {
                 Amount = 500, //charge in cents
-                Description = "Sample Charge",
+                Description = "your pet care appointment",
                 Currency = "usd",
                 Customer = customer.Id
             });
 
-            ViewBag.ChargeAmount = charge.Amount;
+            ViewBag.CT_ID = id;
+            var formattedCharge = charge.Amount / 100;
+            ViewBag.ChargeAmount = "$" + formattedCharge.ToString("F");
             ViewBag.ChargeDesc = charge.Description;
             ViewBag.Customer = charge.Customer;
-            ViewBag.Date = DateTime.Today;
+            ViewBag.Date = DateTime.Today.ToString("MMMM dd, yyyy");
+
+            //---------------------------------------------------------
+            if (id == null)
+            {
+                string badRequest = "id was null";
+                ViewBag.badRequest = badRequest;
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            CareTransaction careTransaction = db.CareTransactions.Find(id);
+
+            if (careTransaction == null)
+            {
+                string notFound = "id not found";
+                ViewBag.notFound = notFound;
+                //return HttpNotFound();
+            }
+            //---------------------------------------------------------
+            // testing:
+            //ViewBag.CareTransactionID = careTransaction.TransactionID;
+            // stuff
+
+
+            //---------------------------------------------------------
 
             return View();
         }

@@ -1,7 +1,30 @@
-﻿
+﻿@model Petopia.Models.CareTransaction
+
 @{
-    ViewBag.Title = "Charge";
+    ViewBag.Title = "Your payment status.....";
 }
 
-<h2>Charge</h2>
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-sm-6 col-md-6">
+
+                <h2> @ViewBag.Title </h2>
+
+                this ct_id: @ViewBag.CT_ID <br />
+                bad request? @ViewBag.badRequest <br />
+                not found? @ViewBag.notFound <br />
+
+                @ViewBag.ChargeAmount <br />
+
+                @ViewBag.ChargeDesc <br />
+
+                @ViewBag.Customer <br />
+
+                @ViewBag.Date <br />
+
+            </div><!-- end column -->
+        </div><!-- end row -->
+    </div><!-- end container-fluid -->
 

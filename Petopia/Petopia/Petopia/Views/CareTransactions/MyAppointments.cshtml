@@ -840,7 +840,7 @@
                                 <!------------------------------------------------------>
                                 <!---->
                                 <!----------------------------- ROW 1 \ COL 5 ---------->
-                                <div class="col-sm-3 col-md-3" style="margin-left:23px; border:1px dashed blue;">
+                                <div class="col-sm-3 col-md-3">
 
                                     <div style="margin-bottom: 13px;">
                                         <span class="our_appt_label">
@@ -856,23 +856,29 @@
                                         @Html.DisplayFor(model => item.Tip)
                                     </div>
 
-                                    <div class="stripe_spot"
-                                         style="margin-top:9px;margin-bottom:9px;
-                                                padding:5px;text-align:center;
-                                                border:1px dotted orange;">
+                                    <!-------------------------------------------------->
+                                    <div class="stripe_spot">
+                                        @{ var totalCharge = (item.Charge + item.Tip)*100;
+                                            var displayCharge = item.Charge + item.Tip; }
 
-                                    <form action="/CareTransactions/Charge" method="POST">
-                                        <article>
-                                        <label>@Html.DisplayFor(model => model.Charge)</label>
-                                        </article>
+                                        <form action="/CareTransactions/Charge" method="POST" 
+                                              id = "@item.CareTransactionID" >
 
-                                        <script src="//checkout.stripe.com/v2/checkout.js" 
-                                            class="stripe-button" data-key="@ViewBag.StripePublishKey" 
-                                            data-locale="auto" data-description="Charge" data-amount"500">
-                                        </script>
-                                    </form>
+                                            <article>
+                                                <label> Total: @displayCharge </label>
+                                                <span style="margin-left: 25px;"> 
+                                                    ct_id: @item.CareTransactionID  </span>
+                                            </article>
 
-                                    </div>
+                                            <script src="//checkout.stripe.com/v2/checkout.js"
+                                                class="stripe-button" data-key="@ViewBag.StripePublishKey" 
+                                                data-locale="auto" data-description="Charge" 
+                                                data-amount="@totalCharge">
+                                            </script>
+
+                                        </form>
+                                    </div><!-- end stripe-spot -->
+                                    <!---->
                                 </div><!-- END ROW 1 \ COL 5 -->
                                 <!------------------------------------------------------>
                             </div><!-- END ROW 1 -->
@@ -1066,19 +1072,19 @@
 
                                 <!-- for testing during initial setup -->
                                 <div style="display:none;">
-                                    <span style="margin-right: 15px; display:none;">
+                                    <span style="margin-right: 15px;">
                                         ct_id? @Html.DisplayFor(model => item.CareTransactionID)
                                     </span>
-                                    <span style="margin-left: 13px;">
+                                    <span style="margin-left: 13px; display:none;">
                                         Pending? @Html.DisplayFor(model => item.Pending)
                                     </span>
-                                    <span style="margin-left: 13px;">
+                                    <span style="margin-left: 13px; display:none;">
                                         Confirmed? @Html.DisplayFor(model => item.Confirmed)
                                     </span>
-                                    <span style="margin-left: 13px;">
+                                    <span style="margin-left: 13px; display:none;">
                                             Completed_PO? @Html.DisplayFor(model => item.Completed_PO)
                                     </span>
-                                    <span style="margin-left: 13px;">
+                                    <span style="margin-left: 13px; display:none;">
                                         Completed_CP? @Html.DisplayFor(model => item.Completed_CP)
                                     </span>
                                 </div>
