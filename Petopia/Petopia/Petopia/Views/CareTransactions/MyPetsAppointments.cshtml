@@ -524,7 +524,7 @@
                                         @if (!item.Completed_PO)
                                         { 
                                             <div style="background-color:rgba(153, 0, 0, .45);
-                                                        padding:5px; border-radius:0px 0px 5px 5px;">
+                                                        padding:5px; border-radius:5px 5px 0px 0px;">
                                                 <span class="our_appt_label" style="color:#f2e6d9;">
                                                     @Html.DisplayNameFor(model => model.PC_Rating)
                                                     &nbsp;
@@ -545,9 +545,9 @@
                                         }
                                         @if (!item.Completed_PO)
                                         { 
-                                            <div style="background-color:rgba(153, 0, 0, .45);">
-                                                <span class="our_appt_label" style="color:#f2e6d9;
-                                                             border-radius:0px 0px 5px 5px;">
+                                            <div style="background-color:rgba(153, 0, 0, .45);
+                                                        border-radius:0px 0px 5px 5px; padding:5px;">
+                                                <span class="our_appt_label" style="color:#f2e6d9;">
                                                     @Html.DisplayNameFor(model => model.PC_Comments)
                                                     <br />
                                                 </span>
@@ -574,7 +574,7 @@
                                         @if (!item.Completed_CP)
                                         { 
                                             <div style="background-color:rgba(153, 0, 0, .45);
-                                                        border-radius:5px 5px 0px 0px;">
+                                                        border-radius:5px 5px 0px 0px; padding:5px;">
                                                 <span class="our_appt_label" style="color:#f2e6d9;">
                                                     @Html.DisplayNameFor(model => model.PO_Rating)
                                                     &nbsp;
@@ -596,7 +596,7 @@
                                         @if (!item.Completed_CP)
                                         { 
                                             <div style="background-color:rgba(153, 0, 0, .45); 
-                                                        border-radius:0px 0px 5px 5px;">
+                                                        border-radius:0px 0px 5px 5px; padding:5px;">
                                                 <span class="our_appt_label" style="color:#f2e6d9;">
                                                     @Html.DisplayNameFor(model => model.PO_Comments)
                                                     <br />
@@ -612,6 +612,13 @@
                                 <!---->
                                 <!--============================== ROW THREE =========-->
                                 <div class="row our_row_three">
+
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Cancel Appointment", "Delete",
+                                        new { id = item.CareTransactionID },
+                                        new { @class="our_buttons",
+                                            style = "color: #f2e6d9; font-weight: normal" })
+                                    </div>
 
                                     <div style="float: right; margin-right: 5px;">
                                         @Html.ActionLink("Reschedule Appointment", 

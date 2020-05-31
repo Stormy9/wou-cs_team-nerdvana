@@ -67,7 +67,7 @@ namespace Petopia.Models.ViewModels
         // other thing:
         //AverageRating name changed because it shares name with other average rating
         [DisplayName("My average rating:  ")]
-        public string ProviderAverageRating { get; set; }
+        public decimal? ProviderAverageRating { get; set; }
 
 
         //===============================================================================
@@ -83,7 +83,7 @@ namespace Petopia.Models.ViewModels
 
         // other thing -- this too?
         [DisplayName("My average rating:  ")]
-        public string OwnerAverageRating { get; set; }
+        public decimal? OwnerAverageRating { get; set; }
 
 
         //===============================================================================

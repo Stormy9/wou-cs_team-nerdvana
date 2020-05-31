@@ -53,6 +53,13 @@ namespace Petopia.DAL
             // i had to re-generate a context & model ..... 
             //      the new context has nothing here   [=
             //
+            modelBuilder.Entity<CareTransaction>()
+                .Property(e => e.Charge)
+                .HasPrecision(5, 2);
+
+            modelBuilder.Entity<CareTransaction>()
+                .Property(e => e.Tip)
+                .HasPrecision(5, 2);
             //---------------------------------------------------------------------------
             // PetContext -- nothing in here in it's context
 

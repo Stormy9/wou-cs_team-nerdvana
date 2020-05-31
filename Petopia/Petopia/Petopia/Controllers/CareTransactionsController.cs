@@ -466,6 +466,7 @@ namespace Petopia.Controllers
                 smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
                 smtp.EnableSsl = true;
                 smtp.Send(mail_to_carer);
+                smtp.Send(mail_to_owner);
             }
             catch (Exception e)
             {
@@ -735,6 +736,7 @@ namespace Petopia.Controllers
                 smtp.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
                 smtp.EnableSsl = true;
                 smtp.Send(mail_to_carer);
+                smtp.Send(mail_to_owner);
             }
             catch (Exception e)
             {
@@ -1071,10 +1073,10 @@ namespace Petopia.Controllers
                                                     .Select(cpn => cpn.LastName).FirstOrDefault();
 
             // get Pet Carer's email address:
-            var thisCarerAspIdentity = db.PetopiaUsers.Where(cp => cp.UserID == thisOwnerPetopiaID)
+            var thisCarerAspIdentity = db.PetopiaUsers.Where(cp => cp.UserID == thisCarerPetopiaID)
                                                       .Select(asp => asp.ASPNetIdentityID).FirstOrDefault();
 
-            var thisCarerEmail = db.ASPNetUsers.Where(pu => pu.Id == thisOwnerAspIdentity)
+            var thisCarerEmail = db.ASPNetUsers.Where(pu => pu.Id == thisCarerAspIdentity)
                                                .Select(ce => ce.Email).FirstOrDefault();
 
 
@@ -1095,7 +1097,7 @@ namespace Petopia.Controllers
                 var EmailSubject_to_Carer = "[Petopia] Pet Owner has edited their appointment with you";
                 var EmailBody_to_Carer = "Hi! A Petopia User has edited one of their " +
                     "appointments with you, please navigate over to " +
-                    "http://petopia.azurewebsites.net  to track all of yourappointments.";
+                    "http://petopia.azurewebsites.net  to track all of your appointments.";
 
                 var EmailSubject_to_Owner = "[Petopia] Your Pet Care Appointment Edit Confirmation";
                 var EmailBody_to_Owner = "You requested to reschedule your Pet Care Appointment." +
@@ -1122,6 +1124,7 @@ namespace Petopia.Controllers
                     .AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
                 smtp.EnableSsl = true;
                 smtp.Send(mail_to_carer);
+                smtp.Send(mail_to_owner);
             }
             catch (Exception e)
             {
@@ -1470,8 +1473,8 @@ namespace Petopia.Controllers
             //---------------------------------------------------------
             var thisPetCarerID = careTransaction.CareProviderID;
 
-            var thisPetCarerPetopiaID = db.PetOwners.Where(poID => poID.PetOwnerID == thisPetCarerID)
-                                                    .Select(puID => puID.UserID).FirstOrDefault();
+            var thisPetCarerPetopiaID = db.CareProviders.Where(poID => poID.CareProviderID == thisPetCarerID)
+                                                        .Select(puID => puID.UserID).FirstOrDefault();
 
             var thisPetCarerAspID = db.PetopiaUsers.Where(puID => puID.UserID == thisPetCarerPetopiaID)
                                                    .Select(aspID => aspID.ASPNetIdentityID).FirstOrDefault();
@@ -1488,7 +1491,7 @@ namespace Petopia.Controllers
 
                 var EmailSubject_to_Owner = "[Petopia] Your Pet Care Appointment Cancel Confirmation";
                 var EmailBody_to_Owner = "You requested to cancel your scheduled Pet Care Appointment." +
-                    "Your selected Pet Care Provider has been notified.  Thank you for using Petopia," +
+                    "Your selected Pet Care Provider has been notified.  Thank you for using Petopia, " +
                     "please visit when you need Pet Care next time!";
 
                 MailAddress FromEmail = new MailAddress(ConfigurationManager.AppSettings["gmailAccount"]);
@@ -1511,6 +1514,7 @@ namespace Petopia.Controllers
                     .AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
                 smtp.EnableSsl = true;
                 smtp.Send(mail_to_carer);
+                smtp.Send(mail_to_owner);
             }
             catch (Exception e)
             {
@@ -1587,7 +1591,8 @@ namespace Petopia.Controllers
         //                                      for when PET CARER declines appt request!
         //-------------------------------------------------------------------------------
         // POST: CareTransactions/DeclineAppointment/5
-        [HttpPost, ActionName("Delete")]
+        //[HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeclineAppointment(int ct_id)
         {
@@ -1658,9 +1663,12 @@ namespace Petopia.Controllers
                     .AppSettings["gmailAccount"], ConfigurationManager.AppSettings["gmailPassword"]);
                 smtp.EnableSsl = true;
                 smtp.Send(mail_to_carer);
+                smtp.Send(mail_to_owner);
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
+                Console.ReadKey();
             }
             //---------------------------------------------------------
 
