@@ -1,0 +1,1 @@
+select UserID, FirstName, LastName, IsProvider, ResZipCode from PetopiaUsers where IsProvider = 1;
