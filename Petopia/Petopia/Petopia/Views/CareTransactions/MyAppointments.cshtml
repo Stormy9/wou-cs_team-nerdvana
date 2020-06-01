@@ -845,48 +845,56 @@
                                     <div style="margin-bottom: 13px;">
                                         <span class="our_appt_label">
                                             @Html.DisplayNameFor(model => model.Charge)
-                                                &nbsp; $ </span>
+                                            &nbsp; $
+                                        </span>
                                         @Html.DisplayFor(model => item.Charge)
                                     </div>
 
                                     <div style="margin-top: 13px;">
                                         <span class="our_appt_label">
-                                            @Html.DisplayNameFor(model => model.Tip) 
-                                                &nbsp; $ </span>
+                                            @Html.DisplayNameFor(model => model.Tip)
+                                            &nbsp; $
+                                        </span>
                                         @Html.DisplayFor(model => item.Tip)
                                     </div>
 
                                     <!-------------------------------------------------->
-                                    @if ((!item.IsPaid) && (item.isPetOwner))
+                                    @if (item.IsPaid == false && isPetOwner)
                                     {
-                                    <div class="stripe_spot">
-                                        @if (item.Tip == null)
-                                        {
-                                            item.Tip = 0;
-                                        }
-                                        @{ var totalCharge = (item.Charge + item.Tip) * 100;
-                                            var displayCharge = item.Charge + item.Tip; }
+                                        <div class="stripe_spot">
+                                            @if (item.Tip == null)
+                                            {
+                                                item.Tip = 0;
+                                            }
+                                            @{ var totalCharge = (item.Charge + item.Tip) * 100;
+                                                var displayCharge = item.Charge + item.Tip; }
 
-                                        <form action="/CareTransactions/Charge/@item.CareTransactionID" 
-                                              method="POST" >
+                                            <form action="/CareTransactions/Charge/@item.CareTransactionID"
+                                                  method="POST">
 
-                                            <article>
-                                                <label> Total: @displayCharge </label>
-                                                <span style="margin-left: 25px; display:none;"> 
-                                                    ct_id: @item.CareTransactionID  </span>
-                                            </article>
+                                                <article>
+                                                    <label> Total: @displayCharge </label>
+                                                    <span style="margin-left: 25px; display:none;">
+                                                        ct_id: @item.CareTransactionID
+                                                    </span>
+                                                </article>
 
-                                            <script src="//checkout.stripe.com/v2/checkout.js"
-                                                class="stripe-button" data-key="@ViewBag.StripePublishKey" 
-                                                data-locale="auto" data-description="Charge" 
-                                                data-amount="@totalCharge">
-                                            </script>
+                                                <script src="//checkout.stripe.com/v2/checkout.js"
+                                                        class="stripe-button" data-key="@ViewBag.StripePublishKey"
+                                                        data-locale="auto" data-description="Charge"
+                                                        data-amount="@totalCharge">
+                                                </script>
 
-                                        </form>
-                                    </div><!-- end stripe-spot -->
+                                            </form>
+                                        </div><!-- end stripe-spot -->
                                     }
-                                    @if (item.IsPaid)
-                                    { 
+                                    @if (item.IsPaid == true && isPetOwner)
+                                    {
+                                        <label> paid! </label>
+                                        <span>@Html.DisplayFor(model => item.IsPaid) </span>
+                                    }
+                                    @if (item.IsPaid == true && isPetCarer)
+                                    {
                                         <label> paid! </label>
                                         <span>@Html.DisplayFor(model => item.IsPaid) </span>
                                     }

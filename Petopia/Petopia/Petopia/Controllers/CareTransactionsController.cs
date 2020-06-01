@@ -1882,7 +1882,8 @@ namespace Petopia.Controllers
 
                     Pending = ct.Pending, Confirmed = ct.Confirmed,
                     Completed_PO = ct.Completed_PO, Completed_CP = ct.Completed_CP,
-                    IsPaid = ct.IsPaid, isPetOwner = puO.IsOwner
+                    IsPaid = ct.IsPaid, 
+                    isPetOwner = puO.IsOwner, isPetCarer = puP.IsProvider
 
                 }).ToList();
 
