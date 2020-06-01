@@ -90,7 +90,8 @@ namespace Petopia.Controllers
             petopiaUser.UserBio = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
                                                  .Select(x => x.UserBio).First();
 
-
+            //---------------------------------------------------------------------------
+            //                             Owner Needs & Access -AND- Provider Experience
             //---------------------------------------------------------------------------
             //We might not have these so we want to see if we get a result back before populating...
             if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
@@ -115,6 +116,7 @@ namespace Petopia.Controllers
                                                      .Select(x => x.PetOwnerID).First();
             }
             //---------------------------------------------------------------------------
+            //                                             OWNER\PROVIDER AVERAGE RATINGS
             //---------------------------------------------------------------------------
             // trying to get average rating for Pet Owners & Care Providers
             if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
@@ -146,6 +148,7 @@ namespace Petopia.Controllers
                 //petopiaUser.OwnerAverageRating = thisPO_Avg_Rating;
             }
             //---------------------------------------------------------------------------
+            //                                                           GET PET(S) LIST!
             //---------------------------------------------------------------------------
             //Tests to make getting pets easier
             if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
@@ -165,7 +168,8 @@ namespace Petopia.Controllers
                                                  PetPhoto = n.PetPhoto
                                              }).ToList();
             }
-
+            //---------------------------------------------------------------------------
+            //                                                  GET OWNER\PROVIDER BADGES
             //---------------------------------------------------------------------------
             //Check if badges exist and put in ViewBag.
             DAL.UserBadge UserBadges = db.UserBadges.Where(x => x.UserID == loggedID)
@@ -199,6 +203,9 @@ namespace Petopia.Controllers
                 ViewBag.OtherProvider = UserBadges.OtherProvider;
             }
             
+            //---------------------------------------------------------------------------
+            //                                              ZIP LOGIC for SCROLLY-WINDOWS
+            //---------------------------------------------------------------------------
             //Logic for populating scroll area on profiles based around zip code proximity.
             var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
 
@@ -221,10 +228,9 @@ namespace Petopia.Controllers
 
             ViewBag.ZipList = String.Join(",", NearbyZipsList.ToArray());
 
-
-
             //---------------------------------------------------------------------------
-            // scrolly-windows to the right of the profile pages
+            //                           SCROLLY-WINDOWS -- on the right of profile pages
+            //---------------------------------------------------------------------------
             //
             //IF IM BOTH THEN SHOW LIST OF BOTH OWNERS AND PROVIDERS I'VE WORKED WITH IN PAST
             if (petopiaUser.IsOwner == true && petopiaUser.IsProvider == true)
@@ -326,8 +332,10 @@ namespace Petopia.Controllers
                             OtherProvider = ub.OtherProvider
                         }).ToList();
             }
-            //---------------------------------------------------------
-            // CHECK FOR PENDING APPOINTMENTS
+            //---------------------------------------------------------------------------
+            //                                CHECK FOR PENDING & INCOMPLETE APPOINTMENTS
+            //---------------------------------------------------------------------------
+            // CHECK FOR PENDING APPOINTMENTS -- CARE PROVIDERS
             // IFF => we get 1, then we know this logged-in user is a CareProvider
             if (db.CareProviders.Where(cp => cp.UserID == loggedID).Count() == 1)
             {
@@ -351,7 +359,8 @@ namespace Petopia.Controllers
                     ViewBag.anyPending = anyPending;
                 }
 
-                // does this care provider have any un-completed appointments (ratings\comments)?
+                // CHECK FOR INCOMPLETE APPOINTMENTS -- 
+                // does this care provider have un-completed appts (ratings\comments)?
                 if (db.CareTransactions.Where(ct => (ct.CareProviderID == cp_ID) 
                                               && (!ct.Completed_PO)
                                               && (ct.EndDate < DateTime.Today)).Count() > 0)
@@ -361,7 +370,7 @@ namespace Petopia.Controllers
                 }
             }
             //---------------------------------------------------------
-            // Pet Owner side to check for incomplete appointments.....
+            // PET OWNER SIDE -- CHECK FOR INCOMPLETE APPOINTMENTS.....
             if (db.PetOwners.Where(po => po.UserID == loggedID).Count() == 1)
             {
                 // get this user's PetOwnerID.....
@@ -376,7 +385,7 @@ namespace Petopia.Controllers
                 // and THIS works.....
                 ViewBag.test_ct_ID = test_ct_ID;
 
-                // does this pet owner have any un-completed appointments (ratings\comments)?
+                // does this pet owner have un-completed appointments (ratings\comments)?
                 if (db.CareTransactions.Where(ct => (ct.PetOwnerID == po_ID) 
                                               && (ct.EndDate < DateTime.Today) 
                                               && (!ct.Completed_CP)).Count() > 0)
@@ -388,8 +397,8 @@ namespace Petopia.Controllers
             //---------------------------------------------------------
             return View(petopiaUser);
         }
-
         //===============================================================================
+        //                                            EDIT PROFILE & ACCOUNT STUFF -- GET
         //===============================================================================
         // GET: ProfilePage/EditMyStuff
         public ActionResult EditMyStuff()
@@ -446,6 +455,8 @@ namespace Petopia.Controllers
 
 
             //---------------------------------------------------------------------------
+            //                             Owner Needs & Access -AND- Provider Experience
+            //---------------------------------------------------------------------------
             //We might not have these so we want to see if we get a result back 
             //     before populating...
             if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
@@ -468,6 +479,7 @@ namespace Petopia.Controllers
             return View(petopiaUser);
         }
         //-------------------------------------------------------------------------------
+        //                                           EDIT PROFILE & ACCOUNT STUFF -- POST
         //-------------------------------------------------------------------------------
         // POST: ProfilePage/EditProfile
         [HttpPost]
@@ -483,8 +495,9 @@ namespace Petopia.Controllers
 
 
                 //Need to split up model into 3 objects to fit into db
-
-                //PetopiaUser
+                //-----------------------------------------------------------------------
+                //                             PetopiaUser - common to Owners & Providers
+                //-----------------------------------------------------------------------
                 DAL.PetopiaUser currentUser = new DAL.PetopiaUser();
 
                 currentUser.UserID = loggedID;
@@ -518,7 +531,9 @@ namespace Petopia.Controllers
                 currentUser.Tagline = model.Tagline;
 
                 //-----------------------------------------------------------------------
-                //Need to put the bools back into the model just in case we have to return
+                //Need to put bools back into the model just in case we have to return
+                //                                                             User Roles
+                //-----------------------------------------------------------------------
                 model.IsOwner = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
                                                .Select(x => x.IsOwner).First();
 
@@ -526,7 +541,8 @@ namespace Petopia.Controllers
                                                   .Select(x => x.IsProvider).First();
 
                 //-----------------------------------------------------------------------
-                // Profile Pic stuff!
+                //                                                     Profile Pic stuff!
+                //-----------------------------------------------------------------------
                 if (model.UserProfilePicture != null)
                 {
                     if (model.UserProfilePicture.ContentLength > (4 * 1024 * 1024))
@@ -561,7 +577,8 @@ namespace Petopia.Controllers
                 db.SaveChanges();
 
                 //-----------------------------------------------------------------------
-                //Care Provider
+                //                                          Care Provider - specific info
+                //-----------------------------------------------------------------------
                 if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
                 {
                     //If we get 1, then we know this user is a CareProvider
@@ -583,7 +600,8 @@ namespace Petopia.Controllers
                     db.SaveChanges();
                 }
                 //-----------------------------------------------------------------------
-                //Pet Owner
+                //                                              Pet Owner - specific info
+                //-----------------------------------------------------------------------
                 if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
                 {
                     //If we get 1, then we know this user is a PetOwner
@@ -616,8 +634,9 @@ namespace Petopia.Controllers
 
         }  // END 'EditProfile()' POST
         //===============================================================================
+        //                                                             VISIT PROFILE PAGE
         //===============================================================================
-        // GET: ProfilePage                                            VISIT PROFILE PAGE
+        // GET: ProfilePage                                            
         public ActionResult VisitProfile(int loggedID)
         {
             // originally -- from the Pet Profile Page -- which was the only place we had
@@ -659,7 +678,7 @@ namespace Petopia.Controllers
 
 
             // This stuff probably won't be displayed in the profile 
-            //    but will be put into the model just in case
+            //                      but will be put into the model just in case
             petopiaUser.MainPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
                                                    .Select(x => x.MainPhone).First();
             petopiaUser.AltPhone = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
@@ -694,7 +713,8 @@ namespace Petopia.Controllers
             petopiaUser.UserBio = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
                                                  .Select(x => x.UserBio).First();
 
-
+            //---------------------------------------------------------------------------
+            //                             Owner Needs & Access -AND- Provider Experience
             //---------------------------------------------------------------------------
             //We might not have these so we want to see if we get a result back before populating...
             if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
@@ -706,7 +726,7 @@ namespace Petopia.Controllers
                 petopiaUser.ExperienceDetails = db.CareProviders.Where(x => x.UserID == loggedID)
                                                                 .Select(x => x.ExperienceDetails).First();
             }
-
+            //---------------------------------------------------------
             if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
             {
                 petopiaUser.OwnerAverageRating = db.PetOwners.Where(x => x.UserID == loggedID)
@@ -718,7 +738,8 @@ namespace Petopia.Controllers
                 petopiaUser.HomeAccess = db.PetOwners.Where(x => x.UserID == loggedID)
                                                      .Select(x => x.HomeAccess).First();
             }
-
+            //---------------------------------------------------------------------------
+            //                                                           GET PET(S) LIST!
             //---------------------------------------------------------------------------
             //Tests to make getting pets easier
             if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
@@ -739,7 +760,8 @@ namespace Petopia.Controllers
                                                  PetOwnersID = n.PetOwnerID
                                              }).ToList();
             }
-
+            //---------------------------------------------------------------------------
+            //                                                      OWNER\PROVIDER BADGES
             //---------------------------------------------------------------------------
             //Check if badges exist and put in ViewBag.
             DAL.UserBadge UserBadges = db.UserBadges.Where(x => x.UserID == loggedID)
@@ -775,5 +797,35 @@ namespace Petopia.Controllers
             }
             return View(petopiaUser);
         }
+        //---------------------------------------------------------------------------
+        //                                             OWNER\PROVIDER AVERAGE RATINGS
+        //---------------------------------------------------------------------------
+        // trying to get average rating for Pet Owners & Care Providers
+
+
+        //---------------------------------------------------------------------------
+        //                                              ZIP LOGIC for SCROLLY-WINDOWS
+        //---------------------------------------------------------------------------
+        //Logic for populating scroll area on profiles based around zip code proximity.
+
+
+        //---------------------------------------------------------------------------
+        //                           SCROLLY-WINDOWS -- on the right of profile pages
+        //---------------------------------------------------------------------------
+        //
+        //IF IM BOTH THEN SHOW LIST OF BOTH OWNERS AND PROVIDERS I'VE WORKED WITH IN PAST
+
+
+
+        //IF IM ONLY A PET OWNER, SHOW LIST OF PROVIDERS
+
+
+
+        //IF IM ONLY CARE PROVIDER, SHOW LIST OF PET OWNERS
+
+        //
+        //
+        //===============================================================================
+        //===============================================================================
     }
 }
