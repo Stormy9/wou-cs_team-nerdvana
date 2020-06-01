@@ -857,8 +857,14 @@
                                     </div>
 
                                     <!-------------------------------------------------->
+                                    @if ((!item.IsPaid) && (item.isPetOwner))
+                                    {
                                     <div class="stripe_spot">
-                                        @{ var totalCharge = (item.Charge + item.Tip)*100;
+                                        @if (item.Tip == null)
+                                        {
+                                            item.Tip = 0;
+                                        }
+                                        @{ var totalCharge = (item.Charge + item.Tip) * 100;
                                             var displayCharge = item.Charge + item.Tip; }
 
                                         <form action="/CareTransactions/Charge/@item.CareTransactionID" 
@@ -878,6 +884,12 @@
 
                                         </form>
                                     </div><!-- end stripe-spot -->
+                                    }
+                                    @if (item.IsPaid)
+                                    { 
+                                        <label> paid! </label>
+                                        <span>@Html.DisplayFor(model => item.IsPaid) </span>
+                                    }
                                     <!---->
                                 </div><!-- END ROW 1 \ COL 5 -->
                                 <!------------------------------------------------------>

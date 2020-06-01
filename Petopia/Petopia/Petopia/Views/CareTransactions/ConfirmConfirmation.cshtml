@@ -102,22 +102,16 @@
                         <div style="margin:5px; float:right;">
                             @Html.ActionLink("Pet's appointments", "MyPetsAppointments",
                                     new { controller = "CareTransactions", pet_id = Model.PetID },
-                                        new
-                                             {
-                                                 @class = "btn our_buttons",
-                                            style = "color:#f2e6d9; font-weight:normal;"
-                                             })
+                                        new { @class = "btn our_buttons",
+                                            style = "color:#f2e6d9; font-weight:normal;" })
                         </div>
                     }
 
                     <div style="margin:5px; float:right;">
                         @Html.ActionLink("My appointments", "MyAppointments",
                                     new { id = Model.PetOwnerID },
-                                    new
-                                         {
-                                             @class = "btn our_buttons",
-                                        style = "color:#f2e6d9; font-weight:normal;"
-                                         })
+                                    new { @class = "btn our_buttons",
+                                        style = "color:#f2e6d9; font-weight:normal;" })
                     </div>
                 </div>
                 <!---->
@@ -129,20 +123,14 @@
                         <div style="margin:5px; float:right;">
                             @Html.ActionLink("Pet's profile", "PetProfile",
                                     new { controller = "Pets", id = Model.PetID },
-                                        new
-                                             {
-                                                 @class = "btn our_buttons",
-                                            style = "color:#f2e6d9; font-weight:normal;"
-                                             })
+                                        new { @class = "btn our_buttons",
+                                            style = "color:#f2e6d9; font-weight:normal;" })
                         </div>
                         <div style="margin:5px; float:right;">
                             @Html.ActionLink("Pet Owner Profile", "VisitProfile",
                                 new { controller = "ProfilePage", loggedID = thisOwnerPetopiaID },
-                                    new
-                                         {
-                                             @class = "btn our_buttons",
-                                            style = "color:#f2e6d9; font-weight:normal;"
-                                         })
+                                    new { @class = "btn our_buttons",
+                                            style = "color:#f2e6d9; font-weight:normal;" })
                         </div>
                     }
                     @if (loggedInUser == thisOwnerAspIdentity)
@@ -150,11 +138,8 @@
                         <div style="margin:5px; float:right;">
                             @Html.ActionLink("Pet Carer Profile", "VisitProfile",
                                 new { controller = "ProfilePage", loggedID = thisCarerPetopiaID },
-                                    new
-                                         {
-                                             @class = "btn our_buttons",
-                                            style = "color:#f2e6d9;font-weight:normal;"
-                                         })
+                                    new { @class = "btn our_buttons",
+                                            style = "color:#f2e6d9;font-weight:normal;"  })
                         </div>
                     }
                 </div><!-- END bottom_button_box -->

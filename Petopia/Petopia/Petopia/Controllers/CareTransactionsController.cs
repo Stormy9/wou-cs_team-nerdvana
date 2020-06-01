@@ -248,8 +248,8 @@ namespace Petopia.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult BookAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
-          "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
-          "CareProviderID,PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")] 
+          "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID," +
+          "PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP,IsPaid")] 
                                                             CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
@@ -580,8 +580,8 @@ namespace Petopia.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
-          "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
-          "CareProviderID,PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")] 
+          "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID," +
+          "PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP,IsPaid")] 
                                                         CareTransaction careTransaction)
         {
             // so why *do* some of these have all that ^^^ and others don't?
@@ -994,7 +994,8 @@ namespace Petopia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditAppointment([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport,Charge," +
           "Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID,PetID," +
-            "NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")]CareTransaction careTransaction)
+            "NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP,IsPaid")]
+                CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
             {
@@ -1220,8 +1221,8 @@ namespace Petopia.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CompleteAppointment_PetOwner([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
-            "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
-            "CareProviderID,PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")] 
+            "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID," +
+            "PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP,IsPaid")] 
                                                                 CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
@@ -1329,8 +1330,8 @@ namespace Petopia.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CompleteAppointment_PetCarer([Bind(Include = "TransactionID,StartDate,EndDate,StartTime,EndTime,CareProvided,CareReport," +
-            "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID," +
-            "CareProviderID,PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP")]
+            "Charge,Tip,PC_Rating,PC_Comments,PO_Rating,PO_Comments,PetOwnerID,CareProviderID," +
+            "PetID,NeededThisVisit,Pending,Confirmed,Completed_PO,Completed_CP,IsPaid")]
                                                         CareTransaction careTransaction)
         {
             if (ModelState.IsValid)
@@ -1880,16 +1881,20 @@ namespace Petopia.Controllers
                     CareTransactionID = ct.TransactionID,
 
                     Pending = ct.Pending, Confirmed = ct.Confirmed,
-                    Completed_PO = ct.Completed_PO, Completed_CP = ct.Completed_CP
+                    Completed_PO = ct.Completed_PO, Completed_CP = ct.Completed_CP,
+                    IsPaid = ct.IsPaid, isPetOwner = puO.IsOwner
 
                 }).ToList();
 
             //---------------------------------------------------------
             return View(Vmodel);
         }
-
+        //===============================================================================
+        //                                            Stripe Charge stuff -- like the GET
+        //===============================================================================
         public ActionResult Charge(string stripeEmail, string stripeToken, int? id)
         {
+            //---------------------------------------------------------
             //---------------------------------------------------------
             if (id == null)
             {
@@ -1906,6 +1911,44 @@ namespace Petopia.Controllers
                 ViewBag.notFound = notFound;
                 return HttpNotFound();
             }
+            //---------------------------------------------------------
+            //---------------------------------------------------------
+            if (ModelState.IsValid)
+            {
+                careTransaction.TransactionID = careTransaction.TransactionID;
+                careTransaction.PetOwnerID = careTransaction.PetOwnerID;
+                careTransaction.PetID = careTransaction.PetID;
+                careTransaction.CareProviderID = careTransaction.CareProviderID;
+
+                careTransaction.StartDate = careTransaction.StartDate;
+                careTransaction.StartTime = careTransaction.StartTime;
+                careTransaction.EndDate = careTransaction.EndDate;
+                careTransaction.EndTime = careTransaction.EndTime;
+
+                careTransaction.NeededThisVisit = careTransaction.NeededThisVisit;
+                careTransaction.CareProvided = careTransaction.CareProvided;
+                careTransaction.CareReport = careTransaction.CareReport;
+
+                careTransaction.PC_Rating = careTransaction.PC_Rating;
+                careTransaction.PC_Comments = careTransaction.PC_Comments;
+                careTransaction.PO_Rating = careTransaction.PO_Rating;
+                careTransaction.PO_Comments = careTransaction.PO_Comments;
+
+                careTransaction.Pending = careTransaction.Pending;
+                careTransaction.Confirmed = careTransaction.Confirmed;
+                careTransaction.Completed_PO = careTransaction.Completed_PO;
+                careTransaction.Completed_CP = careTransaction.Completed_CP;
+
+                careTransaction.IsPaid = true;
+
+                db.Entry(careTransaction).State = EntityState.Modified;
+
+                db.SaveChanges();
+            }
+            //---------------------------------------------------------
+
+            ViewBag.IsPaid = "IsPaid? " + careTransaction.IsPaid;
+
             //---------------------------------------------------------------------------
             // the charge + tip for this CareTransaction:
             var totalCharge = ((careTransaction.Charge + careTransaction.Tip) * 100);
@@ -1994,18 +2037,12 @@ namespace Petopia.Controllers
             ViewBag.CustomerEmail = customer.Email;
 
             ViewBag.TodaysDate = DateTime.Today.ToString("MMMM dd, yyyy");
-            
+
             //---------------------------------------------------------
+
             return View();
         }
-
-
-
-
-
-
-
-
+        //===============================================================================
 
 
 
