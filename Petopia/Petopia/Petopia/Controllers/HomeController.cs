@@ -86,6 +86,11 @@ namespace Petopia.Controllers
             var OwnerLocation = ZipCodes.Get(searchZip);
             var ZipCodesNearOwner = ZipCodes.RadiusSearch(OwnerLocation, 10);
 
+            if(OwnerLocation == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "Invalid zipcode");
+            }
+
             List<String> zipsList = new List<String>();
 
             foreach (ZipCode zip in ZipCodesNearOwner)
@@ -102,12 +107,12 @@ namespace Petopia.Controllers
 
             string ZipArray = String.Join(",", zipsList.ToArray());
 
-            var test = pdb.PetopiaUsers.Where(x => zipsList.Contains(x.ResZipcode)).ToList();
+            //var test = pdb.PetopiaUsers.Where(x => zipsList.Contains(x.ResZipcode)).ToList();
 
             SearchViewModel carerSearch = new SearchViewModel();
 
                 carerSearch.PetCarerSearchList = (from pu in pdb.PetopiaUsers
-                                                  where pu.ResZipcode.Contains(searchZip) && pu.IsProvider
+                                                  where zipsList.Contains(pu.ResZipcode) && pu.IsProvider
 
                                                   join cp in pdb.CareProviders on pu.UserID equals cp.UserID
                                                   join ub in pdb.UserBadges on cp.UserID equals ub.UserID
