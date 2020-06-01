@@ -19,6 +19,8 @@ namespace Petopia.Controllers
         private PetopiaContext db = new PetopiaContext();
 
         //===============================================================================
+        //                                                                 PETS FOR ADMIN
+        //===============================================================================
         // GET: Pets
         public ActionResult Pets_AdminIndex()
         {
@@ -29,6 +31,7 @@ namespace Petopia.Controllers
 
         //===============================================================================
         // GET: Pets/Profile/5                                  // THIS IS PET'S PROFILE!
+        //===============================================================================
         public ActionResult PetProfile(int? id)
         {
             if (id == null)
@@ -43,26 +46,23 @@ namespace Petopia.Controllers
             }
 
             //---------------------------------------------------------------------------
-            // make pet's birthday a better format!                         it worked!
+            // make pet's birthday a better format! 
             var petsBday = pet.Birthdate;
 
             ViewBag.PetsBday = petsBday.ToString("MMMM dd, yyyy");
 
             //---------------------------------------------------------------------------
-            // trying to pull in pet's owner's name.....                    it worked!
+            // trying to pull in pet's owner's name.....  
             var petsOwnerID = pet.PetOwnerID;
 
             var petOwnerPetopiaID = db.PetOwners.Where(po => po.PetOwnerID == petsOwnerID)
-                                         .Select(po => po.UserID)
-                                         .FirstOrDefault();
+                                         .Select(po => po.UserID).FirstOrDefault();
 
             var petOwnerFirstName = db.PetopiaUsers.Where(poID => poID.UserID == petOwnerPetopiaID)
-                                                   .Select(pon => pon.FirstName)
-                                                   .FirstOrDefault();
+                                                   .Select(pon => pon.FirstName).FirstOrDefault();
 
             var petOwnerLastName = db.PetopiaUsers.Where(poID => poID.UserID == petOwnerPetopiaID)
-                                                  .Select(pon => pon.LastName)
-                                                  .FirstOrDefault();
+                                                  .Select(pon => pon.LastName).FirstOrDefault();
 
             ViewBag.PetOwnerPetopiaID = petOwnerPetopiaID;
             ViewBag.PetsOwnersFirstName = petOwnerFirstName;
@@ -71,8 +71,7 @@ namespace Petopia.Controllers
             //---------------------------------------------------------------------------
             // trying to pull in pet's general location (which is same as owners, duh!
             var petsGeneralLocation = db.PetopiaUsers.Where(poID => poID.UserID == petOwnerPetopiaID)
-                                                     .Select(pgl => pgl.GeneralLocation)
-                                                     .FirstOrDefault();
+                                                     .Select(pgl => pgl.GeneralLocation).FirstOrDefault();
 
             ViewBag.PetsGeneralLocation = petsGeneralLocation;
 
@@ -81,13 +80,11 @@ namespace Petopia.Controllers
             //        to ONLY show details/appts/editPet buttons to the Pet's owner!
             // find this Pet's Owner's ID
             var thisPetsOwnersID = db.Pets.Where(p => p.PetID == id)
-                                          .Select(poID => poID.PetOwnerID)
-                                          .FirstOrDefault();
+                                          .Select(poID => poID.PetOwnerID).FirstOrDefault();
 
             // now pull this Pet Owner's PetopiaUser ID
             var thisPetsOwnersPetopiaUserID = db.PetOwners.Where(pu => pu.PetOwnerID == thisPetsOwnersID)
-                                                          .Select(puID => puID.UserID)
-                                                          .FirstOrDefault();
+                                                          .Select(puID => puID.UserID).FirstOrDefault();
 
             // now pull this PetopiaUser's ASPNetIdentityID
             var thisPetsOwnersASPNetIdentityID = db.PetopiaUsers.Where(pu => pu.UserID == thisPetsOwnersPetopiaUserID)
@@ -137,12 +134,10 @@ namespace Petopia.Controllers
 
                 var identityID = User.Identity.GetUserId();
                 var loggedID = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
-                                              .Select(x => x.UserID)
-                                              .First();
+                                              .Select(x => x.UserID).First();
 
                 int ownerID = db.PetOwners.Where(x => x.UserID == loggedID)
-                                          .Select(x => x.PetOwnerID)
-                                          .First();
+                                          .Select(x => x.PetOwnerID).First();
 
                 pet.PetName = model.PetName;
                 pet.Species = model.Species;
@@ -197,7 +192,6 @@ namespace Petopia.Controllers
 
             return View(model);
         }
-
         //===============================================================================
         // GET: Pets/EditPet/5
         public ActionResult EditPet(int? id)
@@ -208,11 +202,12 @@ namespace Petopia.Controllers
             }
 
             DAL.Pet pet = db.Pets.Find(id);
+
             if (pet == null)
             {
                 return HttpNotFound();
             }
-
+            //---------------------------------------------------------
             PetPicViewModel model = new PetPicViewModel();
 
             model.PetName = pet.PetName;
@@ -364,6 +359,7 @@ namespace Petopia.Controllers
             }
 
             DAL.Pet pet = db.Pets.Find(id);
+
             if (pet == null)
             {
                 return HttpNotFound();
@@ -379,6 +375,7 @@ namespace Petopia.Controllers
         {
             DAL.Pet pet = db.Pets.Find(id);
             db.Pets.Remove(pet);
+
             db.SaveChanges();
 
             return RedirectToAction("ProfilePage", "Index");
@@ -417,6 +414,7 @@ namespace Petopia.Controllers
             }
 
             DAL.Pet pet = db.Pets.Find(id);
+
             if (pet == null)
             {
                 return HttpNotFound();
@@ -560,8 +558,10 @@ namespace Petopia.Controllers
         public ActionResult PetGalleryDelete(int id)
         {
             PetGallery petG = db.PetGallery.Find(id);
+
             int? petID = petG.PetID;
             db.PetGallery.Remove(petG);
+
             db.SaveChanges();
 
             return RedirectToAction("PetGallery", new { id =  petID});
