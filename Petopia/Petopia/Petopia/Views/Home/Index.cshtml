@@ -48,9 +48,13 @@
                         <!-- aha!  it was the 'came-with' stuff way up top! -->
                         @Html.TextBox("searchZip", null,
                                     new { @class = "form-control splash_search_input",
-                                          placeholder = "enter your zip code.....",
-                                            @pattern="[0-9]{5}",
-                                            oninvalid="this.setCustomValidity('please use 5-digit zipcode!')"})
+                                          placeholder = "enter your 5-digit zip code.....",
+                                            @pattern="[0-9]{5}" })
+
+                        <!-- thought a custom error message would be helpful 
+                            and it is -- but it is also tempremental, haha 
+                            figure out maybe sometime -- general format is like:
+                            (at)oninvalid="this.setCustomValidity('please use 5-digit zipcode!')"-->
                     </div>
 
                     <button type="submit" class="our_buttons">
@@ -78,9 +82,8 @@
 
                         @Html.TextBox("searchZip", null,
                                     new { @class = "form-control splash_search_input",
-                                          placeholder = "enter your zip code.....",
-                                            @pattern="[0-9]{5}",
-                                            oninvalid="this.setCustomValidity('please use 5-digit zipcode!')"})
+                                          placeholder = "enter your 5-digit zip code.....",
+                                            @pattern="[0-9]{5}" })
                     </div>
 
                     <button type="submit" class="our_buttons" >
