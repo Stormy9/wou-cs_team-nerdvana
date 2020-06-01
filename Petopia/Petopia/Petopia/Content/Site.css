@@ -118,7 +118,7 @@ textarea {
 }
 /* TODO -- figure out why the width on this isn't widening! */
 .splash_search_input {
-    width: 199px;
+    width: 270px;
     padding: 9px;
     font-size: 18px;
 }

@@ -32,16 +32,28 @@
 
                 <!-- Stripe payment stuff -->
                 <div style="border:1px solid navy; border-radius:5px; padding:5px;">
-                    <p style="font-size:90%; font-style:italic">
-                        @ViewBag.ChargeAmount </p> <br />
+                    <label style="font-size:90%; font-style:italic; display:none">
+                        @ViewBag.ChargeAmount
+                    </label> 
 
                     <label>Total Paid:</label> @ViewBag.theREALcharge <br />
                     <label>For:</label> @ViewBag.ChargeDesc <br />
                     <label>Stripe payment email:</label> @ViewBag.CustomerEmail <br />
                     <label>Paid on:</label> @ViewBag.TodaysDate <br />
+                    <label>@ViewBag.IsPaid</label>
                 </div>
 
             </div><!-- end column -->
-        </div><!-- end row -->
+            <div class="col-sm-6 col-md-6">
+                @Html.ActionLink("My appointments", "MyAppointments",
+                                new { @class = "btn our_buttons",
+                                    style = "color:#f2e6d9; font-weight:normal;" })
+            </div>
+        </div><!-- end row one -->        
+        <!--==========================================================================-->
     </div><!-- end container-fluid -->
-
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<!--==================================================================================-->
