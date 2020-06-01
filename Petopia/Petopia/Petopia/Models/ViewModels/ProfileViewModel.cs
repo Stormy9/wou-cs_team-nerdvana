@@ -122,12 +122,12 @@ namespace Petopia.Models.ViewModels
         [DisplayName("* City:")]
         public string ResCity { get; set; }
 
-        [Required(ErrorMessage = "please enter your residential state")]
+        [Required(ErrorMessage = "please enter 2-character state")]
         [DisplayName("* State:")]
         [StringLength(2)]
         public string ResState { get; set; }
 
-        [Required(ErrorMessage = "please enter your residential zipcode")]
+        [Required(ErrorMessage = "please enter 5-digit zipcode")]
         [DisplayName("* ZipCode:")]
         [StringLength(5)]
         public string ResZipcode { get; set; }

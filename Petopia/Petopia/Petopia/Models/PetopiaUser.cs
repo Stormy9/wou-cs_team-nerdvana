@@ -46,7 +46,8 @@ namespace Petopia.Models
 
         //===============================================================================
         [Required]
-        [DataType(DataType.PhoneNumber, ErrorMessage = "please enter a valid phone number")]
+        [DataType(DataType.PhoneNumber, 
+                           ErrorMessage = "please enter your phone number as requested")]
         [DisplayName("* Main Phone #")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$")]
         [StringLength(12)]
@@ -77,13 +78,13 @@ namespace Petopia.Models
         public string ResCity { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required(ErrorMessage = "please enter your residential state")]
+        [Required(ErrorMessage = "please enter 2-character state")]
         [DisplayName("* State")]
         [StringLength(2)]
         public string ResState { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required(ErrorMessage = "please enter your residential zipcode")]
+        [Required(ErrorMessage = "please enter 5-digit zipcode")]
         [DisplayName("* ZipCode")]
         [StringLength(5)]
         public string ResZipcode { get; set; }
