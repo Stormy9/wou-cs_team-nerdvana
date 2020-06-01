@@ -113,7 +113,7 @@ namespace Petopia.Controllers
             SearchViewModel carerSearch = new SearchViewModel();
 
                 carerSearch.PetCarerSearchList = (from pu in pdb.PetopiaUsers
-<<<<<<< HEAD
+
                                                   where zipsList.Contains(pu.ResZipcode) && pu.IsProvider
 
                                                   join cp in pdb.CareProviders on pu.UserID equals cp.UserID
@@ -143,37 +143,6 @@ namespace Petopia.Controllers
                                                       IsOtherProvider = ub.OtherProvider
 
                                                   }).ToList();
-=======
-                            where pu.ResZipcode.Contains(searchZip) && pu.IsProvider
-
-                            join cp in pdb.CareProviders on pu.UserID equals cp.UserID
-                            join ub in pdb.UserBadges on cp.UserID equals ub.UserID
-
-                            select new SearchViewModel.CareProviderSearch
-                            {
-                                CP_ID = cp.CareProviderID,
-                                CP_PU_ID = pu.UserID,
-                                CP_Name = pu.FirstName + " " + pu.LastName,
-                                PU_Zipcode = pu.ResZipcode,
-
-                                CP_Profile_Pic = pu.ProfilePhoto,
-                                ExperienceDetails = cp.ExperienceDetails,
-                                ProviderAverageRating = cp.AverageRating,
-                                GeneralLocation = pu.GeneralLocation,
-
-                                IsDogProvider = ub.DogProvider,
-                                IsCatProvider = ub.CatProvider,
-                                IsBirdProvider = ub.BirdProvider,
-                                IsFishProvider = ub.FishProvider,
-                                IsHorseProvider = ub.HorseProvider,
-                                IsLivestockProvider = ub.LivestockProvider,
-                                IsRabbitProvider = ub.RabbitProvider,
-                                IsReptileProvider = ub.ReptileProvider,
-                                IsRodentProvider = ub.RodentProvider,
-                                IsOtherProvider = ub.OtherProvider
-
-                            }).ToList();
->>>>>>> 23da69bd7be97f70ca99d5a49a33745dc81e1013
 
                 // it did not like assigning `carerSearch.PetCarerSearchList` to var !
                 //var Q_List = Q.ToList();
@@ -196,8 +165,25 @@ namespace Petopia.Controllers
 
             SearchViewModel ownerSearch = new SearchViewModel();
 
+            var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
+            var OwnerLocation = ZipCodes.Get(searchZip);
+            
+            if (OwnerLocation == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "Invalid zipcode");
+            }
+
+            var ZipCodesNearOwner = ZipCodes.RadiusSearch(OwnerLocation, 10);
+
+            List<String> zipsList = new List<String>();
+
+            foreach (ZipCode zip in ZipCodesNearOwner)
+            {
+                zipsList.Add(zip.PostalCode);
+            }
+
             ownerSearch.PetOwnerSearchList = (from pu in pdb.PetopiaUsers
-                                where pu.ResZipcode.Contains(searchZip) && pu.IsOwner
+                                where zipsList.Contains(pu.ResZipcode) && pu.IsOwner
 
                                 join po in pdb.PetOwners on pu.UserID equals po.UserID
                                 join ub in pdb.UserBadges on po.UserID equals ub.UserID
