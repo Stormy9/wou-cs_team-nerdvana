@@ -12,17 +12,34 @@
 
                 <h2> @ViewBag.Title </h2>
 
-                this ct_id: @ViewBag.CT_ID <br />
-                bad request? @ViewBag.badRequest <br />
-                not found? @ViewBag.notFound <br />
+                <div class="our_proofing" style="display:none">
+                    <label>this ct_id (parameter):</label> @ViewBag.CT_ID <br />
+                    <label>this ct_id (from db.find):</label> @ViewBag.CareTransactionID <br />
+                    <label>thisPetOwnerID:</label> @ViewBag.thisPetOwnerID <br />
+                    <label>thisPetOwnerPetopiaID:</label> @ViewBag.thisPetOwnerPetopiaID <br /> <br />
+                </div>
 
-                @ViewBag.ChargeAmount <br />
-
-                @ViewBag.ChargeDesc <br />
-
+                <!-- wtf is this?  it's from controller -->
                 @ViewBag.Customer <br />
 
-                @ViewBag.Date <br />
+                <!-- Petopia Appt Stuff -->
+                <div style="border:1px solid navy; border-radius:5px; margin-bottom:15px;padding:5px;">
+                    <label>Pet Owner Name:</label> @ViewBag.PetOwnerName <br />
+                    <label>Pet Name:</label> @ViewBag.PetName <br />
+                    <label>Pet Carer Name:</label> @ViewBag.PetCarerName <br />
+                    <label>Appt. Start Date:</label> @ViewBag.thisStartDate <br />
+                </div>
+
+                <!-- Stripe payment stuff -->
+                <div style="border:1px solid navy; border-radius:5px; padding:5px;">
+                    <p style="font-size:90%; font-style:italic">
+                        @ViewBag.ChargeAmount </p> <br />
+
+                    <label>Total Paid:</label> @ViewBag.theREALcharge <br />
+                    <label>For:</label> @ViewBag.ChargeDesc <br />
+                    <label>Stripe payment email:</label> @ViewBag.CustomerEmail <br />
+                    <label>Paid on:</label> @ViewBag.TodaysDate <br />
+                </div>
 
             </div><!-- end column -->
         </div><!-- end row -->

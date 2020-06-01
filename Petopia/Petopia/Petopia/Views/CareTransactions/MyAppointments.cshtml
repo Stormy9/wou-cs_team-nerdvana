@@ -861,12 +861,12 @@
                                         @{ var totalCharge = (item.Charge + item.Tip)*100;
                                             var displayCharge = item.Charge + item.Tip; }
 
-                                        <form action="/CareTransactions/Charge" method="POST" 
-                                              id = "@item.CareTransactionID" >
+                                        <form action="/CareTransactions/Charge/@item.CareTransactionID" 
+                                              method="POST" >
 
                                             <article>
                                                 <label> Total: @displayCharge </label>
-                                                <span style="margin-left: 25px;"> 
+                                                <span style="margin-left: 25px; display:none;"> 
                                                     ct_id: @item.CareTransactionID  </span>
                                             </article>
 
