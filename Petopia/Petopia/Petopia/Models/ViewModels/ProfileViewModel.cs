@@ -160,11 +160,15 @@ namespace Petopia.Models.ViewModels
         //                        or something at least like this??
         public class petopiaUsersInfo
         { 
-            public int UserID { get; set; }
+            public int CP_ID { get; set; }
+            public int UID { get; set; }
 
-            public string FirstName { get; set; }
+            public string Name { get; set; }
+            public string Zipcode { get; set; }
 
-            public string LastName { get; set; }
+            public string ExperienceDetails { get; set; }
+            public decimal? ProviderAverageRating { get; set; }
+            public decimal? Score { get; set; }
 
             public string GeneralLocation { get; set; }
 
@@ -172,25 +176,25 @@ namespace Petopia.Models.ViewModels
 
             public int UserBadgeID { get; set; }
 
-            public bool DogProvider { get; set; }
+            public bool IsDogProvider { get; set; }
 
-            public bool CatProvider { get; set; }
+            public bool IsCatProvider { get; set; }
 
-            public bool BirdProvider { get; set; }
+            public bool IsBirdProvider { get; set; }
 
-            public bool FishProvider { get; set; }
+            public bool IsFishProvider { get; set; }
 
-            public bool HorseProvider { get; set; }
+            public bool IsHorseProvider { get; set; }
 
-            public bool LivestockProvider { get; set; }
+            public bool IsLivestockProvider { get; set; }
 
-            public bool RabbitProvider { get; set; }
+            public bool IsRabbitProvider { get; set; }
 
-            public bool ReptileProvider { get; set; }
+            public bool IsReptileProvider { get; set; }
 
-            public bool RodentProvider { get; set; }
+            public bool IsRodentProvider { get; set; }
 
-            public bool OtherProvider { get; set; }
+            public bool IsOtherProvider { get; set; }
 
             public bool DogOwner { get; set; }
 
