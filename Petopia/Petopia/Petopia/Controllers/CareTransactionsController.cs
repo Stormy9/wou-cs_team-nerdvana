@@ -1235,6 +1235,20 @@ namespace Petopia.Controllers
 
                 db.SaveChanges();
 
+                // Grabbing Provider to give a new average rating
+                var careProviderID = careTransaction.CareProviderID;
+
+                double? Average = db.CareTransactions.Where(x => x.CareProviderID == careProviderID)
+                                                           .Average(x => x.PC_Rating);
+                decimal? newAverage = Convert.ToDecimal(Average);
+
+                DAL.CareProvider updatedProvider = db.CareProviders.Where(x => x.CareProviderID == careProviderID).FirstOrDefault();
+
+                updatedProvider.AverageRating = newAverage;
+
+                db.Entry(updatedProvider).State = EntityState.Modified;
+                db.SaveChanges();
+
                 return RedirectToAction("CompleteConfirmation",
                                         new { ct_id = careTransaction.TransactionID });
             }
@@ -1341,6 +1355,21 @@ namespace Petopia.Controllers
 
                 db.Entry(careTransaction).State = EntityState.Modified;
 
+                db.SaveChanges();
+
+                // Grabbing Owner to give a new average rating
+                var petOwnerID = careTransaction.PetOwnerID;
+
+                double? Average = db.CareTransactions.Where(x => x.PetOwnerID == petOwnerID)
+                                                           .Average(x => x.PO_Rating);
+
+                decimal? newAverage = Convert.ToDecimal(Average);
+
+                DAL.PetOwner updatedOwner = db.PetOwners.Where(x => x.PetOwnerID == petOwnerID).FirstOrDefault();
+
+                updatedOwner.AverageRating = newAverage;
+
+                db.Entry(updatedOwner).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return RedirectToAction("CompleteConfirmation",
