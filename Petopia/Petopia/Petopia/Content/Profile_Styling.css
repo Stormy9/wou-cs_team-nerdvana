@@ -243,7 +243,7 @@
     margin-top: 5px;
     padding: 15px;
 }
-/*============= SEARCH \ NEAR YOU \ PREVIEW CARDS ===================*/
+/*============= SEARCH \ NEAR YOU \ PREVIEW CARDS ======= SCROLLY-WINDOWS! ============*/
 .auto_search_results_box_box {
     padding: 9px;
     height: 100%;
@@ -290,6 +290,10 @@
     .search_result_card_info p {
         margin-bottom: 1px;
     }
+.scrolly-window_badge-box {
+    clear:both;
+    margin-top:3px;
+}
 /*=================== PET PROFILE PREVIEW BOX =======================*/
 .pet_profile_preview_box {
     padding: 9px;

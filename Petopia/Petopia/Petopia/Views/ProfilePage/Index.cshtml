@@ -398,7 +398,7 @@
                                         </div>
                                     </div>
                                 }
-                                <div class="search_result_card_info">
+                                <div class="search_result_card_info" style="clear:both;">
                                     <span>
                                         @Html.ActionLink(item.Name, "VisitProfile",
                                         new { controller = "ProfilePage", loggedID = item.UID },
@@ -411,106 +411,89 @@
                                             @Html.DisplayFor(modelItem => item.GeneralLocation)
                                         </div>
                                     }
-                                    <br />
-                                    @if (item.IsDogProvider is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_provider.png" class="pet_badge">
-                                    }
-
-                                    @if (item.IsCatProvider is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_provider.png" class="pet_badge">
-                                    }
-
-                                    @if (item.IsBirdProvider is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_provider.png" class="pet_badge">
-                                    }
-
-                                    @if (item.IsFishProvider is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_provider.png" class="pet_badge">
-                                    }
-
-                                    @if (item.IsRabbitProvider is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_provider.png" class="pet_badge">
-                                    }
-
-                                    @if (item.IsRodentProvider is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_provider.png" class="pet_badge">
-                                    }
-
-                                    @if (item.IsReptileProvider is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_provider.png" class="pet_badge">
-                                    }
-
-                                    @if (item.IsHorseProvider is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_provider.png" class="pet_badge">
-                                    }
-
-                                    @if (item.IsLivestockProvider is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_provider.png" class="pet_badge">
-                                    }
-
-                                    @if (item.IsOtherProvider is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_provider.png" class="pet_badge">
-                                    }
-                                    @if (item.DogOwner is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_owner.png" class="pet_badge">
-                                    }
-
-                                    @if (item.CatOwner is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_owner.png" class="pet_badge">
-                                    }
-
-                                    @if (item.BirdOwner is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_owner.png" class="pet_badge">
-                                    }
-
-                                    @if (item.FishOwner is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_owner.png" class="pet_badge">
-                                    }
-
-                                    @if (item.RabbitOwner is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_owner.png" class="pet_badge">
-                                    }
-
-                                    @if (item.RodentOwner is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_owner.png" class="pet_badge">
-                                    }
-
-                                    @if (item.ReptileOwner is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_owner.png" class="pet_badge">
-                                    }
-
-                                    @if (item.HorseOwner is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_owner.png" class="pet_badge">
-                                    }
-
-                                    @if (item.LivestockOwner is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_owner.png" class="pet_badge">
-                                    }
-
-                                    @if (item.OtherOwner is true)
-                                    {
-                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_owner.png" class="pet_badge">
-                                    }
-                                </div>
+                                    <div class="scrolly-window_badge-box">
+                                        @if (item.IsDogProvider is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_provider.png" class="pet_badge">
+                                        }
+                                        @if (item.IsCatProvider is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_provider.png" class="pet_badge">
+                                        }
+                                        @if (item.IsBirdProvider is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_provider.png" class="pet_badge">
+                                        }
+                                        @if (item.IsFishProvider is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_provider.png" class="pet_badge">
+                                        }
+                                        @if (item.IsRabbitProvider is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_provider.png" class="pet_badge">
+                                        }
+                                        @if (item.IsRodentProvider is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_provider.png" class="pet_badge">
+                                        }
+                                        @if (item.IsReptileProvider is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_provider.png" class="pet_badge">
+                                        }
+                                        @if (item.IsHorseProvider is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_provider.png" class="pet_badge">
+                                        }
+                                        @if (item.IsLivestockProvider is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_provider.png" class="pet_badge">
+                                        }
+                                        @if (item.IsOtherProvider is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_provider.png" class="pet_badge">
+                                        }
+                                        @if (item.DogOwner is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_owner.png" class="pet_badge">
+                                        }
+                                        @if (item.CatOwner is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_owner.png" class="pet_badge">
+                                        }
+                                        @if (item.BirdOwner is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_owner.png" class="pet_badge">
+                                        }
+                                        @if (item.FishOwner is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_owner.png" class="pet_badge">
+                                        }
+                                        @if (item.RabbitOwner is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_owner.png" class="pet_badge">
+                                        }
+                                        @if (item.RodentOwner is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_owner.png" class="pet_badge">
+                                        }
+                                        @if (item.ReptileOwner is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_owner.png" class="pet_badge">
+                                        }
+                                        @if (item.HorseOwner is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_owner.png" class="pet_badge">
+                                        }
+                                        @if (item.LivestockOwner is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_owner.png" class="pet_badge">
+                                        }
+                                        @if (item.OtherOwner is true)
+                                        {
+                                            <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_owner.png" class="pet_badge">
+                                        }
+                                    </div><!-- end 'scrolly-window_badge-box' -->
+                                </div><!-- end 'search_result_card_info' -->
                                 <!------------------------------------------>
                                 <!-- 'margin-top' doesn't do anything, but padding does! -->
                                 <!-- but yet 'margin-left' works..... -->

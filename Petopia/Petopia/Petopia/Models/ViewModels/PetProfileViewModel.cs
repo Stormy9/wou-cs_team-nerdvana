@@ -62,6 +62,9 @@ namespace Petopia.Models.ViewModels
             public bool RodentOwner { get; set; }
 
             public bool OtherOwner { get; set; }
+
+            public decimal? ProviderAverageRating { get; set; }
+            public decimal? Score { get; set; }
         }
 
         public List<PetopiaUsersInfo> PetopiaUsersList { get; set; }

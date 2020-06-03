@@ -52,13 +52,13 @@ namespace Petopia.Controllers
 
 
             //---------------------------------------------------------------------------
-            // make pet's birthday a better format!                         it worked!
+            // make pet's birthday a better format! 
             var petsBday = PetVM.Pet.Birthdate;
 
             ViewBag.PetsBday = petsBday.ToString("MMMM dd, yyyy");
 
             //---------------------------------------------------------------------------
-            // trying to pull in pet's owner's name.....                    it worked!
+            // trying to pull in pet's owner's name.....    
             var petsOwnerID = PetVM.Pet.PetOwnerID;
 
 
@@ -136,7 +136,8 @@ namespace Petopia.Controllers
                                                 RabbitProvider = ub.RabbitProvider,
                                                 ReptileProvider = ub.ReptileProvider,
                                                 RodentProvider = ub.RodentProvider,
-                                                OtherProvider = ub.OtherProvider
+                                                OtherProvider = ub.OtherProvider,
+                                                ProviderAverageRating = co.AverageRating
                                             }).Distinct().ToList();
 
             return View(PetVM);
