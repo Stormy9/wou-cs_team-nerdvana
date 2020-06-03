@@ -1,4 +1,4 @@
-﻿@model Petopia.DAL.Pet
+﻿@model Petopia.Models.ViewModels.PetProfileViewModel
 
 @{
     ViewBag.Title = "Pet Profile!";
@@ -29,16 +29,16 @@
 
                 <!-- 'designation'   =] -->
                 <div class="owner_provider_box">
-                    A @Html.DisplayFor(model => model.Species) Pet!
+                    A @Html.DisplayFor(model => model.Pet.Species) Pet!
                 </div>
 
 
                 <!-- profile picture -->
-                @if (Model.PetPhoto != null)
+                @if (Model.Pet.PetPhoto != null)
                 {
                     <div class="profile_pic_box_box">
                         <div class="profile_pic_box">
-                            <img src=@Url.Action("ShowPet", "Image", new { id = Model.PetID })
+                            <img src=@Url.Action("ShowPet", "Image", new { id = Model.Pet.PetID })
                                  class="profile_img" />
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                 <!-- profile pic caption -->
                 <div class="profile_pic_caption_box">
                     <div class="profile_pic_caption">
-                        @Html.DisplayFor(model => model.PetCaption)
+                        @Html.DisplayFor(model => model.Pet.PetCaption)
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@
                          this is a serious annoyance to not be able to set styles
                          FROM THE FUCKING STYLE SHEETS!!  not all of them anyway!!! -->
                     <div>
-                        @Html.ActionLink("My Pet Pic Gallery", "PetGallery", new { id = Model.PetID },
+                        @Html.ActionLink("My Pet Pic Gallery", "PetGallery", new { id = Model.Pet.PetID },
                                     new { @class = "our_profile_buttons", 
                                         style="color: #f2e6d9; font-weight: normal;" })
                     </div>
@@ -84,25 +84,25 @@
                     { 
                     <div>
                         @Html.ActionLink("Book care for Me!", "BookAppointment",
-                                new { controller="CareTransactions", id = Model.PetID},
+                                new { controller="CareTransactions", id = Model.Pet.PetID},
                                 new { @class="our_profile_buttons",
                                       style="color:#f2e6d9; font-weight:normal;"})
                     </div>
                     <div>
                         @Html.ActionLink("My Care Appointments", "MyPetsAppointments",
-                               new { controller = "CareTransactions", pet_id = Model.PetID },
+                               new { controller = "CareTransactions", pet_id = Model.Pet.PetID },
                                new { @class = "our_profile_buttons", 
                                      style="color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <div>
                         @Html.ActionLink("My Private Details", "MyPetDetails",
-                               new { controller = "Pets", id = Model.PetID },
+                               new { controller = "Pets", id = Model.Pet.PetID },
                                new { @class = "our_profile_buttons", 
                                      style="color: #f2e6d9; font-weight: normal;" })
                     </div>
                     <div>
                         @Html.ActionLink("Edit my Info", "EditPet", 
-                               new { controller = "Pets", id = Model.PetID },
+                               new { controller = "Pets", id = Model.Pet.PetID },
                                new { @class = "our_profile_buttons", 
                                      style="color: #f2e6d9; font-weight: normal;" })
                     </div>
@@ -119,16 +119,16 @@
                 <!-- Pet name -->
                 <div class="user_name_box">
                     <h3>
-                        My Name Is:  @Html.DisplayFor(model => model.PetName)
+                        My Name Is:  @Html.DisplayFor(model => model.Pet.PetName)
                     </h3>
                     <h5>
-                        I am a @Html.DisplayFor(model => model.Breed)
+                        I am a @Html.DisplayFor(model => model.Pet.Breed)
                     </h5>
                     <h5>
                         I was born on @ViewBag.PetsBday
                     </h5>
                     <h5>
-                        I am a @Html.DisplayFor(model => model.Gender)
+                        I am a @Html.DisplayFor(model => model.Pet.Gender)
                     </h5>
                 </div>
 
@@ -172,7 +172,7 @@
                 <div class="user_bio_box" style="margin-top: 23px;">
 
                     <h4>Things About Me:</h4>
-                    @Html.DisplayFor(model => model.PetBio)
+                    @Html.DisplayFor(model => model.Pet.PetBio)
 
                 </div>
 

@@ -33,13 +33,6 @@ namespace Petopia.Controllers
 
             ProfileViewModel petopiaUser = new ProfileViewModel();
 
-            //populating the viewmodel with a join
-            /*petopiaUser = db.PetopiaUsers.Join(db.PetOwners,
-                                                pu => pu.UserID,
-                                                po => po.UserID,
-                                                (pu, po) => new {PetUse = pu, PetOwn = po }) */
-            //linq isnt populating correctly right now so we're doing it manually (TEMP FIX)
-
             petopiaUser.UserID = loggedID;
 
             petopiaUser.FirstName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
