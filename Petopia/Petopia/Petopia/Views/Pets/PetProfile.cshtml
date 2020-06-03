@@ -74,38 +74,53 @@
                          FROM THE FUCKING STYLE SHEETS!!  not all of them anyway!!! -->
                     <div>
                         @Html.ActionLink("My Pet Pic Gallery", "PetGallery", new { id = Model.Pet.PetID },
-                                    new { @class = "our_profile_buttons", 
-                                        style="color: #f2e6d9; font-weight: normal;" })
+                                    new
+                                         {
+                                             @class = "our_profile_buttons",
+                                        style = "color: #f2e6d9; font-weight: normal;"
+                                         })
                     </div>
 
                     <!-- IF-STATEMENT TO CHECK IF USER IS PET'S OWNER     -->
                     <!-- THEN ONLY SHOW **THESE** BUTTONS IF THAT IS TRUE -->
-                    @if(loggedInUser == thisPetsOwner)
-                    { 
-                    <div>
-                        @Html.ActionLink("Book care for Me!", "BookAppointment",
-                                new { controller="CareTransactions", id = Model.Pet.PetID},
-                                new { @class="our_profile_buttons",
-                                      style="color:#f2e6d9; font-weight:normal;"})
-                    </div>
-                    <div>
-                        @Html.ActionLink("My Care Appointments", "MyPetsAppointments",
-                               new { controller = "CareTransactions", pet_id = Model.Pet.PetID },
-                               new { @class = "our_profile_buttons", 
-                                     style="color: #f2e6d9; font-weight: normal;" })
-                    </div>
-                    <div>
-                        @Html.ActionLink("My Private Details", "MyPetDetails",
-                               new { controller = "Pets", id = Model.Pet.PetID },
-                               new { @class = "our_profile_buttons", 
-                                     style="color: #f2e6d9; font-weight: normal;" })
-                    </div>
-                    <div>
-                        @Html.ActionLink("Edit my Info", "EditPet", 
-                               new { controller = "Pets", id = Model.Pet.PetID },
-                               new { @class = "our_profile_buttons", 
-                                     style="color: #f2e6d9; font-weight: normal;" })
-                    </div>
+                    @if (loggedInUser == thisPetsOwner)
+                    {
+                        <div>
+                            @Html.ActionLink("Book care for Me!", "BookAppointment",
+                                    new { controller = "CareTransactions", id = Model.Pet.PetID },
+                                    new
+                                         {
+                                             @class = "our_profile_buttons",
+                                          style = "color:#f2e6d9; font-weight:normal;"
+                                         })
+                        </div>
+                        <div>
+                            @Html.ActionLink("My Care Appointments", "MyPetsAppointments",
+                                   new { controller = "CareTransactions", pet_id = Model.Pet.PetID },
+                                   new
+                                        {
+                                            @class = "our_profile_buttons",
+                                         style = "color: #f2e6d9; font-weight: normal;"
+                                        })
+                        </div>
+                        <div>
+                            @Html.ActionLink("My Private Details", "MyPetDetails",
+                                   new { controller = "Pets", id = Model.Pet.PetID },
+                                   new
+                                        {
+                                            @class = "our_profile_buttons",
+                                         style = "color: #f2e6d9; font-weight: normal;"
+                                        })
+                        </div>
+                        <div>
+                            @Html.ActionLink("Edit my Info", "EditPet",
+                                   new { controller = "Pets", id = Model.Pet.PetID },
+                                   new
+                                        {
+                                            @class = "our_profile_buttons",
+                                         style = "color: #f2e6d9; font-weight: normal;"
+                                        })
+                        </div>
                     }
                 </div><!-- END BUTTON BOX -->
 
@@ -135,9 +150,11 @@
                 <!-- Pet's Person-->
                 <div class="user_name_box">
                     <h3>My Person is: </h3>
-                    <h4><i>
+                    <h4>
+                        <i>
                             @ViewBag.PetsOwnersFirstName&nbsp;@ViewBag.PetOwnersLastName
-                    </i></h4>
+                        </i>
+                    </h4>
                 </div>
 
                 <!-- Pet's (owner's) general location -->
@@ -152,8 +169,11 @@
                     <div style="margin-left: 23px; margin-bottom: 23px;">
                         @Html.ActionLink("My Owner's Profile", "Index",
                                new { controller = "ProfilePage" },
-                               new { @class = "btn our_profile_buttons",
-                                     style = "color: #f2e6d9; font-weight: normal;" })
+                               new
+                                    {
+                                        @class = "btn our_profile_buttons",
+                                     style = "color: #f2e6d9; font-weight: normal;"
+                                    })
                     </div>
                 }
                 else
@@ -161,8 +181,11 @@
                     <div style="margin-left: 23px; margin-bottom: 23px;">
                         @Html.ActionLink("My Owner's Profile", "VisitProfile",
                                new { controller = "ProfilePage", loggedID = thisPetsOwnersPetopiaID },
-                               new { @class = "btn our_profile_buttons",
-                                     style = "color: #f2e6d9; font-weight: normal;" })
+                               new
+                                    {
+                                        @class = "btn our_profile_buttons",
+                                     style = "color: #f2e6d9; font-weight: normal;"
+                                    })
                     </div>
                 }
 
@@ -197,6 +220,160 @@
 
                     <div class="auto_search_results_box">
                         <!-------------------------------------------------------------->
+                        <!-------------------------------------------------------------->
+                        @foreach (var item in Model.PetopiaUsersList)
+                        {
+                            <div class="search_result_card">
+
+                                @if (item.ProfilePic != null)
+                                {
+                                    <div class="search_result_profile_pic_box_box">
+                                        <div class="search_result_profile_pic_box">
+                                            <a href='@Url.Action("VisitProfile", "ProfilePage",
+                                                    new { loggedID = item.UserID })'>
+                                                <img src=@Url.Action("Show", "Image",
+                                                    new { id = item.UserID })
+                                                     class="search_result_profile_img" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="search_result_profile_pic_box_box">
+                                        <div class="search_result_profile_pic_box">
+                                            <a href='@Url.Action("VisitProfile", "ProfilePage",
+                                                    new { loggedID = item.UserID })'>
+                                                <img src="https://stormy9.github.io/nerdvana/cute_smiley.png"
+                                                     class="search_result_profile_img" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="search_result_card_info">
+                                    <span>
+                                        @Html.ActionLink(item.FirstName, "VisitProfile",
+                                        new { controller = "ProfilePage", loggedID = item.UserID },
+                                        new { @class = "", style = "float:left; color:#002266;" })
+                                        @Html.ActionLink(item.LastName, "VisitProfile",
+                                        new { controller = "ProfilePage", loggedID = item.UserID },
+                                        new { @class = "", style = "float:left; color:#002266;" })
+                                    </span>
+                                    @if (item.GeneralLocation != null)
+                                    {
+                                        <div style="clear:both;">
+                                            <!-- break the floats above -->
+                                            @Html.DisplayFor(modelItem => item.GeneralLocation)
+                                        </div>
+                                    }
+                                    <div style="margin-bottom:3px;">My pet care badges!</div>
+                                    @if (item.DogProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.CatProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.BirdProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.FishProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.RabbitProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.RodentProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.ReptileProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.HorseProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.LivestockProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.OtherProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_provider.png" class="pet_badge">
+                                    }
+                                    @if (item.DogOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.CatOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.BirdOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.FishOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.RabbitOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.RodentOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.ReptileOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.HorseOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.LivestockOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.OtherOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_owner.png" class="pet_badge">
+                                    }
+                                </div>
+                                <!------------------------------------------>
+                                <!-- 'margin-top' doesn't do anything, but padding does! -->
+                                <!-- but yet 'margin-left' works..... -->
+                                <div style="clear:both; padding-top: 5px; padding-bottom: 5px; margin-left:13px;">
+                                    ratings here
+                                </div>
+                            </div>
+                        }
                         <div class="search_result_card">
 
                             <a href="#" class="our_a">
