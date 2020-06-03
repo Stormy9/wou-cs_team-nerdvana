@@ -300,7 +300,8 @@
 
                     @Html.EditorFor(model => model.ResState,
                                 new { htmlAttributes = new { @class = "form-control", 
-                                                @placeholder="two-letter state code" } })
+                                                @placeholder="two-letter state code",
+                                                 @pattern="[A-Z]{2}" } })
 
                     @Html.ValidationMessageFor(model => model.ResState, "",
                                                         new { @class = "text-danger" })
@@ -312,7 +313,8 @@
 
                     @Html.EditorFor(model => model.ResZipcode,
                                 new { htmlAttributes = new { @class = "form-control", 
-                                              @placeholder="only first five digits" } })
+                                              @placeholder="only first five digits",
+                                                @pattern="[0-9]{5}" } })
 
                     @Html.ValidationMessageFor(model => model.ResZipcode, "",
                                                          new { @class = "text-danger" })

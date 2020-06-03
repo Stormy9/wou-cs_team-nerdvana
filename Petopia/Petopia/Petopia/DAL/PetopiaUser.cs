@@ -33,13 +33,13 @@ namespace Petopia.DAL
         public string Password { get; set; }
 
         //===============================================================================
-        [Required]
+        [Required(ErrorMessage = "please enter your first name")]
         [DisplayName("First Name:")]
         [StringLength(50)]
         public string FirstName { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
+        [Required(ErrorMessage = "please enter your last name")]
         [DisplayName("Last Name:")]
         [StringLength(50)]
         public string LastName { get; set; }
@@ -56,17 +56,23 @@ namespace Petopia.DAL
 
         //===============================================================================
         [Required]
-        [DisplayName("Main Phone #:")]
+        [DisplayName("* Main Phone #")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "please enter phone number in requested format")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+                            ErrorMessage = "please enter your phone number as requested")]
         [StringLength(12)]
         public string MainPhone { get; set; }
 
         //-------------------------------------------------------------------------------
-        [DisplayName("Alternate Phone #:")]
+        [DisplayName("Alternate Phone #")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "please enter phone number in requested format")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
+                            ErrorMessage = "please enter your phone number as requested")]
         [StringLength(12)]
         public string AltPhone { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
+        [Required(ErrorMessage = "please enter your residential street address")]
         [DisplayName("Residential Street Address:")]
         [StringLength(50)]
         public string ResAddress01 { get; set; }
@@ -77,19 +83,19 @@ namespace Petopia.DAL
         public string ResAddress02 { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
+        [Required(ErrorMessage = "please enter your residential city")]
         [DisplayName("City:")]
         [StringLength(50)]
         public string ResCity { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
+        [Required(ErrorMessage = "please enter 2-character state")]
         [DisplayName("State:")]
         [StringLength(2)]
         public string ResState { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
+        [Required(ErrorMessage = "please enter 5-digit zipcode")]
         [DisplayName("ZipCode:")]
         [StringLength(5)]
         public string ResZipcode { get; set; }

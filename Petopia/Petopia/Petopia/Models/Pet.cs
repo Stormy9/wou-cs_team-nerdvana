@@ -81,7 +81,7 @@ namespace Petopia.Models
         [DisplayName("* Pet's Emergency Contact Number:")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "please enter phone number in requested format")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",
-                            ErrorMessage = "please enter your phone number as requested")]
+                            ErrorMessage = "please enter phone number as requested")]
         [StringLength(12)]
         public string EmergencyContactPhone { get; set; }
 

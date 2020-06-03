@@ -15,24 +15,25 @@ namespace Petopia.DAL
         public int PetID { get; set; }
 
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        [Required]
+        [Required(ErrorMessage = "please enter your pet's name")]
         [DisplayName("Pet's Name:")]
         [StringLength(24)]
         public string PetName { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
+        [Required(ErrorMessage = "please enter your pet's species")]
         [DisplayName("What Species?")]
         [StringLength(24)]
         public string Species { get; set; }
 
         //-------------------------------------------------------------------------------
+        [Required(ErrorMessage = "please enter your pet's breed or mix")]
         [DisplayName("And Breed?")]
         [StringLength(24)]
         public string Breed { get; set; }
 
         //-------------------------------------------------------------------------------
-        [Required]
+        [Required(ErrorMessage = "please enter your pet's gender")]
         [DisplayName("Pet's Gender:")]
         [StringLength(18)]
         public string Gender { get; set; }
@@ -41,6 +42,7 @@ namespace Petopia.DAL
         // we folded in 'Altered?' with Gender in a drop-down -- way smoother!        //
         //
         //-------------------------------------------------------------------------------
+        [Required(ErrorMessage = "please enter your pet's birthday (or best guess)")]
         [Column(TypeName = "date")]     // gets rid of '12:00:00 AM' appendage
         //
         // adding this to the data definition gives us a date-picker in the view
@@ -69,11 +71,13 @@ namespace Petopia.DAL
         public string PetAccess { get; set; }
 
         //-------------------------------------------------------------------------------
+        [Required(ErrorMessage = "please give an emergency contact for your pet")]
         [DisplayName("Pet's Emergency Contact Name:")]
         [StringLength(45)]
         public string EmergencyContactName { get; set; }
 
         //-------------------------------------------------------------------------------
+        [Required(ErrorMessage = "please give an emergency contact for your pet")]
         [DisplayName("Pet's Emergency Contact Number:")]
         [StringLength(12)]
         public string EmergencyContactPhone { get; set; }
