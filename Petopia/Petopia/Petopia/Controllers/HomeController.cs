@@ -144,13 +144,8 @@ namespace Petopia.Controllers
 
                                                   }).ToList();
 
-                // it did not like assigning `carerSearch.PetCarerSearchList` to var !
-                //var Q_List = Q.ToList();
-                //ViewBag.Q_List = Q_List;
-
-
-
-                return View(carerSearch);
+            //--------------------------------------------------------- 
+            return View(carerSearch);
             
         }
         //===============================================================================
@@ -213,6 +208,7 @@ namespace Petopia.Controllers
 
                                 }).ToList();
 
+            //---------------------------------------------------------
             return View(ownerSearch);
         }
         //===============================================================================
