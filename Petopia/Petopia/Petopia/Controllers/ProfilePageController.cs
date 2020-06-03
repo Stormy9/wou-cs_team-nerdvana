@@ -33,13 +33,6 @@ namespace Petopia.Controllers
 
             ProfileViewModel petopiaUser = new ProfileViewModel();
 
-            //populating the viewmodel with a join
-            /*petopiaUser = db.PetopiaUsers.Join(db.PetOwners,
-                                                pu => pu.UserID,
-                                                po => po.UserID,
-                                                (pu, po) => new {PetUse = pu, PetOwn = po }) */
-            //linq isnt populating correctly right now so we're doing it manually (TEMP FIX)
-
             petopiaUser.UserID = loggedID;
 
             petopiaUser.FirstName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
@@ -202,136 +195,158 @@ namespace Petopia.Controllers
                 ViewBag.OtherOwner = UserBadges.OtherOwner;
                 ViewBag.OtherProvider = UserBadges.OtherProvider;
             }
-            
-            //---------------------------------------------------------------------------
-            //                                              ZIP LOGIC for SCROLLY-WINDOWS
-            //---------------------------------------------------------------------------
-            //Logic for populating scroll area on profiles based around zip code proximity.
-            var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
 
-            var OwnerLocation = ZipCodes.Get(petopiaUser.ResZipcode);
-            var ZipCodesNearOwner = ZipCodes.RadiusSearch(OwnerLocation, 10);
-
-            List<String> NearbyZipsList = new List<String>();
-
-            foreach (ZipCode zip in ZipCodesNearOwner)
-            {
-                NearbyZipsList.Add(zip.PostalCode);
-            }
-
-            List<String> SharedZips = new List<String>();
-
-            foreach (var i in SharedZips)
-            {
-
-            }
-
-            ViewBag.ZipList = String.Join(",", NearbyZipsList.ToArray());
 
             //---------------------------------------------------------------------------
             //                           SCROLLY-WINDOWS -- on the right of profile pages
             //---------------------------------------------------------------------------
-            //
-            //IF IM BOTH THEN SHOW LIST OF BOTH OWNERS AND PROVIDERS I'VE WORKED WITH IN PAST
-            if (petopiaUser.IsOwner == true && petopiaUser.IsProvider == true)
+
+            if (petopiaUser.ResZipcode != null) //If the user has a zipcode then we can grab providers in their area
             {
-                petopiaUser.PetopiaUsersList = (from ct in db.CareTransactions
-                    where ct.CareProviderID == petopiaUser.CareProviderID
+                //Grab logged in user info
+                //var identityID = User.Identity.GetUserId();
+                DAL.PetopiaUser loggedUser = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).FirstOrDefault();
 
-                    join co in db.CareProviders on ct.PetOwnerID equals co.CareProviderID
-                    join pu in db.PetopiaUsers on co.UserID equals pu.UserID
-                    join ub in db.UserBadges on pu.UserID equals ub.UserID
+                //Get zipcodes near logged in user
+                var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
 
-                    select new ProfileViewModel.petopiaUsersInfo
+                var OwnerLocation = ZipCodes.Get(loggedUser.ResZipcode);
+                var ZipCodesNearOwner = ZipCodes.RadiusSearch(OwnerLocation, 10);
+
+                //Should never reach here, however if somehow the user has an invalid zip then this will stop that
+                if (OwnerLocation == null)
+                {
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "Invalid zipcode");
+                }
+
+                //Grab the zipcodes near the user
+                List<String> zipsList = new List<String>();
+
+                foreach (ZipCode zip in ZipCodesNearOwner)
+                {
+                    zipsList.Add(zip.PostalCode);
+                }
+
+                ProfileViewModel tempVM = new ProfileViewModel();
+
+                //Populate list of users within 10 miles to start scoring
+                tempVM.PetopiaUsersList = (from pu in db.PetopiaUsers
+
+                                           where zipsList.Contains(pu.ResZipcode) && pu.IsProvider
+
+                                           join cp in db.CareProviders on pu.UserID equals cp.UserID
+                                           join ub in db.UserBadges on cp.UserID equals ub.UserID
+
+                                           select new ProfileViewModel.petopiaUsersInfo
+                                           {
+                                               CP_ID = cp.CareProviderID,
+                                               UID = pu.UserID,
+                                               Name = pu.FirstName + " " + pu.LastName,
+                                               Zipcode = pu.ResZipcode,
+                                               ProfilePic = pu.ProfilePhoto,
+
+                                               ExperienceDetails = cp.ExperienceDetails,
+                                               ProviderAverageRating = cp.AverageRating,
+                                               GeneralLocation = pu.GeneralLocation,
+
+                                               IsDogProvider = ub.DogProvider,
+                                               IsCatProvider = ub.CatProvider,
+                                               IsBirdProvider = ub.BirdProvider,
+                                               IsFishProvider = ub.FishProvider,
+                                               IsHorseProvider = ub.HorseProvider,
+                                               IsLivestockProvider = ub.LivestockProvider,
+                                               IsRabbitProvider = ub.RabbitProvider,
+                                               IsReptileProvider = ub.ReptileProvider,
+                                               IsRodentProvider = ub.RodentProvider,
+                                               IsOtherProvider = ub.OtherProvider
+
+                                           }).ToList();
+
+                //Grab logged in users badges for testing
+
+                RecViewModel.RecProviders loggedUserRec = new RecViewModel.RecProviders();
+
+                loggedUserRec = (from pu in db.PetopiaUsers
+                                 where pu.ASPNetIdentityID == identityID
+                                 join ub in db.UserBadges on pu.UserID equals ub.UserID
+                                 select new RecViewModel.RecProviders
+                                 {
+                                     IsDogProvider = ub.DogOwner,
+                                     IsCatProvider = ub.CatOwner,
+                                     IsBirdProvider = ub.BirdOwner,
+                                     IsFishProvider = ub.FishOwner,
+                                     IsHorseProvider = ub.HorseOwner,
+                                     IsLivestockProvider = ub.LivestockOwner,
+                                     IsRabbitProvider = ub.RabbitOwner,
+                                     IsReptileProvider = ub.ReptileOwner,
+                                     IsRodentProvider = ub.RodentOwner,
+                                     IsOtherProvider = ub.OtherOwner
+                                 }).FirstOrDefault();
+
+                //Time to iterate through each person in the list and add 1 point for each matching badge
+                //First we must initialize each persons score to 0
+                foreach (var user in tempVM.PetopiaUsersList)
+                {
+                    user.Score = 0;
+
+                    //Adding score for each matching badge
+                    if (user.IsBirdProvider == loggedUserRec.IsBirdProvider && user.IsBirdProvider == true)
                     {
-                        UserID = pu.UserID,
-                        FirstName = pu.FirstName,
-                        LastName = pu.LastName,
-                        GeneralLocation = pu.GeneralLocation,
-                        ProfilePic = pu.ProfilePhoto,
-                        UserBadgeID = ub.UserBadgeID,
-                        DogOwner = ub.DogOwner,
-                        CatOwner = ub.CatOwner,
-                        BirdOwner = ub.BirdOwner,
-                        FishOwner = ub.FishOwner,
-                        HorseOwner = ub.HorseOwner,
-                        LivestockOwner = ub.LivestockOwner,
-                        RabbitOwner = ub.RabbitOwner,
-                        ReptileOwner = ub.ReptileOwner,
-                        RodentOwner = ub.RodentOwner,
-                        OtherOwner = ub.OtherOwner
-                    }).Distinct().ToList();
-            }
-            //IF IM ONLY A PET OWNER, SHOW LIST OF PROVIDERS
-            else if (petopiaUser.IsOwner == true)
-            {
-                petopiaUser.PetopiaUsersList = (from ct in db.CareTransactions
-                    where ct.CareProviderID == petopiaUser.CareProviderID
-
-                    join co in db.CareProviders on ct.PetOwnerID equals co.CareProviderID
-                    join pu in db.PetopiaUsers on co.UserID equals pu.UserID
-                    join ub in db.UserBadges on pu.UserID equals ub.UserID
-
-                    select new ProfileViewModel.petopiaUsersInfo
+                        user.Score = user.Score + 1;
+                    }
+                    if (user.IsCatProvider == loggedUserRec.IsCatProvider && user.IsCatProvider == true)
                     {
-                        UserID = pu.UserID,
-                        FirstName = pu.FirstName,
-                        LastName = pu.LastName,
-                        GeneralLocation = pu.GeneralLocation,
-                        ProfilePic = pu.ProfilePhoto,
-                        UserBadgeID = ub.UserBadgeID,
-                        DogOwner = ub.DogOwner,
-                        CatOwner = ub.CatOwner,
-                        BirdOwner = ub.BirdOwner,
-                        FishOwner = ub.FishOwner,
-                        HorseOwner = ub.HorseOwner,
-                        LivestockOwner = ub.LivestockOwner,
-                        RabbitOwner = ub.RabbitOwner,
-                        ReptileOwner = ub.ReptileOwner,
-                        RodentOwner = ub.RodentOwner,
-                        OtherOwner = ub.OtherOwner
-                    }).Distinct().ToList();
-            }
-            //IF IM ONLY CARE PROVIDER, SHOW LIST OF PET OWNERS
-            else if (petopiaUser.IsProvider == true)
-            {
-                petopiaUser.PetopiaUsersList = (from ct in db.CareTransactions
-                        where ct.CareProviderID == petopiaUser.CareProviderID
+                        user.Score = user.Score + 1;
+                    }
+                    if (user.IsDogProvider == loggedUserRec.IsDogProvider && user.IsDogProvider == true)
+                    {
+                        user.Score = user.Score + 1;
+                    }
+                    if (user.IsFishProvider == loggedUserRec.IsFishProvider && user.IsFishProvider == true)
+                    {
+                        user.Score = user.Score + 1;
+                    }
+                    if (user.IsHorseProvider == loggedUserRec.IsHorseProvider && user.IsHorseProvider == true)
+                    {
+                        user.Score = user.Score + 1;
+                    }
+                    if (user.IsLivestockProvider == loggedUserRec.IsLivestockProvider && user.IsLivestockProvider == true)
+                    {
+                        user.Score = user.Score + 1;
+                    }
+                    if (user.IsOtherProvider == loggedUserRec.IsOtherProvider && user.IsOtherProvider == true)
+                    {
+                        user.Score = user.Score + 1;
+                    }
+                    if (user.IsRabbitProvider == loggedUserRec.IsRabbitProvider && user.IsRabbitProvider == true)
+                    {
+                        user.Score = user.Score + 1;
+                    }
+                    if (user.IsReptileProvider == loggedUserRec.IsReptileProvider && user.IsReptileProvider == true)
+                    {
+                        user.Score = user.Score + 1;
+                    }
+                    if (user.IsRodentProvider == loggedUserRec.IsRodentProvider && user.IsRodentProvider == true)
+                    {
+                        user.Score = user.Score + 1;
+                    }
 
-                        join co in db.PetOwners on ct.PetOwnerID equals co.PetOwnerID
-                        join pu in db.PetopiaUsers on co.UserID equals pu.UserID
-                        join ub in db.UserBadges on pu.UserID equals ub.UserID
+                    //multiplying score by average rating
+                    //If they have gotten no ratings yet, they will be multiplied a little above average (3 stars)
+                    if (user.ProviderAverageRating == null)
+                    {
+                        user.Score = user.Score * 3;
+                    }
+                    else //they have a rating
+                    {
+                        user.Score = user.Score * user.ProviderAverageRating;
+                    }
 
-                        select new ProfileViewModel.petopiaUsersInfo
-                        {
-                            UserID = pu.UserID,
-                            FirstName = pu.FirstName,
-                            LastName = pu.LastName,
-                            GeneralLocation = pu.GeneralLocation,
-                            ProfilePic = pu.ProfilePhoto,
-                            UserBadgeID = ub.UserBadgeID,
-                            DogOwner = ub.DogOwner,
-                            CatOwner = ub.CatOwner,
-                            BirdOwner = ub.BirdOwner,
-                            FishOwner = ub.FishOwner,
-                            HorseOwner = ub.HorseOwner,
-                            LivestockOwner = ub.LivestockOwner,
-                            RabbitOwner = ub.RabbitOwner,
-                            ReptileOwner = ub.ReptileOwner,
-                            RodentOwner = ub.RodentOwner,
-                            OtherOwner = ub.OtherOwner,
-                            DogProvider = ub.DogProvider,
-                            CatProvider = ub.CatProvider,
-                            BirdProvider = ub.BirdProvider,
-                            FishProvider = ub.FishProvider,
-                            HorseProvider = ub.HorseProvider,
-                            LivestockProvider = ub.LivestockProvider,
-                            RabbitProvider = ub.RabbitProvider,
-                            ReptileProvider = ub.ReptileProvider,
-                            RodentProvider = ub.RodentProvider,
-                            OtherProvider = ub.OtherProvider
-                        }).ToList();
+                }
+                //Add the list to our viewmodel, sorting by score
+                petopiaUser.PetopiaUsersList = tempVM.PetopiaUsersList.OrderByDescending(x => x.Score).ToList();
             }
+
             //---------------------------------------------------------------------------
             //                                CHECK FOR PENDING & INCOMPLETE APPOINTMENTS
             //---------------------------------------------------------------------------
@@ -344,7 +359,7 @@ namespace Petopia.Controllers
                                             .Select(cpID => cpID.CareProviderID).FirstOrDefault();
                 // so THIS works.....
                 ViewBag.cp_ID = cp_ID;
-                    
+
                 // then try to pull a test ct_ID:
                 var test_ct_ID = db.CareTransactions.Where(ct => ct.CareProviderID == cp_ID)
                                                     .Select(ct => ct.TransactionID).FirstOrDefault();
@@ -361,7 +376,7 @@ namespace Petopia.Controllers
 
                 // CHECK FOR INCOMPLETE APPOINTMENTS -- 
                 // does this care provider have un-completed appts (ratings\comments)?
-                if (db.CareTransactions.Where(ct => (ct.CareProviderID == cp_ID) 
+                if (db.CareTransactions.Where(ct => (ct.CareProviderID == cp_ID)
                                               && (!ct.Completed_PO)
                                               && (ct.EndDate < DateTime.Today)).Count() > 0)
                 {
@@ -386,8 +401,8 @@ namespace Petopia.Controllers
                 ViewBag.test_ct_ID = test_ct_ID;
 
                 // does this pet owner have un-completed appointments (ratings\comments)?
-                if (db.CareTransactions.Where(ct => (ct.PetOwnerID == po_ID) 
-                                              && (ct.EndDate < DateTime.Today) 
+                if (db.CareTransactions.Where(ct => (ct.PetOwnerID == po_ID)
+                                              && (ct.EndDate < DateTime.Today)
                                               && (!ct.Completed_CP)).Count() > 0)
                 {
                     bool incompleteAppts_PO = true;
@@ -656,13 +671,6 @@ namespace Petopia.Controllers
 
             ProfileViewModel petopiaUser = new ProfileViewModel();
 
-            //populating the viewmodel with a join
-            /*petopiaUser = db.PetopiaUsers.Join(db.PetOwners,
-                                                pu => pu.UserID,
-                                                po => po.UserID,
-                                                (pu, po) => new {PetUse = pu, PetOwn = po }) */
-            //linq isnt populating correctly right now so we're doing it manually (TEMP FIX)
-
             petopiaUser.UserID = loggedID;
 
             petopiaUser.FirstName = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID)
@@ -795,6 +803,160 @@ namespace Petopia.Controllers
                 ViewBag.OtherOwner = UserBadges.OtherOwner;
                 ViewBag.OtherProvider = UserBadges.OtherProvider;
             }
+
+            //---------------------------------------------------------------------------
+            //                           SCROLLY-WINDOWS -- on the right of profile pages
+            //---------------------------------------------------------------------------
+            if (User.Identity.IsAuthenticated == true)
+            {
+                var loggedIdentityID = User.Identity.GetUserId();
+                DAL.PetopiaUser loggedUser = db.PetopiaUsers.Where(x => x.ASPNetIdentityID == loggedIdentityID).FirstOrDefault();
+
+                //Since this is the visiting of a profile, we need to grab the logged in users info
+                if (loggedUser.ResZipcode != null) //If the user has a zipcode then we can grab providers in their area
+                {
+                    //Get zipcodes near logged in user
+                    var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
+
+                    var OwnerLocation = ZipCodes.Get(loggedUser.ResZipcode);
+                    var ZipCodesNearOwner = ZipCodes.RadiusSearch(OwnerLocation, 10);
+
+                    //Should never reach here, however if somehow the user has an invalid zip then this will stop that
+                    if (OwnerLocation == null)
+                    {
+                        return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "Invalid zipcode");
+                    }
+
+                    //Grab the zipcodes near the user
+                    List<String> zipsList = new List<String>();
+
+                    foreach (ZipCode zip in ZipCodesNearOwner)
+                    {
+                        zipsList.Add(zip.PostalCode);
+                    }
+
+                    ProfileViewModel tempVM = new ProfileViewModel();
+
+                    //Populate list of users within 10 miles to start scoring
+                    tempVM.PetopiaUsersList = (from pu in db.PetopiaUsers
+
+                                               where zipsList.Contains(pu.ResZipcode) && pu.IsProvider
+
+                                               join cp in db.CareProviders on pu.UserID equals cp.UserID
+                                               join ub in db.UserBadges on cp.UserID equals ub.UserID
+
+                                               select new ProfileViewModel.petopiaUsersInfo
+                                               {
+                                                   CP_ID = cp.CareProviderID,
+                                                   UID = pu.UserID,
+                                                   Name = pu.FirstName + " " + pu.LastName,
+                                                   Zipcode = pu.ResZipcode,
+                                                   ProfilePic = pu.ProfilePhoto,
+
+                                                   ExperienceDetails = cp.ExperienceDetails,
+                                                   ProviderAverageRating = cp.AverageRating,
+                                                   GeneralLocation = pu.GeneralLocation,
+
+                                                   IsDogProvider = ub.DogProvider,
+                                                   IsCatProvider = ub.CatProvider,
+                                                   IsBirdProvider = ub.BirdProvider,
+                                                   IsFishProvider = ub.FishProvider,
+                                                   IsHorseProvider = ub.HorseProvider,
+                                                   IsLivestockProvider = ub.LivestockProvider,
+                                                   IsRabbitProvider = ub.RabbitProvider,
+                                                   IsReptileProvider = ub.ReptileProvider,
+                                                   IsRodentProvider = ub.RodentProvider,
+                                                   IsOtherProvider = ub.OtherProvider
+
+                                               }).ToList();
+
+                    //Grab logged in users badges for testing
+
+                    RecViewModel.RecProviders loggedUserRec = new RecViewModel.RecProviders();
+
+                    loggedUserRec = (from pu in db.PetopiaUsers
+                                     where pu.ASPNetIdentityID == loggedIdentityID
+                                     join ub in db.UserBadges on pu.UserID equals ub.UserID
+                                     select new RecViewModel.RecProviders
+                                     {
+                                         IsDogProvider = ub.DogOwner,
+                                         IsCatProvider = ub.CatOwner,
+                                         IsBirdProvider = ub.BirdOwner,
+                                         IsFishProvider = ub.FishOwner,
+                                         IsHorseProvider = ub.HorseOwner,
+                                         IsLivestockProvider = ub.LivestockOwner,
+                                         IsRabbitProvider = ub.RabbitOwner,
+                                         IsReptileProvider = ub.ReptileOwner,
+                                         IsRodentProvider = ub.RodentOwner,
+                                         IsOtherProvider = ub.OtherOwner
+                                     }).FirstOrDefault();
+
+                    //Time to iterate through each person in the list and add 1 point for each matching badge
+                    //First we must initialize each persons score to 0
+                    foreach (var user in tempVM.PetopiaUsersList)
+                    {
+                        user.Score = 0;
+
+                        //Adding score for each matching badge
+                        if (user.IsBirdProvider == loggedUserRec.IsBirdProvider && user.IsBirdProvider == true)
+                        {
+                            user.Score = user.Score + 1;
+                        }
+                        if (user.IsCatProvider == loggedUserRec.IsCatProvider && user.IsCatProvider == true)
+                        {
+                            user.Score = user.Score + 1;
+                        }
+                        if (user.IsDogProvider == loggedUserRec.IsDogProvider && user.IsDogProvider == true)
+                        {
+                            user.Score = user.Score + 1;
+                        }
+                        if (user.IsFishProvider == loggedUserRec.IsFishProvider && user.IsFishProvider == true)
+                        {
+                            user.Score = user.Score + 1;
+                        }
+                        if (user.IsHorseProvider == loggedUserRec.IsHorseProvider && user.IsHorseProvider == true)
+                        {
+                            user.Score = user.Score + 1;
+                        }
+                        if (user.IsLivestockProvider == loggedUserRec.IsLivestockProvider && user.IsLivestockProvider == true)
+                        {
+                            user.Score = user.Score + 1;
+                        }
+                        if (user.IsOtherProvider == loggedUserRec.IsOtherProvider && user.IsOtherProvider == true)
+                        {
+                            user.Score = user.Score + 1;
+                        }
+                        if (user.IsRabbitProvider == loggedUserRec.IsRabbitProvider && user.IsRabbitProvider == true)
+                        {
+                            user.Score = user.Score + 1;
+                        }
+                        if (user.IsReptileProvider == loggedUserRec.IsReptileProvider && user.IsReptileProvider == true)
+                        {
+                            user.Score = user.Score + 1;
+                        }
+                        if (user.IsRodentProvider == loggedUserRec.IsRodentProvider && user.IsRodentProvider == true)
+                        {
+                            user.Score = user.Score + 1;
+                        }
+
+                        //multiplying score by average rating
+                        //If they have gotten no ratings yet, they will be multiplied a little above average (3 stars)
+                        if (user.ProviderAverageRating == null)
+                        {
+                            user.Score = user.Score * 3;
+                        }
+                        else //they have a rating
+                        {
+                            user.Score = user.Score * user.ProviderAverageRating;
+                        }
+
+                    }
+                    //Add the list to our viewmodel, sorting by score
+                    petopiaUser.PetopiaUsersList = tempVM.PetopiaUsersList.OrderByDescending(x => x.Score).ToList();
+                }
+
+            }
+
             return View(petopiaUser);
         }
         //---------------------------------------------------------------------------
@@ -803,28 +965,12 @@ namespace Petopia.Controllers
         // trying to get average rating for Pet Owners & Care Providers
 
 
-        //---------------------------------------------------------------------------
-        //                                              ZIP LOGIC for SCROLLY-WINDOWS
-        //---------------------------------------------------------------------------
-        //Logic for populating scroll area on profiles based around zip code proximity.
-
-
-        //---------------------------------------------------------------------------
-        //                           SCROLLY-WINDOWS -- on the right of profile pages
-        //---------------------------------------------------------------------------
-        //
-        //IF IM BOTH THEN SHOW LIST OF BOTH OWNERS AND PROVIDERS I'VE WORKED WITH IN PAST
 
 
 
-        //IF IM ONLY A PET OWNER, SHOW LIST OF PROVIDERS
 
 
 
-        //IF IM ONLY CARE PROVIDER, SHOW LIST OF PET OWNERS
-
-        //
-        //
         //===============================================================================
         //===============================================================================
     }

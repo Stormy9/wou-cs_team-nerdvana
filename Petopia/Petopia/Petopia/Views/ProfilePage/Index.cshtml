@@ -360,19 +360,9 @@
                 <!-- THIRD COLUMN SCROLL-BOX! -->
                 <!-- auto search result header -->
                 <!-- *****STILL PLACEHOLDER(S)***** -->
-                @if (Model.IsOwner == true)
-                {
                     <div class="auto_search_result_header">
-                        <h5 style="margin-left: 5px;"> Pet Care Providers Near Me:</h5>
+                        <h5 style="margin-left: 5px;"> Recommended Pet Care Providers Near Me!</h5>
                     </div>
-                }
-                else
-                {
-                    <!-- so "IsProvider" --><!-- or both? -->
-                    <div class="auto_search_result_header">
-                        <h5 style="margin-left: 5px;"> Pet Owners I've Worked With:</h5>
-                    </div>
-                }
                 <!---------------------------------------------------------------------->
                 <!-- search results -> who's near you? -->
                 <div class="auto_search_results_box_box">
@@ -388,9 +378,9 @@
                                     <div class="search_result_profile_pic_box_box">
                                         <div class="search_result_profile_pic_box">
                                             <a href='@Url.Action("VisitProfile", "ProfilePage",
-                                                    new { loggedID = item.UserID })'>
+                                                    new { loggedID = item.UID })'>
                                                 <img src=@Url.Action("Show", "Image",
-                                                    new { id = item.UserID })
+                                                    new { id = item.UID })
                                                      class="search_result_profile_img" />
                                             </a>
                                         </div>
@@ -401,7 +391,7 @@
                                     <div class="search_result_profile_pic_box_box">
                                         <div class="search_result_profile_pic_box">
                                             <a href='@Url.Action("VisitProfile", "ProfilePage",
-                                                    new { loggedID = item.UserID })'>
+                                                    new { loggedID = item.UID })'>
                                                 <img src="https://stormy9.github.io/nerdvana/cute_smiley.png"
                                                      class="search_result_profile_img" />
                                             </a>
@@ -410,11 +400,8 @@
                                 }
                                 <div class="search_result_card_info">
                                     <span>
-                                        @Html.ActionLink(item.FirstName, "VisitProfile",
-                                        new { controller = "ProfilePage", loggedID = item.UserID },
-                                        new { @class = "", style = "float:left; color:#002266;" })
-                                        @Html.ActionLink(item.LastName, "VisitProfile",
-                                        new { controller = "ProfilePage", loggedID = item.UserID },
+                                        @Html.ActionLink(item.Name, "VisitProfile",
+                                        new { controller = "ProfilePage", loggedID = item.UID },
                                         new { @class = "", style = "float:left; color:#002266;" })
                                     </span>
                                     @if (item.GeneralLocation != null)
@@ -424,53 +411,53 @@
                                             @Html.DisplayFor(modelItem => item.GeneralLocation)
                                         </div>
                                     }
-                                    <div style="margin-bottom:3px;">My pet care badges!</div>
-                                    @if (item.DogProvider is true)
+                                    <br />
+                                    @if (item.IsDogProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_provider.png" class="pet_badge">
                                     }
 
-                                    @if (item.CatProvider is true)
+                                    @if (item.IsCatProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_provider.png" class="pet_badge">
                                     }
 
-                                    @if (item.BirdProvider is true)
+                                    @if (item.IsBirdProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_provider.png" class="pet_badge">
                                     }
 
-                                    @if (item.FishProvider is true)
+                                    @if (item.IsFishProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_provider.png" class="pet_badge">
                                     }
 
-                                    @if (item.RabbitProvider is true)
+                                    @if (item.IsRabbitProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_provider.png" class="pet_badge">
                                     }
 
-                                    @if (item.RodentProvider is true)
+                                    @if (item.IsRodentProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_provider.png" class="pet_badge">
                                     }
 
-                                    @if (item.ReptileProvider is true)
+                                    @if (item.IsReptileProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_provider.png" class="pet_badge">
                                     }
 
-                                    @if (item.HorseProvider is true)
+                                    @if (item.IsHorseProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_provider.png" class="pet_badge">
                                     }
 
-                                    @if (item.LivestockProvider is true)
+                                    @if (item.IsLivestockProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_provider.png" class="pet_badge">
                                     }
 
-                                    @if (item.OtherProvider is true)
+                                    @if (item.IsOtherProvider is true)
                                     {
                                         <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_provider.png" class="pet_badge">
                                     }
@@ -531,107 +518,6 @@
                                     ratings here </div>
                             </div>
                         }
-
-                        <!-- ORIGINAL PLACEHOLDER STUFF FOR SCROLLY-WINDOW ON RIGHT SIDE -->
-                        <div class="search_result_card">
-
-                            <a href="#" class="our_a">
-                                <!-- to carer's profile -->
-                                <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
-                                     alt="profile picture"
-                                     class="search_result_card_img">
-                            </a>
-                            <div class="search_result_card_info">
-                                <a href="#" class="our_a">
-                                    <!-- to carer's profile -->
-                                    <h6><b> Steve PetCarer </b></h6>
-                                </a>
-                                <p> Northeast Salem, Oregon </p>
-                                <div> badges here </div>
-                                <div> ratings here </div>
-                            </div>
-
-                        </div><!-- card one -->
-                        <!-------------------------------------------------------------->
-                        <div class="search_result_card">
-
-                            <a href="#" class="our_a">
-                                <!-- to carer's profile -->
-                                <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
-                                     alt="profile picture"
-                                     class="search_result_card_img">
-                            </a>
-                            <div class="search_result_card_info">
-                                <a href="#" class="our_a">
-                                    <!-- to carer's profile -->
-                                    <h6><b> Steve PetCarer </b></h6>
-                                </a>
-                                <p> Northeast Salem, Oregon </p>
-                                <div> badges here </div>
-                                <div> ratings here </div>
-                            </div>
-
-                        </div><!-- card two -->
-                        <!-------------------------------------------------------------->
-                        <div class="search_result_card">
-
-                            <a href="#" class="our_a">
-                                <!-- to carer's profile -->
-                                <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
-                                     alt="profile picture"
-                                     class="search_result_card_img">
-                            </a>
-                            <div class="search_result_card_info">
-                                <a href="#" class="our_a">
-                                    <!-- to carer's profile -->
-                                    <h6><b> Steve PetCarer </b></h6>
-                                </a>
-                                <p> Northeast Salem, Oregon </p>
-                                <div> badges here </div>
-                                <div> ratings here </div>
-                            </div>
-
-                        </div><!-- card three -->
-                        <!-------------------------------------------------------------->
-                        <div class="search_result_card">
-
-                            <a href="#" class="our_a">
-                                <!-- to carer's profile -->
-                                <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
-                                     alt="profile picture"
-                                     class="search_result_card_img">
-                            </a>
-                            <div class="search_result_card_info">
-                                <a href="#" class="our_a">
-                                    <!-- to carer's profile -->
-                                    <h6><b> Steve PetCarer </b></h6>
-                                </a>
-                                <p> Northeast Salem, Oregon </p>
-                                <div> badges here </div>
-                                <div> ratings here </div>
-                            </div>
-
-                        </div><!-- card four -->
-                        <!-------------------------------------------------------------->
-                        <div class="search_result_card">
-
-                            <a href="#" class="our_a">
-                                <!-- to carer's profile -->
-                                <img src="https://stormy9.github.io/nerdvana/Justin_profile_Pic.jpg"
-                                     alt="profile picture"
-                                     class="search_result_card_img">
-                            </a>
-                            <div class="search_result_card_info">
-                                <a href="#" class="our_a">
-                                    <!-- to carer's profile -->
-                                    <h6><b> Steve PetCarer </b></h6>
-                                </a>
-                                <p> Northeast Salem, Oregon </p>
-                                <div> badges here </div>
-                                <div> ratings here </div>
-                            </div>
-
-                        </div><!-- card five -->
                         <!-------------------------------------------------------------->
                     </div><!-- END 'auto_search_results_box' -->
                 </div><!-- END 'auto_search_results_box_box' -->

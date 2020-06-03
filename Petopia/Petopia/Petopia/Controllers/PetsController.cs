@@ -40,22 +40,27 @@ namespace Petopia.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            DAL.Pet pet = db.Pets.Find(id);
 
-            if (pet == null)
+            PetProfileViewModel PetVM = new PetProfileViewModel();
+
+            PetVM.Pet = db.Pets.Find(id);
+            if (PetVM.Pet == null)
+
             {
                 return HttpNotFound();
             }
 
-            //---------------------------------------------------------
-            // make pet's birthday a better format! 
-            var petsBday = pet.Birthdate;
+
+            //---------------------------------------------------------------------------
+            // make pet's birthday a better format!                         it worked!
+            var petsBday = PetVM.Pet.Birthdate;
 
             ViewBag.PetsBday = petsBday.ToString("MMMM dd, yyyy");
 
-            //---------------------------------------------------------
-            // trying to pull in pet's owner's name.....  
-            var petsOwnerID = pet.PetOwnerID;
+            //---------------------------------------------------------------------------
+            // trying to pull in pet's owner's name.....                    it worked!
+            var petsOwnerID = PetVM.Pet.PetOwnerID;
+
 
             var petOwnerPetopiaID = db.PetOwners.Where(po => po.PetOwnerID == petsOwnerID)
                                          .Select(po => po.UserID).FirstOrDefault();
@@ -98,14 +103,43 @@ namespace Petopia.Controllers
 
             // so kinda backwards from the queries in the profile or care transaction controllers!
             ViewBag.thisPetsOwnersID = "This Pet's PetOwnerID: " + thisPetsOwnersID;
-            ViewBag.thisPetsOwnersPetopiaUserID = "This Pet's Owner's PetopiaUserID: " 
+            ViewBag.thisPetsOwnersPetopiaUserID = "This Pet's Owner's PetopiaUserID: "
                                                         + thisPetsOwnersPetopiaUserID;
             ViewBag.thisPetsOwnersASPNetIdentityID = thisPetsOwnersASPNetIdentityID;
             ViewBag.loggedInUser = loggedInUser;
 
-            //---------------------------------------------------------
+            //---------------------------------------------------------------------------
+            // Grabbing providers that have helped this pet in the past
+            //---------------------------------------------------------------------------
 
-            return View(pet);
+            PetVM.PetopiaUsersList = (from ct in db.CareTransactions
+                                            where ct.PetID == PetVM.Pet.PetID
+
+                                            join co in db.CareProviders on ct.CareProviderID equals co.CareProviderID
+                                            join pu in db.PetopiaUsers on co.UserID equals pu.UserID
+                                            join ub in db.UserBadges on pu.UserID equals ub.UserID
+
+                                            select new PetProfileViewModel.PetopiaUsersInfo
+                                            {
+                                                UserID = pu.UserID,
+                                                FirstName = pu.FirstName,
+                                                LastName = pu.LastName,
+                                                GeneralLocation = pu.GeneralLocation,
+                                                ProfilePic = pu.ProfilePhoto,
+                                                UserBadgeID = ub.UserBadgeID,
+                                                DogProvider = ub.DogProvider,
+                                                CatProvider = ub.CatProvider,
+                                                BirdProvider = ub.BirdProvider,
+                                                FishProvider = ub.FishProvider,
+                                                HorseProvider = ub.HorseProvider,
+                                                LivestockProvider = ub.LivestockProvider,
+                                                RabbitProvider = ub.RabbitProvider,
+                                                ReptileProvider = ub.ReptileProvider,
+                                                RodentProvider = ub.RodentProvider,
+                                                OtherProvider = ub.OtherProvider
+                                            }).Distinct().ToList();
+
+            return View(PetVM);
         }
         //===============================================================================
         //                                                                 ADD PET -- GET
@@ -345,7 +379,7 @@ namespace Petopia.Controllers
                 db.SaveChanges();
 
 
-                return RedirectToAction("PetProfile", new { id = pet.PetID } );
+                return RedirectToAction("PetProfile", new { id = pet.PetID });
             }
 
             // pick list for rating -- like 1 thru 5
@@ -475,7 +509,7 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
             PetGalleryViewModel petGal = new PetGalleryViewModel();
 
             petGal.CurrentPetID = id;
@@ -582,7 +616,7 @@ namespace Petopia.Controllers
 
             db.SaveChanges();
 
-            return RedirectToAction("PetGallery", new { id =  petID});
+            return RedirectToAction("PetGallery", new { id = petID });
         }
         //===============================================================================
     }

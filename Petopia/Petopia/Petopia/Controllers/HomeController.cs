@@ -22,33 +22,30 @@ namespace Petopia.Controllers
             //DAL.PetopiaUser currentUser = pdb.PetopiaUsers
             //                    .Where(x => x.ASPNetIdentityID == identityID).First();
 
-            var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
+            //var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
 
-            var OwnerLocation = ZipCodes.Get("97526");
-            var ZipCodesNearOwner = ZipCodes.RadiusSearch(OwnerLocation, 10);
-            
-            List<String> zipsList = new List<String>();
+            // var OwnerLocation = ZipCodes.Get("97526");
+            // var ZipCodesNearOwner = ZipCodes.RadiusSearch(OwnerLocation, 10);
 
+            //List<String> zipsList = new List<String>();
+            /*
             foreach(ZipCode zip in ZipCodesNearOwner)
             {
                 zipsList.Add(zip.PostalCode);
             }
 
-            ViewBag.ZipList = String.Join(",", zipsList.ToArray());
+            ViewBag.ZipList = String.Join(",", zipsList.ToArray()); */
 
             bool loggedIn = User.Identity.IsAuthenticated;
             ViewBag.loggedIn = loggedIn;
 
-
-
-
             return View();
-           
+
         }
         //===============================================================================
         public ActionResult About()
         {
-            ViewBag.Title = "What does Petopia do?"; 
+            ViewBag.Title = "What does Petopia do?";
             ViewBag.Message_PO = "find out how Petopia can make your and your pet's life better";
             ViewBag.Message_PCP = "or have a side hustle doing something you love";
 
@@ -87,7 +84,7 @@ namespace Petopia.Controllers
             var OwnerLocation = ZipCodes.Get(searchZip);
             var ZipCodesNearOwner = ZipCodes.RadiusSearch(OwnerLocation, 10);
 
-            if(OwnerLocation == null)
+            if (OwnerLocation == null)
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "Invalid zipcode");
             }
@@ -112,46 +109,46 @@ namespace Petopia.Controllers
 
             SearchViewModel carerSearch = new SearchViewModel();
 
-                carerSearch.PetCarerSearchList = (from pu in pdb.PetopiaUsers
+            carerSearch.PetCarerSearchList = (from pu in pdb.PetopiaUsers
 
-                                                  where zipsList.Contains(pu.ResZipcode) && pu.IsProvider
+                                              where zipsList.Contains(pu.ResZipcode) && pu.IsProvider
 
-                                                  join cp in pdb.CareProviders on pu.UserID equals cp.UserID
-                                                  join ub in pdb.UserBadges on cp.UserID equals ub.UserID
+                                              join cp in pdb.CareProviders on pu.UserID equals cp.UserID
+                                              join ub in pdb.UserBadges on cp.UserID equals ub.UserID
 
-                                                  select new SearchViewModel.CareProviderSearch
-                                                  {
-                                                      CP_ID = cp.CareProviderID,
-                                                      CP_PU_ID = pu.UserID,
-                                                      CP_Name = pu.FirstName + " " + pu.LastName,
-                                                      PU_Zipcode = pu.ResZipcode,
+                                              select new SearchViewModel.CareProviderSearch
+                                              {
+                                                  CP_ID = cp.CareProviderID,
+                                                  CP_PU_ID = pu.UserID,
+                                                  CP_Name = pu.FirstName + " " + pu.LastName,
+                                                  PU_Zipcode = pu.ResZipcode,
 
-                                                      CP_Profile_Pic = pu.ProfilePhoto,
-                                                      ExperienceDetails = cp.ExperienceDetails,
-                                                      ProviderAverageRating = cp.AverageRating,
-                                                      GeneralLocation = pu.GeneralLocation,
+                                                  CP_Profile_Pic = pu.ProfilePhoto,
+                                                  ExperienceDetails = cp.ExperienceDetails,
+                                                  ProviderAverageRating = cp.AverageRating,
+                                                  GeneralLocation = pu.GeneralLocation,
 
-                                                      IsDogProvider = ub.DogProvider,
-                                                      IsCatProvider = ub.CatProvider,
-                                                      IsBirdProvider = ub.BirdProvider,
-                                                      IsFishProvider = ub.FishProvider,
-                                                      IsHorseProvider = ub.HorseProvider,
-                                                      IsLivestockProvider = ub.LivestockProvider,
-                                                      IsRabbitProvider = ub.RabbitProvider,
-                                                      IsReptileProvider = ub.ReptileProvider,
-                                                      IsRodentProvider = ub.RodentProvider,
-                                                      IsOtherProvider = ub.OtherProvider
+                                                  IsDogProvider = ub.DogProvider,
+                                                  IsCatProvider = ub.CatProvider,
+                                                  IsBirdProvider = ub.BirdProvider,
+                                                  IsFishProvider = ub.FishProvider,
+                                                  IsHorseProvider = ub.HorseProvider,
+                                                  IsLivestockProvider = ub.LivestockProvider,
+                                                  IsRabbitProvider = ub.RabbitProvider,
+                                                  IsReptileProvider = ub.ReptileProvider,
+                                                  IsRodentProvider = ub.RodentProvider,
+                                                  IsOtherProvider = ub.OtherProvider
 
-                                                  }).ToList();
+                                              }).ToList();
 
-                // it did not like assigning `carerSearch.PetCarerSearchList` to var !
-                //var Q_List = Q.ToList();
-                //ViewBag.Q_List = Q_List;
+            // it did not like assigning `carerSearch.PetCarerSearchList` to var !
+            //var Q_List = Q.ToList();
+            //ViewBag.Q_List = Q_List;
 
 
 
-                return View(carerSearch);
-            
+            return View(carerSearch);
+
         }
         //===============================================================================
         public ActionResult PetOwnerSearchResult(string searchZip)   // string searchZip
@@ -167,7 +164,7 @@ namespace Petopia.Controllers
 
             var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
             var OwnerLocation = ZipCodes.Get(searchZip);
-            
+
             if (OwnerLocation == null)
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "Invalid zipcode");
@@ -183,35 +180,35 @@ namespace Petopia.Controllers
             }
 
             ownerSearch.PetOwnerSearchList = (from pu in pdb.PetopiaUsers
-                                where zipsList.Contains(pu.ResZipcode) && pu.IsOwner
+                                              where zipsList.Contains(pu.ResZipcode) && pu.IsOwner
 
-                                join po in pdb.PetOwners on pu.UserID equals po.UserID
-                                join ub in pdb.UserBadges on po.UserID equals ub.UserID
+                                              join po in pdb.PetOwners on pu.UserID equals po.UserID
+                                              join ub in pdb.UserBadges on po.UserID equals ub.UserID
 
-                                select new SearchViewModel.PetOwnerSearch
-                                {
-                                    PO_ID = po.PetOwnerID,
-                                    PO_PU_ID = pu.UserID,
-                                    PO_Name = pu.FirstName + " " + pu.LastName,
-                                    PU_Zipcode = pu.ResZipcode,
+                                              select new SearchViewModel.PetOwnerSearch
+                                              {
+                                                  PO_ID = po.PetOwnerID,
+                                                  PO_PU_ID = pu.UserID,
+                                                  PO_Name = pu.FirstName + " " + pu.LastName,
+                                                  PU_Zipcode = pu.ResZipcode,
 
-                                    PO_Profile_Pic = pu.ProfilePhoto,
-                                    GeneralNeeds = po.GeneralNeeds,
-                                    OwnerAverageRating = po.AverageRating,
-                                    GeneralLocation = pu.GeneralLocation,
+                                                  PO_Profile_Pic = pu.ProfilePhoto,
+                                                  GeneralNeeds = po.GeneralNeeds,
+                                                  OwnerAverageRating = po.AverageRating,
+                                                  GeneralLocation = pu.GeneralLocation,
 
-                                    IsDogOwner = ub.DogOwner,
-                                    IsCatOwner = ub.CatOwner,
-                                    IsBirdOwner = ub.BirdOwner,
-                                    IsFishOwner = ub.FishOwner,
-                                    IsHorseOwner = ub.HorseOwner,
-                                    IsLivestockOwner = ub.LivestockOwner,
-                                    IsRabbitOwner = ub.RabbitOwner,
-                                    IsReptileOwner = ub.ReptileOwner,
-                                    IsRodentOwner = ub.RodentOwner,
-                                    IsOtherOwner = ub.OtherOwner
+                                                  IsDogOwner = ub.DogOwner,
+                                                  IsCatOwner = ub.CatOwner,
+                                                  IsBirdOwner = ub.BirdOwner,
+                                                  IsFishOwner = ub.FishOwner,
+                                                  IsHorseOwner = ub.HorseOwner,
+                                                  IsLivestockOwner = ub.LivestockOwner,
+                                                  IsRabbitOwner = ub.RabbitOwner,
+                                                  IsReptileOwner = ub.ReptileOwner,
+                                                  IsRodentOwner = ub.RodentOwner,
+                                                  IsOtherOwner = ub.OtherOwner
 
-                                }).ToList();
+                                              }).ToList();
 
             return View(ownerSearch);
         }
