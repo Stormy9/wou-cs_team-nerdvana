@@ -41,7 +41,7 @@ namespace Petopia.Controllers
 
             //=========== Recommended Providers algo starts here ==============
 
-            if (loggedIn == true) //Must be logged in to get recommended Providers
+            if (false) //loggedIn == true) //Must be logged in to get recommended Providers
             {
                 //Grab logged in user info
                 var identityID = User.Identity.GetUserId();

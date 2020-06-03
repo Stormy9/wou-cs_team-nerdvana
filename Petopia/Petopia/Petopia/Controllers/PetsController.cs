@@ -113,7 +113,7 @@ namespace Petopia.Controllers
             PetVM.PetopiaUsersList = (from ct in db.CareTransactions
                                             where ct.PetID == PetVM.Pet.PetID
 
-                                            join co in db.CareProviders on ct.PetOwnerID equals co.CareProviderID
+                                            join co in db.CareProviders on ct.CareProviderID equals co.CareProviderID
                                             join pu in db.PetopiaUsers on co.UserID equals pu.UserID
                                             join ub in db.UserBadges on pu.UserID equals ub.UserID
 
