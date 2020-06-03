@@ -95,6 +95,8 @@ namespace Petopia.Controllers
 
                 petopiaUser.CareProviderID = db.CareProviders.Where(x => x.UserID == loggedID)
                                                                 .Select(x => x.CareProviderID).First();
+                petopiaUser.ProviderAverageRating = db.CareProviders.Where(x => x.UserID == loggedID)
+                                                                .Select(x => x.AverageRating).FirstOrDefault();
             }
             //---------------------------------------------------------
             if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
@@ -107,38 +109,8 @@ namespace Petopia.Controllers
 
                 petopiaUser.PetOwnerID = db.PetOwners.Where(x => x.UserID == loggedID)
                                                      .Select(x => x.PetOwnerID).First();
-            }
-            //---------------------------------------------------------------------------
-            //                                             OWNER\PROVIDER AVERAGE RATINGS
-            //---------------------------------------------------------------------------
-            // trying to get average rating for Pet Owners & Care Providers
-            if (db.CareProviders.Where(x => x.UserID == loggedID).Count() == 1)
-            {
-                //If we get 1, then we know this user is a CareProvider
-                // 'loggedID' == that user's PetopiaUserID
-                //
-                // get PetopiaUser's CareProviderID:
-                var thisCP_ID = db.CareProviders.Where(x => x.UserID == loggedID)
-                                                .Select(x => x.CareProviderID).FirstOrDefault();
-
-                // try for this Care Provider's Ratings to Average:
-                var thisCP_Avg_Rating = db.CareTransactions.Where(x => x.CareProviderID == thisCP_ID)
-                                                           .Average(x => x.PC_Rating);
-
-                //petopiaUser.ProviderAverageRating = thisCP_Avg_Rating;
-            }
-            //---------------------------------------------------------
-            if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
-            {
-                // get PetopiaUser's PetOwnerID:
-                var thisPO_ID = db.PetOwners.Where(x => x.UserID == loggedID)
-                                            .Select(x => x.PetOwnerID).FirstOrDefault();
-
-                // try for this Pet Owner's Ratings to Average:
-                var thisPO_Avg_Rating = db.CareTransactions.Where(x => x.PetOwnerID == thisPO_ID)
-                                                           .Average(x => x.PO_Rating);
-
-                //petopiaUser.OwnerAverageRating = thisPO_Avg_Rating;
+                petopiaUser.OwnerAverageRating = db.PetOwners.Where(x => x.UserID == loggedID)
+                                                     .Select(x => x.PetOwnerID).FirstOrDefault();
             }
             //---------------------------------------------------------------------------
             //                                                           GET PET(S) LIST!
@@ -733,6 +705,8 @@ namespace Petopia.Controllers
 
                 petopiaUser.ExperienceDetails = db.CareProviders.Where(x => x.UserID == loggedID)
                                                                 .Select(x => x.ExperienceDetails).First();
+                petopiaUser.ProviderAverageRating = db.CareProviders.Where(x => x.UserID == loggedID)
+                                                                .Select(x => x.AverageRating).FirstOrDefault();
             }
             //---------------------------------------------------------
             if (db.PetOwners.Where(x => x.UserID == loggedID).Count() == 1)
@@ -745,6 +719,8 @@ namespace Petopia.Controllers
 
                 petopiaUser.HomeAccess = db.PetOwners.Where(x => x.UserID == loggedID)
                                                      .Select(x => x.HomeAccess).First();
+                petopiaUser.OwnerAverageRating = db.PetOwners.Where(x => x.UserID == loggedID)
+                                                     .Select(x => x.AverageRating).FirstOrDefault();
             }
             //---------------------------------------------------------------------------
             //                                                           GET PET(S) LIST!
@@ -959,10 +935,6 @@ namespace Petopia.Controllers
 
             return View(petopiaUser);
         }
-        //---------------------------------------------------------------------------
-        //                                             OWNER\PROVIDER AVERAGE RATINGS
-        //---------------------------------------------------------------------------
-        // trying to get average rating for Pet Owners & Care Providers
 
 
 

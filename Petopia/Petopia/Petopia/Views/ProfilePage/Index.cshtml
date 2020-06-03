@@ -514,8 +514,9 @@
                                 <!------------------------------------------>
                                 <!-- 'margin-top' doesn't do anything, but padding does! -->
                                 <!-- but yet 'margin-left' works..... -->
-                                <div style="clear:both; padding-top: 5px; padding-bottom: 5px; margin-left:13px;"> 
-                                    ratings here </div>
+                                <div style="clear:both; padding-top: 5px; padding-bottom: 5px; margin-left:13px;">
+                                    @Html.DisplayFor(modelItem => item.ProviderAverageRating)
+                                </div>
                             </div>
                         }
                         <!-------------------------------------------------------------->
