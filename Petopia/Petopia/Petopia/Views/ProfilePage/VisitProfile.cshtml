@@ -1,0 +1,571 @@
+﻿@model Petopia.Models.ViewModels.ProfileViewModel
+
+@{
+    ViewBag.Title = "your very own profile page!";
+}
+
+@Styles.Render("~/Content/fullcalendar.css")
+
+<div class="outer_container">
+    <div class="container-fluid">
+        <!-------------------------------- FIRST/TOP ROW ------------------------------->
+        <div class="row our_row_one">
+            <!-- empty/placeholder for now-->
+            <!-- here in case we decide we want it later! -->
+        </div>
+        <!--==========================================================================-->
+        <!------------------------------ SECOND/MIDDLE ROW ----------------------------->
+        <div class="row our_row_two">
+            <!---->
+            <!---->
+            <!-- 1st column --><!-- role\profilePic\caption\badges\PM&FriendButtons -->
+            <!-- b/c of col settings, 2&1/2 wide --><!-- EXCEPT IT'S NOT!!  dammit.  -->
+            <div class="col col-sm-3 col-md-3 col-lg-3 col-x-3l our_col_one">
+
+                <!-- owner || provider || both -->
+                @if (Model.IsOwner == true)
+                {
+                    <div class="owner_provider_box">
+                        Pet Owner
+                    </div>
+                }
+                else if (Model.IsProvider == true)
+                {
+                    <div class="owner_provider_box">
+                        Pet Carer
+                    </div>
+                }
+                else
+                {
+                    <div class="owner_provider_box">
+                        Pet Owner & Carer
+                    </div>
+                }
+
+
+                <!-- profile picture -->
+                @if (Model.ProfilePhoto != null)
+                {
+                    <div class="profile_pic_box_box">
+                        <div class="profile_pic_box">
+                            <img src=@Url.Action("Show", "Image", new { id = Model.UserID })
+                                 class="profile_img" />
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="profile_pic_box_box">
+                        <div class="profile_pic_box">
+                            <img src="https://stormy9.github.io/nerdvana/cute_smiley.png"
+                                 class="profile_img" />
+                        </div>
+                    </div>
+                }
+
+
+                <!-- profile pic caption -->
+                <div class="profile_pic_caption_box">
+                    <div class="profile_pic_caption">
+                        @Html.DisplayFor(model => model.UserCaption)
+                    </div>
+                </div>
+
+
+                <!-- pet badges -->
+                <div class="pet_badge_box">
+                    <!------------------------------------------------------------------>
+                    <!-- let profile-visitors know this person hasn't done bages yet! -->
+                    @if (ViewBag.Badges == false)
+                    {
+                        <p> this user hasn't set up badges yet! </p>
+                    }
+                    <!------------------------------------------------------------------>
+                    @if (ViewBag.DogOwner == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_owner.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.DogProvider == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_provider.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.CatOwner == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_owner.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.CatProvider == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_provider.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.BirdOwner == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_owner.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.BirdProvider == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_provider.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.FishOwner == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_owner.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.FishProvider == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_provider.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.HorseOwner == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_owner.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.HorseProvider == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_provider.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.LivestockOwner == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_owner.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.LivestockProvider == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_provider.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.RabbitOwner == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_owner.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.RabbitProvider == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_provider.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.ReptileOwner == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_owner.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.ReptileProvider == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_provider.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.RodentOwner == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_owner.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.RodentProvider == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_provider.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.OtherOwner == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_owner.png"
+                             class="pet_badge">
+                    }
+                    @if (ViewBag.OtherProvider == true)
+                    {
+                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_provider.png"
+                             class="pet_badge">
+                    }
+                </div><!-- end pet badge box div -->
+                <!---->
+                <!---->
+                <!-- private msg + friend buttons -->
+                <!-- *****STILL PLACEHOLDER***** -->
+                <!-- do 'display:none' but keep for doing something with later   =] -->
+                <div class="button_box" style="margin-top:23px;">
+                    <a href="#" class="our_a">
+                        <div class="our_profile_buttons">
+                            PM me!
+                        </div>
+                    </a>
+                    <a href="our_a">
+                        <div class="our_profile_buttons">
+                            add friend
+                        </div>
+                    </a>
+                    <a href="our_a">
+                        <div class="our_profile_buttons">
+                            all my friends
+                        </div>
+                    </a>
+                </div>
+                <!---->
+
+            </div><!-- END 1st/LEFT COLUMN **OF** 2nd/MIDDLE ROW -->
+            <!-------------------------------------------------------------------------->
+            <!---->
+            <!---->
+            <!-- 2nd column --><!-- userName\generalLocation\rating\bio\experience -->
+            <div class="col-sm-7 col-md-7 col-lg-7 col-xl-7 our_col_two">
+
+
+                <!-- user name -->
+                <div class="user_name_box">
+                    <h3>
+                        @Html.DisplayFor(model => model.FirstName)
+                        @Html.DisplayFor(model => model.LastName)
+                    </h3>
+                    <h4>
+                        @Html.DisplayFor(model => model.Tagline)
+                    </h4>
+                </div>
+                <!---->
+                <!---->
+                <!-- user's general location -->
+                <div class="general_location_box">
+                    <div class="general_location">
+                        my general location:
+                        @Html.DisplayFor(model => model.GeneralLocation)
+                    </div>
+                </div>
+                <!---->
+                <!---->
+                <!-- user rating -->
+                <!-- *****STILL PLACEHOLDER***** -->
+                <div class="user_rating_box">
+
+                    @if (Model.IsProvider == true)
+                    {
+                        @Html.DisplayNameFor(model => model.ProviderAverageRating)
+
+                        @Html.DisplayFor(model => model.ProviderAverageRating)
+                    }
+                    <!------------------------------------------------------------------>
+                    @if (Model.IsOwner == true)
+                    {
+                        @Html.DisplayNameFor(model => model.OwnerAverageRating)
+
+                        @Html.DisplayFor(model => model.OwnerAverageRating)
+                    }
+
+                    <br />
+                    <img src="https://stormy9.github.io/nerdvana/rating_star_example.PNG"
+                         class="user_rating_star_bar">
+                </div>
+                <!---->
+                <!---->
+                <!-- user bio & etc. fun stuff -->
+                <div class="user_bio_box">
+                    <h4>Stuff About Me:</h4>
+                    @Html.DisplayFor(model => model.UserBio)
+
+
+                    @if (Model.IsProvider == true)
+                    {
+                        <div class="carer_exp_box">
+                            <h4> My Pet Care Experience: </h4>
+                            @Html.DisplayFor(model => model.ExperienceDetails)
+                        </div>
+                    }
+
+                    @if (Model.IsOwner == true)
+                    {
+                        <div class="general_pet_care_needs_box">
+                            <h4> My General Pet Care Needs: </h4>
+                            @Html.DisplayFor(model => model.GeneralNeeds)
+                        </div>
+                    }
+
+                </div><!-- end user bio (etc.) box -->
+                <!---->
+                <!---->
+                <!-- calendar to show up for Pet Carers to post availability -->
+                @if (Model.IsProvider == true)
+                {
+                    <div class="calendar_box" style="width:100%;">
+
+                        <div id="calendar" style="width:100%;">
+
+                        </div>
+
+                    </div><!-- end calendar_box div -->
+                }
+                <!----------------------------------------------------------->
+                <!---->
+                <!---->
+            </div><!-- END 2nd\MIDDLE COLUMN  **OF** 2nd/MIDDLE ROW -->
+            <!-------------------------------------------------------------------------->
+            <!---->
+            <!---->
+            <!-- 3rd COLUMN --><!-- providers/petOwners Near Me (and that's it!) -->
+            <!-- for Pet Carers, display Pet Owners they've worked with before??  -->
+            <!---->
+            <!-- b/c of col settings, it's 2&1/2 wide -- except it isn't!!!  -->
+            <div class="col col-sm col-md col-lg col-xl our_col_three">
+
+                <!-- THIRD COLUMN SCROLL-BOX! -->
+                <!-- auto search result header -->
+                <!-- *****STILL PLACEHOLDER(S)***** -->
+                <div class="auto_search_result_header">
+                    <h5 style="margin-left: 5px;"> Recommended Pet Care Providers Near Me!</h5>
+                </div>
+                <!---------------------------------------------------------------------->
+                <!-- search results -> who's near you? -->
+                <div class="auto_search_results_box_box">
+
+                    <div class="auto_search_results_box">
+                        <!-------------------------------------------------------------->
+                        @foreach (var item in Model.PetopiaUsersList)
+                        {
+                            <div class="search_result_card">
+
+                                @if (item.ProfilePic != null)
+                                {
+                                    <div class="search_result_profile_pic_box_box">
+                                        <div class="search_result_profile_pic_box">
+                                            <a href='@Url.Action("VisitProfile", "ProfilePage",
+                                                    new { loggedID = item.UID })'>
+                                                <img src=@Url.Action("Show", "Image",
+                                                    new { id = item.UID })
+                                                     class="search_result_profile_img" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="search_result_profile_pic_box_box">
+                                        <div class="search_result_profile_pic_box">
+                                            <a href='@Url.Action("VisitProfile", "ProfilePage",
+                                                    new { loggedID = item.UID })'>
+                                                <img src="https://stormy9.github.io/nerdvana/cute_smiley.png"
+                                                     class="search_result_profile_img" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="search_result_card_info">
+                                    <span>
+                                        @Html.ActionLink(item.Name, "VisitProfile",
+                                        new { controller = "ProfilePage", loggedID = item.UID },
+                                        new { @class = "", style = "float:left; color:#002266;" })
+                                    </span>
+                                    @if (item.GeneralLocation != null)
+                                    {
+                                        <div style="clear:both;">
+                                            <!-- break the floats above -->
+                                            @Html.DisplayFor(modelItem => item.GeneralLocation)
+                                        </div>
+                                    }
+                                    <br />
+                                    @if (item.IsDogProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.IsCatProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.IsBirdProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.IsFishProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.IsRabbitProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.IsRodentProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.IsReptileProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.IsHorseProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.IsLivestockProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_provider.png" class="pet_badge">
+                                    }
+
+                                    @if (item.IsOtherProvider is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_provider.png" class="pet_badge">
+                                    }
+                                    @if (item.DogOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.CatOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.BirdOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.FishOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.RabbitOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.RodentOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.ReptileOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.HorseOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.LivestockOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_owner.png" class="pet_badge">
+                                    }
+
+                                    @if (item.OtherOwner is true)
+                                    {
+                                        <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_owner.png" class="pet_badge">
+                                    }
+                                </div>
+                                <!------------------------------------------>
+                                <!-- 'margin-top' doesn't do anything, but padding does! -->
+                                <!-- but yet 'margin-left' works..... -->
+                                <div style="clear:both; padding-top: 5px; padding-bottom: 5px; margin-left:13px;">
+                                    @Html.DisplayFor(modelItem => item.ProviderAverageRating)
+                                </div>
+                            </div>
+                        }
+                        <!-------------------------------------------------------------->
+                    </div><!-- END 'auto_search_results_box' -->
+                </div><!-- END 'auto_search_results_box_box' -->
+            </div><!-- END 3rd\RIGHT-SIDE COLUM  **OF** 2nd/MIDDLE ROW -->
+            <!-------------------------------------------------------------------------->
+        </div><!-- END 2nd/MIDDLE ROW -->
+        <!---->
+        <!---->
+        <!--==========================================================================-->
+        <!------------------------------ THIRD/BOTTOM ROW ------------------------------>
+        <!---->
+        <!---->
+        <div class="row our_row_three">
+            <!-- ROW TO DISPLAY PETS OF USER -->
+            <!---->
+            <!---->
+            <!-- 9-col wide span inside 3rd row & that's it -->
+            <!-- trying (maybe?) to get 3rd colum of 2nd row to span two row's height -->
+            <div class="col-sm-8 col-md-8 our_col_four">
+                <!---->
+                <!---->
+                <!-- pet profile preview box header -->
+                <div class="pet_profile_header">
+                    @if (Model.IsOwner == true)
+                    {<h3> My Pets! </h3>}
+                </div>
+                <!---------------------------------------------------------------------->
+                <!-- we want both owners & providers to be able to show off pets  =]  -->
+                @if (Model.IsOwner == true)
+                {
+                    foreach (var item in Model.PetList)
+                    {
+                        <!-- pet profile preview box --><!-- holds all preview panels -->
+                        <div class="pet_profile_preview_box">
+
+                            <div class="pet_profile_preview">
+                                <!-- individual panel -->
+                                <!-- link to pet's profile -->
+                                @if (item.PetPhoto != null)
+                                {
+                                    <img src=@Url.Action("ShowPet", "Image", new { id = item.PetID }) class="pet_profile_preview_img" />
+                                }
+                                else
+                                {
+                                    <img class="pet_profile_preview_img"
+                                         alt="pet profile pic"
+                                         src="https://stormy9.github.io/nerdvana/pointyEaredSilhouette.png">
+                                }
+
+                                <div class="pet_preview_name">
+                                    My name is: &nbsp;&nbsp;
+                                    @Html.DisplayFor(model => item.PetName)
+                                </div>
+                                <div class="pet_preview_breed">
+                                    @Html.DisplayFor(model => item.Species)
+                                    &nbsp; &rarr; &nbsp;
+                                    @Html.DisplayFor(model => item.Breed)
+                                </div>
+                                <div class="pet_preview_breed">
+                                    I am a @Html.DisplayFor(model => item.Gender)
+                                </div>
+                                <div class="pet_preview_breed">
+                                    My birthday is:
+                                    @Html.DisplayFor(model => item.Birthdate)
+                                </div>
+
+
+                                <div class="button_box_pet_card">
+                                    @Html.ActionLink("This Pet's Profile", "PetProfile",
+                                            new { controller = "Pets", id = item.PetID },
+                                            new
+                                                 {
+                                                     @class = "our_pet_card_buttons",
+                                                style = "color: #f2e6d9;  font-weight: normal;"
+                                                 })
+
+                                </div>
+
+                            </div><!-- END pet_profile_preview -->
+                        </div><!-- END 'pet_profile_preview_box' -->
+                    }
+                }
+            </div><!-- END 4th Column -> one inside 3rd/bottom row -->
+            <!-------------------------------------------------------------------------->
+            <!---->
+            <!---->
+            <!--==========================================================================-->
+            <!--------------------------------- END OF ROWS -------------------------------->
+
+        </div><!-- END CONTAINER-FLUID -->
+    </div><!-- END OUTER_CONTAINER -->
+    <!--==================================================================================-->
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/Scripts/_our_main.js")
+        @Scripts.Render("~/Scripts/moment.js")
+        @Scripts.Render("~/Scripts/fullcalendar.js")
+    }
+

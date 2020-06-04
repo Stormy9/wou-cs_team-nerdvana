@@ -1,0 +1,59 @@
+﻿@model Petopia.Models.CareTransaction
+
+@{
+    ViewBag.Title = "Your payment status.....";
+}
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-sm-6 col-md-6">
+
+                <h2> @ViewBag.Title </h2>
+
+                <div class="our_proofing" style="display:none">
+                    <label>this ct_id (parameter):</label> @ViewBag.CT_ID <br />
+                    <label>this ct_id (from db.find):</label> @ViewBag.CareTransactionID <br />
+                    <label>thisPetOwnerID:</label> @ViewBag.thisPetOwnerID <br />
+                    <label>thisPetOwnerPetopiaID:</label> @ViewBag.thisPetOwnerPetopiaID <br /> <br />
+                </div>
+
+                <!-- wtf is this?  it's from controller -->
+                @ViewBag.Customer <br />
+
+                <!-- Petopia Appt Stuff -->
+                <div style="border:1px solid navy; border-radius:5px; margin-bottom:15px;padding:5px;">
+                    <label>Pet Owner Name:</label> @ViewBag.PetOwnerName <br />
+                    <label>Pet Name:</label> @ViewBag.PetName <br />
+                    <label>Pet Carer Name:</label> @ViewBag.PetCarerName <br />
+                    <label>Appt. Start Date:</label> @ViewBag.thisStartDate <br />
+                </div>
+
+                <!-- Stripe payment stuff -->
+                <div style="border:1px solid navy; border-radius:5px; padding:5px;">
+                    <label style="font-size:90%; font-style:italic; display:none">
+                        @ViewBag.ChargeAmount
+                    </label> 
+
+                    <label>Total Paid:</label> @ViewBag.theREALcharge <br />
+                    <label>For:</label> @ViewBag.ChargeDesc <br />
+                    <label>Stripe payment email:</label> @ViewBag.CustomerEmail <br />
+                    <label>Paid on:</label> @ViewBag.TodaysDate <br />
+                    <label>@ViewBag.IsPaid</label>
+                </div>
+
+            </div><!-- end column -->
+            <div class="col-sm-6 col-md-6">
+                @Html.ActionLink("My appointments", "MyAppointments",
+                                new { @class = "btn our_buttons",
+                                    style = "color:#f2e6d9; font-weight:normal;" })
+            </div>
+        </div><!-- end row one -->        
+        <!--==========================================================================-->
+    </div><!-- end container-fluid -->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<!--==================================================================================-->

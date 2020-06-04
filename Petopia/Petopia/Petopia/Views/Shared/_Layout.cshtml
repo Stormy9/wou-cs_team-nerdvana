@@ -1,18 +1,20 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-        <title>@ViewBag.Title - for the love of pets</title>
+    <title>@ViewBag.Title - for the love of pets</title>
 
 
-        @Styles.Render("~/Content/css")
-        @Styles.Render("~/Content/Profile_Styling.css")
-        @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Profile_Styling.css")
+    @Styles.Render("~/Content/AdminLTE/*")
 
-    </head>
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
 
 <!-------------------------------------------------------------------------------------->
 
@@ -32,22 +34,48 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    @Html.ActionLink("Petopia!", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.ActionLink("Petopia!", "Index", "Home", new { area = "" }, 
-                                                        new { @class = "navbar-brand" })
+                                    new { @class = "navbar-brand", style="color: #f2e6d9;" })
 
                 </div>
 
 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Have Questions?", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("What We Do", "About", new { controller = "Home" }, 
-                                                new { @class = "our_nav_links" })</li>
-                        <li>@Html.ActionLink("Have Questions or Concerns?", "Contact", new { controller = "Home" }, 
-                                                    new { @class = "our_nav_links" })</li>
-                        <li>@Html.ActionLink("Profile", "Index", new { controller = "ProfilePage" },
-                                                    new { @class = "our_nav_links" })</li>
+                        <li>
+                            @Html.ActionLink("What We Do", "About",
+                                new { controller = "Home" },
+                                new { @class = "our_nav_links", style = "color: #f2e6d9;" })
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Have Questions or Concerns?", "Contact",
+                                    new { controller = "Home" },
+                                    new { @class = "our_nav_links", style = "color:#f2e6d9;" })
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("How to use Petopia", "UsingPetopia",
+                                    new { controller = "Home" },
+                                    new { @class = "our_nav_links", style = "color:#f2e6d9;" })
+                        </li>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li style="margin-left: 23px;">
+                                @Html.ActionLink("My Profile", "Index",
+                                    new { controller = "ProfilePage" },
+                                    new { @class = "our_nav_links", style = "color: #f2e6d9;" })
+                            </li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li style="margin-left: 23px;">
+                                @Html.ActionLink("Admin Panel", "Our_Dashboard",
+                                    new { controller = "AdminLte" },
+                                    new { @class = "our_nav_links", style = "color: #f2e6d9;" })
+                            </li>
+                        }
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
@@ -67,7 +95,11 @@
                 <p>
                     &copy; @DateTime.Now.Year &nbsp;&nbsp;&nbsp; |
                     &nbsp;&nbsp;&nbsp; Petopia! &nbsp;&nbsp;&nbsp; |
-                    &nbsp;&nbsp;&nbsp; by Team Nerdvana
+                    &nbsp;&nbsp;&nbsp; by Team Nerdvana &nbsp;&nbsp;&nbsp; |
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    tech support &raquo; wou.cs.team.nerdvana@gmail.com
+                    &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+                    everything else &raquo; petopia.by.nerdvana@gmail.com
                 </p>
             </footer>
 

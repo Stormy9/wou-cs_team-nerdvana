@@ -1,7 +1,7 @@
 ﻿@model Petopia.Models.PetOwner
 
 @{
-    ViewBag.Title = "I'm a Pet Owner.....";
+    ViewBag.Title = "I'm a Pet Owner!";
 }
 <!--============================= WHOLE DAMNED FORM HERE =============================-->
 <div class="container-fluid">
@@ -16,7 +16,7 @@
 
         <h2>@ViewBag.Title</h2>
         <!--========================= TOP ROW FOR ACCORDIANS =========================-->
-        <div class="row" style="margin-bottom: 18px; margin-top: 0; padding-top: 0;">
+        <div class="row" style="margin-bottom: 9px; margin-top: 0; padding-top: 0;">
             <div class="container-fluid your_info">
                 <!-- why did we have to do another 'container-fluid'?? -->
                 <!-- to keep it from being right up on the outside edges -->
@@ -27,20 +27,16 @@
 
                     <!------------- PROFILE PANEL, w/HEADING/TITLE + BODY -------------->
                     <div class="panel our_panel_01">
-
-                        <a data-toggle="collapse" data-parent="#accordion_02"
-                           href="#collapse_PO">
-                            <div class="panel-heading our_panel_heading">
-                                <div class="panel-title our_panel_title">
+                        
+                        <div class="panel-heading our_panel_heading">
+                            <div class="panel-title our_panel_title">
+                                <a data-toggle="collapse" data-parent="#accordion_02" href="#collapse_PO">
                                     <p class="our_panel_p">
                                         What we do with your info + why we ask it:
-                                        <span class="glyphicon glyphicon-resize-vertical"
-                                              style="float: right;">
-                                        </span>
                                     </p>
-                                </div><!-- end 'panel-title'\'our_panel_title' divs -->
-                            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
-                        </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
+                                </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
+                            </div><!-- end 'panel-title'\'our_panel_title' divs -->
+                        </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
                         <!-------------------------------------------------------------->
                         <div class="panel-collapse collapse" id="collapse_PO">
                             <div class="panel-body"> <!-- CREATE PET OWNER FORM -->
@@ -71,7 +67,8 @@
                                     This information will <i>only</i> be provided to 
                                     the Pet Care Provider you choose to care for your 
                                     Pet, when you've arranged for them to come to your 
-                                    home.
+                                    home... i.e., which gate or door do you want them 
+                                    to use?
                                 </p>
                                 <p>
                                     Again, you can edit this information at any time. 
@@ -95,16 +92,26 @@
 
                 <!------------------- PET OWNER NEEDS DETAILS -------------------------->
                 <div class="form-group">
-                    @Html.LabelFor(model => model.NeedsDetails,
+                    @Html.LabelFor(model => model.GeneralNeeds,
                                     htmlAttributes: new { @class = "control-label" })
                     <br />
-                    @Html.TextAreaFor(model => model.NeedsDetails,
+                    @Html.TextAreaFor(model => model.GeneralNeeds,
                          new { htmlAttributes =
-                         new { @class = "form-control our_text_area" }, cols=72, rows=5,
-                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                         new { @class = "form-control our_text_area"}, autofocus="autofocus",
+                               rows=5, id = "text01", name = "text01",
+                               @placeholder="i.e., dinner, walks, clean-up after",
+                         style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;"})
+
+                    <div>
+                        <span class="pull-left label label-default" id="count_message_01"></span>
+                    </div>
+
+                    <!--Above is the rough implementation of a text area character counter. 
+                        As of 4/7 the placement of counter is not inside the text area.  -->
+                    
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
-                    @Html.ValidationMessageFor(model => model.NeedsDetails, "",
+                    @Html.ValidationMessageFor(model => model.GeneralNeeds, "",
                                                         new { @class = "text-danger" })
                 </div>
                 <!---------------------------------------------------------------------->
@@ -116,16 +123,23 @@
 
                 <!---------------- PET OWNER \ HOME ACCESS DETAILS  -------------------->
                 <div class="form-group">
-                    @Html.LabelFor(model => model.AccessInstructions,
+                    @Html.LabelFor(model => model.HomeAccess,
                                     htmlAttributes: new { @class = "control-label" })
                     <br />
-                    @Html.TextAreaFor(model => model.AccessInstructions,
+                    @Html.TextAreaFor(model => model.HomeAccess,
                          new { htmlAttributes =
-                         new { @class = "form-control our_text_area" }, cols=72, rows=5,
-                         style = "color: #2e2e1f; border-radius: 5px; padding: 5px;" })
+                         new { @class = "form-control our_text_area"}, 
+                             rows=5, id = "text02", name = "text02",
+                             @placeholder="i.e., use the side door and be sure to close the gate...",
+                         style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%"})
+
+                    <div>
+                        <span class="pull-left label label-default" id="count_message_02"></span>
+                    </div>
+
                     <!-- CSS FILE IS NOT TOUCHING 'our_text_area' CLASS -->
 
-                    @Html.ValidationMessageFor(model => model.AccessInstructions, "",
+                    @Html.ValidationMessageFor(model => model.HomeAccess, "",
                                                         new { @class = "text-danger" })
                 </div>
                 <!---------------------------------------------------------------------->
@@ -164,4 +178,5 @@
 <!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/_our_main.js")
 }

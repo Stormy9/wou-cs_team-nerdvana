@@ -12,10 +12,13 @@ namespace Petopia.Models
         {
         }
 
+        //===============================================================================
         public virtual DbSet<CareProvider> CareProviders { get; set; }
 
+        //-------------------------------------------------------------------------------
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }
+        //===============================================================================
     }
 }

@@ -1,0 +1,214 @@
+﻿@model Petopia.Models.ViewModels.SearchViewModel
+
+@{
+    ViewBag.Title = "Pet Owners in your area:";
+}
+
+<div class="container-fluid">
+
+    <div class="row our_row_one">
+
+        <!--------------------------------- COLUMN ONE --------------------------------->
+
+        <div class="col-sm-1 col-md-1 our_col_one">
+            <!-- spacer column -->
+        </div>
+
+        <!----------------------------------- COLUMN TWO \ MAIN ------------------------>
+
+        <div class="col-sm-10 col-md-10 our_col_two">
+
+            <h2> @ViewBag.Title </h2>
+
+            @if (Model.PetOwnerSearchList.Count() > 0)
+            {
+                foreach (var item in Model.PetOwnerSearchList)
+                {
+                    <div class="splash_search_result_box">
+
+                        <!-- for early testing/proofing! -->
+                        @*<div class="search_result_test_proof_data">
+                            @Html.DisplayNameFor(model => model.PO_ID)&nbsp;
+                            @Html.DisplayFor(modelItem => item.PO_ID) &lt;=&gt;
+                            @Html.DisplayNameFor(model => model.PU_ZipCode)&nbsp;
+                            @Html.DisplayFor(modelItem => item.PU_Zipcode)<br />
+                            later the name &amp; photo will be linked to the
+                            care provider's profile page!   [=
+                        </div>*@
+                        <!-------------------------------------------------------------->
+
+                        <div class="search_result_cp_name">
+                            <span>
+                                @Html.ActionLink(item.PO_Name, "VisitProfile",
+                                new { controller = "ProfilePage", loggedID = item.PO_PU_ID },
+                                new { @class = "", style = "float:left; color:#003399;" })
+                            </span>
+                            @*<span>
+                                @Html.ActionLink("my profile", "VisitProfile",
+                                new { controller = "ProfilePage", loggedID = item.PO_PU_ID },
+                                new { @class = "", style = "float:right; color:#003399;" })
+                            </span>*@
+                        </div>
+
+
+                        @if (item.GeneralLocation != null)
+                        {
+                        <div style="clear:both;"><!-- break the floats above -->
+                            @Html.DisplayFor(modelItem => item.GeneralLocation)
+                        </div>
+                        }
+                        else 
+                        { 
+                            <div style="clear:both;"> <!-- break the floats above -->
+                                &nbsp; 
+                                <!-- so profile photos line up across cards, haha! -->
+                            </div>
+                        }
+
+
+                        <!-- MINI PROFILE PICTURE FOR PET OWNER! -->
+                        @if (item.PO_Profile_Pic != null)
+                        {
+                            <div class="search_result_profile_pic_box_box">
+                                <div class="search_result_profile_pic_box">
+                                    <a href='@Url.Action("VisitProfile", "ProfilePage",
+                                                    new { loggedID = item.PO_PU_ID })'>
+                                        <img src=@Url.Action("Show", "Image", 
+                                                    new { id = Model.PO_PU_ID })
+                                             class="search_result_profile_img" />
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="search_result_profile_pic_box_box">
+                                <div class="search_result_profile_pic_box">
+                                    <a href='@Url.Action("VisitProfile", "ProfilePage",
+                                                    new { loggedID = item.PO_PU_ID })'>
+                                        <img src="https://stormy9.github.io/nerdvana/cute_smiley.png"
+                                             class="search_result_profile_img" />
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        <br />
+
+                        <!-- PET BADGES! -->
+                        <div class="search_result_pc_badge_box">
+                            <div style="margin-bottom:3px;">My pet owner badges!</div>
+                            @if (item.IsDogOwner is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/dog_owner.png" class="pet_badge">
+                            }
+
+                            @if (item.IsCatOwner is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/cat_owner.png" class="pet_badge">
+                            }
+
+                            @if (item.IsBirdOwner is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/bird_owner.png" class="pet_badge">
+                            }
+
+                            @if (item.IsFishOwner is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/fish_owner.png" class="pet_badge">
+                            }
+
+                            @if (item.IsRabbitOwner is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/rabbit_owner.png" class="pet_badge">
+                            }
+
+                            @if (item.IsRodentOwner is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/small_rodents_owner.png" class="pet_badge">
+                            }
+
+                            @if (item.IsReptileOwner is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/reptile_owner.png" class="pet_badge">
+                            }
+
+                            @if (item.IsHorseOwner is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/horse_owner.png" class="pet_badge">
+                            }
+
+                            @if (item.IsLivestockOwner is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/livestock_owner.png" class="pet_badge">
+                            }
+
+                            @if (item.IsOtherOwner is true)
+                            {
+                                <img src="https://raw.githubusercontent.com/CorrinM/wou-cs_team-nerdvana/FinishBadges/Petopia/Petopia_images/other_owner.png" class="pet_badge">
+                            }
+                        </div>
+                    </div><!-- end div 'splash_search_result_box' -->
+                } <!-- end the 'foreach' loop -->
+            }
+            else
+            {
+                <h3>
+                    there aren't any pet owners registered in your area yet!
+                </h3>
+            }
+
+        </div><!-- end middle column (10-wide) -->
+        <!------------------------------------- COLUMN THREE --------------------------->
+
+        <div class="col-sm-1 col-md-1 our_col_three">
+            <!-- spacer column -->
+        </div>
+
+        <!------------------------------------------------------------------------------>
+
+    </div><!-- end row one-->
+    <!---------------------------------------------------------------------------------->
+    <div class="row our_row_two">
+
+        <div class="col-sm-1 col-md-1 our_col_one">
+
+        </div>
+
+        <div class="col-sm-10 col-md-10 our_col_two">
+
+            <div style="margin-left: 45px;">
+
+                <h3> search again?</h3>
+
+                @using (Html.BeginForm("PetOwnerSearchResult", "Home", FormMethod.Post))
+                {
+                    <!-- 'action' is where you go when it clicks, but we don't need it now -->
+                    <form class="splash_search" action="">
+                        <div class="form-group splash_form">
+                            <!-- TODO: figure out why this won't widen w/CSS -->
+                            @Html.TextBox("searchZip", null,
+                                        new { @class = "form-control splash_search_input",
+                                              placeholder = "enter your 5-digit zip code.....",
+                                            @pattern="[0-9]{5}" })
+
+                            <!-- thought a custom error message would be helpful 
+                                and it is -- but it is also tempremental, haha 
+                                figure out maybe sometime -- general format is like:
+                            (at)oninvalid="this.setCustomValidity('please use 5-digit zipcode!')"-->
+                        </div>
+
+                        <button type="submit" class="our_buttons">
+                            Fetch!
+                        </button>
+                    </form>
+                }
+            </div><!-- end search form/box div -->
+
+        </div>
+
+        <div class="col-sm-1 col-md-1 our_col_three">
+
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------->
+</div><!-- end container-fluid \ outer container -->

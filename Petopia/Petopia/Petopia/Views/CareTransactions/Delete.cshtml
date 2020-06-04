@@ -1,0 +1,149 @@
+﻿@model Petopia.Models.CareTransaction
+
+@{
+    ViewBag.Title = "Cancel this Care Appointment";
+    ViewBag.Title02 = "Are you sure you want to cancel?";
+    var loggedInUser = ViewBag.loggedInUser;
+    var thisPetsOwner = ViewBag.thisPetsOwnersASPNetIdentityID;
+}
+
+<div class="container-fluid">
+
+    <!-- testing purposes! -->
+    <div style="display:none;"> 
+        logged-in user: @loggedInUser  <br />
+        this pet's owner: @thisPetsOwner <br />
+    </div>
+
+    @if(loggedInUser == thisPetsOwner)
+    { 
+        <h2>@ViewBag.Title:</h2>
+        <h3>@ViewBag.Title02</h3>
+
+    
+        <div class="container-fluid my_appt_box" style="padding: 15px;">
+
+            <!--============================= ROW ZERO! ==========================-->
+            <div class="row" style="margin-bottom: 35px;">
+
+                <span style="float:left; margin-left: 25px; margin-right: 25px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.PetID) &nbsp;
+                    </span>
+                    @Html.DisplayFor(model => model.PetID)
+                </span>
+
+                <span style="float: left; margin-right: 25px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.PetOwnerID) &nbsp;
+                    </span>
+                    @Html.DisplayFor(model => model.PetOwnerID)
+                </span>
+
+                <span style="float:left; margin-right: 25px;">
+                    <span class="our_appt_label">
+                        @Html.DisplayNameFor(model => model.CareProviderID) &nbsp;
+                    </span>
+                    @Html.DisplayFor(model => model.CareProviderID)
+                </span>
+
+            </div><!-- END ROW ZERO -->
+            <!---->
+            <!---->
+            <!--=================================== ROW ONE ======================-->
+            <div class="row our_row_one">
+                <!------------------------------- ROW 1 \ COL 1 -------------------->
+                <div class="col-sm-1 col-md-1">
+
+                    <div style="margin-bottom: 13px;">
+                        <span class="our_appt_label">
+                            @Html.DisplayNameFor(model => model.StartDate)<br />
+                        </span>
+                        @Html.DisplayFor(model => model.StartDate)
+                    </div>
+
+                    <div style="margin-top: 13px;">
+                        <span class="our_appt_label">
+                            @Html.DisplayNameFor(model => model.StartTime)<br />
+                        </span>
+                        @Html.DisplayFor(model => model.StartTime)
+                    </div>
+
+                </div><!-- END ROW 1 \ COL 1 -->
+                <!------------------------------------------------------------------>
+                <!---->
+                <!--------------------------- ROW 1 \ COL 2 ------------------------>
+                <div class="col-sm-1 col-md-1">
+
+                    <div style="margin-bottom: 13px;">
+                        <span class="our_appt_label">
+                            @Html.DisplayNameFor(model => model.EndDate)<br />
+                        </span>
+                        @Html.DisplayFor(model => model.EndDate)
+                    </div>
+
+                    <div style="margin-top: 13px;">
+                        <span class="our_appt_label">
+                            @Html.DisplayNameFor(model => model.EndTime)<br />
+                        </span>
+                        @Html.DisplayFor(model => model.EndTime)
+                    </div>
+
+                </div><!-- END ROW 1 \ COL 2 -->
+                <!---->
+                <!--------------------------- ROW 1 \ COL 3 ------------------------>
+                <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+
+                    <div>
+                        <span class="our_appt_label">
+                            @Html.DisplayNameFor(model => model.NeededThisVisit)<br />
+                        </span>
+                        @Html.DisplayFor(model => model.NeededThisVisit)
+                    </div>
+
+                </div><!-- END ROW 1 \ COL 3 -->
+                <!------------------------------------------------------------------>
+                <!---->
+            </div><!-- END ROW 1 -->
+            <!---->
+            <!---->
+            <!--=============================== ROW TWO ==============================-->
+            <div class="row our_row_three">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <span class="form-actions no-color" 
+                          style="float: right; margin-right: 5px;">
+                        <input type="submit" value="Cancel this Appointment"
+                               class="our_buttons" />
+                    </span>
+
+                    <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                        
+                        @Html.ActionLink("All my Pet Care appointments", "MyAppointments",
+                                            new { controller = "CareTransactions" }, 
+                                            new { style="color: #f2e6d9;"})
+                    </span>
+
+                    <span style="float: right; margin-right: 5px;" class="btn our_buttons">
+                        @Html.ActionLink("All this Pet's care appointments",
+                            "MyPetsAppointments", new
+                                 {controller = "CareTransactions",
+                                  id = Model.PetID}, new { style="color: #f2e6d9;"})
+                    </span>
+                }
+                <!--==================================================================-->
+            </div><!-- END ROW TWO -->
+            <!--======================================================================-->
+            <!---->
+            <!--======================================================================-->
+        </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
+    }
+    else
+    { 
+        <h5> you are not this pet's owner or care provider! </h5>
+    }
+</div><!-- END CONTAINER-FLUID (outer-most container) -->
+<!--==============================================================================-->

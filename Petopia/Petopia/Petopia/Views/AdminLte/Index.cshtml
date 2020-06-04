@@ -1,0 +1,170 @@
+﻿@model Petopia.Models.ViewModels.AdminPanelViewModel
+@*
+    This is the example main content of the AdminLTE demo and represents a good smattering of AdminLTE functionality in a cshtml
+    TODO: Delete this file when you're ready to start building your app
+*@
+
+@{
+    // Layout set automatially in _ViewStart.cshtml
+    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+    // EXAMPLE:
+    // Using the ViewBag on a page to set the title and sub-title
+    // This will cause the _AdminLteLayout to include this value in the page title
+    // And also set the top titles in the main content area of the page
+    ViewBag.Title = "Admin LTE";
+    ViewBag.TitleSmall = "Version 2.0";
+
+    // EXAMPLE:
+    // Using the Breadcrumb class to create a dynamically generated breadcrumb on the page with
+    // Titles, plus optional icon and URLs
+    ViewBag.Breadcrumb = new Breadcrumb(new Crumb[] {
+        new Crumb("Dashboard", "", "fa-dashboard")
+    });
+}
+
+
+<!-- Info boxes -->
+<div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">CPU Traffic</span>
+                <span class="info-box-number">90<small>%</small></span>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+    </div><!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Likes</span>
+                <span class="info-box-number">41,410</span>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+    </div><!-- /.col -->
+    <!-- fix for small devices only -->
+    <div class="clearfix visible-sm-block"></div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Sales</span>
+                <span class="info-box-number">760</span>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+    </div><!-- /.col -->
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">New Members</span>
+                <span class="info-box-number">2,000</span>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+    </div><!-- /.col -->
+</div><!-- /.row -->
+            <div class="box-footer">
+                <div class="row">
+                    <table class="table table-dark"> <!-- START OF USERS TABLE -->
+                        <tr>
+                            <th>
+                                First Name
+                            </th>
+                            <th>
+                                Last Name
+                            </th>
+                            <th>
+                                Pet Owner?
+                            </th>
+                            <th>
+                                Pet Carer?
+                            </th>
+                            <th>
+                                AspNetID
+                            </th>
+
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model.UserList)
+                        {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsOwner)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsProvider)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ASPNetIdentityID)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.UserID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.UserID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+                        </td>
+                    </tr>
+                        }
+
+                    </table>
+                </div><!-- /.row -->
+            </div><!-- /.box-footer -->
+<!-- Main row -->
+<div class="row">
+    <!-- Left col -->
+    <div class="col-md-8">
+        <!-- MAP & BOX PANE -->
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">Visitors Report</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div><!-- /.box-header -->
+            <div class="box-body no-padding">
+                <div class="row">
+                    <div class="col-md-9 col-sm-8">
+                        <div class="pad">
+                            <!-- Map will be created here -->
+                            <div id="world-map-markers" style="height: 325px;"></div>
+                        </div>
+                    </div><!-- /.col -->
+                    <div class="col-md-3 col-sm-4">
+                        <div class="pad box-pane-right bg-green" style="min-height: 280px">
+                            <div class="description-block margin-bottom">
+                                <div class="sparkbar pad" data-color="#fff">90,70,90,70,75,80,70</div>
+                                <h5 class="description-header">8390</h5>
+                                <span class="description-text">Visits</span>
+                            </div><!-- /.description-block -->
+                            <div class="description-block margin-bottom">
+                                <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
+                                <h5 class="description-header">30%</h5>
+                                <span class="description-text">Referrals</span>
+                            </div><!-- /.description-block -->
+                            <div class="description-block">
+                                <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
+                                <h5 class="description-header">70%</h5>
+                                <span class="description-text">Organic</span>
+                            </div><!-- /.description-block -->
+                        </div>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div><!-- /.col -->
+</div><!-- /.row -->
+@section scripts {
+    @*NOTE: These should NOT be used in a production situation
+        They do contains useful snippets on how to setup charts*@
+    <script src="~/Scripts/AdminLTE/pages/dashboard2.js"></script>
+    <script src="~/Scripts/AdminLTE/demo.js"></script>
+}

@@ -1,0 +1,25 @@
+Hi, my name is Joey Tavares. I am Senior in the Computer Science program here at WOU and in the coming video I will be presenting alongisde my fellow Nerdvana team members the web application we have been building, Petopia. Petopia is a web application that aims to provide pet owners seeking pet care an avenue to network with prospective care providers. 
+
+--- PowerPoint --- 
+
+**Moving now into features of Petopia**
+
+ Registering for the site and creating your own user profile will unlock the majority of the funcionality the app has to offer, but visitors are welcomed with features that aren't gated behind registration in hopes that during their visit they can get a good feel if registering would be benneficial to them.
+
+ Inside of each user profile lives pet profiles, this gives owners the opprotunity to provide an identity to their pets on the platform. It could be a singular profile only for the pet who needs care or multiple pet profiles for the myriad of different pets you might own and want to share with the community on Petopia.
+ 
+ Stepping through registration prompts you to select a role, in addition to registering as an Owner a user can register as a Care Provider. A lot of similar featues are shared between the two roles on the profile page side, but Care Providers are mainly a role distiction to help guide user interaction and help both parties use the booking system to coordinate. 
+
+*** Some of our inspiration for Petopia ***
+ 
+Looking at the landscape of pet care centric web applications we felt there was a gap for something like Petopia to fill. Other alterantives we researched mainly had too narrow of scope in both the services offered and to what animals. 
+
+Tricia has been deeply involved in the dog owner commnunity wearing most of the hats you could think of, from competing in show competitions to being a breeder and general doggie care taker. Myself and Corrin are both pet owners ourselves and from each of our perspectives Petopia seemed like something that could bring immense value to pet owners who struggle to find consistent and reliable care for the more hands on tasks than saw just walks or pet sitting.
+
+Most of the time people who love animals don't nessacrily get to work with them in a capacity that is fiscally benneficial. Petopia hopes to bridge that gap and allow indiviuals a chance to both work with animals they love but also see monetary gain from their time spent.
+
+
+
+
+
+ 

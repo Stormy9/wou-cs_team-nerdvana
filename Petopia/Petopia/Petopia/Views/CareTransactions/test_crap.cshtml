@@ -1,0 +1,148 @@
+﻿@model Petopia.Models.ViewModels.CareTransactionViewModel
+
+@{
+    ViewBag.Title = "a spot to test stuff";
+}
+
+<div class="container-fluid">
+
+    <h2>@ViewBag.Title</h2>
+
+    <div class="container-fluid my_appt_box" style="padding: 15px;">
+
+        <!--================================ ROW ONE =================================-->
+        <div class="row our_row_one" style="margin-bottom: 9px;">
+
+            <div class="col-sm-6 col-md-6">
+                <div>
+                    @ViewBag.identityID <br />
+                    @ViewBag.petopiaUserID <br />
+                    @ViewBag.petOwnerID <br />
+                    @ViewBag.petOwner_UserID <br />
+                    @ViewBag.thisPetOwner <br />
+                    @ViewBag.user_Email <br />
+                    @ViewBag.thisPetOwnerZip <br />
+                    @ViewBag.thisOwnersPets
+
+                    <!-- this works! -->
+                    <h5> trying to print 'thisOwnersPetsList' from var.....</h5>
+                    @for (int i = 0; i < ViewBag.thisOwnersPetsList.Count; i++)
+                    { 
+                        <p> @ViewBag.thisOwnersPetsList[i] </p>
+                    }
+
+                </div>
+            </div><!-- end column one -->
+            <!--------------------------------------------------------------------------->
+            <div class="col-sm-6 col-md-6" style="border: 1px dotted blue;">
+
+                <h5> hopefully, this is owner's list of pet names!   [= </h5>
+                <h6> from 'testLists.PetNameList' </h6>
+                <ul>
+                    @foreach (var item in Model.PetNameList)
+                    {
+                        <li>
+                            @Html.DisplayFor(model => item.PetName)
+                        </li>
+                    }
+                </ul>
+            </div><!-- end column two -->
+        </div><!-- end row one -->
+        <!---->
+        <!---->
+        <!--==========================================================================-->
+        <div class="row our_row_two">
+
+            <div class="col-sm-6 col-md-6">
+
+                <h5> trying for check-boxes.....</h5>
+
+                @using (Html.BeginForm("test_crap", "CareTransactions", FormMethod.Post,
+                                new { @class = "form", role = "form", enctype = "multipart/form-data" } )) 
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.PetOwnerID)
+
+                        <h5> Which Pet? </h5>
+                        <!-------------------------------------------------------------->
+                        @foreach (var item in Model.PetNameList)
+                        {
+                            <div class="form-group">
+                                @Html.CheckBoxFor(model => item.PetIsChecked, 
+                                                            new { @checked = "checked" })
+
+                                @Html.HiddenFor(model => item.PetIsChecked) <!-- ??? -->
+                                @Html.DisplayFor(model => item.PetName)
+
+                                @Html.ValidationMessageFor(model => item.PetIsChecked, "", 
+                                                          new { @class = "text-danger" })
+                            </div>
+                        }
+                        <!-------------------------------------------------------------->
+                            <div class="form-group">
+                                <input type="submit" value="Which Pet?" class="btn our_buttons" />
+                            </div>
+                        <!-------------------------------------------------------------->
+                    </div><!-- end form div -->
+                }
+                <!--==================================================================-->
+            </div><!-- end column one -->
+            <!---->
+            <!------------------------------ column two -------------------------------->
+            <div class="col-sm-3 col-md-3">
+                
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.PetName, htmlAttributes: new { @class = "control-label"})
+
+                    @Html.DropDownList("ThisOwnersPetsSelectList", (IEnumerable<SelectListItem>)ViewBag.ThisOwnersPetsSelectList, "my pets", htmlAttributes: new { @class="form-control"})
+
+                </div>
+
+                <!-- trying for pet carer w/matching zip code select list... -->
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.PetCarerName, htmlAttributes: new { @class = "control-label" })
+
+                    @Html.DropDownList("PetCarerSelectList", (IEnumerable<SelectListItem>)ViewBag.PetCarerSelectList, "pet carer name", htmlAttributes: new { @class="form-control"})
+
+                </div>
+
+                <!-- pet carer list -->
+                <h5> hopefully this is a list of Pet Carer ID's, names, &amp; zip-codes: </h5>
+                <h6> with zipcodes that match the currently logged-in user/PetOwner) </h6>
+                @foreach (var item in Model.PetCarerList)
+                {
+                    <div style="margin-bottom: 5px; border:2px solid blue; border-radius: 11px; 
+                                padding: 9px; background-color: #9999ff; color: black;">
+                        <p>
+                            <b>CareProviderID:</b>&nbsp;&nbsp;
+                            @Html.DisplayFor(model => item.CareProviderID)
+                        </p>
+                        <p>
+                            <b>Care Provider Name:</b>&nbsp;&nbsp;
+                            @*@Html.DisplayFor(model => item.CP_FirstName)&nbsp;
+                            @Html.DisplayFor(model => item.CP_LastName)*@
+                            @Html.DisplayFor(model => item.CP_Name)
+                        </p>
+                        <p>
+                            <b>Care Provider ZipCode:</b>&nbsp;&nbsp;
+                            @Html.DisplayFor(Model => item.CP_Zipcode)
+                        </p>
+                    </div>
+                }
+
+            </div><!-- end column two -->
+        </div><!-- end row two -->
+
+    </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
+
+</div><!-- END CONTAINER-FLUID (outer-most container) -->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<!--==================================================================================-->

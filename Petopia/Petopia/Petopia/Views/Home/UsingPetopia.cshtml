@@ -1,0 +1,1002 @@
+﻿
+@{
+    ViewBag.Title = "How to use Petopia";
+}
+
+    <div class="container-fluid">
+
+        <!-- ================================== ROW ONE ==============================-->
+        <div class="row">
+            <div class="col-sm-10">
+
+                <h2> @ViewBag.Title! </h2>
+
+            </div><!-- end col one -->
+            <!-------------------------------------------------------------------------->
+            <div class="col-sm-2">
+
+                <!-- in case we wanna put something over here -->
+
+            </div><!-- end col two -->
+            <!-------------------------------------------------------------------------->
+        </div><!-- END ROW ONE -->
+        <!-- ================================== ROW TWO ==============================-->
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+
+                <!--================================ TABS! ===========================-->
+                <!---->
+                <!-- the nav part -->
+                <ul class="nav nav-tabs" style="border: none;">
+                    <li class="active">
+                        <!-- not sure why classes won't apply styling on these? -->
+                        <a data-toggle="tab" href="#home" class="our_tabs"
+                           style="background-color: #392613; color: #f2e6d9;">
+                            welcome!
+                        </a>
+                    </li>
+                    <!------------------------------------------------------------------>
+                    <li>
+                        <a data-toggle="tab" href="#menu1" class="our_tabs"
+                           style="background-color: #604020; color: #f2e6d9;">
+                            pet owner setup
+                        </a>
+                    </li>
+                    <!------------------------------------------------------------------>
+                    <li>
+                        <a data-toggle="tab" href="#menu2"
+                           style="background-color: #604020; color: #f2e6d9;">
+                            pet setup
+                        </a>
+                    </li>
+                    <!------------------------------------------------------------------>
+                    <li>
+                        <a data-toggle="tab" href="#menu3"
+                           style="background-color: #604020; color: #f2e6d9;">
+                            care provider setup
+                        </a>
+                    </li>
+                    <!------------------------------------------------------------------>
+                    <li>
+                        <a data-toggle="tab" href="#menu4"
+                           style="background-color: #604020; color: #f2e6d9;">
+                            making an appointment
+                        </a>
+                    </li>
+                    <!------------------------------------------------------------------>
+                    <li>
+                        <a data-toggle="tab" href="#menu5"
+                           style="background-color: #604020; color: #f2e6d9;">
+                            completing an appointment
+                        </a>
+                    </li>
+                    <!------------------------------------------------------------------>
+                    <li>
+                        <a data-toggle="tab" href="#menu6"
+                           style="background-color: #604020; color: #f2e6d9;">
+                            pet owner/carer communication
+                        </a>
+                    </li>
+                    <!------------------------------------------------------------------>
+                    <li>
+                        <a data-toggle="tab" href="#menu7"
+                           style="background-color: #604020; color: #f2e6d9;">
+                            your privacy
+                        </a>
+                    </li>
+                    <!------------------------------------------------------------------>
+                    <li>
+                        <a data-toggle="tab" href="#menu8"
+                           style="background-color: #604020; color: #f2e6d9;">
+                            user disputes
+                        </a>
+                    </li>
+                    <!------------------------------------------------------------------>
+                    <li>
+                        <a data-toggle="tab" href="#menu9"
+                           style="background-color: #604020; color: #f2e6d9;">
+                            Petopia content
+                        </a>
+                    </li>
+                    <!------------------------------------------------------------------>
+                    <li>
+                        <a data-toggle="tab" href="#menu10"
+                           style="background-color: #604020; color: #f2e6d9;">
+                            our social side
+                        </a>
+                    </li>
+                    <!------------------------------------------------------------------>
+                </ul>
+                <!--==================================================================-->
+                <!--==================================================================-->
+                <!---->
+                <!---->
+                <!------------------------- THE TAB CONTENT PART! ---------------------->
+                <!---->
+                <div class="tab-content">
+                    <!--==============================================================-->
+                    <!------------------------------ 1st TAB => Welcome! --------------->
+                    <div id="home" class="tab-pane fade in active our_tab_panels">
+
+                        <h3 style="margin-top:0px;"> welcome! </h3>
+
+                        <p>
+                            Welcome to Petopia!  Page through the tabs to learn your
+                            way around.....
+                        </p>
+                        <p>
+                            We hope this will answer any questions you might think of!  
+                            If not, click the button below!
+                        </p>
+                        <p></p>
+                        <!-------------------------------------------------------------->
+                        <div class="any_questions">
+                            @Html.ActionLink("Any Questions?", "Contact", "Home", 
+                                "https",null, "petopia_service_question-comment", 
+                                null, null)
+                        </div>
+
+                    </div><!-- END DIV WHERE ID==HOME --><!-- aka WELCOME! -->
+                    <!---->
+                    <!---->
+                    <!--==============================================================-->
+                    <!------------------------- 2nd TAB => Pet Owner Setup ------------->
+                    <div id="menu1" class="tab-pane fade our_tab_panels">
+                        <div id="home" class="tab-pane fade in active">
+
+                            <h3 style="margin-top:0px;">
+                                How Petopia works for Pet Owners
+                            </h3>
+                            <ul>
+                                <li>
+                                    <b>Register:</b> <br />
+                                    First, register your email with us!
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Your Profile &amp; Account:</b> <br />
+                                    You'll then be taken to a page to fill out your
+                                    account and profile information.  Once you've
+                                    finished, click to "create profile".
+                                    <br /><br />
+                                    You can come back any time to update your info or
+                                    post changes to your profile or photo!  Have fun
+                                    with it! <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Complete the "Pet Owner" option:</b> <br />
+                                    Next you'll be taken to a page where you choose your
+                                    Petopia designation.  Pick "Pet Owner"!
+                                    <br /><br />
+                                    Fill out the Pet Owner information: <br />
+                                    <ul>
+                                        <!---------------------------------------------->
+                                        <li>
+                                            <b>your general needs</b> -- 
+                                            you can give specifics
+                                            with each appointment booking <br /><br />
+                                        </li>
+                                        <li>
+                                            <b>access</b> -- 
+                                            how you prefer your pet care providers to
+                                            access your home -- which gates, doors, etc.
+                                            <br /><br />
+                                        </li>
+                                    </ul><!--------------------------------------------->
+                                    Be sure to put in everything that your Pet Care
+                                    Provider would need or want to know so they can take
+                                    the best care of your pet!  Update whenever you need
+                                    to.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Your Account:</b> <br />
+                                    The account information you provide will never
+                                    appear on your profile, so don't worry!
+                                    <br /><br />
+                                    When you contract with a Pet Care Provider to care
+                                    for your pet, we will provide them with the contact
+                                    and access information you supplied so that they can
+                                    do what they need to do to take the best care of
+                                    your pet!
+                                    <br /><br />
+                                    You can review and update your account information
+                                    whenever you need to by clicking "My Account Info"
+                                    from your profile page.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Your Profile:</b> <br />
+                                    The profile information you provide will, as you
+                                    might expect, appear on your profile!  These are
+                                    some fun things for other Petopia users to know a
+                                    little bit about you.
+                                    <br /><br />
+                                    There are two views of your profile page:  one that
+                                    all Petopia users will see to "meet" you, and
+                                    another just for you, with buttons to manage your
+                                    Petopia experience.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Badges:</b> <br />
+                                    Once you set up your profile, choose your Pet Badges!
+                                    For each Pet you pick, a little icon will display
+                                    just underneath your profile photo.
+                                    <br /><br />
+                                    Not only is this a fun way for other Petopia users
+                                    to see what kinds of Pets you have -- it helps our
+                                    matching algorithm recommend the best Pet Care
+                                    Providers for you.
+                                    <br /><br /><br />
+                                </li>
+                            </ul>
+                            <!---------------------------------------------------------->
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", 
+                                    "https", null, "petopia_service_question-comment", 
+                                    null, null)
+                            </div>
+                        </div>
+                    </div><!-- end div where id=menu1 -->
+                    <!---->
+                    <!---->
+                    <!--==============================================================-->
+                    <!------------------------------- 3rd TAB => Pet Setup ------------->
+                    <div id="menu2" class="tab-pane fade our_tab_panels">
+                        <div id="home" class="tab-pane fade in active">
+
+                            <h3 style="margin-top:0px;"> pet setup </h3>
+                            <p>
+                                Your Pet has "profile" and "account" info, too!
+                            </p>
+                            <ul>
+                                <li>
+                                    <b>Adding a Pet:</b><br />
+                                    From your profile page, there is a button to "Add
+                                    a Pet!"  Click and fill out all your Pet's details.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Pet Accounts:</b> <br />
+                                    Just like your account information, your Pet's
+                                    account information is kept private and will ONLY
+                                    be shared with your chosen Pet Care Provider once
+                                    they confirm your appointment booking request, to
+                                    enable them to take the best care of your Pets.
+                                    <br /><br />
+                                    Fill these items out as detailed as you can so that
+                                    your Pet Care Provider can understand your Pet!
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Pet Profiles:</b> <br />
+                                    This is fun stuff about your Pet that will be on
+                                    their profile for other Petopia users -- and most
+                                    importantly, your Pet Care Providers -- to get to
+                                    know your Pet!
+                                    <br /><br />
+                                    Some of these things you can update as you choose --
+                                    other things, like your Pet's species, you can't.  [=
+                                    <br /><br />
+                                    Each of your Pet's profiles will be summarized in
+                                    "Pet Preview Cards" on your profile!  Click them to
+                                    see their full profile.
+                                    <br /><br />
+                                    Just like your own profile, there are two views of
+                                    your Pet's profile:  one that all Petopia users will
+                                    see, and one that only you see.
+                                    <br /><br />
+                                    On the latter view, you will have buttons to review
+                                    and update your Pet's private account information,
+                                    as well as review their Pet Care appointment record
+                                    and book new appointments for them!
+                                    <br /><br />
+                                    You can also review and book your Pet's Care
+                                    appointments right from their "Pet Preview Card" on
+                                    your profile!
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Pet Gallery!</b> <br />
+                                    Here you can post up to five different photos of
+                                    your Pet!  These will be viewable by the Petopia
+                                    community, so share the cutest ones!
+                                    <br /><br />
+                                    You may change out photos whenever you wish.
+                                    Eventually we will have capacity for more photos!
+                                    <br /><br /><br />
+                                </li>
+                            </ul>
+                            <!---------------------------------------------------------->
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", 
+                                    "https", null, "petopia_service_question-comment", 
+                                    null, null)
+                            </div>
+                        </div>
+                    </div><!-- end div where id=menu2 -->
+                    <!---->
+                    <!---->
+                    <!--==============================================================-->
+                    <!------------------------- 4th TAB => Pet Care Provider Setup ----->
+                    <div id="menu3" class="tab-pane fade our_tab_panels">
+                        <div id="home" class="tab-pane fade in active">
+
+                            <h3 style="margin-top:0px;">
+                                How Petopia works for Pet Care Providers
+                            </h3>
+                            <ul>
+                                <li>
+                                    <b>Register:</b><br />
+                                    First, register your email with us!
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Your Profile &amp; Account:</b><br />
+                                    Then you'll be taken to a page to fill out your
+                                    account and profile information.  Once you've
+                                    finished, click to "create profile".
+                                    <br /><br />
+                                    You can come back any time to update your info or
+                                    post changes to your profile or photo!  Have fun
+                                    with it!
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Complete the "Pet Care Provider" option:</b><br />
+                                    Next you'll be taken to a page where you choose your
+                                    Petopia designation.  Pick "Pet Care Provider"!
+                                    <br /><br />
+                                    Fill out the Pet Care Provider information: <br />
+                                    <ul>
+                                        <!---------------------------------------------->
+                                        <li>
+                                            <b>your pet care experience</b> --
+                                            treat this like your resume, so that Pet
+                                            Owners can be confident in your abilities
+                                            and trust you with their Pets!  Give as many
+                                            details as you can, and update as needed.
+                                            <br /><br />
+                                        </li>
+                                    </ul><!--------------------------------------------->
+                                    Your Pet Care resume will appear on your profile so
+                                    that Pet Owners can know about you to when selecting
+                                    a Care Provider for their Pets.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Your Account:</b><br />
+                                    The account information you provivde will never
+                                    appear on your profile, so don't worry!
+                                    <br /><br />
+                                    When you contract with a Pet Owner to care for their
+                                    pet, we'll provide them with the contact information
+                                    you supplied so they know how to reach you.
+                                    <br /><br />
+                                    You can review and update your account information
+                                    whenever you need to by clicking "My Account Info"
+                                    from your profile page.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Your Profile:</b> <br />
+                                    The profile information you provide will,
+                                    unsurprisingly, appear on your profile!  These are
+                                    some fun things about you for other Petopia users to
+                                    know a little bit about you.
+                                    <br /><br />
+                                    There are two views of your profile page:  one that
+                                    all Petopia users will see to "meet" you, and another
+                                    just for you, with buttons to manage your Petopia
+                                    experience.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Badges:</b> <br />
+                                    Once you set up your profile, choose your Pet Badges!
+                                    For each Pet you pick, a little icon will display
+                                    just underneath your profile photo.
+                                    <br /><br />
+                                    Not only is this a fun way for Pet Owners and other
+                                    Petopia users to see what kinds of Pets you have
+                                    experience with -- it helps our matching algorithm
+                                    recommend you to Pet Owners!
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Coming soon -- online background checks!</b><br />
+                                    Successfully completing a background check -- which
+                                    will be indicated on your profile for Pet Owners to
+                                    see -- will lend you additional credibility and help
+                                    you get more appointments!  Pet Owners will know
+                                    you've been vetted and are trustworthy to care for
+                                    their beloved Pets in their home.
+                                    <br /><br /><br />
+                                </li>
+                                <!--==================================================-->
+                                <!-- save for when backgrond checks are implemented! -->
+                                <li style="display:none">
+                                    <b>Online Background Checks:</b><br />
+                                    *** explain how it works once we have it!
+                                    <br /><br />
+                                    *** another explanatory paragraph marked out.....
+                                    <br /><br /><br />
+                                </li>
+                                <!--==================================================-->
+                                <li>
+                                    <b>Your Calendar 
+                                    (<i style="font-size:90%;">under construction</i>):
+                                    </b><br />
+                                    After you set up your profile and account, mark your
+                                    calendar the days &amp; times you're available to
+                                    provide Pet Care.
+                                    <br /><br />
+                                    Update your availability any time -- your changes
+                                    will be reflected in real time.
+                                    <br /><br />
+                                    Your calendar will be visible on your profile for Pet
+                                    Owners to see when you're open.  This adds another
+                                    layer of "easy" for Pet Owners to know if you're the
+                                    one for them!
+                                    <br /><br /><br />
+                                </li>
+                            </ul>
+                            <!---------------------------------------------------------->
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", 
+                                    "https", null, "petopia_service_question-comment", 
+                                    null, null)
+                            </div>
+                        </div>
+                    </div><!-- end div where id=Menu3 -->
+                    <!---->
+                    <!---->
+                    <!--==============================================================-->
+                    <!------------------------- 5th TAB => Making Appointments --------->
+                    <div id="menu4" class="tab-pane fade our_tab_panels">
+                        <div id="home" class="tab-pane fade in active">
+
+                            <h3 style="margin-top:0px;"> making appointments </h3>
+
+                            <ul>
+                                <li>
+                                    <b>Pet Owners -- Finding a Pet Care Provider:</b>
+                                    <br />
+                                    On the right-hand side or your profile page, you'll
+                                    see a listing of all the Pet Care Providers in your
+                                    area who are experienced caring for your type of pet!
+                                    <br /><br />
+                                    Each one will have a card, with their name, photo,
+                                    general location, badges for the pets they're
+                                    experienced with, and their average rating.
+                                    <br /><br />
+                                    Click on their card to check out their full profile!
+                                    There you can see Pet Care Experience Resume and get
+                                    to know them a little bit.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Pet Care Provider Calendars:</b> <br />
+                                    Each Pet Care Provider has a calendar on their
+                                    profile to indicate when they are open to accepting
+                                    Pet Care Appointments, so you can see if their
+                                    availability matches with your needs.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Pet Owners -- Booking an Appointment:</b> <br />
+                                    You can click "Book Care for Me!" from your Pet's
+                                    Preview Card on your profile, or from your Pet's
+                                    profile.
+                                    <br /><br />
+                                    Fill out the "Book an Appointment" form with the
+                                    Start &amp; End Dates &amp; Times, along with the
+                                    Pet Care instructions for this appointment.  You'll
+                                    see a list of Pet Care Providers who match your
+                                    needs -- just enter the ID of the one you want to
+                                    hire, and click "Book!"
+                                    <br /><br />
+                                    You'll be taken to a confirmation page with a recap
+                                    of your Pet Care Appointment Request.  An email will
+                                    go to you for your records, and to your selected Pet
+                                    Care Provider to notify them of your booking request.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Pet Care Providers -- Confirming Appointments:</b>
+                                    <br />
+                                    When a Pet Owner books a Pet Care Appointment Request
+                                    with you, you'll get an email letting you know.
+                                    When you log into your account, there will be a link
+                                    at the top of your profile page so you can easily
+                                    confirm your Pet Care Appointment Requests.
+                                    <br /><br />
+                                    An email will go to you for your records, and to the
+                                    Pet Owner to let them know you have confirmed their
+                                    Pet Care Appointment Request and they can count on
+                                    you to be there for their Pet.  You will then have 
+                                    access to full contact, access, and other job 
+                                    details.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Your 'My Appointments' Page:</b> <br />
+                                    Both Pet Owners &amp; Pet Care Providers will have a
+                                    'My Appointments' page.  Here, each of your Pet Care
+                                    Appointments will be displayed on it's own card, and
+                                    divided into tabs: <br />
+                                    <ul>
+                                        <!---------------------------------------------->
+                                        <li>
+                                            <b>Pending</b> <br />
+                                            Initially, all Pet Care Appointment Requests
+                                            go in this tab, for both Pet Owners &amp;
+                                            Pet Care Providers.
+                                            <br /><br />
+                                        </li>
+                                        <li>
+                                            <b>Confirmed \ Upcoming \ Current</b> <br />
+                                            When the Pet Care Provider confirms a Pet
+                                            Care Appointment Request, that Appointment
+                                            will move over to this tab for both parties.
+                                            <br /><br />
+                                        </li>
+                                        <li>
+                                            <b>Finished</b> <br />
+                                            Once a Pet Care Appointment has been
+                                            fulfilled, the appointment will move to this
+                                            tab, for the permanent record of both Pet
+                                            Owner &amp; Pet Care Provider.
+                                            <br /><br />
+                                            Individual appointments that still need
+                                            completion details will be highlighted to be
+                                            found easily.
+                                            <br /><br />
+                                        </li>
+                                    </ul><!--------------------------------------------->
+                                    For Pet Owners, note this will show appointments for
+                                    all of your Pets in one place!
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>For Pet Owners:</b><br />
+                                    Each of your Pets will have their own 'My
+                                    Appointments' page, set up just like yours, so that
+                                    you can more easily find appointments for just that
+                                    Pet.
+                                    <br /><br /><br />
+                                </li>
+                            </ul>
+                            <!---------------------------------------------------------->
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", 
+                                    "https", null, "petopia_service_question-comment", 
+                                    null, null)
+                            </div>
+                        </div>
+                    </div><!-- end div where id=Menu4 -->
+                    <!---->
+                    <!---->
+                    <!--==============================================================-->
+                    <!------------------------- 6th TAB => Completing Appointments ----->
+                    <div id="menu5" class="tab-pane fade our_tab_panels">
+                        <div id="home" class="tab-pane fade in active">
+
+                            <h3 style="margin-top:0px;">completing appointments </h3>
+
+                            <ul>
+                                <li>
+                                    <b>Finished Appointments:</b> <br />
+                                    Once a Pet Care Appointment is fulfilled, it will
+                                    move to the 'Finished' tab for both Pet Owners &amp;
+                                    Pet Care Providers.  Appointments that need further 
+                                    information will be highlighted for you!
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>For Pet Care Providers:</b> <br />
+                                    <ul><!---------------------------------------------->
+                                        <li>
+                                            <b>Pet Care Summary:</b> <br />
+                                            This is just a quick recap -- like the 
+                                            subject line of an email!
+                                            <br /><br />
+                                        </li>
+                                        <li>
+                                            <b>Full Pet Care Report:</b> <br />
+                                            Pet Owners appreciate details of your
+                                            interaction with their Pet, to be assured
+                                            that everything needed was done &amp; their
+                                            Pet is happy and well cared for.   [=
+                                            <br /><br />
+                                        </li>
+                                        <li>
+                                            <b>Your Fee!</b> <br />
+                                            Fill in the fee for this appointment so that 
+                                            the Pet Owner can process your payment.
+                                            <br /><br />
+                                        </li>
+                                        <li>
+                                            <b>Rate the Pet Owner:</b> <br />
+                                            You're highly encouraged to rate your Pet 
+                                            Owners each time you care for their Pets. 
+                                            Their average rating will be shown on their 
+                                            profile!
+                                            <br /><br />
+                                            Did you find everything as described?  Was 
+                                            everything you needed to fulfill your Pet 
+                                            Care Appointment available for you?  Give 
+                                            the Pet Owner a rating to reflect this.
+                                            <br /><br />
+                                            This will also help other Pet Care Providers 
+                                            get an idea of what it is like to work for 
+                                            this Pet Owner &amp; Pet!
+                                            <br /><br />
+                                        </li>
+                                        <li>
+                                            <b>Leave Comments for the Pet Owner:</b> 
+                                            <br />
+                                            This is pretty much just what it says -- 
+                                            leave any comments about your experience 
+                                            with this Pet Owner to justify your rating 
+                                            and give other Pet Care Providers insight.
+                                            <br /><br /><br />
+                                        </li>
+                                    </ul><!--------------------------------------------->
+                                </li>
+                                <li>
+                                    <b>For Pet Owners:</b> <br />
+                                    <ul><!---------------------------------------------->
+                                        <li>
+                                            Check out your detailed Pet Care Report and
+                                            the Pet Care Provider's fee.
+                                            <br /><br />
+                                        </li>
+                                        <li>
+                                            If your Pet Care Provider did a good job,
+                                            it's a very nice thing to leave them a tip!
+                                            <br /><br />
+                                        </li>
+                                        <li>
+                                            <b>Rate your Pet Care Provider:</b> <br />
+                                            You're highly encouraged to rate each of
+                                            your Pet Care Providers, each time they care
+                                            for your Pets!  Their average rating will be 
+                                            shown on their profile!
+                                            <br /><br />
+                                            Did your Pet Care Provider do everything you 
+                                            requested?  Were they on time?  Did they do 
+                                            anything special for your Pet?  Give your 
+                                            Pet Care Provider a rating to reflect this.
+                                            <br /><br />
+                                            This will help other Pet Owners know they 
+                                            can trust this Pet Care Provider with their 
+                                            own beloved Pet!
+                                            <br /><br />
+                                        </li>
+                                        <li>
+                                            <b>Leave Comments for your Pet Care Provider:
+                                            </b> <br />
+                                            Pretty much just what it says -- leave any 
+                                            comments about your experience with this Pet 
+                                            Care Provider to justify your rating and to 
+                                            give other Pet Owners insight!
+                                            <br /><br /><br />
+                                        </li>
+                                    </ul><!--------------------------------------------->
+                                </li>
+                                <li>
+                                    <b>Payment for Pet Care Appointments:</b> <br />
+                                    Pet Owners will take care of paying for Pet Care 
+                                    Appointments -- and Pet Care Providers will receive 
+                                    their payments -- via Stripe from within the Petopia 
+                                    app!
+                                    <br /><br /><br />
+                                </li>
+                            </ul>
+                            <!---------------------------------------------------------->
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", 
+                                    "https", null, "petopia_service_question-comment", 
+                                    null, null)
+                            </div>
+                        </div>
+                    </div><!-- end div where id=Menu5 -->
+                    <!---->
+                    <!---->
+                    <!--==============================================================-->
+                    <!-------------------- 7th TAB => Owner/Provider Communication ----->
+                    <div id="menu6" class="tab-pane fade our_tab_panels">
+                        <div id="home" class="tab-pane fade in active">
+
+                            <h3  style="margin-top:0px;">
+                            Communication between Pet Owners and Care Providers </h3>
+                            <p>
+                                We recommend keeping communications between Pet Owners
+                                and Pet Care Providers, that is specifically about a Pet
+                                and it's Petopia Care Appointments -- within Petopia's
+                                Private Messaging and Check-In features.  This way there
+                                will be a record all in one secure place for quick &amp;
+                                easy reference for both parties, as needed.
+                                <br /> <br />
+                                And Pet Care Providers -- don't forget to leave good
+                                end-of-visit notes after each Pet Care Appointment!
+                                Not only does the Pet Owner appreciate it, but they can
+                                be helpful the next time you care for this Pet -- and
+                                are accessible to future Pet Care Providers who may care
+                                for that Pet.
+                                <br /><br /><br />
+                            </p>
+
+                            <h4 style="margin-left: 23px;">
+                                Communication Types -- 
+                                <i style="font-size:80%">still under construction:</i>
+                            </h4>
+                            <ul>
+                                <li>
+                                    <b>Private Messaging:</b> <br />
+                                    Private Message with any other Petopia user at any
+                                    time -- talk to your friends, plus Pet Owners and Pet 
+                                    Care Providers can private message about appointments.
+                                    <br /><br />
+                                </li>
+                                <li>
+                                    <b>Check-Ins:</b> <br />
+                                    This will be for Pet Care Providers to check in with 
+                                    the Pet Owners they work with during their Pet Care 
+                                    Appointments -- what time was the Pet fed, or when 
+                                    did they get their medicine?  
+                                    <br /><br />
+                                    Pet Owners especially like to get pictures of their 
+                                    Pet to know they're happy while their owner is away!
+                                    <br /><br /><br />
+                                </li>
+                            </ul>
+                            <!---------------------------------------------------------->
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", 
+                                    "https", null, "petopia_service_question-comment", 
+                                    null, null)
+                            </div>
+                        </div>
+                    </div><!-- end div where id=Menu6 -->
+                    <!---->
+                    <!---->
+                    <!--==============================================================-->
+                    <!---------------------------- 8th TAB => User Info\Privacy -------->
+                    <div id="menu7" class="tab-pane fade our_tab_panels">
+                        <div id="home" class="tab-pane fade in active">
+
+                            <h3 style="margin-top:0px;">
+                                What we do with your info + why we need it
+                            </h3>
+                            <br />
+                            <h4> Your profile information </h4>
+                            <p>
+                                The profile information you fill out at Petopia is what
+                                will actually be shown on your public profile with us.
+                            </p>
+                            <p>
+                                So have as much fun as you like -- make it silly, make
+                                it thoughtful or inspirational, make it whatever you
+                                like..... but please keep it nice!
+                            </p>
+                            <p>
+                                In other words -- imagine your Grandma might be reading
+                                it.   [=
+                            </p>
+                            <br />
+                            <hr />
+                            <br />
+                            <h4> Your account information </h4>
+                            <p>
+                                The account information you provide to Petopia will
+                                <b>not</b> appear on your profile -- it will remain 
+                                confidential with Petopia except as noted below:
+                            </p>
+                            <p>
+                                <b>For Pet Owners:</b><br />
+                                When you select a Pet Care Provider and arrange for
+                                Pet Care with them, once they confirm, only then will 
+                                Petopia share your contact and access information with 
+                                that Provider, so that they can fulfill your Pet Care 
+                                appointment in the best way for your Pet(s)!
+                            </p>
+                            <br /><br />
+                            <p>
+                                <b>For Pet Care Providers:</b><br />
+                                When you confirm a Pet Owner's Appointment Request to
+                                provide care for their Pet, only then will we share your 
+                                contact information with them so they can know how to 
+                                contact you
+                            </p>
+                            <!---------------------------------------------------------->
+                            <br /><br /><br />
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", 
+                                    "https", null, "petopia_service_question-comment", 
+                                    null, null)
+                            </div>
+                        </div>
+                    </div><!-- end div where id=Menu7 -->
+                    <!---->
+                    <!---->
+                    <!--==============================================================-->
+                    <!------------------------------ 9th TAB => User Disputes ---------->
+                    <div id="menu8" class="tab-pane fade our_tab_panels">
+                        <div id="home" class="tab-pane fade in active">
+
+                            <h3 style="margin-top:0px;"> user disputes </h3>
+                            <br />
+                            <p>
+                                While people who love pets are often the greatest of
+                                people, sometimes things can still go sideways somehow.
+                                <br /><br />
+                            </p>
+                            <!-------------------------------------------------------->
+                            <h4>
+                                If you are a Pet Owner.....
+                            </h4>
+                            <p>
+                                If your Pet Care Provider is not caring for your pet as
+                                agreed, or if anything else goes wrong, please contact
+                                Petopia as soon as possible and we will investigate 
+                                whatever is going on, and help you arrive at a 
+                                satisfactory conclusion.
+                                <br /><br /><br />
+                            </p>
+                            <!-------------------------------------------------------->
+                            <h4>
+                                If you are a Pet Care Provider.....
+                            </h4>
+                            <p>
+                                If the Owner of a Pet you are caring for has not paid you
+                                within two weeks of the time of service, or has otherwise
+                                not held up their end of the deal, please contact Petopia
+                                as soon as possible so that we can investigate the 
+                                situation and assist you in obtaining a satisfactory 
+                                outcome.
+                                <br /><br /><br />
+                            </p>
+                            <!-------------------------------------------------------->
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", 
+                                    "https", null, "dispute_resolution", null, null)
+                            </div>
+                        </div>
+                    </div><!-- end div where id=Menu8 -->
+                    <!---->
+                    <!---->
+                    <!--==============================================================-->
+                    <!------------------------ 10th TAB => Appropriate Content --------->
+                    <div id="menu9" class="tab-pane fade our_tab_panels">
+                        <div id="home" class="tab-pane fade in active">
+
+                            <h3 style="margin-top:0px;">
+                                what is appropriate on Petopia
+                            </h3>
+                            <br />
+                            <h4> Most-important thing: We love Pets! </h4>
+
+                            <ul>
+                                <li>
+                                    While this should be <b><i>entirely</i></b> 
+                                    obvious.....
+                                    we will not tolerate any content that even remotely
+                                    refers to animal mistreatment in any way --
+                                    be it words or images... on user profiles... as
+                                    commentary on one of our social forums, or anywhere
+                                    else on Petopia.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    Petopia is not the place to sell pets -- there are
+                                    plenty of avenues for that already, and that is not
+                                    our purpose.
+                                    <br /><br />
+                                    Eventually we would like to host a page for Pet
+                                    Rescue organizations, but will not get involved in
+                                    the selling of pets through our site.
+                                    <br /><br />
+                                    We are not saying there is anything wrong with
+                                    purchasing a pet from a reputable &amp; conscientious
+                                    breeder -- however it would be impossible for us to
+                                    vet (no pun intended) everyone -- and it is outside
+                                    of the scope we want to be involved in.
+                                    <br /><br />
+                                    Likewise, no promotion of animals "at stud" or such
+                                    things, either... we are not a dating site, for pets
+                                    or people!   [=
+                                    <br /><br />
+                                    In fact, just don't sell *anything*, please!
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    ***NO*** flaming of fellow Petopa Users (or their
+                                    pets!) will be tolerated on any of our social forums.
+                                    <br /><br /><br />
+                                </li>
+                            </ul>
+                            <!---------------------------------------------------------->
+                            <p style="margin-left:23px;">
+                                If any user spots any such content, please contact us
+                                immediately and we will fix the situation!  <br /><br />
+                            </p>
+                            <!---------------------------------------------------------->
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", 
+                                    "https", null, "inappropriate", null, null)
+                            </div>
+                        </div>
+                    </div><!-- end div where id=Menu9 -->
+                    <!---->
+                    <!---->
+                    <!--==============================================================-->
+                    <!---------------------------------- 11th TAB => Our Social Side --->
+                    <div id="menu10" class="tab-pane fade our_tab_panels">
+                        <div id="home" class="tab-pane fade in active">
+
+                            <h3 style="margin-top:0px;"> have fun on Petopia! </h3>
+                            <h5> (still under construction -- coming soon!)</h5>
+                            <br />
+                            <p>
+                                While you're here, have some fun and participate in
+                                Petopia's social side!  Find some new friends for you
+                                and your furry best friends!
+                            </p>
+                            <ul>
+                                <li>
+                                    <b>Forum:</b> <br />
+                                    Learn, ask questions, and socialize in Petopia's 
+                                    forum ..... we plan to include "channels" for each 
+                                    kind of Pet and various topics about them, plus 
+                                    general chat channels.
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Make Friends:</b> <br />
+                                    Add other users as friends, and easily contact
+                                    them from your Friends List on your profile!
+                                    <br /><br /><br />
+                                </li>
+                                <li>
+                                    <b>Pet-Related meet-ups:</b><br />
+                                    We plan on having a "bulletin-board" where we will 
+                                    post pet-related events by geographical community!
+                                    <br /><br /><br />
+                                </li>
+                            </ul>
+                            <!---------------------------------------------------------->
+                            <div class="any_questions">
+                                @Html.ActionLink("Any Questions?", "Contact", "Home", 
+                                    "https", null, "petopia_service_question-comment", 
+                                    null, null)
+                            </div>
+                        </div>
+                    </div><!-- end div where id=Menu10 -->
+                    <!---->
+                    <!---->
+                    <!------------------------------------------------------------------>
+                    <!---->
+                    <!---->
+                </div><!-- END OF TAB CONTENT THING -->
+                <!--==================================================================-->
+                <!---->
+                <!---->
+            </div><!-- end the single colum in row two -->
+            <!---->
+            <!---->
+        </div><!-- END ROW TWO -->
+        <!---->
+        <!---->
+        <!--================================== ROW THREE =============================-->
+        <div class="row" style="margin-bottom: 35px;">
+            <div class="col-md-12">
+                <!-- in case we need/want to put something here later -->
+            </div>
+        </div>
+        <!--==========================================================================-->
+        <!---->
+        <!---->
+    </div><!-- END CONTAINER-FLUID -->

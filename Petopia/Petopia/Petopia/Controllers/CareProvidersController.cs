@@ -20,12 +20,14 @@ namespace Petopia.Controllers
         private CareProviderContext db = new CareProviderContext();
         private PetopiaContext pdb = new PetopiaContext();
 
+        //===============================================================================
         // GET: CareProviders
-        public ActionResult Index()
+        public ActionResult Provider_AdminIndex()
         {
             return View(db.CareProviders.ToList());
         }
 
+        //===============================================================================
         // GET: CareProviders/Details/5
         public ActionResult Details(int? id)
         {
@@ -33,52 +35,66 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Models.CareProvider careProvider = db.CareProviders.Find(id);
+
             if (careProvider == null)
             {
                 return HttpNotFound();
             }
+
             return View(careProvider);
         }
 
+        //===============================================================================
         // GET: CareProviders/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        //-------------------------------------------------------------------------------
         // POST: CareProviders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you
+        // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CareProviderID,AverageRating,ExperienceDetails,UserID")] DAL.CareProvider careProvider)
         {
             if (ModelState.IsValid)
             {
-
-                
-                //Changing Current user to a Pet Owner
+                //Changing Current user to a Pet Care Provider
                 var identityID = User.Identity.GetUserId();
-                DAL.PetopiaUser currentUser = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();
+                DAL.PetopiaUser currentUser = 
+                    pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).First();
+                
                 currentUser.IsProvider = true;
+                
                 pdb.Entry(currentUser).State = EntityState.Modified;
+
+
                 //Roles.AddUserToRole(currentUser.ASPNetIdentityID, "Provider");
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
                 var theUser = UserManagerExtensions.FindByName(userManager, currentUser.ASPNetIdentityID);
+
                 UserManagerExtensions.AddToRole(userManager, identityID, "Provider");
 
                 pdb.SaveChanges();
 
+
                 careProvider.UserID = pdb.PetopiaUsers.Where(x => x.ASPNetIdentityID == identityID).Select(x => x.UserID).First();
                 pdb.CareProviders.Add(careProvider);
                 pdb.SaveChanges();
-                return RedirectToAction("Index", "Home");
+
+
+                return RedirectToAction("Index", "ProfilePage");
             }
 
             return View(careProvider);
         }
 
+        //===============================================================================
         // GET: CareProviders/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -86,17 +102,20 @@ namespace Petopia.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Models.CareProvider careProvider = db.CareProviders.Find(id);
+
             if (careProvider == null)
             {
                 return HttpNotFound();
             }
+
             return View(careProvider);
         }
-
+        //-------------------------------------------------------------------------------
         // POST: CareProviders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you
+        // want to bind to; more details: https://go.microsoft.com/fwlink/?LinkId=317598
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CareProviderID,AverageRating,ExperienceDetails,UserID")] DAL.CareProvider careProvider)
@@ -105,26 +124,34 @@ namespace Petopia.Controllers
             {
                 db.Entry(careProvider).State = EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
+
             return View(careProvider);
         }
 
+        //===============================================================================
         // GET: CareProviders/Delete/5
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Provider")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Models.CareProvider careProvider = db.CareProviders.Find(id);
+
             if (careProvider == null)
             {
                 return HttpNotFound();
             }
+
             return View(careProvider);
         }
-
+        //-------------------------------------------------------------------------------
         // POST: CareProviders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -133,9 +160,11 @@ namespace Petopia.Controllers
             Models.CareProvider careProvider = db.CareProviders.Find(id);
             db.CareProviders.Remove(careProvider);
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
+        //===============================================================================
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -144,5 +173,6 @@ namespace Petopia.Controllers
             }
             base.Dispose(disposing);
         }
+        //===============================================================================
     }
 }

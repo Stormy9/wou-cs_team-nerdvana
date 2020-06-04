@@ -1,78 +1,78 @@
-﻿@model Petopia.Models.RegisterViewModel
+﻿@model Petopia.Models.ViewModels.RegisterViewModel
 @{
     ViewBag.Title = "Register with Petopia!";
 }
-    <!-- changed element to 'body' to ensure (?) it covers entire vertical page on large 
-         screens! pretty sure that's best to ensure it covers entire viewport..... 
-         or would changing height to 100% in a div do it, too?  idk for sure..... -->
-    <body class="container-fluid register_hero">
+<!-- changed element to 'body' to ensure (?) it covers entire vertical page on large
+     screens! pretty sure that's best to ensure it covers entire viewport.....
+     or would changing height to 100% in a div do it, too?  idk for sure..... -->
+<body class="container-fluid register_hero">
 
-        <h2>@ViewBag.Title</h2>
+    <h2>@ViewBag.Title</h2>
 
-        <!--==========================================================================-->
-        @using reCAPTCHA.MVC
-        @using (Html.BeginForm("Register", "Account", FormMethod.Post,
-                                new { @class = "form-horizontal", role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary("", new { @class = "text-danger" })
+    <!--==========================================================================-->
+    @using reCAPTCHA.MVC
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post,
+                            new { @class = "form", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
 
+        <!--============================== ROW ONE ===================================-->
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "control-label" })
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-
-                <div class="col-md-10">
                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                 </div>
-            </div>
 
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.Password,
-                                    new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.Password,
-                                                new { @class = "form-control" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
                 </div>
             </div>
+        </div><!-- END ROW ONE -->
 
-
-            <div class="form-group">
-                @Html.LabelFor(m => m.ConfirmPassword,
-                                    new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.ConfirmPassword,
-                                    new { @class = "form-control" })
-                </div>
-            </div>
-
-
+        <!-- ====================================== ROW TWO ==========================-->
+        <div class="row">
             <div class="form-group our_recaptcha">
-                <div class="col-md-2"></div>
-
-                <div class="col-md-10">
+                <div class="col-lg-3">
                     @Html.ValidationMessage("ReCaptcha")
                     @Html.Recaptcha()
                 </div>
             </div>
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" class="btn btn-default our_buttons" value="Register!" />
+                <div class="col-lg-2">
+                    <input type="submit" class="btn our_buttons" value="Register!" />
                 </div>
             </div>
-           
-            <div class="container-fluid password_rules">
-                <strong>passwords must:</strong>
-                <br />* be at least 6 characters long
-                <br />* have at least one upper-case letter (A-Z)
-                <br />* have at least one digit (0-9)
-                <br />* have at least one non-letter/digit character
-            </div>
-            <!--======================================================================-->
-        }
-    </body><!-- end register_hero div -->
+        </div><!-- END ROW TWO -->
 
+        <!--================================ ROW THREE ===============================-->
+        <div class="row" style="margin-top: 9px;">
+            <div class="col-md-4">
+                <div class="password_rules">
+                    <strong>passwords must:</strong>
+                    <br />* be at least 6 characters long
+                    <br />* have at least one upper-case letter (A-Z)
+                    <br />* have at least one digit (0-9)
+                    <br />* have at least one non-letter/digit character
+                </div>
+            </div>
+        </div><!-- END ROW THREE -->
+        <!--======================================================================-->
+    }
+</body><!-- end register_hero div -->
 <!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

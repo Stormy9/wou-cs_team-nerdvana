@@ -3,117 +3,125 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
     /*padding-left: 15px;
     padding-right: 15px;*/
 }
-
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
     white-space: normal;
 }
-
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 90%;
+}
+.text-danger {
+    color: #990000;
+    font-weight: bold;
+    font-size: 90%;
 }
 /*=====================================================================================*/
 /*                                our custom classes                                  */
 /*===================================================================================*/
-
 /*============================= front/splash/home VIDEO ===============================*/
 /* trying out the video 'hero' video+image thing -- courtesy coverr */
 .homepage-hero-module {
-    border-right: none;
-    border-left: none;
-    position: relative;
+    border-right: none; /* checked with coverr */
+    border-left: none; /* checked with cover */
+    position: relative; /* checked with cover */
 }
-
 .no-video .video-container video,
 .touch .video-container video {
-    display: none;
+    display: none; /* checked with cover */
+    /*width: 100%;*//* i added this part for some reason i forget! */
 }
-
 .no-video .video-container .poster,
 .touch .video-container .poster {
-    display: block !important;
+    display: block !important; /* checked with cover */
+    /*width: 100%;*/ /* i added this part for some reason i forget! */
 }
-
 .video-container {
-    position: relative;
-    bottom: 0%;
-    left: 0%;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    background: #000;
+    position: relative; /* checked with cover */
+    bottom: 0%; /* checked with cover */
+    left: 0%; /* checked with cover */
+    height: 100%; /* checked with cover */
+    width: 100%; /* checked with cover */
+    overflow: hidden; /* checked with cover */
+    background: #000; /* checked with cover */
 }
-
     .video-container .poster img {
-        width: 100%;
-        bottom: 0;
-        position: absolute;
+        width: 100%; /* checked with cover */
+        bottom: 0; /* checked with cover */
+        position: absolute; /* checked with cover */
+        /* just trying something */
+        /* about stupid-ass height on some devices w/the 'color bar' */
+        /*height: 100%;*/
     }
-
+/* not sure why we get the black back when mid-resize..... *//* (across top) */
     .video-container .filter {
-        z-index: 100;
-        position: absolute;
-        background: rgba(0, 0, 0, 0.4);
-        
-    /* not sure why we get the black back when mid-resize..... */
-    .video-container .filter {
-        z-index: 100;
-        position: absolute;
-        background: rgba(0, 0, 0, 0.2);
-        width: 100%;
+        z-index: 100; /* checked with cover */
+        position: absolute; /* checked with cover */
+        /*background: rgba(0, 0, 0, 0.2);*/
+        background: rgba(57, 38, 19, .45); /* checked with cover */
+        width: 100%; /* checked with cover */
+        /* just trying something */
+        /* about stupid-ass height on some devices w/the 'color bar' */
+        /*height: 100%;*/
     }
-
     .video-container video {
-        position: absolute;
-        z-index: 0;
-        bottom: 0;
+        z-index: 0; /* checked with cover */
+        position: absolute; /* checked with cover */
+        bottom: 0; /* checked with cover */
     }
-
-        .video-container video.fillWidth {
-            width: 100%;
+        .video-container video .fillWidth {
+            width: 100%; /* checked with cover */
+            /* just trying something */
+            /* about stupid-ass height on some devices w/the 'color bar' */
+            /*height: 120%;*/
+            /* works for the bigger (wider) screens as i was going for */
+            /* but then screwy on like iPads & Kindles & shit -- so put in MQ */
         }
+/* OMFG -- whatever i said/thought before about CSS being the "easy" part */
+/* fucking *forget* it when it comes to the fucking phones..... hahaha!  */
+
+/* WHY IS THE DOGGIE SO FUCKING SKINNY ON VERTICAL PHONES?! */
+/* which is the poster not the video */
+/* AND -- it only does sometimes.  other times it looks right.  wtf??? */
+
+
 /*============================ splash/front/home OVERLAY ==============================*/
 .splash_overlay {
+    background: rgba(57, 38, 19, .45);
     position: fixed;
     top: 0;
     height: 100%;
-    background: rgba(57, 38, 19, .45);
-    color: #f1f1f1;
     width: 100%;
-    padding: 20px;
+    padding: 23px;
     padding-top: 45px;
     padding-left: 18px;
+    color: #f1f1f1;
 }
-
 .splash_subtitle {
     margin-left: 23px;
 }
-
 .splash_search {
     margin-top: 18px;
+    margin-bottom: 0px;
     margin-left: 45px;
     /* for testing */
     /*border: 1px solid red;*/
 }
-
 /* TODO -- figure out why the width on this isn't widening! */
 .splash_search_input {
-    width: 50%;
+    width: 270px;
     padding: 9px;
     font-size: 18px;
 }
-
 .splash_intro_box {
     text-align: center;
     width: 100%;
@@ -121,7 +129,6 @@ textarea {
     /* testing purposes */
     /*border: 1px solid orange;*/
 }
-
 .splash_intro {
     position: absolute;
     display: inline-block;
@@ -136,11 +143,66 @@ textarea {
     /* for testing */
     /*border: 1px solid green;*/
 }
+/*======================================== SEARCH RESULT PAGE STUFF ===================*/
+.splash_search_result_box {
+    border: 1px solid #4d3319;
+    border-radius: 11px;
+    margin: 11px;
+    padding: 11px;
+    float: left;
+    width: 27%;
+    min-height: 160px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.6);
+    transition: 0.3s;
+}
+    .splash_search_result_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+.search_result_test_proof_data {
+    font-size: 75%;
+    font-style: italic;
+}
+.search_result_cp_name {
+    font-size: 120%;
+    font-weight: bold;
+    /*color: #392613;*/
+    color: blue;
+    margin-bottom: 5px;
+}
+.search_result_profile_pic_box_box {
+    display: inline-block;
+    float: left;
+}
+.search_result_profile_pic_box {
+    width: 92px;
+    height: auto;
+    /*border: 1px solid black;
+    border-radius: 5px;*/ 
+}
+.search_result_profile_img {
+    width: 90px;
+    height: auto;
+    /* this is better here then on the box */
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+}
+.search_result_pc_badge_box {
+    display: inline-block;
+    float: left;
+    margin-left: 9px;
+    padding-top: 9px;
+    /* for testing */
+    /*border: 1px solid green;*/
+}
+.pet_badge {
+    width: 36px;
+    height: 36px;
+}
 /*=================================== ABOUT PAGE ======================================*/
 .about_hero {
     background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
-                        rgba(57, 38, 19, 0.63)), 
-                        url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
+                      rgba(57, 38, 19, 0.63)), 
+                      url("https://stormy9.github.io/nerdvana/doggie_kitty_about.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -151,7 +213,6 @@ textarea {
     /* this is to center 'about_title' */
     text-align: center;
 }
-
 .about_title {
     position: absolute;
     display: inline-block;
@@ -162,29 +223,57 @@ textarea {
     /* left edge of text gets cut off when narrow */
     padding-left: 45px;
 }
-
 .about_content {
     color: #261a0d;
     font-size: 18px;
-    padding: 27px;
+    padding: 9px 27px 27px 27px;
     padding-bottom: 45px;
+    /* for testing */
+    /*border: 1px solid green;*/
 }
-
-.any_questions {
-    width: 180px;
-    background-color: #604020;
-    border: 1px solid #4d3319;
-    border-radius: 9px;
+.about_for {
     padding: 9px;
+    /* for testing */
+    /*border: 1px solid blue;*/
+}
+.about_box {
+    border: 1px solid #392613;
+    border-radius: 11px;
+    padding: 9px;
+    margin-bottom: 11px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.6);
+    transition: 0.3s;
+}
+    .about_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+/*============================= HOW TO USE PETOPIA ====================================*/
+ .our_tabs {
+    background-color: #392613;
     color: #f2e6d9;
-    font-size: 18px;
-    text-align: center;
+}
+    .our_tabs:hover {
+        background-color: red;
+    }
+    .our_tabs:active {
+        background-color: blue;
+    }
+/* ======== ^^^ none of that ^^^ works, haha ============================*/
+.our_tab_panels {
+    /* top right bottom left */ /* like clock-wise */
+    border: 1px 1px 1px 1px; /* why is it so thick? */
+    border-style: solid solid solid solid;
+    border-color: #392613;
+    border-radius: 11px 11px 11px 11px;
+    padding: 9px 9px 18px 9px;
+    background-color: #86592d;
+    font-size: 16px;
 }
 /*=============================== CONTACT PAGE ========================================*/
 .contact_hero {
     background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
-                    rgba(57, 38, 19, 0.63)), 
-                    url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
+                      rgba(57, 38, 19, 0.63)), 
+                      url("https://stormy9.github.io/nerdvana/bunny_contact.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -193,41 +282,26 @@ textarea {
     color: #f2e6d9;
     height: 120vh;
 }
-
 .contact_title {
     position: absolute;
     display: inline-block;
     bottom: 30%;
     text-align: left;
 }
-
 .contact_content {
     color: #261a0d;
     font-size: 18px;
     padding-top: 18px;
     padding-left: 18px;
 }
-
 .email_text {
     color: #990000;
     font-weight: bold;
 }
-
 .contact_bottom_stuff {
     margin-top: 45px;
     margin-bottom: 45px;
     padding-left: 18px;
-}
-
-.email_button {
-    width: 180px;
-    background-color: #392613;
-    border: 1px solid #4d3319;
-    border-radius: 9px;
-    padding: 9px;
-    color: #f2e6d9;
-    font-size: 18px;
-    text-align: center;
 }
 /*=============================== REGISTER PAGE =======================================*/
 .register_hero {
@@ -241,27 +315,19 @@ textarea {
     position: relative;
     color: #f2f2f2;
     height: 100%;
+    padding-bottom: 30px;
 }
-
-.register_title {
-    position: absolute;
-    display: inline-block;
-    bottom: 45px;
-    text-align: left;
-}
-
 .password_rules {
-    width: 35%;
+    width: 80%;
     border: 1px solid black;
     border-radius: 11px;
-    font-size: 18px;
+    font-size: 15px;
     padding: 18px;
-    margin-top: 36px;
-    margin-left: 45px;
+    margin-left: 18px;
 }
-
 .our_recaptcha {
-    margin-bottom: 9px;
+    /* testing\setting */
+    /*border: 1px solid blue;*/
 }
 /*================================= LOGIN PAGE ========================================*/
 .login_hero {
@@ -276,7 +342,6 @@ textarea {
     color: #f2f2f2;
     height: 100%;
 }
-
 .login_title {
     position: absolute;
     display: inline-block;
@@ -302,7 +367,7 @@ textarea {
 /*============================== CHOOSE ROLE PAGE =====================================*/
 .chooseRole_hero {
     background-image: linear-gradient(rgba(57, 38, 19, 0.63), 
-                        rgba(57, 38, 19, 0.63)), 
+                      rgba(57, 38, 19, 0.63)), 
                       url("https://stormy9.github.io/nerdvana/happy_doggie_choose.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -312,17 +377,11 @@ textarea {
     color: #f2f2f2;
     height: 100%;
 }
+/*-------------------- moved .pick_buttons' to 'PSEUDO-BUTTONS' section ---------------*/
 
-.pick_buttons {
-    border: 1px solid #4d3319;
-    border-radius: 9px;
-    padding: 9px;
-    text-align: center;
-    background-color: #392613;
-    color: #f2e6d9;
-}
 /*========================== USER ACCOUNT/PROFILE FORM PAGES ==========================*/
-.profile_info_form_part {
+/*----- Owners/CreateOwner... Providers/CreateProvider... Pets/CreatePet -------------*/
+/*.profile_info_form_part {
     margin-bottom: 63px;
 }
 .account_info_form_part {
@@ -331,27 +390,20 @@ textarea {
 }
 .form-control {
     margin-bottom: 15px;
-}
-.back_to_choose {
-    background-color: #392613;
-    color: #f2e6d9;
-    border: 1px solid #4d3319;
-    border-radius: 9px;
-    padding: 9px;
-    text-align: center;
-}
+}*/
+/*  ^^^--- don't think we're using this anymore ---------*/
+/* (not on the "CreatePet" one, just Owner & Provider) */
+
 /*================================== GENERAL FEATURES =================================*/
 body {
     background-color: #996633;
     color: #f2e6d9;
 }
-
 p {
     padding-bottom: 5px;
 }
-
 .text-danger {
-
+    font-weight: bold;
 }
 /*====================================== LISTS ========================================*/
 li {
@@ -360,20 +412,41 @@ li {
 /*====================================== NAVBAR =======================================*/
 .our_navbar {
     background-color: #392613;
-    height: 42px;
+    /* THIS is what was making the 'collapse menu' all screwy on vertical phones! */
+    /* but looks hideous in full size -- so MQ it to a min-width */
+    /*height: 42px;*/
     color: #f2e6d9;
 }
-
+.nav {
+    color: #f2e6d9;
+}
 .navbar-brand {
     font-size: 18px;
     color: #f2e6d9;
 }
-
+.navbar-nav {
+    color: #f2e6d9;
+}
+.navbar-nav li {
+    color: #f2e6d9;
+}
 .our_nav_links {
     color: #f2e6d9;
 }
+    .our_nav_links:link {
+        color: #f2e6d9;
+    }
+    .our_nav_links:visited {
+        color: #f2e6d9;
+    }
+    .our_nav_links:hover {
+        color: #f2e6d9;
+    }
+    .our_nav_links:active {
+        color: #f2e6d9;
+    }
 
-.nav.li.a {
+.nav li a {
     color: #f2e6d9;
 }
 /* NOTHING WILL CHANGE THE TEXT/LINK COLORS!!!!! */
@@ -399,7 +472,6 @@ li {
 h1, h2, h3, h4, h5 {
     font-weight: bold;
 }
-
 hr {
     height: 1px;
     color: black;
@@ -411,10 +483,118 @@ hr {
 /*==================================== PSEUDO-BUTTONS =================================*/
 .our_buttons {
     background-color: #392613;
-    color: #f2e6d9;
     border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    color: #f2e6d9;
+    font-weight: normal;
+    text-align: center;
 }
-/*==================================== PANELS/COLLAPSE ================================*/
+    .our_buttons a {
+        /* this is why they weren't working before!!! */
+        /* i forgot the thing about all four things! */
+    }
+    .our_buttons a:link {
+        background-color: #392613;
+        color: #f2e6d9;
+        font-weight: normal;
+    }
+    .our_buttons a:visited {
+        background-color: #392613;
+        color: #f2e6d9;
+        font-weight: normal;
+    }
+    .our_buttons a:hover {
+        background-color: #392613;
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+        transform: translateY(3px);
+    }
+    .our_buttons a:active {
+        background-color: #392613;
+        transform: translateY(3px);
+    }
+/*-------- MOVE IN THE OTHER PSEUDO-BUTTONS -------------------------*/
+/*--------------------------- OUR_BUTTONS => ABOUT PAGE? ------------*/
+.any_questions {
+    background-color: #392613;
+    color: #f2e6d9;
+    border: 1px solid #392613;
+    border-radius: 9px;
+    padding: 9px;
+    font-size: 15px;
+    font-weight: normal;
+    text-align: center;
+    width: 135px;
+    margin-left: 9px;
+}
+    .any_questions a {
+        color: #f2e6d9;
+        font-weight: normal;
+    }
+    .any_questions a:link {
+        /* doesn't work */
+        color: #f2e6d9;
+        font-weight: normal;
+    }
+    .any_questions a:visited {
+        /* doesn't work */
+        color: #f2e6d9;
+        font-weight: normal;
+    }
+    .any_questions:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+        transform: translateY(3px);
+    }
+    .any_questions a:active {
+        transform: translateY(3px);
+    }
+/*-------------------------- OUR_BUTTONS => CONTACT PAGE ------------*/
+.email_button {
+    background-color: #392613;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    color: #f2e6d9;
+    font-size: 18px;
+    text-align: center;
+    width: 180px;
+}
+    .email_button:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+        transform: translateY(3px);
+    }
+    .email_button:active {
+        transform: translateY(3px);
+    }
+/* ---------------------- OUR_BUTTONS => CHOOSE ROLE PAGE -----------*/
+.pick_buttons {
+    background-color: #392613;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    color: #f2e6d9;
+    text-align: center;
+}
+    .pick_buttons:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+        transform: translateY(3px);
+    }
+    .pick_buttons:active {
+        transform: translateY(3px);
+    }
+.back_to_choose {
+    background-color: #392613;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 9px;
+    color: #f2e6d9;
+    text-align: center;
+}
+/*-------------------------------------------------------------------*/
+/*==================================== PANELS/COLLAPSE//ACCORIDONS=====================*/
 .panel-group {
 
 }
@@ -422,15 +602,41 @@ hr {
     background-color: #392613;
     color: #f2e6d9;
 }
+    .our_panel_01 a:link, .our_panel_01 a:hover {
+        color: #130d06;
+    }
 .our_panel_heading {
     /* setting color here leaves outline of color above */
     background-color: #604020;
 }
 .our_panel_title {
+    color: #261a0d;
 }
+    .our_panel_title > a:before {
+        font-family: "Glyphicons Halflings";
+        content: "\e114"; /* \e114 original == down */
+        float: right;
+        margin-left: 15px;
+    }
+    .our_panel_title > a.collapsed:before {
+        content: "\e080"; /* \e080 original == right */
+    }
 .our_panel_p {
     margin-bottom: 0px;
 }
+/*=====================================================================================*/
+/* FOR THE ACCORDIONS \ PANELS \ COLLAPSE -- for the little arrows to work right       */
+/* 1) panel-group                                                                      */
+/*    2) panel                                                                         */
+/*       3) panel-heading                                                              */
+/*          4) panel-title -- the css for the little arrows goes here!                 */
+/*             5) a data-toggle                                                        */
+/*             5) /a data-toggle                                                       */
+/*          4) panel-title                                                             */
+/*       3) panel-heading                                                              */
+/*   2) panel -- content!                                                              */
+/* 1) panel-group                                                                      */
+/*=====================================================================================*/
 /*===================================== LINKS! ========================================*/
 /* unvisited link */
 a:link {
@@ -456,10 +662,120 @@ a:active {
     font-weight: bold;
     text-decoration: none;
 }
+/*================================ OUR CALENDAR! ======================================*/
+/* Calendar styling configuration */
+.calendar_box {
+    width: 94%;
+    /* for testing */
+    /*border:2px solid purple;*/
+}
+#calendar {
+    max-width: 100%;
+    margin: 20px auto;
+    /* for testing */
+    /*border: 1px solid blue;*/
+}
+/* for our calendar, which is in a table, but not in html   =] */
+    #calendar th {
+        background-color: #604020;
+    }
+    .fc-head {
+        margin-top: 0px;
+    }
+    /* this was hard to find! (in ctrl+shft+I) *//* and then it doesn't do anything! */
+    /* well it does, for color -- just not for background-color */
+    /* yet if you change if in the inspector window, it changes..... */
+    .fc-unthemed td.fc-today {
+        /**/
+        /* changed this in 'fullcalendar.css ... line 615-618' - works there */
+        /**/
+        /*background: aquamarine;*/   /* changing to 'background' doesn't do it, either! */
+        /*color: #392613;*/   /* but THIS works!!!  wtf??? */
+    }
+    /* this one works though!  and it's cool! */
+    .fc-sun:hover, .fc-mon:hover, .fc-tue:hover, .fc-wed:hover, 
+    .fc-thu:hover, .fc-fri:hover, .fc-sat:hover, .fc-today:hover {
+        background-color: rgba(153, 0, 0, .45);
+    }
+/*=================================== TABLES - now only for admin views ===============*/
+.admin_table {
+    width: 100%;
+    border: 1px solid #392613;
+    border-radius: 5px;
+    border-collapse: collapse;
+}
+.admin_table th, admin_table td {
+    border: 1px solid #392613;
+}
+.admin_table th {
+    background-color: #392613;
+    color: #f2e6d9;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 9px;
+}
+.admin_table td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 9px;
+}
+.admin_table tr:nth-child(even) {
+    background-color: #734d26;
+}
+.admin_table tr:hover {
+    background-color: rgba(153, 0, 0, .45);
+}
+/*=================================== OUR ADMIN DASHBOARD STUFF =======================*/
+.admin_col_one, .admin_col_two, .admin_col_three {
+    padding: 9px;
+}
+.admin_top_part {
+    padding:13px;
+    border: 1px solid #392613;
+    border-radius: 18px;
+    text-align: center;
+    font-size: 110%;
+    color: #392613;
+}
+.admin_box {
+    padding: 18px;
+    border: 2px solid #392613;
+    border-radius: 18px;
+}
+.admin_box_heading {
+    color: #392613;
+}
+    .admin_box_heading h4 {
+        margin-top:0px; 
+        padding-top:0px;
+    }
+.admin_box_info {
+
+}
+.admin_box_info_statement {
+    margin-bottom: 9px;
+}
+.admin_links {
+    font-weight: bold;
+    font-size: 110%;
+    color: #000066;
+}
+/*===================================== STRIPE STUFF ==================================*/
+.stripe_spot {
+    margin-top: 9px;
+    margin-bottom: 9px;
+    text-align: center;
+    /* for testing */
+    /*border: 1px dotted orange;*/
+}
+.stripe-button {
+    margin-top: 0px;
+}
 /*=====================================================================================*/
-
+/**/
+/**/
+/*=====================================================================================*/
 /*                                 MEDIA QUERIES!                                      */
-
 /*=====================================================================================*/
 /* responsive stuff for the couple of spots that need that                             */
 /* the 'natural' positioning of the stuff low on the hero image on the front & about   */
@@ -467,7 +783,7 @@ a:active {
 /* on phone-sized screens... and the fix took away the normal BootStrap responsive     */
 /* crap.....  so here we go -- hopefully the best of both worlds here.....      [=     */
 /*=====================================================================================*/
-
+/*=====================================================================================*/
 /*================================= 'TYPICAL' PHONES ==================================*/
 @media only screen and (max-width: 500px) {
     /* so 500px wide and moreThan 400px wide */
@@ -496,6 +812,7 @@ a:active {
     .password_rules {
         width: 90%;
         font-size: 14px;
+        margin-top: 5px;
         margin-left: 18px;
     }
 }
@@ -503,6 +820,7 @@ a:active {
 
 
 
+/*=====================================================================================*/
 /*============================== OLD &/OR SKINNY PHONES ===============================*/
 /* media Query for really old/skinny phones like iPhone 5/SE.....                      */
 @media only screen and (max-width: 400px) {
@@ -533,14 +851,25 @@ a:active {
     .password_rules {
         width: 90%;
         font-size: 13px;
-        margin-top: 18px;
+        margin-top: 5px;
         margin-left: 18px;
     }
 }
 /*=====================================================================================*/
 
 
+/*=====================================================================================*/
+/*============================== stupid navbar shit ===================================*/
+@media only screen and (min-width: 768px) {
+    /* */
+    .our_navbar {
+        height: 42px;
+    }
+}
 
+
+
+/*=====================================================================================*/
 /*================================== HEIGHT ===========================================*/
 
 /*============================= FOR SIDEWAYS PHONES ===================================*/
@@ -548,9 +877,11 @@ a:active {
     h1 {
         font-size: 18px;
     }
+
     h3 {
         font-size: 17px;
     }
+
     h4 {
         font-size: 15px;
     }
@@ -568,4 +899,14 @@ a:active {
 @media only screen and (min-height: 1100px) { /* so 1100px and taller */
     /* might we want larger font? */
 }
-/*=====================================================================================*/
+
+@media only screen and (min-width: 1100px) {
+    .video-container video.fillWidth {
+        width: 100%;
+        /* just trying something */
+        /* about stupid-ass height on some devices w/the 'color bar' */
+        height: 120%;
+        /* works for the bigger (wider) screens as i was going for */
+        /* but then screwy on like iPads & Kindles & shit -- so put it in a MQ */
+    }
+}

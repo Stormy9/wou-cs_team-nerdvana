@@ -1,0 +1,1136 @@
+﻿@model Petopia.Models.ViewModels.CareTransactionViewModel
+
+@{
+    ViewBag.Title = "My Appointments";
+    ViewBag.TitleOwner = "Appointments for my Pets";
+    ViewBag.TitleProvider = "My Appointment Listings";
+
+    var isPetOwner = ViewBag.isPetOwner;
+    var isPetCarer = ViewBag.isPetCarer;
+}
+
+<div class="container-fluid" style="margin-bottom: 45px;">
+    <!-- outer container -->
+
+    <span style="float:right; margin-right:5px; margin-top:15px;"
+          class="btn our_buttons">
+        @Html.ActionLink("Back to my Profile", "Index",
+                            new { Controller = "ProfilePage" },
+                            new { style = "color: #f2e6d9; font-weight:normal;" })
+    </span>
+
+    @if (isPetOwner)
+    { <h2>@ViewBag.TitleOwner:</h2> }
+    @if (isPetCarer)
+    { <h2>@ViewBag.TitleProvider:</h2> }
+
+    <!--======================= TABS! 'UPCOMING' & 'PAST' APPTS!======================-->
+    <!---->
+    <!-- the nav part -->
+    <ul class="nav nav-tabs" style="border: none;">
+        <li class="active">
+            <a data-toggle="tab" href="#home" 
+               style="background-color: #392613; color: #f2e6d9;">
+                pending appointments
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#menu1" 
+               style="background-color: #604020; color: #f2e6d9;">
+                confirmed \ upcoming \ current appointments
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#menu2" 
+               style="background-color: #604020; color: #f2e6d9;">
+                finished appointments
+            </a>
+        </li>
+    </ul>
+    <!------------------------- THE TAB CONTENT PART! ---------------------------------->
+    <!---->
+    <div class="tab-content">
+        <!------------------------------ 1st TAB => Upcoming Appts --------------------->
+        <div id="home" class="tab-pane fade in active">
+
+            @if (Model.ApptInfoListPending.Count() > 0)
+            {
+                foreach (var item in Model.ApptInfoListPending)
+                {
+                    <div class="container-fluid my_appt_box" style="padding: 15px;">
+
+                        <!--============================= ROW ZERO! ==================-->
+                        <div class="row" style="margin-bottom: 18px;">
+
+                            <div class="col-sm-12 col-md-12">
+
+                                <!------------------------------------------------------>
+                                <span style="float:left;">
+                                    <span class="our_appt_label">
+                                        @Html.DisplayNameFor(model => model.PetName)
+                                            &nbsp;&nbsp; </span>
+                                    @Html.DisplayFor(model => item.PetName)
+                                </span>
+                                <!------------------------------------------------------>
+                                <span style="float:left; margin-left: 25px;">
+                                    <span class="our_appt_label">
+                                        @Html.DisplayNameFor(model => item.PetOwnerName)
+                                            &nbsp;&nbsp; </span>
+                                    @Html.DisplayFor(model => item.PetOwnerName)
+                                </span>
+                                <!------------------------------------------------------>
+                                <span style="float:left; margin-left: 25px;">
+                                    <span class="our_appt_label">
+                                        @Html.DisplayNameFor(model => item.PetCarerName)
+                                            &nbsp; </span>
+                                    @Html.DisplayFor(model => item.PetCarerName)
+                                </span>
+                                <!------------------------------------------------------>
+                            </div>
+
+                            <!-- here for testing\proofing! -->
+                            @*<br />
+                            <span style="margin-left: 15px;">
+                                identityID = @ViewBag.identityID .....
+                                petopiaUserID = @ViewBag.petopiaUserID .....
+                                petOwnerID = @ViewBag.petOwnerID .....
+                                petOwner_UserID = @ViewBag.petOwner_UserID .....
+                                user_email = @ViewBag.user_Email
+                            </span>*@
+
+                        </div><!-- END ROW ZERO -->
+                        <!---->
+                        <!---->
+                        <!--=================================== ROW ONE ==============-->
+                        <div class="row our_row_one" style="margin-bottom: 18px;">
+                            <!------------------------------- ROW 1 \ COL 1 ------------>
+                            <div class="col-sm-1 col-md-1">
+
+                                <div style="margin-bottom: 5px;">
+                                    <span class="our_appt_label">
+                                        From:<br /> </span>
+                                    @Html.DisplayFor(model => item.StartDate)
+                                </div>
+
+                                <div>
+                                    <span class="our_appt_label">
+                                        at:<br /> </span>
+                                    @Html.DisplayFor(model => item.StartTime)
+                                </div>
+
+                            </div><!-- END ROW 1 \ COL 1 -->
+                            <!---------------------------------------------------------->
+                            <!---->
+                            <!--------------------------- ROW 1 \ COL 2 ---------------->
+                            <div class="col-sm-1 col-md-1">
+
+                                <div style="margin-bottom: 5px;">
+                                    <span class="our_appt_label">
+                                        To:<br /> </span>
+                                    @Html.DisplayFor(model => item.EndDate)
+                                </div>
+
+                                <div>
+                                    <span class="our_appt_label">
+                                        at:<br /> </span>
+                                    @Html.DisplayFor(model => item.EndTime)
+                                </div>
+
+                            </div><!-- END ROW 1 \ COL 2 -->
+                            <!---->
+                            <!--------------------------- ROW 1 \ COL 3 ---------------->
+                            <div class="col-sm-3 col-md-3" style=" margin-left: 23px;">
+
+                                <div>
+                                    <span class="our_appt_label">
+                                        @Html.DisplayNameFor(model => model.NeededThisVisit)
+                                            <br /> </span>
+                                    @Html.DisplayFor(model => item.NeededThisVisit)
+                                </div>
+
+                            </div><!-- END ROW 1 \ COL 3 -->
+                            <!---------------------------------------------------------->
+                            <!---->
+                            <!--------------------------- ROW 1 \ COL 4 ---------------->
+                            <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+
+                                <div>
+                                    <span class="our_appt_label">
+                                        @Html.DisplayNameFor(model => model.CareProvided)
+                                            <br /> </span>
+                                    @Html.DisplayFor(model => item.CareProvided)
+                                </div>
+
+                            </div><!-- END ROW 1 \ COL 4 -->
+                            <!---------------------------------------------------------->
+                            <!---->
+                            <!----------------------------- ROW 1 \ COL 5 -------------->
+                            <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+
+                                <div style="margin-bottom: 13px;">
+                                    <span class="our_appt_label">
+                                        @Html.DisplayNameFor(model => model.Charge)
+                                        &nbsp; $
+                                    </span>
+                                    @Html.DisplayFor(model => item.Charge)
+                                </div>
+
+                                <div style="margin-top: 13px;">
+                                    <span class="our_appt_label">
+                                        @Html.DisplayNameFor(model => model.Tip)
+                                        &nbsp; $
+                                    </span>
+                                    @Html.DisplayFor(model => item.Tip)
+                                </div>
+
+                            </div><!-- END ROW 1 \ COL 5 -->
+                            <!---------------------------------------------------------->
+                        </div><!-- END ROW 1 -->
+                        <!---->
+                        <!---->
+                        <!--=============================== ROW TWO ==================-->
+                        <div class="row our_row_two" style="margin-bottom: 18px;">
+
+                            <!--------------------------------- ROW 2 \ COL 1 ---------->
+                            <div class="col-sm-3 col-md-3">
+
+                                <div>
+                                    <span class="our_appt_label">
+                                        @Html.DisplayNameFor(model => model.CareReport)
+                                        <br />
+                                    </span>
+                                    @Html.DisplayFor(model => item.CareReport)
+                                </div>
+
+                            </div><!-- END ROW 2 \ COL 1-->
+                            <!---------------------------------------------------------->
+                            <!---->
+                            <!----------------------------------- ROW 2 \ COL 2 -------->
+                            <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
+
+                                <span class="our_appt_label" style="font-size:110%;">
+                                    from pet owner:</span>
+
+                                <div style="margin-left:15px;">
+                                    <span class="our_appt_label">
+                                        @Html.DisplayNameFor(model => model.PC_Rating)
+                                        &nbsp; </span>
+                                    @Html.DisplayFor(model => item.PC_Rating)
+                                </div>
+
+                                <div style="margin-left:15px;">
+                                    <span class="our_appt_label">
+                                        @Html.DisplayNameFor(model => model.PC_Comments)
+                                        <br /> </span>
+                                    @Html.DisplayFor(model => item.PC_Comments)
+                                </div>
+
+                            </div>
+                            <!---------------------------------------------------------->
+                            <!---->
+                            <!--------------------------- ROW 2 \ COL 3 ---------------->
+                            <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
+
+                                <span class="our_appt_label" style="font-size:110%;">
+                                    from pet carer:</span>
+
+                                <div style="margin-left:15px;">
+                                    <span class="our_appt_label">
+                                        @Html.DisplayNameFor(model => model.PO_Rating)
+                                            &nbsp; </span>
+                                    @Html.DisplayFor(model => item.PO_Rating)
+                                </div>
+
+                                <div style="margin-left:15px;">
+                                    <span class="our_appt_label">
+                                        @Html.DisplayNameFor(model => model.PO_Comments)
+                                            <br /> </span>
+                                    @Html.DisplayFor(model => item.PO_Comments)
+                                </div>
+
+                            </div><!-- END ROW 2 \ COL 3 -->
+                            <!---------------------------------------------------------->
+                        </div><!-- END ROW 2 -->
+                        <!---->
+                        <!---->
+                        <!--============================== ROW THREE =================-->
+                        <div class="row our_row_three">
+
+                            <div style="float: right; margin-right: 5px;">
+                                @Html.ActionLink("Pet's Profile", "PetProfile",
+                                    new { controller = "Pets", id = item.PetID },
+                                        new { @class="our_buttons",
+                                            style = "color: #f2e6d9; font-weight: normal;" })
+                            </div>
+
+                            @if (isPetCarer)
+                            {
+                                <div style="float:right; margin-right:5px">
+                                    @Html.ActionLink("Owner's Profile", "VisitProfile",
+                                        new { controller = "ProfilePage", 
+                                                loggedID = item.PetOwnerPetopiaID },
+                                        new { @class = "our_buttons", 
+                                          style = "color:#f2e6d9; font-weight:normal;" })
+                                </div>
+
+                                <div style="float:right; margin-right:5px">
+                                    @Html.ActionLink("Decline Appointment", "DeclineAppointment",
+                                        new { controller="CareTransactions", 
+                                                ct_id=item.CareTransactionID },
+                                        new { @class="our_buttons", 
+                                            style="color:#f2e6d9; font-weight:normal;"})
+                                </div>
+
+                                <div style="float:right; margin-right:5px;">
+                                  @Html.ActionLink("Confirm Appointment!", "ConfirmAppointment",
+                                    new { ct_id = item.CareTransactionID },
+                                    new { @class="our_buttons",
+                                        style = "color: #f2e6d9; font-weight: normal;" })
+                                </div>
+                            }
+
+                            @if (isPetOwner)
+                            { 
+                                <div style="float: right; margin-right: 5px">
+                                    @Html.ActionLink("Carer's Profile", "VisitProfile",
+                                        new { controller = "ProfilePage", 
+                                                loggedID = item.PetCarerPetopiaID },
+                                        new { @class = "our_buttons", 
+                                            style = "color:#f2e6d9; font-weight:normal;" })
+                                </div>
+
+                                <div style="float: right; margin-right: 5px;">
+                                    @Html.ActionLink("Cancel Appointment", "Delete",
+                                        new { id = item.CareTransactionID },
+                                        new { @class="our_buttons",
+                                            style = "color: #f2e6d9; font-weight: normal;" })
+                                </div>
+
+                                <div style="float: right; margin-right: 5px;">
+                                    @Html.ActionLink("Reschedule/Edit Appointment", "EditAppointment",
+                                        new { id = item.CareTransactionID },
+                                        new { @class="our_buttons",
+                                            style = "color: #f2e6d9; font-weight: normal;" })
+                                </div>
+                            }
+
+                            <!-- for testing during initial setup -->
+                            <div style="display:none;">
+                                <span style="margin-right: 15px; display:none;">
+                                    ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                                </span>
+                                <span style="margin-left: 13px;">
+                                    Pending? @Html.DisplayFor(model => item.Pending)
+                                </span>
+                                <span style="margin-left: 13px;">
+                                    Confirmed? @Html.DisplayFor(model => item.Confirmed)
+                                </span>
+                            </div>
+
+                        </div><!-- END ROW THREE-->
+                        <!--==========================================================-->
+                    </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
+                }
+            }
+            else
+            {
+                <p style="text-align: center;">
+                    you don't have any pending appointments at this time!
+                </p>
+            }
+            <!--==========================================================================-->
+        </div><!-- END DIV WHERE ID==HOME --><!-- aka PENDING APPTS! -->
+        <!---->
+        <!---->
+        <!--                                 CONFIRMED                                -->
+        <!--==========================================================================-->
+        <!------------------------- 2nd TAB => Confirmed Appts ------------------------->
+        <div id="menu1" class="tab-pane fade">
+            <div id="home" class="tab-pane fade in active">
+
+                @if (Model.ApptInfoListConfirmed.Count() > 0)
+                {
+                    foreach (var item in Model.ApptInfoListConfirmed)
+                    {
+                        <div class="container-fluid my_appt_box" style="padding: 15px;">
+
+                            <!--============================= ROW ZERO! ==============-->
+                            <div class="row our_row_one" style="margin-bottom: 18px;">
+
+                                <div class="col-sm-12 col-md-12">
+
+                                    <!-------------------------------------------------->
+                                    <span style="float:left;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.PetName)
+                                                &nbsp;&nbsp; </span>
+                                        @Html.DisplayFor(model => item.PetName)
+                                    </span>
+                                    <!-------------------------------------------------->
+
+                                    <span style="float:left; margin-left: 25px;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => item.PetOwnerName)
+                                                &nbsp;&nbsp; </span>
+                                        @Html.DisplayFor(model => item.PetOwnerName) 
+                                        &nbsp; | &nbsp; 
+                                        @Html.DisplayFor(model => item.PetOwner_MainPhone)
+                                        &nbsp; | &nbsp; 
+                                        @Html.DisplayFor(model => item.PetOwner_Email)
+                                    </span>
+                                    <!-------------------------------------------------->
+
+                                    <span style="float:left; margin-left: 25px;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => item.PetCarerName)
+                                                &nbsp;&nbsp; </span>
+                                        @Html.DisplayFor(model => item.PetCarerName)
+                                        &nbsp; | &nbsp; 
+                                        @Html.DisplayFor(model => item.PetCarer_MainPhone)
+                                        &nbsp; | &nbsp; 
+                                        @Html.DisplayFor(model => item.PetCarer_Email)
+                                    </span>
+                                    <!-------------------------------------------------->
+                                </div>
+                            </div><!-- END ROW ZERO -->
+                            <!---->
+                            <!---->
+                            <!--=================================== ROW ONE ==========-->
+                            <div class="row our_row_one" style="margin-bottom: 18px;">
+                                <!------------------------------- ROW 1 \ COL 1 -------->
+                                <div class="col-sm-1 col-md-1">
+
+                                    <div style="margin-bottom: 5px;">
+                                        <span class="our_appt_label">
+                                            From:<br /> </span>
+                                        @Html.DisplayFor(model => item.StartDate)
+                                    </div>
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            at:<br /> </span>
+                                        @Html.DisplayFor(model => item.StartTime)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 1 -->
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!--------------------------- ROW 1 \ COL 2 ------------>
+                                <div class="col-sm-1 col-md-1">
+
+                                    <div style="margin-bottom: 5px;">
+                                        <span class="our_appt_label">
+                                            To:<br /> </span>
+                                        @Html.DisplayFor(model => item.EndDate)
+                                    </div>
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            at:<br /> </span>
+                                        @Html.DisplayFor(model => item.EndTime)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 2 -->
+                                <!---->
+                                <!--------------------------- ROW 1 \ COL 3 ------------>
+                                <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.NeededThisVisit)
+                                                <br /> </span>
+                                        @Html.DisplayFor(model => item.NeededThisVisit)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 3 -->
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!--------------------------- ROW 1 \ COL 4 ------------>
+                                <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.CareProvided)
+                                                <br /> </span>
+
+                                        @Html.DisplayFor(model => item.CareProvided)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 4 -->
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!----------------------------- ROW 1 \ COL 5 ---------->
+                                <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+
+                                    <div style="margin-bottom: 13px;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.Charge) 
+                                                &nbsp; $ </span>
+                                        @Html.DisplayFor(model => item.Charge)
+                                    </div>
+
+                                    <div style="margin-top: 13px;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.Tip) 
+                                                &nbsp; $ </span>
+                                        @Html.DisplayFor(model => item.Tip)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 5 -->
+                                <!------------------------------------------------------>
+                            </div><!-- END ROW 1 -->
+                            <!---->
+                            <!---->
+                            <!--=============================== ROW TWO ==============-->
+                            <div class="row our_row_two" style="margin-bottom: 18px;">
+
+                                <!--------------------------------- ROW 2 \ COL 1 ------>
+                                <div class="col-sm-3 col-md-3">
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.CareReport)
+                                                <br /> </span>
+                                        @Html.DisplayFor(model => item.CareReport)
+                                    </div>
+
+                                </div><!-- END ROW 2 \ COL 1-->
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!--------------------------- ROW 2 \ COL 2 ------------>
+                                <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
+
+                                    @if (item.Completed_PO)
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet owner:
+                                        </span>
+
+                                        <div style="margin-left:15px;">
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PC_Rating)
+                                                &nbsp;
+                                            </span>
+                                            @Html.DisplayFor(model => item.PC_Rating)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_PO)
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet owner:
+                                        </span>
+
+                                        <div style="background-color:rgba(153, 0, 0, .45); padding:5px;
+                                                        border-radius: 5px 5px 0px 0px">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PC_Rating)
+                                                &nbsp;
+                                            </span>
+                                            @Html.DisplayFor(model => item.PC_Rating)
+                                        </div>
+                                    }
+
+                                    @if (item.Completed_PO)
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet owner:
+                                        </span>
+
+                                        <div style="margin-left:15px;">
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PC_Comments)
+                                                <br />
+                                            </span>
+                                            @Html.DisplayFor(model => item.PC_Comments)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_PO)
+                                    {
+                                        <div style="background-color:rgba(153, 0, 0, .45); padding:5px;
+                                                        border-radius: 0px 0px 5px 5px">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PC_Comments)
+                                                <br />
+                                            </span>
+                                            @Html.DisplayFor(model => item.PC_Comments)
+                                        </div>
+                                    }
+
+                                </div>
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!---------------------------- ROW 2 \ COL 3 ----------->
+                                <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
+
+                                    @if (item.Completed_CP)
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet carer:
+                                        </span>
+
+                                        <div style="margin-left:15px;">
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PO_Rating)
+                                                &nbsp;
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Rating)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_CP)
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet carer:
+                                        </span>
+
+                                        <div style="background-color:rgba(153, 0, 0, .45); padding:5px;
+                                                        border-radius: 5px 5px 0px 0px">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PO_Rating)
+                                                &nbsp;
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Rating)
+                                        </div>
+                                    }
+
+                                    @if (item.Completed_CP)
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet carer:
+                                        </span>
+
+                                        <div style="margin-left:15px;">
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PO_Comments)
+                                                <br />
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Comments)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_CP)
+                                    {
+                                        <div style="background-color:rgba(153, 0, 0, .45); padding:5px;
+                                                        border-radius: 0px 0px 5px 5px">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PO_Comments)
+                                                <br />
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Comments)
+                                        </div>
+                                    }
+
+                                </div><!-- END ROW 2 \ COL 3 -->
+                                <!------------------------------------------------------>
+                            </div><!-- END ROW 2 -->
+                            <!---->
+                            <!---->
+                            <!--============================== ROW THREE =============-->
+                            <div class="row our_row_three">
+
+                                <div style="float: right; margin-right: 5px;">
+                                    @Html.ActionLink("Pet's Profile", "PetProfile",
+                                        new { controller = "Pets", id = item.PetID },
+                                             new { @class="our_buttons",
+                                                 style = "color: #f2e6d9; font-weight: normal;" })
+                                </div>
+
+                                @if (isPetCarer)
+                                {
+                                    <div style="float: right; margin-right: 5px">
+                                        @Html.ActionLink("Owner's Profile", "VisitProfile",
+                                            new { controller = "ProfilePage", 
+                                                  loggedID = item.PetOwnerPetopiaID },
+                                            new { @class = "our_buttons", 
+                                                style = "color:#f2e6d9; font-weight:normal;" })
+                                    </div>
+                                    <div style="float:right; margin-right:5px;">
+                                        @Html.ActionLink("Job Details", "PetCarer_JobDetails",
+                                            new { ct_id = item.CareTransactionID },
+                                                new { @class="our_buttons",
+                                                    style = "color:#f2e6d9; font-weight:normal;" })
+                                    </div>
+                                }
+
+                                @if (isPetOwner)
+                                { 
+                                    <div style="float: right; margin-right: 5px">
+                                        @Html.ActionLink("Carer's Profile", "VisitProfile",
+                                            new { controller = "ProfilePage", 
+                                                    loggedID = item.PetCarerPetopiaID },
+                                            new { @class = "our_buttons", 
+                                                style = "color:#f2e6d9; font-weight:normal;" })
+                                    </div>
+
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Cancel Appointment", "Delete",
+                                            new { id = item.CareTransactionID },
+                                            new { @class="our_buttons",
+                                                style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Reschedule/Edit Appointment", "EditAppointment",
+                                            new { id = item.CareTransactionID },
+                                            new { @class="our_buttons",
+                                                style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+                                }
+                                @if(isPetOwner)
+                                { 
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Complete Appointment", 
+                                            "CompleteAppointment_PetOwner",
+                                                new { id = item.CareTransactionID },
+                                                    new { @class="our_buttons",
+                                                style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+                                }
+                                @if(isPetCarer)
+                                {
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Complete Appointment", 
+                                            "CompleteAppointment_PetCarer",
+                                                new { id = item.CareTransactionID },
+                                                    new { @class="our_buttons",
+                                                style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+                                }
+                                <!------------------------------------------------------>
+                                <!-- for testing during initial setup -->
+                                <div style="display:none;">
+                                    <span style="margin-right: 15px; display:none;">
+                                        ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                                    </span>
+                                    <span style="margin-left: 13px;">
+                                        Pending? @Html.DisplayFor(model => item.Pending)
+                                    </span>
+                                    <span style="margin-left: 13px;">
+                                        Confirmed? @Html.DisplayFor(model => item.Confirmed)
+                                    </span>
+                                    <span style="margin-left: 13px;">
+                                        Completed_PO? @Html.DisplayFor(model => item.Completed_PO)
+                                    </span>
+                                    <span style="margin-left: 13px;">
+                                        Completed_CP? @Html.DisplayFor(model => item.Completed_CP)
+                                    </span>
+                                </div>
+
+                            </div><!-- END ROW THREE-->
+                            <!--======================================================-->
+                        </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
+                    }
+                }
+                else
+                {
+                    <p style="text-align: center;">
+                        you don't have any confirmed appointments at this time!
+                    </p>
+                }
+                <!--==================================================================-->
+            </div><!-- end div where id==home & class==tab-pane fade in active -->
+        </div><!-- end div where id=Menu1 --><!-- end confirmed -->
+        <!------------------------------------------------------------------------------>
+        <!---->
+        <!---->
+        <!--                                 FINISHED                                 -->
+        <!--==========================================================================-->
+        <!------------------------- 3rd TAB => Finished Appts -------------------------->
+        <div id="menu2" class="tab-pane fade">
+            <div id="home" class="tab-pane fade in active">
+
+                @if (Model.ApptInfoListFinished.Count() > 0)
+                {
+                    foreach (var item in Model.ApptInfoListFinished)
+                    {
+                        <div class="container-fluid my_appt_box" style="padding: 15px;">
+
+                            <!--============================= ROW ZERO! ==============-->
+                            <div class="row our_row_one" style="margin-bottom: 18px;">
+
+                                <div class="col-sm-12 col-md-12">
+
+                                    <!-------------------------------------------------->
+                                    <span style="float:left;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.PetName)
+                                                &nbsp;&nbsp; </span>
+                                        @Html.DisplayFor(model => item.PetName)
+                                    </span>
+                                    <!-------------------------------------------------->
+
+                                    <span style="float:left; margin-left: 25px;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => item.PetOwnerName)
+                                                &nbsp;&nbsp; </span>
+                                        @Html.DisplayFor(model => item.PetOwnerName)
+                                    </span>
+                                    <!-------------------------------------------------->
+
+                                    <span style="float:left; margin-left: 25px;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => item.PetCarerName)
+                                                &nbsp;&nbsp; </span>
+                                        @Html.DisplayFor(model => item.PetCarerName)
+                                    </span>
+                                    <!-------------------------------------------------->
+                                </div>
+                            </div><!-- END ROW ZERO -->
+                            <!---->
+                            <!---->
+                            <!--=================================== ROW ONE ==========-->
+                            <div class="row our_row_one" style="margin-bottom: 18px;">
+                                <!------------------------------- ROW 1 \ COL 1 -------->
+                                <div class="col-sm-1 col-md-1">
+
+                                    <div style="margin-bottom: 5px;">
+                                        <span class="our_appt_label">
+                                            From:<br /> </span>
+                                        @Html.DisplayFor(model => item.StartDate)
+                                    </div>
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            at:<br /> </span>
+                                        @Html.DisplayFor(model => item.StartTime)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 1 -->
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!--------------------------- ROW 1 \ COL 2 ------------>
+                                <div class="col-sm-1 col-md-1">
+
+                                    <div style="margin-bottom: 5px;">
+                                        <span class="our_appt_label">
+                                            To:<br /> </span>
+                                        @Html.DisplayFor(model => item.EndDate)
+                                    </div>
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            at:<br /> </span>
+                                        @Html.DisplayFor(model => item.EndTime)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 2 -->
+                                <!---->
+                                <!--------------------------- ROW 1 \ COL 3 ------------>
+                                <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.NeededThisVisit)
+                                                <br /> </span>
+                                        @Html.DisplayFor(model => item.NeededThisVisit)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 3 -->
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!--------------------------- ROW 1 \ COL 4 ------------>
+                                <div class="col-sm-3 col-md-3" style="margin-left: 23px;">
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.CareProvided)
+                                                <br /> </span>
+                                        @Html.DisplayFor(model => item.CareProvided)
+                                    </div>
+
+                                </div><!-- END ROW 1 \ COL 4 -->
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!----------------------------- ROW 1 \ COL 5 ---------->
+                                <div class="col-sm-3 col-md-3">
+
+                                    <div style="margin-bottom: 13px;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.Charge)
+                                            &nbsp; $
+                                        </span>
+                                        @Html.DisplayFor(model => item.Charge)
+                                    </div>
+
+                                    <div style="margin-top: 13px;">
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.Tip)
+                                            &nbsp; $
+                                        </span>
+                                        @Html.DisplayFor(model => item.Tip)
+                                    </div>
+
+                                    <!-------------------------------------------------->
+                                    @if (item.IsPaid == false && isPetOwner)
+                                    {
+                                        <div class="stripe_spot">
+                                            @if (item.Tip == null)
+                                            {
+                                                item.Tip = 0;
+                                            }
+                                            @{ var totalCharge = (item.Charge + item.Tip) * 100;
+                                                var displayCharge = item.Charge + item.Tip; }
+
+                                            <form action="/CareTransactions/Charge/@item.CareTransactionID"
+                                                  method="POST">
+
+                                                <article>
+                                                    <label> Total: @displayCharge </label>
+                                                    <span style="margin-left: 25px; display:none;">
+                                                        ct_id: @item.CareTransactionID
+                                                    </span>
+                                                </article>
+
+                                                <script src="//checkout.stripe.com/v2/checkout.js"
+                                                        class="stripe-button" 
+                                                        data-key="@ViewBag.StripePublishKey"
+                                                        data-locale="auto" data-description="Charge"
+                                                        data-amount="@totalCharge">
+                                                </script>
+
+                                            </form>
+                                        </div><!-- end stripe-spot -->
+                                    }
+                                    @if (item.IsPaid == true && isPetOwner)
+                                    {
+                                        <label> paid! </label>
+                                        <span>@Html.DisplayFor(model => item.IsPaid) </span>
+                                    }
+                                    @if (item.IsPaid == true && isPetCarer)
+                                    {
+                                        <label> paid! </label>
+                                        <span>@Html.DisplayFor(model => item.IsPaid) </span>
+                                    }
+                                    <!---->
+                                </div><!-- END ROW 1 \ COL 5 -->
+                                <!------------------------------------------------------>
+                            </div><!-- END ROW 1 -->
+                            <!---->
+                            <!---->
+                            <!--=============================== ROW TWO ==============-->
+                            <div class="row our_row_two" style="margin-bottom: 18px;">
+
+                                <!--------------------------------- ROW 2 \ COL 1 ------>
+                                <div class="col-sm-3 col-md-3">
+
+                                    <div>
+                                        <span class="our_appt_label">
+                                            @Html.DisplayNameFor(model => model.CareReport)
+                                                <br /> </span>
+                                        @Html.DisplayFor(model => item.CareReport)
+                                    </div>
+
+                                </div><!-- END ROW 2 \ COL 1-->
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!--------------------------- ROW 2 \ COL 2 ------------>
+                                <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
+
+                                    @if (item.Completed_PO)
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet owner:
+                                        </span>
+
+                                        <div style="margin-left:15px;">
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PC_Rating)
+                                                &nbsp;
+                                            </span>
+                                            @Html.DisplayFor(model => item.PC_Rating)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_PO)
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet owner:
+                                        </span>
+
+                                        <div style="background-color:rgba(153, 0, 0, .45);
+                                                    padding:5px; border-radius:5px 5px 0px 0px;">
+                                            <span class="our_appt_label" style="color:#f2e6d9">
+                                                @Html.DisplayNameFor(model => model.PC_Rating)
+                                                &nbsp;
+                                            </span>
+                                            @Html.DisplayFor(model => item.PC_Rating)
+                                        </div>
+                                    }
+
+                                    @if (item.Completed_PO)
+                                    {
+                                        <div style="margin-left:15px;">
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PC_Comments)
+                                                <br />
+                                            </span>
+                                            @Html.DisplayFor(model => item.PC_Comments)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_PO)
+                                    {
+                                        <div style="background-color:rgba(153, 0, 0, .45);
+                                                    padding:5px; border-radius:0px 0px 5px 5px;">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PC_Comments)
+                                                <br />
+                                            </span>
+                                            @Html.DisplayFor(model => item.PC_Comments)
+                                        </div>
+                                    }
+                                </div>
+                                <!------------------------------------------------------>
+                                <!---->
+                                <!---------------------------- ROW 2 \ COL 3 ----------->
+                                <div class="col-sm-4 col-md-4" style="margin-left: 45px;">
+
+                                    @if (item.Completed_CP)
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet carer:
+                                        </span>
+
+                                        <div style="margin-left:15px;">
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PO_Rating)
+                                                &nbsp;
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Rating)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_CP)
+                                    {
+                                        <span class="our_appt_label" style="font-size:110%;">
+                                            from pet carer:
+                                        </span>
+
+                                        <div style="background-color:rgba(153, 0, 0, .45);
+                                                    padding:5px;  border-radius:5px 5px 0px 0px;">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PO_Rating)
+                                                &nbsp;
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Rating)
+                                        </div>
+                                    }
+
+                                    @if (item.Completed_CP)
+                                    {
+                                        <div style="margin-left:15px;">
+                                            <span class="our_appt_label">
+                                                @Html.DisplayNameFor(model => model.PO_Comments)
+                                                <br />
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Comments)
+                                        </div>
+                                    }
+                                    @if (!item.Completed_CP)
+                                    {
+                                        <div style="background-color:rgba(153, 0, 0, .45);
+                                                    padding:5px;  border-radius:0px 0px 5px 5px;">
+                                            <span class="our_appt_label" style="color:#f2e6d9;">
+                                                @Html.DisplayNameFor(model => model.PO_Comments)
+                                                <br />
+                                            </span>
+                                            @Html.DisplayFor(model => item.PO_Comments)
+                                        </div>
+                                    }
+
+                                </div><!-- END ROW 2 \ COL 3 -->
+                                <!------------------------------------------------------>
+                            </div><!-- END ROW 2 -->
+                            <!---->
+                            <!---->
+                            <!--============================== ROW THREE =============-->
+                            <div class="row our_row_three">
+
+                                @if (isPetOwner)
+                                { 
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Complete Appointment", 
+                                            "CompleteAppointment_PetOwner",
+                                                new { id = item.CareTransactionID },
+                                                    new { @class="our_buttons",
+                                            style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+                                }
+                                @if (isPetCarer)
+                                { 
+                                    <div style="float: right; margin-right: 5px;">
+                                        @Html.ActionLink("Complete Appointment", 
+                                            "CompleteAppointment_PetCarer",
+                                                new { id = item.CareTransactionID },
+                                                    new { @class="our_buttons",
+                                            style = "color: #f2e6d9; font-weight: normal;" })
+                                    </div>
+                                }
+                                
+                                <div style="float: right; margin-right: 5px;">
+                                    @Html.ActionLink("Pet's Profile", "PetProfile",
+                                     new { controller = "Pets", id = item.PetID },
+                                             new { @class="our_buttons",
+                                        style = "color: #f2e6d9; font-weight: normal;" })
+                                </div>
+
+                                @if (isPetCarer)
+                                { 
+                                    <div style="float: right; margin-right: 5px">
+                                        @Html.ActionLink("Owner's Profile", "VisitProfile",
+                                            new { controller = "ProfilePage", 
+                                                  loggedID = item.PetOwnerPetopiaID },
+                                            new { @class = "our_buttons", 
+                                                style = "color:#f2e6d9; font-weight:normal;" })
+                                    </div>
+                                }
+
+                                @if (isPetOwner)
+                                { 
+                                    <div style="float: right; margin-right: 5px">
+                                        @Html.ActionLink("Carer's Profile", "VisitProfile",
+                                            new { controller = "ProfilePage", 
+                                                    loggedID = item.PetCarerPetopiaID },
+                                            new { @class = "our_buttons", 
+                                                style = "color:#f2e6d9; font-weight:normal;" })
+                                    </div>
+                                }
+
+                                <!-- for testing during initial setup -->
+                                <div style="display:none;">
+                                    <span style="margin-right: 15px;">
+                                        ct_id? @Html.DisplayFor(model => item.CareTransactionID)
+                                    </span>
+                                    <span style="margin-left: 13px; display:none;">
+                                        Pending? @Html.DisplayFor(model => item.Pending)
+                                    </span>
+                                    <span style="margin-left: 13px; display:none;">
+                                        Confirmed? @Html.DisplayFor(model => item.Confirmed)
+                                    </span>
+                                    <span style="margin-left: 13px; display:none;">
+                                            Completed_PO? @Html.DisplayFor(model => item.Completed_PO)
+                                    </span>
+                                    <span style="margin-left: 13px; display:none;">
+                                        Completed_CP? @Html.DisplayFor(model => item.Completed_CP)
+                                    </span>
+                                </div>
+
+                            </div><!-- END ROW THREE-->
+                            <!--======================================================-->
+                        </div><!-- END CONTAINER-FLUID + 'my_appt_box' -->
+                    }
+                }
+                else
+                {
+                    <p style="text-align: center;">
+                        you don't have any finished appointments at this time!
+                    </p>
+                }
+                <!--==================================================================-->
+            </div><!-- end div where id==home & class==tab-pane fade in active -->
+        </div><!-- end div where id=Menu1 --><!-- end finished -->
+        <!------------------------------------------------------------------------------>
+    </div><!-- END OF TAB CONTENT THING -->
+    <!--==============================================================================-->
+    <!---->
+</div><!-- END CONTAINER-FLUID (the outer one) -->
+<!--==================================================================================-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<!--==================================================================================-->

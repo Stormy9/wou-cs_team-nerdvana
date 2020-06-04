@@ -1,12 +1,13 @@
-﻿@model Petopia.Models.PetopiaUser
+﻿@model Petopia.Models.ViewModels.PetopiaUserLoginViewModel
 
 @{
-    ViewBag.Title = "Make Your Petopia User Account";
+    ViewBag.Title = "Make Your Petopia User Account & Profile";
 }
 <!--============================= WHOLE DAMNED FORM HERE =============================-->
-<div class="container-fluid">
+<div class="container-fluid" style="padding-bottom: 23px;">
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Create", "PetopiaUsers", FormMethod.Post,
+        new { @class = "form", role = "form", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
@@ -14,15 +15,20 @@
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+            <span>
+                <input type="submit" value="Make my Profile!"
+                        class="btn our_buttons" style="float:right;"/>
+            </span>
+
         <h2>@ViewBag.Title!</h2>
         <hr />
-        
+
         <!--========================= TOP ROW FOR ACCORDIANS =========================-->
-        <div class="row" style="margin-bottom: 18px; margin-top: 0; padding-top: 0;"> 
+        <div class="row" style="margin-bottom: 9px; margin-top: 0; padding-top: 0;">
             <div class="container-fluid your_info">
-            <!-- why did we have to do another 'container-fluid'?? -->
-            <!-- to keep it from being right up on the outside edges -->
-            <!-- that was not the case in the 'About' page.....    -->
+                <!-- why did we have to do another 'container-fluid'?? -->
+                <!-- to keep it from being right up on the outside edges -->
+                <!-- that was not the case in the 'About' page.....    -->
                 <!-- [Your Info] -->
                 <h3> What we do with your info + why we need it: </h3>
 
@@ -31,35 +37,32 @@
 
                     <!------------- PROFILE PANEL, w/HEADING/TITLE + BODY -------------->
                     <div class="panel our_panel_01">
-
-                        <a data-toggle="collapse" data-parent="#accordion_02"
-                           href="#collapse_PI">
-                            <div class="panel-heading our_panel_heading">
-                                <div class="panel-title our_panel_title">
+                        
+                        <div class="panel-heading our_panel_heading">
+                            <div class="panel-title our_panel_title">
+                                <a data-toggle="collapse" data-parent="#accordion_02" 
+                                   href="#collapse_PI">
                                     <p class="our_panel_p">
                                         Your profile information:
-                                        <span class="glyphicon glyphicon-resize-vertical"
-                                              style="float: right;">
-                                        </span>
                                     </p>
-                                </div><!-- end 'panel-title'\'our_panel_title' divs -->
-                            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
-                        </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
+                                </a><!-- end '#accordian_02' id + '#collapse_PI' href -->
+                            </div><!-- end 'panel-title'\'our_panel_title' divs -->
+                        </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
                         <!-------------------------------------------------------------->
                         <div class="panel-collapse collapse" id="collapse_PI">
                             <div class="panel-body"> <!-- PROFILE -->
                                 <p>
-                                    The profile information you fill out at Petopia is 
-                                    what will actually be shown on your public profile 
+                                    The profile information you fill out at Petopia is
+                                    what will actually be shown on your public profile
                                     with us.
                                 </p>
                                 <p>
-                                    So have as much fun as you like -- make it silly, 
+                                    So have as much fun as you like -- make it silly,
                                     make it thoughtful or inspirational, make it
                                     whatever you like..... but please keep it nice!
                                 </p>
                                 <p>
-                                    In other words -- imagine your Grandma might be 
+                                    In other words -- imagine your Grandma might be
                                     reading it.   [=
                                 </p>
                             </div><!-- end 'panel-body' div -->
@@ -69,20 +72,17 @@
                     <!--==============================================================-->
                     <!------------- ACCOUNT PANEL, w/HEADING/TITLE + BODY -------------->
                     <div class="panel our_panel_01">
-
-                        <a data-toggle="collapse" data-parent="#accordion_02"
-                           href="#collapse_AI">
-                            <div class="panel-heading our_panel_heading">
-                                <div class="panel-title our_panel_title">
+                        
+                        <div class="panel-heading our_panel_heading">
+                            <div class="panel-title our_panel_title">
+                                <a data-toggle="collapse" data-parent="#accordion_02" 
+                                   href="#collapse_AI">
                                     <p class="our_panel_p">
                                         Your account information
-                                        <span class="glyphicon glyphicon-resize-vertical"
-                                              style="float: right;">
-                                        </span>
                                     </p>
-                                </div><!-- end 'panel-title'\'our_panel_title' divs -->
-                            </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
-                        </a><!-- end '#accordian_02' id + '#collapse_AI' href -->
+                                </a><!-- end '#accordian_02' id + '#collapse_AI' href -->
+                            </div><!-- end 'panel-title'\'our_panel_title' divs -->
+                        </div><!-- end 'panel-heading'\'our_panel_heading' divs -->
                         <!-------------------------------------------------------------->
                         <div class="panel-collapse collapse" id="collapse_AI">
                             <div class="panel-body"> <!-- ACCOUNT -->
@@ -102,13 +102,13 @@
                                 <br />
                                 <p>
                                     <b>For Pet Care Providers:</b><br />
-                                    When you agree to providve Pet Care services for a 
-                                    Pet Owner, we will share your contact information 
-                                    with them so they can contact you and know you're 
+                                    When you agree to providve Pet Care services for a
+                                    Pet Owner, we will share your contact information
+                                    with them so they can contact you and know you're
                                     a real person!
                                 </p>
                             </div><!-- end 'panel-body' div -->
-                        </div><!-- end 'panel-collapse'/'collapse' div+'#collapse_AI' id -->
+                        </div><!-- end 'panel-collapse'/'collapse' +'#collapse_AI' id -->
                     </div><!-- end 'panel'\'our_panel_01' divs -->
                 </div><!-- end 'panel-group' div + '#accordian_02' id -->
             </div><!-- END + 'your_info' + 'container-fluid' div -->
@@ -121,16 +121,18 @@
             <div class="col-sm-4 col-md-4">
                 <h4 style="color: #261a0d">Your Profile Information:</h4>
 
+                <!------- PROFILE STUFF ------------------------------------------------>
                 <!------------------------- FIRST NAME  -------------------------------->
                 <div class="form-group">
                     @Html.LabelFor(model => model.FirstName,
                                         htmlAttributes: new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.FirstName,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                                new { htmlAttributes = new { @class = "form-control", 
+                                                             autofocus = "autofocus" } })
 
                     @Html.ValidationMessageFor(model => model.FirstName, "",
-                                                          new { @class = "text-danger" })
+                                                        new { @class = "text-danger" })
                 </div>
                 <!-------------------------- LAST NAME  -------------------------------->
                 <div class="form-group">
@@ -141,23 +143,31 @@
                                 new { htmlAttributes = new { @class = "form-control" } })
 
                     @Html.ValidationMessageFor(model => model.LastName, "",
-                                                         new { @class = "text-danger" })
+                                                            new { @class = "text-danger" })
                 </div>
-                <!---------------------------------------------------------------------->
-                <!---->
-                <!-- we need:  caption, general location, and some other thing, bio?  -->
-                <div style="border: 2px dashed darkblue; margin: 9px; padding: 5px;">
-                    we need to add in caption, general location, bio, and is there
-                    one more thing?  don't think so but not 100%.....
-                </div>
-                <!---->
-                <!--============================ PROFILE PIC =========================-->
+                <!-------------------------- TAGLINE ----------------------------------->
                 <div class="form-group">
-                    @Html.LabelFor(m => m.ProfilePhoto, new { @class = "control-label" })
+                    @Html.LabelFor(model => model.Tagline,
+                                        htmlAttributes: new { @class = "control-label" })
 
-                    @Html.TextBoxFor(m => m.ProfilePhoto, new { type = "file" })
+                    @Html.EditorFor(model => model.Tagline,
+                                new { htmlAttributes = new { @class = "form-control", 
+                              @placeholder="i.e., a pet lover who also loves pizza!" } })
 
-                    @Html.ValidationMessage("CustomMessage")
+                    @Html.ValidationMessageFor(model => model.Tagline, "",
+                                                          new { @class = "text-danger" })
+                </div>
+                <!------------------------ GENERAL LOCATION ---------------------------->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GeneralLocation,
+                                        htmlAttributes: new { @class = "control-label" })
+
+                    @Html.EditorFor(model => model.GeneralLocation,
+                                new { htmlAttributes = new { @class = "form-control", 
+                              @placeholder="i.e., your neighborhood or area of town" } })
+
+                    @Html.ValidationMessageFor(model => model.GeneralLocation, "",
+                                                            new { @class = "text-danger" })
                 </div>
                 <!---------------------------------------------------------------------->
             </div><!-- END 1st\LEFT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
@@ -165,29 +175,52 @@
             <!---->
             <!--=========================== SECOND\MIDDLE COLUMN =====================-->
             <div class="col-sm-4 col-md-4">
-                <h4 style="color: #261a0d;">Your Account Information:</h4>
-                
-                <!----------------------------- MAIN PHONE ----------------------------->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.MainPhone,
-                                    htmlAttributes: new { @class = "control-label" })
 
-                    @Html.EditorFor(model => model.MainPhone,
-                        new { htmlAttributes = new { @class = "form-control" } })
+                <!--------------------------- USER BIO --------------------------------->
+                <div class="form-group" style="padding-top: 42px;">
+                    @Html.LabelFor(model => model.UserBio,
+                                        htmlAttributes: new { @class = "control-label" })
 
-                    @Html.ValidationMessageFor(model => model.MainPhone, "",
-                                                    new { @class = "text-danger" })
+                    <br />
+                    @Html.TextAreaFor(model => model.UserBio,
+                            new{ htmlAttributes =
+                            new { @class = "form-control our_text_area", @tabindex = "5", },
+                                 rows = 5, id = "text14", name = "text14",
+                            style = "color:#2e2e1f; border-radius:5px; padding:5px; width:90%;" })
+
+                    <div>
+                        <span class="pull-left label label-default"
+                                id="count_message_14">
+                        </span>
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.UserBio, "",
+                                                            new { @class = "text-danger" })
                 </div>
-                <!--------------------------- ALTERNATE PHONE  ------------------------>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.AltPhone,
-                                      htmlAttributes: new { @class = "control-label" })
 
-                    @Html.EditorFor(model => model.AltPhone,
-                            new { htmlAttributes = new { @class = "form-control" } })
+                <!--============================ PROFILE PIC =========================-->
+                <div class="form-group" style="padding-top:21px;">
+                    @Html.LabelFor(m => m.ProfilePhoto, new { @class = "control-label" })
 
-                    @Html.ValidationMessageFor(model => model.AltPhone, "",
-                                                      new { @class = "text-danger" })
+                    @Html.TextBoxFor(m => m.ProfilePhoto, new { type = "file" })
+                    <div style="font-size: 90%; color: #990000;">
+                        <i>your photo needs to be a .jpg &amp; under 4MB.</i>
+                    </div>
+
+                    @Html.ValidationSummary(true,
+                                    "Picture MUST be in JPG format and under 4 MB.",
+                                    new { @class = "text-danger" })
+                </div>
+                <!-------------------------- PROFILE PIC CAPTION! ---------------------->
+                <div class="form-group" style="padding-top:13px;">
+                    @Html.LabelFor(m => m.UserCaption, new { @class = "control-label" })
+
+                    @Html.EditorFor(model => model.UserCaption,
+                                new { htmlAttributes = new { @class = "form-control", 
+                                @placeholder="what's going on in this picture?  (:" } })
+
+                    @Html.ValidationMessageFor(model => model.UserCaption, "",
+                                                         new { @class = "text-danger" })
                 </div>
                 <!---------------------------------------------------------------------->
             </div><!-- END 2nd\MIDDLE FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
@@ -195,6 +228,36 @@
             <!---->
             <!--============================ THIRD\RIGHT COLUMN ======================-->
             <div class="col-sm-4 col-md-4">
+
+                <h4 style="color: #261a0d;">Your Account Information:</h4>
+
+                <!-------- ACCOUNT INFO ------------------------------------------------>
+                <!----------------------------- MAIN PHONE ----------------------------->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MainPhone,
+                                    htmlAttributes: new { @class = "control-label" })
+
+                    @Html.EditorFor(model => model.MainPhone,
+                        new { htmlAttributes = new { @class = "form-control", 
+                                @type="phone", @pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}",
+                                                    @placeholder="000-000-0000" } })
+
+                    @Html.ValidationMessageFor(model => model.MainPhone, "",
+                                                    new { @class = "text-danger" })
+                </div>
+                <!--------------------------- ALTERNATE PHONE  ------------------------>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AltPhone,
+                                        htmlAttributes: new { @class = "control-label" })
+
+                    @Html.EditorFor(model => model.AltPhone,
+                            new { htmlAttributes = new { @class = "form-control", 
+                                   @type="phone", @pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}",
+                                                        @placeholder="000-000-0000" } })
+
+                    @Html.ValidationMessageFor(model => model.AltPhone, "",
+                                                        new { @class = "text-danger" })
+                </div>
 
                 <!--------------------------- RES ADDRESS 01 --------------------------->
                 <div class="form-group">
@@ -210,13 +273,14 @@
                 <!--------------------------- RES ADDRESS 02  -------------------------->
                 <div class="form-group">
                     @Html.LabelFor(model => model.ResAddress02,
-                                        htmlAttributes: new { @class = "control-label" })
+                                       htmlAttributes: new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.ResAddress02,
-                            new { htmlAttributes = new { @class = "form-control" } })
+                            new { htmlAttributes = new { @class = "form-control", 
+                                           @placeholder="i.e., apartment or suite #" } })
 
                     @Html.ValidationMessageFor(model => model.ResAddress02, "",
-                                                      new { @class = "text-danger" })
+                                                        new { @class = "text-danger" })
                 </div>
                 <!---------------------------- RES CITY -------------------------------->
                 <div class="form-group">
@@ -235,7 +299,9 @@
                                                         new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.ResState,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                                new { htmlAttributes = new { @class = "form-control", 
+                                                @placeholder="two-letter state code",
+                                                 @pattern="[A-Z]{2}" } })
 
                     @Html.ValidationMessageFor(model => model.ResState, "",
                                                         new { @class = "text-danger" })
@@ -246,10 +312,12 @@
                                         htmlAttributes: new { @class = "control-label" })
 
                     @Html.EditorFor(model => model.ResZipcode,
-                                new { htmlAttributes = new { @class = "form-control" } })
+                                new { htmlAttributes = new { @class = "form-control", 
+                                              @placeholder="only first five digits",
+                                                @pattern="[0-9]{5}" } })
 
                     @Html.ValidationMessageFor(model => model.ResZipcode, "",
-                                                          new { @class = "text-danger" })
+                                                         new { @class = "text-danger" })
                 </div>
                 <!---------------------------------------------------------------------->
             </div><!-- END 3rd\RIGHT FOUR-COLUMN DIV ; INSIDE 2nd\MIDDLE ROW -->
@@ -259,29 +327,15 @@
         <!---->
         <!--==========================================================================-->
         <!--================================ BUTTONS! ================================-->
-        <div class="row">
-            <div class="col-sm-offset-10 col-sm-2">
-                <div class="button_box">
-
-                    <div class="form-group">
-                        <div>
-                            <input type="submit" value="Make my Profile!"
-                                   class="btn our_buttons" />
-                        </div>
-                    </div>
-
-                    <div class="our_create-edit_buttons">
-                        @Html.ActionLink("Cancel! (to home)", "Index", "Home")
-                    </div>
-
-                </div><!-- end button_box div -->
-            </div><!-- END COLUMN FOR BUTTON BOX ROW -->
-        </div><!-- END 2nd ROW! -->
+        <!---->
+        <!---------------------- moved it up-top --------------------------------------->
+        <!---->
         <!------------------------------------------------------------------------------>
-    </div><!-- END FORM DIV! -->
+        </div><!-- END FORM DIV! -->
     }
 </div><!-- END CONTAINER-FLUID! -->
 <!--==================================================================================-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/_our_main.js")
 }

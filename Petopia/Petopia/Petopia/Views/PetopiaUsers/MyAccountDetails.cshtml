@@ -1,0 +1,116 @@
+﻿@model Petopia.Models.ViewModels.MyAccountViewModel
+
+@{
+    ViewBag.Title = "Your private Petopia account details";
+}
+
+<div class="outer_container">
+
+    <div class="container-fluid">
+
+        <h2>@ViewBag.Title:</h2>
+        <hr />
+        <!------------------------------------ FIRST ROW ------------------------------->
+        <div class="row our_row_one">
+
+            <div class="col-sm-4 col-md-4 our_col_one">
+
+                <div class="account_item">
+                    <h5> Name: </h5>
+                    @Html.DisplayFor(model => model.FirstName)&nbsp;
+                    @Html.DisplayFor(model => model.LastName)
+                </div>
+
+            </div>
+
+        </div> <!-- END OF ROW ONE -->
+        <!---->
+        <!----------------------------------- SECOND ROW ------------------------------->
+        <!---->
+        <div class="row our_row_two">
+
+            <div class="col-sm-6 col-md-6 our_col_one">
+
+                <div class="account_item">
+                    <h5> My phone #'s: </h5>
+                    @Html.DisplayNameFor(model => model.MainPhone) &nbsp;
+                    @Html.DisplayFor(model => model.MainPhone)
+                    <br />
+                    @Html.DisplayNameFor(model => model.AltPhone) &nbsp;
+                    @Html.DisplayFor(model => model.AltPhone)
+                </div>
+
+            </div> <!-- END ROW 2 => COL 1 -->
+
+            <div class="col-sm-6 col-md-6 our_col_two">
+
+                <div class="account_item">
+                    <h5> My residential address:</h5>
+                    @Html.DisplayFor(model => model.ResAddress01) <br />
+                    @Html.DisplayFor(model => model.ResAddress02) <br />
+                    @Html.DisplayFor(model => model.ResCity), &nbsp;
+                    @Html.DisplayFor(model => model.ResState) &nbsp; &nbsp; &nbsp;
+                    @Html.DisplayFor(model => model.ResZipcode)
+                </div>
+
+            </div> <!-- END ROW 2 => COL 2 -->
+
+        </div> <!-- END OF ROW TWO -->
+        <!---->
+        <!------------------------------------ THIRD ROW ------------------------------->
+        <!---->
+        <div class="row our_row_three">
+
+            <div class="col-sm-8 col-md-8 our_col_one">
+
+                <div class="account_item">
+                    <h5> @Html.DisplayNameFor(model => model.HomeAccess) </h5>
+                    @Html.DisplayFor(model => model.HomeAccess)
+                </div>
+
+            </div> <!-- END ROW 3 => COL 1 -->
+
+        </div> <!-- END ROW THREE -->
+        <!---->
+        <!----------------------------------- FOURTH ROW ------------------------------->
+        <!---->
+        <div class="row our_row_four">
+
+            <div class="col-sm-offset-8 col-md-offset-8 col-sm-2 col-md-2 our_col_one">
+
+                <div>
+                    @Html.ActionLink("Edit my Account", "EditMyStuff",
+                            new { controller = "ProfilePage" },
+                            new { @class = "our_other_buttons", style="color:#f2e6d9" })
+                </div>
+
+            </div>
+
+
+            <div class="col-sm-2 col-md-2 our_col_two">
+
+                <div>
+                    @Html.ActionLink("Back to my Profile", "Index",
+                            new { controller = "ProfilePage" },
+                            new { @class = "our_other_buttons", style="color: #f2e6d9" })
+                </div>
+
+            </div>
+
+        </div> <!-- END ROW FOUR -->
+        <!---->
+        <!--==========================================================================-->
+        <!---->
+        <!--==========================================================================-->
+        <!--------------------------------- END OF ROWS -------------------------------->
+
+    </div><!-- END CONTAINER-FLUID -->
+</div><!-- END OUTER_CONTAINER -->
+<!--==================================================================================-->
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/_our_main.js")
+    @Scripts.Render("~/Scripts/moment.js")
+    @Scripts.Render("~/Scripts/fullcalendar.js")
+}
+<!--==================================================================================-->

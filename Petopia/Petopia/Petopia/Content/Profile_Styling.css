@@ -10,13 +10,11 @@
     color: whitesmoke;
     font-weight: bold;*/
 }
-
 .our_row_two {
     padding: 5px;
     background-color: #996633;
     color: whitesmoke;
 }
-
 .our_row_three {
     padding: 5px;
     background-color: #996633;
@@ -31,18 +29,18 @@
 /*====================== PET OWNER || PROVIDER ======================*/
 .owner_provider_box {
     font-weight: bold;
+    font-size: 135%;
 }
 /*========================== PROFILE PIC ============================*/
 .profile_pic_box_box {
-}
 
+}
 .profile_pic_box {
     width: 96%;
     height: auto;
     /* border: 1px solid black;
     border-radius: 5px; */
 }
-/* WE HAVE ISSUES WITH USER-UPLOADED IMAGES!!! */
 .profile_img {
     width: 99%;
     height: auto;
@@ -78,64 +76,87 @@
     width: 36px;
     height: 36px;
 }
+.badge_form {
+    float: left;
+    margin-right: 35px;
+    /* for testing */
+    /*border: 1px dashed blue;*/
+}
 /*======================== OUR BUTTONS ==============================*/
 .button_box {
     width: 96%;
     height: 90px;
     padding: 3px;
-    color: whitesmoke;
+    color: #f2e6d9;
+    margin-top: 13px;
 }
 .our_profile_buttons {
     border: 1px solid #4d3319;
     border-radius: 9px;
     padding: 9px;
     background-color: #392613;
-    color: whitesmoke;
-    font-weight: bold;
+    color: #f2e6d9;
+    font-weight: normal;
     float: left;
     margin-left: 3px;
     margin-top: 3px;
 }
-/*----------------------------------------*/
-.our_create-edit_buttons {
-    border: 1px solid #4d3319;
-    border-radius: 9px;
-    padding: 9px;
-    background-color: #392613;
-    color: whitesmoke;
-    font-weight: bold;
-    /*float: right;*/
-    margin-left: 3px;
-    margin-top: 3px;
-    width: 90px;
-    text-align: center;
-}
-    .our_create-edit_buttons a {
-        color: whitesmoke;
+    .our_profile_buttons a:link {
+        font-weight: normal;
+    }
+    .our_profile_buttons:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .our_profile_buttons:active {
+        transform: translateY(3px);
     }
 /*----------------------------------------*/
 .button_box_pet_card {
+    margin-top: 23px;
     margin-bottom: 9px;
     margin-right: 9px;
     padding: 3px;
-    color: whitesmoke;
+    color: #f2e6d9;
 }
 .our_pet_card_buttons {
     border: 1px solid #4d3319;
     border-radius: 9px;
     padding: 9px;
     background-color: #392613;
-    color: whitesmoke;
-    font-weight: bold;
+    color: #f2e6d9;
+    font-weight: normal;
     /*margin-bottom: 18px;*/
     margin-right: 5px;
     float: right;
 }
+    .our_pet_card_buttons a:link {
+        color: #f2e6d9;
+        font-weight: normal;
+    }
+    .our_pet_card_buttons:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .our_pet_card_buttons:active {
+        transform: translateY(3px);
+    }
 /*----------------------------------------*/
 .button_box_03 {
     padding: 3px;
-    color: whitesmoke;
-    margin-top: 72px;
+    padding-right: 18px;
+    color: #f2e6d9;
+    margin-top: 5px;
+    float: right;
+    text-align: center;
+}
+.button_box_04 {
+    padding: 3px;
+    padding-right: 18px;
+    color: #f2e6d9;
+    margin-top: 5px;
+    float: left;
+    text-align: center;
 }
 .our_other_buttons {
     /* these are being really fucking weird!! */
@@ -143,12 +164,22 @@
     border-radius: 9px;
     padding: 9px;
     background-color: #392613;
-    color: whitesmoke;
-    font-weight: bold;
+    color: #f2e6d9;
     float: right;
     margin-right: 5px;
     margin-bottom: 5px;
 }
+    .our_other_buttons a:link {
+        color: #f2e6d9;
+        font-weight: normal;
+    }
+    .our_other_buttons:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .our_other_buttons:active {
+        transform: translateY(3px);
+    }
 /*========================= USER NAME ===============================*/
 .user_name_box {
     width: 96%;
@@ -206,14 +237,20 @@
     margin-top: 5px;
     padding: 15px;
 }
-/*============= SEARCH \ NEAR YOU \ PREVIEW CARDS ===================*/
+
+.general_pet_care_needs_box {
+    width: 99%;
+    margin-top: 5px;
+    padding: 15px;
+}
+/*============= SEARCH \ NEAR YOU \ PREVIEW CARDS ======= SCROLLY-WINDOWS! ============*/
 .auto_search_results_box_box {
     padding: 9px;
     height: 100%;
 }
 
 .auto_search_results_box {
-    border: 1px solid #4d3319;
+    border: 2px solid #4d3319;
     border-radius: 5px;
     padding: 3px;
     /* this will add scrollbars only if\when necessary */
@@ -221,20 +258,20 @@
     /* Note: overflow property only works for block elements w/specified height */
     height: 630px;
 }
-
 .search_result_card {
     background-color: #604020;
     box-shadow: 0 5px 9px 0 rgba(0,0,0,0.6);
     transition: 0.3s;
     width: 99%;
+    max-height: 320px;
     border-radius: 5px;
     margin-bottom: 18px;
+    /* for testing */
+    /*border:2px solid red;*/
 }
-
     .search_result_card:hover {
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
     }
-
 .search_result_card_img {
     min-width: 70%;
     max-width: 93%;
@@ -244,36 +281,38 @@
     border-radius: 5px;
     margin-left: 5px;
 }
-
 .search_result_card_info {
     padding: 3px 15px;
+    margin-bottom:9px;
+    /* for testing */
+    /*border:2px solid blue;*/
 }
-
     .search_result_card_info p {
         margin-bottom: 1px;
     }
+.scrolly-window_badge-box {
+    clear:both;
+    margin-top:3px;
+}
 /*=================== PET PROFILE PREVIEW BOX =======================*/
 .pet_profile_preview_box {
     padding: 9px;
     overflow: auto;
 }
-
 .pet_profile_preview {
     border: 1px solid #4d3319;
     border-radius: 5px;
-    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.45);
     transition: 0.3s;
-    height: 145px;
+    height: 165px;
     margin-bottom: 18px;
 }
-
     .pet_profile_preview:hover {
         box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
     }
-
 .pet_profile_preview_img {
-    width: 135px;
-    height: 135px;
+    width: 155px;
+    height: 155px;
     float: left;
     border-radius: 5px;
     margin-top: 3px;
@@ -281,7 +320,6 @@
     margin-bottom: 3px;
     margin-left: 3px;
 }
-
 .pet_preview_name {
     font-weight: bold;
 }
@@ -293,43 +331,181 @@
 .pet_preview_care_record {
     font-weight: bold;
 }
-/*====================== TABLE for PET CARE =========================*/
-.pet_care_table {
-    width: 100%;
-    border: 1px solid #392613;
-    border-radius: 5px;
-    border-collapse: collapse;
+/*====================== PET PHOTO GALLERY ==========================*/
+.pet_gallery_box {
+    float: left;
+    margin: 13px;
+    padding: 5px;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
 }
-th,td {
-    border: 1px solid #392613;
+    .pet_gallery_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+.pet_gallery_photo_part {
+
 }
-th {
+.pet_gallery_photo_box_box {
+    /*display: inline-block;*/
+}
+.pet_gallery_photo_box {
+    width: 96%;
+    height: auto;
+    /* border: 1px solid black;
+    border-radius: 5px; */
+}
+.pet_gallery_image {
+    width: auto;
+    height: 350px;
+    /* this is better here then on the box */
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+}
+.pet_gallery_photo_comment_part {
+    display: inline-block;
+    float: left;
+    padding: 5px 5px 0px 15px;
+    font-weight: bold;
+    color: #392613;
+    /* for testing */
+    /*border: 1px solid orange;*/
+}
+.pet_gallery_button_part {
+    display: inline-block;
+    float: right;
+    padding: 5px;
+    /* for testing */
+    /*border: 1px solid green;*/
+}
+.pet_gallery_button {
     background-color: #392613;
+    border: 1px solid #4d3319;
+    border-radius: 9px;
+    padding: 1px 5px 1px 5px;
     color: #f2e6d9;
-    padding-top: 9px;
-    padding-bottom: 9px;
-    padding-left: 9px;
+    font-weight: normal;
+    font-style: italic;
+    text-align: center;
 }
-td {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 9px;
+    .pet_gallery_button a:link {
+        color: #f2e6d9;
+        font-weight: normal;
+    }
+    .pet_gallery_button:hover {
+        color: #f2e6d9;
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+    .pet_gallery_button:active {
+        transform: translateY(3px);
+    }
+/*========================== ACCOUNT ITEMS ==========================*/
+/* for the 'private petopia user account details' page */
+.account_item {
+    padding: 9px;
 }
-tr:nth-child(even) {
-    background-color: #734d26;
+/*======================= PET DETAIL ITEMS ==========================*/
+/* for the 'my private pet details' page */
+.pet_detail_item {
+    padding: 9px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
 }
-tr:hover {
-    background-color: rgba(153, 0, 0, .45);
+    .pet_detail_item:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+/*===================== APPOINTMENTS STUFF ==========================*/
+.make_appt_box {
+    padding: 9px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    margin: 9px;
 }
-.table_col_one {
-    width: 12.5%;
+.my_appt_box {
+    padding: 9px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    margin-left: 9px;
+    margin-right: 9px;
+    margin-bottom: 27px;
 }
-.table_col_two {
-    width: 18%;
+    .my_appt_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+.our_appt_label {
+    font-weight: bold;
+    color: #392613;
 }
-.table_col_three {
-    /*width: 50%;*/
+.carer_fee_box {
+    padding: 9px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
 }
+.carer_rating_comment_box {
+    padding: 15px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    width: 45%;
+    margin: 9px;
+    float: left;
+}
+.owner_rating_comment_box {
+    padding: 15px;
+    border: 1px solid #4d3319;
+    border-radius: 5px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    width: 45%;
+    margin: 9px;
+    float: right;
+}
+.job_details_box_box {
+    border: 1px solid #4d3319;
+    border-radius: 11px;
+    box-shadow: 0 5px 9px 0 rgba(0,0,0,0.3);
+    transition: 0.3s;
+    padding: 11px;
+    margin-bottom: 11px;
+}
+    .job_details_box_box:hover {
+        box-shadow: 0 9px 15px 0 rgba(0,0,0,0.9);
+    }
+.job_details_box_left {
+    margin-bottom: 5px;
+    margin-left: 0px;
+    padding-left: 0px;
+    /* for testing */
+    /*border: 1px dotted red;*/
+}
+.job_details_box_others {
+    margin-bottom: 5px;
+    margin-left: 23px;
+    padding-left: 0px;
+    /* for testing */
+    /*border: 1px dotted red;*/
+}
+.test_proof_stuff {
+    border: 1px solid #4d3319;
+    border-radius: 11px;
+    padding: 9px;
+    height: 63px;
+    margin-bottom: 11px;
+}
+    .test_proof_stuff span {
+        float: left;
+        margin-right: 45px;
+    }
 /*============================ LINKS! ===============================*/
 /* unvisited link */
 a:link, .our_a:link {
