@@ -25,11 +25,18 @@ As a sometimes very busy pet owner myself, I know that there are times I could u
 
 ### Our Academic Excellence Showcase video presentation of Petopia
 ##### Hosted at Western Oregon University's Digital Commons
-[AES Petopia Presentation + Abstract](https://digitalcommons.wou.edu/aes/216/) <br>
+[AES Petopia Presentation + Abstract:  Thursday May 14th, 2020](https://digitalcommons.wou.edu/aes/216/) <br>
 _(note at this point, Petopia was incomplete!)_
 
 <br>
 <hr>
+
+### Our Final Technical Video Presentation:
+[Nerdvana -- Petopia Technical Presentation: Monday June 8th, 2020](www.youtube.com)
+
+<br>
+<hr>
+
 
 ### How to contribute to Petopia
 Check out our `contributing_guidelines.md` file [here](../tlh_m05_team_github_stuff/Team_Nerdvana_Info/contributing_process.md).
