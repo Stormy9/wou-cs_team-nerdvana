@@ -15,8 +15,16 @@ As a sometimes very busy pet owner myself, I know that there are times I could u
 
 <br>
 <hr>
+
 #### Petopia Final ERD:
 [Our final ERD (4th revision)](https://github.com/Stormy9/wou-cs_team-nerdvana/blob/dev/Petopia/Petopia_models-diagrams/FINAL_PETOPIA_ERD.png)
+
+<br>
+<hr>
+
+### Our AES Video Presentation:
+[Thursday May 14th, 2020](https://digitalcommons.wou.edu/aes/216/)
+
 <br>
 <hr>
 
