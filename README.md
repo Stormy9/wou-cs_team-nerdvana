@@ -23,7 +23,13 @@ As a sometimes very busy pet owner myself, I know that there are times I could u
 <hr>
 
 ### Our AES Video Presentation:
-[Thursday May 14th, 2020](https://digitalcommons.wou.edu/aes/216/)
+[Nerdvana Presents Petopia: Thursday May 14th, 2020](https://digitalcommons.wou.edu/aes/216/)
+
+<br>
+<hr>
+
+### Our Final Technical Video Presentation:
+[Nerdvana -- Petopia Technical Presentation: Sunday June 7th, 2020](www.youtube.com)
 
 <br>
 <hr>
@@ -35,7 +41,7 @@ You'll find out about forking, cloning, pulling, our rules, our current contribu
 
 <br><br>
 
-### You need this stuff to contribute
+#### You need this stuff to contribute
 Check out our `you_need_this_stuff.md` file [here](../tlh_m05_team_github_stuff/Team_Nerdvana_Info/you_need_this_stuff.md).
 <br><br>
 Make sure you have the right stuff!  We all need to be using the same things and versions to avoid compatibility headaches.
