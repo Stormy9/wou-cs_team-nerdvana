@@ -15,8 +15,12 @@ As a sometimes very busy pet owner myself, I know that there are times I could u
 
 <br>
 <hr>
+#### Petopia Final ERD:
+[Our final ERD (4th revision)](https://github.com/Stormy9/wou-cs_team-nerdvana/blob/dev/Petopia/Petopia_models-diagrams/FINAL_PETOPIA_ERD.png)
+<br>
+<hr>
 
-### How to contribute
+#### How to contribute
 Check out our `contributing_guidelines.md` file [here](../tlh_m05_team_github_stuff/Team_Nerdvana_Info/contributing_process.md).
 <br><br>
 You'll find out about forking, cloning, pulling, our rules, our current contributors, and possibly more!   [=
