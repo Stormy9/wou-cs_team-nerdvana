@@ -1,6 +1,7 @@
 # wou-cs_team-nerdvana
-### Tricia Holman, Corrin Moser, Joseph Tavares
-##### Western Oregon University &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Computer Science Department &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Senior Project 2019/20 &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Team Nerdvana &nbsp;&nbsp;&nbsp; |
+### Tricia Holman, Corrin Moser, Joseph Tavares &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Team Nerdvana &nbsp;&nbsp;&nbsp; |
+##### Western Oregon University &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; Computer Science Department &nbsp;&nbsp;&nbsp; | 
+##### Senior Capstone Project 2019/20 &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; CS460-462 Software Engineering I, II, III &nbsp;&nbsp;&nbsp; | 
 <hr>
 
 This is the repo for our capstone project before we graduate with a Bachelor's Degree in Computer Science!
@@ -16,32 +17,35 @@ As a sometimes very busy pet owner myself, I know that there are times I could u
 <br>
 <hr>
 
-#### Petopia Final ERD:
-[Our final ERD (4th revision)](https://github.com/Stormy9/wou-cs_team-nerdvana/blob/dev/Petopia/Petopia_models-diagrams/FINAL_PETOPIA_ERD.png)
+### Our final (for WOU) ERD for Petopia
+[Petopia database ERD](https://github.com/Stormy9/wou-cs_team-nerdvana/blob/master/Petopia/Petopia_models-diagrams/FINAL_PETOPIA_ERD.png)
 
 <br>
 <hr>
 
-### Our AES Video Presentation:
-[Nerdvana Presents Petopia: Thursday May 14th, 2020](https://digitalcommons.wou.edu/aes/216/)
+### Our Academic Excellence Showcase video presentation of Petopia
+##### Hosted at Western Oregon University's Digital Commons
+[AES Petopia Presentation + Abstract:  Thursday May 14th, 2020](https://digitalcommons.wou.edu/aes/216/) <br>
+_(note at this point, Petopia was incomplete!)_
 
 <br>
 <hr>
 
 ### Our Final Technical Video Presentation:
-[Nerdvana -- Petopia Technical Presentation: Sunday June 7th, 2020](www.youtube.com)
+[Nerdvana -- Petopia Technical Presentation: Monday June 8th, 2020](www.youtube.com)
 
 <br>
 <hr>
 
-#### How to contribute
+
+### How to contribute to Petopia
 Check out our `contributing_guidelines.md` file [here](../tlh_m05_team_github_stuff/Team_Nerdvana_Info/contributing_process.md).
 <br><br>
 You'll find out about forking, cloning, pulling, our rules, our current contributors, and possibly more!   [=
 
 <br><br>
 
-#### You need this stuff to contribute
+### You need this stuff to contribute
 Check out our `you_need_this_stuff.md` file [here](../tlh_m05_team_github_stuff/Team_Nerdvana_Info/you_need_this_stuff.md).
 <br><br>
 Make sure you have the right stuff!  We all need to be using the same things and versions to avoid compatibility headaches.
