@@ -110,7 +110,7 @@ namespace Petopia.Controllers
                 petopiaUser.PetOwnerID = db.PetOwners.Where(x => x.UserID == loggedID)
                                                      .Select(x => x.PetOwnerID).First();
                 petopiaUser.OwnerAverageRating = db.PetOwners.Where(x => x.UserID == loggedID)
-                                                     .Select(x => x.PetOwnerID).FirstOrDefault();
+                                                     .Select(x => x.AverageRating).FirstOrDefault();
             }
             //---------------------------------------------------------------------------
             //                                                           GET PET(S) LIST!
