@@ -32,11 +32,16 @@ _(note at this point, Petopia was incomplete!)_
 <hr>
 
 ### Our Final Technical Video Presentation:
-[Nerdvana -- Petopia Technical Presentation: Monday June 8th, 2020](www.youtube.com)
+[Nerdvana -- Petopia Technical Presentation: Monday June 8th, 2020](https://youtu.be/Sy_YOToMjH8)
 
 <br>
 <hr>
 
+### Our Final Technical Specifications Report:
+[Nerdvana -- Petopia Technical Specification Report: Monday June 8th, 2020](https://github.com/Stormy9/wou-cs_team-nerdvana/blob/master/Petopia/Petopia_FinalTechDocs/Petopia_Technical-Specifications-Report_rev.pdf)
+
+<br>
+<hr>
 
 ### How to contribute to Petopia
 Check out our `contributing_guidelines.md` file [here](../tlh_m05_team_github_stuff/Team_Nerdvana_Info/contributing_process.md).
