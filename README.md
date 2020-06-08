@@ -32,7 +32,7 @@ _(note at this point, Petopia was incomplete!)_
 <hr>
 
 ### Our Final Technical Video Presentation:
-[Nerdvana -- Petopia Technical Presentation: Monday June 8th, 2020](https://youtu.be/Sy_YOToMjH8)
+[Nerdvana -- Petopia Technical Presentation: Monday June 8th, 2020](https://youtu.be/2zaFgmQs8BI)
 
 <br>
 <hr>
