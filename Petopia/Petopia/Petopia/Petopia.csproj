@@ -258,7 +258,6 @@
     <Content Include="App_Data\identityDown.sql" />
     <Content Include="App_Data\identityUp.sql" />
     <Content Include="App_Data\userDown.sql" />
-    <Content Include="App_Data\userSeed.sql" />
     <Content Include="App_Data\userUp.sql" />
     <Content Include="Content\AdminLTE\AdminLTE.css" />
     <Content Include="Content\AdminLTE\AdminLTE.min.css" />
