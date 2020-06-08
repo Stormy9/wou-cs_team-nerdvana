@@ -1,3 +1,7 @@
-﻿DROP TABLE [dbo].[CareTransaction]
+﻿DROP TABLE [dbo].[PetopiaUsers]
+DROP TABLE [dbo].[PetOwner]
 DROP TABLE [dbo].[Pet]
+DROP TABLE [dbo].[PetGallery]
+DROP TABLE [dbo].[CareProvider]
+DROP TABLE [dbo].[CareTransaction]
 DROP TABLE [dbo].[UserBadge]

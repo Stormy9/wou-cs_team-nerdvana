@@ -110,7 +110,7 @@ namespace Petopia.Controllers
                 petopiaUser.PetOwnerID = db.PetOwners.Where(x => x.UserID == loggedID)
                                                      .Select(x => x.PetOwnerID).First();
                 petopiaUser.OwnerAverageRating = db.PetOwners.Where(x => x.UserID == loggedID)
-                                                     .Select(x => x.PetOwnerID).FirstOrDefault();
+                                                     .Select(x => x.AverageRating).FirstOrDefault();
             }
             //---------------------------------------------------------------------------
             //                                                           GET PET(S) LIST!
@@ -262,45 +262,78 @@ namespace Petopia.Controllers
                     user.Score = 0;
 
                     //Adding score for each matching badge
-                    if (user.IsBirdProvider == loggedUserRec.IsBirdProvider && user.IsBirdProvider == true)
+                    if (loggedUserRec != null)
                     {
-                        user.Score = user.Score + 1;
-                    }
-                    if (user.IsCatProvider == loggedUserRec.IsCatProvider && user.IsCatProvider == true)
-                    {
-                        user.Score = user.Score + 1;
-                    }
-                    if (user.IsDogProvider == loggedUserRec.IsDogProvider && user.IsDogProvider == true)
-                    {
-                        user.Score = user.Score + 1;
-                    }
-                    if (user.IsFishProvider == loggedUserRec.IsFishProvider && user.IsFishProvider == true)
-                    {
-                        user.Score = user.Score + 1;
-                    }
-                    if (user.IsHorseProvider == loggedUserRec.IsHorseProvider && user.IsHorseProvider == true)
-                    {
-                        user.Score = user.Score + 1;
-                    }
-                    if (user.IsLivestockProvider == loggedUserRec.IsLivestockProvider && user.IsLivestockProvider == true)
-                    {
-                        user.Score = user.Score + 1;
-                    }
-                    if (user.IsOtherProvider == loggedUserRec.IsOtherProvider && user.IsOtherProvider == true)
-                    {
-                        user.Score = user.Score + 1;
-                    }
-                    if (user.IsRabbitProvider == loggedUserRec.IsRabbitProvider && user.IsRabbitProvider == true)
-                    {
-                        user.Score = user.Score + 1;
-                    }
-                    if (user.IsReptileProvider == loggedUserRec.IsReptileProvider && user.IsReptileProvider == true)
-                    {
-                        user.Score = user.Score + 1;
-                    }
-                    if (user.IsRodentProvider == loggedUserRec.IsRodentProvider && user.IsRodentProvider == true)
-                    {
-                        user.Score = user.Score + 1;
+                        if (user.IsBirdProvider != null)
+                        {
+                            if (user.IsBirdProvider == loggedUserRec.IsBirdProvider && user.IsBirdProvider == true)
+                            {
+                                user.Score = user.Score + 1;
+                            }
+                        }
+                        if (user.IsCatProvider != null)
+                        {
+                            if (user.IsCatProvider == loggedUserRec.IsCatProvider && user.IsCatProvider == true)
+                            {
+                                user.Score = user.Score + 1;
+                            }
+                        }
+                        if (user.IsDogProvider != null)
+                        {
+                            if (user.IsDogProvider == loggedUserRec.IsDogProvider && user.IsDogProvider == true)
+                            {
+                                user.Score = user.Score + 1;
+                            }
+                        }
+                        if (user.IsFishProvider != null)
+                        {
+                            if (user.IsFishProvider == loggedUserRec.IsFishProvider && user.IsFishProvider == true)
+                            {
+                                user.Score = user.Score + 1;
+                            }
+                        }
+                        if (user.IsHorseProvider != null)
+                        {
+                            if (user.IsHorseProvider == loggedUserRec.IsHorseProvider && user.IsHorseProvider == true)
+                            {
+                                user.Score = user.Score + 1;
+                            }
+                        }
+                        if (user.IsLivestockProvider != null)
+                        {
+                            if (user.IsLivestockProvider == loggedUserRec.IsLivestockProvider && user.IsLivestockProvider == true)
+                            {
+                                user.Score = user.Score + 1;
+                            }
+                        }
+                        if (user.IsOtherProvider != null)
+                        {
+                            if (user.IsOtherProvider == loggedUserRec.IsOtherProvider && user.IsOtherProvider == true)
+                            {
+                                user.Score = user.Score + 1;
+                            }
+                        }
+                        if (user.IsRabbitProvider != null)
+                        {
+                            if (user.IsRabbitProvider == loggedUserRec.IsRabbitProvider && user.IsRabbitProvider == true)
+                            {
+                                user.Score = user.Score + 1;
+                            }
+                        }
+                        if (user.IsReptileProvider != null)
+                        {
+                            if (user.IsReptileProvider == loggedUserRec.IsReptileProvider && user.IsReptileProvider == true)
+                            {
+                                user.Score = user.Score + 1;
+                            }
+                        }
+                        if (user.IsRodentProvider != null)
+                        {
+                            if (user.IsRodentProvider == loggedUserRec.IsRodentProvider && user.IsRodentProvider == true)
+                            {
+                                user.Score = user.Score + 1;
+                            }
+                        }
                     }
 
                     //multiplying score by average rating
