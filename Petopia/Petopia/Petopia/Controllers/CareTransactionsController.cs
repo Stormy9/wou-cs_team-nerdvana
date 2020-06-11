@@ -11,6 +11,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
 using Stripe;
+using SimpleZipCode;
 
 namespace Petopia.Controllers
 {
@@ -195,10 +196,27 @@ namespace Petopia.Controllers
             //          that has the key 'ThisOwnersPetsSelectList'.
             ViewBag.ThisOwnersPetsSelectList = ThisOwnersPetsSelectList;
 
+            var ZipCodes = ZipCodeSource.FromMemory().GetRepository();
+
+            var OwnerLocation = ZipCodes.Get(thisPetOwnerZip);
+            var ZipCodesNearOwner = ZipCodes.RadiusSearch(OwnerLocation, 10);
+
+            if (OwnerLocation == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest, "Invalid zipcode");
+            }
+
+            List<String> zipsList = new List<String>();
+
+            foreach (ZipCode zip in ZipCodesNearOwner)
+            {
+                zipsList.Add(zip.PostalCode);
+            }
+
             //---------------------------------------------------------------------------
             // --> SELECT LIST OF PET CARERS w/ZIPCODE MATCHING THIS LOGGED-IN PET OWNER
             List<SelectListItem> PetCarerSelectList = (from pu in db.PetopiaUsers
-                                where pu.ResZipcode == thisPetOwnerZip
+                                where zipsList.Contains(pu.ResZipcode) && pu.IsProvider
                                 join cp in db.CareProviders on pu.UserID equals cp.UserID
                                 select new SelectListItem
                                 {
@@ -226,7 +244,7 @@ namespace Petopia.Controllers
             //  where CareProvider Zipcode == currentlyLogged - inUser Zipcode-- it works!
             //    --> THIS IS WHAT MAKES THE BLUE CARDS ON THE 'test_crap' VIEW < --
             MatchingPetCarers.PetCarerList = (from pu in db.PetopiaUsers
-                                where pu.ResZipcode == thisPetOwnerZip
+                                where zipsList.Contains(pu.ResZipcode) && pu.IsProvider
                                 join cp in db.CareProviders on pu.UserID equals cp.UserID
                                 select new CareTransactionViewModel.CareProviderInfo
                                 {
